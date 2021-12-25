@@ -85,7 +85,7 @@ There are three sections in the USER INPUTS tab:
 | U3.7 ELECTRICITY FOR TRANSPORT | increase_renewables_end_year | dropdown | integer | 2021 <= year <= 2050 | 2030 | |
 
 
-EU COUNTRIES
+EU COUNTRIES<br>
 Austria<br>
 Belgium<br>
 Bulgaria<br>
