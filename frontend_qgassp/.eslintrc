@@ -1,0 +1,46 @@
+{
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "jasmine": true,
+    "jest": true,
+    "node": true
+  },
+  "ignorePatterns": ["public/", "storybook-static/*", "*.css", "build/*","test/*.css"],
+  "plugins": ["import", "react"],
+  "extends": [
+    "eslint:recommended",
+    "google",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:react/recommended",
+    "prettier",
+    "plugin:import/typescript",
+    "plugin:storybook/recommended",
+    "plugin:react/jsx-runtime"
+  ],
+  "rules": {
+    "require-jsdoc": "off",
+    "storybook/hierarchy-separator": "error",
+    "react/jsx-uses-react": 1,
+    "storybook/default-exports": "off",
+    "no-console": 2,
+    "react/react-in-jsx-scope": "off",
+    "import/extensions": "off",
+    "no-unused-vars": [
+      1,
+      { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }
+    ],
+    "react/jsx-filename-extension": [0]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}

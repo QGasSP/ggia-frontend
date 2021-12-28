@@ -1,0 +1,17 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": ">= 5%"
+      }
+    ],
+    [
+      "@babel/preset-react",
+      {
+        "runtime": "automatic"
+      }
+    ]
+  ],
+  "plugins": ["@babel/plugin-proposal-object-rest-spread"]
+}

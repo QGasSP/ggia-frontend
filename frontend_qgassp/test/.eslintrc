@@ -1,0 +1,7 @@
+{
+  "env": {
+    "mocha": true,
+    "node": { "version": "14.6" },
+    "es6": true
+  }
+}
