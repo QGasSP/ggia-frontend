@@ -35,3 +35,6 @@ package-lock.json
 /storybook-static/*
 
 .jest-test-results.json
+
+./idea
+

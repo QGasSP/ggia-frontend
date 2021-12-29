@@ -1,0 +1,7 @@
+version: '3.7'
+services:
+  ggia-frontend:
+    build: ./frontend_qgassp
+    container_name: ggia-frontend
+    ports:
+      - "3000:3000"
