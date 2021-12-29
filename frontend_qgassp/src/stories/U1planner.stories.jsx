@@ -1,6 +1,6 @@
 import React from "react";
 
-import { U1planner } from "./U1planner";
+import { U1planner } from "../components/U1planner";
 import * as HeaderStories from "./Header.stories";
 
 export default {

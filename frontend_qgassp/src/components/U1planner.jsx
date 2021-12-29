@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { Header } from "./Header";
-import "./u1planner.css";
+import "../css/u1planner.css";
 
 /**
  * U1 Planner user input form for baseline
