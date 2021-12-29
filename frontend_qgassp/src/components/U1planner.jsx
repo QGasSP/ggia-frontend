@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 
 import { Header } from "./Header";
 import "../css/u1planner.css";
-import { Row } from "react-bootstrap";
 
 /**
  * U1 Planner user input form for baseline
@@ -20,31 +19,30 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => (
     />
 
     <section>
-      <h2>U1 PLANNER USER INPUT 1: BASELINE</h2>
-      <br />
+      <div>
+        <h2>U1 PLANNER USER INPUT 1: BASELINE</h2>
+      </div>
       <form>
         <div>
           <label>Year</label>
           <input type="text" name="name" />
         </div>
-
         <div>
           <label>Country</label>
           <select>
             <option value="country_name">Finland</option>
           </select>
         </div>
-
         <div>
-          <label>Population of assessment area</label>
+          <label>Population of the assessment area</label>
           <input type="text" name="name" />
         </div>
+        <br />
 
         <label>
           <b>U1.1 Settlement type</b>
         </label>
-        <label>Share %</label>
-
+        <label>Share (%)</label>
         <div>
           <label>City</label>
           <input type="text" name="city" />
@@ -61,28 +59,30 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => (
           <label>Rural</label>
           <input type="text" name="rural" />
         </div>
+        <br />
 
         <label>
           <b>U1.2 Area</b>
         </label>
-        <label>Area km</label>
-        <br />
-
+        <label>Km</label>
         <div>
-          <label>N-S Measurement(km)</label>
+          <label>N-S Measurement (km)</label>
           <input type="text" name="ns_measure" />
         </div>
         <div>
-          <label>E-W Measurement(km)</label>
+          <label>E-W Measurement (km)</label>
           <input type="text" name="ew_measure" />
         </div>
-
-        <label>
-          <b>U1.2 Non-residential and freight</b>
-        </label>
-        <label></label>
-        <label>factor, default=1</label>
         <br />
+        <div>
+          <label>
+            <b>U1.2 Non-residential and freight</b>
+          </label>
+          <label></label>
+          <label>
+            <i>factor, default=1</i>{" "}
+          </label>
+        </div>
         <div>
           <label> Non-residential road transport</label>
           <label> 2</label>
@@ -106,8 +106,6 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => (
           <label>2</label>
           <label>0.3</label>
         </div>
-        <br />
-        <label></label>
       </form>
     </section>
   </article>
