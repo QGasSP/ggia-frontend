@@ -1,10 +1,11 @@
 import "./App.css";
+import { U1planner } from "./components/U1planner";
 
 function App() {
   return (
     <div>
       <header>
-        <p>Qgassp</p>
+        <U1planner />
       </header>
     </div>
   );

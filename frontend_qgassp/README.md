@@ -1,12 +1,14 @@
 # ggia-frontend
 
 # Project setup
-* This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-* Storybook Ui components- https://storybook.js.org/docs/react/get-started/install
+
+- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Storybook Ui components- https://storybook.js.org/docs/react/get-started/install
 
 ## Visual studio code extensions added
-* ESLint - Microsoft
-* Prettier - Code formatter
+
+- ESLint - Microsoft
+- Prettier - Code formatter
 
 ## Available Scripts
 
@@ -45,4 +47,5 @@ sorts file alphabetically
 ## Upgrade storybook
 
 ### `npx sb upgrade`
+
 to upgrade all storybook dependencies

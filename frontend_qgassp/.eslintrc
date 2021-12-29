@@ -11,7 +11,13 @@
     "jest": true,
     "node": true
   },
-  "ignorePatterns": ["public/", "storybook-static/*", "*.css", "build/*","test/*.css"],
+  "ignorePatterns": [
+    "public/",
+    "storybook-static/*",
+    "*.css",
+    "build/*",
+    "test/*.css"
+  ],
   "plugins": ["import", "react"],
   "extends": [
     "eslint:recommended",

@@ -17,5 +17,20 @@ section h2 {
 }
 
 section label {
-  margin: 1em 0;
+  display: inline-block;
+  width: 300px;
+}
+section input,
+select {
+  padding: 5px 10px;
+  box-sizing: border-box;
+}
+
+section select {
+  display: inline-block;
+  width: 200px;
+}
+
+section div {
+  margin-bottom: 10px;
 }
