@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { Header } from "./Header";
+import {Piechart} from "./Piechart"
 import "../css/u1planner.css";
 
 /**
@@ -59,6 +60,7 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => (
           <label>Rural</label>
           <input type="text" name="rural" />
         </div>
+        <Piechart/>
         <br />
 
         <label>

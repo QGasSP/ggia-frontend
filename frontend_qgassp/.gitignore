@@ -12,6 +12,7 @@
 # production
 /build
 .nyc_output/
+.yarn/
 
 # misc
 .DS_Store
