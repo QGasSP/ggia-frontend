@@ -1,5 +1,5 @@
 import React from "react";
-import { RadialChart } from "react-vis";
+import { RadialChart} from "react-vis";
 import "../css/piechart.css";
 
 /**
@@ -31,11 +31,13 @@ export const Piechart = () => (
       ]}
       width={150}
       height={150}
+      labelsAboveChildren={true}
       labelsRadiusMultiplier={1.1}
       labelsStyle={{
         fontSize: 8
       }}
       showLabels
     />
+  
   </div>
 );

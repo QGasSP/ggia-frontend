@@ -28,7 +28,9 @@ select {
 
 section select {
   display: inline-block;
+  padding: 5px 10px;
   width: 187px;
+  box-sizing: border-box;
 }
 
 section div {

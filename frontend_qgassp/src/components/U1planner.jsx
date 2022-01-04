@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { Header } from "./Header";
-import {Piechart} from "./Piechart"
+import { Piechart} from "./Piechart"
 import "../css/u1planner.css";
 
 /**
@@ -26,7 +26,9 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => (
       <form>
         <div>
           <label>Year</label>
-          <input type="text" name="name" />
+          <select>
+            <option value="year">2021</option>
+          </select>
         </div>
         <div>
           <label>Country</label>
@@ -62,7 +64,6 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => (
         </div>
         <Piechart/>
         <br />
-
         <label>
           <b>U1.2 Area</b>
         </label>
@@ -81,32 +82,41 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => (
             <b>U1.2 Non-residential and freight</b>
           </label>
           <label></label>
-          <label>
-            <i>factor, default=1</i>{" "}
-          </label>
         </div>
         <div>
           <label> Non-residential road transport</label>
-          <label> 2</label>
-          <label> 1.0</label>
+          <select>
+            <option value="very_limited">0.25</option>
+            <option value="national_average_intensity" selected >1.0</option>
+            <option value="very_intensive">2.50</option>
+          </select>
+        
         </div>
 
         <div>
           <label>Freight transport by road</label>
-          <label>3</label>
-          <label>1.0</label>
+          <select>
+            <option value="very_limited">0.25</option>
+            <option value="national_average_intensity" selected >1.0</option>
+            <option value="very_intensive">2.50</option>
+          </select>
         </div>
-
         <div>
           <label>Freight transport by rail</label>
-          <label>3</label>
-          <label>1.0</label>
+          <select>
+            <option value="very_limited">0.25</option>
+            <option value="national_average_intensity" selected >1.0</option>
+            <option value="very_intensive">2.50</option>
+          </select>
         </div>
 
         <div>
           <label>Freight transport by inland waterways</label>
-          <label>2</label>
-          <label>0.3</label>
+          <select>
+            <option value="very_limited">0.25</option>
+            <option value="national_average_intensity" selected >1.0</option>
+            <option value="very_intensive">2.50</option>
+          </select>
         </div>
       </form>
     </section>
