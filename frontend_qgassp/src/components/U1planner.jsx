@@ -2,7 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { Header } from "./Header";
-import { Piechart} from "./Piechart"
+import { Piechart } from "./Piechart";
+import { BaselinePiechart } from "./BaselinePiechart";
+import BaselineBarchart from "./BaselineBarchart";
+import BaselineTable from "./BaselineTable";
+//import { Legend } from "./Legend"
 import "../css/u1planner.css";
 
 /**
@@ -62,7 +66,7 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => (
           <label>Rural</label>
           <input type="text" name="rural" />
         </div>
-        <Piechart/>
+        <Piechart />
         <br />
         <label>
           <b>U1.2 Area</b>
@@ -87,17 +91,20 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => (
           <label> Non-residential road transport</label>
           <select>
             <option value="very_limited">0.25</option>
-            <option value="national_average_intensity" selected >1.0</option>
+            <option value="national_average_intensity" selected>
+              1.0
+            </option>
             <option value="very_intensive">2.50</option>
           </select>
-        
         </div>
 
         <div>
           <label>Freight transport by road</label>
           <select>
             <option value="very_limited">0.25</option>
-            <option value="national_average_intensity" selected >1.0</option>
+            <option value="national_average_intensity" selected>
+              1.0
+            </option>
             <option value="very_intensive">2.50</option>
           </select>
         </div>
@@ -105,7 +112,9 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => (
           <label>Freight transport by rail</label>
           <select>
             <option value="very_limited">0.25</option>
-            <option value="national_average_intensity" selected >1.0</option>
+            <option value="national_average_intensity" selected>
+              1.0
+            </option>
             <option value="very_intensive">2.50</option>
           </select>
         </div>
@@ -114,10 +123,20 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => (
           <label>Freight transport by inland waterways</label>
           <select>
             <option value="very_limited">0.25</option>
-            <option value="national_average_intensity" selected >1.0</option>
+            <option value="national_average_intensity" selected>
+              1.0
+            </option>
             <option value="very_intensive">2.50</option>
           </select>
         </div>
+
+        <label>
+          <b>BASELINE - TRANSPORT CO2e EMISSIONS 2021</b>
+        </label>
+        <BaselinePiechart />
+    
+        <BaselineBarchart />
+        <BaselineTable />
       </form>
     </section>
   </article>

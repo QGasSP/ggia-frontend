@@ -1,5 +1,5 @@
 import React from "react";
-import { RadialChart} from "react-vis";
+import { RadialChart } from "react-vis";
 import "../css/piechart.css";
 
 /**
@@ -13,31 +13,29 @@ export const Piechart = () => (
       data={[
         {
           angle: 27,
-          label: 'City'
+          label: "City",
         },
         {
           angle: 12,
-          label: 'Suburban'
+          label: "Suburban",
         },
         {
           angle: 15,
-          label: 'Town'
+          label: "Town",
         },
         {
           angle: 32,
-          label: 'Rural'
+          label: "Rural",
         },
-       
       ]}
       width={150}
       height={150}
       labelsAboveChildren={true}
       labelsRadiusMultiplier={1.1}
       labelsStyle={{
-        fontSize: 8
+        fontSize: 8,
       }}
       showLabels
     />
-  
   </div>
 );
