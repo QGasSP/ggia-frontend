@@ -11,8 +11,21 @@ export default {
 
 const Template = (args) => <Piechart {...args} />;
 
+export const Primary = Template.bind({});
+
+Primary.args = {
+  primary: true,
+  label: "Piechart",
+};
+
 export const RadialSmall = Template.bind({});
 RadialSmall.args = {
-  primary: true,
+  size: "small",
+  label: "Piechart",
+};
+
+export const RadialLarge = Template.bind({});
+RadialLarge.args = {
+  size: "large",
   label: "Piechart",
 };
