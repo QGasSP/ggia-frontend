@@ -5,7 +5,9 @@ import { Header } from "./Header";
 import { Piechart } from "./Piechart";
 import { BaselinePiechart } from "./BaselinePiechart";
 import { Barchart } from "./Barchart";
-import { BaselineTable } from "./BaselineTable";
+import { Legend } from "./Legend";
+
+// import { BaselineTable } from "./BaselineTable";
 import "../css/u1planner.css";
 
 /**
@@ -130,11 +132,21 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => (
         </div>
 
         <label>
-          <b>BASELINE - TRANSPORT CO2e EMISSIONS 2021</b>
+          <b>Baseline - Transport CO2e emission 2021</b>
         </label>
-        <BaselinePiechart />
+        <div class="container">
+          <div id="first">
+            <BaselinePiechart />
+          </div>
+          <div id="second">
+            <Legend />
+          </div>
+          <div id="clear"></div>
+        </div>
+        <label>
+          <b>Baseline - Transport CO2e emission/resident</b>
+        </label>
         <Barchart />
-        <BaselineTable />
       </form>
     </section>
   </article>

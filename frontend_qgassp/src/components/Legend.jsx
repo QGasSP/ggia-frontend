@@ -8,7 +8,7 @@ import "../css/legend.css";
  */
 
 const itemLabels = [
-  { title: "Motor coaches, buses and trolley buses" },
+  { title: "Buses" },
   { title: "Metro" },
   { title: "Passenger trains" },
   { title: "Road freight" },
