@@ -134,7 +134,7 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => (
         <label>
           <b>Baseline - Transport CO2e emission 2021</b>
         </label>
-        <div class="container">
+        <div className="container">
           <div id="first">
             <BaselinePiechart />
           </div>
