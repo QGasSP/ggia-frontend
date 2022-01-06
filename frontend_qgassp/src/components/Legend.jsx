@@ -18,8 +18,7 @@ const itemLabels = [
   { title: "Inland waterways freight" },
 ];
 
-const Legend = () => {
-  return <DiscreteColorLegend items={itemLabels} orientation="vertical" />;
+export const Legend = () => {
+  return <DiscreteColorLegend items={itemLabels} orientation="vertical"/>;
 };
 
-export default Legend;
