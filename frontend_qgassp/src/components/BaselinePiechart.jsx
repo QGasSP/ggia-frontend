@@ -13,7 +13,7 @@ export const BaselinePiechart = () => (
       data={[
         {
           angle: 9.02,
-          label: "Motor coaches, buses and trolley buses",
+          label: "Buses",
         },
         {
           angle: 0.04,
@@ -37,7 +37,7 @@ export const BaselinePiechart = () => (
         },
         {
           angle: 34.5,
-          label: "Rail (freight)",
+          label: "Rail freight",
         },
         {
           angle: 0.13,
@@ -51,7 +51,18 @@ export const BaselinePiechart = () => (
       labelsStyle={{
         fontSize: 8,
       }}
-      showLabels
+      // showLabels
     />
   </div>
 );
+// }}
+//       showLabels
+//     />
+
+//   </div>
+// );  }}
+//       showLabels
+//     />
+
+//   </div>
+// );
