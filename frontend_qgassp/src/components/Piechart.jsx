@@ -3,7 +3,7 @@ import { RadialChart } from "react-vis";
 import "../css/piechart.css";
 
 /**
- * Piechart UI component
+ * Piechart UI component of various sizes
  * @return {}
  */
 

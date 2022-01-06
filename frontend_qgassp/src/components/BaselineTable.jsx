@@ -30,7 +30,7 @@ class BaselineTable extends React.Component {
   }
 
   renderTableData() {
-    return this.state.transportEmission.map((transportEmission, index) => {
+    return this.state.transportEmission.map((transportEmission) => {
       const { id, transport, perResident } = transportEmission; // destructuring
       return (
         <tr key={id}>

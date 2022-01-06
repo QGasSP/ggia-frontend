@@ -4,9 +4,8 @@ import PropTypes from "prop-types";
 import { Header } from "./Header";
 import { Piechart } from "./Piechart";
 import { BaselinePiechart } from "./BaselinePiechart";
-import BaselineBarchart from "./BaselineBarchart";
-import BaselineTable from "./BaselineTable";
-//import { Legend } from "./Legend"
+import { Barchart } from "./Barchart";
+import { BaselineTable } from "./BaselineTable";
 import "../css/u1planner.css";
 
 /**
@@ -134,8 +133,7 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => (
           <b>BASELINE - TRANSPORT CO2e EMISSIONS 2021</b>
         </label>
         <BaselinePiechart />
-    
-        <BaselineBarchart />
+        <Barchart />
         <BaselineTable />
       </form>
     </section>

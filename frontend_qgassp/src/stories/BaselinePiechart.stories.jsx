@@ -4,9 +4,7 @@ import { BaselinePiechart } from "../components/BaselinePiechart";
 export default {
   title: "QgasSP/BaselinePiechart",
   component: BaselinePiechart,
-  argTypes: {
-    // backgroundColor: { control: "color" },
-  },
+  argTypes: {},
 };
 
 const Template = (args) => <BaselinePiechart {...args} />;

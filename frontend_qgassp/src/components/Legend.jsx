@@ -1,38 +1,25 @@
 import React from "react";
-import { DiscreteColorLegendItem } from "react-vis";
+import { DiscreteColorLegend } from "react-vis";
 import "../css/legend.css";
 
 /**
- * Piechart UI component
+ * Legend for various charts in application
  * @return {}
  */
 
+const itemLabels = [
+  { title: "Motor coaches, buses and trolley buses" },
+  { title: "Metro" },
+  { title: "Passenger trains" },
+  { title: "Road freight" },
+  { title: "Passenger cars" },
+  { title: "Tram light train" },
+  { title: "Rail (freight)" },
+  { title: "Inland waterways freight" },
+];
 
-export const Legend = () => (
-  <div>
-    <DiscreteColorLegendItem
-      colors={[
-        "#19CDD7",
-        "#DDB27C",
-        "#88572C",
-        "#FF991F",
-        "#F15C17",
-        "#223F9A",
-        "#DA70BF",
-        "#125C77",
-        "#BF1717",
-      ]}
-      items={[
-        "Motor coaches, buses and trolley buses",
-        "Metro",
-        "Passenger trains",
-        "Road freight",
-        "Passenger cars",
-        "Tram, light train",
-        "Rail (freight)",
-        "Inland waterways freight",
-      ]}
-      orientation="vertical"
-    />
-  </div>
-);
+const Legend = () => {
+  return <DiscreteColorLegend items={itemLabels} orientation="vertical" />;
+};
+
+export default Legend;
