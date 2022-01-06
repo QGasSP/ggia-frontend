@@ -12,7 +12,10 @@
 # production
 /build
 .nyc_output/
-.yarn/
+
+# yarn v2
+.yarn/*
+
 
 # misc
 .DS_Store
