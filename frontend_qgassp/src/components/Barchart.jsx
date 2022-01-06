@@ -1,5 +1,12 @@
 import React from "react";
-import { XYPlot, VerticalGridLines, XAxis, YAxis, HorizontalGridLines, VerticalBarSeries, } from "react-vis";
+import {
+  XYPlot,
+  VerticalGridLines,
+  XAxis,
+  YAxis,
+  HorizontalGridLines,
+  VerticalBarSeries,
+} from "react-vis";
 import "../css/barchart.css";
 
 /**
@@ -28,5 +35,3 @@ export const Barchart = () => (
     </XYPlot>
   </div>
 );
-
-

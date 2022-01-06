@@ -19,6 +19,5 @@ const itemLabels = [
 ];
 
 export const Legend = () => {
-  return <DiscreteColorLegend items={itemLabels} orientation="vertical"/>;
+  return <DiscreteColorLegend items={itemLabels} orientation="vertical" />;
 };
-

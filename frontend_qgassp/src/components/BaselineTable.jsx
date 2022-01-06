@@ -7,16 +7,16 @@ export class BaselineTable extends Component {
     this.state = {
       transportEmission: [
         {
-          transport: 'Motor coaches, buses and trolley buses',
+          transport: "Motor coaches, buses and trolley buses",
           perResident: 0.044888566666666664,
         },
-        { transport: 'Metro', perResident: 0.0001947 },
-        { transport: 'Passenger trains', perResident: 0.006142934963868816 },
-        { transport: 'Road freight', perResident: 0.1345 },
-        { transport: 'Passenger cars', perResident: 1.430907142857143 },
-        { transport: 'Tram, light train', perResident: 0.0027191999999999997 },
-        { transport: 'Rail (freight)', perResident: 0.1717 },
-        { transport: 'Inland waterways freight', perResident: 0.000667 },
+        { transport: "Metro", perResident: 0.0001947 },
+        { transport: "Passenger trains", perResident: 0.006142934963868816 },
+        { transport: "Road freight", perResident: 0.1345 },
+        { transport: "Passenger cars", perResident: 1.430907142857143 },
+        { transport: "Tram, light train", perResident: 0.0027191999999999997 },
+        { transport: "Rail (freight)", perResident: 0.1717 },
+        { transport: "Inland waterways freight", perResident: 0.000667 },
       ],
     };
   }
