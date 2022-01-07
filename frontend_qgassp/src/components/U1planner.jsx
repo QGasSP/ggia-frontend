@@ -20,12 +20,10 @@ import {
  * @return {}
  */
 
-
 // export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => {
 export const U1planner = () => {
   const [eucountry, setCountry] = useState("");
   const [emission, setEmissionData] = useState("");
-
 
   useEffect(() => {
     const jsonRaw = {
@@ -62,12 +60,6 @@ export const U1planner = () => {
       /> */}
       <section>
         <div>
-        <h2>
-        {" "}
-        Selected:{" "}
-        <span style={{ backgroundColor: "yellow" }}>{emission.data}</span>
-      </h2>
-<br></br>
           <h2>U1 PLANNER USER INPUT 1: BASELINE</h2>
         </div>
         <form>
@@ -231,7 +223,7 @@ export const U1planner = () => {
                             36000
                         ) / 100,
                       label: "Metro",
-                      color:"#400D01",
+                      color: "#400D01",
                     },
                     {
                       angle:
@@ -241,7 +233,7 @@ export const U1planner = () => {
                             36000
                         ) / 100,
                       label: "Passenger trains",
-                      color:"#D90404",
+                      color: "#D90404",
                     },
                     {
                       angle:
@@ -251,7 +243,7 @@ export const U1planner = () => {
                             36000
                         ) / 100,
                       label: "Road freight",
-                      color:"#F21905",
+                      color: "#F21905",
                     },
                     {
                       angle:
@@ -261,7 +253,7 @@ export const U1planner = () => {
                             36000
                         ) / 100,
                       label: "Passenger cars",
-                      color:"#A6036D",
+                      color: "#A6036D",
                     },
                     {
                       angle:
@@ -271,7 +263,7 @@ export const U1planner = () => {
                             36000
                         ) / 100,
                       label: "Tram, light train",
-                      color:"#03A688",
+                      color: "#03A688",
                     },
                     {
                       angle:
@@ -281,7 +273,7 @@ export const U1planner = () => {
                             36000
                         ) / 100,
                       label: "Rail freight",
-                      color:"#80D941",
+                      color: "#80D941",
                     },
                     {
                       angle:
@@ -291,7 +283,7 @@ export const U1planner = () => {
                             36000
                         ) / 100,
                       label: "Inland waterways freight",
-                      color:"#F2CE1B",
+                      color: "#F2CE1B",
                     },
                   ]}
                   width={350}
