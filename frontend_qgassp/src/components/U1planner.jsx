@@ -208,7 +208,16 @@ export const U1planner = () => {
         <label>
           <b>Baseline - Transport CO2e emission/resident</b>
         </label>
-        <Barchart />
+        <Barchart 
+        passengerCars={emission.passenger_cars} 
+        inWaterwayFreight={emission.inland_waterways_freight}
+        metro = {emission.metro}
+        buses={emission.motor_coaches_buses_and_trolley_buses}
+        passengerTrains={emission.passenger_trains}
+        railFreight={emission.rail_freight}
+        roadFreight={emission.road_freight}
+        tram={emission.tram_light_train}
+        />
       </form>
     </section>
   </article>
