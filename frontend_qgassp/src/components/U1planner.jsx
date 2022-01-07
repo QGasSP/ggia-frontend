@@ -3,10 +3,17 @@ import React, { useState, useEffect} from "react";
 import { Header } from "./Header"; */
 import { Piechart } from "./Piechart";
 import { BaselinePiechart } from "./BaselinePiechart";
-import { Barchart } from "./Barchart";
 import { Legend } from "./Legend";
 import "../css/u1planner.css";
 import axios from "axios";
+import {
+  XYPlot,
+  VerticalGridLines,
+  XAxis,
+  YAxis,
+  HorizontalGridLines,
+  VerticalBarSeries,
+} from "react-vis";
 
 
 /**
@@ -208,16 +215,30 @@ export const U1planner = () => {
         <label>
           <b>Baseline - Transport CO2e emission/resident</b>
         </label>
-        <Barchart 
-        passengerCars={emission.passenger_cars} 
-        inWaterwayFreight={emission.inland_waterways_freight}
-        metro = {emission.metro}
-        buses={emission.motor_coaches_buses_and_trolley_buses}
-        passengerTrains={emission.passenger_trains}
-        railFreight={emission.rail_freight}
-        roadFreight={emission.road_freight}
-        tram={emission.tram_light_train}
+
+
+        <div>
+      <XYPlot xType="ordinal" width={1000} height={312} xDistance={200}>
+        <HorizontalGridLines />
+        <VerticalGridLines />
+        <VerticalBarSeries
+          className="BaselineBarchart"
+          data={[
+            { y: Math.round((emission.motor_coaches_buses_and_trolley_buses+ Number.EPSILON) * 100) / 100, x: "Buses" },
+            { y: Math.round((emission.metro + Number.EPSILON) * 100) / 100, x: "Metro" },
+            { y: Math.round((emission.passenger_trains + Number.EPSILON) * 100) / 100, x: "Passenger trains" },
+            { y: Math.round((emission.road_freight + Number.EPSILON) * 100) / 100, x: "Road freight" },
+            { y: Math.round((emission.passenger_cars + Number.EPSILON) * 100) / 100 , x: "Passenger cars" },
+            { y: Math.round((emission.tram_light_train + Number.EPSILON) * 100) / 100, x: "Tram, light train" },
+            { y: Math.round((emission.rail_freight + Number.EPSILON) * 100) / 100, x: "Rail freight" },
+            { y: Math.round((emission.inland_waterways_freight + Number.EPSILON) * 100) / 100, x: "Inland waterways freight" },
+            { y: Math.round((emission.total + Number.EPSILON) * 100) / 100, x:"total"}
+          ]}
         />
+        <XAxis />
+        <YAxis />
+      </XYPlot>
+    </div>
       </form>
     </section>
   </article>

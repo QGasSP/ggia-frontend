@@ -7,7 +7,6 @@ import {
   HorizontalGridLines,
   VerticalBarSeries,
 } from "react-vis";
-import "../css/barchart.css";
 
 /**
  * Barchart UI component
