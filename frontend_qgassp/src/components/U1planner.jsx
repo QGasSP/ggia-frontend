@@ -21,6 +21,8 @@ import {
  */
 
 // const baseURL = "http://localhost:5000";
+
+
 // export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => {
 export const U1planner = () => {
   const [eucountry, setCountry] = useState("");
@@ -217,6 +219,7 @@ export const U1planner = () => {
                             36000
                         ) / 100,
                       label: "Buses",
+                      color: "#8C0303",
                     },
                     {
                       angle:
@@ -225,6 +228,7 @@ export const U1planner = () => {
                             36000
                         ) / 100,
                       label: "Metro",
+                      color:"#400D01",
                     },
                     {
                       angle:
@@ -234,6 +238,7 @@ export const U1planner = () => {
                             36000
                         ) / 100,
                       label: "Passenger trains",
+                      color:"#D90404",
                     },
                     {
                       angle:
@@ -243,6 +248,7 @@ export const U1planner = () => {
                             36000
                         ) / 100,
                       label: "Road freight",
+                      color:"#F21905",
                     },
                     {
                       angle:
@@ -252,6 +258,7 @@ export const U1planner = () => {
                             36000
                         ) / 100,
                       label: "Passenger cars",
+                      color:"#A6036D",
                     },
                     {
                       angle:
@@ -261,6 +268,7 @@ export const U1planner = () => {
                             36000
                         ) / 100,
                       label: "Tram, light train",
+                      color:"#03A688",
                     },
                     {
                       angle:
@@ -270,6 +278,7 @@ export const U1planner = () => {
                             36000
                         ) / 100,
                       label: "Rail freight",
+                      color:"#80D941",
                     },
                     {
                       angle:
@@ -279,6 +288,7 @@ export const U1planner = () => {
                             36000
                         ) / 100,
                       label: "Inland waterways freight",
+                      color:"#F2CE1B",
                     },
                   ]}
                   width={350}
