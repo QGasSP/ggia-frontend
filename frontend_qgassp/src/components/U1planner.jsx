@@ -20,16 +20,13 @@ import {
  * @return {}
  */
 
-// const baseURL = "http://localhost:5000";
-
 
 // export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => {
 export const U1planner = () => {
   const [eucountry, setCountry] = useState("");
-  // const [responseData, setResponseData] = useState("");
   const [emission, setEmissionData] = useState("");
 
-  // const countrySelected = useRef();
+
   useEffect(() => {
     const jsonRaw = {
       country: "Finland",
@@ -65,6 +62,12 @@ export const U1planner = () => {
       /> */}
       <section>
         <div>
+        <h2>
+        {" "}
+        Selected:{" "}
+        <span style={{ backgroundColor: "yellow" }}>{emission.data}</span>
+      </h2>
+<br></br>
           <h2>U1 PLANNER USER INPUT 1: BASELINE</h2>
         </div>
         <form>
@@ -81,8 +84,8 @@ export const U1planner = () => {
             <select
               id="eu_countries"
               name="eu_countries"
-              onChange={() => handleChange}
-              // setCountry(e.target.value)}
+              onClick={handleChange}
+              onChange={(e) => setCountry(e.target.value)}
               defaultValue={eucountry}
             >
               <optgroup label="Select country"></optgroup>
