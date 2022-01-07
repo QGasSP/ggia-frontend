@@ -46,8 +46,36 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => (
           <input type="text" name="name" />
         </div>
         <br />
-
-        <label>
+        <div className="containerSmallPie">
+          <div id="firstSmallPie">
+          <label>
+              <b>U1.1 Settlement type</b>
+          </label>
+          <label>Share (%)</label>
+            <div>
+              <label>City</label>
+              <input type="text" name="city" />
+            </div>
+            <div>
+              <label>Suburban</label>
+              <input type="text" name="suburban" />
+            </div>
+            <div>
+              <label>Town</label>
+              <input type="text" name="town" />
+            </div>
+            <div>
+              <label>Rural</label>
+              <input type="text" name="rural" />
+            </div>
+          </div>
+          <div id="secondSmallPie">
+            <Piechart />
+          </div>
+          <div id="clear"></div>
+        </div>
+        <br />
+        {/* <label>
           <b>U1.1 Settlement type</b>
         </label>
         <label>Share (%)</label>
@@ -68,7 +96,7 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => (
           <input type="text" name="rural" />
         </div>
         <Piechart />
-        <br />
+        <br /> */}
         <label>
           <b>U1.2 Area</b>
         </label>

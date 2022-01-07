@@ -33,6 +33,23 @@ svg {
   clear: both;
 }
 
+.containerSmallPie {
+  width: 900px;
+  margin: auto;
+}
+
+#firstSmallPie {
+  width: 600px;
+  float: left;
+  height: 350px;
+}
+
+#secondSmallPie {
+  width: 300px;
+  float: left;
+  height: 350px;
+}
+
 h1 {
   font-weight: 900;
   font-size: 20px;
