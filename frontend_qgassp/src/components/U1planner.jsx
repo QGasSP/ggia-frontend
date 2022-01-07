@@ -1,8 +1,7 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 /* import PropTypes from "prop-types";
 import { Header } from "./Header"; */
 import { Piechart } from "./Piechart";
-import { BaselinePiechart } from "./BaselinePiechart";
 import { Legend } from "./Legend";
 import "../css/u1planner.css";
 import axios from "axios";
@@ -13,8 +12,8 @@ import {
   YAxis,
   HorizontalGridLines,
   VerticalBarSeries,
+  RadialChart,
 } from "react-vis";
-
 
 /**
  * U1 Planner user input form for baseline
@@ -27,15 +26,17 @@ export const U1planner = () => {
   const [eucountry, setCountry] = useState("");
   // const [responseData, setResponseData] = useState("");
   const [emission, setEmissionData] = useState("");
- 
+
   // const countrySelected = useRef();
   useEffect(() => {
-    const jsonRaw = { country: "Finland"};
+    const jsonRaw = {
+      country: "Finland",
+    };
     const headers = {
       "Content-type": "application/json",
     };
 
-  axios
+    axios
       .post("http://localhost:5000/calc/emission", jsonRaw, headers)
       .then(function (response) {
         // eslint-disable-next-line no-console
@@ -48,14 +49,13 @@ export const U1planner = () => {
       });
   }, []);
 
-  const handleChange = (e) => { 
+  const handleChange = (e) => {
     setCountry(e.target.value);
-  }
-
+  };
 
   return (
     <article>
-    {/*   <Header
+      {/*   <Header
         user={user}
         onLogin={onLogin}
         onLogout={onLogout}
@@ -73,14 +73,15 @@ export const U1planner = () => {
               <option value="year">2021</option>
             </select>
           </div>
-          
+
           <div>
             <label htmlFor="eu_countries">Country</label>
-            <select id="eu_countries" name="eu_countries"
-              onChange={() =>
-                handleChange}
-                // setCountry(e.target.value)} 
-                defaultValue={eucountry} 
+            <select
+              id="eu_countries"
+              name="eu_countries"
+              onChange={() => handleChange}
+              // setCountry(e.target.value)}
+              defaultValue={eucountry}
             >
               <optgroup label="Select country"></optgroup>
               <option value="Austria">Austria</option>
@@ -109,7 +110,9 @@ export const U1planner = () => {
             </select>
           </div>
           <div>
-            <label htmlFor="population_assessment">Population of the assessment area</label>
+            <label htmlFor="population_assessment">
+              Population of the assessment area
+            </label>
             <input type="text" id="population_assessment" />
           </div>
           <br />
@@ -156,13 +159,14 @@ export const U1planner = () => {
             <label></label>
           </div>
           <div>
-            <label htmlFor="non_resident_road"> Non-residential road transport</label>
+            <label htmlFor="non_resident_road">
+              {" "}
+              Non-residential road transport
+            </label>
             <select id="non_resident_road">
               <optgroup label="Select road transport intensity"></optgroup>
               <option value="very_limited">0.25</option>
-              <option value="national_average_intensity">
-                1.0
-              </option>
+              <option value="national_average_intensity">1.0</option>
               <option value="very_intensive">2.50</option>
             </select>
           </div>
@@ -172,9 +176,7 @@ export const U1planner = () => {
             <select id="freight_road" name="freight_road">
               <optgroup label="Select freight road intensity"></optgroup>
               <option value="very_limited">0.25</option>
-              <option value="national_average_intensity">
-                1.0
-              </option>
+              <option value="national_average_intensity">1.0</option>
               <option value="very_intensive">2.50</option>
             </select>
           </div>
@@ -182,67 +184,202 @@ export const U1planner = () => {
             <label htmlFor="freight_rail">Freight transport by rail</label>
             <select id="freight_rail" name="freight_rail">
               <option value="very_limited">0.25</option>
-              <option value="national_average_intensity">
-                1.0
-              </option>
+              <option value="national_average_intensity">1.0</option>
               <option value="very_intensive">2.50</option>
             </select>
           </div>
 
           <div>
-            <label htmlFor="freight_waterway">Freight transport by inland waterways</label>
-            <select id="freight_waterway" name="freight_waterway" >
+            <label htmlFor="freight_waterway">
+              Freight transport by inland waterways
+            </label>
+            <select id="freight_waterway" name="freight_waterway">
               <option value="very_limited">0.25</option>
-              <option value="national_average_intensity">
-                1.0
-              </option>
+              <option value="national_average_intensity">1.0</option>
               <option value="very_intensive">2.50</option>
             </select>
           </div>
 
           <label>
-          <b>Baseline - Transport CO2e emission 2021</b>
-        </label>
-        <div >
+            <b>Baseline - Transport CO2e emission 2021</b>
+          </label>
           <div>
-            <BaselinePiechart/>
+            <div>
+              <div>
+                <RadialChart
+                  data={[
+                    {
+                      angle:
+                        Math.round(
+                          (emission.motor_coaches_buses_and_trolley_buses /
+                            emission.total +
+                            Number.EPSILON) *
+                            36000
+                        ) / 100,
+                      label: "Buses",
+                    },
+                    {
+                      angle:
+                        Math.round(
+                          (emission.metro / emission.total + Number.EPSILON) *
+                            36000
+                        ) / 100,
+                      label: "Metro",
+                    },
+                    {
+                      angle:
+                        Math.round(
+                          (emission.passenger_trains / emission.total +
+                            Number.EPSILON) *
+                            36000
+                        ) / 100,
+                      label: "Passenger trains",
+                    },
+                    {
+                      angle:
+                        Math.round(
+                          (emission.road_freight / emission.total +
+                            Number.EPSILON) *
+                            36000
+                        ) / 100,
+                      label: "Road freight",
+                    },
+                    {
+                      angle:
+                        Math.round(
+                          (emission.passenger_cars / emission.total +
+                            Number.EPSILON) *
+                            36000
+                        ) / 100,
+                      label: "Passenger cars",
+                    },
+                    {
+                      angle:
+                        Math.round(
+                          (emission.tram_light_train / emission.total +
+                            Number.EPSILON) *
+                            36000
+                        ) / 100,
+                      label: "Tram, light train",
+                    },
+                    {
+                      angle:
+                        Math.round(
+                          (emission.rail_freight / emission.total +
+                            Number.EPSILON) *
+                            36000
+                        ) / 100,
+                      label: "Rail freight",
+                    },
+                    {
+                      angle:
+                        Math.round(
+                          (emission.inland_waterways_freight / emission.total +
+                            Number.EPSILON) *
+                            36000
+                        ) / 100,
+                      label: "Inland waterways freight",
+                    },
+                  ]}
+                  width={350}
+                  height={350}
+                  labelsAboveChildren={true}
+                  labelsRadiusMultiplier={1.1}
+                  labelsStyle={{
+                    fontSize: 8,
+                  }}
+                  // showLabels
+                />
+              </div>
+            </div>
+            <div>
+              <Legend />
+            </div>
+            <div></div>
           </div>
+          <label>
+            <b>Baseline - Transport CO2e emission/resident</b>
+          </label>
+
           <div>
-            <Legend />
+            <XYPlot xType="ordinal" width={1000} height={312} xDistance={200}>
+              <HorizontalGridLines />
+              <VerticalGridLines />
+              <VerticalBarSeries
+                className="BaselineBarchart"
+                data={[
+                  {
+                    y:
+                      Math.round(
+                        (emission.motor_coaches_buses_and_trolley_buses +
+                          Number.EPSILON) *
+                          100
+                      ) / 100,
+                    x: "Buses",
+                  },
+                  {
+                    y:
+                      Math.round((emission.metro + Number.EPSILON) * 100) / 100,
+                    x: "Metro",
+                  },
+                  {
+                    y:
+                      Math.round(
+                        (emission.passenger_trains + Number.EPSILON) * 100
+                      ) / 100,
+                    x: "Passenger trains",
+                  },
+                  {
+                    y:
+                      Math.round(
+                        (emission.road_freight + Number.EPSILON) * 100
+                      ) / 100,
+                    x: "Road freight",
+                  },
+                  {
+                    y:
+                      Math.round(
+                        (emission.passenger_cars + Number.EPSILON) * 100
+                      ) / 100,
+                    x: "Passenger cars",
+                  },
+                  {
+                    y:
+                      Math.round(
+                        (emission.tram_light_train + Number.EPSILON) * 100
+                      ) / 100,
+                    x: "Tram, light train",
+                  },
+                  {
+                    y:
+                      Math.round(
+                        (emission.rail_freight + Number.EPSILON) * 100
+                      ) / 100,
+                    x: "Rail freight",
+                  },
+                  {
+                    y:
+                      Math.round(
+                        (emission.inland_waterways_freight + Number.EPSILON) *
+                          100
+                      ) / 100,
+                    x: "Inland waterways freight",
+                  },
+                  {
+                    y:
+                      Math.round((emission.total + Number.EPSILON) * 100) / 100,
+                    x: "total emissions",
+                  },
+                ]}
+              />
+              <XAxis />
+              <YAxis />
+            </XYPlot>
           </div>
-          <div></div>
-        </div>
-        <label>
-          <b>Baseline - Transport CO2e emission/resident</b>
-        </label>
-
-
-        <div>
-      <XYPlot xType="ordinal" width={1000} height={312} xDistance={200}>
-        <HorizontalGridLines />
-        <VerticalGridLines />
-        <VerticalBarSeries
-          className="BaselineBarchart"
-          data={[
-            { y: Math.round((emission.motor_coaches_buses_and_trolley_buses+ Number.EPSILON) * 100) / 100, x: "Buses" },
-            { y: Math.round((emission.metro + Number.EPSILON) * 100) / 100, x: "Metro" },
-            { y: Math.round((emission.passenger_trains + Number.EPSILON) * 100) / 100, x: "Passenger trains" },
-            { y: Math.round((emission.road_freight + Number.EPSILON) * 100) / 100, x: "Road freight" },
-            { y: Math.round((emission.passenger_cars + Number.EPSILON) * 100) / 100 , x: "Passenger cars" },
-            { y: Math.round((emission.tram_light_train + Number.EPSILON) * 100) / 100, x: "Tram, light train" },
-            { y: Math.round((emission.rail_freight + Number.EPSILON) * 100) / 100, x: "Rail freight" },
-            { y: Math.round((emission.inland_waterways_freight + Number.EPSILON) * 100) / 100, x: "Inland waterways freight" },
-            { y: Math.round((emission.total + Number.EPSILON) * 100) / 100, x:"total"}
-          ]}
-        />
-        <XAxis />
-        <YAxis />
-      </XYPlot>
-    </div>
-      </form>
-    </section>
-  </article>
-);
+        </form>
+      </section>
+    </article>
+  );
 };
 /* 
 U1planner.propTypes = {
