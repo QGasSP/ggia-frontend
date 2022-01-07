@@ -1,0 +1,9 @@
+.storybook-piechart--small {
+  width: 150;
+  height: 150;
+}
+
+.storybook-piechart--large {
+  width: 350;
+  height: 350;
+}
