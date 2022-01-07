@@ -20,15 +20,7 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => {
   const [eucountry, setCountry] = useState("");
   // const [responseData, setResponseData] = useState("");
   const [emission, setEmissionData] = useState("");
-  
-/* 
-  const retrieveEmissionData= (e) => {
-    e.preventDefault();
-    // eslint-disable-next-line no-console
-    setCountry(e.target.value)
-  }; */
-
-
+ 
   // const countrySelected = useRef();
   useEffect(() => {
     const jsonRaw = { country: "Finland"};
@@ -207,16 +199,7 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => {
         <label>
           <b>Baseline - Transport CO2e emission/resident</b>
         </label>
-        <Barchart
-          /*  inlandWaterwaysFreightEm={emission.inland_waterways_freight}
-           metroEm={emission.metro} 
-           busesEm={emission.motor_coaches_buses_and_trolley_buses}
-           passengerCarsEm={emission.passenger_cars}
-           passengerTrainsEm= {emission.passenger_trains}
-           railFreightEm= {emission.rail_freight}
-           roadFreightEm={emission.road_freight}
-           tramLightTrainEm={emission.tram_light_train} */
-        />
+        <Barchart />
       </form>
     </section>
   </article>
