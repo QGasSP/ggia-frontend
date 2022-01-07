@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect} from "react";
 import PropTypes from "prop-types";
-
+import axios from "axios";
 import { Header } from "./Header";
 import { Piechart } from "./Piechart";
 import { BaselinePiechart } from "./BaselinePiechart";
@@ -15,7 +15,35 @@ import "../css/u1planner.css";
  * @return {}
  */
 
-export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => (
+// const baseURL = "http://localhost:5000";
+
+export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => {
+  const [eucountry, setCountry] = useState("");
+  // const [responseData, setResponseData] = useState("");
+  // const [emission, setEmissionData] = useState("");
+ 
+  // const countrySelected = useRef();
+  useEffect(() => {
+    const jsonRaw = { country: "Finland"};
+    const headers = {
+      "Content-type": "application/json",
+    };
+
+  axios
+      .post("http://localhost:5000/calc/emission", jsonRaw, headers)
+      .then(function (response) {
+        // eslint-disable-next-line no-console
+        console.log(response);
+        // setEmissionData(response.data);
+      })
+      .catch(function (error) {
+        // eslint-disable-next-line no-console
+        console.log(error);
+      });
+  }, []);
+
+
+  return (
   <article>
     <Header
       user={user}
@@ -23,7 +51,6 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => (
       onLogout={onLogout}
       onCreateAccount={onCreateAccount}
     />
-
     <section>
       <div>
         <h2>U1 PLANNER USER INPUT 1: BASELINE</h2>
@@ -36,11 +63,35 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => (
           </select>
         </div>
         <div>
-          <label>Country</label>
-          <select>
-            <option value="country_name">Finland</option>
-          </select>
-        </div>
+            <label htmlFor="eu_countries">Country</label>
+            <select id="eu_countries" name="eu_countries"
+              onChange={(e) => setCountry(e.target.value)} defaultValue={eucountry} value={eucountry}>
+              <optgroup label="Select country"></optgroup>
+              <option value="Austria">Austria</option>
+              <option value="Belgium">Belgium</option>
+              <option value="Bulgaria">Bulgaria</option>
+              <option value="Croatia">Croatia</option>
+              <option value="Cyprus">Cyprus</option>
+              <option value="Czechia">Czechia</option>
+              <option value="Denmark">Denmark</option>
+              <option value="Estonia">Estonia</option>
+              <option value="Finland">Finland</option>
+              <option value="France">Austria</option>
+              <option value="Germany">Germany</option>
+              <option value="Greece">Greece</option>
+              <option value="Hungary">Hungary</option>
+              <option value="Iceland">Iceland</option>
+              <option value="Ireland">Ireland</option>
+              <option value="Italy">Italy</option>
+              <option value="Latvia">Latvia</option>
+              <option value="Liechtenstein">Liechtenstein</option>
+              <option value="Lithuania">Lithuania</option>
+              <option value="Luxembourg">Luxembourg</option>
+              <option value="Malta">Malta</option>
+              <option value="Netherlands">Netherlands</option>
+              <option value="Norway">Malta</option>
+            </select>
+          </div>
         <div>
           <label>Population of the assessment area</label>
           <input type="text" name="name" />
@@ -179,6 +230,8 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => (
     </section>
   </article>
 );
+};
+
 U1planner.propTypes = {
   user: PropTypes.shape({}),
   onLogin: PropTypes.func.isRequired,
