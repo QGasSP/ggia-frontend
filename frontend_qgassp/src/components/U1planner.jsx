@@ -1,14 +1,13 @@
 import React, { useState, useEffect} from "react";
-import PropTypes from "prop-types";
-import axios from "axios";
-import { Header } from "./Header";
+/* import PropTypes from "prop-types";
+import { Header } from "./Header"; */
 import { Piechart } from "./Piechart";
 import { BaselinePiechart } from "./BaselinePiechart";
 import { Barchart } from "./Barchart";
 import { Legend } from "./Legend";
-
-// import { BaselineTable } from "./BaselineTable";
 import "../css/u1planner.css";
+import axios from "axios";
+
 
 /**
  * U1 Planner user input form for baseline
@@ -16,11 +15,11 @@ import "../css/u1planner.css";
  */
 
 // const baseURL = "http://localhost:5000";
-
-export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => {
+// export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => {
+export const U1planner = () => {
   const [eucountry, setCountry] = useState("");
   // const [responseData, setResponseData] = useState("");
-  // const [emission, setEmissionData] = useState("");
+  const [emission, setEmissionData] = useState("");
  
   // const countrySelected = useRef();
   useEffect(() => {
@@ -34,7 +33,7 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => {
       .then(function (response) {
         // eslint-disable-next-line no-console
         console.log(response);
-        // setEmissionData(response.data);
+        setEmissionData(response.data);
       })
       .catch(function (error) {
         // eslint-disable-next-line no-console
@@ -42,30 +41,40 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => {
       });
   }, []);
 
+  const handleChange = (e) => { 
+    setCountry(e.target.value);
+  }
+
 
   return (
-  <article>
-    <Header
-      user={user}
-      onLogin={onLogin}
-      onLogout={onLogout}
-      onCreateAccount={onCreateAccount}
-    />
-    <section>
-      <div>
-        <h2>U1 PLANNER USER INPUT 1: BASELINE</h2>
-      </div>
-      <form>
+    <article>
+    {/*   <Header
+        user={user}
+        onLogin={onLogin}
+        onLogout={onLogout}
+        onCreateAccount={onCreateAccount}
+      /> */}
+      <section>
         <div>
-          <label>Year</label>
-          <select>
-            <option value="year">2021</option>
-          </select>
+          <h2>U1 PLANNER USER INPUT 1: BASELINE</h2>
         </div>
-        <div>
+        <form>
+          <div>
+            <label htmlFor="year_selection"> Year</label>
+            <select id="year_selection" name="year_selection">
+              <optgroup label="Select year"></optgroup>
+              <option value="year">2021</option>
+            </select>
+          </div>
+          
+          <div>
             <label htmlFor="eu_countries">Country</label>
             <select id="eu_countries" name="eu_countries"
-              onChange={(e) => setCountry(e.target.value)} defaultValue={eucountry} value={eucountry}>
+              onChange={() =>
+                handleChange}
+                // setCountry(e.target.value)} 
+                defaultValue={eucountry} 
+            >
               <optgroup label="Select country"></optgroup>
               <option value="Austria">Austria</option>
               <option value="Belgium">Belgium</option>
@@ -92,135 +101,109 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => {
               <option value="Norway">Malta</option>
             </select>
           </div>
-        <div>
-          <label>Population of the assessment area</label>
-          <input type="text" name="name" />
-        </div>
-        <br />
-        <div className="containerSmallPie">
-          <div id="firstSmallPie">
+          <div>
+            <label htmlFor="population_assessment">Population of the assessment area</label>
+            <input type="text" id="population_assessment" />
+          </div>
+          <br />
+
           <label>
-              <b>U1.1 Settlement type</b>
+            <b>U1.1 Settlement type</b>
           </label>
           <label>Share (%)</label>
-            <div>
-              <label>City</label>
-              <input type="text" name="city" />
-            </div>
-            <div>
-              <label>Suburban</label>
-              <input type="text" name="suburban" />
-            </div>
-            <div>
-              <label>Town</label>
-              <input type="text" name="town" />
-            </div>
-            <div>
-              <label>Rural</label>
-              <input type="text" name="rural" />
-            </div>
+          <div>
+            <label htmlFor="city">City</label>
+            <input type="text" id="city" />
           </div>
-          <div id="secondSmallPie">
-            <Piechart />
+          <div>
+            <label htmlFor="suburban"> Suburban</label>
+            <input type="text" id="suburban" />
           </div>
-          <div id="clear"></div>
-        </div>
-        <br />
-        {/* <label>
-          <b>U1.1 Settlement type</b>
-        </label>
-        <label>Share (%)</label>
-        <div>
-          <label>City</label>
-          <input type="text" name="city" />
-        </div>
-        <div>
-          <label>Suburban</label>
-          <input type="text" name="suburban" />
-        </div>
-        <div>
-          <label>Town</label>
-          <input type="text" name="town" />
-        </div>
-        <div>
-          <label>Rural</label>
-          <input type="text" name="rural" />
-        </div>
-        <Piechart />
-        <br /> */}
-        <label>
-          <b>U1.2 Area</b>
-        </label>
-        <label>Km</label>
-        <div>
-          <label>N-S Measurement (km)</label>
-          <input type="text" name="ns_measure" />
-        </div>
-        <div>
-          <label>E-W Measurement (km)</label>
-          <input type="text" name="ew_measure" />
-        </div>
-        <br />
-        <div>
+          <div>
+            <label htmlFor="town">Town</label>
+            <input type="text" id="town" />
+          </div>
+          <div>
+            <label htmlFor="rural">Rural</label>
+            <input type="text" id="rural" />
+          </div>
+          <Piechart />
+          <br />
           <label>
-            <b>U1.2 Non-residential and freight</b>
+            <b>U1.2 Area</b>
           </label>
-          <label></label>
-        </div>
-        <div>
-          <label> Non-residential road transport</label>
-          <select>
-            <option value="very_limited">0.25</option>
-            <option value="national_average_intensity" selected>
-              1.0
-            </option>
-            <option value="very_intensive">2.50</option>
-          </select>
-        </div>
+          <label>Km</label>
+          <div>
+            <label htmlFor="ns_measure">N-S Measurement (km)</label>
+            <input type="text" id="ns_measure" />
+          </div>
+          <div>
+            <label htmlFor="ew_measure">E-W Measurement (km)</label>
+            <input type="text" id="ew_measure" />
+          </div>
+          <br />
+          <div>
+            <label>
+              <b>U1.2 Non-residential and freight</b>
+            </label>
+            <label></label>
+          </div>
+          <div>
+            <label htmlFor="non_resident_road"> Non-residential road transport</label>
+            <select id="non_resident_road">
+              <optgroup label="Select road transport intensity"></optgroup>
+              <option value="very_limited">0.25</option>
+              <option value="national_average_intensity">
+                1.0
+              </option>
+              <option value="very_intensive">2.50</option>
+            </select>
+          </div>
 
-        <div>
-          <label>Freight transport by road</label>
-          <select>
-            <option value="very_limited">0.25</option>
-            <option value="national_average_intensity" selected>
-              1.0
-            </option>
-            <option value="very_intensive">2.50</option>
-          </select>
-        </div>
-        <div>
-          <label>Freight transport by rail</label>
-          <select>
-            <option value="very_limited">0.25</option>
-            <option value="national_average_intensity" selected>
-              1.0
-            </option>
-            <option value="very_intensive">2.50</option>
-          </select>
-        </div>
+          <div>
+            <label htmlFor="freight=road">Freight transport by road</label>
+            <select id="freight_road" name="freight_road">
+              <optgroup label="Select freight road intensity"></optgroup>
+              <option value="very_limited">0.25</option>
+              <option value="national_average_intensity">
+                1.0
+              </option>
+              <option value="very_intensive">2.50</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="freight_rail">Freight transport by rail</label>
+            <select id="freight_rail" name="freight_rail">
+              <option value="very_limited">0.25</option>
+              <option value="national_average_intensity">
+                1.0
+              </option>
+              <option value="very_intensive">2.50</option>
+            </select>
+          </div>
 
-        <div>
-          <label>Freight transport by inland waterways</label>
-          <select>
-            <option value="very_limited">0.25</option>
-            <option value="national_average_intensity" selected>
-              1.0
-            </option>
-            <option value="very_intensive">2.50</option>
-          </select>
-        </div>
+          <div>
+            <label htmlFor="freight_waterway">Freight transport by inland waterways</label>
+            <select id="freight_waterway" name="freight_waterway" >
+              <option value="very_limited">0.25</option>
+              <option value="national_average_intensity">
+                1.0
+              </option>
+              <option value="very_intensive">2.50</option>
+            </select>
+          </div>
 
-        <label>
+          <label>
           <b>Baseline - Transport CO2e emission 2021</b>
         </label>
-        <div className="container">
-          <div id="first">
-            <BaselinePiechart />
+        <div >
+          <div>
+            <BaselinePiechart/>
           </div>
-          <div id="second">
+          <div>
             <Legend />
           </div>
-          <div id="clear"></div>
+          <div></div>
         </div>
         <label>
           <b>Baseline - Transport CO2e emission/resident</b>
@@ -231,7 +214,7 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => {
   </article>
 );
 };
-
+/* 
 U1planner.propTypes = {
   user: PropTypes.shape({}),
   onLogin: PropTypes.func.isRequired,
@@ -242,3 +225,4 @@ U1planner.propTypes = {
 U1planner.defaultProps = {
   user: null,
 };
+ */

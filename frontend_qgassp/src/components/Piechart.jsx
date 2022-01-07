@@ -16,12 +16,7 @@ export const Piechart = ({ primary, size, ...props }) => {
     <div>
       <RadialChart
         type="piechart"
-        className={[
-          "storybook-piechart",
-          `storybook-piechart--${size}`,
-          mode,
-        ].join(" ")}
-        {...props}
+        className={["storybook-piechart", `storybook-piechart--${size}`, mode,].join(" ")} {...props}
         data={[
           {
             angle: 27,
