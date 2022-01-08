@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-/* import PropTypes from "prop-types";
-import { Header } from "./Header"; */
+import PropTypes from "prop-types";
+import { Header } from "./Header"; 
 import { Piechart } from "./Piechart";
 import { Legend } from "./Legend";
 import "../css/u1planner.css";
@@ -20,8 +20,7 @@ import {
  * @return {}
  */
 
-// export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => {
-export const U1planner = () => {
+export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => {
   const [eucountry, setCountry] = useState("");
   const [emission, setEmissionData] = useState("");
 
@@ -52,12 +51,12 @@ export const U1planner = () => {
 
   return (
     <article>
-      {/*   <Header
+      {<Header
         user={user}
         onLogin={onLogin}
         onLogout={onLogout}
         onCreateAccount={onCreateAccount}
-      /> */}
+      /> }
       <section>
         <div>
           <h2>U1 PLANNER USER INPUT 1: BASELINE</h2>
@@ -386,7 +385,7 @@ export const U1planner = () => {
     </article>
   );
 };
-/* 
+
 U1planner.propTypes = {
   user: PropTypes.shape({}),
   onLogin: PropTypes.func.isRequired,
@@ -397,4 +396,4 @@ U1planner.propTypes = {
 U1planner.defaultProps = {
   user: null,
 };
- */
+
