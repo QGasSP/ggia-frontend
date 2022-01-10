@@ -12,9 +12,10 @@ There are three sections in the USER INPUTS tab:
 || year | dropdown | integer | 2021 <= year <= 2050 | 2021 | |
 || country | dropdown | string | in list of 32 EU countries | | |
 || population | text input | integer | >= 0 | | |
-| U1.1 Settlement type | baseline_settlement_type_city | text input | float | 0 <= val <= 100 | 0 | total must sum to 100% |
-| U1.1 Settlement type | baseline_settlement_type_town | text input | float | 0 <= val <= 100 | 0 | total must sum to 100% |
+| U1.1 Settlement type | baseline_settlement_type_metropolitan_center | text input | float | 0 <= val <= 100 | 0 | total must sum to 100% |
+| U1.1 Settlement type | baseline_settlement_type_urban | text input | float | 0 <= val <= 100 | 0 | total must sum to 100% |
 | U1.1 Settlement type | baseline_settlement_type_suburban | text input | float | 0 <= val <= 100 | 0 | total must sum to 100% |
+| U1.1 Settlement type | baseline_settlement_type_town | text input | float | 0 <= val <= 100 | 0 | total must sum to 100% |
 | U1.1 Settlement type | baseline_settlement_type_rural | text input | float | 0 <= val <= 100 | 0 | total must sum to 100% |
 | U1.2 Area | settlement_area_width | text input | integer | >= 0 | 0 | |
 | U1.2 Area | settlement_area_length | text input | integer | >= 0 | 0 | |
