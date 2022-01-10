@@ -20,14 +20,16 @@ import {
  * @return {}
  */
 
-export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => {
-  const [eucountry, setCountry] = useState("");
-  const [emission, setEmissionData] = useState("");
+export const U1planner = ({ user, onLogin, onLogout, onCreateAccount,country }) => {
 
-  useEffect(() => {
-    const jsonRaw = {
-      country: "Finland",
-    };
+// export const U1planner = ({ euCountry }) => {
+  // const [eucountry, setCountry] = useState("");
+  const [emission, setEmissionData] = useState("");
+  
+
+useEffect(() => {
+    const jsonRaw = { country};
+  
     const headers = {
       "Content-type": "application/json",
     };
@@ -45,24 +47,31 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => {
       });
   }, []);
 
-  const handleChange = (e) => {
+/*   const handleChange = (e) => {
     setCountry(e.target.value);
-  };
+  }; */
 
+// if (!emission===""){
   return (
     <article>
-      {<Header
+     {<Header
         user={user}
         onLogin={onLogin}
         onLogout={onLogout}
         onCreateAccount={onCreateAccount}
-      /> }
+      /> } 
+
       <section>
         <div>
           <h2>U1 PLANNER USER INPUT 1: BASELINE</h2>
         </div>
+        <div>
+          <h3>
+            {country}
+          </h3>
+        </div>
         <form>
-          <div>
+         {/*  <div>
             <label htmlFor="year_selection"> Year</label>
             <select id="year_selection" name="year_selection">
               <optgroup label="Select year"></optgroup>
@@ -111,7 +120,7 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => {
             </label>
             <input type="text" id="population_assessment" />
           </div>
-          <br />
+          <br /> */}
 
           <label>
             <b>U1.1 Settlement type</b>
@@ -383,17 +392,20 @@ export const U1planner = ({ user, onLogin, onLogout, onCreateAccount }) => {
         </form>
       </section>
     </article>
-  );
+  );   
+// }else return(<h1>No data from {country}</h1>);
 };
 
 U1planner.propTypes = {
+  country: PropTypes.string.isRequired,
   user: PropTypes.shape({}),
   onLogin: PropTypes.func.isRequired,
   onLogout: PropTypes.func.isRequired,
-  onCreateAccount: PropTypes.func.isRequired,
+  onCreateAccount: PropTypes.func.isRequired, 
 };
 
 U1planner.defaultProps = {
   user: null,
 };
-
+ 
+ 
