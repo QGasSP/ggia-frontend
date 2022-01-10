@@ -1,28 +1,35 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Header } from "./Header";
 import { U1planner } from "./U1planner";
 
-
-
 export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
   const [country, setCountry] = useState("");
-  
+
   const handleSelected = (e) => {
     setCountry(e.target.value);
   };
 
-  if(country===""){
+  if (country === "") {
     return (
       <article>
-           {<Header
-          user={user}
-          onLogin={onLogin}
-          onLogout={onLogout}
-          onCreateAccount={onCreateAccount}
-        /> }
-  
+        {
+          <Header
+            user={user}
+            onLogin={onLogin}
+            onLogout={onLogout}
+            onCreateAccount={onCreateAccount}
+          />
+        }
+
         <section>
+          <div>
+            <p>
+              <b>
+                Please select a country to see it&#8217;s greenhouse gas impact
+              </b>
+            </p>
+          </div>
           <form>
             <div>
               <label htmlFor="year_selection"> Year</label>
@@ -31,15 +38,14 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                 <option value="year">2021</option>
               </select>
             </div>
-  
+
             <div>
               <label htmlFor="eu_countries">Country</label>
-              <select 
-             id="eu_countries"
-             name="eu_countries"
-             onChange={handleSelected}
-             // onClick={(e) => setEuCountry(e.target.value)}
-             defaultValue={country}
+              <select
+                id="eu_countries"
+                name="eu_countries"
+                onChange={handleSelected}
+                defaultValue="Select country"
               >
                 <optgroup label="Select country"></optgroup>
                 <option value="Austria">Austria</option>
@@ -51,7 +57,7 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                 <option value="Denmark">Denmark</option>
                 <option value="Estonia">Estonia</option>
                 <option value="Finland">Finland</option>
-                <option value="France">Austria</option>
+                <option value="France">France</option>
                 <option value="Germany">Germany</option>
                 <option value="Greece">Greece</option>
                 <option value="Hungary">Hungary</option>
@@ -64,7 +70,7 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                 <option value="Luxembourg">Luxembourg</option>
                 <option value="Malta">Malta</option>
                 <option value="Netherlands">Netherlands</option>
-                <option value="Norway">Malta</option>
+                <option value="Norway">Norway</option>
               </select>
             </div>
             <div>
@@ -77,23 +83,18 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
         </section>
       </article>
     );
-  }else{
-    return(
-      <U1planner country={country}/>
-    );
+  } else {
+    return <U1planner country={country} />;
   }
-
-  
 };
 
 StartPage.propTypes = {
-    user: PropTypes.shape({}),
-    onLogin: PropTypes.func.isRequired,
-    onLogout: PropTypes.func.isRequired,
-    onCreateAccount: PropTypes.func.isRequired,
-  };
-  
+  user: PropTypes.shape({}),
+  onLogin: PropTypes.func.isRequired,
+  onLogout: PropTypes.func.isRequired,
+  onCreateAccount: PropTypes.func.isRequired,
+};
+
 StartPage.defaultProps = {
-    user: null,
-  };
-  
+  user: null,
+};
