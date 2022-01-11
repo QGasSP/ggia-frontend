@@ -11,7 +11,7 @@ const itemLabels = [
   { title: "Buses", color: "#8C0303" },
   { title: "Metro", color: "#400D01" },
   { title: "Passenger trains", color: "#D90404" },
-  { title: "Road freight", color: "#F21905" },
+  { title: "Road freight", color: "#595959" },
   { title: "Passenger cars", color: "#A6036D" },
   { title: "Tram light train", color: " #C4D4F2" },
   { title: "Rail (freight)", color: "#80D941" },

@@ -214,7 +214,7 @@ export const U1planner = ({
                                 36000
                             ) / 100,
                           label: "Road freight",
-                          color: "#F21905",
+                          color: "#595959",
                         },
                         {
                           angle:
