@@ -223,6 +223,7 @@ export const U1planner = ({
                             ) / 100,
                           label: "Passenger cars",
                           color: "#A6036D",
+                          rotation: 90,
                         },
                         {
                           angle:
@@ -233,7 +234,7 @@ export const U1planner = ({
                             ) / 100,
                           label: "Tram, light train",
                           color: " #C4D4F2",
-                          // color: "#03A688",
+                          
                         },
                         {
                           angle:
@@ -257,16 +258,17 @@ export const U1planner = ({
                           color: "#F2CE1B",
                         },
                       ]}
+                      colorType="literal" 
                       innerRadius={100}
                       radius={140}
                       getAngle={(d) => d.angle}
                       width={350}
                       height={350}
                       /* labelsAboveChildren={true}
-                      labelsRadiusMultiplier={0.2}
+                      labelsRadiusMultiplier={0.7}
                       labelsStyle={{
                         fontSize: 8,
-                      }} */
+                      }}  */
                       // showLabels
                     />
                   </div>
