@@ -26,10 +26,13 @@ section h2 {
 .label_share{
   display: 'flex';
   float:right;
-  align-self:center;
-  padding-left: 20 rem;
+  padding: 20 rem;
 }
 
+.settlement_headers{
+  display:flex;
+
+}
 section label {
   display: inline-block;
   width: 300px;

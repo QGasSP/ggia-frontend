@@ -74,12 +74,11 @@ export const U1planner = ({
               <form id="form_settlement">
                 <div className="settlement_input">
                  
-                 <div>
+                 <div className="settlement_headers">
                   <label ><b>U1.1 Settlement type </b></label>
                   <label></label>
                   <label className="label_share">Share (%)</label>
                   </div>
-                  <br></br>
                   <div>
                     <label htmlFor="city">City</label>
                     <input type="text" id="city" />
