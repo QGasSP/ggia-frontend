@@ -39,7 +39,6 @@ section label {
 section input,
 select {
   padding: 5px 10px;
-  border-radius: 0.25rem;
   padding: 0.375rem 0.75rem;
   box-sizing: border-box;
 }
