@@ -15,6 +15,20 @@ section h2 {
   display: inline-block;
   vertical-align: top;
 }
+.settlement_header_labels{
+  display: inline-block;
+  width: 300px;
+}
+.label_settlement_type{
+  display: 'flex';
+  float:left;
+}
+.label_share{
+  display: 'flex';
+  float:right;
+  align-self:center;
+  padding-left: 20 rem;
+}
 
 section label {
   display: inline-block;
@@ -23,7 +37,34 @@ section label {
 section input,
 select {
   padding: 5px 10px;
+  border-radius: 0.25rem;
+  padding: 0.375rem 0.75rem;
   box-sizing: border-box;
+}
+.settlement_container {
+  display: flex;
+  flex-direction: row;
+ /*  align-items: stretch; */
+}
+.settlement_input {
+  width: 60%;
+}
+.settlement_chart {
+  padding: 0.7rem;
+  width: 40%;
+  float: left;
+}
+.piechart_container{
+  display: flex;
+  flex-direction: row;
+}
+.piechart_diagram{
+  width: 40%;
+
+}
+.piechart_legend{
+  float:left;
+  width: 60%;
 }
 
 section select {

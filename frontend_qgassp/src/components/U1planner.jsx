@@ -70,42 +70,54 @@ export const U1planner = ({
                 <b>{country}</b>
               </h3>
             </div>
+            <div className="settlement_container">
+              <form id="form_settlement">
+                <div className="settlement_input">
+                 
+                 <div>
+                  <label ><b>U1.1 Settlement type </b></label>
+                  <label></label>
+                  <label className="label_share">Share (%)</label>
+                  </div>
+                  <br></br>
+                  <div>
+                    <label htmlFor="city">City</label>
+                    <input type="text" id="city" />
+                  </div>
+                  <div>
+                    <label htmlFor="suburban"> Suburban</label>
+                    <input type="text" id="suburban" />
+                  </div>
+                  <div>
+                    <label htmlFor="town">Town</label>
+                    <input type="text" id="town" />
+                  </div>
+                  <div>
+                    <label htmlFor="rural">Rural</label>
+                    <input type="text" id="rural" />
+                  </div>
+                </div>
+              </form>
+              <div className="settlement_chart">
+                <Piechart />
+              </div>
+            </div>
+            <br />
+
+           
+            <label><b>U1.2 Area</b></label>
+            <label>Km</label>
+            <div>
+              <label htmlFor="ns_measure">N-S Measurement (km)</label>
+              <input type="text" id="ns_measure" />
+            </div>
+            <div>
+              <label htmlFor="ew_measure">E-W Measurement (km)</label>
+              <input type="text" id="ew_measure" />
+            </div>
+
+            <br />
             <form>
-              <label>
-                <b>U1.1 Settlement type</b>
-              </label>
-              <label>Share (%)</label>
-              <div>
-                <label htmlFor="city">City</label>
-                <input type="text" id="city" />
-              </div>
-              <div>
-                <label htmlFor="suburban"> Suburban</label>
-                <input type="text" id="suburban" />
-              </div>
-              <div>
-                <label htmlFor="town">Town</label>
-                <input type="text" id="town" />
-              </div>
-              <div>
-                <label htmlFor="rural">Rural</label>
-                <input type="text" id="rural" />
-              </div>
-              <Piechart />
-              <br />
-              <label>
-                <b>U1.2 Area</b>
-              </label>
-              <label>Km</label>
-              <div>
-                <label htmlFor="ns_measure">N-S Measurement (km)</label>
-                <input type="text" id="ns_measure" />
-              </div>
-              <div>
-                <label htmlFor="ew_measure">E-W Measurement (km)</label>
-                <input type="text" id="ew_measure" />
-              </div>
-              <br />
               <div>
                 <label>
                   <b>U1.2 Non-residential and freight</b>
@@ -157,8 +169,8 @@ export const U1planner = ({
               <label>
                 <b>Baseline - Transport CO2e emission 2021</b>
               </label>
-              <div>
-                <div>
+              <div className="piechart_container">
+                <div className="piechart_diagram">
                   <div>
                     <RadialChart
                       data={[
@@ -171,7 +183,7 @@ export const U1planner = ({
                                 36000
                             ) / 100,
                           label: "Buses",
-                          // color: "#8C0303",
+                          color: "#8C0303",
                         },
                         {
                           angle:
@@ -181,7 +193,7 @@ export const U1planner = ({
                                 36000
                             ) / 100,
                           label: "Metro",
-                          // color: "#400D01",
+                          color: "#400D01",
                         },
                         {
                           angle:
@@ -191,7 +203,7 @@ export const U1planner = ({
                                 36000
                             ) / 100,
                           label: "Passenger trains",
-                          // color: "#D90404",
+                          color: "#D90404",
                         },
                         {
                           angle:
@@ -201,7 +213,7 @@ export const U1planner = ({
                                 36000
                             ) / 100,
                           label: "Road freight",
-                          // color: "#F21905",
+                          color: "#F21905",
                         },
                         {
                           angle:
@@ -211,7 +223,7 @@ export const U1planner = ({
                                 36000
                             ) / 100,
                           label: "Passenger cars",
-                          // color: "#A6036D",
+                          color: "#A6036D",
                         },
                         {
                           angle:
@@ -232,7 +244,7 @@ export const U1planner = ({
                                 36000
                             ) / 100,
                           label: "Rail freight",
-                          // color: "#80D941",
+                          color: "#80D941",
                         },
                         {
                           angle:
@@ -243,21 +255,24 @@ export const U1planner = ({
                                 36000
                             ) / 100,
                           label: "Inland waterways freight",
-                          // color: "#F2CE1B",
+                          color: "#F2CE1B",
                         },
                       ]}
+                      innerRadius={100}
+                      radius={140}
+                      getAngle={(d) => d.angle}
                       width={350}
                       height={350}
-                      labelsAboveChildren={true}
-                      labelsRadiusMultiplier={1.1}
+                      /* labelsAboveChildren={true}
+                      labelsRadiusMultiplier={0.2}
                       labelsStyle={{
                         fontSize: 8,
-                      }}
+                      }} */
                       // showLabels
                     />
                   </div>
                 </div>
-                <div>
+                <div className="piechart_legend">
                   <Legend />
                 </div>
                 <div></div>

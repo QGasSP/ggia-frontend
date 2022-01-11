@@ -14,7 +14,6 @@ const itemLabels = [
   { title: "Road freight", color: "#F21905" },
   { title: "Passenger cars", color: "#A6036D" },
   { title: "Tram light train", color: " #C4D4F2" },
-  // { title: "Tram light train", color: "#03A688" },
   { title: "Rail (freight)", color: "#80D941" },
   { title: "Inland waterways freight", color: "#F2CE1B" },
 ];
@@ -24,7 +23,7 @@ export const Legend = () => {
     <DiscreteColorLegend
       items={itemLabels}
       orientation="vertical"
-      strokeWidth="3px"
+      strokeWidth="10px"
     />
   );
 };
