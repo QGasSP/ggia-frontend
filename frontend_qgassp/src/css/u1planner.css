@@ -15,23 +15,22 @@ section h2 {
   display: inline-block;
   vertical-align: top;
 }
-.settlement_header_labels{
+.settlement_header_labels {
   display: inline-block;
   width: 300px;
 }
-.label_settlement_type{
-  display: 'flex';
-  float:left;
+.label_settlement_type {
+  display: "flex";
+  float: left;
 }
-.label_share{
-  display: 'flex';
-  float:right;
+.label_share {
+  display: "flex";
+  float: right;
   padding: 20 rem;
 }
 
-.settlement_headers{
-  display:flex;
-
+.settlement_headers {
+  display: flex;
 }
 section label {
   display: inline-block;
@@ -47,7 +46,7 @@ select {
 .settlement_container {
   display: flex;
   flex-direction: row;
- /*  align-items: stretch; */
+  /*  align-items: stretch; */
 }
 .settlement_input {
   width: 60%;
@@ -57,16 +56,15 @@ select {
   width: 40%;
   float: left;
 }
-.piechart_container{
+.piechart_container {
   display: flex;
   flex-direction: row;
 }
-.piechart_diagram{
+.piechart_diagram {
   width: 40%;
-
 }
-.piechart_legend{
-  float:left;
+.piechart_legend {
+  float: left;
   width: 60%;
 }
 

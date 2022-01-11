@@ -73,11 +73,12 @@ export const U1planner = ({
             <div className="settlement_container">
               <form id="form_settlement">
                 <div className="settlement_input">
-                 
-                 <div className="settlement_headers">
-                  <label ><b>U1.1 Settlement type </b></label>
-                  <label></label>
-                  <label className="label_share">Share (%)</label>
+                  <div className="settlement_headers">
+                    <label>
+                      <b>U1.1 Settlement type </b>
+                    </label>
+                    <label></label>
+                    <label className="label_share">Share (%)</label>
                   </div>
                   <div>
                     <label htmlFor="city">City</label>
@@ -103,8 +104,9 @@ export const U1planner = ({
             </div>
             <br />
 
-           
-            <label><b>U1.2 Area</b></label>
+            <label>
+              <b>U1.2 Area</b>
+            </label>
             <label>Km</label>
             <div>
               <label htmlFor="ns_measure">N-S Measurement (km)</label>
@@ -164,7 +166,7 @@ export const U1planner = ({
                   <option value="very_intensive">2.50</option>
                 </select>
               </div>
-               <br></br>
+              <br></br>
               <label>
                 <b>Baseline - Transport CO2e emission 2021</b>
               </label>
@@ -234,7 +236,6 @@ export const U1planner = ({
                             ) / 100,
                           label: "Tram, light train",
                           color: " #C4D4F2",
-                          
                         },
                         {
                           angle:
@@ -258,18 +259,12 @@ export const U1planner = ({
                           color: "#F2CE1B",
                         },
                       ]}
-                      colorType="literal" 
+                      colorType="literal"
                       innerRadius={100}
                       radius={140}
                       getAngle={(d) => d.angle}
                       width={350}
                       height={350}
-                      /* labelsAboveChildren={true}
-                      labelsRadiusMultiplier={0.7}
-                      labelsStyle={{
-                        fontSize: 8,
-                      }}  */
-                      // showLabels
                     />
                   </div>
                 </div>
