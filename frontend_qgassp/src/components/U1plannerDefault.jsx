@@ -201,7 +201,7 @@ export const U1plannerDefault = ({
                   },
                   {
                     y: 0.0,
-                    x: "total emissions",
+                    x: "Total emissions",
                   },
                 ]}
               />

@@ -277,7 +277,7 @@ export const U1planner = ({
                 <b>Baseline - Transport CO2e emission/resident</b>
               </label>
 
-              <div>
+              <div className="barchart_container">
                 <XYPlot
                   xType="ordinal"
                   width={1000}
