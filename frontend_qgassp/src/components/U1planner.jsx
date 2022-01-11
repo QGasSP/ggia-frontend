@@ -165,7 +165,7 @@ export const U1planner = ({
                   <option value="very_intensive">2.50</option>
                 </select>
               </div>
-
+               <br></br>
               <label>
                 <b>Baseline - Transport CO2e emission 2021</b>
               </label>

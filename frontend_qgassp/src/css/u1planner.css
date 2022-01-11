@@ -68,9 +68,11 @@ select {
 }
 
 section select {
+  border-radius: 0.25rem;
+  background: var(--color-white);
   display: inline-block;
   padding: 5px 10px;
-  width: 187px;
+  width: 12%;
   box-sizing: border-box;
 }
 
