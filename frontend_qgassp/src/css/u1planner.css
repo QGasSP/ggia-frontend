@@ -81,11 +81,11 @@ section div {
   margin-bottom: 10px;
 }
 
-.barchart_container{
-  width:80%;
+.barchart_container {
+  width: 80%;
   display: flex;
   flex-direction: row;
 }
-.baseline_barchart{
-  width:100%;
+.baseline_barchart {
+  width: 100%;
 }
