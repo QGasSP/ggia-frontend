@@ -66,7 +66,15 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   required
                 >
                   <optgroup label="Select year"></optgroup>
-                  <option value="year_selected">2021</option>
+                  <option value="2021">2018</option>
+                  <option value="2022">2019</option>
+                  <option value="2023">2020</option>
+                  <option value="2021">2021</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                  <option value="2021">2024</option>
+                  <option value="2022">2025</option>
+                  <option value="2023">2026</option>
                 </select>
               </div>
 
