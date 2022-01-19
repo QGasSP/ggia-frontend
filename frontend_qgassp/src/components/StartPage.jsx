@@ -1,17 +1,39 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { Button } from "./Button";
 import { Header } from "./Header";
 import { U1planner } from "./U1planner";
 import "../css/startpage.css";
 
+const isNumber = "[0-9]*";
 export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
   const [country, setCountry] = useState("");
+  const [year, setYear] = useState("");
+  const [population, setPopulation] = useState("");
+  const [next, setNext] = useState(false);
 
   const handleSelected = (e) => {
+    e.preventDefault();
     setCountry(e.target.value);
   };
 
-  if (country === "") {
+  const handlePopulation = (e) => {
+    e.preventDefault();
+    if (e.target.value.test(isNumber)) {
+      setPopulation(e.target.value);
+    }
+  };
+
+  const handleSelectedYear = (e) => {
+    e.preventDefault();
+    setYear(e.target.value);
+  };
+
+  const startBaseline = () => {
+      setNext(true);
+  };
+
+  if (next === false ) {
     return (
       <article>
         {
@@ -30,24 +52,27 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
               </h1>
             </header>
 
-            <form id="impact_start_form">
+            <form id="impact_start_form"  onSubmit={startBaseline}>
               <div className="form-group">
                 <label htmlFor="year_selection" className="intro_label">
                   Year
                 </label>
                 <select
+                  className="intro_select"
                   id="year_selection"
                   name="year_selection"
-                  className="intro_select"
+                  onChange={handleSelectedYear}
+                  defaultValue=""
+                  required
                 >
                   <optgroup label="Select year"></optgroup>
-                  <option value="year">2021</option>
+                  <option value="year_selected">2021</option>
                 </select>
               </div>
 
               <div className="form-group">
                 <label htmlFor="eu_countries" className="intro_label">
-                  <b>Country</b>
+                  Country
                 </label>
                 <select
                   className="intro_select"
@@ -55,6 +80,7 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   name="eu_countries"
                   onChange={handleSelected}
                   defaultValue="Select country"
+                  required
                 >
                   <optgroup label="Select country"></optgroup>
                   <option value="DefaultOption">Select country</option>
@@ -89,8 +115,21 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                 </label>
                 <input
                   type="text"
+                  pattern="[0-9]*"
                   id="population_assessment"
                   className="form-input"
+                  onChange={handlePopulation}
+                  placeholder="0"
+                  required
+                />
+              </div>
+              <div className="nextButton">
+                <Button
+                  size="large"
+                  type="submit" 
+                  value="Submit"
+                  label="Next"
+                  primary
                 />
               </div>
             </form>
@@ -99,7 +138,7 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
       </article>
     );
   } else {
-    return <U1planner country={country} />;
+    return <U1planner country={country} year={year} population={population} />;
   }
 };
 

@@ -70,3 +70,8 @@
   width: 40%;
   margin: 0 auto;
 }
+
+.nextButton {
+  position: absolute;
+  right: 32%;
+}

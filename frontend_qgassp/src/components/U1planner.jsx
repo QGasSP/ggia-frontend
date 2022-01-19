@@ -4,6 +4,7 @@ import { Header } from "./Header";
 import { Piechart } from "./Piechart";
 import { Legend } from "./Legend";
 import { U1plannerDefault } from "./U1plannerDefault";
+import { Button } from "./Button";
 import "../css/u1planner.css";
 import axios from "axios";
 import {
@@ -27,6 +28,8 @@ export const U1planner = ({
   onLogout,
   onCreateAccount,
   country,
+  year,
+  population,
 }) => {
   const [emission, setEmissionData] = useState("");
 
@@ -70,35 +73,47 @@ export const U1planner = ({
                 <b>{country}</b>
               </h3>
             </div>
-            <div className="settlement_container">
-              <form id="form_settlement">
-                <div className="settlement_input">
+
+            <div className="row">
+              <form id="form_settlement" action="">
+                <div className="column">
                   <div className="settlement_headers">
                     <label>
                       <b>U1.1 Settlement type </b>
                     </label>
-                    <label></label>
-                    <label className="label_share">Share (%)</label>
+                    <label>Share (%)</label>
+                  </div>
+                  <div>
+                    <label htmlFor="metropolitan">Metropolitan center</label>
+                    <input type="number" id="metropolitan" min="0" max="100" required/>
                   </div>
                   <div>
                     <label htmlFor="city">City</label>
-                    <input type="text" id="city" />
+                    <input type="number" id="city" min="0" max="100" required />
                   </div>
                   <div>
                     <label htmlFor="suburban"> Suburban</label>
-                    <input type="text" id="suburban" />
+                    <input type="number" id="suburban" min="0" max="100" required />
                   </div>
                   <div>
                     <label htmlFor="town">Town</label>
-                    <input type="text" id="town" />
+                    <input type="number" id="town" min="0" max="100" required/>
                   </div>
                   <div>
                     <label htmlFor="rural">Rural</label>
-                    <input type="text" id="rural" />
+                    <input type="number" id="rural" min="0" max="100" required />
                   </div>
                 </div>
               </form>
-              <div className="settlement_chart">
+              <div className="column">
+              <div>
+              {/*   <Button
+                  size="small"
+                  type="submit" 
+                  value="Submit"
+                  label="Update settlement type default values"
+                /> */}
+                </div>
                 <Piechart />
               </div>
             </div>
@@ -371,6 +386,8 @@ export const U1planner = ({
 };
 
 U1planner.propTypes = {
+  population: PropTypes.number.isRequired,
+  year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
   user: PropTypes.shape({}),
   onLogin: PropTypes.func.isRequired,

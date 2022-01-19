@@ -43,19 +43,38 @@ select {
   font-family: sans-serif;
   box-sizing: border-box;
 }
-.settlement_container {
-  display: flex;
-  flex-direction: row;
-  /*  align-items: stretch; */
-}
-.settlement_input {
-  width: 60%;
-}
-.settlement_chart {
-  padding: 0.7rem;
-  width: 40%;
+
+.column {
   float: left;
+  width: 50%;
+  z-index: 1;
 }
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .column {
+    width: 50%;
+  }
+}
+
+/* Chrome, Safari, Edge, Opera hide input number up and down arrows*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox hide input number up and down arrows*/
+input[type="number"] {
+  -moz-appearance: textfield;
+  width: 30%;
+}
+
 .piechart_container {
   display: flex;
   flex-direction: row;
@@ -81,11 +100,11 @@ section div {
   margin-bottom: 10px;
 }
 
-.barchart_container{
-  width:80%;
+.barchart_container {
+  width: 80%;
   display: flex;
   flex-direction: row;
 }
-.baseline_barchart{
-  width:100%;
+.baseline_barchart {
+  width: 100%;
 }

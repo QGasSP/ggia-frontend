@@ -43,6 +43,11 @@ export const Piechart = ({ primary, size, ...props }) => {
             label: "Rural",
             color: "#F2E205",
           },
+          {
+            angle: 17,
+            label: "Metropolitan",
+            color: "#D9B1A3",
+          },
         ]}
         width={200}
         height={200}
