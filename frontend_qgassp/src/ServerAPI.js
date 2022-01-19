@@ -1,4 +1,4 @@
-const SERVER_ADDRESS = "http://localhost:5000";
+const SERVER_ADDRESS = "http://ggia.ulno.net";
 
 const parse = async (fetchPromise) => {
   const response = await fetchPromise;
