@@ -30,10 +30,10 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
   };
 
   const startBaseline = () => {
-      setNext(true);
+    setNext(true);
   };
 
-  if (next === false ) {
+  if (next === false) {
     return (
       <article>
         {
@@ -52,7 +52,7 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
               </h1>
             </header>
 
-            <form id="impact_start_form"  onSubmit={startBaseline}>
+            <form id="impact_start_form" onSubmit={startBaseline}>
               <div className="form-group">
                 <label htmlFor="year_selection" className="intro_label">
                   Year
@@ -62,13 +62,13 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   id="year_selection"
                   name="year_selection"
                   onChange={handleSelectedYear}
-                  defaultValue=""
+                  defaultValue="Select year"
                   required
                 >
-                  <optgroup label="Select year"></optgroup>
-                  <option value="2021">2018</option>
-                  <option value="2022">2019</option>
-                  <option value="2023">2020</option>
+                  {/*     <optgroup label="Select year">Select year</optgroup> */}
+                  <option value="DefaultOption">Select year</option>
+                  <option value="2019">2019</option>
+                  <option value="2020">2020</option>
                   <option value="2021">2021</option>
                   <option value="2022">2022</option>
                   <option value="2023">2023</option>
@@ -90,7 +90,7 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   defaultValue="Select country"
                   required
                 >
-                  <optgroup label="Select country"></optgroup>
+                  {/*  <optgroup label="Select country"></optgroup> */}
                   <option value="DefaultOption">Select country</option>
                   <option value="Austria">Austria</option>
                   <option value="Belgium">Belgium</option>
@@ -134,7 +134,7 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
               <div className="nextButton">
                 <Button
                   size="large"
-                  type="submit" 
+                  type="submit"
                   value="Submit"
                   label="Next"
                   primary
