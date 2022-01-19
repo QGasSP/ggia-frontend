@@ -39,7 +39,7 @@ export const U1planner = ({
     };
 
     axios
-      .post("http://localhost:5000/calc/emission", { country }, headers)
+      .post("http://ggia.ulno.net/calc/emission", { country }, headers)
       .then(function (response) {
         // eslint-disable-next-line no-console
         console.log(response);
