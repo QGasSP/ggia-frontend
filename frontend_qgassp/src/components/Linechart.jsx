@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/linechart.css";
+import "react-vis/dist/style.css";
 
 import {
   XYPlot,
@@ -68,7 +69,7 @@ export const Linechart = () => {
             { x: 2049, y: 16000 },
             { x: 2050, y: 16000 },
           ]}
-          opacity={0.5}
+          opacity={1}
           stroke="rgba(21,75,230,1)"
           strokeDasharray=""
           strokeStyle="solid"
@@ -109,7 +110,7 @@ export const Linechart = () => {
             { x: 2049, y: 15000 },
             { x: 2050, y: 15000 },
           ]}
-          opacity={0.5}
+          opacity={1}
           stroke="rgba(102,116,155,1)"
           strokeDasharray=""
           strokeStyle="dashed"

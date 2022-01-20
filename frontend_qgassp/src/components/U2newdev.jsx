@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Header } from "./Header";
 import { Linechart } from "./Linechart";
+import { LineLegend } from "./LineLegend";
 import "../css/u2newdev.css";
 import axios from "axios";
 
@@ -174,6 +175,7 @@ export const U2newdev = ({
           </div>
           <br />
           <Linechart />
+          <LineLegend />
         </form>
       </section>
     </article>
