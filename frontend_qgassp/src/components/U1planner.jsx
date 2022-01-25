@@ -134,7 +134,7 @@ export const U1planner = ({
                     min="0"
                     max="100"
                     value={urban}
-                    required
+                    readOnly
                   />
                 </div>
                 <div>
@@ -177,7 +177,7 @@ export const U1planner = ({
                     type="piechart"
                     data={[
                       {
-                        angle: urban,
+                        angle: parseFloat(urban),
                         label: "Urban",
                         color: "#D90404",
                       },

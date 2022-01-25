@@ -19,17 +19,17 @@ export const Settlement = ({
   year,
   population,
 }) => {
-  const [metropolitanCenter, setMetropolitan] = useState(0);
-  const [urban, setUrban] = useState(0);
-  const [suburban, setSubUrban] = useState(0);
-  const [town, setTown] = useState(0);
-  const [rural, setRural] = useState(0);
-  const [total, setTotal] = useState(
+  const [metropolitanCenter, setMetropolitan] = useState(0.0);
+  const [urban, setUrban] = useState(0.0);
+  const [suburban, setSubUrban] = useState(0.0);
+  const [town, setTown] = useState(0.0);
+  const [rural, setRural] = useState(0.0);
+  /* const [total, setTotal] = useState(
     metropolitanCenter + urban + suburban + town + rural
-  );
+  ); */
   const [nextEmissions, setNextEmissions] = useState(false);
 
-  useEffect(() => {
+  /* useEffect(() => {
     setTotal(
       parseFloat(metropolitanCenter) +
         parseFloat(urban) +
@@ -37,7 +37,7 @@ export const Settlement = ({
         parseFloat(town) +
         parseFloat(rural)
     );
-  }, []);
+  }, []); */
 
   const handleMetropolitanCenter = (e) => {
     e.preventDefault();
