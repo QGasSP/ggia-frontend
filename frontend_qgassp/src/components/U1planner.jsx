@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Header } from "./Header";
-import { Piechart } from "./Piechart";
-import { Legend } from "./Legend";
-import { U1plannerDefault } from "./U1plannerDefault";
 import { Button } from "./Button";
 import "../css/u1planner.css";
 import axios from "axios";
+import { Legend } from "./Legend";
+import { Settlement } from "./Settlement";
+import { U2planner } from "./U2planner";
 import {
   XYPlot,
   VerticalGridLines,
@@ -30,16 +30,35 @@ export const U1planner = ({
   country,
   year,
   population,
+  metropolitanCenter,
+  urban,
+  suburban,
+  town,
+  rural,
 }) => {
   const [emission, setEmissionData] = useState("");
+  const [nextQuantification, setQuantification] = useState(false);
+  const [backSettlement, setBackSettlement] = useState(false);
 
   useEffect(() => {
+    const settlementDistribution = {
+      metropolitanCenter,
+      urban,
+      suburban,
+      town,
+      rural,
+    };
+    const rawData = { country, year, population, settlementDistribution };
     const headers = {
       "Content-type": "application/json",
     };
 
     axios
-      .post("https://ggia.ulno.net/calc/emission", { country }, headers)
+      .post(
+        "https://ggia.ulno.net/api/v1/calculate/transport",
+        rawData,
+        headers
+      )
       .then(function (response) {
         // eslint-disable-next-line no-console
         console.log(response);
@@ -51,9 +70,21 @@ export const U1planner = ({
       });
   }, []);
 
-  return (
-    <div>
-      {emission.length != 0 ? (
+  const goBackToSettlement = () => {
+    // eslint-disable-next-line no-console
+    console.log("heading back........");
+    setBackSettlement(true);
+  };
+
+  const goToU2Planner = () => {
+    // eslint-disable-next-line no-console
+    console.log("heading there........");
+    setQuantification(true);
+  };
+
+  if (nextQuantification === false) {
+    return (
+      <div>
         <article>
           {
             <Header
@@ -70,51 +101,119 @@ export const U1planner = ({
             </div>
             <div>
               <h3>
-                <b>{country}</b>
+                <b>
+                  {country}: {year}
+                </b>
               </h3>
             </div>
 
             <div className="row">
-              <form id="form_settlement" action="">
-                <div className="column">
-                  <div className="settlement_headers">
-                    <label>
-                      <b>U1.1 Settlement type </b>
-                    </label>
-                    <label>Share (%)</label>
-                  </div>
-                  <div>
-                    <label htmlFor="metropolitan">Metropolitan center</label>
-                    <input type="number" id="metropolitan" min="0" max="100" required/>
-                  </div>
-                  <div>
-                    <label htmlFor="city">City</label>
-                    <input type="number" id="city" min="0" max="100" required />
-                  </div>
-                  <div>
-                    <label htmlFor="suburban"> Suburban</label>
-                    <input type="number" id="suburban" min="0" max="100" required />
-                  </div>
-                  <div>
-                    <label htmlFor="town">Town</label>
-                    <input type="number" id="town" min="0" max="100" required/>
-                  </div>
-                  <div>
-                    <label htmlFor="rural">Rural</label>
-                    <input type="number" id="rural" min="0" max="100" required />
-                  </div>
-                </div>
-              </form>
               <div className="column">
-              <div>
-              {/*   <Button
-                  size="small"
-                  type="submit" 
-                  value="Submit"
-                  label="Update settlement type default values"
-                /> */}
+                <div className="settlement_headers">
+                  <label>
+                    <b>U1.1 Settlement type </b>
+                  </label>
+                  <label>Share (%)</label>
                 </div>
-                <Piechart />
+                <div>
+                  <label htmlFor="metropolitan">Metropolitan center</label>
+                  <input
+                    type="number"
+                    id="metropolitan"
+                    min="0"
+                    max="100"
+                    value={metropolitanCenter}
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="urban">Urban</label>
+                  <input
+                    type="number"
+                    id="urban"
+                    min="0"
+                    max="100"
+                    value={urban}
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="suburban"> Suburban</label>
+                  <input
+                    type="number"
+                    id="suburban"
+                    min="0"
+                    max="100"
+                    value={suburban}
+                    readOnly
+                  />
+                </div>
+                <div>
+                  <label htmlFor="town">Town</label>
+                  <input
+                    type="number"
+                    id="town"
+                    min="0"
+                    max="100"
+                    value={town}
+                    readOnly
+                  />
+                </div>
+                <div>
+                  <label htmlFor="rural">Rural</label>
+                  <input
+                    type="number"
+                    id="rural"
+                    min="0"
+                    max="100"
+                    value={rural}
+                    readOnly
+                  />
+                </div>
+              </div>
+              <div className="column">
+                <div>
+                  <RadialChart
+                    type="piechart"
+                    data={[
+                      {
+                        angle: urban,
+                        label: "Urban",
+                        color: "#D90404",
+                      },
+                      {
+                        angle: suburban,
+                        label: "Suburban",
+                        color: "#A69886",
+                      },
+                      {
+                        angle: town,
+                        label: "Town",
+                        color: "#38D0F2",
+                      },
+                      {
+                        angle: rural,
+                        label: "Rural",
+                        color: "#F2E205",
+                      },
+                      {
+                        angle: metropolitanCenter,
+                        label: "Metropolitan",
+                        color: "#D9B1A3",
+                      },
+                    ]}
+                    width={200}
+                    height={200}
+                    colorType="literal"
+                    labelsAboveChildren={true}
+                    labelsRadiusMultiplier={0.8}
+                    labelsStyle={{
+                      fontSize: 8,
+                      fontWeight: 900,
+                    }}
+                    showLabels
+                  />
+                </div>
               </div>
             </div>
             <br />
@@ -181,211 +280,231 @@ export const U1planner = ({
                   <option value="very_intensive">2.50</option>
                 </select>
               </div>
-              <br></br>
-              <label>
-                <b>Baseline - Transport CO2e emission 2021</b>
-              </label>
-              <div className="piechart_container">
-                <div className="piechart_diagram">
-                  <div>
-                    <RadialChart
-                      data={[
-                        {
-                          angle:
-                            Math.round(
-                              (emission.motor_coaches_buses_and_trolley_buses /
-                                emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Buses",
-                          color: "#8C0303",
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.metro / emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Metro",
-                          color: "#400D01",
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.passenger_trains / emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Passenger trains",
-                          color: "#D90404",
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.road_freight / emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Road freight",
-                          color: "#595959",
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.passenger_cars / emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Passenger cars",
-                          color: "#A6036D",
-                          rotation: 90,
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.tram_light_train / emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Tram, light train",
-                          color: " #C4D4F2",
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.rail_freight / emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Rail freight",
-                          color: "#80D941",
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.inland_waterways_freight /
-                                emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Inland waterways freight",
-                          color: "#F2CE1B",
-                        },
-                      ]}
-                      colorType="literal"
-                      innerRadius={100}
-                      radius={140}
-                      getAngle={(d) => d.angle}
-                      width={350}
-                      height={350}
-                    />
-                  </div>
-                </div>
-                <div className="piechart_legend">
-                  <Legend />
-                </div>
-                <div></div>
-              </div>
-              <label>
-                <b>Baseline - Transport CO2e emission/resident</b>
-              </label>
-
-              <div className="barchart_container">
-                <XYPlot
-                  xType="ordinal"
-                  width={1000}
-                  height={312}
-                  xDistance={200}
-                >
-                  <HorizontalGridLines />
-                  <VerticalGridLines />
-                  <VerticalBarSeries
-                    className="BaselineBarchart"
+            </form>
+            <label>
+              <b>
+                Baseline - Transport CO2e emission {country}-{year}
+              </b>
+            </label>
+            <div className="piechart_container">
+              <div className="piechart_diagram">
+                <div>
+                  <RadialChart
                     data={[
                       {
-                        y:
+                        angle:
                           Math.round(
-                            (emission.motor_coaches_buses_and_trolley_buses +
+                            (emission.motor_coaches_buses_and_trolley_buses /
+                              emission.total +
                               Number.EPSILON) *
-                              100
+                              36000
                           ) / 100,
-                        x: "Buses",
+                        label: "Buses",
+                        color: "#8C0303",
                       },
                       {
-                        y:
-                          Math.round((emission.metro + Number.EPSILON) * 100) /
-                          100,
-                        x: "Metro",
-                      },
-                      {
-                        y:
+                        angle:
                           Math.round(
-                            (emission.passenger_trains + Number.EPSILON) * 100
+                            (emission.metro / emission.total + Number.EPSILON) *
+                              36000
                           ) / 100,
-                        x: "Passenger trains",
+                        label: "Metro",
+                        color: "#400D01",
                       },
                       {
-                        y:
+                        angle:
                           Math.round(
-                            (emission.road_freight + Number.EPSILON) * 100
-                          ) / 100,
-                        x: "Road freight",
-                      },
-                      {
-                        y:
-                          Math.round(
-                            (emission.passenger_cars + Number.EPSILON) * 100
-                          ) / 100,
-                        x: "Passenger cars",
-                      },
-                      {
-                        y:
-                          Math.round(
-                            (emission.tram_light_train + Number.EPSILON) * 100
-                          ) / 100,
-                        x: "Tram, light train",
-                      },
-                      {
-                        y:
-                          Math.round(
-                            (emission.rail_freight + Number.EPSILON) * 100
-                          ) / 100,
-                        x: "Rail freight",
-                      },
-                      {
-                        y:
-                          Math.round(
-                            (emission.inland_waterways_freight +
+                            (emission.passenger_trains / emission.total +
                               Number.EPSILON) *
-                              100
+                              36000
                           ) / 100,
-                        x: "Inland waterways freight",
+                        label: "Passenger trains",
+                        color: "#D90404",
                       },
                       {
-                        y:
-                          Math.round((emission.total + Number.EPSILON) * 100) /
-                          100,
-                        x: "total emissions",
+                        angle:
+                          Math.round(
+                            (emission.road_freight / emission.total +
+                              Number.EPSILON) *
+                              36000
+                          ) / 100,
+                        label: "Road freight",
+                        color: "#595959",
+                      },
+                      {
+                        angle:
+                          Math.round(
+                            (emission.passenger_cars / emission.total +
+                              Number.EPSILON) *
+                              36000
+                          ) / 100,
+                        label: "Passenger cars",
+                        color: "#A6036D",
+                        rotation: 90,
+                      },
+                      {
+                        angle:
+                          Math.round(
+                            (emission.tram_light_train / emission.total +
+                              Number.EPSILON) *
+                              36000
+                          ) / 100,
+                        label: "Tram, light train",
+                        color: " #C4D4F2",
+                      },
+                      {
+                        angle:
+                          Math.round(
+                            (emission.rail_freight / emission.total +
+                              Number.EPSILON) *
+                              36000
+                          ) / 100,
+                        label: "Rail freight",
+                        color: "#80D941",
+                      },
+                      {
+                        angle:
+                          Math.round(
+                            (emission.inland_waterways_freight /
+                              emission.total +
+                              Number.EPSILON) *
+                              36000
+                          ) / 100,
+                        label: "Inland waterways freight",
+                        color: "#F2CE1B",
                       },
                     ]}
+                    colorType="literal"
+                    innerRadius={100}
+                    radius={140}
+                    getAngle={(d) => d.angle}
+                    width={350}
+                    height={350}
                   />
-                  <XAxis />
-                  <YAxis />
-                </XYPlot>
+                </div>
               </div>
-            </form>
+              <div className="piechart_legend">
+                <Legend />
+              </div>
+              <div></div>
+            </div>
+            <label>
+              <b>Baseline - Transport CO2e emission/resident</b>
+            </label>
+
+            <div className="barchart_container">
+              <XYPlot xType="ordinal" width={1000} height={312} xDistance={200}>
+                <HorizontalGridLines />
+                <VerticalGridLines />
+                <VerticalBarSeries
+                  className="BaselineBarchart"
+                  data={[
+                    {
+                      y:
+                        Math.round(
+                          (emission.motor_coaches_buses_and_trolley_buses +
+                            Number.EPSILON) *
+                            100
+                        ) / 100,
+                      x: "Buses",
+                    },
+                    {
+                      y:
+                        Math.round((emission.metro + Number.EPSILON) * 100) /
+                        100,
+                      x: "Metro",
+                    },
+                    {
+                      y:
+                        Math.round(
+                          (emission.passenger_trains + Number.EPSILON) * 100
+                        ) / 100,
+                      x: "Passenger trains",
+                    },
+                    {
+                      y:
+                        Math.round(
+                          (emission.road_freight + Number.EPSILON) * 100
+                        ) / 100,
+                      x: "Road freight",
+                    },
+                    {
+                      y:
+                        Math.round(
+                          (emission.passenger_cars + Number.EPSILON) * 100
+                        ) / 100,
+                      x: "Passenger cars",
+                    },
+                    {
+                      y:
+                        Math.round(
+                          (emission.tram_light_train + Number.EPSILON) * 100
+                        ) / 100,
+                      x: "Tram, light train",
+                    },
+                    {
+                      y:
+                        Math.round(
+                          (emission.rail_freight + Number.EPSILON) * 100
+                        ) / 100,
+                      x: "Rail freight",
+                    },
+                    {
+                      y:
+                        Math.round(
+                          (emission.inland_waterways_freight + Number.EPSILON) *
+                            100
+                        ) / 100,
+                      x: "Inland waterways freight",
+                    },
+                    {
+                      y:
+                        Math.round((emission.total + Number.EPSILON) * 100) /
+                        100,
+                      x: "total emissions",
+                    },
+                  ]}
+                />
+                <XAxis />
+                <YAxis />
+              </XYPlot>
+            </div>
+
+            <div className="backButton">
+              <Button
+                size="large"
+                value="backSettlement"
+                onClick={goBackToSettlement}
+                label="Back"
+                primary
+              />
+            </div>
+            <div className="nextU2Button">
+              <Button
+                size="large"
+                value="nextU2"
+                onClick={goToU2Planner}
+                label="Next"
+                primary
+              />
+            </div>
           </section>
         </article>
-      ) : (
-        <U1plannerDefault country={country} />
-      )}
-    </div>
-  );
+      </div>
+    );
+  } else if (backSettlement === true) {
+    return <Settlement country={country} year={year} population={population} />;
+  } else {
+    return <U2planner country={country} year={year} population={population} />;
+  }
 };
 
 U1planner.propTypes = {
+  metropolitanCenter: PropTypes.number.isRequired,
+  urban: PropTypes.number.isRequired,
+  suburban: PropTypes.number.isRequired,
+  town: PropTypes.number.isRequired,
+  rural: PropTypes.number.isRequired,
   population: PropTypes.number.isRequired,
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { U2newdev } from "../components/U2newdev";
+import { U2newdev } from "../components/U2planner";
 import * as HeaderStories from "./Header.stories";
 
 export default {

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Header } from "./Header";
 import { Linechart } from "./Linechart";
 import { LineLegend } from "./LineLegend";
-import "../css/u2newdev.css";
+import "../css/u2planner.css";
 import axios from "axios";
 
 /**
@@ -11,12 +11,14 @@ import axios from "axios";
  * @return {}
  */
 
-export const U2newdev = ({
+export const U2planner = ({
   user,
   onLogin,
   onLogout,
   onCreateAccount,
   country,
+  year,
+  population,
 }) => {
   const [emission, setEmissionData] = useState("");
 
@@ -182,7 +184,9 @@ export const U2newdev = ({
   );
 };
 
-U2newdev.propTypes = {
+U2planner.propTypes = {
+  population: PropTypes.number.isRequired,
+  year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
   user: PropTypes.shape({}),
   onLogin: PropTypes.func.isRequired,
@@ -190,6 +194,6 @@ U2newdev.propTypes = {
   onCreateAccount: PropTypes.func.isRequired,
 };
 
-U2newdev.defaultProps = {
+U2planner.defaultProps = {
   user: null,
 };

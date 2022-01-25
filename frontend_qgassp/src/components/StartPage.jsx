@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Button } from "./Button";
 import { Header } from "./Header";
-import { U1planner } from "./U1planner";
 import "../css/startpage.css";
+import { Settlement } from "./Settlement";
 
 const isNumber = "[0-9]*";
 export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
   const [country, setCountry] = useState("");
-  const [year, setYear] = useState("");
-  const [population, setPopulation] = useState("");
+  const [year, setYear] = useState(0);
+  const [population, setPopulation] = useState(0);
   const [next, setNext] = useState(false);
 
   const handleSelected = (e) => {
@@ -26,7 +26,7 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
 
   const handleSelectedYear = (e) => {
     e.preventDefault();
-    setYear(e.target.value);
+    setYear(Number(e.target.value));
   };
 
   const startBaseline = () => {
@@ -133,7 +133,7 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
               </div>
               <div className="nextButton">
                 <Button
-                  size="large"
+                  size="medium"
                   type="submit"
                   value="Submit"
                   label="Next"
@@ -146,7 +146,7 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
       </article>
     );
   } else {
-    return <U1planner country={country} year={year} population={population} />;
+    return <Settlement country={country} year={year} population={population} />;
   }
 };
 

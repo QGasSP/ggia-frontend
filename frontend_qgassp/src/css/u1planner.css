@@ -108,3 +108,36 @@ section div {
 .baseline_barchart {
   width: 100%;
 }
+
+.updateButton {
+  position: absolute;
+  right: 65%;
+}
+
+.backButton {
+  position: absolute;
+  left: 2%;
+}
+
+.nextU1Button {
+  position: absolute;
+  left: 50%;
+}
+
+.nextU2Button {
+  position: absolute;
+  right: 30%;
+}
+
+.settlement_main {
+  padding: 2.5rem;
+  width: 60%;
+  margin: 0 auto;
+}
+.settle_label {
+  font-size: 1 rem;
+  align-items: center;
+  font-family: sans-serif;
+  margin-bottom: 0.5rem;
+  cursor: default;
+}

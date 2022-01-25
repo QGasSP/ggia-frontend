@@ -49,7 +49,7 @@ export const U1plannerDefault = ({
           <label>
             <b>U1.1 Settlement type</b>
           </label>
-          <label>Share (%)</label>
+          {/*  <label>Share (%)</label> */}
           <div>
             <label htmlFor="city">City</label>
             <input type="text" id="city" />
