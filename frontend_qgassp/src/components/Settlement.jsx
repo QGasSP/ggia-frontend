@@ -19,17 +19,17 @@ export const Settlement = ({
   year,
   population,
 }) => {
-  const [metropolitanCenter, setMetropolitan] = useState(0.0);
-  const [urban, setUrban] = useState(0.0);
-  const [suburban, setSubUrban] = useState(0.0);
-  const [town, setTown] = useState(0.0);
-  const [rural, setRural] = useState(0.0);
-  /* const [total, setTotal] = useState(
+  const [metropolitanCenter, setMetropolitan] =useState(parseFloat(0));
+  const [urban, setUrban] =useState(parseFloat(0));
+  const [suburban, setSubUrban] = useState(parseFloat(0));
+  const [town, setTown] = useState(parseFloat(0));
+  const [rural, setRural] =useState(parseFloat(0));
+  const [total, setTotal] = useState(
     metropolitanCenter + urban + suburban + town + rural
-  ); */
+  ); 
   const [nextEmissions, setNextEmissions] = useState(false);
 
-  /* useEffect(() => {
+  useEffect(() => {
     setTotal(
       parseFloat(metropolitanCenter) +
         parseFloat(urban) +
@@ -37,35 +37,35 @@ export const Settlement = ({
         parseFloat(town) +
         parseFloat(rural)
     );
-  }, []); */
+  }, []);
 
   const handleMetropolitanCenter = (e) => {
     e.preventDefault();
-    setMetropolitan(parseFloat(e.target.value).toFixed(1));
+    // const newMC = parseFloat(parseFloat(e.target.value).toFixed(1));
+    setMetropolitan(parseFloat(e.target.value));
   };
   const handleUrban = (e) => {
     e.preventDefault();
-    setUrban(parseFloat(e.target.value).toFixed(1));
+    setUrban(parseFloat(e.target.value));
   };
   const handleSuburban = (e) => {
     e.preventDefault();
-    setSubUrban(parseFloat(e.target.value).toFixed(1));
+    setSubUrban(parseFloat(e.target.value));
   };
   const handleTown = (e) => {
     e.preventDefault();
-    setTown(parseFloat(e.target.value).toFixed(1));
+    setTown(parseFloat(e.target.value));
   };
   const handleRural = (e) => {
     e.preventDefault();
-    setRural(parseFloat(e.target.value).toFixed(1));
+    setRural(parseFloat(e.target.value));
   };
 
-  const setSettlementType = (e) => {
-    e.preventDefault();
+  const setSettlementType = () => {
     setNextEmissions(true);
   };
 
-  if (nextEmissions === false) {
+  if (nextEmissions === false && (total>100|| total<100)) {
     return (
       <div>
         <article>
@@ -85,7 +85,7 @@ export const Settlement = ({
               <div>
                 <h3>
                   <b>
-                    {country}: {year}
+                    {country}: {year}- {population}
                   </b>
                 </h3>
               </div>
@@ -107,9 +107,11 @@ export const Settlement = ({
                   </label>
                   <input
                     type="number"
+                    step="0.1"
                     id="metropolitan"
                     min="0"
-                    max="100"
+                    max="100" 
+                    defaultValue={metropolitanCenter}
                     onChange={handleMetropolitanCenter}
                     required
                   />
@@ -120,36 +122,37 @@ export const Settlement = ({
                   </label>
                   <input
                     type="number"
+                    step="0.1"
                     id="urban"
                     min="0"
                     max="100"
+                    defaultValue={urban}
                     onChange={handleUrban}
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="suburban" className="settle_label">
-                    {" "}
-                    Suburban
-                  </label>
+                  <label htmlFor="suburban" className="settle_label"> Suburban</label>
                   <input
                     type="number"
                     id="suburban"
-                    min="0"
-                    max="100"
+                    step="any"
+                    min="0.0"
+                    max="100.0" 
+                    defaultValue={suburban}
                     onChange={handleSuburban}
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="town" className="settle_label">
-                    Town
-                  </label>
+                  <label htmlFor="town" className="settle_label">Town</label>
                   <input
                     type="number"
                     id="town"
-                    min="0"
-                    max="100"
+                    step="0.1"
+                    min="0.0"
+                    max="100.0"
+                    defaultValue={town}
                     onChange={handleTown}
                     required
                   />
@@ -161,8 +164,10 @@ export const Settlement = ({
                   <input
                     type="number"
                     id="rural"
+                    step="0.1"
                     min="0"
                     max="100"
+                    defaultValue={rural}
                     onChange={handleRural}
                     required
                   />
@@ -211,12 +216,7 @@ export const Settlement = ({
 };
 
 Settlement.propTypes = {
-  metropolitanCenter: PropTypes.number.isRequired,
-  urban: PropTypes.number.isRequired,
-  suburban: PropTypes.number.isRequired,
-  town: PropTypes.number.isRequired,
   population: PropTypes.number.isRequired,
-  rural: PropTypes.number.isRequired,
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
   user: PropTypes.shape({}),
