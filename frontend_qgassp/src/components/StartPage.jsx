@@ -17,7 +17,7 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
   };
 
   const handlePopulation = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     setPopulation(Number(e.target.value));
     
   };
@@ -60,19 +60,41 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   id="year_selection"
                   name="year_selection"
                   onChange={handleSelectedYear}
-                  defaultValue="Select year"
+                  defaultValue="2022"
                   required
                 >
                   {/*     <optgroup label="Select year">Select year</optgroup> */}
                   <option value="DefaultOption">Select year</option>
-                  <option value="2019">2019</option>
-                  <option value="2020">2020</option>
-                  <option value="2021">2021</option>
                   <option value="2022">2022</option>
                   <option value="2023">2023</option>
                   <option value="2021">2024</option>
                   <option value="2022">2025</option>
                   <option value="2023">2026</option>
+                  <option value="2019">2027</option>
+                  <option value="2020">2028</option>
+                  <option value="2021">2029</option>
+                  <option value="2019">2030</option>
+                  <option value="2020">2031</option>
+                  <option value="2021">2032</option>
+                  <option value="2019">2033</option>
+                  <option value="2020">2034</option>
+                  <option value="2021">2035</option>
+                  <option value="2019">2036</option>
+                  <option value="2020">2037</option>
+                  <option value="2021">2038</option>
+                  <option value="2019">2039</option>
+                  <option value="2020">2040</option>
+                  <option value="2021">2041</option>
+                  <option value="2019">2041</option>
+                  <option value="2020">2042</option>
+                  <option value="2021">2043</option>
+                  <option value="2019">2044</option>
+                  <option value="2020">2045</option>
+                  <option value="2021">2046</option>
+                  <option value="2019">2047</option>
+                  <option value="2020">2048</option>
+                  <option value="2021">2049</option>
+                  <option value="2021">2050</option>
                 </select>
               </div>
 
@@ -124,7 +146,7 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   pattern="[0-9]*"
                   id="population_assessment"
                   className="form-input"
-                  defaultValue={population}
+                  defaultValue="2000"
                   onChange={handlePopulation}
                   required
                 />

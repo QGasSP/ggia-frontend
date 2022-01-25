@@ -34,20 +34,23 @@ export const U1planner = ({
   urban,
   suburban,
   town,
-  rural,
+  rural
 }) => {
   const [emission, setEmissionData] = useState("");
   const [nextQuantification, setQuantification] = useState(false);
   const [backSettlement, setBackSettlement] = useState(false);
+ 
 
   useEffect(() => {
-    const settlementDistribution = {
+
+ const settlementDistribution = {
       metropolitanCenter,
       urban,
       suburban,
       town,
       rural,
-    };
+    }; 
+    
     const rawData = { country, year, population, settlementDistribution };
     const headers = {
       "Content-type": "application/json",
@@ -134,7 +137,7 @@ export const U1planner = ({
                     min="0"
                     max="100"
                     value={urban}
-                    readOnly
+                   
                   />
                 </div>
                 <div>
@@ -145,7 +148,7 @@ export const U1planner = ({
                     min="0"
                     max="100"
                     value={suburban}
-                    readOnly
+                 
                   />
                 </div>
                 <div>
@@ -156,7 +159,7 @@ export const U1planner = ({
                     min="0"
                     max="100"
                     value={town}
-                    readOnly
+                  
                   />
                 </div>
                 <div>
@@ -167,7 +170,7 @@ export const U1planner = ({
                     min="0"
                     max="100"
                     value={rural}
-                    readOnly
+                   
                   />
                 </div>
               </div>
