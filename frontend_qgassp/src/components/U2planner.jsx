@@ -19,10 +19,10 @@ export const U2planner = ({
   country,
   year,
   population,
+  emission,
 }) => {
-  const [emission, setEmissionData] = useState("");
-
-  useEffect(() => {
+  
+  /* useEffect(() => {
     const jsonRaw = { country };
 
     const headers = {
@@ -39,7 +39,7 @@ export const U2planner = ({
     //     console.log(error);
     //   });
   }, []);
-
+ */
   return (
     <article>
       {
@@ -185,6 +185,7 @@ export const U2planner = ({
 };
 
 U2planner.propTypes = {
+  emission:PropTypes.array.isRequired,
   population: PropTypes.number.isRequired,
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,

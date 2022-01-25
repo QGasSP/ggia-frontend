@@ -26,7 +26,7 @@ export const U1planner = ({
   user,
   onLogin,
   onLogout,
-  onCreateAccount,
+  onCreateAccount, 
   country,
   year,
   population,
@@ -37,40 +37,31 @@ export const U1planner = ({
   rural
 }) => {
   const [emission, setEmissionData] = useState("");
+  const [error, setError] = useState("");
   const [nextQuantification, setQuantification] = useState(false);
   const [backSettlement, setBackSettlement] = useState(false);
+
  
 
-  useEffect(() => {
-
- const settlementDistribution = {
+  useEffect(async() => {
+    const settlementDistribution = {
       metropolitanCenter,
       urban,
       suburban,
       town,
       rural,
     }; 
-    
     const rawData = { country, year, population, settlementDistribution };
     const headers = {
       "Content-type": "application/json",
     };
-
-    axios
-      .post(
-        "https://ggia.ulno.net/api/v1/calculate/transport",
-        rawData,
-        headers
-      )
-      .then(function (response) {
-        // eslint-disable-next-line no-console
-        console.log(response);
-        setEmissionData(response.data);
-      })
-      .catch(function (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
-      });
+    axios.post('https://ggia.ulno.net/api/v1/calculate/transport', rawData,headers)
+        .then(response => setEmissionData({emission: response.data.data.emissions} ))
+        .catch(error => {
+            setError({ errorMessage: error.message });
+            // eslint-disable-next-line no-console
+            console.error('There was an error!', error);
+        });
   }, []);
 
   const goBackToSettlement = () => {
@@ -100,14 +91,22 @@ export const U1planner = ({
 
           <section>
             <div>
-              <h2>U1 PLANNER USER INPUT 1: BASELINE </h2>
-            </div>
-            <div>
               <h3>
                 <b>
                   {country}: {year}
+                
                 </b>
               </h3>
+            </div>
+            <div>
+              <h2>U1 PLANNER USER INPUT 1: BASELINE </h2>
+             {/*  <div>
+                 {JSON.stringify(emission)}
+             </div> */}
+            </div>
+            <div>
+           {error.errorMessage}
+          
             </div>
 
             <div className="row">
@@ -126,7 +125,7 @@ export const U1planner = ({
                     min="0"
                     max="100"
                     value={metropolitanCenter}
-                    required
+                    readOnly
                   />
                 </div>
                 <div>
@@ -137,6 +136,7 @@ export const U1planner = ({
                     min="0"
                     max="100"
                     value={urban}
+                    readOnly
                    
                   />
                 </div>
@@ -148,7 +148,7 @@ export const U1planner = ({
                     min="0"
                     max="100"
                     value={suburban}
-                 
+                   readOnly
                   />
                 </div>
                 <div>
@@ -159,6 +159,7 @@ export const U1planner = ({
                     min="0"
                     max="100"
                     value={town}
+                    readOnly
                   
                   />
                 </div>
@@ -170,7 +171,7 @@ export const U1planner = ({
                     min="0"
                     max="100"
                     value={rural}
-                   
+                   readOnly
                   />
                 </div>
               </div>
@@ -180,7 +181,7 @@ export const U1planner = ({
                     type="piechart"
                     data={[
                       {
-                        angle: parseFloat(urban),
+                        angle: urban,
                         label: "Urban",
                         color: "#D90404",
                       },
@@ -286,8 +287,10 @@ export const U1planner = ({
             </form>
             <label>
               <b>
-                Baseline - Transport CO2e emission {country}-{year}
+                Baseline - Transport CO2e emission
               </b>
+           
+
             </label>
             <div className="piechart_container">
               <div className="piechart_diagram">
@@ -297,7 +300,7 @@ export const U1planner = ({
                       {
                         angle:
                           Math.round(
-                            (emission.motor_coaches_buses_and_trolley_buses /
+                            (emission.bus/
                               emission.total +
                               Number.EPSILON) *
                               36000
@@ -317,7 +320,7 @@ export const U1planner = ({
                       {
                         angle:
                           Math.round(
-                            (emission.passenger_trains / emission.total +
+                            (emission.train / emission.total +
                               Number.EPSILON) *
                               36000
                           ) / 100,
@@ -327,7 +330,7 @@ export const U1planner = ({
                       {
                         angle:
                           Math.round(
-                            (emission.road_freight / emission.total +
+                            (emission.road_transport / emission.total +
                               Number.EPSILON) *
                               36000
                           ) / 100,
@@ -337,7 +340,7 @@ export const U1planner = ({
                       {
                         angle:
                           Math.round(
-                            (emission.passenger_cars / emission.total +
+                            (emission.car / emission.total +
                               Number.EPSILON) *
                               36000
                           ) / 100,
@@ -348,7 +351,7 @@ export const U1planner = ({
                       {
                         angle:
                           Math.round(
-                            (emission.tram_light_train / emission.total +
+                            (emission.tram/ emission.total +
                               Number.EPSILON) *
                               36000
                           ) / 100,
@@ -358,7 +361,7 @@ export const U1planner = ({
                       {
                         angle:
                           Math.round(
-                            (emission.rail_freight / emission.total +
+                            (emission.rail_transport/ emission.total +
                               Number.EPSILON) *
                               36000
                           ) / 100,
@@ -368,7 +371,7 @@ export const U1planner = ({
                       {
                         angle:
                           Math.round(
-                            (emission.inland_waterways_freight /
+                            (emission.waterways_transport /
                               emission.total +
                               Number.EPSILON) *
                               36000
@@ -405,7 +408,7 @@ export const U1planner = ({
                     {
                       y:
                         Math.round(
-                          (emission.motor_coaches_buses_and_trolley_buses +
+                          (emission.bus +
                             Number.EPSILON) *
                             100
                         ) / 100,
@@ -420,42 +423,42 @@ export const U1planner = ({
                     {
                       y:
                         Math.round(
-                          (emission.passenger_trains + Number.EPSILON) * 100
+                          (emission.train + Number.EPSILON) * 100
                         ) / 100,
                       x: "Passenger trains",
                     },
                     {
                       y:
                         Math.round(
-                          (emission.road_freight + Number.EPSILON) * 100
+                          (emission.road_transport + Number.EPSILON) * 100
                         ) / 100,
                       x: "Road freight",
                     },
                     {
                       y:
                         Math.round(
-                          (emission.passenger_cars + Number.EPSILON) * 100
+                          (emission.car + Number.EPSILON) * 100
                         ) / 100,
                       x: "Passenger cars",
                     },
                     {
                       y:
                         Math.round(
-                          (emission.tram_light_train + Number.EPSILON) * 100
+                          (emission.tram + Number.EPSILON) * 100
                         ) / 100,
                       x: "Tram, light train",
                     },
                     {
                       y:
                         Math.round(
-                          (emission.rail_freight + Number.EPSILON) * 100
+                          (emission.rail_transport + Number.EPSILON) * 100
                         ) / 100,
                       x: "Rail freight",
                     },
                     {
                       y:
                         Math.round(
-                          (emission.inland_waterways_freight + Number.EPSILON) *
+                          (emission.waterways_transport + Number.EPSILON) *
                             100
                         ) / 100,
                       x: "Inland waterways freight",
@@ -496,9 +499,11 @@ export const U1planner = ({
       </div>
     );
   } else if (backSettlement === true) {
-    return <Settlement country={country} year={year} population={population} />;
+   return <Settlement user={user} onLogin={onLogin} onLogout={onLogout} onCreateAccount= {onCreateAccount} country={country}
+   year={year} population={population} />; 
+  
   } else {
-    return <U2planner country={country} year={year} population={population} />;
+    return <U2planner country={country} year={year} population={population} emission={emission}/>;
   }
 };
 
@@ -514,9 +519,9 @@ U1planner.propTypes = {
   user: PropTypes.shape({}),
   onLogin: PropTypes.func.isRequired,
   onLogout: PropTypes.func.isRequired,
-  onCreateAccount: PropTypes.func.isRequired,
+  onCreateAccount: PropTypes.func.isRequired, 
 };
 
 U1planner.defaultProps = {
   user: null,
-};
+}; 

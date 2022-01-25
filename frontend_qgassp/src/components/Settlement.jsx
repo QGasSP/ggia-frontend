@@ -111,7 +111,7 @@ export const Settlement = ({
                     id="metropolitan"
                     min="0"
                     max="100" 
-                    defaultValue={metropolitanCenter}
+                   /*  defaultValue={metropolitanCenter} */
                     onChange={handleMetropolitanCenter}
                     required
                   />
@@ -126,7 +126,7 @@ export const Settlement = ({
                     id="urban"
                     min="0"
                     max="100"
-                    defaultValue={urban}
+                  /*   defaultValue={urban} */
                     onChange={handleUrban}
                     required
                   />
@@ -139,7 +139,7 @@ export const Settlement = ({
                     step="any"
                     min="0.0"
                     max="100.0" 
-                    defaultValue={suburban}
+                  /*   defaultValue={suburban} */
                     onChange={handleSuburban}
                     required
                   />
@@ -167,7 +167,7 @@ export const Settlement = ({
                     step="0.1"
                     min="0"
                     max="100"
-                    defaultValue={rural}
+                    /* defaultValue={rural} */
                     onChange={handleRural}
                     required
                   />
