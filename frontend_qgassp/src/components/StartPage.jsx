@@ -5,7 +5,6 @@ import { Header } from "./Header";
 import "../css/startpage.css";
 import { Settlement } from "./Settlement";
 
-const isNumber = "[0-9]*";
 export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
   const [country, setCountry] = useState("");
   const [year, setYear] = useState(0);
@@ -19,9 +18,8 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
 
   const handlePopulation = (e) => {
     e.preventDefault();
-    if (e.target.value.test(isNumber)) {
-      setPopulation(e.target.value);
-    }
+    setPopulation(e.target.value);
+    
   };
 
   const handleSelectedYear = (e) => {
@@ -127,7 +125,6 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   id="population_assessment"
                   className="form-input"
                   onChange={handlePopulation}
-                  placeholder="0"
                   required
                 />
               </div>
