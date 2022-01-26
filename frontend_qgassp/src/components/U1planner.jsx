@@ -298,7 +298,7 @@ export const U1planner = ({
                               Number.EPSILON) *
                               36000
                           ) / 100,
-                        label: "Buses",
+                        label: "Bus",
                         color: "#8C0303",
                       },
                       {
@@ -317,7 +317,7 @@ export const U1planner = ({
                               Number.EPSILON) *
                               36000
                           ) / 100,
-                        label: "Passenger trains",
+                        label: "Train",
                         color: "#D90404",
                       },
                       {
@@ -327,7 +327,7 @@ export const U1planner = ({
                               Number.EPSILON) *
                               36000
                           ) / 100,
-                        label: "Road freight",
+                        label: "Road transport",
                         color: "#595959",
                       },
                       {
@@ -337,7 +337,7 @@ export const U1planner = ({
                               Number.EPSILON) *
                               36000
                           ) / 100,
-                        label: "Passenger cars",
+                        label: "Car",
                         color: "#A6036D",
                         rotation: 90,
                       },
@@ -348,7 +348,7 @@ export const U1planner = ({
                               Number.EPSILON) *
                               36000
                           ) / 100,
-                        label: "Tram, light train",
+                        label: "Tram",
                         color: " #C4D4F2",
                       },
                       {
@@ -358,7 +358,7 @@ export const U1planner = ({
                               Number.EPSILON) *
                               36000
                           ) / 100,
-                        label: "Rail freight",
+                        label: "Rail transport",
                         color: "#80D941",
                       },
                       {
@@ -369,7 +369,7 @@ export const U1planner = ({
                               Number.EPSILON) *
                               36000
                           ) / 100,
-                        label: "Inland waterways freight",
+                        label: "Waterways transport",
                         color: "#F2CE1B",
                       },
                     ]}
@@ -405,7 +405,7 @@ export const U1planner = ({
                             Number.EPSILON) *
                             100
                         ) / 100,
-                      x: "Buses",
+                      x: "Bus",
                     },
                     {
                       y:
@@ -418,35 +418,35 @@ export const U1planner = ({
                         Math.round(
                           (emission.train + Number.EPSILON) * 100
                         ) / 100,
-                      x: "Passenger trains",
+                      x: "Train",
                     },
                     {
                       y:
                         Math.round(
                           (emission.road_transport + Number.EPSILON) * 100
                         ) / 100,
-                      x: "Road freight",
+                      x: "Road transport",
                     },
                     {
                       y:
                         Math.round(
                           (emission.car + Number.EPSILON) * 100
                         ) / 100,
-                      x: "Passenger cars",
+                      x: "Car",
                     },
                     {
                       y:
                         Math.round(
                           (emission.tram + Number.EPSILON) * 100
                         ) / 100,
-                      x: "Tram, light train",
+                      x: "Tram",
                     },
                     {
                       y:
                         Math.round(
                           (emission.rail_transport + Number.EPSILON) * 100
                         ) / 100,
-                      x: "Rail freight",
+                      x: "Rail transport",
                     },
                     {
                       y:
@@ -454,7 +454,7 @@ export const U1planner = ({
                           (emission.waterways_transport + Number.EPSILON) *
                             100
                         ) / 100,
-                      x: "Inland waterways freight",
+                      x: "Waterway transport",
                     },
                     {
                       y:
