@@ -80,7 +80,7 @@ export const Settlement = ({
           <section>
             <div className="settlement_main">
               <div>
-                <h2>U1 PLANNER USER INPUT 1: BASELINE </h2>
+                <h2>U1 PLANNER : BASELINE </h2>
               </div>
 
               <form id="form_settlement_type" onSubmit={setSettlementType}>
