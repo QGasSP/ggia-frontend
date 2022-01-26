@@ -56,7 +56,7 @@ export const U1planner = ({
       "Content-type": "application/json",
     };
     axios.post('https://ggia.ulno.net/api/v1/calculate/transport', rawData,headers)
-        .then(response => setEmissionData({emission: response.data.data.emissions} ))
+        .then(response => setEmissionData(response.data.data.emissions))
         .catch(error => {
             setError({ errorMessage: error.message });
             // eslint-disable-next-line no-console
@@ -98,16 +98,9 @@ export const U1planner = ({
                 </b>
               </h3>
             </div>
-            <div>
-              <h2>U1 PLANNER USER INPUT 1: BASELINE </h2>
-             {/*  <div>
-                 {JSON.stringify(emission)}
-             </div> */}
-            </div>
-            <div>
-           {error.errorMessage}
-          
-            </div>
+            <div><h2>U1 PLANNER USER INPUT 1: BASELINE </h2> </div>
+           {/*  <div>{JSON.stringify(emission.car)} </div>
+            <div>{error.errorMessage} </div> */}
 
             <div className="row">
               <div className="column">

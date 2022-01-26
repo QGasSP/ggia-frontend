@@ -19,14 +19,14 @@ export const Settlement = ({
   year,
   population,
 }) => {
-  const [metropolitanCenter, setMetropolitan] =useState(parseFloat(0));
-  const [urban, setUrban] =useState(parseFloat(0));
+  const [metropolitanCenter, setMetropolitan] = useState(parseFloat(0));
+  const [urban, setUrban] = useState(parseFloat(0));
   const [suburban, setSubUrban] = useState(parseFloat(0));
   const [town, setTown] = useState(parseFloat(0));
-  const [rural, setRural] =useState(parseFloat(0));
+  const [rural, setRural] = useState(parseFloat(0));
   const [total, setTotal] = useState(
     metropolitanCenter + urban + suburban + town + rural
-  ); 
+  );
   const [nextEmissions, setNextEmissions] = useState(false);
 
   useEffect(() => {
@@ -65,7 +65,7 @@ export const Settlement = ({
     setNextEmissions(true);
   };
 
-  if (nextEmissions === false && (total>100|| total<100)) {
+  if (nextEmissions === false && (total > 100 || total < 100)) {
     return (
       <div>
         <article>
@@ -110,8 +110,8 @@ export const Settlement = ({
                     step="0.1"
                     id="metropolitan"
                     min="0"
-                    max="100" 
-                   /*  defaultValue={metropolitanCenter} */
+                    max="100"
+                    /*  defaultValue={metropolitanCenter} */
                     onChange={handleMetropolitanCenter}
                     required
                   />
@@ -126,26 +126,31 @@ export const Settlement = ({
                     id="urban"
                     min="0"
                     max="100"
-                  /*   defaultValue={urban} */
+                    /*   defaultValue={urban} */
                     onChange={handleUrban}
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="suburban" className="settle_label"> Suburban</label>
+                  <label htmlFor="suburban" className="settle_label">
+                    {" "}
+                    Suburban
+                  </label>
                   <input
                     type="number"
                     id="suburban"
                     step="any"
                     min="0.0"
-                    max="100.0" 
-                  /*   defaultValue={suburban} */
+                    max="100.0"
+                    /*   defaultValue={suburban} */
                     onChange={handleSuburban}
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="town" className="settle_label">Town</label>
+                  <label htmlFor="town" className="settle_label">
+                    Town
+                  </label>
                   <input
                     type="number"
                     id="town"

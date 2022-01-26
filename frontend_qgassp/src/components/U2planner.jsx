@@ -19,27 +19,7 @@ export const U2planner = ({
   country,
   year,
   population,
-  emission,
 }) => {
-  
-  /* useEffect(() => {
-    const jsonRaw = { country };
-
-    const headers = {
-      "Content-type": "application/json",
-    };
-
-    // axios
-    //   .post("http://localhost:5000/calc/emission", jsonRaw, headers)
-    //   .then(function (response) {
-    //     console.log(response);
-    //     setEmissionData(response.data);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-  }, []);
- */
   return (
     <article>
       {
@@ -176,7 +156,7 @@ export const U2planner = ({
             <input type="text" id="rural" />
           </div>
           <br />
-          <Linechart />
+          <Linechart data={data} />
           <LineLegend />
         </form>
       </section>
@@ -185,7 +165,6 @@ export const U2planner = ({
 };
 
 U2planner.propTypes = {
-  emission:PropTypes.array.isRequired,
   population: PropTypes.number.isRequired,
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,

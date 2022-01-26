@@ -8,13 +8,12 @@ import { U2planner } from "./components/U2planner";
 export const Routes = () => {
   return (
     <Router history={history}>
-    <Switch>
+      <Switch>
         <Route path="/" exact component={StartPage} />
         <Route path="/Settlement" component={Settlement} />
         <Route path="/U1Planner" component={U1planner} />
         <Route path="/U2Planner" component={U2planner} />
-    </Switch>
-</Router>
+      </Switch>
+    </Router>
   );
-}
-
+};

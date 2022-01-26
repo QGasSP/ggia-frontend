@@ -12,14 +12,12 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
   const [next, setNext] = useState(false);
 
   const handleSelected = (e) => {
-  
     setCountry(e.target.value);
   };
 
   const handlePopulation = (e) => {
     // e.preventDefault();
     setPopulation(Number(e.target.value));
-    
   };
 
   const handleSelectedYear = (e) => {
