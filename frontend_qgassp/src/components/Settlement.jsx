@@ -150,7 +150,7 @@ export const Settlement = ({
                     step="0.1"
                     min="0.0"
                     max="100.0"
-                    defaultValue={town}
+                    // defaultValue={town}
                     onChange={handleTown}
                     required
                   />
