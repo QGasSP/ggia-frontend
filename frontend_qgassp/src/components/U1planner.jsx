@@ -37,6 +37,7 @@ export const U1planner = ({
   rural
 }) => {
   const [emission, setEmissionData] = useState("");
+  const [projections, setProjections] = useState("");
   const [error, setError] = useState("");
   const [nextQuantification, setQuantification] = useState(false);
   const [backSettlement, setBackSettlement] = useState(false);
@@ -56,13 +57,18 @@ export const U1planner = ({
       "Content-type": "application/json",
     };
     axios.post('https://ggia.ulno.net/api/v1/calculate/transport', rawData,headers)
-        .then(response => setEmissionData(response.data.data.emissions))
+        .then(response => setResponse(response))
         .catch(error => {
             setError({ errorMessage: error.message });
             // eslint-disable-next-line no-console
             console.error('There was an error!', error);
         });
   }, []);
+
+  const setResponse= (response) => {
+    setEmissionData(response.data.data.emissions)
+    setProjections(response.data.data.projections)
+  };
 
   const goBackToSettlement = () => {
     // eslint-disable-next-line no-console
@@ -488,7 +494,7 @@ export const U1planner = ({
    year={year} population={population} />; 
   
   } else {
-    return <U2planner country={country} year={year} population={population} emission={emission}/>;
+    return <U2planner country={country} year={year} population={population} projections={projections}/>;
   }
 };
 

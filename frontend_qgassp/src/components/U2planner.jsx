@@ -4,7 +4,6 @@ import { Header } from "./Header";
 import { Linechart } from "./Linechart";
 import { LineLegend } from "./LineLegend";
 import "../css/u2planner.css";
-import axios from "axios";
 
 /**
  * U1 Planner user input form for baseline
@@ -19,6 +18,7 @@ export const U2planner = ({
   country,
   year,
   population,
+  projections,
 }) => {
   return (
     <article>
@@ -165,6 +165,7 @@ export const U2planner = ({
 };
 
 U2planner.propTypes = {
+  projections: PropTypes.array.isRequired,
   population: PropTypes.number.isRequired,
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
