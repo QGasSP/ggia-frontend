@@ -173,7 +173,7 @@ export const Settlement = ({
 
                 <div className="nextU1Button">
                   <Button
-                    size="medium"
+                    size="small"
                     type="submit"
                     value="Submit"
                     label="Next"

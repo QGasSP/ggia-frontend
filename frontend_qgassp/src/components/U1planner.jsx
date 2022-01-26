@@ -90,14 +90,6 @@ export const U1planner = ({
           }
 
           <section>
-            <div>
-              <h3>
-                <b>
-                  {country}: {year}
-                
-                </b>
-              </h3>
-            </div>
             <div><h2>U1 PLANNER USER INPUT 1: BASELINE </h2> </div>
            {/*  <div>{JSON.stringify(emission.car)} </div>
             <div>{error.errorMessage} </div> */}
@@ -471,7 +463,7 @@ export const U1planner = ({
 
             <div className="backButton">
               <Button
-                size="large"
+                size="small"
                 value="backSettlement"
                 onClick={goBackToSettlement}
                 label="Back"
@@ -480,7 +472,7 @@ export const U1planner = ({
             </div>
             <div className="nextU2Button">
               <Button
-                size="large"
+                size="small"
                 value="nextU2"
                 onClick={goToU2Planner}
                 label="Next"
