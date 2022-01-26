@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React  from "react";
 import { Router, Switch, Route } from "react-router-dom";
 import { Settlement } from "./components/Settlement";
 import { StartPage } from "./components/StartPage";
