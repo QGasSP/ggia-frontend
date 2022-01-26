@@ -82,13 +82,6 @@ export const Settlement = ({
               <div>
                 <h2>U1 PLANNER USER INPUT 1: BASELINE </h2>
               </div>
-              <div>
-                <h3>
-                  <b>
-                    {country}: {year}- {population}
-                  </b>
-                </h3>
-              </div>
 
               <form id="form_settlement_type" onSubmit={setSettlementType}>
                 <div className="settlement_headers">
