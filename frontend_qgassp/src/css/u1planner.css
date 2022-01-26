@@ -116,17 +116,17 @@ section div {
 
 .backButton {
   position: absolute;
-  left: 2%;
+  left: 3%;
 }
 
 .nextU1Button {
   position: absolute;
-  left: 50%;
+  right: 33%;
 }
 
 .nextU2Button {
   position: absolute;
-  right: 30%;
+  right: 3%;
 }
 
 .settlement_main {
