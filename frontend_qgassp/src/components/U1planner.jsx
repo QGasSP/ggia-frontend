@@ -90,7 +90,7 @@ export const U1planner = ({
           }
 
           <section>
-            <div><h1 className="settlement_header">U1 PLANNER USER INPUT 1: BASELINE </h1> </div>
+            <div><h1 className="settlement_header">U1 PLANNER : BASELINE </h1> </div>
            {/*  <div>{JSON.stringify(emission.car)} </div>
             <div>{error.errorMessage} </div> */}
 
