@@ -156,7 +156,7 @@ export const U2planner = ({
             <input type="text" id="rural" />
           </div>
           <br />
-          <Linechart  />
+          <Linechart />
           <LineLegend />
         </form>
       </section>
