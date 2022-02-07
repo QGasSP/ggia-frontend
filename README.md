@@ -1,6 +1,6 @@
 # Docker
 
-To build and run docker in the background
+To build and run docker in the background and view in [browser](http://localhost:3000/)
 
 ```
 docker-compose up -d 
