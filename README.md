@@ -1,3 +1,6 @@
+# GGIA
+> A browser-based, open-source European tool for the quantification of greenhouse gas emissions in planning.
+
 ## Docker
 
 To build and run docker in the background and view in [browser](http://localhost:3000/)
