@@ -1,4 +1,4 @@
-# Docker
+## Docker
 
 To build and run docker in the background and view in [browser](http://localhost:3000/)
 
@@ -10,8 +10,8 @@ docker compose up -d
 ```
 
 
-# Scripts
-## Development
+## Scripts
+### Development
 
 Installs node-modules dependencies found in package.json
 ```
