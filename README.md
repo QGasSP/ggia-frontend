@@ -1,6 +1,9 @@
 # GGIA
 > A browser-based, open-source European tool for the quantification of greenhouse gas emissions in planning.
 
+## Setup
+The initial environement setup guide can be found [here](https://github.com/QGasSP/ggia-frontend/wiki/GGIA-Frontend-Setup) 
+
 ## Docker
 
 To build and run docker in the background and view in [browser](http://localhost:3000/)
