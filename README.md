@@ -1,5 +1,7 @@
 # Docker
 
+To build and run docker in the background
+
 ```
 docker-compose up -d 
 or
@@ -9,40 +11,33 @@ docker compose up -d
 
 
 # Scripts
+## Development
 
-### `yarn install`
+Installs node-modules dependencies found in package.json
+```
+yarn install
+```
 
-installs node-modules
+To build and view storybook created UI components and pages in the [browser](http://localhost:6006/)
 
-### `yarn build-storybook`
+```
+yarn build-storybook`
+yarn storybook
+```
 
-builds storybook
+Checks for bugs or inconsistencies in code
+```
+yarn lint
+```
 
-### `yarn storybook`
+Formats all the files using prettier and sort package-json dependencies alphabetically
+``` 
+yarn format
+npx sort-package-json
+```
+Upgrade storybook
+```
+npx sb upgrade`
+```
 
-displays Ui components and pages in the [browser](http://localhost:6006/)
-
-### `yarn lint`
-
-checks for bugs or inconsistencies in code.
-
-### `yarn format`
-
-formats all the files using prettier
-
-### `yarn test`
-
-### `yarn build`
-
-## package.json ordering
-
-### `npx sort-package-json`
-
-sorts file alphabetically
-
-## Upgrade storybook
-
-### `npx sb upgrade`
-
-to upgrade all storybook dependencies
 
