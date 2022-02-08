@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import {
   XYPlot,
   XAxis,
@@ -35,6 +35,7 @@ export const StackedBarchart = ({
   onCreateAccount,
 }) => {
   const [nextU2view, setU2View] = useState(false);
+  const [settlementDistribution, setSettlementDistribution]=useState("")
  
 
   const goBackToProjections = () => {
@@ -42,6 +43,7 @@ export const StackedBarchart = ({
   };
 
   const goToU2Planner = () => {
+    setSettlementDistribution(metropolitanCenter,urban,suburban,town,rural);
     setU2View(true);
   };
 
@@ -366,13 +368,9 @@ export const StackedBarchart = ({
   );
 } else {
   return <U2planner 
-  metropolitanCenter={metropolitanCenter}
-  urban={urban}
-  suburban={suburban}
-  town={town}
-  rural={rural}
   country={country}
   year={year}
+  settlementDistribution={settlementDistribution}
   population={population}/>;
 }
 };

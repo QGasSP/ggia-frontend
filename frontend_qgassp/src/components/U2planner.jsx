@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Header } from "./Header";
 import { Linechart } from "./Linechart";
 import { LineLegend } from "./LineLegend";
+import { Button } from "./Button";
 import axios from "axios";
 import "../css/u2planner.css";
 
@@ -15,35 +16,25 @@ export const U2planner = ({
   country,
   year,
   population,
-  metropolitanCenter,
-  urban,
-  suburban,
-  town,
-  rural,
+  settlementDistribution,
   user,
   onLogin,
   onLogout,
   onCreateAccount,
 }) => {
-  const [newMetropolitanCenter, setNsMetropolitan] = useState(parseFloat(0));
-  const [newUrban, setNsUrban] = useState(parseFloat(0));
-  const [newSuburban, setNsSubUrban] = useState(parseFloat(0));
-  const [newTown, setNsTown] = useState(parseFloat(0));
-  const [newRural, setNsRural] = useState(parseFloat(0));
+  const [metropolitanCenter, setNsMetropolitan] = useState(parseFloat(0));
+  const [urban, setNsUrban] = useState(parseFloat(0));
+  const [suburban, setNsSubUrban] = useState(parseFloat(0));
+  const [town, setNsTown] = useState(parseFloat(0));
+  const [rural, setNsRural] = useState(parseFloat(0));
   const [errorU2, setU2Error] = useState("");
   const [impact, setNewDevelopmentImpact] = useState("");
   const [newResidents, setNewResidents] = useState("");
   const [yearStart, setYearStart] = useState("");
   const [yearFinish, setYearFinish] = useState("");
+  const [totalNewResidents, setTotalNewResidents] = useState();
 
   useEffect(async () => {
-    const settlementDistribution = {
-      metropolitanCenter,
-      urban,
-      suburban,
-      town,
-      rural,
-    };
     const baseline={
       country,
       year,
@@ -52,11 +43,11 @@ export const U2planner = ({
     }
    
     const newSettlementDistribution = {
-      newMetropolitanCenter,
-      newUrban,
-      newSuburban,
-      newTown,
-      newRural,
+      metropolitanCenter,
+      urban,
+      suburban,
+      town,
+      rural,
     };
     const newDevelopment = {
       newResidents,
@@ -114,6 +105,7 @@ export const U2planner = ({
     e.preventDefault();
     setNewResidents(Number(e.target.value));
   };
+
   
 
   return (
@@ -132,7 +124,7 @@ export const U2planner = ({
           <h2>U2 NEW DEVELOPMENT</h2>
           <h3>{impact}</h3>
         </div>
-        <form >
+        <form>
           <label>
             <b>U2.1 New residents</b>
           </label>
@@ -251,7 +243,6 @@ export const U2planner = ({
                     id="nsMetropolitan"
                     min="0"
                     max="100"
-                    /*  defaultValue={metropolitanCenter} */
                     onChange={handleNsMetropolitanCenter}
                     required
                   />
@@ -266,7 +257,6 @@ export const U2planner = ({
                     id="nsUrban"
                     min="0"
                     max="100"
-                    /*   defaultValue={urban} */
                     onChange={handleNsUrban}
                     required
                   />
@@ -281,7 +271,6 @@ export const U2planner = ({
                     step="any"
                     min="0.0"
                     max="100.0"
-                    /*   defaultValue={suburban} */
                     onChange={handleNsSuburban}
                     required
                   />
@@ -314,6 +303,16 @@ export const U2planner = ({
                     required
                   />
           </div>
+          <h>{totalNewResidents}</h>
+          <div>
+                  <Button
+                    size="small"
+                    type="submit"
+                    value="Submit"
+                    label="Save"
+                    primary
+                  />
+                </div>
           <br />
           <Linechart />
           <LineLegend />
@@ -324,11 +323,7 @@ export const U2planner = ({
 };
 
 U2planner.propTypes = {
-  metropolitanCenter: PropTypes.number.isRequired,
-  urban: PropTypes.number.isRequired,
-  suburban: PropTypes.number.isRequired,
-  town: PropTypes.number.isRequired,
-  rural: PropTypes.number.isRequired,
+  settlementDistribution: PropTypes.array.isRequired,
   population: PropTypes.number.isRequired,
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
