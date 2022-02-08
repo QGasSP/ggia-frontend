@@ -6,7 +6,7 @@ import "../css/u1planner.css";
 import axios from "axios";
 import { Legend } from "./Legend";
 import { Settlement } from "./Settlement";
-import { U2planner } from "./U2planner";
+
 import {
   XYPlot,
   VerticalGridLines,
@@ -42,18 +42,21 @@ export const U1planner = ({
   const [error, setError] = useState("");
   const [nextQuantification, setQuantification] = useState(false);
   const [backSettlement, setBackSettlement] = useState(false);
+  // const [settlementDistribution, setSettlementDistribution] = useState("");
 
   useEffect(async () => {
     const settlementDistribution = {
-      metropolitanCenter,
-      urban,
-      suburban,
-      town,
-      rural,
-    };
+        metropolitanCenter,
+        urban,
+        suburban,
+        town,
+        rural,
+      
+     };
     const rawData = { country, year, population, settlementDistribution };
     const headers = {
       "Content-type": "application/json",
+      "Cache-Control": "no-cache"
     };
     axios
       .post(
@@ -80,7 +83,7 @@ export const U1planner = ({
     setBackSettlement(true);
   };
 
-  const goToU2Planner = () => {
+  const goToU1Projections = () => {
     // eslint-disable-next-line no-console
     console.log("heading there........");
     setQuantification(true);
@@ -465,7 +468,7 @@ export const U1planner = ({
               <Button
                 size="small"
                 value="nextU2"
-                onClick={goToU2Planner}
+                onClick={goToU1Projections}
                 label="Next"
                 primary
               />
@@ -487,7 +490,17 @@ export const U1planner = ({
       />
     );
   } else {
-    return <StackedBarchart projections={projections} />;
+    return <StackedBarchart 
+    projections={projections} 
+    country={country}
+    year={year}
+    population={population}
+    metropolitanCenter={metropolitanCenter}
+    urban={urban}
+    suburban={suburban}
+    town={town}
+    rural={rural}
+    />;
   }
 };
 

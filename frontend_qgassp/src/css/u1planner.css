@@ -72,6 +72,8 @@ input::-webkit-inner-spin-button {
 /* Firefox hide input number up and down arrows*/
 input[type="number"] {
   -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+  appearance: textfield;
   width: 30%;
 }
 

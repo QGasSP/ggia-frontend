@@ -16,7 +16,6 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
   };
 
   const handlePopulation = (e) => {
-    // e.preventDefault();
     setPopulation(Number(e.target.value));
   };
 
@@ -144,7 +143,6 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   pattern="[0-9]*"
                   id="population_assessment"
                   className="form-input"
-                  defaultValue="2000"
                   onChange={handlePopulation}
                   required
                 />
