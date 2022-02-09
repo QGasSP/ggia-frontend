@@ -58,7 +58,7 @@ export const U2planner = ({
       <section>
         <div>
           <h2>U2 NEW DEVELOPMENT</h2>
-          <h3>{responseData}</h3>
+          <h3>{JSON.stringify(responseData)}</h3>
         </div>
         <form>
           <label>
@@ -75,7 +75,7 @@ export const U2planner = ({
               value={newDevelopment.newResidents}
               readOnly
             />
-            <label>0 = no new developments to be quantified</label>
+           {/*  <label>  0 = no new developments to be quantified</label> */}
           </div>
           <div>
             <label htmlFor="start_year_selection"> Start</label>

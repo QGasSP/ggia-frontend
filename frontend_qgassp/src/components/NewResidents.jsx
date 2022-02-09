@@ -118,91 +118,94 @@ export const NewResidents = ({
                 onChange={handleNewResident}
                 required
               />
+                <label> 0 = no new developments to be quantified</label>
             </div>
             <div>
-              <label htmlFor="start_year_selection"> Start</label>
-              <select
-                id="start_year_selection"
-                name="start_year_selection"
-                onChange={handleStartYear}
-                defaultValue="Select start year"
-                required
-              >
-                <optgroup label="Select year"></optgroup>
-                <option value="year">2021</option>
-                <option value="year">2022</option>
-                <option value="year">2023</option>
-                <option value="year">2024</option>
-                <option value="year">2024</option>
-                <option value="year">2025</option>
-                <option value="year">2026</option>
-                <option value="year">2027</option>
-                <option value="year">2028</option>
-                <option value="year">2029</option>
-                <option value="year">2030</option>
-                <option value="year">2031</option>
-                <option value="year">2032</option>
-                <option value="year">2033</option>
-                <option value="year">2034</option>
-                <option value="year">2035</option>
-                <option value="year">2036</option>
-                <option value="year">2037</option>
-                <option value="year">2038</option>
-                <option value="year">2039</option>
-                <option value="year">2040</option>
-                <option value="year">2041</option>
-                <option value="year">2042</option>
-                <option value="year">2043</option>
-                <option value="year">2044</option>
-                <option value="year">2045</option>
-                <option value="year">2046</option>
-                <option value="year">2047</option>
-                <option value="year">2049</option>
-                <option value="year">2050</option>
-              </select>
+              <label htmlFor="start_year"> Start</label>
+               <select
+                  className="start_year"
+                  id="start_year"
+                  name="start_year"
+                  onChange={handleStartYear}
+                  defaultValue="2022"
+                  required
+                >
+                  <option value="DefaultOption">Select start year</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                  <option value="2021">2024</option>
+                  <option value="2022">2025</option>
+                  <option value="2023">2026</option>
+                  <option value="2019">2027</option>
+                  <option value="2020">2028</option>
+                  <option value="2021">2029</option>
+                  <option value="2019">2030</option>
+                  <option value="2020">2031</option>
+                  <option value="2021">2032</option>
+                  <option value="2019">2033</option>
+                  <option value="2020">2034</option>
+                  <option value="2021">2035</option>
+                  <option value="2019">2036</option>
+                  <option value="2020">2037</option>
+                  <option value="2021">2038</option>
+                  <option value="2019">2039</option>
+                  <option value="2020">2040</option>
+                  <option value="2021">2041</option>
+                  <option value="2019">2041</option>
+                  <option value="2020">2042</option>
+                  <option value="2021">2043</option>
+                  <option value="2019">2044</option>
+                  <option value="2020">2045</option>
+                  <option value="2021">2046</option>
+                  <option value="2019">2047</option>
+                  <option value="2020">2048</option>
+                  <option value="2021">2049</option>
+                  <option value="2021">2050</option>
+                </select>
             </div>
 
             <div>
-              <label htmlFor="end_year_selection"> End</label>
-              <select
-                id="end_year_selection"
-                name="end_year_selection"
-                onChange={handleYearFinish}
-                defaultValue="Select year end"
-                required
-              >
-                <optgroup label="Select year"></optgroup>
-                <option value="year">2021</option>
-                <option value="year">2022</option>
-                <option value="year">2023</option>
-                <option value="year">2024</option>
-                <option value="year">2024</option>
-                <option value="year">2025</option>
-                <option value="year">2026</option>
-                <option value="year">2027</option>
-                <option value="year">2028</option>
-                <option value="year">2029</option>
-                <option value="year">2030</option>
-                <option value="year">2031</option>
-                <option value="year">2032</option>
-                <option value="year">2033</option>
-                <option value="year">2034</option>
-                <option value="year">2035</option>
-                <option value="year">2036</option>
-                <option value="year">2037</option>
-                <option value="year">2038</option>
-                <option value="year">2039</option>
-                <option value="year">2040</option>
-                <option value="year">2041</option>
-                <option value="year">2042</option>
-                <option value="year">2043</option>
-                <option value="year">2044</option>
-                <option value="year">2045</option>
-                <option value="year">2046</option>
-                <option value="year">2047</option>
-                <option value="year">2049</option>
-                <option value="year">2050</option>
-              </select>
+              <label htmlFor="finish_year"> End</label>
+               <select
+                  className="finish_year"
+                  id="finish_year"
+                  name="finish_year"
+                  onChange={handleYearFinish}
+                  defaultValue="2022"
+                  required
+                >
+                  <option value="DefaultOption">Select start year</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                  <option value="2021">2024</option>
+                  <option value="2022">2025</option>
+                  <option value="2023">2026</option>
+                  <option value="2019">2027</option>
+                  <option value="2020">2028</option>
+                  <option value="2021">2029</option>
+                  <option value="2019">2030</option>
+                  <option value="2020">2031</option>
+                  <option value="2021">2032</option>
+                  <option value="2019">2033</option>
+                  <option value="2020">2034</option>
+                  <option value="2021">2035</option>
+                  <option value="2019">2036</option>
+                  <option value="2020">2037</option>
+                  <option value="2021">2038</option>
+                  <option value="2019">2039</option>
+                  <option value="2020">2040</option>
+                  <option value="2021">2041</option>
+                  <option value="2019">2041</option>
+                  <option value="2020">2042</option>
+                  <option value="2021">2043</option>
+                  <option value="2019">2044</option>
+                  <option value="2020">2045</option>
+                  <option value="2021">2046</option>
+                  <option value="2019">2047</option>
+                  <option value="2020">2048</option>
+                  <option value="2021">2049</option>
+                  <option value="2021">2050</option>
+                </select>
             </div>
             <br />
             <label>
