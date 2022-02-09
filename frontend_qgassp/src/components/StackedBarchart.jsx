@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React,{useState} from "react";
 import {
   XYPlot,
   XAxis,
@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 import { Header } from "./Header";
 import { LineLegend } from "./LineLegend";
 import { Button } from "./Button";
-import { U2planner } from "./U2planner";
+import { NewResidents } from "./NewResidents";
 
 const BarSeries = VerticalBarSeries;
 /**
@@ -42,8 +42,15 @@ export const StackedBarchart = ({
 
   };
 
-  const goToU2Planner = () => {
-    setSettlementDistribution(metropolitanCenter,urban,suburban,town,rural);
+  const goToNewResidents = () => {
+    const settlementDist= {
+      metropolitanCenter,
+      urban,
+      suburban,
+      town,
+      rural,
+   };
+    setSettlementDistribution(settlementDist);
     setU2View(true);
   };
 
@@ -359,7 +366,7 @@ export const StackedBarchart = ({
         <Button
           size="small"
           value="nextU2"
-          onClick={goToU2Planner}
+          onClick={goToNewResidents}
           label="Next"
           primary
         />
@@ -367,7 +374,7 @@ export const StackedBarchart = ({
     </article>
   );
 } else {
-  return <U2planner 
+  return <NewResidents
   country={country}
   year={year}
   settlementDistribution={settlementDistribution}

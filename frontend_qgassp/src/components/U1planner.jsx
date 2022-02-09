@@ -105,6 +105,7 @@ export const U1planner = ({
           <section>
             <div>
               <h1 className="settlement_header">U1 PLANNER : BASELINE </h1>{" "}
+              {/* {error} */}
             </div>
             {/*  <div>{JSON.stringify(emission.car)} </div>
             <div>{error.errorMessage} </div> */}
