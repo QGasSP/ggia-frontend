@@ -62,7 +62,7 @@ export const Settlement = ({
   };
 
   const setSettlementType = () => {
-    setTotal( metropolitanCenter + urban + suburban + town + rural);
+    setTotal(metropolitanCenter + urban + suburban + town + rural);
     setNextEmissions(true);
   };
 

@@ -46,17 +46,16 @@ export const U1planner = ({
 
   useEffect(async () => {
     const settlementDistribution = {
-        metropolitanCenter,
-        urban,
-        suburban,
-        town,
-        rural,
-      
-     };
+      metropolitanCenter,
+      urban,
+      suburban,
+      town,
+      rural,
+    };
     const rawData = { country, year, population, settlementDistribution };
     const headers = {
       "Content-type": "application/json",
-      "Cache-Control": "no-cache"
+      "Cache-Control": "no-cache",
     };
     axios
       .post(
@@ -491,17 +490,19 @@ export const U1planner = ({
       />
     );
   } else {
-    return <StackedBarchart 
-    projections={projections} 
-    country={country}
-    year={year}
-    population={population}
-    metropolitanCenter={metropolitanCenter}
-    urban={urban}
-    suburban={suburban}
-    town={town}
-    rural={rural}
-    />;
+    return (
+      <StackedBarchart
+        projections={projections}
+        country={country}
+        year={year}
+        population={population}
+        metropolitanCenter={metropolitanCenter}
+        urban={urban}
+        suburban={suburban}
+        town={town}
+        rural={rural}
+      />
+    );
   }
 };
 
