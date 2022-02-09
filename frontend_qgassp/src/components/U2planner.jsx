@@ -21,6 +21,7 @@ export const U2planner = ({
 }) => {
   const [errorU2, setU2Error] = useState("");
   const [responseData, setResponseData] = useState("");
+
   useEffect(async () => {
     const rawData = { baseline,newDevelopment};
     const headers = {
@@ -58,7 +59,7 @@ export const U2planner = ({
       <section>
         <div>
           <h2>U2 NEW DEVELOPMENT</h2>
-      {/*     <h3>{JSON.stringify(responseData)}</h3> */}
+          <h3>{JSON.stringify(responseData)}</h3>
         </div>
         <form>
           <label>
@@ -73,6 +74,7 @@ export const U2planner = ({
                   pattern="[0-9]*"
                   id="new_residents"
                   value={newDevelopment.newResidents}
+                  readOnly
                 />
             <label>0 = no new developments to be quantified</label>
           </div>
@@ -82,6 +84,7 @@ export const U2planner = ({
                   id="start_year_selection"
                   name="start_year_selection"
                   defaultValue={newDevelopment.yearStart}
+                  readOnly
                 >
 
               <optgroup label="Select year"></optgroup>
@@ -124,7 +127,7 @@ export const U2planner = ({
                   id="end_year_selection"
                   name="end_year_selection"
                   defaultValue={newDevelopment.yearFinish}
-                  required
+                  readOnly
                 >
               <optgroup label="Select year"></optgroup>
               <option value="year">2021</option>
@@ -176,7 +179,7 @@ export const U2planner = ({
                     min="0"
                     max="100"
                     value={newDevelopment.newSettlementDistribution.metropolitanCenter}
-                    required
+                    readOnly
                   />
           </div>
           <div>
@@ -190,6 +193,7 @@ export const U2planner = ({
                     min="0"
                     max="100"
                     value={newDevelopment.newSettlementDistribution.urban}
+                    readOnly
                   />
           </div>
           <div>
@@ -203,7 +207,7 @@ export const U2planner = ({
                     min="0.0"
                     max="100.0"
                     value={newDevelopment.newSettlementDistribution.suburban}
-                    
+                    readOnly
                   />
           </div>
           <div>
@@ -217,6 +221,7 @@ export const U2planner = ({
                     min="0.0"
                     max="100.0"
                     value={newDevelopment.newSettlementDistribution.town}
+                    readOnly
                   />
           </div>
           <div>
@@ -230,6 +235,7 @@ export const U2planner = ({
                     min="0"
                     max="100"
                     value={newDevelopment.newSettlementDistribution.rural}
+                    readOnly
                   />
           </div>
           <br />
