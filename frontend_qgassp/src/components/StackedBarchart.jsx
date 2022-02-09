@@ -391,7 +391,7 @@ StackedBarchart.propTypes = {
   suburban: PropTypes.number.isRequired,
   town: PropTypes.number.isRequired,
   rural: PropTypes.number.isRequired,
-  projections: PropTypes.array.isRequired,
+  projections: PropTypes.object.isRequired,
   user: PropTypes.shape({}),
   onLogin: PropTypes.func.isRequired,
   onLogout: PropTypes.func.isRequired,

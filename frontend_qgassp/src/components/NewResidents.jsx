@@ -287,7 +287,7 @@ export const NewResidents = ({
                     size="small"
                     type="submit"
                     value="Submit"
-                    label="Save"
+                    label="Next"
                     primary
                   />
                 </div>

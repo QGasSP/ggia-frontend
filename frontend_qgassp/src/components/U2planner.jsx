@@ -28,7 +28,7 @@ export const U2planner = ({
     };
     axios
       .post(
-        "https://ggia-dev.ulno.net/api/v1/calculate/transport",
+        "https://ggia-dev.ulno.net//api/v1/calculate/transport",
         rawData,
         headers
       )
@@ -58,7 +58,7 @@ export const U2planner = ({
       <section>
         <div>
           <h2>U2 NEW DEVELOPMENT</h2>
-          <h3>{JSON.stringify(responseData)}</h3>
+      {/*     <h3>{JSON.stringify(responseData)}</h3> */}
         </div>
         <form>
           <label>
@@ -72,6 +72,7 @@ export const U2planner = ({
                   type="text"
                   pattern="[0-9]*"
                   id="new_residents"
+                  value={newDevelopment.newResidents}
                 />
             <label>0 = no new developments to be quantified</label>
           </div>
@@ -80,7 +81,7 @@ export const U2planner = ({
             <select
                   id="start_year_selection"
                   name="start_year_selection"
-                  defaultValue="Select country"
+                  defaultValue={newDevelopment.yearStart}
                 >
 
               <optgroup label="Select year"></optgroup>
@@ -122,7 +123,7 @@ export const U2planner = ({
             <select
                   id="end_year_selection"
                   name="end_year_selection"
-                  defaultValue="Select year"
+                  defaultValue={newDevelopment.yearFinish}
                   required
                 >
               <optgroup label="Select year"></optgroup>
@@ -174,6 +175,7 @@ export const U2planner = ({
                     id="nsMetropolitan"
                     min="0"
                     max="100"
+                    value={newDevelopment.newSettlementDistribution.metropolitanCenter}
                     required
                   />
           </div>
@@ -187,7 +189,7 @@ export const U2planner = ({
                     id="nsUrban"
                     min="0"
                     max="100"
-                    required
+                    value={newDevelopment.newSettlementDistribution.urban}
                   />
           </div>
           <div>
@@ -200,6 +202,7 @@ export const U2planner = ({
                     step="any"
                     min="0.0"
                     max="100.0"
+                    value={newDevelopment.newSettlementDistribution.suburban}
                     
                   />
           </div>
@@ -213,6 +216,7 @@ export const U2planner = ({
                     step="0.1"
                     min="0.0"
                     max="100.0"
+                    value={newDevelopment.newSettlementDistribution.town}
                   />
           </div>
           <div>
@@ -225,7 +229,7 @@ export const U2planner = ({
                     step="0.1"
                     min="0"
                     max="100"
-                    required
+                    value={newDevelopment.newSettlementDistribution.rural}
                   />
           </div>
           <br />
