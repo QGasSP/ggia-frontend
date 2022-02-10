@@ -55,14 +55,3 @@ export const BaselinePiechart = () => (
     />
   </div>
 );
-// }}
-//       showLabels
-//     />
-
-//   </div>
-// );  }}
-//       showLabels
-//     />
-
-//   </div>
-// );

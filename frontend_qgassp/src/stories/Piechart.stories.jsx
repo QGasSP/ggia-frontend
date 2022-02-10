@@ -4,9 +4,7 @@ import { Piechart } from "../components/Piechart";
 export default {
   title: "QgasSP/Piechart",
   component: Piechart,
-  argTypes: {
-    // backgroundColor: { control: "color" },
-  },
+  argTypes: {},
 };
 
 const Template = (args) => <Piechart {...args} />;
