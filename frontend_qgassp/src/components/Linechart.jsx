@@ -38,7 +38,6 @@ export const Linechart = () => {
         <LineSeries
           curve={null}
           data={[
-            { x: 2021, y: 15000 },
             { x: 2022, y: 16000 },
             { x: 2023, y: 17000 },
             { x: 2024, y: 18000 },
@@ -79,7 +78,6 @@ export const Linechart = () => {
         <LineSeries
           curve={null}
           data={[
-            { x: 2021, y: 15000 },
             { x: 2022, y: 15000 },
             { x: 2023, y: 15000 },
             { x: 2024, y: 15000 },
