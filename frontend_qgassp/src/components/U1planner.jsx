@@ -36,6 +36,7 @@ export const U1planner = ({
   suburban,
   town,
   rural,
+  total,
 }) => {
   const [emission, setEmissionData] = useState("");
   const [projections, setProjections] = useState("");
@@ -115,7 +116,7 @@ export const U1planner = ({
                   <label>
                     <b>U1.1 Settlement type </b>
                   </label>
-                  <label>Share (%)</label>
+                  <label>Share ({total}%)</label>
                 </div>
                 <div>
                   <label htmlFor="metropolitan">Metropolitan center</label>
@@ -515,6 +516,7 @@ U1planner.propTypes = {
   population: PropTypes.number.isRequired,
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
+  total: PropTypes.number.isRequired,
   user: PropTypes.shape({}),
   onLogin: PropTypes.func.isRequired,
   onLogout: PropTypes.func.isRequired,

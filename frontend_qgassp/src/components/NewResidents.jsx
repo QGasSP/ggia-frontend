@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Header } from "./Header";
 import { Button } from "./Button";
@@ -118,7 +118,9 @@ export const NewResidents = ({
                 onChange={handleNewResident}
                 required
               />
-              <label>&nbsp;0 = no new developments to be quantified</label>
+              <label>
+                &nbsp;&nbsp;0 = no new developments to be quantified
+              </label>
             </div>
             <div>
               <label htmlFor="start_year"> Start</label>
@@ -219,7 +221,7 @@ export const NewResidents = ({
             </label>
             <div>
               <label htmlFor="nsMetropolitan">Metropolitan Area</label>
-              <label >{settlementDistribution.metropolitanCenter}</label>
+              <label>{settlementDistribution.metropolitanCenter}</label>
               <input
                 type="number"
                 step="0.1"

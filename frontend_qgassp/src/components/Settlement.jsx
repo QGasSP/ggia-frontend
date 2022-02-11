@@ -29,19 +29,8 @@ export const Settlement = ({
   );
   const [nextEmissions, setNextEmissions] = useState(false);
 
-  useEffect(() => {
-    setTotal(
-      parseFloat(metropolitanCenter) +
-        parseFloat(urban) +
-        parseFloat(suburban) +
-        parseFloat(town) +
-        parseFloat(rural)
-    );
-  }, []);
-
   const handleMetropolitanCenter = (e) => {
     e.preventDefault();
-    // const newMC = parseFloat(parseFloat(e.target.value).toFixed(1));
     setMetropolitan(parseFloat(e.target.value));
   };
   const handleUrban = (e) => {
@@ -209,6 +198,7 @@ export const Settlement = ({
         suburban={suburban}
         town={town}
         rural={rural}
+        total={total}
       />
     );
   }

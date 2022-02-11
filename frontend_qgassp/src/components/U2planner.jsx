@@ -76,16 +76,16 @@ export const U2planner = ({
             <label htmlFor="new_residents">
               Number of new residents moving in
             </label>
-            <label htmlFor="start_year_selection"> {newDevelopment.newResidents}</label>
+            <label htmlFor="start_year_selection">{newDevelopment.newResidents}</label>
           </div>
           <div>
-            <label> Start</label>
+            <label> Year start</label>
             <label> {newDevelopment.yearStart}</label>
           </div>
 
           <div>
-            <label > End</label>
-            <label > {newDevelopment.yearFinish}</label>
+            <label> Year end</label>
+            <label> {newDevelopment.yearFinish}</label>
           </div>
           <br />
           <label>
@@ -99,28 +99,30 @@ export const U2planner = ({
           </label>
           <div>
             <label>Metropolitan Area</label>
-            <label >{baseline.settlementDistribution.metropolitanCenter}</label>
-            <label >{ newDevelopment.newSettlementDistribution.metropolitanCenter}</label>
+            <label>{baseline.settlementDistribution.metropolitanCenter}</label>
+            <label>
+              {newDevelopment.newSettlementDistribution.metropolitanCenter}
+            </label>
           </div>
           <div>
             <label>Urban</label>
-            <label >{baseline.settlementDistribution.urban}</label>
-            <label >{newDevelopment.newSettlementDistribution.urban}</label>
+            <label>{baseline.settlementDistribution.urban}</label>
+            <label>{newDevelopment.newSettlementDistribution.urban}</label>
           </div>
           <div>
-            <label > Suburban</label>
+            <label> Suburban</label>
             <label>{baseline.settlementDistribution.suburban}</label>
             <label>{newDevelopment.newSettlementDistribution.suburban}</label>
           </div>
           <div>
             <label htmlFor="town">Town</label>
-            <label >{baseline.settlementDistribution.town}</label>
+            <label>{baseline.settlementDistribution.town}</label>
             <label>{newDevelopment.newSettlementDistribution.town}</label>
           </div>
           <div>
             <label htmlFor="rural">Rural</label>
-            <label >{baseline.settlementDistribution.rural}</label>
-            <label >{newDevelopment.newSettlementDistribution.rural}</label>
+            <label>{baseline.settlementDistribution.rural}</label>
+            <label>{newDevelopment.newSettlementDistribution.rural}</label>
           </div>
           <br />
           <XYPlot
