@@ -205,12 +205,12 @@ export const U1planner = ({
                       {
                         angle: rural,
                         label: "Rural",
-                        color: "#D9D9D9" ,
+                        color: "#D9D9D9",
                       },
                       {
                         angle: metropolitanCenter,
                         label: "Metropolitan center",
-                        color: "#730E16" ,
+                        color: "#730E16",
                       },
                     ]}
                     width={180}
@@ -222,19 +222,16 @@ export const U1planner = ({
                       fontSize: 8,
                       fontWeight: 900,
                     }} */
-                   //  showLabels
+                    //  showLabels
                   />
                 </div>
-            
-              <DiscreteColorLegend
+                <DiscreteColorLegend
                   items={settlementLabels}
                   orientation="horizontal"
                   strokeWidth="40"
                 />
               </div>
             </div>
-            <br />
-
             <label>
               <b>U1.2 Area</b>
             </label>
