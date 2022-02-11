@@ -57,10 +57,9 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   id="year_selection"
                   name="year_selection"
                   onChange={handleSelectedYear}
-                  defaultValue="2022"
+                  defaultValue="Select year"
                   required
                 >
-                  {/*     <optgroup label="Select year">Select year</optgroup> */}
                   <option value="DefaultOption">Select year</option>
                   <option value="2022">2022</option>
                   <option value="2023">2023</option>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Header } from "./Header";
 import { Button } from "./Button";
@@ -118,7 +118,9 @@ export const NewResidents = ({
                 onChange={handleNewResident}
                 required
               />
-              <label> 0 = no new developments to be quantified</label>
+              <label>
+                &nbsp;&nbsp;0 = no new developments to be quantified
+              </label>
             </div>
             <div>
               <label htmlFor="start_year"> Start</label>
@@ -215,18 +217,11 @@ export const NewResidents = ({
               <b>Existing environment</b>
             </label>
             <label>
-              <b>New development</b>
+              <b>New development (%)</b>
             </label>
             <div>
-              <label htmlFor="city">Metropolitan Area</label>
-              <input
-                type="number"
-                id="metropolitan"
-                min="0"
-                max="100"
-                value={baseline.metropolitanCenter}
-                readOnly
-              />
+              <label htmlFor="nsMetropolitan">Metropolitan Area</label>
+              <label>{settlementDistribution.metropolitanCenter}</label>
               <input
                 type="number"
                 step="0.1"
@@ -238,16 +233,8 @@ export const NewResidents = ({
               />
             </div>
             <div>
-              <label htmlFor="city">Urban</label>
-              <input
-                type="number"
-                step="0.1"
-                id="urban"
-                min="0"
-                max="100"
-                calue={baseline.urban}
-                readOnly
-              />
+              <label htmlFor="nsUrban">Urban</label>
+              <label>{settlementDistribution.urban}</label>
               <input
                 type="number"
                 step="0.1"
@@ -259,16 +246,8 @@ export const NewResidents = ({
               />
             </div>
             <div>
-              <label htmlFor="suburban"> Suburban</label>
-              <input
-                type="number"
-                id="suburban"
-                step="any"
-                min="0.0"
-                max="100.0"
-                value={baseline.suburban}
-                readOnly
-              />
+              <label htmlFor="nsSuburban"> Suburban</label>
+              <label>{settlementDistribution.suburban}</label>
               <input
                 type="number"
                 id="nsSuburban"
@@ -280,16 +259,8 @@ export const NewResidents = ({
               />
             </div>
             <div>
-              <label htmlFor="town">Town</label>
-              <input
-                type="number"
-                id="town"
-                step="0.1"
-                min="0.0"
-                max="100.0"
-                value={baseline.town}
-                readOnly
-              />
+              <label htmlFor="nsTown">Town</label>
+              <label>{settlementDistribution.town}</label>
               <input
                 type="number"
                 id="nsTown"
@@ -301,16 +272,8 @@ export const NewResidents = ({
               />
             </div>
             <div>
-              <label htmlFor="rural">Rural</label>
-              <input
-                type="number"
-                id="town"
-                step="0.1"
-                min="0.0"
-                max="100.0"
-                defaultValue={baseline.rural}
-                readOnly
-              />
+              <label htmlFor="nsRural">Rural</label>
+              <label>{settlementDistribution.rural}</label>
               <input
                 type="number"
                 id="nsRural"

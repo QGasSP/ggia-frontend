@@ -76,95 +76,18 @@ export const U2planner = ({
             <label htmlFor="new_residents">
               Number of new residents moving in
             </label>
-            <input
-              type="text"
-              pattern="[0-9]*"
-              id="new_residents"
-              value={newDevelopment.newResidents}
-              readOnly
-            />
-            {/*  <label>  0 = no new developments to be quantified</label> */}
+            <label htmlFor="start_year_selection">
+              {newDevelopment.newResidents}
+            </label>
           </div>
           <div>
-            <label htmlFor="start_year_selection"> Start</label>
-            <select
-              id="start_year_selection"
-              name="start_year_selection"
-              defaultValue={newDevelopment.yearStart}
-              readOnly
-            >
-              <optgroup label="Select year"></optgroup>
-              <option value="year">2022</option>
-              <option value="year">2023</option>
-              <option value="year">2024</option>
-              <option value="year">2024</option>
-              <option value="year">2025</option>
-              <option value="year">2026</option>
-              <option value="year">2027</option>
-              <option value="year">2028</option>
-              <option value="year">2029</option>
-              <option value="year">2030</option>
-              <option value="year">2031</option>
-              <option value="year">2032</option>
-              <option value="year">2033</option>
-              <option value="year">2034</option>
-              <option value="year">2035</option>
-              <option value="year">2036</option>
-              <option value="year">2037</option>
-              <option value="year">2038</option>
-              <option value="year">2039</option>
-              <option value="year">2040</option>
-              <option value="year">2041</option>
-              <option value="year">2042</option>
-              <option value="year">2043</option>
-              <option value="year">2044</option>
-              <option value="year">2045</option>
-              <option value="year">2046</option>
-              <option value="year">2047</option>
-              <option value="year">2049</option>
-              <option value="year">2050</option>
-            </select>
+            <label> Year start</label>
+            <label> {newDevelopment.yearStart}</label>
           </div>
 
           <div>
-            <label htmlFor="end_year_selection"> End</label>
-            <select
-              id="end_year_selection"
-              name="end_year_selection"
-              defaultValue={newDevelopment.yearFinish}
-              readOnly
-            >
-              <optgroup label="Select year"></optgroup>
-              <option value="year">2022</option>
-              <option value="year">2023</option>
-              <option value="year">2024</option>
-              <option value="year">2024</option>
-              <option value="year">2025</option>
-              <option value="year">2026</option>
-              <option value="year">2027</option>
-              <option value="year">2028</option>
-              <option value="year">2029</option>
-              <option value="year">2030</option>
-              <option value="year">2031</option>
-              <option value="year">2032</option>
-              <option value="year">2033</option>
-              <option value="year">2034</option>
-              <option value="year">2035</option>
-              <option value="year">2036</option>
-              <option value="year">2037</option>
-              <option value="year">2038</option>
-              <option value="year">2039</option>
-              <option value="year">2040</option>
-              <option value="year">2041</option>
-              <option value="year">2042</option>
-              <option value="year">2043</option>
-              <option value="year">2044</option>
-              <option value="year">2045</option>
-              <option value="year">2046</option>
-              <option value="year">2047</option>
-              <option value="year">2049</option>
-              <option value="year">2050</option>
-            </select>
+            <label> Year end</label>
+            <label> {newDevelopment.yearFinish}</label>
           </div>
           <br />
           <label>
@@ -177,110 +100,31 @@ export const U2planner = ({
             <b>New development</b>
           </label>
           <div>
-            <label htmlFor="city">Metropolitan Area</label>
-            <input
-              type="number"
-              id="metropolitan"
-              min="0"
-              max="100"
-              value={baseline.metropolitanCenter}
-              readOnly
-            />
-            <input
-              type="number"
-              step="0.1"
-              id="nsMetropolitan"
-              min="0"
-              max="100"
-              value={
-                newDevelopment.newSettlementDistribution.metropolitanCenter
-              }
-              readOnly
-            />
+            <label>Metropolitan Area</label>
+            <label>{baseline.settlementDistribution.metropolitanCenter}</label>
+            <label>
+              {newDevelopment.newSettlementDistribution.metropolitanCenter}
+            </label>
           </div>
           <div>
-            <label htmlFor="city">Urban</label>
-            <input
-              type="number"
-              step="0.1"
-              id="urban"
-              min="0"
-              max="100"
-              value={baseline.urban}
-              readOnly
-            />
-            <input
-              type="number"
-              step="0.1"
-              id="nsUrban"
-              min="0"
-              max="100"
-              value={newDevelopment.newSettlementDistribution.urban}
-              readOnly
-            />
+            <label>Urban</label>
+            <label>{baseline.settlementDistribution.urban}</label>
+            <label>{newDevelopment.newSettlementDistribution.urban}</label>
           </div>
           <div>
-            <label htmlFor="suburban"> Suburban</label>
-            <input
-              type="number"
-              step="0.1"
-              id="suburban"
-              min="0"
-              max="100"
-              value={baseline.suburban}
-              readOnly
-            />
-            <input
-              type="number"
-              id="nsSuburban"
-              step="any"
-              min="0.0"
-              max="100.0"
-              value={newDevelopment.newSettlementDistribution.suburban}
-              readOnly
-            />
+            <label> Suburban</label>
+            <label>{baseline.settlementDistribution.suburban}</label>
+            <label>{newDevelopment.newSettlementDistribution.suburban}</label>
           </div>
           <div>
             <label htmlFor="town">Town</label>
-            <input
-              type="number"
-              step="0.1"
-              id="town"
-              min="0"
-              max="100"
-              value={baseline.town}
-              readOnly
-            />
-            <input
-              type="number"
-              id="nsTown"
-              step="0.1"
-              min="0.0"
-              max="100.0"
-              value={newDevelopment.newSettlementDistribution.town}
-              readOnly
-            />
+            <label>{baseline.settlementDistribution.town}</label>
+            <label>{newDevelopment.newSettlementDistribution.town}</label>
           </div>
           <div>
             <label htmlFor="rural">Rural</label>
-            <input
-              type="number"
-              step="0.1"
-              id="ruran"
-              min="0"
-              max="100"
-              value={baseline.rural}
-              readOnly
-            />
-            <input
-              type="number"
-              id="nsRural"
-              step="0.1"
-              min="0"
-              max="100"
-              value={newDevelopment.newSettlementDistribution.rural}
-              readOnly
-            />
+            <label>{baseline.settlementDistribution.rural}</label>
+            <label>{newDevelopment.newSettlementDistribution.rural}</label>
           </div>
           <br />
           <XYPlot
@@ -288,7 +132,7 @@ export const U2planner = ({
             height={500}
             xType="ordinal"
             yDomain={[0, 100000]}
-            //yType="linear"
+            // yType="linear"
           >
             <HorizontalGridLines style={{ stroke: "#B7E9ED" }} />
             <VerticalGridLines style={{ stroke: "#B7E9ED" }} />
