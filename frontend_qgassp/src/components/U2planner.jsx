@@ -76,7 +76,9 @@ export const U2planner = ({
             <label htmlFor="new_residents">
               Number of new residents moving in
             </label>
-            <label htmlFor="start_year_selection">{newDevelopment.newResidents}</label>
+            <label htmlFor="start_year_selection">
+              {newDevelopment.newResidents}
+            </label>
           </div>
           <div>
             <label> Year start</label>

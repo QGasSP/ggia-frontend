@@ -15,6 +15,7 @@ import {
   HorizontalGridLines,
   VerticalBarSeries,
   RadialChart,
+  DiscreteColorLegend,
 } from "react-vis";
 import { StackedBarchart } from "./StackedBarchart";
 
@@ -44,6 +45,13 @@ export const U1planner = ({
   const [nextQuantification, setQuantification] = useState(false);
   const [backSettlement, setBackSettlement] = useState(false);
   // const [settlementDistribution, setSettlementDistribution] = useState("");
+  const settlementLabels = [
+    { title: "urban", color: "#164059" },
+    { title: "suburban", color: "#F25F29" },
+    { title: "town", color: "#F23A29" },
+    { title: "rural", color: "#D9D9D9" },
+    { title: "Metropolitan center", color: "#730E16" },
+  ];
 
   useEffect(async () => {
     const settlementDistribution = {
@@ -182,41 +190,47 @@ export const U1planner = ({
                       {
                         angle: urban,
                         label: "Urban",
-                        color: "#D90404",
+                        color: "#164059",
                       },
                       {
                         angle: suburban,
                         label: "Suburban",
-                        color: "#A69886",
+                        color: "#F25F29",
                       },
                       {
                         angle: town,
                         label: "Town",
-                        color: "#38D0F2",
+                        color: "#F23A29",
                       },
                       {
                         angle: rural,
                         label: "Rural",
-                        color: "#F2E205",
+                        color: "#D9D9D9" ,
                       },
                       {
                         angle: metropolitanCenter,
-                        label: "Metropolitan",
-                        color: "#D9B1A3",
+                        label: "Metropolitan center",
+                        color: "#730E16" ,
                       },
                     ]}
-                    width={200}
-                    height={200}
+                    width={180}
+                    height={180}
                     colorType="literal"
-                    labelsAboveChildren={true}
-                    labelsRadiusMultiplier={0.8}
+                    // labelsAboveChildren={true}
+                    /* labelsRadiusMultiplier={0.8}
                     labelsStyle={{
                       fontSize: 8,
                       fontWeight: 900,
-                    }}
-                    showLabels
+                    }} */
+                   //  showLabels
                   />
                 </div>
+            
+              <DiscreteColorLegend
+                  items={settlementLabels}
+                  orientation="horizontal"
+                  strokeWidth="40"
+                />
               </div>
             </div>
             <br />
