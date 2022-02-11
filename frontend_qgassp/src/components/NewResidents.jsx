@@ -136,10 +136,10 @@ export const NewResidents = ({
               >
                 <option value="DefaultOption">Select start year</option>
                 {optionsNew.map((option) => (
-                    <option key={option} value={option}>
-                      {option}{" "}
-                    </option>
-                  ))}
+                  <option key={option} value={option}>
+                    {option}{" "}
+                  </option>
+                ))}
               </select>
             </div>
 
@@ -155,10 +155,10 @@ export const NewResidents = ({
               >
                 <option value="DefaultOption">Select start year</option>
                 {optionsNew.map((option) => (
-                    <option key={option} value={option}>
-                      {option}{" "}
-                    </option>
-                  ))}
+                  <option key={option} value={option}>
+                    {option}{" "}
+                  </option>
+                ))}
               </select>
             </div>
             <br />

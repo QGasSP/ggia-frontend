@@ -84,7 +84,6 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   defaultValue="Select country"
                   required
                 >
-               
                   <option value="DefaultOption">Select country</option>
                   <option value="Austria">Austria</option>
                   <option value="Belgium">Belgium</option>

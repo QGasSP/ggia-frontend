@@ -2,14 +2,6 @@ import React from "react";
 import { DiscreteColorLegend } from "react-vis";
 import "../css/linelegend.css";
 
-// const ITEMS = [
-//   {
-//     title: "Residents/baseline",
-//     color: "rgba(102,116,155,1)",
-//     strokeStyle: "dashed",
-//   },
-//   { title: "Total", color: "rgba(21,75,230,1)" },
-// ];
 const ITEMS = [
   { title: "Bus", color: "#8C0303" },
   { title: "Car", color: "#A6036D" },
