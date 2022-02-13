@@ -15,7 +15,7 @@
 
 # yarn v2
 .yarn/*
-.yarn.lock
+yarn.lock
 
 
 # misc
