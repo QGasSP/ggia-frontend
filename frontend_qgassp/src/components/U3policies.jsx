@@ -179,208 +179,208 @@ export const U3policies = ({
           </div>
           <br />
           <div>
+          <div>
+            <label>
+              <b>U3.3 Modal split/Passenger transport</b>
+            </label>
+            <label>withouth policy</label>
+            <label>policy target %</label>
+            <label>% of the area affeccted</label>
+            <div>
+              <label>Share for bus</label>
+              <label></label>
+              <label> policy target % goes here</label>
+            </div>
+            <div>
+              <label>Share for tram and metro</label>
+              <label></label>
+              <label> policy target % goes here</label>
+            </div>
+            <div>
+              <label>Share for train</label>
+              <label></label>
+              <label> policy target % goes here</label>
+            </div>
+            <div>
+              <label>Car passenger</label>
+              <label></label>
+              <label> policy target % goes here</label>
+            </div>
             <div>
               <label>
-                <b>U3.3 Modal split/Passenger transport</b>
+                <b>Total</b>
               </label>
-              <label>withouth policy</label>
-              <label>policy target %</label>
-              <label>% of the area affeccted</label>
-              <div>
-                <label>Share for bus</label>
-                <label></label>
-                <label> policy target % goes here</label>
-              </div>
-              <div>
-                <label>Share for tram and metro</label>
-                <label></label>
-                <label> policy target % goes here</label>
-              </div>
-              <div>
-                <label>Share for train</label>
-                <label></label>
-                <label> policy target % goes here</label>
-              </div>
-              <div>
-                <label>Car passenger</label>
-                <label></label>
-                <label> policy target % goes here</label>
-              </div>
-              <div>
-                <label>
-                  <b>Total</b>
-                </label>
-                <label></label>
-                <label></label>
-              </div>
-              <label>Policy period</label>
-              <select
-                className="start_year"
-                id="start_year"
-                name="start_year"
-                onChange={handleStartYear}
-                defaultValue="2022"
-                required
-              >
-                <option value="DefaultOption">Select start year</option>
-                {optionsNew.map((option) => (
-                  <option key={option} value={option}>
-                    {option}{" "}
-                  </option>
-                ))}
-              </select>
-              <select
-                className="finish_year"
-                id="finish_year"
-                name="finish_year"
-                onChange={handleYearFinish}
-                defaultValue="2022"
-                required
-              >
-                <option value="DefaultOption">Select end year</option>
-                {optionsNew.map((option) => (
-                  <option key={option} value={option}>
-                    {option}{" "}
-                  </option>
-                ))}
-              </select>
+              <label></label>
+              <label></label>
             </div>
-            <div className="column">
-              <div>
-                <RadialChart
-                  type="piechart"
-                  data={[
-                    {
-                      //angle: ,
-                      angle: 12,
-                      label: "Urban",
-                      color: "#164059",
-                    },
-                    {
-                      angle: 38,
-                      label: "Suburban",
-                      color: "#F25F29",
-                    },
-                    {
-                      angle: 12,
-                      label: "Town",
-                      color: "#F23A29",
-                    },
-                    {
-                      angle: 38,
-                      label: "Rural",
-                      color: "#D9D9D9",
-                    },
-                  ]}
-                  width={180}
-                  height={180}
-                  colorType="literal"
-                />
-              </div>
-              {/* <DiscreteColorLegend
+            <label>Policy period</label>
+            <select
+              className="start_year"
+              id="start_year"
+              name="start_year"
+              onChange={handleStartYear}
+              defaultValue="2022"
+              required
+            >
+              <option value="DefaultOption">Select start year</option>
+              {optionsNew.map((option) => (
+                <option key={option} value={option}>
+                  {option}{" "}
+                </option>
+              ))}
+            </select>
+            <select
+              className="finish_year"
+              id="finish_year"
+              name="finish_year"
+              onChange={handleYearFinish}
+              defaultValue="2022"
+              required
+            >
+              <option value="DefaultOption">Select end year</option>
+              {optionsNew.map((option) => (
+                <option key={option} value={option}>
+                  {option}{" "}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="column">
+            <div>
+              <RadialChart
+                type="piechart"
+                data={[
+                  {
+                    //angle: ,
+                    angle: 12,
+                    label: "Urban",
+                    color: "#164059",
+                  },
+                  {
+                    angle: 38,
+                    label: "Suburban",
+                    color: "#F25F29",
+                  },
+                  {
+                    angle: 12,
+                    label: "Town",
+                    color: "#F23A29",
+                  },
+                  {
+                    angle: 38,
+                    label: "Rural",
+                    color: "#D9D9D9",
+                  },
+                ]}
+                width={180}
+                height={180}
+                colorType="literal"
+              />
+            </div>
+            {/* <DiscreteColorLegend
                 items={settlementLabels}
                 orientation="horizontal"
                 strokeWidth="40"
               /> */}
-              <div>
-                <RadialChart
-                  type="piechart"
-                  data={[
-                    {
-                      //angle: ,
-                      angle: 12,
-                      label: "Urban",
-                      color: "#164059",
-                    },
-                    {
-                      angle: 38,
-                      label: "Suburban",
-                      color: "#F25F29",
-                    },
-                    {
-                      angle: 12,
-                      label: "Town",
-                      color: "#F23A29",
-                    },
-                    {
-                      angle: 38,
-                      label: "Rural",
-                      color: "#D9D9D9",
-                    },
-                  ]}
-                  width={180}
-                  height={180}
-                  colorType="literal"
-                />
-              </div>
-              {/* <DiscreteColorLegend
+            <div>
+              <RadialChart
+                type="piechart"
+                data={[
+                  {
+                    //angle: ,
+                    angle: 12,
+                    label: "Urban",
+                    color: "#164059",
+                  },
+                  {
+                    angle: 38,
+                    label: "Suburban",
+                    color: "#F25F29",
+                  },
+                  {
+                    angle: 12,
+                    label: "Town",
+                    color: "#F23A29",
+                  },
+                  {
+                    angle: 38,
+                    label: "Rural",
+                    color: "#D9D9D9",
+                  },
+                ]}
+                width={180}
+                height={180}
+                colorType="literal"
+              />
+            </div>
+            {/* <DiscreteColorLegend
                 items={settlementLabels}
                 orientation="horizontal"
                 strokeWidth="40"
               /> */}
+          </div>
+          <br />
+          <div>
+            <label>
+              <b>U3.4 Modal split/Freight transport</b>
+            </label>
+            <label>withouth policy</label>
+            <label>policy target %</label>
+            {/* <label>% of the area affeccted</label> */}
+            <div>
+              <label>Share for rail</label>
+              <label></label>
+              <label> policy target % goes here</label>
             </div>
-            <br />
+            <div>
+              <label>Share for inland waterways</label>
+              <label></label>
+              <label> policy target % goes here</label>
+            </div>
+            <div>
+              <label>Share for road freight</label>
+              <label></label>
+              <label> policy target % goes here</label>
+            </div>
             <div>
               <label>
-                <b>U3.4 Modal split/Freight transport</b>
+                <b>Total</b>
               </label>
-              <label>withouth policy</label>
-              <label>policy target %</label>
-              {/* <label>% of the area affeccted</label> */}
-              <div>
-                <label>Share for rail</label>
-                <label></label>
-                <label> policy target % goes here</label>
-              </div>
-              <div>
-                <label>Share for inland waterways</label>
-                <label></label>
-                <label> policy target % goes here</label>
-              </div>
-              <div>
-                <label>Share for road freight</label>
-                <label></label>
-                <label> policy target % goes here</label>
-              </div>
-              <div>
-                <label>
-                  <b>Total</b>
-                </label>
-                <label></label>
-                <label></label>
-              </div>
-              <label>Policy period</label>
-              <select
-                className="start_year"
-                id="start_year"
-                name="start_year"
-                onChange={handleStartYear}
-                defaultValue="2022"
-                required
-              >
-                <option value="DefaultOption">Select start year</option>
-                {optionsNew.map((option) => (
-                  <option key={option} value={option}>
-                    {option}{" "}
-                  </option>
-                ))}
-              </select>
-              <select
-                className="finish_year"
-                id="finish_year"
-                name="finish_year"
-                onChange={handleYearFinish}
-                defaultValue="2022"
-                required
-              >
-                <option value="DefaultOption">Select end year</option>
-                {optionsNew.map((option) => (
-                  <option key={option} value={option}>
-                    {option}{" "}
-                  </option>
-                ))}
-              </select>
+              <label></label>
+              <label></label>
             </div>
+            <label>Policy period</label>
+            <select
+              className="start_year"
+              id="start_year"
+              name="start_year"
+              onChange={handleStartYear}
+              defaultValue="2022"
+              required
+            >
+              <option value="DefaultOption">Select start year</option>
+              {optionsNew.map((option) => (
+                <option key={option} value={option}>
+                  {option}{" "}
+                </option>
+              ))}
+            </select>
+            <select
+              className="finish_year"
+              id="finish_year"
+              name="finish_year"
+              onChange={handleYearFinish}
+              defaultValue="2022"
+              required
+            >
+              <option value="DefaultOption">Select end year</option>
+              {optionsNew.map((option) => (
+                <option key={option} value={option}>
+                  {option}{" "}
+                </option>
+              ))}
+            </select>
+          </div>
           </div>
           <br />
           <div>
@@ -694,7 +694,7 @@ export const U3policies = ({
                 style={{}}
               />
               <BarSeries
-                color="#8C0303"
+                color="#ffdf43"
                 data={[
                   { x: 2022, y: 1500 },
                   { x: 2023, y: 1500 },
@@ -728,7 +728,7 @@ export const U3policies = ({
                 ]}
               />
               <BarSeries
-                color="#A6036D"
+                color="#76918e"
                 data={[
                   { x: 2022, y: 1500 },
                   { x: 2023, y: 1500 },
@@ -762,7 +762,7 @@ export const U3policies = ({
                 ]}
               />
               <BarSeries
-                color="#8C0303"
+                color="#ce143d"
                 data={[
                   { x: 2022, y: 1500 },
                   { x: 2023, y: 1500 },
@@ -796,7 +796,7 @@ export const U3policies = ({
                 ]}
               />
               <BarSeries
-                color="#A6036D"
+                color="#d6e7d9"
                 data={[
                   { x: 2022, y: 1500 },
                   { x: 2023, y: 1500 },
@@ -830,7 +830,7 @@ export const U3policies = ({
                 ]}
               />
               <BarSeries
-                color="#8C0303"
+                color="#002117"
                 data={[
                   { x: 2022, y: 1500 },
                   { x: 2023, y: 1500 },
@@ -864,7 +864,7 @@ export const U3policies = ({
                 ]}
               />
               <BarSeries
-                color="#A6036D"
+                color="#ef7d00"
                 data={[
                   { x: 2022, y: 1500 },
                   { x: 2023, y: 1500 },
@@ -898,7 +898,7 @@ export const U3policies = ({
                 ]}
               />
               <BarSeries
-                color="#8C0303"
+                color="#6c3b00"
                 data={[
                   { x: 2022, y: 1500 },
                   { x: 2023, y: 1500 },
@@ -932,7 +932,7 @@ export const U3policies = ({
                 ]}
               />
               <BarSeries
-                color="#A6036D"
+                color="#00aed5"
                 data={[
                   { x: 2022, y: 1500 },
                   { x: 2023, y: 1500 },
