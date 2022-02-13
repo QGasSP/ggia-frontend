@@ -13,7 +13,7 @@ export const AppRoutes = () => {
     <Routes>
       <Route path="/" >
         <Route index  element={<StartPage />} />
-        <Route path="startPage" element={<StartPage />} />
+        <Route path="startPage/*" element={<StartPage />} />
         <Route path="settlement" element={<Settlement />} />
         <Route path="u1planner" element={<U1planner />} />
         <Route path="u1plannerDefault" element={<U1plannerDefault />} />

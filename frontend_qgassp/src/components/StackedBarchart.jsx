@@ -39,7 +39,6 @@ export const StackedBarchart = ({
   const [settlementDistribution, setSettlementDistribution] = useState("");
   const navigate = useNavigate();
 
-
   const goToNewResidents = () => {
     const settlementDist = {
       metropolitanCenter,
