@@ -343,7 +343,7 @@ export const StackedBarchart = ({
                   { x: 2047, y: projections.waterways_transport[2047] },
                   { x: 2048, y: projections.waterways_transport[2048] },
                   { x: 2049, y: projections.waterways_transport[2049] },
-                  { x: 2050, y: projections.road_transport[2050] },
+                  { x: 2050, y: projections.waterways_transport[2050] },
                 ]}
               />
             </XYPlot>

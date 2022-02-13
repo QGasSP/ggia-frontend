@@ -10,6 +10,9 @@ import {
   HorizontalGridLines,
   VerticalGridLines,
   LineSeries,
+  VerticalBarSeries,
+  RadialChart,
+  DiscreteColorLegend,
 } from "react-vis";
 
 const BarSeries = VerticalBarSeries;
@@ -176,132 +179,208 @@ export const U3policies = ({
           </div>
           <br />
           <div>
-            <label>
-              <b>U3.3 Modal split/Passenger transport</b>
-            </label>
-            <label>withouth policy</label>
-            <label>policy target %</label>
-            <label>% of the area affeccted</label>
-            <div>
-              <label>Share for bus</label>
-              <label></label>
-              <label> policy target % goes here</label>
-            </div>
-            <div>
-              <label>Share for tram and metro</label>
-              <label></label>
-              <label> policy target % goes here</label>
-            </div>
-            <div>
-              <label>Share for train</label>
-              <label></label>
-              <label> policy target % goes here</label>
-            </div>
-            <div>
-              <label>Car passenger</label>
-              <label></label>
-              <label> policy target % goes here</label>
-            </div>
             <div>
               <label>
-                <b>Total</b>
+                <b>U3.3 Modal split/Passenger transport</b>
               </label>
-              <label></label>
-              <label></label>
+              <label>withouth policy</label>
+              <label>policy target %</label>
+              <label>% of the area affeccted</label>
+              <div>
+                <label>Share for bus</label>
+                <label></label>
+                <label> policy target % goes here</label>
+              </div>
+              <div>
+                <label>Share for tram and metro</label>
+                <label></label>
+                <label> policy target % goes here</label>
+              </div>
+              <div>
+                <label>Share for train</label>
+                <label></label>
+                <label> policy target % goes here</label>
+              </div>
+              <div>
+                <label>Car passenger</label>
+                <label></label>
+                <label> policy target % goes here</label>
+              </div>
+              <div>
+                <label>
+                  <b>Total</b>
+                </label>
+                <label></label>
+                <label></label>
+              </div>
+              <label>Policy period</label>
+              <select
+                className="start_year"
+                id="start_year"
+                name="start_year"
+                onChange={handleStartYear}
+                defaultValue="2022"
+                required
+              >
+                <option value="DefaultOption">Select start year</option>
+                {optionsNew.map((option) => (
+                  <option key={option} value={option}>
+                    {option}{" "}
+                  </option>
+                ))}
+              </select>
+              <select
+                className="finish_year"
+                id="finish_year"
+                name="finish_year"
+                onChange={handleYearFinish}
+                defaultValue="2022"
+                required
+              >
+                <option value="DefaultOption">Select end year</option>
+                {optionsNew.map((option) => (
+                  <option key={option} value={option}>
+                    {option}{" "}
+                  </option>
+                ))}
+              </select>
             </div>
-            <label>Policy period</label>
-            <select
-              className="start_year"
-              id="start_year"
-              name="start_year"
-              onChange={handleStartYear}
-              defaultValue="2022"
-              required
-            >
-              <option value="DefaultOption">Select start year</option>
-              {optionsNew.map((option) => (
-                <option key={option} value={option}>
-                  {option}{" "}
-                </option>
-              ))}
-            </select>
-            <select
-              className="finish_year"
-              id="finish_year"
-              name="finish_year"
-              onChange={handleYearFinish}
-              defaultValue="2022"
-              required
-            >
-              <option value="DefaultOption">Select end year</option>
-              {optionsNew.map((option) => (
-                <option key={option} value={option}>
-                  {option}{" "}
-                </option>
-              ))}
-            </select>
-          </div>
-          <br />
-          <div>
-            <label>
-              <b>U3.4 Modal split/Freight transport</b>
-            </label>
-            <label>withouth policy</label>
-            <label>policy target %</label>
-            {/* <label>% of the area affeccted</label> */}
-            <div>
-              <label>Share for rail</label>
-              <label></label>
-              <label> policy target % goes here</label>
+            <div className="column">
+              <div>
+                <RadialChart
+                  type="piechart"
+                  data={[
+                    {
+                      //angle: ,
+                      angle: 12,
+                      label: "Urban",
+                      color: "#164059",
+                    },
+                    {
+                      angle: 38,
+                      label: "Suburban",
+                      color: "#F25F29",
+                    },
+                    {
+                      angle: 12,
+                      label: "Town",
+                      color: "#F23A29",
+                    },
+                    {
+                      angle: 38,
+                      label: "Rural",
+                      color: "#D9D9D9",
+                    },
+                  ]}
+                  width={180}
+                  height={180}
+                  colorType="literal"
+                />
+              </div>
+              {/* <DiscreteColorLegend
+                items={settlementLabels}
+                orientation="horizontal"
+                strokeWidth="40"
+              /> */}
+              <div>
+                <RadialChart
+                  type="piechart"
+                  data={[
+                    {
+                      //angle: ,
+                      angle: 12,
+                      label: "Urban",
+                      color: "#164059",
+                    },
+                    {
+                      angle: 38,
+                      label: "Suburban",
+                      color: "#F25F29",
+                    },
+                    {
+                      angle: 12,
+                      label: "Town",
+                      color: "#F23A29",
+                    },
+                    {
+                      angle: 38,
+                      label: "Rural",
+                      color: "#D9D9D9",
+                    },
+                  ]}
+                  width={180}
+                  height={180}
+                  colorType="literal"
+                />
+              </div>
+              {/* <DiscreteColorLegend
+                items={settlementLabels}
+                orientation="horizontal"
+                strokeWidth="40"
+              /> */}
             </div>
-            <div>
-              <label>Share for inland waterways</label>
-              <label></label>
-              <label> policy target % goes here</label>
-            </div>
-            <div>
-              <label>Share for road freight</label>
-              <label></label>
-              <label> policy target % goes here</label>
-            </div>
+            <br />
             <div>
               <label>
-                <b>Total</b>
+                <b>U3.4 Modal split/Freight transport</b>
               </label>
-              <label></label>
-              <label></label>
+              <label>withouth policy</label>
+              <label>policy target %</label>
+              {/* <label>% of the area affeccted</label> */}
+              <div>
+                <label>Share for rail</label>
+                <label></label>
+                <label> policy target % goes here</label>
+              </div>
+              <div>
+                <label>Share for inland waterways</label>
+                <label></label>
+                <label> policy target % goes here</label>
+              </div>
+              <div>
+                <label>Share for road freight</label>
+                <label></label>
+                <label> policy target % goes here</label>
+              </div>
+              <div>
+                <label>
+                  <b>Total</b>
+                </label>
+                <label></label>
+                <label></label>
+              </div>
+              <label>Policy period</label>
+              <select
+                className="start_year"
+                id="start_year"
+                name="start_year"
+                onChange={handleStartYear}
+                defaultValue="2022"
+                required
+              >
+                <option value="DefaultOption">Select start year</option>
+                {optionsNew.map((option) => (
+                  <option key={option} value={option}>
+                    {option}{" "}
+                  </option>
+                ))}
+              </select>
+              <select
+                className="finish_year"
+                id="finish_year"
+                name="finish_year"
+                onChange={handleYearFinish}
+                defaultValue="2022"
+                required
+              >
+                <option value="DefaultOption">Select end year</option>
+                {optionsNew.map((option) => (
+                  <option key={option} value={option}>
+                    {option}{" "}
+                  </option>
+                ))}
+              </select>
             </div>
-            <label>Policy period</label>
-            <select
-              className="start_year"
-              id="start_year"
-              name="start_year"
-              onChange={handleStartYear}
-              defaultValue="2022"
-              required
-            >
-              <option value="DefaultOption">Select start year</option>
-              {optionsNew.map((option) => (
-                <option key={option} value={option}>
-                  {option}{" "}
-                </option>
-              ))}
-            </select>
-            <select
-              className="finish_year"
-              id="finish_year"
-              name="finish_year"
-              onChange={handleYearFinish}
-              defaultValue="2022"
-              required
-            >
-              <option value="DefaultOption">Select end year</option>
-              {optionsNew.map((option) => (
-                <option key={option} value={option}>
-                  {option}{" "}
-                </option>
-              ))}
-            </select>
           </div>
           <br />
           <div>
@@ -561,6 +640,7 @@ export const U3policies = ({
               xType="ordinal"
               yDomain={[0, 100000]}
               // yType="linear"
+              stackBy="y"
             >
               <HorizontalGridLines style={{ stroke: "#B7E9ED" }} />
               <VerticalGridLines style={{ stroke: "#B7E9ED" }} />
@@ -612,6 +692,210 @@ export const U3policies = ({
                 strokeStyle="dashed"
                 strokeWidth="1.5"
                 style={{}}
+              />
+              <BarSeries
+                color="#8C0303"
+                data={[
+                  { x: 2022, y: 1500 },
+                  { x: 2023, y: 1500 },
+                  { x: 2024, y: 1500 },
+                  { x: 2025, y: 1500 },
+                  { x: 2026, y: 1500 },
+                  { x: 2027, y: 1500 },
+                  { x: 2028, y: 1500 },
+                  { x: 2029, y: 1500 },
+                  { x: 2030, y: 1500 },
+                  { x: 2031, y: 1500 },
+                  { x: 2032, y: 1500 },
+                  { x: 2033, y: 1500 },
+                  { x: 2034, y: 1500 },
+                  { x: 2035, y: 1500 },
+                  { x: 2036, y: 1500 },
+                  { x: 2037, y: 1500 },
+                  { x: 2038, y: 1500 },
+                  { x: 2039, y: 1500 },
+                  { x: 2040, y: 1500 },
+                  { x: 2041, y: 1500 },
+                  { x: 2042, y: 1500 },
+                  { x: 2043, y: 1500 },
+                  { x: 2044, y: 1500 },
+                  { x: 2045, y: 1500 },
+                  { x: 2046, y: 1500 },
+                  { x: 2047, y: 1500 },
+                  { x: 2048, y: 1500 },
+                  { x: 2049, y: 1500 },
+                  { x: 2050, y: 1500 },
+                ]}
+              />
+              <BarSeries
+                color="#A6036D"
+                data={[
+                  { x: 2022, y: 1500 },
+                  { x: 2023, y: 1500 },
+                  { x: 2024, y: 1500 },
+                  { x: 2025, y: 1500 },
+                  { x: 2026, y: 1500 },
+                  { x: 2027, y: 1500 },
+                  { x: 2028, y: 1500 },
+                  { x: 2029, y: 1500 },
+                  { x: 2030, y: 1500 },
+                  { x: 2031, y: 1500 },
+                  { x: 2032, y: 1500 },
+                  { x: 2033, y: 1500 },
+                  { x: 2034, y: 1500 },
+                  { x: 2035, y: 1500 },
+                  { x: 2036, y: 1500 },
+                  { x: 2037, y: 1500 },
+                  { x: 2038, y: 1500 },
+                  { x: 2039, y: 1500 },
+                  { x: 2040, y: 1500 },
+                  { x: 2041, y: 1500 },
+                  { x: 2042, y: 1500 },
+                  { x: 2043, y: 1500 },
+                  { x: 2044, y: 1500 },
+                  { x: 2045, y: 1500 },
+                  { x: 2046, y: 1500 },
+                  { x: 2047, y: 1500 },
+                  { x: 2048, y: 1500 },
+                  { x: 2049, y: 1500 },
+                  { x: 2050, y: 1500 },
+                ]}
+              />
+              <BarSeries
+                color="#8C0303"
+                data={[
+                  { x: 2022, y: 1500 },
+                  { x: 2023, y: 1500 },
+                  { x: 2024, y: 1500 },
+                  { x: 2025, y: 1500 },
+                  { x: 2026, y: 1500 },
+                  { x: 2027, y: 1500 },
+                  { x: 2028, y: 1500 },
+                  { x: 2029, y: 1500 },
+                  { x: 2030, y: 1500 },
+                  { x: 2031, y: 1500 },
+                  { x: 2032, y: 1500 },
+                  { x: 2033, y: 1500 },
+                  { x: 2034, y: 1500 },
+                  { x: 2035, y: 1500 },
+                  { x: 2036, y: 1500 },
+                  { x: 2037, y: 1500 },
+                  { x: 2038, y: 1500 },
+                  { x: 2039, y: 1500 },
+                  { x: 2040, y: 1500 },
+                  { x: 2041, y: 1500 },
+                  { x: 2042, y: 1500 },
+                  { x: 2043, y: 1500 },
+                  { x: 2044, y: 1500 },
+                  { x: 2045, y: 1500 },
+                  { x: 2046, y: 1500 },
+                  { x: 2047, y: 1500 },
+                  { x: 2048, y: 1500 },
+                  { x: 2049, y: 1500 },
+                  { x: 2050, y: 1500 },
+                ]}
+              />
+              <BarSeries
+                color="#A6036D"
+                data={[
+                  { x: 2022, y: 1500 },
+                  { x: 2023, y: 1500 },
+                  { x: 2024, y: 1500 },
+                  { x: 2025, y: 1500 },
+                  { x: 2026, y: 1500 },
+                  { x: 2027, y: 1500 },
+                  { x: 2028, y: 1500 },
+                  { x: 2029, y: 1500 },
+                  { x: 2030, y: 1500 },
+                  { x: 2031, y: 1500 },
+                  { x: 2032, y: 1500 },
+                  { x: 2033, y: 1500 },
+                  { x: 2034, y: 1500 },
+                  { x: 2035, y: 1500 },
+                  { x: 2036, y: 1500 },
+                  { x: 2037, y: 1500 },
+                  { x: 2038, y: 1500 },
+                  { x: 2039, y: 1500 },
+                  { x: 2040, y: 1500 },
+                  { x: 2041, y: 1500 },
+                  { x: 2042, y: 1500 },
+                  { x: 2043, y: 1500 },
+                  { x: 2044, y: 1500 },
+                  { x: 2045, y: 1500 },
+                  { x: 2046, y: 1500 },
+                  { x: 2047, y: 1500 },
+                  { x: 2048, y: 1500 },
+                  { x: 2049, y: 1500 },
+                  { x: 2050, y: 1500 },
+                ]}
+              />
+              <BarSeries
+                color="#8C0303"
+                data={[
+                  { x: 2022, y: 1500 },
+                  { x: 2023, y: 1500 },
+                  { x: 2024, y: 1500 },
+                  { x: 2025, y: 1500 },
+                  { x: 2026, y: 1500 },
+                  { x: 2027, y: 1500 },
+                  { x: 2028, y: 1500 },
+                  { x: 2029, y: 1500 },
+                  { x: 2030, y: 1500 },
+                  { x: 2031, y: 1500 },
+                  { x: 2032, y: 1500 },
+                  { x: 2033, y: 1500 },
+                  { x: 2034, y: 1500 },
+                  { x: 2035, y: 1500 },
+                  { x: 2036, y: 1500 },
+                  { x: 2037, y: 1500 },
+                  { x: 2038, y: 1500 },
+                  { x: 2039, y: 1500 },
+                  { x: 2040, y: 1500 },
+                  { x: 2041, y: 1500 },
+                  { x: 2042, y: 1500 },
+                  { x: 2043, y: 1500 },
+                  { x: 2044, y: 1500 },
+                  { x: 2045, y: 1500 },
+                  { x: 2046, y: 1500 },
+                  { x: 2047, y: 1500 },
+                  { x: 2048, y: 1500 },
+                  { x: 2049, y: 1500 },
+                  { x: 2050, y: 1500 },
+                ]}
+              />
+              <BarSeries
+                color="#A6036D"
+                data={[
+                  { x: 2022, y: 1500 },
+                  { x: 2023, y: 1500 },
+                  { x: 2024, y: 1500 },
+                  { x: 2025, y: 1500 },
+                  { x: 2026, y: 1500 },
+                  { x: 2027, y: 1500 },
+                  { x: 2028, y: 1500 },
+                  { x: 2029, y: 1500 },
+                  { x: 2030, y: 1500 },
+                  { x: 2031, y: 1500 },
+                  { x: 2032, y: 1500 },
+                  { x: 2033, y: 1500 },
+                  { x: 2034, y: 1500 },
+                  { x: 2035, y: 1500 },
+                  { x: 2036, y: 1500 },
+                  { x: 2037, y: 1500 },
+                  { x: 2038, y: 1500 },
+                  { x: 2039, y: 1500 },
+                  { x: 2040, y: 1500 },
+                  { x: 2041, y: 1500 },
+                  { x: 2042, y: 1500 },
+                  { x: 2043, y: 1500 },
+                  { x: 2044, y: 1500 },
+                  { x: 2045, y: 1500 },
+                  { x: 2046, y: 1500 },
+                  { x: 2047, y: 1500 },
+                  { x: 2048, y: 1500 },
+                  { x: 2049, y: 1500 },
+                  { x: 2050, y: 1500 },
+                ]}
               />
               <BarSeries
                 color="#8C0303"
