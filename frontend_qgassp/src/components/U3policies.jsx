@@ -3,13 +3,22 @@ import PropTypes from "prop-types";
 import { Header } from "./Header";
 import { Button } from "./Button";
 import "../css/u2planner.css";
+import {
+  XYPlot,
+  XAxis,
+  YAxis,
+  HorizontalGridLines,
+  VerticalGridLines,
+  LineSeries,
+} from "react-vis";
 
+const BarSeries = VerticalBarSeries;
 /**
  * U3 user input
  * @return {}
  */
 
-export const U3planner = ({
+export const U3policies = ({
   year,
   user,
   onLogin,
@@ -82,8 +91,8 @@ export const U3planner = ({
             <label>% of the area affected</label>
             <div>
               <label>change in mobility %</label>
-              <input />
-              <input />
+              <label> expected change value goes here</label>
+              <label>% of the area affected goes here</label>
             </div>
             <div>
               <label>Policy period</label>
@@ -128,8 +137,8 @@ export const U3planner = ({
             <label>% of the area affected</label>
             <div>
               <label>change in freight transport %</label>
-              <input />
-              <input />
+              <label> expected change value goes here</label>
+              <label>% of the area affected goes here</label>
             </div>
             <div>
               <label>Policy period</label>
@@ -176,22 +185,22 @@ export const U3planner = ({
             <div>
               <label>Share for bus</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>Share for tram and metro</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>Share for train</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>Car passenger</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>
@@ -243,17 +252,17 @@ export const U3planner = ({
             <div>
               <label>Share for rail</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>Share for inland waterways</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>Share for road freight</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>
@@ -305,27 +314,27 @@ export const U3planner = ({
             <div>
               <label>Petroleum products</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>Liquified Petroleum Gas (LPG)</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>Natural Gas (CNG)</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>Electricty</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>Diesel</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>
@@ -377,77 +386,77 @@ export const U3planner = ({
             <div>
               <label>Liquified Petroleum Gas (LPG)</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>Natural Gas (CNG)</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>Alternative Energy/biomethane NGV</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>Hybrid electric-petrol</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>Plug-in hybrid petrol-electric PHEV</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>Hybrid diesel-electric</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>Plug-in hybrid diesel-electric PHEV</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>Hydrogen and fuel cells</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>Bioethanol</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>Bio-diesel</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>Bi-fuel</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>Other (unknown)</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>Electricity BEV</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>Petrol, according to country selection</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>Diesel, according to country selection</label>
               <label></label>
-              <input />
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>
@@ -498,8 +507,8 @@ export const U3planner = ({
             <label>% of the area affected</label>
             <div>
               <label>Increase in the share of renewables</label>
-              <input />
-              <input />
+              <label> gCO2e/kWh without policy goes here</label>
+              <label> policy target % goes here</label>
             </div>
             <div>
               <label>Policy period</label>
@@ -545,13 +554,151 @@ export const U3planner = ({
               primary
             />
           </div>
+          <div>
+            <XYPlot
+              width={900}
+              height={500}
+              xType="ordinal"
+              yDomain={[0, 100000]}
+              // yType="linear"
+            >
+              <HorizontalGridLines style={{ stroke: "#B7E9ED" }} />
+              <VerticalGridLines style={{ stroke: "#B7E9ED" }} />
+              <VerticalBarSeries className="StackedBarchart" />
+              <XAxis
+                style={{
+                  line: { stroke: "#ADDDE1" },
+                  ticks: { stroke: "#ADDDE1" },
+                  text: { stroke: "none", fill: "#6b6b76", fontWeight: 600 },
+                }}
+              />
+              <YAxis />
+              <LineSeries
+                curve={null}
+                data={[
+                  { x: 2022, y: 20000 },
+                  { x: 2023, y: 20000 },
+                  { x: 2024, y: 20000 },
+                  { x: 2025, y: 20000 },
+                  { x: 2026, y: 20000 },
+                  { x: 2027, y: 20000 },
+                  { x: 2028, y: 20000 },
+                  { x: 2029, y: 20000 },
+                  { x: 2030, y: 20000 },
+                  { x: 2031, y: 20000 },
+                  { x: 2032, y: 20000 },
+                  { x: 2033, y: 20000 },
+                  { x: 2034, y: 20000 },
+                  { x: 2035, y: 20000 },
+                  { x: 2036, y: 20000 },
+                  { x: 2037, y: 20000 },
+                  { x: 2038, y: 20000 },
+                  { x: 2039, y: 20000 },
+                  { x: 2040, y: 20000 },
+                  { x: 2041, y: 20000 },
+                  { x: 2042, y: 20000 },
+                  { x: 2043, y: 20000 },
+                  { x: 2044, y: 20000 },
+                  { x: 2045, y: 20000 },
+                  { x: 2046, y: 20000 },
+                  { x: 2047, y: 20000 },
+                  { x: 2048, y: 20000 },
+                  { x: 2049, y: 20000 },
+                  { x: 2050, y: 20000 },
+                ]}
+                opacity={1}
+                stroke="rgba(102,116,155,1)"
+                strokeDasharray=""
+                strokeStyle="dashed"
+                strokeWidth="1.5"
+                style={{}}
+              />
+              <BarSeries
+                color="#8C0303"
+                data={[
+                  { x: 2022, y: 1500 },
+                  { x: 2023, y: 1500 },
+                  { x: 2024, y: 1500 },
+                  { x: 2025, y: 1500 },
+                  { x: 2026, y: 1500 },
+                  { x: 2027, y: 1500 },
+                  { x: 2028, y: 1500 },
+                  { x: 2029, y: 1500 },
+                  { x: 2030, y: 1500 },
+                  { x: 2031, y: 1500 },
+                  { x: 2032, y: 1500 },
+                  { x: 2033, y: 1500 },
+                  { x: 2034, y: 1500 },
+                  { x: 2035, y: 1500 },
+                  { x: 2036, y: 1500 },
+                  { x: 2037, y: 1500 },
+                  { x: 2038, y: 1500 },
+                  { x: 2039, y: 1500 },
+                  { x: 2040, y: 1500 },
+                  { x: 2041, y: 1500 },
+                  { x: 2042, y: 1500 },
+                  { x: 2043, y: 1500 },
+                  { x: 2044, y: 1500 },
+                  { x: 2045, y: 1500 },
+                  { x: 2046, y: 1500 },
+                  { x: 2047, y: 1500 },
+                  { x: 2048, y: 1500 },
+                  { x: 2049, y: 1500 },
+                  { x: 2050, y: 1500 },
+                ]}
+              />
+              <BarSeries
+                color="#A6036D"
+                data={[
+                  { x: 2022, y: 1500 },
+                  { x: 2023, y: 1500 },
+                  { x: 2024, y: 1500 },
+                  { x: 2025, y: 1500 },
+                  { x: 2026, y: 1500 },
+                  { x: 2027, y: 1500 },
+                  { x: 2028, y: 1500 },
+                  { x: 2029, y: 1500 },
+                  { x: 2030, y: 1500 },
+                  { x: 2031, y: 1500 },
+                  { x: 2032, y: 1500 },
+                  { x: 2033, y: 1500 },
+                  { x: 2034, y: 1500 },
+                  { x: 2035, y: 1500 },
+                  { x: 2036, y: 1500 },
+                  { x: 2037, y: 1500 },
+                  { x: 2038, y: 1500 },
+                  { x: 2039, y: 1500 },
+                  { x: 2040, y: 1500 },
+                  { x: 2041, y: 1500 },
+                  { x: 2042, y: 1500 },
+                  { x: 2043, y: 1500 },
+                  { x: 2044, y: 1500 },
+                  { x: 2045, y: 1500 },
+                  { x: 2046, y: 1500 },
+                  { x: 2047, y: 1500 },
+                  { x: 2048, y: 1500 },
+                  { x: 2049, y: 1500 },
+                  { x: 2050, y: 1500 },
+                ]}
+              />
+            </XYPlot>
+          </div>
+          <div>
+            <Button
+              size="small"
+              type="submit"
+              value="Submit"
+              label="Next"
+              primary
+            />
+          </div>
         </form>
       </section>
     </article>
   );
 };
 
-U3planner.propTypes = {
+U3policies.propTypes = {
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
   user: PropTypes.shape({}),
@@ -560,6 +707,6 @@ U3planner.propTypes = {
   onCreateAccount: PropTypes.func.isRequired,
 };
 
-U3planner.defaultProps = {
+U3policies.defaultProps = {
   user: null,
 };
