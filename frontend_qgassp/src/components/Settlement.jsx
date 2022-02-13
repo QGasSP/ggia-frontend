@@ -4,6 +4,7 @@ import { Header } from "./Header";
 import { Button } from "./Button";
 import "../css/u1planner.css";
 import { U1planner } from "./U1planner";
+import { useNavigate } from "react-router-dom";
 
 /**
  * U1 Planner baseline user input form
@@ -19,6 +20,7 @@ export const Settlement = ({
   year,
   population,
 }) => {
+  const navigate= useNavigate();
   const [metropolitanCenter, setMetropolitan] = useState(parseFloat(0));
   const [urban, setUrban] = useState(parseFloat(0));
   const [suburban, setSubUrban] = useState(parseFloat(0));
@@ -54,7 +56,7 @@ export const Settlement = ({
     setTotal(metropolitanCenter + urban + suburban + town + rural);
     setNextEmissions(true);
   };
-
+ 
   if (nextEmissions === false && (total > 100 || total < 100)) {
     return (
       <div>
@@ -174,15 +176,16 @@ export const Settlement = ({
             </div>
 
             <br></br>
-            {/*  <div className="backButton">
+           
+            <div className="backButton">
             <Button
-              size="large"
-              type="submit"
-              value="Submit"
+              size="small"
+              value="backStartPage"
+              onClick={() => navigate("/startPage", { replace: true })}
               label="Back"
               primary
             />
-          </div> */}
+          </div> 
           </section>
         </article>
       </div>

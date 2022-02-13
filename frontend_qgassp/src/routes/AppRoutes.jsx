@@ -11,8 +11,8 @@ import { StackedBarchart } from "../components/StackedBarchart";
 export const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/">
-        <Route index element={<StartPage />} />
+      <Route path="/" >
+        <Route index  element={<StartPage />} />
         <Route path="startPage" element={<StartPage />} />
         <Route path="settlement" element={<Settlement />} />
         <Route path="u1planner" element={<U1planner />} />

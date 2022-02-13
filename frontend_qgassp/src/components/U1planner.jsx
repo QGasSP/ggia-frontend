@@ -5,7 +5,7 @@ import { Button } from "./Button";
 import "../css/u1planner.css";
 import axios from "axios";
 import { Legend } from "./Legend";
-import { Settlement } from "./Settlement";
+import { useNavigate } from "react-router-dom";
 
 import {
   XYPlot,
@@ -43,7 +43,8 @@ export const U1planner = ({
   const [projections, setProjections] = useState("");
   const [error, setError] = useState("");
   const [nextQuantification, setQuantification] = useState(false);
-  const [backSettlement, setBackSettlement] = useState(false);
+  const navigate= useNavigate();
+/*   const [backSettlement, setBackSettlement] = useState(false); */
   // const [settlementDistribution, setSettlementDistribution] = useState("");
   const settlementLabels = [
     { title: "urban", color: "#164059" },
@@ -83,10 +84,6 @@ export const U1planner = ({
   const setResponse = (response) => {
     setEmissionData(response.data.data.emissions);
     setProjections(response.data.data.projections);
-  };
-
-  const goBackToSettlement = () => {
-    setBackSettlement(true);
   };
 
   const goToU1Projections = () => {
@@ -467,7 +464,7 @@ export const U1planner = ({
               <Button
                 size="small"
                 value="backSettlement"
-                onClick={goBackToSettlement}
+                onClick={() => navigate("/settlement", { replace: true })}
                 label="Back"
                 primary
               />
@@ -484,18 +481,6 @@ export const U1planner = ({
           </section>
         </article>
       </div>
-    );
-  } else if (backSettlement === true) {
-    return (
-      <Settlement
-        user={user}
-        onLogin={onLogin}
-        onLogout={onLogout}
-        onCreateAccount={onCreateAccount}
-        country={country}
-        year={year}
-        population={population}
-      />
     );
   } else {
     return (
