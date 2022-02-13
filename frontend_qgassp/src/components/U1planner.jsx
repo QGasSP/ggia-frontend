@@ -86,14 +86,10 @@ export const U1planner = ({
   };
 
   const goBackToSettlement = () => {
-    // eslint-disable-next-line no-console
-    console.log("heading back........");
     setBackSettlement(true);
   };
 
   const goToU1Projections = () => {
-    // eslint-disable-next-line no-console
-    console.log("heading there........");
     setQuantification(true);
   };
 

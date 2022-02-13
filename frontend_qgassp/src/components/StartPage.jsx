@@ -63,7 +63,6 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   required
                 >
                   <option value="DefaultOption">Select year</option>
-
                   {options.map((option) => (
                     <option key={option} value={option}>
                       {option}{" "}
@@ -71,7 +70,6 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   ))}
                 </select>
               </div>
-
               <div className="form-group">
                 <label htmlFor="eu_countries" className="intro_label">
                   Country
@@ -84,7 +82,6 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   defaultValue="Select country"
                   required
                 >
-               
                   <option value="DefaultOption">Select country</option>
                   <option value="Austria">Austria</option>
                   <option value="Belgium">Belgium</option>
