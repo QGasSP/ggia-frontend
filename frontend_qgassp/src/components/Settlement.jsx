@@ -166,7 +166,7 @@ export const Settlement = ({
                   />
                 </div>
 
-                <div className="backButton">
+                <div className="backStart">
                   <Button
                     size="small"
                     value="backStartPage"

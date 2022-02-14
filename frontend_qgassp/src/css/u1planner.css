@@ -35,7 +35,7 @@ section h2 {
 }
 section label {
   display: inline-block;
-  width: 300px;
+  width: 50%;
 }
 section input,
 select {
@@ -122,9 +122,14 @@ section div {
   left: 22%;
 }
 
+.backStart {
+  position: absolute;
+  left: 27%;
+}
+
 .nextU1Button {
   position: absolute;
-  right: 33%;
+  right: 36%;
 }
 
 .nextU2Button {
@@ -134,8 +139,9 @@ section div {
 
 .settlement_main {
   padding: 2.5rem;
-  width: 60%;
+  width: 50%;
   margin: 0 auto;
+ 
 }
 .settle_label {
   font-size: 1 rem;

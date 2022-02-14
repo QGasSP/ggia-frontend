@@ -59,6 +59,7 @@ export const TabsEmission = () => {
         <Tab value="land_use" label="Land-use" />
         <Tab value="consumption_based" label="Consumption-based" />
         <Tab value="buildings" label="Buildings" />
+        <Tab value="about" label="About" />
       </Tabs>
     </Box>
   );
