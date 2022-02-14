@@ -40,6 +40,7 @@ export default {
             verbose: true,
             open,
             historyApiFallback: true,
+            hot:true
           }),
           livereload(),
         ]

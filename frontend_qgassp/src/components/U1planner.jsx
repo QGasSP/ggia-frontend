@@ -90,6 +90,10 @@ export const U1planner = ({
     setQuantification(true);
   };
 
+  const goBackToSettlements = () => {
+    navigate("/settlement", { replace: true });
+  };
+
   if (nextQuantification === false) {
     return (
       <div>
@@ -464,7 +468,7 @@ export const U1planner = ({
               <Button
                 size="small"
                 value="backSettlement"
-                onClick={() => navigate("/settlement", { replace: true })}
+                onClick={goBackToSettlements}
                 label="Back"
                 primary
               />

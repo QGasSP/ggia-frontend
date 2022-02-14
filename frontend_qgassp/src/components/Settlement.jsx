@@ -20,7 +20,7 @@ export const Settlement = ({
   year,
   population,
 }) => {
-  const navigate= useNavigate();
+  
   const [metropolitanCenter, setMetropolitan] = useState(parseFloat(0));
   const [urban, setUrban] = useState(parseFloat(0));
   const [suburban, setSubUrban] = useState(parseFloat(0));
@@ -30,6 +30,7 @@ export const Settlement = ({
     metropolitanCenter + urban + suburban + town + rural
   );
   const [nextEmissions, setNextEmissions] = useState(false);
+  const navigate= useNavigate();
 
   const handleMetropolitanCenter = (e) => {
     e.preventDefault();
@@ -56,7 +57,10 @@ export const Settlement = ({
     setTotal(metropolitanCenter + urban + suburban + town + rural);
     setNextEmissions(true);
   };
- 
+ /*  const goBackToStart = () => {   
+    navigate("/startPage", { replace: true });
+}; */
+
   if (nextEmissions === false && (total > 100 || total < 100)) {
     return (
       <div>
@@ -181,7 +185,7 @@ export const Settlement = ({
             <Button
               size="small"
               value="backStartPage"
-              onClick={() => navigate("/startPage", { replace: true })}
+              onClick={() => navigate("/", { replace: true })}
               label="Back"
               primary
             />
