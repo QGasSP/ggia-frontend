@@ -43,8 +43,8 @@ export const U1planner = ({
   const [projections, setProjections] = useState("");
   const [error, setError] = useState("");
   const [nextQuantification, setQuantification] = useState(false);
-  const navigate= useNavigate();
-/*   const [backSettlement, setBackSettlement] = useState(false); */
+  const navigate = useNavigate();
+  /*   const [backSettlement, setBackSettlement] = useState(false); */
   // const [settlementDistribution, setSettlementDistribution] = useState("");
   const settlementLabels = [
     { title: "urban", color: "#164059" },

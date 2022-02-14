@@ -37,7 +37,7 @@ export const StackedBarchart = ({
 }) => {
   const [nextU2view, setU2View] = useState(false);
   const [settlementDistribution, setSettlementDistribution] = useState("");
- /*  const navigate = useNavigate(); */
+  /*  const navigate = useNavigate(); */
 
   const goToNewResidents = () => {
     const settlementDist = {
@@ -350,7 +350,7 @@ export const StackedBarchart = ({
             <LineLegend />
           </div>
         </section>
-     {/*    <div className="backButton">
+        {/*    <div className="backButton">
           <Button
             size="small"
             value="backProjections"

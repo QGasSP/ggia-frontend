@@ -5,7 +5,6 @@ import { Header } from "./Header";
 import "../css/startpage.css";
 import { Settlement } from "./Settlement";
 
-
 export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
   const [country, setCountry] = useState("");
   const [year, setYear] = useState(0);
