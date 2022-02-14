@@ -90,10 +90,6 @@ export const U1planner = ({
     setQuantification(true);
   };
 
-  const goBackToSettlements = () => {
-    navigate("/settlement", { replace: true });
-  };
-
   if (nextQuantification === false) {
     return (
       <div>
@@ -468,9 +464,9 @@ export const U1planner = ({
               <Button
                 size="small"
                 value="backSettlement"
-                onClick={goBackToSettlements}
-                label="Back"
-                primary
+                onClick={() => navigate("settlement", { replace: true })}
+                label="&laquo; Previous"
+                secondary
               />
             </div>
             <div className="nextU2Button">
@@ -478,7 +474,7 @@ export const U1planner = ({
                 size="small"
                 value="nextU2"
                 onClick={goToU1Projections}
-                label="Next"
+                label="Next &raquo;"
                 primary
               />
             </div>

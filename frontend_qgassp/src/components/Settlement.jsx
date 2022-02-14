@@ -75,7 +75,7 @@ export const Settlement = ({
           <section>
             <div className="settlement_main">
               <div>
-                <h2>U1 PLANNER : BASELINE </h2>
+                <h2>U1 PLANNER USER INPUT: BASELINE </h2>
               </div>
 
               <form id="form_settlement_type" onSubmit={setSettlementType}>
@@ -166,12 +166,22 @@ export const Settlement = ({
                   />
                 </div>
 
+                <div className="backButton">
+                  <Button
+                    size="small"
+                    value="backStartPage"
+                    onClick={() => navigate("/", { replace: true })}
+                    label="&laquo; Previous"
+                    secondary
+                  />
+                </div>
+
                 <div className="nextU1Button">
                   <Button
                     size="small"
                     type="submit"
                     value="Submit"
-                    label="Next"
+                    label="Next &raquo;"
                     primary
                   />
                 </div>
@@ -179,16 +189,6 @@ export const Settlement = ({
             </div>
 
             <br></br>
-
-            <div className="backButton">
-              <Button
-                size="small"
-                value="backStartPage"
-                onClick={() => navigate("/", { replace: true })}
-                label="Back"
-                primary
-              />
-            </div>
           </section>
         </article>
       </div>

@@ -123,10 +123,10 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
               </div>
               <div className="nextButton">
                 <Button
-                  size="medium"
+                  size="small"
                   type="submit"
                   value="Submit"
-                  label="Next"
+                  label="Next &raquo;"
                   primary
                 />
               </div>

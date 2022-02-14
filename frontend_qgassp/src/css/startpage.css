@@ -1,14 +1,12 @@
 .intro_header {
-  padding: 0 0.7rem;
   margin-bottom: 1.9rem;
 }
 
 .intro_h1 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
   text-align: center;
   font-size: 1.5em;
   font-weight: 400;
+  font-family: sans-serif;
   color: black;
 }
 .form-input,

@@ -4,6 +4,7 @@ import { Header } from "./Header";
 import { Button } from "./Button";
 import "../css/u2planner.css";
 import { U2planner } from "./U2planner";
+import { useNavigate } from "react-router-dom";
 
 /**
  * U1 Planner user input form for baseline
@@ -32,6 +33,7 @@ export const NewResidents = ({
   const [newDevelopment, setNewDevelopment] = useState("");
   const [updateU2charts, setU2charts] = useState(false);
   const [totalNewResidents, setTotalNewResidents] = useState(0.0);
+  const navigate = useNavigate();
   const optionsNew = [];
   for (let i = 2022; i < 2051; i++) optionsNew.push(i);
 
@@ -236,13 +238,22 @@ export const NewResidents = ({
                 required
               />
             </div>
+            <div className="backButtonNew">
+              <Button
+                size="small"
+                value="backProjections"
+                onClick={() => navigate("stackedBarChart", { replace: true })}
+                label="&laquo; Previous"
+                secondary
+              />
+            </div>
 
-            <div>
+            <div className="nextButtonNew">
               <Button
                 size="small"
                 type="submit"
                 value="Submit"
-                label="Next"
+                label="Next &raquo;"
                 primary
               />
             </div>

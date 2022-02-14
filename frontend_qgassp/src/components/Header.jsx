@@ -1,15 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import { TabsEmission } from "./TabsEmission";
 import { Button } from "./Button";
 import "../css/header.css";
 
 export const Header = ({ user, onLogin, onLogout, onCreateAccount }) => {
-  /* const goBack = (e) => {
-  e.preventDefault();
-  return <StartPage />
-}; */
-
   return (
     <header>
       <div className="wrapper">
@@ -35,8 +30,13 @@ export const Header = ({ user, onLogin, onLogout, onCreateAccount }) => {
               />
             </g>
           </svg>
-          <h1>Qgassp-ggia</h1>
+          <h1>QgasSp-ggia</h1>
         </div>
+        <div>
+          {" "}
+          <TabsEmission />
+        </div>
+
         <div>
           {user ? (
             <Button size="small" onClick={onLogout} label="Log out" />
