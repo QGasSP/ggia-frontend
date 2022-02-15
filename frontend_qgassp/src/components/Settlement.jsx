@@ -5,6 +5,8 @@ import { Button } from "./Button";
 import "../css/u1planner.css";
 import { U1planner } from "./U1planner";
 import { useNavigate } from "react-router-dom";
+import Divider from "@mui/material/Divider";
+import Chip from "@mui/material/Chip";
 
 /**
  * U1 Planner baseline user input form
@@ -72,12 +74,15 @@ export const Settlement = ({
               onCreateAccount={onCreateAccount}
             />
           }
-          <section>
-            <div className="settlement_main">
-              <div>
-                <h2>U1 PLANNER USER INPUT: BASELINE </h2>
-              </div>
-
+          <div className="headerSettlement">
+            <Divider textAlign="left" flexItem>
+              {" "}
+              <Chip label="U1 PLANNER USER INPUT: BASELINE" />
+            </Divider>
+          </div>
+          {/*     <label className="countryData">{country}({year})-{population}</label> */}
+          <div className="settlement_main">
+            <section>
               <form id="form_settlement_type" onSubmit={setSettlementType}>
                 <div className="settlement_headers">
                   <label className="settle_label">
@@ -186,10 +191,8 @@ export const Settlement = ({
                   />
                 </div>
               </form>
-            </div>
-
-            <br></br>
-          </section>
+            </section>
+          </div>
         </article>
       </div>
     );

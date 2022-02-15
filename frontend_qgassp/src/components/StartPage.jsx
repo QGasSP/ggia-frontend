@@ -4,6 +4,7 @@ import { Button } from "./Button";
 import { Header } from "./Header";
 import "../css/startpage.css";
 import { Settlement } from "./Settlement";
+import Divider from "@mui/material/Divider";
 
 export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
   const [country, setCountry] = useState("");
@@ -43,12 +44,9 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
         }
         <div className="intro_main">
           <section>
-            <header className="intro_header">
-              <h1 id="title" className="intro_h1">
-                <b>Select country for assessment</b>
-              </h1>
-            </header>
-
+            <Divider textAlign="center" className="headerStart" flexItem>
+              Select country for assessment
+            </Divider>
             <form id="impact_start_form" onSubmit={startBaseline}>
               <div className="form-group">
                 <label htmlFor="year_selection" className="intro_label">

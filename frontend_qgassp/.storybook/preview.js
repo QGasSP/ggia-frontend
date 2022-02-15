@@ -1,6 +1,3 @@
-/* import StoryRouter from 'storybook-react-router';
-
-addDecorator(StoryRouter()); */
 import React from "react";
 import { addDecorator } from "@storybook/react";
 import { MemoryRouter } from "react-router";

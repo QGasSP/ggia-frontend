@@ -35,7 +35,7 @@ section h2 {
 }
 section label {
   display: inline-block;
-  width: 50%;
+  width: 300px;
 }
 section input,
 select {
@@ -52,9 +52,14 @@ select {
 }
 
 .row:after {
+  margin-top: 1em;
   content: "";
   display: table;
   clear: both;
+}
+
+.row {
+  margin-left: 30px;
 }
 
 @media screen and (max-width: 600px) {
@@ -124,7 +129,7 @@ section div {
 
 .backStart {
   position: absolute;
-  left: 27%;
+  left: 28%;
 }
 
 .nextU1Button {
@@ -138,10 +143,9 @@ section div {
 }
 
 .settlement_main {
-  padding: 2.5rem;
+  padding: 0rem;
   width: 50%;
   margin: 0 auto;
- 
 }
 .settle_label {
   font-size: 1 rem;
@@ -149,4 +153,23 @@ section div {
   font-family: sans-serif;
   margin-bottom: 0.5rem;
   cursor: default;
+}
+.countryData {
+  font-size: 1em;
+  font-weight: 400;
+  font-family: sans-serif;
+  color: #5e3775;
+}
+
+.headerSettlement {
+  margin-top: 1.5em;
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: 400;
+  font-family: sans-serif;
+  color: #5e3775;
+}
+
+.settlementDiv {
+  margin-left: 30px;
 }

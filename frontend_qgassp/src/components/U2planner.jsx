@@ -231,14 +231,14 @@ export const U2planner = ({
           <U2legend />
 
           <div className="backButtonNew">
-              <Button
-                size="small"
-                value="backProjections"
-                onClick={() => navigate(-1, { replace: true })}
-                label="&laquo; Previous"
-                secondary
-              />
-            </div>
+            <Button
+              size="small"
+              value="backProjections"
+              onClick={() => navigate(-1, { replace: true })}
+              label="&laquo; Previous"
+              secondary
+            />
+          </div>
         </form>
       </section>
     </article>

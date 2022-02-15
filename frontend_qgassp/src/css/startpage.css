@@ -2,10 +2,10 @@
   margin-bottom: 1.9rem;
 }
 
-.intro_h1 {
+.headerStart {
   text-align: center;
-  font-size: 1.5em;
-  font-weight: 400;
+  font-size: 1.2em;
+  font-weight: 700;
   font-family: sans-serif;
   color: black;
 }
@@ -18,6 +18,7 @@
 }
 
 .intro_label {
+  width: 100%;
   font-size: 1 rem;
   align-items: center;
   font-family: sans-serif;
@@ -64,12 +65,11 @@
 }
 
 .intro_main {
-  padding: 2.5rem;
-  width: 40%;
+  width: 35%;
   margin: 0 auto;
 }
 
 .nextButton {
   position: absolute;
-  right: 32%;
+  right: 37%;
 }
