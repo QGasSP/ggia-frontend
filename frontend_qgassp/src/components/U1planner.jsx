@@ -41,13 +41,26 @@ export const U1planner = ({
   town,
   rural,
   total,
+  nextEmissions
 }) => {
-  const [emission, setEmissionData] = useState("");
-  const [projections, setProjections] = useState("");
   const [error, setError] = useState("");
-  const [nextU2view, setU2View] = useState(false);
-  const [settlementDistribution, setSettlementDistribution] = useState("");
   const navigate = useNavigate();
+  const [nextU2view, setU2View] = useState(false);
+
+  const [emission, setEmissionData] = useState(() => {
+    const savedEmissions = window.localStorage.getItem("emission");
+    return savedEmissions!== null ? JSON.parse(savedEmissions) : parseFloat(0);
+  });
+
+  const [projections, setProjections] = useState(() => {
+    const savedProjections = window.localStorage.getItem("projections");
+    return savedProjections!== null ? JSON.parse(savedProjections) : parseFloat(0);
+  });
+
+  const [settlementDistribution, setSettlementDistribution] = useState(() => {
+    const savedSettlementDist = window.localStorage.getItem("settlementDistribution");
+    return savedSettlementDist!== null ? JSON.parse(savedSettlementDist) : parseFloat(0);
+  });
 
   const goToNewResidents = () => {
     const settlementDist = {
@@ -60,6 +73,12 @@ export const U1planner = ({
     setSettlementDistribution(settlementDist);
     setU2View(true);
   };
+
+  const goBackSettlement = () => {
+    localStorage.removeItem("nextEmissions", nextEmissions);
+    navigate("/settlement", { replace: true })
+  };
+
 
   /*   const [backSettlement, setBackSettlement] = useState(false); */
   // const [settlementDistribution, setSettlementDistribution] = useState("");
@@ -101,6 +120,14 @@ export const U1planner = ({
     setEmissionData(response.data.data.emissions);
     setProjections(response.data.data.projections);
   };
+
+  useEffect(() => {
+    localStorage.setItem("emission", emission);
+  }, [emission]);
+
+  useEffect(() => {
+    localStorage.setItem("projections", projections);
+  }, [projections]);
 
   if (nextU2view === false) {
     return (
@@ -500,8 +527,8 @@ export const U1planner = ({
               <Divider textAlign="left" flexItem>
                 <b>Projections: CO2e emissions per capita 2022-2050</b>
               </Divider>
-              <div>{JSON.stringify(projections.bus)}</div>
-             {/*  <div>
+            {/*   <div>{JSON.stringify(projections.bus)}</div> */}
+              {/*  <div>
                 <XYPlot width={900} height={500} stackBy="y" xType="ordinal">
                   <HorizontalGridLines />
                   <VerticalGridLines />
@@ -787,7 +814,7 @@ export const U1planner = ({
                 <Button
                   size="small"
                   value="backSettlement"
-                  onClick={() => navigate("/settlement", { replace: true })}
+                  onClick={goBackSettlement}
                   label="&laquo; Previous"
                   secondary
                 />
@@ -819,6 +846,7 @@ export const U1planner = ({
 };
 
 U1planner.propTypes = {
+  nextEmissions: PropTypes.bool.isRequired,
   metropolitanCenter: PropTypes.number.isRequired,
   urban: PropTypes.number.isRequired,
   suburban: PropTypes.number.isRequired,

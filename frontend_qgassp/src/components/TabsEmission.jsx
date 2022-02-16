@@ -55,10 +55,10 @@ export const TabsEmission = () => {
         indicatorColor={theme.secondary}
         aria-label="emission types"
       >
-        <Tab 
-        value="transport" 
-        label="Transport" 
-      /*   onClick={handleTransport}  */
+        <Tab
+          value="transport"
+          label="Transport"
+          /*   onClick={handleTransport}  */
         />
         <Tab value="land_use" label="Land-use" />
         <Tab value="consumption_based" label="Consumption-based" />

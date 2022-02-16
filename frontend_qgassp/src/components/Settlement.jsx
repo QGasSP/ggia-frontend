@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import PropTypes from "prop-types";
 import { Header } from "./Header";
 import { Button } from "./Button";
@@ -22,15 +22,52 @@ export const Settlement = ({
   year,
   population,
 }) => {
-  const [metropolitanCenter, setMetropolitan] = useState(parseFloat(0));
-  const [urban, setUrban] = useState(parseFloat(0));
-  const [suburban, setSubUrban] = useState(parseFloat(0));
-  const [town, setTown] = useState(parseFloat(0));
-  const [rural, setRural] = useState(parseFloat(0));
+  const [metropolitanCenter, setMetropolitan] = useState(() => {
+    const savedMetroCenter = window.localStorage.getItem("metropolitanCenter");
+    return savedMetroCenter !== null ? JSON.parse(savedMetroCenter) : parseFloat(0);
+  });
+  const [urban, setUrban] = useState(() => {
+    const savedUrban = window.localStorage.getItem("urban");
+    return savedUrban !== null ? JSON.parse(savedUrban) : parseFloat(0);
+  });
+  const [suburban, setSubUrban] = useState(() => {
+    const savedSubUrban = window.localStorage.getItem("suburban");
+    return savedSubUrban !== null ? JSON.parse(savedSubUrban) : parseFloat(0);
+  });
+  const [town, setTown] = useState(() => {
+    const savedTown = window.localStorage.getItem("town");
+    return savedTown!== null ? JSON.parse(savedTown) : parseFloat(0);
+  });
+  const [rural, setRural] =useState(() => {
+    const savedRural = window.localStorage.getItem("rural");
+    return savedRural !== null ? JSON.parse(savedRural) : parseFloat(0);
+  });
+
+  useEffect(() => {
+    localStorage.setItem("metropolitanCenter", metropolitanCenter);
+  }, [metropolitanCenter]);
+
+  useEffect(() => {
+    localStorage.setItem("urban", urban);
+  }, [urban]);
+
+  useEffect(() => {
+    localStorage.setItem("suburban",suburban);
+  }, [suburban]);
+
+  useEffect(() => {
+    localStorage.setItem("town", town);
+  }, [town]);
+
+  useEffect(() => {
+    localStorage.setItem("rural", rural);
+  }, [rural]);
+
   const [total, setTotal] = useState(
     metropolitanCenter + urban + suburban + town + rural
   );
   const [nextEmissions, setNextEmissions] = useState(false);
+  
   const navigate = useNavigate();
 
   const handleMetropolitanCenter = (e) => {
@@ -58,11 +95,9 @@ export const Settlement = ({
     setTotal(metropolitanCenter + urban + suburban + town + rural);
     setNextEmissions(true);
   };
-  /*  const goBackToStart = () => {   
-    navigate("/startPage", { replace: true });
-}; */
+ 
 
-  if (nextEmissions === false && (total > 100 || total < 100)) {
+  if (nextEmissions === false) {
     return (
       <div>
         <article>
@@ -104,7 +139,7 @@ export const Settlement = ({
                     id="metropolitan"
                     min="0"
                     max="100"
-                    /*  defaultValue={metropolitanCenter} */
+                    value={metropolitanCenter}
                     onChange={handleMetropolitanCenter}
                     required
                   />
@@ -119,7 +154,7 @@ export const Settlement = ({
                     id="urban"
                     min="0"
                     max="100"
-                    /*   defaultValue={urban} */
+                    value={urban} 
                     onChange={handleUrban}
                     required
                   />
@@ -135,7 +170,7 @@ export const Settlement = ({
                     step="any"
                     min="0.0"
                     max="100.0"
-                    /*   defaultValue={suburban} */
+                    value={suburban}
                     onChange={handleSuburban}
                     required
                   />
@@ -150,7 +185,7 @@ export const Settlement = ({
                     step="0.1"
                     min="0.0"
                     max="100.0"
-                    // defaultValue={town}
+                    value={town}
                     onChange={handleTown}
                     required
                   />
@@ -165,7 +200,7 @@ export const Settlement = ({
                     step="0.1"
                     min="0"
                     max="100"
-                    /* defaultValue={rural} */
+                    value={rural}
                     onChange={handleRural}
                     required
                   />
@@ -175,7 +210,7 @@ export const Settlement = ({
                   <Button
                     size="small"
                     value="backStartPage"
-                    onClick={() => navigate("/", { replace: true })}
+                    onClick={() => navigate("/startPage", { replace: true })}
                     label="&laquo; Previous"
                     secondary
                   />
@@ -208,6 +243,7 @@ export const Settlement = ({
         town={town}
         rural={rural}
         total={total}
+        nextEmissions={nextEmissions}
       />
     );
   }

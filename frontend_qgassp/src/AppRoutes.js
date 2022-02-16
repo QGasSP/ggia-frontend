@@ -2,7 +2,6 @@ import React from "react";
 import { useRoutes } from "react-router-dom";
 import { NewResidents } from "./components/NewResidents";
 import { Settlement } from "./components/Settlement";
-import { StackedBarchart } from "./components/StackedBarchart";
 import { StartPage } from "./components/StartPage";
 import { U1planner } from "./components/U1planner";
 import { U2planner } from "./components/U2planner";
@@ -15,7 +14,6 @@ export const AppRoutes = () => {
     { path: "/settlement", element: <Settlement /> },
     { path: "/u1planner", element: <U1planner /> },
     { path: "/u1plannerDefault", element: <U1plannerDefault /> },
-    { path: "/stackedBarChart", element: <StackedBarchart /> },
     { path: "/newResidents", element: <NewResidents /> },
     { path: "/u2planner", element: <U2planner /> },
   ]);

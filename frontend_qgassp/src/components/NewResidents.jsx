@@ -56,11 +56,9 @@ export const NewResidents = ({
     setYearStart(Number(e.target.value));
   };
   const handleYearFinish = (e) => {
-    e.preventDefault();
     setYearFinish(Number(e.target.value));
   };
   const handleNewResident = (e) => {
-    e.preventDefault();
     setNewResidents(Number(e.target.value));
   };
 

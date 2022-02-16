@@ -1,24 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button } from "./Button";
 import { Header } from "./Header";
 import "../css/startpage.css";
 import { Settlement } from "./Settlement";
-import Divider from "@mui/material/Divider";
 
 export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
-  const [country, setCountry] = useState("");
+ /*  const [country, setCountry] = useState("");
   const [year, setYear] = useState(0);
-  const [population, setPopulation] = useState(0);
+  const [population, setPopulation] = useState(0); */
+
+
+  const [country, setCountry] = useState(() => {
+    const savedCountry = window.localStorage.getItem("country");
+    return  window.localStorage.getItem("country") !== "" ? savedCountry : "";
+  });
+  const [year, setYear] = useState(() => {
+    const savedYear = window.localStorage.getItem("year");
+    return savedYear !== null ? JSON.parse(savedYear) : 0;
+  });
+  const [population, setPopulation] = useState(() => {
+    const savedPopulation = window.localStorage.getItem("population");
+    return savedPopulation !== null ? JSON.parse(savedPopulation) : 0;
+  });
   const [next, setNext] = useState(false);
   const options = [];
   for (let i = 2022; i < 2051; i++) options.push(i);
 
   const handleSelected = (e) => {
+    e.preventDefault();
     setCountry(e.target.value);
   };
 
   const handlePopulation = (e) => {
+    e.preventDefault();
     setPopulation(Number(e.target.value));
   };
 
@@ -26,6 +41,18 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
     e.preventDefault();
     setYear(Number(e.target.value));
   };
+
+  useEffect(() => {
+    localStorage.setItem("year", year);
+  }, [year]);
+
+  useEffect(() => {
+    localStorage.setItem("population", population);
+  }, [population]);
+
+  useEffect(() => {
+    localStorage.setItem("country", country);
+  }, [country]);
 
   const startBaseline = () => {
     setNext(true);
@@ -44,9 +71,12 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
         }
         <div className="intro_main">
           <section>
-            <Divider textAlign="center" className="headerStart" flexItem>
-              Select country for assessment
-            </Divider>
+            <header className="intro_header">
+              <h1 id="title" className="intro_h1">
+                <b>Select country for assessment</b>
+              </h1>
+            </header>
+
             <form id="impact_start_form" onSubmit={startBaseline}>
               <div className="form-group">
                 <label htmlFor="year_selection" className="intro_label">
@@ -57,10 +87,12 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   id="year_selection"
                   name="year_selection"
                   onChange={handleSelectedYear}
+                  value={year}
                   defaultValue="Select year"
                   required
                 >
                   <option value="DefaultOption">Select year</option>
+
                   {options.map((option) => (
                     <option key={option} value={option}>
                       {option}{" "}
@@ -68,6 +100,7 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   ))}
                 </select>
               </div>
+
               <div className="form-group">
                 <label htmlFor="eu_countries" className="intro_label">
                   Country
@@ -77,6 +110,7 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   id="eu_countries"
                   name="eu_countries"
                   onChange={handleSelected}
+                  value={country}
                   defaultValue="Select country"
                   required
                 >
@@ -115,16 +149,18 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   pattern="[0-9]*"
                   id="population_assessment"
                   className="form-input"
+                  value={population}
+                  enterKeyHint="10000"
                   onChange={handlePopulation}
                   required
                 />
               </div>
               <div className="nextButton">
                 <Button
-                  size="small"
+                  size="medium"
                   type="submit"
                   value="Submit"
-                  label="Next &raquo;"
+                  label="Next"
                   primary
                 />
               </div>
