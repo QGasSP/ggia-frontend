@@ -242,7 +242,7 @@ export const NewResidents = ({
               <Button
                 size="small"
                 value="backProjections"
-                onClick={() => navigate("stackedBarChart", { replace: true })}
+                onClick={() => navigate("/u1planner", { replace: true })}
                 label="&laquo; Previous"
                 secondary
               />

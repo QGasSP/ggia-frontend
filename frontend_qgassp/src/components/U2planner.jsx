@@ -234,7 +234,7 @@ export const U2planner = ({
             <Button
               size="small"
               value="backProjections"
-              onClick={() => navigate(-1, { replace: true })}
+              onClick={() => navigate("/newResidents", { replace: true })}
               label="&laquo; Previous"
               secondary
             />

@@ -787,7 +787,7 @@ export const U1planner = ({
                 <Button
                   size="small"
                   value="backSettlement"
-                  onClick={() => navigate("settlement", { replace: true })}
+                  onClick={() => navigate("/settlement", { replace: true })}
                   label="&laquo; Previous"
                   secondary
                 />
