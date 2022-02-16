@@ -6,8 +6,12 @@ module.exports = {
     "@storybook/preset-create-react-app",
     "@storybook/addon-jest",
   ],
+  staticDirs: ["../public"],
   framework: "@storybook/react",
   core: {
     builder: "webpack5",
+  },
+  features: {
+    emotionAlias: false,
   },
 };

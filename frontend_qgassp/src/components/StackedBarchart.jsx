@@ -12,6 +12,7 @@ import { Header } from "./Header";
 import { LineLegend } from "./LineLegend";
 import { Button } from "./Button";
 import { NewResidents } from "./NewResidents";
+import { useNavigate } from "react-router-dom";
 
 const BarSeries = VerticalBarSeries;
 /**
@@ -36,8 +37,7 @@ export const StackedBarchart = ({
 }) => {
   const [nextU2view, setU2View] = useState(false);
   const [settlementDistribution, setSettlementDistribution] = useState("");
-
-  const goBackToProjections = () => {};
+  const navigate = useNavigate();
 
   const goToNewResidents = () => {
     const settlementDist = {
@@ -354,9 +354,9 @@ export const StackedBarchart = ({
           <Button
             size="small"
             value="backProjections"
-            onClick={goBackToProjections}
-            label="Back"
-            primary
+            onClick={() => navigate("u1planner", { replace: true })}
+            label="&laquo; Previous"
+            secondary
           />
         </div>
         <div className="nextU2Button">
@@ -364,7 +364,7 @@ export const StackedBarchart = ({
             size="small"
             value="nextU2"
             onClick={goToNewResidents}
-            label="Next"
+            label="Next &raquo;"
             primary
           />
         </div>

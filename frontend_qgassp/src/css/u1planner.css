@@ -9,7 +9,8 @@ section {
 
 section h2 {
   font-weight: 900;
-  font-size: 24px;
+  font-size: 1.5em;
+  font-family: sans-serif;
   line-height: 1;
   margin: 0 0 4px;
   display: inline-block;
@@ -51,9 +52,14 @@ select {
 }
 
 .row:after {
+  margin-top: 1em;
   content: "";
   display: table;
   clear: both;
+}
+
+.row {
+  margin-left: 30px;
 }
 
 @media screen and (max-width: 600px) {
@@ -118,22 +124,27 @@ section div {
 
 .backButton {
   position: absolute;
-  left: 3%;
+  left: 22%;
+}
+
+.backStart {
+  position: absolute;
+  left: 28%;
 }
 
 .nextU1Button {
   position: absolute;
-  right: 33%;
+  right: 36%;
 }
 
 .nextU2Button {
   position: absolute;
-  right: 3%;
+  right: 33%;
 }
 
 .settlement_main {
-  padding: 2.5rem;
-  width: 60%;
+  padding: 0rem;
+  width: 50%;
   margin: 0 auto;
 }
 .settle_label {
@@ -142,4 +153,23 @@ section div {
   font-family: sans-serif;
   margin-bottom: 0.5rem;
   cursor: default;
+}
+.countryData {
+  font-size: 1em;
+  font-weight: 400;
+  font-family: sans-serif;
+  color: #5e3775;
+}
+
+.headerSettlement {
+  margin-top: 1.5em;
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: 400;
+  font-family: sans-serif;
+  color: #5e3775;
+}
+
+.settlementDiv {
+  margin-left: 30px;
 }

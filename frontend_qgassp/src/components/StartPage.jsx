@@ -4,6 +4,7 @@ import { Button } from "./Button";
 import { Header } from "./Header";
 import "../css/startpage.css";
 import { Settlement } from "./Settlement";
+import Divider from "@mui/material/Divider";
 
 export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
   const [country, setCountry] = useState("");
@@ -43,12 +44,9 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
         }
         <div className="intro_main">
           <section>
-            <header className="intro_header">
-              <h1 id="title" className="intro_h1">
-                <b>Select country for assessment</b>
-              </h1>
-            </header>
-
+            <Divider textAlign="center" className="headerStart" flexItem>
+              Select country for assessment
+            </Divider>
             <form id="impact_start_form" onSubmit={startBaseline}>
               <div className="form-group">
                 <label htmlFor="year_selection" className="intro_label">
@@ -63,7 +61,6 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   required
                 >
                   <option value="DefaultOption">Select year</option>
-
                   {options.map((option) => (
                     <option key={option} value={option}>
                       {option}{" "}
@@ -71,7 +68,6 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   ))}
                 </select>
               </div>
-
               <div className="form-group">
                 <label htmlFor="eu_countries" className="intro_label">
                   Country
@@ -84,7 +80,6 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   defaultValue="Select country"
                   required
                 >
-               
                   <option value="DefaultOption">Select country</option>
                   <option value="Austria">Austria</option>
                   <option value="Belgium">Belgium</option>
@@ -126,10 +121,10 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
               </div>
               <div className="nextButton">
                 <Button
-                  size="medium"
+                  size="small"
                   type="submit"
                   value="Submit"
-                  label="Next"
+                  label="Next &raquo;"
                   primary
                 />
               </div>

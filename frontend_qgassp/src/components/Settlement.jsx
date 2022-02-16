@@ -4,6 +4,9 @@ import { Header } from "./Header";
 import { Button } from "./Button";
 import "../css/u1planner.css";
 import { U1planner } from "./U1planner";
+import { useNavigate } from "react-router-dom";
+import Divider from "@mui/material/Divider";
+import Chip from "@mui/material/Chip";
 
 /**
  * U1 Planner baseline user input form
@@ -28,6 +31,7 @@ export const Settlement = ({
     metropolitanCenter + urban + suburban + town + rural
   );
   const [nextEmissions, setNextEmissions] = useState(false);
+  const navigate = useNavigate();
 
   const handleMetropolitanCenter = (e) => {
     e.preventDefault();
@@ -54,6 +58,9 @@ export const Settlement = ({
     setTotal(metropolitanCenter + urban + suburban + town + rural);
     setNextEmissions(true);
   };
+  /*  const goBackToStart = () => {   
+    navigate("/startPage", { replace: true });
+}; */
 
   if (nextEmissions === false && (total > 100 || total < 100)) {
     return (
@@ -67,12 +74,15 @@ export const Settlement = ({
               onCreateAccount={onCreateAccount}
             />
           }
-          <section>
-            <div className="settlement_main">
-              <div>
-                <h2>U1 PLANNER : BASELINE </h2>
-              </div>
-
+          <div className="headerSettlement">
+            <Divider textAlign="left" flexItem>
+              {" "}
+              <Chip label="U1 PLANNER USER INPUT: BASELINE" />
+            </Divider>
+          </div>
+          {/*     <label className="countryData">{country}({year})-{population}</label> */}
+          <div className="settlement_main">
+            <section>
               <form id="form_settlement_type" onSubmit={setSettlementType}>
                 <div className="settlement_headers">
                   <label className="settle_label">
@@ -161,29 +171,28 @@ export const Settlement = ({
                   />
                 </div>
 
+                <div className="backStart">
+                  <Button
+                    size="small"
+                    value="backStartPage"
+                    onClick={() => navigate("/", { replace: true })}
+                    label="&laquo; Previous"
+                    secondary
+                  />
+                </div>
+
                 <div className="nextU1Button">
                   <Button
                     size="small"
                     type="submit"
                     value="Submit"
-                    label="Next"
+                    label="Next &raquo;"
                     primary
                   />
                 </div>
               </form>
-            </div>
-
-            <br></br>
-            {/*  <div className="backButton">
-            <Button
-              size="large"
-              type="submit"
-              value="Submit"
-              label="Back"
-              primary
-            />
-          </div> */}
-          </section>
+            </section>
+          </div>
         </article>
       </div>
     );

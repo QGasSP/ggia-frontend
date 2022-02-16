@@ -36,3 +36,13 @@ section select {
 section div {
   margin-bottom: 10px;
 }
+
+.backButtonNew {
+  position: absolute;
+  left: 5%;
+}
+
+.nextButtonNew {
+  position: absolute;
+  right: 13%;
+}

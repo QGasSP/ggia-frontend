@@ -1,14 +1,12 @@
 import "./App.css";
 import "../node_modules/react-vis/dist/style.css";
-import { StartPage } from "./components/StartPage";
+import { AppRoutes } from "./routes/AppRoutes";
 
 function App() {
   return (
-    <div>
-      <header>
-        <StartPage />
-      </header>
-    </div>
+    <>
+      <AppRoutes />
+    </>
   );
 }
 

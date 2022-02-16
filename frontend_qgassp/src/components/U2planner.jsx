@@ -4,6 +4,8 @@ import { Header } from "./Header";
 import { U2legend } from "./U2legend";
 import axios from "axios";
 import "../css/u2planner.css";
+import { Button } from "./Button";
+import { useNavigate } from "react-router-dom";
 import {
   XYPlot,
   XAxis,
@@ -29,6 +31,7 @@ export const U2planner = ({
   const [errorU2, setU2Error] = useState("");
   const [responseData, setResponseData] = useState("");
   const [baselinePopulation, setBaselinePopulation] = useState("");
+  const navigate = useNavigate();
 
   useEffect(async () => {
     const rawData = { baseline, newDevelopment };
@@ -226,6 +229,16 @@ export const U2planner = ({
             />
           </XYPlot>
           <U2legend />
+
+          <div className="backButtonNew">
+            <Button
+              size="small"
+              value="backProjections"
+              onClick={() => navigate("/newResidents", { replace: true })}
+              label="&laquo; Previous"
+              secondary
+            />
+          </div>
         </form>
       </section>
     </article>
