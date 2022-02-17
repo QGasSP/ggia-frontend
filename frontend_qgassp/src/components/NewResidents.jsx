@@ -5,6 +5,8 @@ import { Button } from "./Button";
 import "../css/u2planner.css";
 import { U2planner } from "./U2planner";
 import { useNavigate } from "react-router-dom";
+import Chip from "@mui/material/Chip";
+import Divider from "@mui/material/Divider";
 
 /**
  * U1 Planner user input form for baseline
@@ -100,11 +102,18 @@ export const NewResidents = ({
             onCreateAccount={onCreateAccount}
           />
         }
+         <div className="headerSettlement">
+            <Divider textAlign="left" flexItem>
+              {" "}
+              <Chip label="U2 NEW DEVELOPMENT INPUT" />
+            </Divider>
+          </div>
 
         <section>
-          <div>
+       {/*    <div>
             <h2>U2 NEW DEVELOPMENT</h2>
-          </div>
+          </div> */}
+          <div className="newResidentDiv">
           <form onSubmit={updateU2Planner}>
             <label>
               <b>U2.1 New residents</b>
@@ -256,6 +265,7 @@ export const NewResidents = ({
               />
             </div>
           </form>
+          </div>
         </section>
       </article>
     );

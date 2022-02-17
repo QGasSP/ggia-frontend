@@ -8,7 +8,7 @@ import { Legend } from "./Legend";
 import { useNavigate } from "react-router-dom";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
-import { NewResidents } from "./NewResidents";
+// import { NewResidents } from "./NewResidents";
 
 import {
   XYPlot,
@@ -20,13 +20,14 @@ import {
   RadialChart,
   DiscreteColorLegend,
 } from "react-vis";
-import { LineLegend } from "./LineLegend";
+// import { LineLegend } from "./LineLegend";
+import { StackedBarchart } from "./StackedBarchart";
 
 /**
  * U1 Planner baseline user input form
  * @return {}
  */
-const BarSeries = VerticalBarSeries;
+// const BarSeries = VerticalBarSeries;
 export const U1planner = ({
   user,
   onLogin,
@@ -46,21 +47,10 @@ export const U1planner = ({
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const [nextU2view, setU2View] = useState(false);
+  const [emission, setEmissionData] = useState("");
+  const [projections, setProjections] = useState("");
 
-  const [emission, setEmissionData] = useState(() => {
-    const savedEmissions = window.localStorage.getItem("emission");
-    return savedEmissions!== null ? JSON.parse(savedEmissions) : parseFloat(0);
-  });
-
-  const [projections, setProjections] = useState(() => {
-    const savedProjections = window.localStorage.getItem("projections");
-    return savedProjections!== null ? JSON.parse(savedProjections) : parseFloat(0);
-  });
-
-  const [settlementDistribution, setSettlementDistribution] = useState(() => {
-    const savedSettlementDist = window.localStorage.getItem("settlementDistribution");
-    return savedSettlementDist!== null ? JSON.parse(savedSettlementDist) : parseFloat(0);
-  });
+  const [settlementDistribution, setSettlementDistribution] = useState("");
 
   const goToNewResidents = () => {
     const settlementDist = {
@@ -108,7 +98,7 @@ export const U1planner = ({
         rawData,
         headers
       )
-      .then((response) => setResponse(response))
+      .then((response) => setResponse(response.data))
       .catch((error) => {
         setError({ errorMessage: error.message });
         // eslint-disable-next-line no-console
@@ -117,8 +107,8 @@ export const U1planner = ({
   }, []);
 
   const setResponse = (response) => {
-    setEmissionData(response.data.data.emissions);
-    setProjections(response.data.data.projections);
+    setEmissionData(response.data.emissions);
+    setProjections(response.data.projections);
   };
 
   useEffect(() => {
@@ -128,6 +118,8 @@ export const U1planner = ({
   useEffect(() => {
     localStorage.setItem("projections", projections);
   }, [projections]);
+
+
 
   if (nextU2view === false) {
     return (
@@ -523,10 +515,10 @@ export const U1planner = ({
                   <YAxis />
                 </XYPlot>
               </div>
-
+{/* 
               <Divider textAlign="left" flexItem>
                 <b>Projections: CO2e emissions per capita 2022-2050</b>
-              </Divider>
+              </Divider> */}
             {/*   <div>{JSON.stringify(projections.bus)}</div> */}
               {/*  <div>
                 <XYPlot width={900} height={500} stackBy="y" xType="ordinal">
@@ -835,12 +827,23 @@ export const U1planner = ({
     );
   } else {
     return (
-      <NewResidents
+      <StackedBarchart
+      projections={projections}
+      population={population}
+      metropolitanCenter={metropolitanCenter}
+      urban={urban}
+      suburban={suburban}
+      town={town}
+      rural={rural}
+      country={country}
+      year={year}
+      />
+     /*  <NewResidents
         country={country}
         year={year}
         settlementDistribution={settlementDistribution}
         population={population}
-      />
+      /> */
     );
   }
 };
