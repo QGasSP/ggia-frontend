@@ -88,16 +88,17 @@ export const U2planner = ({
               Number of new residents moving in
             </label>
             <label htmlFor="start_year_selection">
+              {" "}
               {newDevelopment.newResidents}
             </label>
           </div>
           <div>
-            <label> Year start</label>
+            <label> Start</label>
             <label> {newDevelopment.yearStart}</label>
           </div>
 
           <div>
-            <label> Year end</label>
+            <label> End</label>
             <label> {newDevelopment.yearFinish}</label>
           </div>
           <br />
