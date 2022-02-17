@@ -6,14 +6,13 @@ import "../css/startpage.css";
 import { Settlement } from "./Settlement";
 
 export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
- /*  const [country, setCountry] = useState("");
+  /*  const [country, setCountry] = useState("");
   const [year, setYear] = useState(0);
   const [population, setPopulation] = useState(0); */
 
-
   const [country, setCountry] = useState(() => {
     const savedCountry = window.localStorage.getItem("country");
-    return  window.localStorage.getItem("country") !== "" ? savedCountry : "";
+    return window.localStorage.getItem("country") !== "" ? savedCountry : "";
   });
   const [year, setYear] = useState(() => {
     const savedYear = window.localStorage.getItem("year");

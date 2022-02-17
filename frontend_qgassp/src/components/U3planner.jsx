@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { Header } from "./Header";
 import { Button } from "./Button";
 import "../css/u2planner.css";
+import Divider from "@mui/material/Divider";
+import Chip from "@mui/material/Chip";
 
 /**
  * U3 user input
@@ -10,7 +12,7 @@ import "../css/u2planner.css";
  */
 
 export const U3planner = ({
-  year,
+  /*  year, */
   user,
   onLogin,
   onLogout,
@@ -18,6 +20,7 @@ export const U3planner = ({
 }) => {
   const [yearStart, setYearStart] = useState(0);
   const [yearFinish, setYearFinish] = useState(0);
+ 
   // const [baseline, setBaseline] = useState("");
   //   const [newDevelopment, setNewDevelopment] = useState("");
   //   const [updateU2charts, setU2charts] = useState(false);
@@ -67,11 +70,17 @@ export const U3planner = ({
           onCreateAccount={onCreateAccount}
         />
       }
+         <div className="headerSettlement">
+            <Divider textAlign="left" flexItem>
+              {" "}
+              <Chip label="U3 POLICY QUANTIFICATION" />
+            </Divider>
+          </div>
 
       <section>
-        <div>
+      {/*   <div>
           <h2>U3 POLICY QUANTIFICATION</h2>
-        </div>
+        </div> */}
         {/* <form onSubmit={updateU2Planner}> */}
         <form>
           <div>
@@ -552,7 +561,7 @@ export const U3planner = ({
 };
 
 U3planner.propTypes = {
-  year: PropTypes.number.isRequired,
+  /* year: PropTypes.number.isRequired, */
   country: PropTypes.string.isRequired,
   user: PropTypes.shape({}),
   onLogin: PropTypes.func.isRequired,

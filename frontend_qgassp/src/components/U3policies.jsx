@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { Header } from "./Header";
 import { Button } from "./Button";
 import "../css/u2planner.css";
+import { useNavigate } from "react-router-dom";
+
 import {
   XYPlot,
   XAxis,
@@ -30,6 +32,7 @@ export const U3policies = ({
 }) => {
   const [yearStart, setYearStart] = useState(0);
   const [yearFinish, setYearFinish] = useState(0);
+  const navigate = useNavigate();
   // const [baseline, setBaseline] = useState("");
   //   const [newDevelopment, setNewDevelopment] = useState("");
   //   const [updateU2charts, setU2charts] = useState(false);
@@ -179,208 +182,208 @@ export const U3policies = ({
           </div>
           <br />
           <div>
-          <div>
-            <label>
-              <b>U3.3 Modal split/Passenger transport</b>
-            </label>
-            <label>withouth policy</label>
-            <label>policy target %</label>
-            <label>% of the area affeccted</label>
-            <div>
-              <label>Share for bus</label>
-              <label></label>
-              <label> policy target % goes here</label>
-            </div>
-            <div>
-              <label>Share for tram and metro</label>
-              <label></label>
-              <label> policy target % goes here</label>
-            </div>
-            <div>
-              <label>Share for train</label>
-              <label></label>
-              <label> policy target % goes here</label>
-            </div>
-            <div>
-              <label>Car passenger</label>
-              <label></label>
-              <label> policy target % goes here</label>
-            </div>
             <div>
               <label>
-                <b>Total</b>
+                <b>U3.3 Modal split/Passenger transport</b>
               </label>
-              <label></label>
-              <label></label>
+              <label>withouth policy</label>
+              <label>policy target %</label>
+              <label>% of the area affeccted</label>
+              <div>
+                <label>Share for bus</label>
+                <label></label>
+                <label> policy target % goes here</label>
+              </div>
+              <div>
+                <label>Share for tram and metro</label>
+                <label></label>
+                <label> policy target % goes here</label>
+              </div>
+              <div>
+                <label>Share for train</label>
+                <label></label>
+                <label> policy target % goes here</label>
+              </div>
+              <div>
+                <label>Car passenger</label>
+                <label></label>
+                <label> policy target % goes here</label>
+              </div>
+              <div>
+                <label>
+                  <b>Total</b>
+                </label>
+                <label></label>
+                <label></label>
+              </div>
+              <label>Policy period</label>
+              <select
+                className="start_year"
+                id="start_year"
+                name="start_year"
+                onChange={handleStartYear}
+                defaultValue="2022"
+                required
+              >
+                <option value="DefaultOption">Select start year</option>
+                {optionsNew.map((option) => (
+                  <option key={option} value={option}>
+                    {option}{" "}
+                  </option>
+                ))}
+              </select>
+              <select
+                className="finish_year"
+                id="finish_year"
+                name="finish_year"
+                onChange={handleYearFinish}
+                defaultValue="2022"
+                required
+              >
+                <option value="DefaultOption">Select end year</option>
+                {optionsNew.map((option) => (
+                  <option key={option} value={option}>
+                    {option}{" "}
+                  </option>
+                ))}
+              </select>
             </div>
-            <label>Policy period</label>
-            <select
-              className="start_year"
-              id="start_year"
-              name="start_year"
-              onChange={handleStartYear}
-              defaultValue="2022"
-              required
-            >
-              <option value="DefaultOption">Select start year</option>
-              {optionsNew.map((option) => (
-                <option key={option} value={option}>
-                  {option}{" "}
-                </option>
-              ))}
-            </select>
-            <select
-              className="finish_year"
-              id="finish_year"
-              name="finish_year"
-              onChange={handleYearFinish}
-              defaultValue="2022"
-              required
-            >
-              <option value="DefaultOption">Select end year</option>
-              {optionsNew.map((option) => (
-                <option key={option} value={option}>
-                  {option}{" "}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="column">
-            <div>
-              <RadialChart
-                type="piechart"
-                data={[
-                  {
-                    // angle: ,
-                    angle: 12,
-                    label: "Urban",
-                    color: "#164059",
-                  },
-                  {
-                    angle: 38,
-                    label: "Suburban",
-                    color: "#F25F29",
-                  },
-                  {
-                    angle: 12,
-                    label: "Town",
-                    color: "#F23A29",
-                  },
-                  {
-                    angle: 38,
-                    label: "Rural",
-                    color: "#D9D9D9",
-                  },
-                ]}
-                width={180}
-                height={180}
-                colorType="literal"
-              />
-            </div>
-            {/* <DiscreteColorLegend
+            <div className="column">
+              <div>
+                <RadialChart
+                  type="piechart"
+                  data={[
+                    {
+                      // angle: ,
+                      angle: 12,
+                      label: "Urban",
+                      color: "#164059",
+                    },
+                    {
+                      angle: 38,
+                      label: "Suburban",
+                      color: "#F25F29",
+                    },
+                    {
+                      angle: 12,
+                      label: "Town",
+                      color: "#F23A29",
+                    },
+                    {
+                      angle: 38,
+                      label: "Rural",
+                      color: "#D9D9D9",
+                    },
+                  ]}
+                  width={180}
+                  height={180}
+                  colorType="literal"
+                />
+              </div>
+              {/* <DiscreteColorLegend
                 items={settlementLabels}
                 orientation="horizontal"
                 strokeWidth="40"
               /> */}
-            <div>
-              <RadialChart
-                type="piechart"
-                data={[
-                  {
-                    // angle: ,
-                    angle: 12,
-                    label: "Urban",
-                    color: "#164059",
-                  },
-                  {
-                    angle: 38,
-                    label: "Suburban",
-                    color: "#F25F29",
-                  },
-                  {
-                    angle: 12,
-                    label: "Town",
-                    color: "#F23A29",
-                  },
-                  {
-                    angle: 38,
-                    label: "Rural",
-                    color: "#D9D9D9",
-                  },
-                ]}
-                width={180}
-                height={180}
-                colorType="literal"
-              />
-            </div>
-            {/* <DiscreteColorLegend
+              <div>
+                <RadialChart
+                  type="piechart"
+                  data={[
+                    {
+                      // angle: ,
+                      angle: 12,
+                      label: "Urban",
+                      color: "#164059",
+                    },
+                    {
+                      angle: 38,
+                      label: "Suburban",
+                      color: "#F25F29",
+                    },
+                    {
+                      angle: 12,
+                      label: "Town",
+                      color: "#F23A29",
+                    },
+                    {
+                      angle: 38,
+                      label: "Rural",
+                      color: "#D9D9D9",
+                    },
+                  ]}
+                  width={180}
+                  height={180}
+                  colorType="literal"
+                />
+              </div>
+              {/* <DiscreteColorLegend
                 items={settlementLabels}
                 orientation="horizontal"
                 strokeWidth="40"
               /> */}
-          </div>
-          <br />
-          <div>
-            <label>
-              <b>U3.4 Modal split/Freight transport</b>
-            </label>
-            <label>withouth policy</label>
-            <label>policy target %</label>
-            {/* <label>% of the area affeccted</label> */}
-            <div>
-              <label>Share for rail</label>
-              <label></label>
-              <label> policy target % goes here</label>
             </div>
-            <div>
-              <label>Share for inland waterways</label>
-              <label></label>
-              <label> policy target % goes here</label>
-            </div>
-            <div>
-              <label>Share for road freight</label>
-              <label></label>
-              <label> policy target % goes here</label>
-            </div>
+            <br />
             <div>
               <label>
-                <b>Total</b>
+                <b>U3.4 Modal split/Freight transport</b>
               </label>
-              <label></label>
-              <label></label>
+              <label>withouth policy</label>
+              <label>policy target %</label>
+              {/* <label>% of the area affeccted</label> */}
+              <div>
+                <label>Share for rail</label>
+                <label></label>
+                <label> policy target % goes here</label>
+              </div>
+              <div>
+                <label>Share for inland waterways</label>
+                <label></label>
+                <label> policy target % goes here</label>
+              </div>
+              <div>
+                <label>Share for road freight</label>
+                <label></label>
+                <label> policy target % goes here</label>
+              </div>
+              <div>
+                <label>
+                  <b>Total</b>
+                </label>
+                <label></label>
+                <label></label>
+              </div>
+              <label>Policy period</label>
+              <select
+                className="start_year"
+                id="start_year"
+                name="start_year"
+                onChange={handleStartYear}
+                defaultValue="2022"
+                required
+              >
+                <option value="DefaultOption">Select start year</option>
+                {optionsNew.map((option) => (
+                  <option key={option} value={option}>
+                    {option}{" "}
+                  </option>
+                ))}
+              </select>
+              <select
+                className="finish_year"
+                id="finish_year"
+                name="finish_year"
+                onChange={handleYearFinish}
+                defaultValue="2022"
+                required
+              >
+                <option value="DefaultOption">Select end year</option>
+                {optionsNew.map((option) => (
+                  <option key={option} value={option}>
+                    {option}{" "}
+                  </option>
+                ))}
+              </select>
             </div>
-            <label>Policy period</label>
-            <select
-              className="start_year"
-              id="start_year"
-              name="start_year"
-              onChange={handleStartYear}
-              defaultValue="2022"
-              required
-            >
-              <option value="DefaultOption">Select start year</option>
-              {optionsNew.map((option) => (
-                <option key={option} value={option}>
-                  {option}{" "}
-                </option>
-              ))}
-            </select>
-            <select
-              className="finish_year"
-              id="finish_year"
-              name="finish_year"
-              onChange={handleYearFinish}
-              defaultValue="2022"
-              required
-            >
-              <option value="DefaultOption">Select end year</option>
-              {optionsNew.map((option) => (
-                <option key={option} value={option}>
-                  {option}{" "}
-                </option>
-              ))}
-            </select>
-          </div>
           </div>
           <br />
           <div>
@@ -967,13 +970,13 @@ export const U3policies = ({
               />
             </XYPlot>
           </div>
-          <div>
+          <div className="backButtonNew">
             <Button
               size="small"
-              type="submit"
-              value="Submit"
-              label="Next"
-              primary
+              value="backProjections"
+              onClick={() => navigate("/newResidents", { replace: true })}
+              label="&laquo; Previous"
+              secondary
             />
           </div>
         </form>

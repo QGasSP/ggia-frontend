@@ -102,169 +102,169 @@ export const NewResidents = ({
             onCreateAccount={onCreateAccount}
           />
         }
-         <div className="headerSettlement">
-            <Divider textAlign="left" flexItem>
-              {" "}
-              <Chip label="U2 NEW DEVELOPMENT INPUT" />
-            </Divider>
-          </div>
+        <div className="headerSettlement">
+          <Divider textAlign="left" flexItem>
+            {" "}
+            <Chip label="U2 NEW DEVELOPMENT INPUT" />
+          </Divider>
+        </div>
 
         <section>
-       {/*    <div>
+          {/*    <div>
             <h2>U2 NEW DEVELOPMENT</h2>
           </div> */}
           <div className="newResidentDiv">
-          <form onSubmit={updateU2Planner}>
-            <label>
-              <b>U2.1 New residents</b>
-            </label>
-            <div>
-              <label htmlFor="new_residents">
-                Number of new residents moving in
-              </label>
-              <input
-                type="text"
-                pattern="[0-9]*"
-                id="new_residents"
-                onChange={handleNewResident}
-                required
-              />
+            <form onSubmit={updateU2Planner}>
               <label>
-                &nbsp;&nbsp;0 = no new developments to be quantified
+                <b>U2.1 New residents</b>
               </label>
-            </div>
-            <div>
-              <label htmlFor="start_year"> Start</label>
-              <select
-                className="start_year"
-                id="start_year"
-                name="start_year"
-                onChange={handleStartYear}
-                defaultValue="2022"
-                required
-              >
-                <option value="DefaultOption">Select start year</option>
-                {optionsNew.map((option) => (
-                  <option key={option} value={option}>
-                    {option}{" "}
-                  </option>
-                ))}
-              </select>
-            </div>
+              <div>
+                <label htmlFor="new_residents">
+                  Number of new residents moving in
+                </label>
+                <input
+                  type="text"
+                  pattern="[0-9]*"
+                  id="new_residents"
+                  onChange={handleNewResident}
+                  required
+                />
+                <label>
+                  &nbsp;&nbsp;0 = no new developments to be quantified
+                </label>
+              </div>
+              <div>
+                <label htmlFor="start_year"> Start</label>
+                <select
+                  className="start_year"
+                  id="start_year"
+                  name="start_year"
+                  onChange={handleStartYear}
+                  defaultValue="2022"
+                  required
+                >
+                  <option value="DefaultOption">Select start year</option>
+                  {optionsNew.map((option) => (
+                    <option key={option} value={option}>
+                      {option}{" "}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-            <div>
-              <label htmlFor="finish_year"> End</label>
-              <select
-                className="finish_year"
-                id="finish_year"
-                name="finish_year"
-                onChange={handleYearFinish}
-                defaultValue="2022"
-                required
-              >
-                <option value="DefaultOption">Select start year</option>
-                {optionsNew.map((option) => (
-                  <option key={option} value={option}>
-                    {option}{" "}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <br />
-            <label>
-              <b>U2.2 Settlement type</b>
-            </label>
-            <label>
-              <b>Existing environment</b>
-            </label>
-            <label>
-              <b>New development (%)</b>
-            </label>
-            <div>
-              <label htmlFor="nsMetropolitan">Metropolitan Area</label>
-              <label>{settlementDistribution.metropolitanCenter}</label>
-              <input
-                type="number"
-                step="0.1"
-                id="nsMetropolitan"
-                min="0"
-                max="100"
-                onChange={handleNsMetropolitanCenter}
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="nsUrban">Urban</label>
-              <label>{settlementDistribution.urban}</label>
-              <input
-                type="number"
-                step="0.1"
-                id="nsUrban"
-                min="0"
-                max="100"
-                onChange={handleNsUrban}
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="nsSuburban"> Suburban</label>
-              <label>{settlementDistribution.suburban}</label>
-              <input
-                type="number"
-                id="nsSuburban"
-                step="any"
-                min="0.0"
-                max="100.0"
-                onChange={handleNsSuburban}
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="nsTown">Town</label>
-              <label>{settlementDistribution.town}</label>
-              <input
-                type="number"
-                id="nsTown"
-                step="0.1"
-                min="0.0"
-                max="100.0"
-                onChange={handleNsTown}
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="nsRural">Rural</label>
-              <label>{settlementDistribution.rural}</label>
-              <input
-                type="number"
-                id="nsRural"
-                step="0.1"
-                min="0"
-                max="100"
-                onChange={handleNsRural}
-                required
-              />
-            </div>
-            <div className="backButtonNew">
-              <Button
-                size="small"
-                value="backProjections"
-                onClick={() => navigate("/u1planner", { replace: true })}
-                label="&laquo; Previous"
-                secondary
-              />
-            </div>
+              <div>
+                <label htmlFor="finish_year"> End</label>
+                <select
+                  className="finish_year"
+                  id="finish_year"
+                  name="finish_year"
+                  onChange={handleYearFinish}
+                  defaultValue="2022"
+                  required
+                >
+                  <option value="DefaultOption">Select start year</option>
+                  {optionsNew.map((option) => (
+                    <option key={option} value={option}>
+                      {option}{" "}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <br />
+              <label>
+                <b>U2.2 Settlement type</b>
+              </label>
+              <label>
+                <b>Existing environment</b>
+              </label>
+              <label>
+                <b>New development (%)</b>
+              </label>
+              <div>
+                <label htmlFor="nsMetropolitan">Metropolitan Area</label>
+                <label>{settlementDistribution.metropolitanCenter}</label>
+                <input
+                  type="number"
+                  step="0.1"
+                  id="nsMetropolitan"
+                  min="0"
+                  max="100"
+                  onChange={handleNsMetropolitanCenter}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="nsUrban">Urban</label>
+                <label>{settlementDistribution.urban}</label>
+                <input
+                  type="number"
+                  step="0.1"
+                  id="nsUrban"
+                  min="0"
+                  max="100"
+                  onChange={handleNsUrban}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="nsSuburban"> Suburban</label>
+                <label>{settlementDistribution.suburban}</label>
+                <input
+                  type="number"
+                  id="nsSuburban"
+                  step="any"
+                  min="0.0"
+                  max="100.0"
+                  onChange={handleNsSuburban}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="nsTown">Town</label>
+                <label>{settlementDistribution.town}</label>
+                <input
+                  type="number"
+                  id="nsTown"
+                  step="0.1"
+                  min="0.0"
+                  max="100.0"
+                  onChange={handleNsTown}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="nsRural">Rural</label>
+                <label>{settlementDistribution.rural}</label>
+                <input
+                  type="number"
+                  id="nsRural"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                  onChange={handleNsRural}
+                  required
+                />
+              </div>
+              <div className="backButtonNew">
+                <Button
+                  size="small"
+                  value="backProjections"
+                  onClick={() => navigate("/u1planner", { replace: true })}
+                  label="&laquo; Previous"
+                  secondary
+                />
+              </div>
 
-            <div className="nextButtonNew">
-              <Button
-                size="small"
-                type="submit"
-                value="Submit"
-                label="Next &raquo;"
-                primary
-              />
-            </div>
-          </form>
+              <div className="nextButtonNew">
+                <Button
+                  size="small"
+                  type="submit"
+                  value="Submit"
+                  label="Next &raquo;"
+                  primary
+                />
+              </div>
+            </form>
           </div>
         </section>
       </article>

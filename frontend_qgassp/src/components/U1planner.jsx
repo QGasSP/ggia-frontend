@@ -42,7 +42,7 @@ export const U1planner = ({
   town,
   rural,
   total,
-  nextEmissions
+  nextEmissions,
 }) => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -66,9 +66,8 @@ export const U1planner = ({
 
   const goBackSettlement = () => {
     localStorage.removeItem("nextEmissions", nextEmissions);
-    navigate("/settlement", { replace: true })
+    navigate("/settlement", { replace: true });
   };
-
 
   /*   const [backSettlement, setBackSettlement] = useState(false); */
   // const [settlementDistribution, setSettlementDistribution] = useState("");
@@ -118,8 +117,6 @@ export const U1planner = ({
   useEffect(() => {
     localStorage.setItem("projections", projections);
   }, [projections]);
-
-
 
   if (nextU2view === false) {
     return (
@@ -515,11 +512,11 @@ export const U1planner = ({
                   <YAxis />
                 </XYPlot>
               </div>
-{/* 
+              {/* 
               <Divider textAlign="left" flexItem>
                 <b>Projections: CO2e emissions per capita 2022-2050</b>
               </Divider> */}
-            {/*   <div>{JSON.stringify(projections.bus)}</div> */}
+              {/*   <div>{JSON.stringify(projections.bus)}</div> */}
               {/*  <div>
                 <XYPlot width={900} height={500} stackBy="y" xType="ordinal">
                   <HorizontalGridLines />
@@ -828,17 +825,17 @@ export const U1planner = ({
   } else {
     return (
       <StackedBarchart
-      projections={projections}
-      population={population}
-      metropolitanCenter={metropolitanCenter}
-      urban={urban}
-      suburban={suburban}
-      town={town}
-      rural={rural}
-      country={country}
-      year={year}
+        projections={projections}
+        population={population}
+        metropolitanCenter={metropolitanCenter}
+        urban={urban}
+        suburban={suburban}
+        town={town}
+        rural={rural}
+        country={country}
+        year={year}
       />
-     /*  <NewResidents
+      /*  <NewResidents
         country={country}
         year={year}
         settlementDistribution={settlementDistribution}

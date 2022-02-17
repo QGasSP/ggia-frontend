@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Header } from "./Header";
 import { Button } from "./Button";
@@ -24,7 +24,9 @@ export const Settlement = ({
 }) => {
   const [metropolitanCenter, setMetropolitan] = useState(() => {
     const savedMetroCenter = window.localStorage.getItem("metropolitanCenter");
-    return savedMetroCenter !== null ? JSON.parse(savedMetroCenter) : parseFloat(0);
+    return savedMetroCenter !== null
+      ? JSON.parse(savedMetroCenter)
+      : parseFloat(0);
   });
   const [urban, setUrban] = useState(() => {
     const savedUrban = window.localStorage.getItem("urban");
@@ -36,9 +38,9 @@ export const Settlement = ({
   });
   const [town, setTown] = useState(() => {
     const savedTown = window.localStorage.getItem("town");
-    return savedTown!== null ? JSON.parse(savedTown) : parseFloat(0);
+    return savedTown !== null ? JSON.parse(savedTown) : parseFloat(0);
   });
-  const [rural, setRural] =useState(() => {
+  const [rural, setRural] = useState(() => {
     const savedRural = window.localStorage.getItem("rural");
     return savedRural !== null ? JSON.parse(savedRural) : parseFloat(0);
   });
@@ -52,7 +54,7 @@ export const Settlement = ({
   }, [urban]);
 
   useEffect(() => {
-    localStorage.setItem("suburban",suburban);
+    localStorage.setItem("suburban", suburban);
   }, [suburban]);
 
   useEffect(() => {
@@ -67,7 +69,7 @@ export const Settlement = ({
     metropolitanCenter + urban + suburban + town + rural
   );
   const [nextEmissions, setNextEmissions] = useState(false);
-  
+
   const navigate = useNavigate();
 
   const handleMetropolitanCenter = (e) => {
@@ -95,7 +97,6 @@ export const Settlement = ({
     setTotal(metropolitanCenter + urban + suburban + town + rural);
     setNextEmissions(true);
   };
- 
 
   if (nextEmissions === false) {
     return (
@@ -154,7 +155,7 @@ export const Settlement = ({
                     id="urban"
                     min="0"
                     max="100"
-                    value={urban} 
+                    value={urban}
                     onChange={handleUrban}
                     required
                   />

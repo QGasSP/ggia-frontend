@@ -13,6 +13,8 @@ import { LineLegend } from "./LineLegend";
 import { Button } from "./Button";
 import { NewResidents } from "./NewResidents";
 import { useNavigate } from "react-router-dom";
+import Divider from "@mui/material/Divider";
+import Chip from "@mui/material/Chip";
 
 const BarSeries = VerticalBarSeries;
 /**
@@ -62,6 +64,13 @@ export const StackedBarchart = ({
             onCreateAccount={onCreateAccount}
           />
         }
+        <div className="headerSettlement">
+          <Divider textAlign="left" flexItem>
+            {" "}
+            <Chip label="U1 Projections: 2022-2050" />
+          </Divider>
+        </div>
+
         <section>
           {/* <div>{JSON.stringify(projections.car[2022])}</div>   */}
           <label>
