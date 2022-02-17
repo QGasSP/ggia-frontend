@@ -251,7 +251,7 @@ export const U3policies = ({
                 type="piechart"
                 data={[
                   {
-                    //angle: ,
+                    // angle: ,
                     angle: 12,
                     label: "Urban",
                     color: "#164059",
@@ -287,7 +287,7 @@ export const U3policies = ({
                 type="piechart"
                 data={[
                   {
-                    //angle: ,
+                    // angle: ,
                     angle: 12,
                     label: "Urban",
                     color: "#164059",
