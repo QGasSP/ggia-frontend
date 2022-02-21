@@ -5,6 +5,7 @@ import { Settlement } from "./components/Settlement";
 import { StartPage } from "./components/StartPage";
 import { U1planner } from "./components/U1planner";
 import { U2planner } from "./components/U2planner";
+import { U3planner } from "./components/U3planner";
 import { U1plannerDefault } from "./components/U1plannerDefault";
 
 export const AppRoutes = () => {
@@ -16,6 +17,7 @@ export const AppRoutes = () => {
     { path: "/u1plannerDefault", element: <U1plannerDefault /> },
     { path: "/newResidents", element: <NewResidents /> },
     { path: "/u2planner", element: <U2planner /> },
+    { path: "/u3planner", element: <U3planner /> },
   ]);
   return routes;
 };

@@ -6,6 +6,8 @@ import axios from "axios";
 import "../css/u2planner.css";
 import { Button } from "./Button";
 import { useNavigate } from "react-router-dom";
+import Chip from "@mui/material/Chip";
+import Divider from "@mui/material/Divider";
 import {
   XYPlot,
   XAxis,
@@ -14,6 +16,7 @@ import {
   VerticalGridLines,
   LineSeries,
 } from "react-vis";
+import { U3planner } from "./U3planner";
 
 /**
  * U1 Planner user input form for baseline
@@ -31,6 +34,7 @@ export const U2planner = ({
   const [errorU2, setU2Error] = useState("");
   const [responseData, setResponseData] = useState("");
   const [baselinePopulation, setBaselinePopulation] = useState("");
+  const [nextU3planer, setU3planner] = useState(false);
   const navigate = useNavigate();
 
   useEffect(async () => {
@@ -56,6 +60,12 @@ export const U2planner = ({
     setResponseData(response.data.data.new_development.impact.population);
     setBaselinePopulation(response.data.data.baseline.projections.population);
   };
+
+  const gotoU3planner = () => {
+    setU3planner(true);
+  };
+
+  if (nextU3planer === false) {
   return (
     <article>
       {
@@ -66,11 +76,17 @@ export const U2planner = ({
           onCreateAccount={onCreateAccount}
         />
       }
+      <div className="headerSettlement">
+        <Divider textAlign="left" flexItem>
+          {" "}
+          <Chip label="U2 NEW DEVELOPMENT" />
+        </Divider>
+      </div>
 
       <section>
-        <div>
+        {/*   <div>
           <h2>U2 NEW DEVELOPMENT</h2>
-        </div>
+        </div> */}
         <form>
           <label>
             <b>U2.1 New residents</b>
@@ -80,16 +96,17 @@ export const U2planner = ({
               Number of new residents moving in
             </label>
             <label htmlFor="start_year_selection">
+              {" "}
               {newDevelopment.newResidents}
             </label>
           </div>
           <div>
-            <label> Year start</label>
+            <label> Start</label>
             <label> {newDevelopment.yearStart}</label>
           </div>
 
           <div>
-            <label> Year end</label>
+            <label> End</label>
             <label> {newDevelopment.yearFinish}</label>
           </div>
           <br />
@@ -239,10 +256,31 @@ export const U2planner = ({
               secondary
             />
           </div>
+          <div className="nextU2Button">
+            <Button
+              size="small"
+              value="nextU3"
+              onClick={gotoU3planner}
+              label="Next &raquo;"
+              primary
+            />
+          </div>
         </form>
       </section>
     </article>
   );
+} else {
+  return (
+      <U3planner
+        /* year={year} */
+        user={user}
+        onLogin={onLogin}
+        onLogout={onLogout}
+        onCreateAccount={onCreateAccount}
+      />
+  
+  );
+}
 };
 
 U2planner.propTypes = {

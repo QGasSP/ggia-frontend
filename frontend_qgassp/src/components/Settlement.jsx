@@ -13,6 +13,7 @@
 //  * @return {}
 //  */
 
+
 // export const Settlement = ({
 //   user,
 //   onLogin,
@@ -96,6 +97,7 @@
 //     setNextEmissions(true);
 //   };
  
+
 
 //   if (nextEmissions === false) {
 //     return (
@@ -205,7 +207,6 @@
 //                     required
 //                   />
 //                 </div>
-
 //                 <div className="backStart">
 //                   <Button
 //                     size="small"
