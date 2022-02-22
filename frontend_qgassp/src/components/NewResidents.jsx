@@ -14,10 +14,8 @@ import Divider from "@mui/material/Divider";
  */
 
 export const NewResidents = ({
-  country,
-  year,
-  population,
-  settlementDistribution,
+  //  settlementDistribution,
+  baseline,
   user,
   onLogin,
   onLogout,
@@ -31,7 +29,7 @@ export const NewResidents = ({
   const [newResidents, setNewResidents] = useState("");
   const [yearStart, setYearStart] = useState(0);
   const [yearFinish, setYearFinish] = useState(0);
-  const [baseline, setBaseline] = useState("");
+
   const [newDevelopment, setNewDevelopment] = useState("");
   const [updateU2charts, setU2charts] = useState(false);
   const [totalNewResidents, setTotalNewResidents] = useState(0.0);
@@ -65,14 +63,6 @@ export const NewResidents = ({
   };
 
   const updateU2Planner = () => {
-    const baselineSettlement = {
-      country,
-      year,
-      population,
-      settlementDistribution,
-    };
-    setBaseline(baselineSettlement);
-
     const newSettlementDistribution = {
       metropolitanCenter,
       urban,
@@ -182,7 +172,7 @@ export const NewResidents = ({
               </label>
               <div>
                 <label htmlFor="nsMetropolitan">Metropolitan Area</label>
-                <label>{settlementDistribution.metropolitanCenter}</label>
+                <label>{metropolitanCenter}</label>
                 <input
                   type="number"
                   step="0.1"
@@ -195,7 +185,7 @@ export const NewResidents = ({
               </div>
               <div>
                 <label htmlFor="nsUrban">Urban</label>
-                <label>{settlementDistribution.urban}</label>
+                <label>{urban}</label>
                 <input
                   type="number"
                   step="0.1"
@@ -208,7 +198,7 @@ export const NewResidents = ({
               </div>
               <div>
                 <label htmlFor="nsSuburban"> Suburban</label>
-                <label>{settlementDistribution.suburban}</label>
+                <label>{suburban}</label>
                 <input
                   type="number"
                   id="nsSuburban"
@@ -221,7 +211,7 @@ export const NewResidents = ({
               </div>
               <div>
                 <label htmlFor="nsTown">Town</label>
-                <label>{settlementDistribution.town}</label>
+                <label>{town}</label>
                 <input
                   type="number"
                   id="nsTown"
@@ -234,7 +224,7 @@ export const NewResidents = ({
               </div>
               <div>
                 <label htmlFor="nsRural">Rural</label>
-                <label>{settlementDistribution.rural}</label>
+                <label>{rural}</label>
                 <input
                   type="number"
                   id="nsRural"
@@ -270,19 +260,12 @@ export const NewResidents = ({
       </article>
     );
   } else {
-    return (
-      <U2planner
-        country={country}
-        year={year}
-        population={population}
-        baseline={baseline}
-        newDevelopment={newDevelopment}
-      />
-    );
+    return <U2planner baseline={baseline} newDevelopment={newDevelopment} />;
   }
 };
 
 NewResidents.propTypes = {
+  baseline: PropTypes.array.isRequired,
   settlementDistribution: PropTypes.array.isRequired,
   population: PropTypes.number.isRequired,
   year: PropTypes.number.isRequired,

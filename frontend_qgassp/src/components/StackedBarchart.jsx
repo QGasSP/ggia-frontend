@@ -18,38 +18,22 @@ import Chip from "@mui/material/Chip";
 
 const BarSeries = VerticalBarSeries;
 /**
- * Barchart UI component
+ * Barchart UI component for projections
  * @return {}
  */
-
+ 
 export const StackedBarchart = ({
   projections,
-  population,
-  metropolitanCenter,
-  urban,
-  suburban,
-  town,
-  rural,
-  country,
-  year,
+  baseline,
   user,
   onLogin,
   onLogout,
   onCreateAccount,
 }) => {
   const [nextU2view, setU2View] = useState(false);
-  const [settlementDistribution, setSettlementDistribution] = useState("");
   const navigate = useNavigate();
 
   const goToNewResidents = () => {
-    const settlementDist = {
-      metropolitanCenter,
-      urban,
-      suburban,
-      town,
-      rural,
-    };
-    setSettlementDistribution(settlementDist);
     setU2View(true);
   };
 
@@ -72,7 +56,7 @@ export const StackedBarchart = ({
         </div>
 
         <section>
-          {/* <div>{JSON.stringify(projections.car[2022])}</div>   */}
+          <div>{JSON.stringify(projections)}</div>  
           <label>
             <b>CO2e emissions per capita 2022-2050</b>
           </label>
@@ -382,24 +366,14 @@ export const StackedBarchart = ({
   } else {
     return (
       <NewResidents
-        country={country}
-        year={year}
-        settlementDistribution={settlementDistribution}
-        population={population}
+        baseline={baseline}
       />
     );
   }
 };
 
 StackedBarchart.propTypes = {
-  year: PropTypes.number.isRequired,
-  country: PropTypes.string.isRequired,
-  population: PropTypes.number.isRequired,
-  metropolitanCenter: PropTypes.number.isRequired,
-  urban: PropTypes.number.isRequired,
-  suburban: PropTypes.number.isRequired,
-  town: PropTypes.number.isRequired,
-  rural: PropTypes.number.isRequired,
+  baseline: PropTypes.object.isRequired,
   projections: PropTypes.object.isRequired,
   user: PropTypes.shape({}),
   onLogin: PropTypes.func.isRequired,

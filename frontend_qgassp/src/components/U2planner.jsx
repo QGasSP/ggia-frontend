@@ -32,7 +32,7 @@ export const U2planner = ({
   onCreateAccount,
 }) => {
   const [errorU2, setU2Error] = useState("");
-  const [responseData, setResponseData] = useState("");
+  const [newPopulation, setNewPopulation] = useState("");
   const [baselinePopulation, setBaselinePopulation] = useState("");
   const [nextU3planer, setU3planner] = useState(false);
   const navigate = useNavigate();
@@ -44,11 +44,11 @@ export const U2planner = ({
     };
     axios
       .post(
-        "https://ggia-dev.ulno.net//api/v1/calculate/transport",
+        "https://ggia-dev.ulno.net/api/v1/calculate/transport/new-development",
         rawData,
         headers
       )
-      .then((response) => setU2Response(response))
+      .then((response) => setU2Response(response.data))
       .catch((error) => {
         setU2Error({ errorMessage: error.message });
         // eslint-disable-next-line no-console
@@ -57,8 +57,8 @@ export const U2planner = ({
   }, []);
 
   const setU2Response = (response) => {
-    setResponseData(response.data.data.new_development.impact.population);
-    setBaselinePopulation(response.data.data.baseline.projections.population);
+    setNewPopulation(response.data.new_development.impact.population);
+    setBaselinePopulation(response.data.baseline.projections.population);
   };
 
   const gotoU3planner = () => {
@@ -66,211 +66,213 @@ export const U2planner = ({
   };
 
   if (nextU3planer === false) {
-  return (
-    <article>
-      {
-        <Header
-          user={user}
-          onLogin={onLogin}
-          onLogout={onLogout}
-          onCreateAccount={onCreateAccount}
-        />
-      }
-      <div className="headerSettlement">
-        <Divider textAlign="left" flexItem>
-          {" "}
-          <Chip label="U2 NEW DEVELOPMENT" />
-        </Divider>
-      </div>
+    return (
+      <article>
+        {
+          <Header
+            user={user}
+            onLogin={onLogin}
+            onLogout={onLogout}
+            onCreateAccount={onCreateAccount}
+          />
+        }
+        <div className="headerSettlement">
+          <Divider textAlign="left" flexItem>
+            {" "}
+            <Chip label="U2 NEW DEVELOPMENT" />
+          </Divider>
+        </div>
 
-      <section>
-        {/*   <div>
-          <h2>U2 NEW DEVELOPMENT</h2>
-        </div> */}
-        <form>
-          <label>
-            <b>U2.1 New residents</b>
-          </label>
-          <div>
-            <label htmlFor="new_residents">
-              Number of new residents moving in
-            </label>
-            <label htmlFor="start_year_selection">
-              {" "}
-              {newDevelopment.newResidents}
-            </label>
-          </div>
-          <div>
-            <label> Start</label>
-            <label> {newDevelopment.yearStart}</label>
-          </div>
-
-          <div>
-            <label> End</label>
-            <label> {newDevelopment.yearFinish}</label>
-          </div>
-          <br />
-          <label>
-            <b>U2.2 Settlement type</b>
-          </label>
-          <label>
-            <b>Existing environment</b>
-          </label>
-          <label>
-            <b>New development</b>
-          </label>
-          <div>
-            <label>Metropolitan Area</label>
-            <label>{baseline.settlementDistribution.metropolitanCenter}</label>
+        <section>
+          <div>{newPopulation[2022]}</div>
+          <form>
             <label>
-              {newDevelopment.newSettlementDistribution.metropolitanCenter}
+              <b>U2.1 New residents</b>
             </label>
-          </div>
-          <div>
-            <label>Urban</label>
-            <label>{baseline.settlementDistribution.urban}</label>
-            <label>{newDevelopment.newSettlementDistribution.urban}</label>
-          </div>
-          <div>
-            <label> Suburban</label>
-            <label>{baseline.settlementDistribution.suburban}</label>
-            <label>{newDevelopment.newSettlementDistribution.suburban}</label>
-          </div>
-          <div>
-            <label htmlFor="town">Town</label>
-            <label>{baseline.settlementDistribution.town}</label>
-            <label>{newDevelopment.newSettlementDistribution.town}</label>
-          </div>
-          <div>
-            <label htmlFor="rural">Rural</label>
-            <label>{baseline.settlementDistribution.rural}</label>
-            <label>{newDevelopment.newSettlementDistribution.rural}</label>
-          </div>
-          <br />
-          <XYPlot
-            width={900}
-            height={500}
-            xType="ordinal"
-            yDomain={[0, 100000]}
-            // yType="linear"
-          >
-            <HorizontalGridLines style={{ stroke: "#B7E9ED" }} />
-            <VerticalGridLines style={{ stroke: "#B7E9ED" }} />
-            <XAxis
-              style={{
-                line: { stroke: "#ADDDE1" },
-                ticks: { stroke: "#ADDDE1" },
-                text: { stroke: "none", fill: "#6b6b76", fontWeight: 600 },
-              }}
-            />
-            <YAxis />
-            <LineSeries
-              curve={null}
-              data={[
-                { x: 2022, y: responseData[2022] },
-                { x: 2023, y: responseData[2023] },
-                { x: 2024, y: responseData[2024] },
-                { x: 2025, y: responseData[2025] },
-                { x: 2026, y: responseData[2026] },
-                { x: 2027, y: responseData[2027] },
-                { x: 2028, y: responseData[2028] },
-                { x: 2029, y: responseData[2029] },
-                { x: 2030, y: responseData[2030] },
-                { x: 2031, y: responseData[2031] },
-                { x: 2032, y: responseData[2032] },
-                { x: 2033, y: responseData[2033] },
-                { x: 2034, y: responseData[2034] },
-                { x: 2035, y: responseData[2035] },
-                { x: 2036, y: responseData[2036] },
-                { x: 2037, y: responseData[2037] },
-                { x: 2038, y: responseData[2038] },
-                { x: 2039, y: responseData[2039] },
-                { x: 2040, y: responseData[2040] },
-                { x: 2041, y: responseData[2041] },
-                { x: 2042, y: responseData[2042] },
-                { x: 2043, y: responseData[2043] },
-                { x: 2044, y: responseData[2044] },
-                { x: 2045, y: responseData[2045] },
-                { x: 2046, y: responseData[2046] },
-                { x: 2047, y: responseData[2047] },
-                { x: 2048, y: responseData[2048] },
-                { x: 2049, y: responseData[2049] },
-                { x: 2050, y: responseData[2050] },
-              ]}
-              opacity={1}
-              stroke="rgba(21,75,230,1)"
-              strokeDasharray=""
-              strokeStyle="solid"
-              strokeWidth="1.5"
-              style={{}}
-            />
-            <LineSeries
-              curve={null}
-              data={[
-                { x: 2022, y: baselinePopulation[2022] },
-                { x: 2023, y: baselinePopulation[2023] },
-                { x: 2024, y: baselinePopulation[2024] },
-                { x: 2025, y: baselinePopulation[2025] },
-                { x: 2026, y: baselinePopulation[2026] },
-                { x: 2027, y: baselinePopulation[2027] },
-                { x: 2028, y: baselinePopulation[2028] },
-                { x: 2029, y: baselinePopulation[2029] },
-                { x: 2030, y: baselinePopulation[2030] },
-                { x: 2031, y: baselinePopulation[2031] },
-                { x: 2032, y: baselinePopulation[2032] },
-                { x: 2033, y: baselinePopulation[2033] },
-                { x: 2034, y: baselinePopulation[2034] },
-                { x: 2035, y: baselinePopulation[2035] },
-                { x: 2036, y: baselinePopulation[2036] },
-                { x: 2037, y: baselinePopulation[2037] },
-                { x: 2038, y: baselinePopulation[2038] },
-                { x: 2039, y: baselinePopulation[2039] },
-                { x: 2040, y: baselinePopulation[2040] },
-                { x: 2041, y: baselinePopulation[2041] },
-                { x: 2042, y: baselinePopulation[2042] },
-                { x: 2043, y: baselinePopulation[2043] },
-                { x: 2044, y: baselinePopulation[2044] },
-                { x: 2045, y: baselinePopulation[2045] },
-                { x: 2046, y: baselinePopulation[2046] },
-                { x: 2047, y: baselinePopulation[2047] },
-                { x: 2048, y: baselinePopulation[2048] },
-                { x: 2049, y: baselinePopulation[2049] },
-                { x: 2050, y: baselinePopulation[2050] },
-              ]}
-              opacity={1}
-              stroke="rgba(102,116,155,1)"
-              strokeDasharray=""
-              strokeStyle="dashed"
-              strokeWidth="1.5"
-              style={{}}
-            />
-          </XYPlot>
-          <U2legend />
+            <div>
+              <label htmlFor="new_residents">
+                Number of new residents moving in
+              </label>
+              <label htmlFor="start_year_selection">
+                {" "}
+                {newDevelopment.newResidents}
+              </label>
+            </div>
+            <div>
+              <label> Start</label>
+              <label> {newDevelopment.yearStart}</label>
+            </div>
 
-          <div className="backButtonNew">
-            <Button
-              size="small"
-              value="backProjections"
-              onClick={() => navigate("/newResidents", { replace: true })}
-              label="&laquo; Previous"
-              secondary
-            />
-          </div>
-          <div className="nextU2Button">
-            <Button
-              size="small"
-              value="nextU3"
-              onClick={gotoU3planner}
-              label="Next &raquo;"
-              primary
-            />
-          </div>
-        </form>
-      </section>
-    </article>
-  );
-} else {
-  return (
+            <div>
+              <label> End</label>
+              <label> {newDevelopment.yearFinish}</label>
+            </div>
+            <br />
+            <label>
+              <b>U2.2 Settlement type</b>
+            </label>
+            <label>
+              <b>Existing environment</b>
+            </label>
+            <label>
+              <b>New development</b>
+            </label>
+            <div>
+              <label>Metropolitan Area</label>
+              <label>
+                {baseline.settlementDistribution.metropolitanCenter}
+              </label>
+              <label>
+                {newDevelopment.newSettlementDistribution.metropolitanCenter}
+              </label>
+            </div>
+            <div>
+              <label>Urban</label>
+              <label>{baseline.settlementDistribution.urban}</label>
+              <label>{newDevelopment.newSettlementDistribution.urban}</label>
+            </div>
+            <div>
+              <label> Suburban</label>
+              <label>{baseline.settlementDistribution.suburban}</label>
+              <label>{newDevelopment.newSettlementDistribution.suburban}</label>
+            </div>
+            <div>
+              <label htmlFor="town">Town</label>
+              <label>{baseline.settlementDistribution.town}</label>
+              <label>{newDevelopment.newSettlementDistribution.town}</label>
+            </div>
+            <div>
+              <label htmlFor="rural">Rural</label>
+              <label>{baseline.settlementDistribution.rural}</label>
+              <label>{newDevelopment.newSettlementDistribution.rural}</label>
+            </div>
+            <br />
+            <XYPlot
+              width={900}
+              height={500}
+              xType="ordinal"
+              yDomain={[0, 1000]}
+              // yDomain={[0, 1000]}
+              // yType="log"
+            >
+              <HorizontalGridLines style={{ stroke: "#B7E9ED" }} />
+              <VerticalGridLines style={{ stroke: "#B7E9ED" }} />
+              <XAxis
+                position="start"
+                style={{
+                  line: { stroke: "#ADDDE1" },
+                  ticks: { stroke: "#ADDDE1" },
+                  text: { stroke: "none", fill: "#6b6b76", fontWeight: 600 },
+                }}
+              />
+              <YAxis />
+              <LineSeries
+                curve={null}
+                data={[
+                  { x: 2022, y: newPopulation[2022] },
+                  { x: 2023, y: newPopulation[2023] },
+                  { x: 2024, y: newPopulation[2024] },
+                  { x: 2025, y: newPopulation[2025] },
+                  { x: 2026, y: newPopulation[2026] },
+                  { x: 2027, y: newPopulation[2027] },
+                  { x: 2028, y: newPopulation[2028] },
+                  { x: 2029, y: newPopulation[2029] },
+                  { x: 2030, y: newPopulation[2030] },
+                  { x: 2031, y: newPopulation[2031] },
+                  { x: 2032, y: newPopulation[2032] },
+                  { x: 2033, y: newPopulation[2033] },
+                  { x: 2034, y: newPopulation[2034] },
+                  { x: 2035, y: newPopulation[2035] },
+                  { x: 2036, y: newPopulation[2036] },
+                  { x: 2037, y: newPopulation[2037] },
+                  { x: 2038, y: newPopulation[2038] },
+                  { x: 2039, y: newPopulation[2039] },
+                  { x: 2040, y: newPopulation[2040] },
+                  { x: 2041, y: newPopulation[2041] },
+                  { x: 2042, y: newPopulation[2042] },
+                  { x: 2043, y: newPopulation[2043] },
+                  { x: 2044, y: newPopulation[2044] },
+                  { x: 2045, y: newPopulation[2045] },
+                  { x: 2046, y: newPopulation[2046] },
+                  { x: 2047, y: newPopulation[2047] },
+                  { x: 2048, y: newPopulation[2048] },
+                  { x: 2049, y: newPopulation[2049] },
+                  { x: 2050, y: newPopulation[2050] },
+                ]}
+                opacity={1}
+                stroke="rgba(21,75,230,1)"
+                strokeDasharray=""
+                strokeStyle="solid"
+                strokeWidth="1.5"
+                style={{}}
+              />
+              <LineSeries
+                curve={null}
+                data={[
+                  { x: 2022, y: baselinePopulation[2022] },
+                  { x: 2023, y: baselinePopulation[2023] },
+                  { x: 2024, y: baselinePopulation[2024] },
+                  { x: 2025, y: baselinePopulation[2025] },
+                  { x: 2026, y: baselinePopulation[2026] },
+                  { x: 2027, y: baselinePopulation[2027] },
+                  { x: 2028, y: baselinePopulation[2028] },
+                  { x: 2029, y: baselinePopulation[2029] },
+                  { x: 2030, y: baselinePopulation[2030] },
+                  { x: 2031, y: baselinePopulation[2031] },
+                  { x: 2032, y: baselinePopulation[2032] },
+                  { x: 2033, y: baselinePopulation[2033] },
+                  { x: 2034, y: baselinePopulation[2034] },
+                  { x: 2035, y: baselinePopulation[2035] },
+                  { x: 2036, y: baselinePopulation[2036] },
+                  { x: 2037, y: baselinePopulation[2037] },
+                  { x: 2038, y: baselinePopulation[2038] },
+                  { x: 2039, y: baselinePopulation[2039] },
+                  { x: 2040, y: baselinePopulation[2040] },
+                  { x: 2041, y: baselinePopulation[2041] },
+                  { x: 2042, y: baselinePopulation[2042] },
+                  { x: 2043, y: baselinePopulation[2043] },
+                  { x: 2044, y: baselinePopulation[2044] },
+                  { x: 2045, y: baselinePopulation[2045] },
+                  { x: 2046, y: baselinePopulation[2046] },
+                  { x: 2047, y: baselinePopulation[2047] },
+                  { x: 2048, y: baselinePopulation[2048] },
+                  { x: 2049, y: baselinePopulation[2049] },
+                  { x: 2050, y: baselinePopulation[2050] },
+                ]}
+                opacity={1}
+                stroke="rgba(102,116,155,1)"
+                strokeDasharray=""
+                strokeStyle="dashed"
+                strokeWidth="1.5"
+                style={{}}
+              />
+            </XYPlot>
+            <U2legend />
+
+            <div className="backButtonNew">
+              <Button
+                size="small"
+                value="backProjections"
+                onClick={() => navigate(-1)}
+                label="&laquo; Previous"
+                secondary
+              />
+            </div>
+            <div className="nextU2Button">
+              <Button
+                size="small"
+                value="nextU3"
+                onClick={gotoU3planner}
+                label="Next &raquo;"
+                primary
+              />
+            </div>
+          </form>
+        </section>
+      </article>
+    );
+  } else {
+    return (
       <U3planner
         /* year={year} */
         user={user}
@@ -278,9 +280,8 @@ export const U2planner = ({
         onLogout={onLogout}
         onCreateAccount={onCreateAccount}
       />
-  
-  );
-}
+    );
+  }
 };
 
 U2planner.propTypes = {

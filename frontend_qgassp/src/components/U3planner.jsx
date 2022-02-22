@@ -20,7 +20,7 @@ export const U3planner = ({
 }) => {
   const [yearStart, setYearStart] = useState(0);
   const [yearFinish, setYearFinish] = useState(0);
- 
+
   // const [baseline, setBaseline] = useState("");
   //   const [newDevelopment, setNewDevelopment] = useState("");
   //   const [updateU2charts, setU2charts] = useState(false);
@@ -70,15 +70,15 @@ export const U3planner = ({
           onCreateAccount={onCreateAccount}
         />
       }
-         <div className="headerSettlement">
-            <Divider textAlign="left" flexItem>
-              {" "}
-              <Chip label="U3 POLICY QUANTIFICATION" />
-            </Divider>
-          </div>
+      <div className="headerSettlement">
+        <Divider textAlign="left" flexItem>
+          {" "}
+          <Chip label="U3 POLICY QUANTIFICATION" />
+        </Divider>
+      </div>
 
       <section>
-      {/*   <div>
+        {/*   <div>
           <h2>U3 POLICY QUANTIFICATION</h2>
         </div> */}
         {/* <form onSubmit={updateU2Planner}> */}

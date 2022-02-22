@@ -22,53 +22,17 @@ export const Settlement = ({
   year,
   population,
 }) => {
-  const [metropolitanCenter, setMetropolitan] = useState(() => {
-    const savedMetroCenter = window.localStorage.getItem("metropolitanCenter");
-    return savedMetroCenter !== null
-      ? JSON.parse(savedMetroCenter)
-      : parseFloat(0);
-  });
-  const [urban, setUrban] = useState(() => {
-    const savedUrban = window.localStorage.getItem("urban");
-    return savedUrban !== null ? JSON.parse(savedUrban) : parseFloat(0);
-  });
-  const [suburban, setSubUrban] = useState(() => {
-    const savedSubUrban = window.localStorage.getItem("suburban");
-    return savedSubUrban !== null ? JSON.parse(savedSubUrban) : parseFloat(0);
-  });
-  const [town, setTown] = useState(() => {
-    const savedTown = window.localStorage.getItem("town");
-    return savedTown !== null ? JSON.parse(savedTown) : parseFloat(0);
-  });
-  const [rural, setRural] = useState(() => {
-    const savedRural = window.localStorage.getItem("rural");
-    return savedRural !== null ? JSON.parse(savedRural) : parseFloat(0);
-  });
-
-  useEffect(() => {
-    localStorage.setItem("metropolitanCenter", metropolitanCenter);
-  }, [metropolitanCenter]);
-
-  useEffect(() => {
-    localStorage.setItem("urban", urban);
-  }, [urban]);
-
-  useEffect(() => {
-    localStorage.setItem("suburban", suburban);
-  }, [suburban]);
-
-  useEffect(() => {
-    localStorage.setItem("town", town);
-  }, [town]);
-
-  useEffect(() => {
-    localStorage.setItem("rural", rural);
-  }, [rural]);
+  const [metropolitanCenter, setMetropolitan] = useState(parseFloat(0));
+  const [urban, setUrban] = useState(parseFloat(0));
+  const [suburban, setSubUrban] = useState(parseFloat(0));
+  const [town, setTown] = useState(parseFloat(0));
+  const [rural, setRural] = useState(parseFloat(0));
 
   const [total, setTotal] = useState(
     metropolitanCenter + urban + suburban + town + rural
   );
   const [nextEmissions, setNextEmissions] = useState(false);
+  const [settlementDistribution, setSettlementDistribution] = useState("");
 
   const navigate = useNavigate();
 
@@ -94,6 +58,14 @@ export const Settlement = ({
   };
 
   const setSettlementType = () => {
+    const settlementDist = {
+      metropolitanCenter,
+      urban,
+      suburban,
+      town,
+      rural,
+    };
+    setSettlementDistribution(settlementDist);
     setTotal(metropolitanCenter + urban + suburban + town + rural);
     setNextEmissions(true);
   };
@@ -211,7 +183,7 @@ export const Settlement = ({
                   <Button
                     size="small"
                     value="backStartPage"
-                    onClick={() => navigate("/startPage", { replace: true })}
+                    onClick={() => navigate("/", { replace: true })}
                     label="&laquo; Previous"
                     secondary
                   />
@@ -238,11 +210,7 @@ export const Settlement = ({
         country={country}
         year={year}
         population={population}
-        metropolitanCenter={metropolitanCenter}
-        urban={urban}
-        suburban={suburban}
-        town={town}
-        rural={rural}
+        settlementDistribution={settlementDistribution}
         total={total}
         nextEmissions={nextEmissions}
       />
