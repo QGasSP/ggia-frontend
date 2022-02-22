@@ -26,6 +26,7 @@ import { U3planner } from "./U3planner";
 export const U2planner = ({
   baseline,
   newDevelopment,
+  settlementDistribution,
   user,
   onLogin,
   onLogout,
@@ -120,7 +121,7 @@ export const U2planner = ({
             <div>
               <label>Metropolitan Area</label>
               <label>
-                {baseline.settlementDistribution.metropolitanCenter}
+                {settlementDistribution.metropolitanCenter}
               </label>
               <label>
                 {newDevelopment.newSettlementDistribution.metropolitanCenter}
@@ -128,22 +129,22 @@ export const U2planner = ({
             </div>
             <div>
               <label>Urban</label>
-              <label>{baseline.settlementDistribution.urban}</label>
+              <label>{settlementDistribution.urban}</label>
               <label>{newDevelopment.newSettlementDistribution.urban}</label>
             </div>
             <div>
               <label> Suburban</label>
-              <label>{baseline.settlementDistribution.suburban}</label>
+              <label>{settlementDistribution.suburban}</label>
               <label>{newDevelopment.newSettlementDistribution.suburban}</label>
             </div>
             <div>
               <label htmlFor="town">Town</label>
-              <label>{baseline.settlementDistribution.town}</label>
+              <label>{settlementDistribution.town}</label>
               <label>{newDevelopment.newSettlementDistribution.town}</label>
             </div>
             <div>
               <label htmlFor="rural">Rural</label>
-              <label>{baseline.settlementDistribution.rural}</label>
+              <label>{settlementDistribution.rural}</label>
               <label>{newDevelopment.newSettlementDistribution.rural}</label>
             </div>
             <br />
@@ -152,6 +153,7 @@ export const U2planner = ({
               height={500}
               xType="ordinal"
               yDomain={[0, 1000]}
+                 // yType="linear"
               // yDomain={[0, 1000]}
               // yType="log"
             >
@@ -274,7 +276,8 @@ export const U2planner = ({
   } else {
     return (
       <U3planner
-        /* year={year} */
+        baseline={baseline}
+        newDevelopment={newDevelopment}
         user={user}
         onLogin={onLogin}
         onLogout={onLogout}
@@ -285,8 +288,9 @@ export const U2planner = ({
 };
 
 U2planner.propTypes = {
-  baseline: PropTypes.array.isRequired,
-  newDevelopment: PropTypes.array.isRequired,
+  baseline: PropTypes.object.isRequired,
+  settlementDistribution: PropTypes.object.isRequired,
+  newDevelopment: PropTypes.object.isRequired,
   user: PropTypes.shape({}),
   onLogin: PropTypes.func.isRequired,
   onLogout: PropTypes.func.isRequired,

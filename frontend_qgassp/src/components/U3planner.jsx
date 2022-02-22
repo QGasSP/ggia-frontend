@@ -12,7 +12,8 @@ import Chip from "@mui/material/Chip";
  */
 
 export const U3planner = ({
-  /*  year, */
+  baseline,
+  newDevelopment,
   user,
   onLogin,
   onLogout,
@@ -34,31 +35,7 @@ export const U3planner = ({
     e.preventDefault();
     setYearFinish(Number(e.target.value));
   };
-  //   const updateU2Planner = () => {
-  //     const baselineSettlement = {
-  //       country,
-  //       year,
-  //       population,
-  //       settlementDistribution,
-  //     };
-  //     setBaseline(baselineSettlement);
-  //     const newSettlementDistribution = {
-  //       metropolitanCenter,
-  //       urban,
-  //       suburban,
-  //       town,
-  //       rural,
-  //     };
-  //   const newDevelopmentU2 = {
-  //     newResidents,
-  //     yearStart,
-  //     yearFinish,
-  //     newSettlementDistribution,
-  //   };
-  //     setNewDevelopment(newDevelopmentU2);
-  //     setTotalNewResidents(metropolitanCenter + urban + suburban + town + rural);
-  //     setU2charts(true);
-
+ 
   // if (updateU2charts === false && totalNewResidents !== 100) {
   return (
     <article>
@@ -561,7 +538,8 @@ export const U3planner = ({
 };
 
 U3planner.propTypes = {
-  /* year: PropTypes.number.isRequired, */
+  baseline: PropTypes.object.isRequired,
+  newDevelopment: PropTypes.object.isRequired,
   country: PropTypes.string.isRequired,
   user: PropTypes.shape({}),
   onLogin: PropTypes.func.isRequired,

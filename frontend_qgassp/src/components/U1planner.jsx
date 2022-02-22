@@ -49,21 +49,7 @@ export const U1planner = ({
   const [nextU2view, setU2View] = useState(false);
   const [emission, setEmissionData] = useState("");
   const [projections, setProjections] = useState("");
-  /* const [settlementDistribution, setSettlementDistribution] = useState(""); */
   const [baseline, setBaseline] = useState({});
- 
-  /* const goToNewResidents = () => {
-    const settlementDist = {
-      metropolitanCenter,
-      urban,
-      suburban,
-      town,
-      rural,
-    };
-    setSettlementDistribution(settlementDist);
-    setU2View(true);
-  }; 
- */
  
  
   const settlementLabels = [
@@ -533,6 +519,7 @@ export const U1planner = ({
     return (
       <StackedBarchart
         projections={projections}
+        settlementDistribution={settlementDistribution}
         baseline={baseline}
       />
       /*  <NewResidents
@@ -546,11 +533,6 @@ export const U1planner = ({
 };
 
 U1planner.propTypes = {
- /*  metropolitanCenter: PropTypes.number.isRequired,
-  urban: PropTypes.number.isRequired,
-  suburban: PropTypes.number.isRequired,
-  town: PropTypes.number.isRequired,
-  rural: PropTypes.number.isRequired, */
   settlementDistribution: PropTypes.object.isRequired,
   population: PropTypes.number.isRequired,
   year: PropTypes.number.isRequired,

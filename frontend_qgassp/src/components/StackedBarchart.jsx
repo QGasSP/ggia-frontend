@@ -25,6 +25,7 @@ const BarSeries = VerticalBarSeries;
 export const StackedBarchart = ({
   projections,
   baseline,
+  settlementDistribution,
   user,
   onLogin,
   onLogout,
@@ -367,6 +368,7 @@ export const StackedBarchart = ({
     return (
       <NewResidents
         baseline={baseline}
+        settlementDistribution={settlementDistribution}
       />
     );
   }
@@ -375,6 +377,7 @@ export const StackedBarchart = ({
 StackedBarchart.propTypes = {
   baseline: PropTypes.object.isRequired,
   projections: PropTypes.object.isRequired,
+  settlementDistribution: PropTypes.object.isRequired,
   user: PropTypes.shape({}),
   onLogin: PropTypes.func.isRequired,
   onLogout: PropTypes.func.isRequired,
