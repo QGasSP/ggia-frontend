@@ -136,7 +136,6 @@ export const U1planner = ({
                 </div>
                 <div>
                   <label htmlFor="metropolitan">Metropolitan center</label>
-                  <label htmlFor="metropolitan">{settlementDistribution.metropolitanCenter}</label>
                   <input
                     type="number"
                     id="metropolitan"
@@ -249,20 +248,20 @@ export const U1planner = ({
 
               <div>
                 <label htmlFor="ns_measure">N-S Measurement (km)</label>
-                <input 
-                type="text" 
-                id="ns_measure"
-                onChange={(e) =>  setNsArea(e.target.value)}
-                value={nsArea}
-                 />
+                <input
+                  type="text"
+                  id="ns_measure"
+                  onChange={(e) => setNsArea(e.target.value)}
+                  value={nsArea}
+                />
               </div>
               <div>
                 <label htmlFor="ew_measure">E-W Measurement (km)</label>
-                <input 
-                type="text" 
-                id="ew_measure" 
-                onChange={(e) => setEwArea(e.target.value)}
-                value={ewArea}
+                <input
+                  type="text"
+                  id="ew_measure"
+                  onChange={(e) => setEwArea(e.target.value)}
+                  value={ewArea}
                 />
               </div>
 
@@ -279,10 +278,10 @@ export const U1planner = ({
                     {" "}
                     Non-residential road transport
                   </label>
-                  <select 
-                  id="non_resident_road"
-                  onChange={(e) =>setNonResidentialRoad(e.target.value)}
-                  defaultValue={nonResidentialRoad}
+                  <select
+                    id="non_resident_road"
+                    onChange={(e) => setNonResidentialRoad(e.target.value)}
+                    defaultValue={nonResidentialRoad}
                   >
                     <optgroup label="Select road transport intensity"></optgroup>
                     <option value="very_limited">0.25</option>
@@ -295,11 +294,11 @@ export const U1planner = ({
                   <label htmlFor="freight=road">
                     Freight transport by road
                   </label>
-                  <select 
-                  id="freight_road" 
-                  name="freight_road"
-                  onChange={(e) =>setFreightRoad(e.target.value)}
-                  defaultValue={freightRoad}
+                  <select
+                    id="freight_road"
+                    name="freight_road"
+                    onChange={(e) => setFreightRoad(e.target.value)}
+                    defaultValue={freightRoad}
                   >
                     <optgroup label="Select freight road intensity"></optgroup>
                     <option value="very_limited">0.25</option>
@@ -311,11 +310,11 @@ export const U1planner = ({
                   <label htmlFor="freight_rail">
                     Freight transport by rail
                   </label>
-                  <select 
-                  id="freight_rail" 
-                  name="freight_rail"
-                  onChange={(e) =>setFreightRail(e.target.value)}
-                  defaultValue={freightRail}
+                  <select
+                    id="freight_rail"
+                    name="freight_rail"
+                    onChange={(e) => setFreightRail(e.target.value)}
+                    defaultValue={freightRail}
                   >
                     <option value="very_limited">0.25</option>
                     <option value="national_average_intensity">1.0</option>
@@ -327,11 +326,11 @@ export const U1planner = ({
                   <label htmlFor="freight_waterway">
                     Freight transport by inland waterways
                   </label>
-                  <select 
-                  id="freight_waterway" 
-                  name="freight_waterway"
-                  onChange={(e) =>setFreightInlandWaterway(e.target.value)}
-                  defaultValue={freightInlandWaterway}
+                  <select
+                    id="freight_waterway"
+                    name="freight_waterway"
+                    onChange={(e) => setFreightInlandWaterway(e.target.value)}
+                    defaultValue={freightInlandWaterway}
                   >
                     <option value="very_limited">0.25</option>
                     <option value="national_average_intensity">1.0</option>
