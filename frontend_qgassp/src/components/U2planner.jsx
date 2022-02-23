@@ -60,7 +60,7 @@ export const U2planner = ({
   }, []);
 
   const setU2Response = (response) => {
-    setNewPopulation(response.data["new_development"].impact.population);
+    setNewPopulation(response.data["new_development"].impact);
     setBaselinePopulation(response.data.baseline.projections);
   };
 
@@ -151,7 +151,7 @@ export const U2planner = ({
             <div>{JSON.stringify(baselinePopulation)}</div>
             <br />
 
-            <div>{JSON.stringify(newPopulation)}</div>
+          {/*   <div>{JSON.stringify(newPopulation)}</div> */}
             <br />
 
             <br />
