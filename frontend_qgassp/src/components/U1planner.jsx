@@ -91,7 +91,7 @@ export const U1planner = ({
       .catch((error) => {
         setError({ errorMessage: error.message });
         // eslint-disable-next-line no-console
-        console.error("There was an error!", error );
+        console.error("There was an error!", error);
       });
   }, []);
 
