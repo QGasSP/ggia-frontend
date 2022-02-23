@@ -57,7 +57,6 @@ export const StackedBarchart = ({
         </div>
 
         <section>
-          <div>{JSON.stringify(projections)}</div>
           <label>
             <b>CO2e emissions per capita 2022-2050</b>
           </label>

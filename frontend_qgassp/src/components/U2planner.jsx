@@ -10,6 +10,7 @@ import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 import {
   XYPlot,
+  AreaSeries,
   XAxis,
   YAxis,
   HorizontalGridLines,
@@ -42,6 +43,7 @@ export const U2planner = ({
     const rawData = { baseline, newDevelopment };
     const headers = {
       "Content-type": "application/json",
+      "Access-Control-Allow-Origin": "*",
     };
     axios
       .post(
@@ -58,8 +60,8 @@ export const U2planner = ({
   }, []);
 
   const setU2Response = (response) => {
-    setNewPopulation(response.data.new_development.impact.population);
-    setBaselinePopulation(response.data.baseline.projections.population);
+    setNewPopulation(response.data["new_development"].impact);
+    setBaselinePopulation(response.data.baseline.projections);
   };
 
   const gotoU3planner = () => {
@@ -85,7 +87,7 @@ export const U2planner = ({
         </div>
 
         <section>
-          <div>{newPopulation[2022]}</div>
+          <div>{newPopulation}</div>
           <form>
             <label>
               <b>U2.1 New residents</b>
@@ -145,8 +147,16 @@ export const U2planner = ({
               <label>{settlementDistribution.rural}</label>
               <label>{newDevelopment.newSettlementDistribution.rural}</label>
             </div>
-            <br />
-            <XYPlot
+
+            <div>{JSON.stringify(baselinePopulation)}</div>
+            <br/>
+           
+         <div>{JSON.stringify(newPopulation)}</div> 
+            <br /> 
+         
+
+            <br/>
+       {/*     <XYPlot
               width={900}
               height={500}
               xType="ordinal"
@@ -246,7 +256,7 @@ export const U2planner = ({
                 strokeWidth="1.5"
                 style={{}}
               />
-            </XYPlot>
+            </XYPlot>  */}
             <U2legend />
 
             <div className="backButtonNew">

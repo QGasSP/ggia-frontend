@@ -91,7 +91,7 @@ export const U1planner = ({
       .catch((error) => {
         setError({ errorMessage: error.message });
         // eslint-disable-next-line no-console
-        console.error("There was an error!", error + baseline);
+        console.error("There was an error!", error );
       });
   }, []);
 
@@ -253,7 +253,8 @@ export const U1planner = ({
                   id="ns_measure"
                   min="0"
                   onChange={(e) => setNsArea(e.target.value)}
-                  value={nsArea}
+                  placeholder={nsArea}
+                  /*   value={nsArea} */
                 />
               </div>
               <div>
@@ -263,7 +264,8 @@ export const U1planner = ({
                   id="ew_measure"
                   min="0"
                   onChange={(e) => setEwArea(e.target.value)}
-                  value={ewArea}
+                  placeholder={ewArea}
+                  /*  value={ewArea} */
                 />
               </div>
 
@@ -271,7 +273,7 @@ export const U1planner = ({
               <form>
                 <div>
                   <label>
-                    <b>U1.2 Non-residential and freight</b>
+                    <b>U1.3 Non-residential and freight</b>
                   </label>
                   <label></label>
                 </div>
@@ -285,10 +287,11 @@ export const U1planner = ({
                     onChange={(e) => setNonResidentialRoad(e.target.value)}
                     defaultValue={nonResidentialRoad}
                   >
-                    <optgroup label="Select road transport intensity"></optgroup>
-                    <option value="very_limited">0.25</option>
-                    <option value="national_average_intensity">1.0</option>
-                    <option value="very_intensive">2.50</option>
+                    <optgroup label="Select road transport intensity(very limited, national average or very intensive)">
+                      <option value="very_limited">0.25</option>
+                      <option value="national_average_intensity">1.0</option>
+                      <option value="very_intensive">2.50</option>
+                    </optgroup>
                   </select>
                 </div>
 
@@ -302,10 +305,11 @@ export const U1planner = ({
                     onChange={(e) => setFreightRoad(e.target.value)}
                     defaultValue={freightRoad}
                   >
-                    <optgroup label="Select freight road intensity"></optgroup>
-                    <option value="very_limited">0.25</option>
-                    <option value="national_average_intensity">1.0</option>
-                    <option value="very_intensive">2.50</option>
+                    <optgroup label="Select road transport intensity(very limited, national average or very intensive)">
+                      <option value="very_limited">0.25</option>
+                      <option value="national_average_intensity">1.0</option>
+                      <option value="very_intensive">2.50</option>
+                    </optgroup>
                   </select>
                 </div>
                 <div>
@@ -318,9 +322,11 @@ export const U1planner = ({
                     onChange={(e) => setFreightRail(e.target.value)}
                     defaultValue={freightRail}
                   >
-                    <option value="very_limited">0.25</option>
-                    <option value="national_average_intensity">1.0</option>
-                    <option value="very_intensive">2.50</option>
+                    <optgroup label="Select road transport intensity(very limited,national average or very intensive)">
+                      <option value="very_limited">0.25</option>
+                      <option value="national_average_intensity">1.0</option>
+                      <option value="very_intensive">2.50</option>
+                    </optgroup>
                   </select>
                 </div>
 
@@ -334,9 +340,11 @@ export const U1planner = ({
                     onChange={(e) => setFreightInlandWaterway(e.target.value)}
                     defaultValue={freightInlandWaterway}
                   >
-                    <option value="very_limited">0.25</option>
-                    <option value="national_average_intensity">1.0</option>
-                    <option value="very_intensive">2.50</option>
+                    <optgroup label="Select road transport intensity(very limited, national average or very intensive)">
+                      <option value="very_limited">0.25</option>
+                      <option value="national_average_intensity">1.0</option>
+                      <option value="very_intensive">2.50</option>
+                    </optgroup>
                   </select>
                 </div>
               </form>

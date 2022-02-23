@@ -262,7 +262,7 @@ export const NewResidents = ({
   } else {
     return (
       <U2planner
-        baseline={baseline}
+        baseline={baseline.baseline}
         newDevelopment={newDevelopment}
         settlementDistribution={settlementDistribution}
       />
