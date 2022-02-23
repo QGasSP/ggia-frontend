@@ -251,6 +251,7 @@ export const U1planner = ({
                 <input
                   type="text"
                   id="ns_measure"
+                  min="0"
                   onChange={(e) => setNsArea(e.target.value)}
                   value={nsArea}
                 />
@@ -260,6 +261,7 @@ export const U1planner = ({
                 <input
                   type="text"
                   id="ew_measure"
+                  min="0"
                   onChange={(e) => setEwArea(e.target.value)}
                   value={ewArea}
                 />

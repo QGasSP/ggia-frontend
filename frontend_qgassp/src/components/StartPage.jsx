@@ -122,6 +122,7 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   id="population_assessment"
                   className="population"
                   placeholder="0"
+                  min="0"
                   onChange={handlePopulation}
                   required
                 />
