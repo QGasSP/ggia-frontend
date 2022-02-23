@@ -117,10 +117,11 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   Population of the assessment area
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   pattern="[0-9]*"
                   id="population_assessment"
-                  className="form-input"
+                  className="population"
+                  placeholder='0'
                   onChange={handlePopulation}
                   required
                 />

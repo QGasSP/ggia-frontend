@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Header } from "./Header";
 import { Button } from "./Button";
@@ -112,7 +112,8 @@ export const Settlement = ({
                     id="metropolitan"
                     min="0"
                     max="100"
-                    value={metropolitanCenter}
+                    placeholder="0.00"
+                   /*  defaultValue={metropolitanCenter} */
                     onChange={handleMetropolitanCenter}
                     required
                   />
@@ -127,7 +128,8 @@ export const Settlement = ({
                     id="urban"
                     min="0"
                     max="100"
-                    value={urban}
+                    placeholder="0.00"
+                  /*   value={urban} */
                     onChange={handleUrban}
                     required
                   />
@@ -143,7 +145,8 @@ export const Settlement = ({
                     step="any"
                     min="0.0"
                     max="100.0"
-                    value={suburban}
+                    placeholder="0.00"
+                  /*   defaultValue={suburban} */
                     onChange={handleSuburban}
                     required
                   />
@@ -158,7 +161,8 @@ export const Settlement = ({
                     step="0.1"
                     min="0.0"
                     max="100.0"
-                    value={town}
+                    placeholder="0.00"
+                  /*   value={town} */
                     onChange={handleTown}
                     required
                   />
@@ -173,7 +177,8 @@ export const Settlement = ({
                     step="0.1"
                     min="0"
                     max="100"
-                    value={rural}
+                  /*   value={rural} */
+                    placeholder="0.00"
                     onChange={handleRural}
                     required
                   />

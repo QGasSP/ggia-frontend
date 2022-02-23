@@ -21,7 +21,7 @@ const BarSeries = VerticalBarSeries;
  * Barchart UI component for projections
  * @return {}
  */
- 
+
 export const StackedBarchart = ({
   projections,
   baseline,
@@ -57,7 +57,7 @@ export const StackedBarchart = ({
         </div>
 
         <section>
-          <div>{JSON.stringify(projections)}</div>  
+          <div>{JSON.stringify(projections)}</div>
           <label>
             <b>CO2e emissions per capita 2022-2050</b>
           </label>

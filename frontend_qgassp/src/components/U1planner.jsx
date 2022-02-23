@@ -37,7 +37,7 @@ export const U1planner = ({
   year,
   population,
   settlementDistribution,
- /*  metropolitanCenter,
+  /*  metropolitanCenter,
   urban,
   suburban,
   town,
@@ -50,8 +50,15 @@ export const U1planner = ({
   const [emission, setEmissionData] = useState("");
   const [projections, setProjections] = useState("");
   const [baseline, setBaseline] = useState({});
- 
- 
+
+  const [nsArea, setNsArea] = useState(0);
+  const [ewArea, setEwArea] = useState(0);
+
+  const [nonResidentialRoad, setNonResidentialRoad] = useState(0);
+  const [freightRoad, setFreightRoad] = useState(0);
+  const [freightRail, setFreightRail] = useState(0);
+  const [freightInlandWaterway, setFreightInlandWaterway] = useState(0);
+
   const settlementLabels = [
     { title: "urban", color: "#164059" },
     { title: "suburban", color: "#F25F29" },
@@ -61,15 +68,15 @@ export const U1planner = ({
   ];
 
   useEffect(async () => {
-    const baseline= {
+    const baseline = {
       country,
       year,
       population,
-      settlementDistribution
+      settlementDistribution,
     };
-   setBaseline({baseline});
-   const raw = {baseline};
-    
+    setBaseline({ baseline });
+    const raw = { baseline };
+
     const headers = {
       "Content-type": "application/json",
       "Access-Control-Allow-Origin": "*",
@@ -84,7 +91,7 @@ export const U1planner = ({
       .catch((error) => {
         setError({ errorMessage: error.message });
         // eslint-disable-next-line no-console
-        console.error("There was an error!", error+ baseline);
+        console.error("There was an error!", error + baseline);
       });
   }, []);
 
@@ -129,6 +136,7 @@ export const U1planner = ({
                 </div>
                 <div>
                   <label htmlFor="metropolitan">Metropolitan center</label>
+                  <label htmlFor="metropolitan">{settlementDistribution.metropolitanCenter}</label>
                   <input
                     type="number"
                     id="metropolitan"
@@ -241,11 +249,21 @@ export const U1planner = ({
 
               <div>
                 <label htmlFor="ns_measure">N-S Measurement (km)</label>
-                <input type="text" id="ns_measure" />
+                <input 
+                type="text" 
+                id="ns_measure"
+                onChange={(e) =>  setNsArea(e.target.value)}
+                value={nsArea}
+                 />
               </div>
               <div>
                 <label htmlFor="ew_measure">E-W Measurement (km)</label>
-                <input type="text" id="ew_measure" />
+                <input 
+                type="text" 
+                id="ew_measure" 
+                onChange={(e) => setEwArea(e.target.value)}
+                value={ewArea}
+                />
               </div>
 
               <br />
@@ -261,7 +279,11 @@ export const U1planner = ({
                     {" "}
                     Non-residential road transport
                   </label>
-                  <select id="non_resident_road">
+                  <select 
+                  id="non_resident_road"
+                  onChange={(e) =>setNonResidentialRoad(e.target.value)}
+                  defaultValue={nonResidentialRoad}
+                  >
                     <optgroup label="Select road transport intensity"></optgroup>
                     <option value="very_limited">0.25</option>
                     <option value="national_average_intensity">1.0</option>
@@ -273,7 +295,12 @@ export const U1planner = ({
                   <label htmlFor="freight=road">
                     Freight transport by road
                   </label>
-                  <select id="freight_road" name="freight_road">
+                  <select 
+                  id="freight_road" 
+                  name="freight_road"
+                  onChange={(e) =>setFreightRoad(e.target.value)}
+                  defaultValue={freightRoad}
+                  >
                     <optgroup label="Select freight road intensity"></optgroup>
                     <option value="very_limited">0.25</option>
                     <option value="national_average_intensity">1.0</option>
@@ -284,7 +311,12 @@ export const U1planner = ({
                   <label htmlFor="freight_rail">
                     Freight transport by rail
                   </label>
-                  <select id="freight_rail" name="freight_rail">
+                  <select 
+                  id="freight_rail" 
+                  name="freight_rail"
+                  onChange={(e) =>setFreightRail(e.target.value)}
+                  defaultValue={freightRail}
+                  >
                     <option value="very_limited">0.25</option>
                     <option value="national_average_intensity">1.0</option>
                     <option value="very_intensive">2.50</option>
@@ -295,7 +327,12 @@ export const U1planner = ({
                   <label htmlFor="freight_waterway">
                     Freight transport by inland waterways
                   </label>
-                  <select id="freight_waterway" name="freight_waterway">
+                  <select 
+                  id="freight_waterway" 
+                  name="freight_waterway"
+                  onChange={(e) =>setFreightInlandWaterway(e.target.value)}
+                  defaultValue={freightInlandWaterway}
+                  >
                     <option value="very_limited">0.25</option>
                     <option value="national_average_intensity">1.0</option>
                     <option value="very_intensive">2.50</option>

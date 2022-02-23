@@ -260,7 +260,13 @@ export const NewResidents = ({
       </article>
     );
   } else {
-    return <U2planner baseline={baseline} newDevelopment={newDevelopment} settlementDistribution={settlementDistribution} />;
+    return (
+      <U2planner
+        baseline={baseline}
+        newDevelopment={newDevelopment}
+        settlementDistribution={settlementDistribution}
+      />
+    );
   }
 };
 

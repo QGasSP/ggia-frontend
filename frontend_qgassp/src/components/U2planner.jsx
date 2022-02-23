@@ -120,9 +120,7 @@ export const U2planner = ({
             </label>
             <div>
               <label>Metropolitan Area</label>
-              <label>
-                {settlementDistribution.metropolitanCenter}
-              </label>
+              <label>{settlementDistribution.metropolitanCenter}</label>
               <label>
                 {newDevelopment.newSettlementDistribution.metropolitanCenter}
               </label>
@@ -153,7 +151,7 @@ export const U2planner = ({
               height={500}
               xType="ordinal"
               yDomain={[0, 1000]}
-                 // yType="linear"
+              // yType="linear"
               // yDomain={[0, 1000]}
               // yType="log"
             >

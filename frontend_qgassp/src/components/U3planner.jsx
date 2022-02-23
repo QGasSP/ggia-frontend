@@ -35,7 +35,7 @@ export const U3planner = ({
     e.preventDefault();
     setYearFinish(Number(e.target.value));
   };
- 
+
   // if (updateU2charts === false && totalNewResidents !== 100) {
   return (
     <article>
@@ -156,7 +156,7 @@ export const U3planner = ({
             <label>
               <b>U3.3 Modal split/Passenger transport</b>
             </label>
-            <label>withouth policy</label>
+            <label>withouthdiscor policy</label>
             <label>policy target %</label>
             <label>% of the area affeccted</label>
             <div>
