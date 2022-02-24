@@ -5,11 +5,18 @@ import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import { TransportBaseline } from "./TransportBaseline";
 
+<<<<<<< HEAD
 
 export const StartPage = () => {
   // const [country, setCountry] = useState("");
   // const [year, setYear] = useState(0);
   // const [population, setPopulation] = useState(0);
+=======
+export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
+  /*  const [country, setCountry] = useState("");
+  const [year, setYear] = useState(0);
+  const [population, setPopulation] = useState(0); */
+>>>>>>> a78dcf2 (Finzalizing 2nd U3 layout)
 
   const [country, setCountry] = useState(() => {
     const savedCountry = window.localStorage.getItem("country");
