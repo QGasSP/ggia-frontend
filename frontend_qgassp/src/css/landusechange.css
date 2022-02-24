@@ -85,15 +85,18 @@ table{
   margin-bottom: 20px;
 }
 table td, th{
-  width: 110px;
+  width: 100px;
+  text-align: left;
+  padding-right: 5px;
 }
-td.row-title{
-  width: 200px;
+td.row-title, th.row-title{
+  width: 170px;
+  text-align: left;
 }
 input{
   outline: none;
 }
-input.table-cell{
+input.table-cell, select.table-cell{
   width: 100px;
 }
 .piechart_container {
@@ -110,7 +113,7 @@ input.table-cell{
 
 section select {
   border-radius: 0.25rem;
-  background: var(--color-white);
+  background: #fff;
   display: inline-block;
   padding: 5px 10px;
   width: 12%;
@@ -155,11 +158,18 @@ section div {
   right: 33%;
 }
 
-.settlement_main {
+.luc_main {
   padding: 0rem;
-  width: 70%;
+  width: 100%;
   margin: 0 auto;
 }
+
+.tbl{
+  border: 1px solid #333;
+  padding: 5px;
+  border-radius: 0.25rem;
+}
+
 .settle_label {
   font-size: 1 rem;
   align-items: center;
