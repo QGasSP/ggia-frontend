@@ -7,9 +7,22 @@ import { Settlement } from "./Settlement";
 // import { useStorageInt } from "../reducers/useStorage";
 
 export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
-  const [country, setCountry] = useState("");
+  /*  const [country, setCountry] = useState("");
   const [year, setYear] = useState(0);
-  const [population, setPopulation] = useState(0);
+  const [population, setPopulation] = useState(0); */
+
+  const [country, setCountry] = useState(() => {
+    const savedCountry = window.localStorage.getItem("country");
+    return window.localStorage.getItem("country") !== "" ? savedCountry : "";
+  });
+  const [year, setYear] = useState(() => {
+    const savedYear = window.localStorage.getItem("year");
+    return savedYear !== null ? JSON.parse(savedYear) : 0;
+  });
+  const [population, setPopulation] = useState(() => {
+    const savedPopulation = window.localStorage.getItem("population");
+    return savedPopulation !== null ? JSON.parse(savedPopulation) : 0;
+  });
   const [next, setNext] = useState(false);
   const options = [];
   for (let i = 2022; i < 2051; i++) options.push(i);

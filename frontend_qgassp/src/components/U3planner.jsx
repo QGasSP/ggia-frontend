@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Header } from "./Header";
 import { Button } from "./Button";
 import "../css/u2planner.css";
+import { useNavigate } from "react-router-dom";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 
@@ -26,6 +27,7 @@ export const U3planner = ({
   //   const [newDevelopment, setNewDevelopment] = useState("");
   //   const [updateU2charts, setU2charts] = useState(false);
   //   const [totalNewResidents, setTotalNewResidents] = useState(0.0);
+  const navigate = useNavigate();
   const optionsNew = [];
   for (let i = 2022; i < 2051; i++) optionsNew.push(i);
   const handleStartYear = (e) => {
@@ -55,24 +57,23 @@ export const U3planner = ({
       </div>
 
       <section>
-        {/*   <div>
-          <h2>U3 POLICY QUANTIFICATION</h2>
-        </div> */}
         {/* <form onSubmit={updateU2Planner}> */}
         <form>
+          <label>
+            <b>U3.1 Passenger mobility (resident and non-residential)</b>
+          </label>
+          <label>expected change %</label>
+          <label empty for spacing></label>
+          <label>% of the area affected</label>
           <div>
-            <label>
-              <b>U3.1 Passenger mobility (resident and non-residential)</b>
-            </label>
-            <label>expected change %</label>
-            <label>% of the area affected</label>
-            <div>
-              <label>change in mobility %</label>
-              <input />
-              <input />
-            </div>
-            <div>
-              <label>Policy period</label>
+            <label>change in mobility %</label>
+            <input id="inputspace" />
+            <label empty for spacing></label>
+            <input />
+          </div>
+          <div>
+            <label>Policy period</label>
+            <div id="divspace">
               <select
                 className="start_year"
                 id="start_year"
@@ -88,6 +89,8 @@ export const U3planner = ({
                   </option>
                 ))}
               </select>
+            </div>
+            <div>
               <select
                 className="finish_year"
                 id="finish_year"
@@ -111,44 +114,50 @@ export const U3planner = ({
               <b>U3.2 Freight transport</b>
             </label>
             <label>expected change %</label>
+            <label empty for spacing></label>
             <label>% of the area affected</label>
             <div>
               <label>change in freight transport %</label>
-              <input />
+              <input id="inputspace" />
+              <label empty for spacing></label>
               <input />
             </div>
             <div>
               <label>Policy period</label>
-              <select
-                className="start_year"
-                id="start_year"
-                name="start_year"
-                onChange={handleStartYear}
-                defaultValue="2022"
-                required
-              >
-                <option value="DefaultOption">Select start year</option>
-                {optionsNew.map((option) => (
-                  <option key={option} value={option}>
-                    {option}{" "}
-                  </option>
-                ))}
-              </select>
-              <select
-                className="finish_year"
-                id="finish_year"
-                name="finish_year"
-                onChange={handleYearFinish}
-                defaultValue="2022"
-                required
-              >
-                <option value="DefaultOption">Select end year</option>
-                {optionsNew.map((option) => (
-                  <option key={option} value={option}>
-                    {option}{" "}
-                  </option>
-                ))}
-              </select>
+              <div id="divspace">
+                <select
+                  className="start_year"
+                  id="start_year"
+                  name="start_year"
+                  onChange={handleStartYear}
+                  defaultValue="2022"
+                  required
+                >
+                  <option value="DefaultOption">Select start year</option>
+                  {optionsNew.map((option) => (
+                    <option key={option} value={option}>
+                      {option}{" "}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <select
+                  className="finish_year"
+                  id="finish_year"
+                  name="finish_year"
+                  onChange={handleYearFinish}
+                  defaultValue="2022"
+                  required
+                >
+                  <option value="DefaultOption">Select end year</option>
+                  {optionsNew.map((option) => (
+                    <option key={option} value={option}>
+                      {option}{" "}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
           </div>
           <br />
@@ -156,12 +165,13 @@ export const U3planner = ({
             <label>
               <b>U3.3 Modal split/Passenger transport</b>
             </label>
-            <label>withouthdiscor policy</label>
+            <label>without policy</label>
             <label>policy target %</label>
             <label>% of the area affeccted</label>
             <div>
               <label>Share for bus</label>
               <label></label>
+              <input id="inputspace" />
               <input />
             </div>
             <div>
@@ -186,37 +196,43 @@ export const U3planner = ({
               <label></label>
               <label></label>
             </div>
-            <label>Policy period</label>
-            <select
-              className="start_year"
-              id="start_year"
-              name="start_year"
-              onChange={handleStartYear}
-              defaultValue="2022"
-              required
-            >
-              <option value="DefaultOption">Select start year</option>
-              {optionsNew.map((option) => (
-                <option key={option} value={option}>
-                  {option}{" "}
-                </option>
-              ))}
-            </select>
-            <select
-              className="finish_year"
-              id="finish_year"
-              name="finish_year"
-              onChange={handleYearFinish}
-              defaultValue="2022"
-              required
-            >
-              <option value="DefaultOption">Select end year</option>
-              {optionsNew.map((option) => (
-                <option key={option} value={option}>
-                  {option}{" "}
-                </option>
-              ))}
-            </select>
+            <div>
+              <label>Policy period</label>
+              <div id="divspace">
+                <select
+                  className="start_year"
+                  id="start_year"
+                  name="start_year"
+                  onChange={handleStartYear}
+                  defaultValue="2022"
+                  required
+                >
+                  <option value="DefaultOption">Select start year</option>
+                  {optionsNew.map((option) => (
+                    <option key={option} value={option}>
+                      {option}{" "}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <select
+                  className="finish_year"
+                  id="finish_year"
+                  name="finish_year"
+                  onChange={handleYearFinish}
+                  defaultValue="2022"
+                  required
+                >
+                  <option value="DefaultOption">Select end year</option>
+                  {optionsNew.map((option) => (
+                    <option key={option} value={option}>
+                      {option}{" "}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
           </div>
           <br />
           <div>
@@ -248,37 +264,43 @@ export const U3planner = ({
               <label></label>
               <label></label>
             </div>
-            <label>Policy period</label>
-            <select
-              className="start_year"
-              id="start_year"
-              name="start_year"
-              onChange={handleStartYear}
-              defaultValue="2022"
-              required
-            >
-              <option value="DefaultOption">Select start year</option>
-              {optionsNew.map((option) => (
-                <option key={option} value={option}>
-                  {option}{" "}
-                </option>
-              ))}
-            </select>
-            <select
-              className="finish_year"
-              id="finish_year"
-              name="finish_year"
-              onChange={handleYearFinish}
-              defaultValue="2022"
-              required
-            >
-              <option value="DefaultOption">Select end year</option>
-              {optionsNew.map((option) => (
-                <option key={option} value={option}>
-                  {option}{" "}
-                </option>
-              ))}
-            </select>
+            <div>
+              <label>Policy period</label>
+              <div id="divspace">
+                <select
+                  className="start_year"
+                  id="start_year"
+                  name="start_year"
+                  onChange={handleStartYear}
+                  defaultValue="2022"
+                  required
+                >
+                  <option value="DefaultOption">Select start year</option>
+                  {optionsNew.map((option) => (
+                    <option key={option} value={option}>
+                      {option}{" "}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <select
+                  className="finish_year"
+                  id="finish_year"
+                  name="finish_year"
+                  onChange={handleYearFinish}
+                  defaultValue="2022"
+                  required
+                >
+                  <option value="DefaultOption">Select end year</option>
+                  {optionsNew.map((option) => (
+                    <option key={option} value={option}>
+                      {option}{" "}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
           </div>
           <br />
           <div>
@@ -291,6 +313,7 @@ export const U3planner = ({
             <div>
               <label>Petroleum products</label>
               <label></label>
+              <input id="inputspace" />
               <input />
             </div>
             <div>
@@ -320,37 +343,43 @@ export const U3planner = ({
               <label></label>
               <label></label>
             </div>
-            <label>Policy period</label>
-            <select
-              className="start_year"
-              id="start_year"
-              name="start_year"
-              onChange={handleStartYear}
-              defaultValue="2022"
-              required
-            >
-              <option value="DefaultOption">Select start year</option>
-              {optionsNew.map((option) => (
-                <option key={option} value={option}>
-                  {option}{" "}
-                </option>
-              ))}
-            </select>
-            <select
-              className="finish_year"
-              id="finish_year"
-              name="finish_year"
-              onChange={handleYearFinish}
-              defaultValue="2022"
-              required
-            >
-              <option value="DefaultOption">Select end year</option>
-              {optionsNew.map((option) => (
-                <option key={option} value={option}>
-                  {option}{" "}
-                </option>
-              ))}
-            </select>
+            <div>
+              <label>Policy period</label>
+              <div id="divspace">
+                <select
+                  className="start_year"
+                  id="start_year"
+                  name="start_year"
+                  onChange={handleStartYear}
+                  defaultValue="2022"
+                  required
+                >
+                  <option value="DefaultOption">Select start year</option>
+                  {optionsNew.map((option) => (
+                    <option key={option} value={option}>
+                      {option}{" "}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <select
+                  className="finish_year"
+                  id="finish_year"
+                  name="finish_year"
+                  onChange={handleYearFinish}
+                  defaultValue="2022"
+                  required
+                >
+                  <option value="DefaultOption">Select end year</option>
+                  {optionsNew.map((option) => (
+                    <option key={option} value={option}>
+                      {option}{" "}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
           </div>
           <br />
           <div>
@@ -363,6 +392,7 @@ export const U3planner = ({
             <div>
               <label>Liquified Petroleum Gas (LPG)</label>
               <label></label>
+              <input id="inputspace" />
               <input />
             </div>
             <div>
@@ -442,37 +472,43 @@ export const U3planner = ({
               <label></label>
               <label></label>
             </div>
-            <label>Policy period</label>
-            <select
-              className="start_year"
-              id="start_year"
-              name="start_year"
-              onChange={handleStartYear}
-              defaultValue="2022"
-              required
-            >
-              <option value="DefaultOption">Select start year</option>
-              {optionsNew.map((option) => (
-                <option key={option} value={option}>
-                  {option}{" "}
-                </option>
-              ))}
-            </select>
-            <select
-              className="finish_year"
-              id="finish_year"
-              name="finish_year"
-              onChange={handleYearFinish}
-              defaultValue="2022"
-              required
-            >
-              <option value="DefaultOption">Select end year</option>
-              {optionsNew.map((option) => (
-                <option key={option} value={option}>
-                  {option}{" "}
-                </option>
-              ))}
-            </select>
+            <div>
+              <label>Policy period</label>
+              <div id="divspace">
+                <select
+                  className="start_year"
+                  id="start_year"
+                  name="start_year"
+                  onChange={handleStartYear}
+                  defaultValue="2022"
+                  required
+                >
+                  <option value="DefaultOption">Select start year</option>
+                  {optionsNew.map((option) => (
+                    <option key={option} value={option}>
+                      {option}{" "}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <select
+                  className="finish_year"
+                  id="finish_year"
+                  name="finish_year"
+                  onChange={handleYearFinish}
+                  defaultValue="2022"
+                  required
+                >
+                  <option value="DefaultOption">Select end year</option>
+                  {optionsNew.map((option) => (
+                    <option key={option} value={option}>
+                      {option}{" "}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
           </div>
           <br />
           <div>
@@ -484,52 +520,68 @@ export const U3planner = ({
             <label>% of the area affected</label>
             <div>
               <label>Increase in the share of renewables</label>
-              <input />
+              <input id="inputspace" />
+              <input id="inputspace" />
               <input />
             </div>
             <div>
               <label>Policy period</label>
-              <select
-                className="start_year"
-                id="start_year"
-                name="start_year"
-                onChange={handleStartYear}
-                defaultValue="2022"
-                required
-              >
-                <option value="DefaultOption">Select start year</option>
-                {optionsNew.map((option) => (
-                  <option key={option} value={option}>
-                    {option}{" "}
-                  </option>
-                ))}
-              </select>
-              <select
-                className="finish_year"
-                id="finish_year"
-                name="finish_year"
-                onChange={handleYearFinish}
-                defaultValue="2022"
-                required
-              >
-                <option value="DefaultOption">Select end year</option>
-                {optionsNew.map((option) => (
-                  <option key={option} value={option}>
-                    {option}{" "}
-                  </option>
-                ))}
-              </select>
+              <div id="divspace">
+                <select
+                  className="start_year"
+                  id="start_year"
+                  name="start_year"
+                  onChange={handleStartYear}
+                  defaultValue="2022"
+                  required
+                >
+                  <option value="DefaultOption">Select start year</option>
+                  {optionsNew.map((option) => (
+                    <option key={option} value={option}>
+                      {option}{" "}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <select
+                  className="finish_year"
+                  id="finish_year"
+                  name="finish_year"
+                  onChange={handleYearFinish}
+                  defaultValue="2022"
+                  required
+                >
+                  <option value="DefaultOption">Select end year</option>
+                  {optionsNew.map((option) => (
+                    <option key={option} value={option}>
+                      {option}{" "}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
           </div>
-
+          <br />
           <div>
-            <Button
-              size="small"
-              type="submit"
-              value="Submit"
-              label="Next"
-              primary
-            />
+            <div className="backButton">
+              <Button
+                size="small"
+                value="backNewResidents"
+                onClick={() => navigate("/newresidents", { replace: true })}
+                label="&laquo; Previous"
+                secondary
+              />
+            </div>
+            <div className="nextButtonNew">
+              <Button
+                size="small"
+                value="nextU3"
+                onClick={() => navigate("/u3policies", { replace: true })}
+                label="Next &raquo;"
+                primary
+              />
+            </div>
           </div>
         </form>
       </section>
