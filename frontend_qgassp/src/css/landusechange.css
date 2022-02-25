@@ -2,8 +2,8 @@ section {
   font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
   line-height: 24px;
-  padding: 48px 20px;
-  margin: 0 auto;
+  padding: 48px 10px;
+  /* margin: 0 auto; */
   color: #333;
 }
 
@@ -51,15 +51,17 @@ select {
   z-index: 1;
 }
 
-.row:after {
+/* .row:after {
   margin-top: 1em;
   content: "";
   display: table;
   clear: both;
-}
+} */
 
 .row {
-  margin-left: 30px;
+  /* margin-left: 30px; */
+  display: flex;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 600px) {
@@ -83,6 +85,7 @@ input[type="number"] {
 }
 table{
   margin-bottom: 20px;
+  width: 48%;
 }
 table td, th{
   width: 100px;
