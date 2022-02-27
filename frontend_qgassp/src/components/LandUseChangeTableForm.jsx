@@ -22,8 +22,8 @@ import Chip from "@mui/material/Chip";
     year,
     population
   }) => {
-      // add 3 vars (mineral, organic) to each var
-      // to Forest
+    // to Forest vars
+    // #region 
     const [cropToForest, setCropToForest] = useState(0);
     const [cropToForestMineral, setCropToForestMineral] = useState(0);
     const [cropToForestOrganic, setCropToForestOrganic] = useState(0);
@@ -32,89 +32,136 @@ import Chip from "@mui/material/Chip";
     const [grassToForest, setGrassToForest] = useState(0);
     const [grassToForestMineral, setGrassToForestMineral] = useState(0);
     const [grassToForestOrganic, setGrassToForestOrganic] = useState(0);
+    const [grassToForestYear, setGrassToForestYear] = useState(2022);
+
 
     const [wetToForest, setWetToForest] = useState(0);
     const [wetToForestMineral, setWetToForestMineral] = useState(0);
     const [wetToForestOrganic, setWetToForestOrganic] = useState(0);
+    const [wetToForestYear, setWetToForestYear] = useState(2022);
 
     const [settlementsToForest, setSettlementsToForest] = useState(0);
     const [settlementsToForestMineral, setSettlementsToForestMineral] = useState(0);
     const [settlementsToForestOrganic, setSettlementsToForestOrganic] = useState(0);
+    const [settlementsToForestYear, setSettlementsToForestYear] = useState(2022);
+
 
     const [otherToForest, setOtherToForest] = useState(0);
     const [otherToForestMineral, setOtherToForestMineral] = useState(0);
     const [otherToForestOrganic, setOtherToForestOrganic] = useState(0);
+    const [otherToForestYear, setOtherToForestYear] = useState(2022);
+    // #endregion
 
-    // to Crop
+    // to Crop vars
+    // #region 
     const [forestToCrop, setForestToCrop] = useState(0);
     const [forestToCropMineral, setForestToCropMineral] = useState(0);
     const [forestToCropOrganic, setForestToCropOrganic] = useState(0);
+    const [forestToCropYear, setForestToCropYear] = useState(2022);
 
     const [grassToCrop, setGrassToCrop] = useState(0);
     const [grassToCropMineral, setGrassToCropMineral] = useState(0);
     const [grassToCropOrganic, setGrassToCropOrganic] = useState(0);
+    const [grassToCropYear, setGrassToCropYear] = useState(2022);
 
     const [wetToCrop, setWetToCrop] = useState(0);
     const [wetToCropMineral, setWetToCropMineral] = useState(0);
     const [wetToCropOrganic, setWetToCropOrganic] = useState(0);
+    const [wetToCropYear, setWetToCropYear] = useState(2022);
 
     const [settlementsToCrop, setSettlementsToCrop] = useState(0);
     const [settlementsToCropMineral, setSettlementsToCropMineral] = useState(0);
     const [settlementsToCropOrganic, setSettlementsToCropOrganic] = useState(0);
+    const [settlementsToCropYear, setSettlementsToCropYear] = useState(2022);
 
     const [otherToCrop, setOtherToCrop] = useState(0);
     const [otherToCropMineral, setOtherToCropMineral] = useState(0);
     const [otherToCropOrganic, setOtherToCropOrganic] = useState(0);
-    
-     // to Grass
+    const [otherToCropYear, setOtherToCropYear] = useState(2022);
+    // #endregion
+
+    // to Grass vars
+    // #region 
     const [forestToGrass, setForestToGrass] = useState(0);
     const [forestToGrassMineral, setForestToGrassMineral] = useState(0);
     const [forestToGrassOrganic, setForestToGrassOrganic] = useState(0);
+    const [forestToGrassYear, setForestToGrassYear] = useState(2022);
 
     const [cropToGrass, setCropToGrass] = useState(0);
     const [cropToGrassMineral, setCropToGrassMineral] = useState(0);
     const [cropToGrassOrganic, setCropToGrassOrganic] = useState(0);
+    const [cropToGrassYear, setCropToGrassYear] = useState(2022);
 
     const [wetToGrass, setWetToGrass] = useState(0);
     const [wetToGrassMineral, setWetToGrassMineral] = useState(0);
     const [wetToGrassOrganic, setWetToGrassOrganic] = useState(0);
+    const [wetToGrassYear, setWetToGrassYear] = useState(2022);
 
     const [settlementsToGrass, setSettlementsToGrass] = useState(0);
     const [settlementsToGrassMineral, setSettlementsToGrassMineral] = useState(0);
     const [settlementsToGrassOrganic, setSettlementsToGrassOrganic] = useState(0);
+    const [settlementsToGrassYear, setSettlementsToGrassYear] = useState(2022);
 
     const [otherToGrass, setOtherToGrass] = useState(0);
     const [otherToGrassMineral, setOtherToGrassMineral] = useState(0);
     const [otherToGrassOrganic, setOtherToGrassOrganic] = useState(0);
+    const [otherToGrassYear, setOtherToGrassYear] = useState(2022);
+    // #endregion
+    
+     // to other wetlands/flooded land vars
+     // #region 
+     const [landConvertedToPeat, setLandConvertedToPeat] = useState(0);
+     const [landConvertedToPeatMineral, setLandConvertedToPeatMineral] = useState(0);
+     const [landConvertedToPeatOrganic, setLandConvertedToPeatOrganic] = useState(0);
+     const [landConvertedToPeatYear, setLandConvertedToPeatYear] = useState(2022);
 
-     // to other wetlands/flooded land
-     const [ladnConvertedToPeat, setLadnConvertedToPeat] = useState(0);
      const [peatLandRestore, setPeatLandRestore] = useState(0);
-     const [forestToWetland, setForestToWetland] = useState(0);
-     const [cropToWet, setCropToWet] = useState(0);
-     const [grassToWet, setGrassToWet] = useState(0);
+     const [peatLandRestoreMineral, setPeatLandRestoreMineral] = useState(0);
+     const [peatLandRestoreOrganic, setPeatLandRestoreOrganic] = useState(0);
+     const [peatLandRestoreYear, setPeatLandRestoreYear] = useState(2022);
 
-     // to Settlements
+     const [forestToWetland, setForestToWetland] = useState(0);
+     const [forestToWetlandMineral, setForestToWetlandMineral] = useState(0);
+     const [forestToWetlandOrganic, setForestToWetlandOrganic] = useState(0);
+     const [forestToWetlandYear, setForestToWetlandYear] = useState(2022);
+
+     const [cropToWet, setCropToWet] = useState(0);
+     const [cropToWetMineral, setCropToWetMineral] = useState(0);
+     const [cropToWetOrganic, setCropToWetOrganic] = useState(0);
+     const [cropToWetYear, setCropToWetYear] = useState(2022);
+
+     const [grassToWet, setGrassToWet] = useState(0);
+     const [grassToWetMineral, setGrassToWetMineral] = useState(0);
+     const [grassToWetOrganic, setGrassToWetOrganic] = useState(0);
+     const [grassToWetYear, setGrassToWetYear] = useState(2022);
+    // #endregion
+
+    // to Settlements vars
+    // #region 
     const [forestToSettlements, setForestToSettlements] = useState(0);
     const [cropToSettlements, setCropToSettlements] = useState(0);
     const [grassToSettlements, setGrassToSettlements] = useState(0);
     const [wetToSettlements, setWetToSettlements] = useState(0);
     const [otherToSettlements, setOtherToSettlements] = useState(0);
+    // #endregion
 
-     // to other land
-    // const [forestToOther, setForestToOther] = useState(0);
+    // to other land vars
+    // #region 
+    const [forestToOther, setForestToOther] = useState(0);
     const [cropToOther, setCropToOther] = useState(0);
     const [grassToOther, setGrassToOther] = useState(0);
     const [wetToOther, setWetToOther] = useState(0);
     const [settlementsToOther, setSettlementsToOther] = useState(0);
-    
+    // #endregion
 
-    const [startYear, setStartYear] = useState(2022);
     const [totalArea, setTotalArea] = useState(0); // add values
     const [totalMineral, setTotalMineral] = useState(0); // add values
     const [totalOrganic, setTotalOrganic] = useState(0); // add values
     const [LUCbaseline, setLUCbaseline] = useState(false);
     const navigate = useNavigate();
+
+    const options = [];
+    for (let i = 2022; i < 2051; i++) options.push(i);
 
     // toForest handlers
     // #region 
@@ -130,6 +177,11 @@ import Chip from "@mui/material/Chip";
     const handleCropToForestOrganic = (e) => {
       setCropToForestOrganic(parseInt(e.target.value));
     };
+
+    const handleCropToForestYear = (e) => {
+      e.preventDefault();
+      setCropToForestYear(Number(e.target.value));
+    };
     // grass
     const handleGrassToForest = (e) => {
       setGrassToForest(parseInt(e.target.value));
@@ -141,6 +193,11 @@ import Chip from "@mui/material/Chip";
 
     const handleGrassToForestOrganic = (e) => {
       setGrassToForestOrganic(parseInt(e.target.value));
+    };
+
+    const handleGrassToForestYear = (e) => {
+      e.preventDefault();
+      setGrassToForestYear(Number(e.target.value));
     };
     // wet
     const handleWetToForest = (e) => {
@@ -154,6 +211,11 @@ import Chip from "@mui/material/Chip";
     const handleWetToForestOrganic = (e) => {
       setWetToForestOrganic(parseInt(e.target.value));
     };
+
+    const handleWetToForestYear = (e) => {
+      e.preventDefault();
+      setWetToForestYear(Number(e.target.value));
+    };
     // settlements
     const handleSettlementsToForest = (e) => {
       setSettlementsToForest(parseInt(e.target.value));
@@ -164,6 +226,11 @@ import Chip from "@mui/material/Chip";
     };
     const handleSettlementsToForestOrganic = (e) => {
       setSettlementsToForestOrganic(parseInt(e.target.value));
+    };
+
+    const handleSettlementsToForestYear = (e) => {
+      e.preventDefault();
+      setSettlementsToForestYear(Number(e.target.value));
     };
     // other
     const handleOtherToForest = (e) => {
@@ -176,6 +243,11 @@ import Chip from "@mui/material/Chip";
 
     const handleOtherToForestOrganic = (e) => {
       setOtherToForestOrganic(parseInt(e.target.value));
+    };
+
+    const handleOtherToForestYear = (e) => {
+      e.preventDefault();
+      setOtherToForestYear(Number(e.target.value));
     };
   // #endregion
     
@@ -193,6 +265,11 @@ import Chip from "@mui/material/Chip";
     const handleForestToCropOrganic = (e) => {
       setForestToCropOrganic(parseInt(e.target.value));
     };
+
+    const handleForestToCropYear = (e) => {
+      e.preventDefault();
+      setForestToCropYear(Number(e.target.value));
+    };
     // grass
     const handleGrassToCrop = (e) => {
       setGrassToCrop(parseInt(e.target.value));
@@ -204,6 +281,11 @@ import Chip from "@mui/material/Chip";
 
     const handleGrassToCropOrganic = (e) => {
       setGrassToCropOrganic(parseInt(e.target.value));
+    };
+
+    const handleGrassToCropYear = (e) => {
+      e.preventDefault();
+      setGrassToCropYear(Number(e.target.value));
     };
     // wetland
     const handleWetToCrop = (e) => {
@@ -217,6 +299,10 @@ import Chip from "@mui/material/Chip";
     const handleWetToCropOrganic = (e) => {
       setWetToCropOrganic(parseInt(e.target.value));
     };
+    const handleWetToCropYear = (e) => {
+      e.preventDefault();
+      setWetToCropYear(Number(e.target.value));
+    };
     // settlements
     const handleSettlementsToCrop = (e) => {
       setSettlementsToCrop(parseInt(e.target.value));
@@ -229,6 +315,10 @@ import Chip from "@mui/material/Chip";
     const handleSettlementsToCropOrganic = (e) => {
       setSettlementsToCropOrganic(parseInt(e.target.value));
     };
+    const handleSettlementsToCropYear = (e) => {
+      e.preventDefault();
+      setSettlementsToCropYear(Number(e.target.value));
+    };
     // other land
     const handleOtherToCrop = (e) => {
       setOtherToCrop(parseInt(e.target.value));
@@ -240,6 +330,10 @@ import Chip from "@mui/material/Chip";
 
     const handleOtherToCropOrganic = (e) => {
       setOtherToCropOrganic(parseInt(e.target.value));
+    };
+    const handleOtherToCropYear = (e) => {
+      e.preventDefault();
+      setOtherToCropYear(Number(e.target.value));
     };
     // #endregion
 
@@ -257,6 +351,11 @@ import Chip from "@mui/material/Chip";
     const handleForestToGrassOrganic = (e) => {
       setForestToGrassOrganic(parseInt(e.target.value));
     };
+
+    const handleForestToGrassYear = (e) => {
+      e.preventDefault();
+      setForestToGrassYear(Number(e.target.value));
+    };
     // crop
     const handleCropToGrass = (e) => {
       setCropToGrass(parseInt(e.target.value));
@@ -268,6 +367,11 @@ import Chip from "@mui/material/Chip";
 
     const handleCropToGrassOrganic = (e) => {
       setCropToGrassOrganic(parseInt(e.target.value));
+    };
+
+    const handleCropToGrassYear = (e) => {
+      e.preventDefault();
+      setCropToGrassYear(Number(e.target.value));
     };
     // wetlands
      const handleWetToGrass = (e) => {
@@ -281,6 +385,11 @@ import Chip from "@mui/material/Chip";
     const handleWetToGrassOrganic = (e) => {
       setWetToGrassOrganic(parseInt(e.target.value));
     };
+
+    const handleWetToGrassYear = (e) => {
+      e.preventDefault();
+      setWetToGrassYear(Number(e.target.value));
+    };
     // settlements
     const handleSettlementsToGrass = (e) => {
       setSettlementsToGrass(parseInt(e.target.value));
@@ -292,6 +401,11 @@ import Chip from "@mui/material/Chip";
 
     const handleSettlementsToGrassOrganic = (e) => {
       setSettlementsToGrassOrganic(parseInt(e.target.value));
+    };
+
+    const handleSettlementsToGrassYear = (e) => {
+      e.preventDefault();
+      setSettlementsToGrassYear(Number(e.target.value));
     };
     // other land
     const handleOtherToGrass = (e) => {
@@ -305,8 +419,106 @@ import Chip from "@mui/material/Chip";
     const handleOtherToGrassOrganic = (e) => {
       setOtherToGrassOrganic(parseInt(e.target.value));
     };
+
+    const handleOtherToGrassYear = (e) => {
+      e.preventDefault();
+      setOtherToGrassYear(Number(e.target.value));
+    };
     // #endregion
 
+    // to other wetlands/flooded land handlers
+    // #region 
+    // to peat extraction
+    const handleLandConvertedToPeat = (e) => {
+      setLandConvertedToPeat(parseInt(e.target.value));
+    };
+
+    const handleLandConvertedToPeatMineral = (e) => {
+      setLandConvertedToPeatMineral(parseInt(e.target.value));
+    };
+
+    const handleLandConvertedToPeatOrganic = (e) => {
+      setLandConvertedToPeatOrganic(parseInt(e.target.value));
+    };
+
+    const handleLandConvertedToPeatYear = (e) => {
+      e.preventDefault();
+      setLandConvertedToPeatYear(Number(e.target.value));
+    };
+
+    // to peatland restore
+     const handlePeatLandRestore = (e) => {
+      setPeatLandRestore(parseInt(e.target.value));
+    };
+
+    const handlePeatLandRestoreMineral = (e) => {
+      setPeatLandRestoreMineral(parseInt(e.target.value));
+    };
+
+    const handlePeatLandRestoreOrganic = (e) => {
+      setPeatLandRestoreOrganic(parseInt(e.target.value));
+    };
+
+    const handlePeatLandRestoreYear = (e) => {
+      e.preventDefault();
+      setPeatLandRestoreYear(Number(e.target.value));
+    };
+
+    // forest to
+    const handleForestToWetland = (e) => {
+      setForestToWetland(parseInt(e.target.value));
+    };
+
+    const handleForestToWetlandMineral = (e) => {
+      setForestToWetlandMineral(parseInt(e.target.value));
+    };
+
+    const handleForestToWetlandOrganic = (e) => {
+      setForestToWetlandOrganic(parseInt(e.target.value));
+    };
+
+    const handleForestToWetlandYear = (e) => {
+      e.preventDefault();
+      setForestToWetlandYear(Number(e.target.value));
+    };
+
+    // cropland to
+    const handleCropToWet = (e) => {
+      setCropToWet(parseInt(e.target.value));
+    };
+
+    const handleCropToWetMineral = (e) => {
+      setCropToWetMineral(parseInt(e.target.value));
+    };
+
+    const handleCropToWetOrganic = (e) => {
+      setCropToWetOrganic(parseInt(e.target.value));
+    };
+
+    const handleCropToWetYear = (e) => {
+      e.preventDefault();
+      setCropToWetYear(Number(e.target.value));
+    };
+
+    // grassland to
+    const handleGrassToWet = (e) => {
+      setGrassToWet(parseInt(e.target.value));
+    };
+
+    const handleGrassToWetMineral = (e) => {
+      setGrassToWetMineral(parseInt(e.target.value));
+    };
+
+    const handleGrassToWetOrganic = (e) => {
+      setGrassToWetOrganic(parseInt(e.target.value));
+    };
+
+    const handleGrassToWetYear = (e) => {
+      e.preventDefault();
+      setGrassToWetYear(Number(e.target.value));
+    };
+     // #endregion
+    
 
     // functions for baseline generation
     const setLandUseChange = () => {
@@ -383,37 +595,23 @@ import Chip from "@mui/material/Chip";
                                       />
                                   </td>
                                   <td>
-                                    <select id="cropToForestYear" className="table-cell">
-                                      <option value="2022">2022</option>
-                                      <option value="2023">2023</option>
-                                      <option value="2024">2024</option>
-                                      <option value="2025">2025</option>
-                                      <option value="2026">2026</option>
-                                      <option value="2027">2027</option>
-                                      <option value="2028">2028</option>
-                                      <option value="2029">2029</option>
-                                      <option value="2030">2030</option>
-                                      <option value="2031">2031</option>
-                                      <option value="2032">2032</option>
-                                      <option value="2033">2033</option>
-                                      <option value="2034">2034</option>
-                                      <option value="2035">2035</option>
-                                      <option value="2036">2036</option>
-                                      <option value="2037">2037</option>
-                                      <option value="2038">2038</option>
-                                      <option value="2039">2039</option>
-                                      <option value="2040">2040</option>
-                                      <option value="2041">2041</option>
-                                      <option value="2042">2042</option>
-                                      <option value="2043">2043</option>
-                                      <option value="2044">2044</option>
-                                      <option value="2045">2045</option>
-                                      <option value="2046">2046</option>
-                                      <option value="2047">2047</option>
-                                      <option value="2048">2048</option>
-                                      <option value="2049">2049</option>
-                                      <option value="2050">2050</option>
-                                    </select>
+                                    <select
+                                        className="table-cell"
+                                        id="cropToForestYear"
+                                        name="cropToForestYear"
+                                        onChange={handleCropToForestYear}
+                                        value={cropToForestYear}
+                                        defaultValue="Select year"
+                                        required
+                                      >
+                                        <option value="DefaultOption">Select year</option>
+
+                                        {options.map((option) => (
+                                          <option key={option} value={option}>
+                                            {option}{" "}
+                                          </option>
+                                        ))}
+                                      </select>
                                   </td>
                               </tr>
                               <tr>
@@ -454,36 +652,21 @@ import Chip from "@mui/material/Chip";
                                       />
                                   </td>
                                   <td>
-                                    <select id="grassToForestYear" className="table-cell">
-                                      <option value="2022">2022</option>
-                                      <option value="2023">2023</option>
-                                      <option value="2024">2024</option>
-                                      <option value="2025">2025</option>
-                                      <option value="2026">2026</option>
-                                      <option value="2027">2027</option>
-                                      <option value="2028">2028</option>
-                                      <option value="2029">2029</option>
-                                      <option value="2030">2030</option>
-                                      <option value="2031">2031</option>
-                                      <option value="2032">2032</option>
-                                      <option value="2033">2033</option>
-                                      <option value="2034">2034</option>
-                                      <option value="2035">2035</option>
-                                      <option value="2036">2036</option>
-                                      <option value="2037">2037</option>
-                                      <option value="2038">2038</option>
-                                      <option value="2039">2039</option>
-                                      <option value="2040">2040</option>
-                                      <option value="2041">2041</option>
-                                      <option value="2042">2042</option>
-                                      <option value="2043">2043</option>
-                                      <option value="2044">2044</option>
-                                      <option value="2045">2045</option>
-                                      <option value="2046">2046</option>
-                                      <option value="2047">2047</option>
-                                      <option value="2048">2048</option>
-                                      <option value="2049">2049</option>
-                                      <option value="2050">2050</option>
+                                    <select
+                                        className="table-cell"
+                                        id="grassToForestYear"
+                                        name="grassToForestYear"
+                                        onChange={handleGrassToForestYear}
+                                        value={grassToForestYear}
+                                        defaultValue="Select year"
+                                        required
+                                      >
+
+                                        {options.map((option) => (
+                                          <option key={option} value={option}>
+                                            {option}{" "}
+                                          </option>
+                                        ))}
                                     </select>
                                   </td>
                               </tr>
@@ -525,36 +708,21 @@ import Chip from "@mui/material/Chip";
                                       />
                                   </td>
                                   <td>
-                                    <select id="wetToForestYear" className="table-cell">
-                                      <option value="2022">2022</option>
-                                      <option value="2023">2023</option>
-                                      <option value="2024">2024</option>
-                                      <option value="2025">2025</option>
-                                      <option value="2026">2026</option>
-                                      <option value="2027">2027</option>
-                                      <option value="2028">2028</option>
-                                      <option value="2029">2029</option>
-                                      <option value="2030">2030</option>
-                                      <option value="2031">2031</option>
-                                      <option value="2032">2032</option>
-                                      <option value="2033">2033</option>
-                                      <option value="2034">2034</option>
-                                      <option value="2035">2035</option>
-                                      <option value="2036">2036</option>
-                                      <option value="2037">2037</option>
-                                      <option value="2038">2038</option>
-                                      <option value="2039">2039</option>
-                                      <option value="2040">2040</option>
-                                      <option value="2041">2041</option>
-                                      <option value="2042">2042</option>
-                                      <option value="2043">2043</option>
-                                      <option value="2044">2044</option>
-                                      <option value="2045">2045</option>
-                                      <option value="2046">2046</option>
-                                      <option value="2047">2047</option>
-                                      <option value="2048">2048</option>
-                                      <option value="2049">2049</option>
-                                      <option value="2050">2050</option>
+                                    <select
+                                        className="table-cell"
+                                        id="wetToForestYear"
+                                        name="wetToForestYear"
+                                        onChange={handleWetToForestYear}
+                                        value={wetToForestYear}
+                                        defaultValue="Select year"
+                                        required
+                                      >
+
+                                        {options.map((option) => (
+                                          <option key={option} value={option}>
+                                            {option}{" "}
+                                          </option>
+                                        ))}
                                     </select>
                                   </td>
                               </tr>
@@ -596,36 +764,21 @@ import Chip from "@mui/material/Chip";
                                       />
                                   </td>
                                   <td>
-                                    <select id="settlementsToForestYear" className="table-cell">
-                                      <option value="2022">2022</option>
-                                      <option value="2023">2023</option>
-                                      <option value="2024">2024</option>
-                                      <option value="2025">2025</option>
-                                      <option value="2026">2026</option>
-                                      <option value="2027">2027</option>
-                                      <option value="2028">2028</option>
-                                      <option value="2029">2029</option>
-                                      <option value="2030">2030</option>
-                                      <option value="2031">2031</option>
-                                      <option value="2032">2032</option>
-                                      <option value="2033">2033</option>
-                                      <option value="2034">2034</option>
-                                      <option value="2035">2035</option>
-                                      <option value="2036">2036</option>
-                                      <option value="2037">2037</option>
-                                      <option value="2038">2038</option>
-                                      <option value="2039">2039</option>
-                                      <option value="2040">2040</option>
-                                      <option value="2041">2041</option>
-                                      <option value="2042">2042</option>
-                                      <option value="2043">2043</option>
-                                      <option value="2044">2044</option>
-                                      <option value="2045">2045</option>
-                                      <option value="2046">2046</option>
-                                      <option value="2047">2047</option>
-                                      <option value="2048">2048</option>
-                                      <option value="2049">2049</option>
-                                      <option value="2050">2050</option>
+                                    <select
+                                        className="table-cell"
+                                        id="settlementsToForestYear"
+                                        name="settlementsToForestYear"
+                                        onChange={handleSettlementsToForestYear}
+                                        value={settlementsToForestYear}
+                                        defaultValue="Select year"
+                                        required
+                                      >
+
+                                        {options.map((option) => (
+                                          <option key={option} value={option}>
+                                            {option}{" "}
+                                          </option>
+                                        ))}
                                     </select>
                                   </td>
                               </tr>
@@ -667,36 +820,21 @@ import Chip from "@mui/material/Chip";
                                       />
                                   </td>
                                   <td>
-                                    <select id="otherToForestYear" className="table-cell">
-                                      <option value="2022">2022</option>
-                                      <option value="2023">2023</option>
-                                      <option value="2024">2024</option>
-                                      <option value="2025">2025</option>
-                                      <option value="2026">2026</option>
-                                      <option value="2027">2027</option>
-                                      <option value="2028">2028</option>
-                                      <option value="2029">2029</option>
-                                      <option value="2030">2030</option>
-                                      <option value="2031">2031</option>
-                                      <option value="2032">2032</option>
-                                      <option value="2033">2033</option>
-                                      <option value="2034">2034</option>
-                                      <option value="2035">2035</option>
-                                      <option value="2036">2036</option>
-                                      <option value="2037">2037</option>
-                                      <option value="2038">2038</option>
-                                      <option value="2039">2039</option>
-                                      <option value="2040">2040</option>
-                                      <option value="2041">2041</option>
-                                      <option value="2042">2042</option>
-                                      <option value="2043">2043</option>
-                                      <option value="2044">2044</option>
-                                      <option value="2045">2045</option>
-                                      <option value="2046">2046</option>
-                                      <option value="2047">2047</option>
-                                      <option value="2048">2048</option>
-                                      <option value="2049">2049</option>
-                                      <option value="2050">2050</option>
+                                    <select
+                                        className="table-cell"
+                                        id="otherToForestYear"
+                                        name="otherToForestYear"
+                                        onChange={handleOtherToForestYear}
+                                        value={otherToForestYear}
+                                        defaultValue="Select year"
+                                        required
+                                      >
+
+                                        {options.map((option) => (
+                                          <option key={option} value={option}>
+                                            {option}{" "}
+                                          </option>
+                                        ))}
                                     </select>
                                   </td>
                               </tr>
@@ -734,7 +872,7 @@ import Chip from "@mui/material/Chip";
                                           id="forestToCropMineral"
                                           min="0"
                                           value={forestToCropMineral}
-                                          onChange={handleCropToForestMineral}
+                                          onChange={handleForestToCropMineral}
                                           required
                                       />
                                   </td>
@@ -744,42 +882,27 @@ import Chip from "@mui/material/Chip";
                                           step="1"
                                           id="forestToCropOrganic"
                                           min="0"
-                                          value={forestToCropMineral}
+                                          value={forestToCropOrganic}
                                           onChange={handleForestToCropOrganic}
                                           required
                                       />
                                   </td>
                                   <td>
-                                    <select id="forestToCropYear" className="table-cell">
-                                      <option value="2022">2022</option>
-                                      <option value="2023">2023</option>
-                                      <option value="2024">2024</option>
-                                      <option value="2025">2025</option>
-                                      <option value="2026">2026</option>
-                                      <option value="2027">2027</option>
-                                      <option value="2028">2028</option>
-                                      <option value="2029">2029</option>
-                                      <option value="2030">2030</option>
-                                      <option value="2031">2031</option>
-                                      <option value="2032">2032</option>
-                                      <option value="2033">2033</option>
-                                      <option value="2034">2034</option>
-                                      <option value="2035">2035</option>
-                                      <option value="2036">2036</option>
-                                      <option value="2037">2037</option>
-                                      <option value="2038">2038</option>
-                                      <option value="2039">2039</option>
-                                      <option value="2040">2040</option>
-                                      <option value="2041">2041</option>
-                                      <option value="2042">2042</option>
-                                      <option value="2043">2043</option>
-                                      <option value="2044">2044</option>
-                                      <option value="2045">2045</option>
-                                      <option value="2046">2046</option>
-                                      <option value="2047">2047</option>
-                                      <option value="2048">2048</option>
-                                      <option value="2049">2049</option>
-                                      <option value="2050">2050</option>
+                                    <select
+                                        className="table-cell"
+                                        id="forestToCropYear"
+                                        name="forestToCropYear"
+                                        onChange={handleForestToCropYear}
+                                        value={forestToCropYear}
+                                        defaultValue="Select year"
+                                        required
+                                      >
+
+                                        {options.map((option) => (
+                                          <option key={option} value={option}>
+                                            {option}{" "}
+                                          </option>
+                                        ))}
                                     </select>
                                   </td>
                               </tr>
@@ -821,36 +944,21 @@ import Chip from "@mui/material/Chip";
                                       />
                                   </td>
                                   <td>
-                                    <select id="grassToCropYear" className="table-cell">
-                                      <option value="2022">2022</option>
-                                      <option value="2023">2023</option>
-                                      <option value="2024">2024</option>
-                                      <option value="2025">2025</option>
-                                      <option value="2026">2026</option>
-                                      <option value="2027">2027</option>
-                                      <option value="2028">2028</option>
-                                      <option value="2029">2029</option>
-                                      <option value="2030">2030</option>
-                                      <option value="2031">2031</option>
-                                      <option value="2032">2032</option>
-                                      <option value="2033">2033</option>
-                                      <option value="2034">2034</option>
-                                      <option value="2035">2035</option>
-                                      <option value="2036">2036</option>
-                                      <option value="2037">2037</option>
-                                      <option value="2038">2038</option>
-                                      <option value="2039">2039</option>
-                                      <option value="2040">2040</option>
-                                      <option value="2041">2041</option>
-                                      <option value="2042">2042</option>
-                                      <option value="2043">2043</option>
-                                      <option value="2044">2044</option>
-                                      <option value="2045">2045</option>
-                                      <option value="2046">2046</option>
-                                      <option value="2047">2047</option>
-                                      <option value="2048">2048</option>
-                                      <option value="2049">2049</option>
-                                      <option value="2050">2050</option>
+                                    <select
+                                        className="table-cell"
+                                        id="grassToCropYear"
+                                        name="grassToCropYear"
+                                        onChange={handleGrassToCropYear}
+                                        value={grassToCropYear}
+                                        defaultValue="Select year"
+                                        required
+                                      >
+
+                                        {options.map((option) => (
+                                          <option key={option} value={option}>
+                                            {option}{" "}
+                                          </option>
+                                        ))}
                                     </select>
                                   </td>
                               </tr>
@@ -892,36 +1000,21 @@ import Chip from "@mui/material/Chip";
                                       />
                                   </td>
                                   <td>
-                                    <select id="wetToCropYear" className="table-cell">
-                                      <option value="2022">2022</option>
-                                      <option value="2023">2023</option>
-                                      <option value="2024">2024</option>
-                                      <option value="2025">2025</option>
-                                      <option value="2026">2026</option>
-                                      <option value="2027">2027</option>
-                                      <option value="2028">2028</option>
-                                      <option value="2029">2029</option>
-                                      <option value="2030">2030</option>
-                                      <option value="2031">2031</option>
-                                      <option value="2032">2032</option>
-                                      <option value="2033">2033</option>
-                                      <option value="2034">2034</option>
-                                      <option value="2035">2035</option>
-                                      <option value="2036">2036</option>
-                                      <option value="2037">2037</option>
-                                      <option value="2038">2038</option>
-                                      <option value="2039">2039</option>
-                                      <option value="2040">2040</option>
-                                      <option value="2041">2041</option>
-                                      <option value="2042">2042</option>
-                                      <option value="2043">2043</option>
-                                      <option value="2044">2044</option>
-                                      <option value="2045">2045</option>
-                                      <option value="2046">2046</option>
-                                      <option value="2047">2047</option>
-                                      <option value="2048">2048</option>
-                                      <option value="2049">2049</option>
-                                      <option value="2050">2050</option>
+                                    <select
+                                        className="table-cell"
+                                        id="wetToCropYear"
+                                        name="wetToCropYear"
+                                        onChange={handleWetToCropYear}
+                                        value={wetToCropYear}
+                                        defaultValue="Select year"
+                                        required
+                                      >
+
+                                        {options.map((option) => (
+                                          <option key={option} value={option}>
+                                            {option}{" "}
+                                          </option>
+                                        ))}
                                     </select>
                                   </td>
                               </tr>
@@ -963,36 +1056,21 @@ import Chip from "@mui/material/Chip";
                                       />
                                   </td>
                                   <td>
-                                    <select id="settlementsToCropYear" className="table-cell">
-                                      <option value="2022">2022</option>
-                                      <option value="2023">2023</option>
-                                      <option value="2024">2024</option>
-                                      <option value="2025">2025</option>
-                                      <option value="2026">2026</option>
-                                      <option value="2027">2027</option>
-                                      <option value="2028">2028</option>
-                                      <option value="2029">2029</option>
-                                      <option value="2030">2030</option>
-                                      <option value="2031">2031</option>
-                                      <option value="2032">2032</option>
-                                      <option value="2033">2033</option>
-                                      <option value="2034">2034</option>
-                                      <option value="2035">2035</option>
-                                      <option value="2036">2036</option>
-                                      <option value="2037">2037</option>
-                                      <option value="2038">2038</option>
-                                      <option value="2039">2039</option>
-                                      <option value="2040">2040</option>
-                                      <option value="2041">2041</option>
-                                      <option value="2042">2042</option>
-                                      <option value="2043">2043</option>
-                                      <option value="2044">2044</option>
-                                      <option value="2045">2045</option>
-                                      <option value="2046">2046</option>
-                                      <option value="2047">2047</option>
-                                      <option value="2048">2048</option>
-                                      <option value="2049">2049</option>
-                                      <option value="2050">2050</option>
+                                    <select
+                                        className="table-cell"
+                                        id="settlementsToCropYear"
+                                        name="settlementsToCropYear"
+                                        onChange={handleSettlementsToCropYear}
+                                        value={settlementsToCropYear}
+                                        defaultValue="Select year"
+                                        required
+                                      >
+
+                                        {options.map((option) => (
+                                          <option key={option} value={option}>
+                                            {option}{" "}
+                                          </option>
+                                        ))}
                                     </select>
                                   </td>
                               </tr>
@@ -1034,36 +1112,21 @@ import Chip from "@mui/material/Chip";
                                       />
                                   </td>
                                   <td>
-                                    <select id="otherToCropYear" className="table-cell">
-                                      <option value="2022">2022</option>
-                                      <option value="2023">2023</option>
-                                      <option value="2024">2024</option>
-                                      <option value="2025">2025</option>
-                                      <option value="2026">2026</option>
-                                      <option value="2027">2027</option>
-                                      <option value="2028">2028</option>
-                                      <option value="2029">2029</option>
-                                      <option value="2030">2030</option>
-                                      <option value="2031">2031</option>
-                                      <option value="2032">2032</option>
-                                      <option value="2033">2033</option>
-                                      <option value="2034">2034</option>
-                                      <option value="2035">2035</option>
-                                      <option value="2036">2036</option>
-                                      <option value="2037">2037</option>
-                                      <option value="2038">2038</option>
-                                      <option value="2039">2039</option>
-                                      <option value="2040">2040</option>
-                                      <option value="2041">2041</option>
-                                      <option value="2042">2042</option>
-                                      <option value="2043">2043</option>
-                                      <option value="2044">2044</option>
-                                      <option value="2045">2045</option>
-                                      <option value="2046">2046</option>
-                                      <option value="2047">2047</option>
-                                      <option value="2048">2048</option>
-                                      <option value="2049">2049</option>
-                                      <option value="2050">2050</option>
+                                    <select
+                                        className="table-cell"
+                                        id="otherToCropYear"
+                                        name="otherToCropYear"
+                                        onChange={handleOtherToCropYear}
+                                        value={otherToCropYear}
+                                        defaultValue="Select year"
+                                        required
+                                      >
+
+                                        {options.map((option) => (
+                                          <option key={option} value={option}>
+                                            {option}{" "}
+                                          </option>
+                                        ))}
                                     </select>
                                   </td>
                               </tr>
@@ -1119,36 +1182,21 @@ import Chip from "@mui/material/Chip";
                                       />
                                   </td>
                                   <td>
-                                    <select id="forestToGrassYear" className="table-cell">
-                                      <option value="2022">2022</option>
-                                      <option value="2023">2023</option>
-                                      <option value="2024">2024</option>
-                                      <option value="2025">2025</option>
-                                      <option value="2026">2026</option>
-                                      <option value="2027">2027</option>
-                                      <option value="2028">2028</option>
-                                      <option value="2029">2029</option>
-                                      <option value="2030">2030</option>
-                                      <option value="2031">2031</option>
-                                      <option value="2032">2032</option>
-                                      <option value="2033">2033</option>
-                                      <option value="2034">2034</option>
-                                      <option value="2035">2035</option>
-                                      <option value="2036">2036</option>
-                                      <option value="2037">2037</option>
-                                      <option value="2038">2038</option>
-                                      <option value="2039">2039</option>
-                                      <option value="2040">2040</option>
-                                      <option value="2041">2041</option>
-                                      <option value="2042">2042</option>
-                                      <option value="2043">2043</option>
-                                      <option value="2044">2044</option>
-                                      <option value="2045">2045</option>
-                                      <option value="2046">2046</option>
-                                      <option value="2047">2047</option>
-                                      <option value="2048">2048</option>
-                                      <option value="2049">2049</option>
-                                      <option value="2050">2050</option>
+                                    <select
+                                        className="table-cell"
+                                        id="forestToGrassYear"
+                                        name="forestToGrassYear"
+                                        onChange={handleForestToGrassYear}
+                                        value={forestToGrassYear}
+                                        defaultValue="Select year"
+                                        required
+                                      >
+
+                                        {options.map((option) => (
+                                          <option key={option} value={option}>
+                                            {option}{" "}
+                                          </option>
+                                        ))}
                                     </select>
                                   </td>
                               </tr>
@@ -1190,36 +1238,21 @@ import Chip from "@mui/material/Chip";
                                       />
                                   </td>
                                   <td>
-                                    <select id="cropToGrassYear" className="table-cell">
-                                      <option value="2022">2022</option>
-                                      <option value="2023">2023</option>
-                                      <option value="2024">2024</option>
-                                      <option value="2025">2025</option>
-                                      <option value="2026">2026</option>
-                                      <option value="2027">2027</option>
-                                      <option value="2028">2028</option>
-                                      <option value="2029">2029</option>
-                                      <option value="2030">2030</option>
-                                      <option value="2031">2031</option>
-                                      <option value="2032">2032</option>
-                                      <option value="2033">2033</option>
-                                      <option value="2034">2034</option>
-                                      <option value="2035">2035</option>
-                                      <option value="2036">2036</option>
-                                      <option value="2037">2037</option>
-                                      <option value="2038">2038</option>
-                                      <option value="2039">2039</option>
-                                      <option value="2040">2040</option>
-                                      <option value="2041">2041</option>
-                                      <option value="2042">2042</option>
-                                      <option value="2043">2043</option>
-                                      <option value="2044">2044</option>
-                                      <option value="2045">2045</option>
-                                      <option value="2046">2046</option>
-                                      <option value="2047">2047</option>
-                                      <option value="2048">2048</option>
-                                      <option value="2049">2049</option>
-                                      <option value="2050">2050</option>
+                                    <select
+                                        className="table-cell"
+                                        id="cropToGrassYear"
+                                        name="cropToGrassYear"
+                                        onChange={handleCropToGrassYear}
+                                        value={cropToGrassYear}
+                                        defaultValue="Select year"
+                                        required
+                                      >
+
+                                        {options.map((option) => (
+                                          <option key={option} value={option}>
+                                            {option}{" "}
+                                          </option>
+                                        ))}
                                     </select>
                                   </td>
                               </tr>
@@ -1261,36 +1294,21 @@ import Chip from "@mui/material/Chip";
                                       />
                                   </td>
                                   <td>
-                                    <select id="wetToGrassYear" className="table-cell">
-                                      <option value="2022">2022</option>
-                                      <option value="2023">2023</option>
-                                      <option value="2024">2024</option>
-                                      <option value="2025">2025</option>
-                                      <option value="2026">2026</option>
-                                      <option value="2027">2027</option>
-                                      <option value="2028">2028</option>
-                                      <option value="2029">2029</option>
-                                      <option value="2030">2030</option>
-                                      <option value="2031">2031</option>
-                                      <option value="2032">2032</option>
-                                      <option value="2033">2033</option>
-                                      <option value="2034">2034</option>
-                                      <option value="2035">2035</option>
-                                      <option value="2036">2036</option>
-                                      <option value="2037">2037</option>
-                                      <option value="2038">2038</option>
-                                      <option value="2039">2039</option>
-                                      <option value="2040">2040</option>
-                                      <option value="2041">2041</option>
-                                      <option value="2042">2042</option>
-                                      <option value="2043">2043</option>
-                                      <option value="2044">2044</option>
-                                      <option value="2045">2045</option>
-                                      <option value="2046">2046</option>
-                                      <option value="2047">2047</option>
-                                      <option value="2048">2048</option>
-                                      <option value="2049">2049</option>
-                                      <option value="2050">2050</option>
+                                    <select
+                                        className="table-cell"
+                                        id="wetToGrassYear"
+                                        name="wetToGrassYear"
+                                        onChange={handleWetToGrassYear}
+                                        value={wetToGrassYear}
+                                        defaultValue="Select year"
+                                        required
+                                      >
+
+                                        {options.map((option) => (
+                                          <option key={option} value={option}>
+                                            {option}{" "}
+                                          </option>
+                                        ))}
                                     </select>
                                   </td>
                               </tr>
@@ -1332,36 +1350,21 @@ import Chip from "@mui/material/Chip";
                                       />
                                   </td>
                                   <td>
-                                    <select id="settlementsToGrassYear" className="table-cell">
-                                      <option value="2022">2022</option>
-                                      <option value="2023">2023</option>
-                                      <option value="2024">2024</option>
-                                      <option value="2025">2025</option>
-                                      <option value="2026">2026</option>
-                                      <option value="2027">2027</option>
-                                      <option value="2028">2028</option>
-                                      <option value="2029">2029</option>
-                                      <option value="2030">2030</option>
-                                      <option value="2031">2031</option>
-                                      <option value="2032">2032</option>
-                                      <option value="2033">2033</option>
-                                      <option value="2034">2034</option>
-                                      <option value="2035">2035</option>
-                                      <option value="2036">2036</option>
-                                      <option value="2037">2037</option>
-                                      <option value="2038">2038</option>
-                                      <option value="2039">2039</option>
-                                      <option value="2040">2040</option>
-                                      <option value="2041">2041</option>
-                                      <option value="2042">2042</option>
-                                      <option value="2043">2043</option>
-                                      <option value="2044">2044</option>
-                                      <option value="2045">2045</option>
-                                      <option value="2046">2046</option>
-                                      <option value="2047">2047</option>
-                                      <option value="2048">2048</option>
-                                      <option value="2049">2049</option>
-                                      <option value="2050">2050</option>
+                                    <select
+                                        className="table-cell"
+                                        id="settlementsToGrassYear"
+                                        name="settlementsToGrassYear"
+                                        onChange={handleSettlementsToGrassYear}
+                                        value={settlementsToGrassYear}
+                                        defaultValue="Select year"
+                                        required
+                                      >
+
+                                        {options.map((option) => (
+                                          <option key={option} value={option}>
+                                            {option}{" "}
+                                          </option>
+                                        ))}
                                     </select>
                                   </td>
                               </tr>
@@ -1403,36 +1406,313 @@ import Chip from "@mui/material/Chip";
                                       />
                                   </td>
                                   <td>
-                                    <select id="othertoGrassYear" className="table-cell">
-                                      <option value="2022">2022</option>
-                                      <option value="2023">2023</option>
-                                      <option value="2024">2024</option>
-                                      <option value="2025">2025</option>
-                                      <option value="2026">2026</option>
-                                      <option value="2027">2027</option>
-                                      <option value="2028">2028</option>
-                                      <option value="2029">2029</option>
-                                      <option value="2030">2030</option>
-                                      <option value="2031">2031</option>
-                                      <option value="2032">2032</option>
-                                      <option value="2033">2033</option>
-                                      <option value="2034">2034</option>
-                                      <option value="2035">2035</option>
-                                      <option value="2036">2036</option>
-                                      <option value="2037">2037</option>
-                                      <option value="2038">2038</option>
-                                      <option value="2039">2039</option>
-                                      <option value="2040">2040</option>
-                                      <option value="2041">2041</option>
-                                      <option value="2042">2042</option>
-                                      <option value="2043">2043</option>
-                                      <option value="2044">2044</option>
-                                      <option value="2045">2045</option>
-                                      <option value="2046">2046</option>
-                                      <option value="2047">2047</option>
-                                      <option value="2048">2048</option>
-                                      <option value="2049">2049</option>
-                                      <option value="2050">2050</option>
+                                    <select
+                                        className="table-cell"
+                                        id="otherToGrassYear"
+                                        name="otherToGrassYear"
+                                        onChange={handleOtherToGrassYear}
+                                        value={otherToGrassYear}
+                                        defaultValue="Select year"
+                                        required
+                                      >
+
+                                        {options.map((option) => (
+                                          <option key={option} value={option}>
+                                            {option}{" "}
+                                          </option>
+                                        ))}
+                                    </select>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+
+                      <table className="toWet tbl">
+                          <thead>
+                              <th className="row-title">Land-Use Change</th>
+                              <th>Total area, ha</th>
+                              <th>Soil area (mineral), ha</th>
+                              <th>Soil area (organic), ha</th>
+                              <th>Year of implementation</th>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td className="row-title">
+                                      Land converted to peat extraction (combined)
+                                  </td>
+                                  <td>
+                                      <input className="table-cell"
+                                          type="number"
+                                          step="1"
+                                          id="landConvertedToPeat"
+                                          min="0"
+                                          value={landConvertedToPeat}
+                                          onChange={handleLandConvertedToPeat}
+                                          required
+                                      />
+                                  </td>
+                                  <td>
+                                      <input className="table-cell"
+                                          type="number"
+                                          step="1"
+                                          id="landConvertedToPeatMineral"
+                                          min="0"
+                                          value={landConvertedToPeatMineral}
+                                          onChange={handleLandConvertedToPeatMineral}
+                                          required
+                                      />
+                                  </td>
+                                  <td>
+                                      <input className="table-cell"
+                                          type="number"
+                                          step="1"
+                                          id="landConvertedToPeatOrganic"
+                                          min="0"
+                                          value={forestToGrassOrganic}
+                                          onChange={handleLandConvertedToPeatOrganic}
+                                          required
+                                      />
+                                  </td>
+                                  <td>
+                                    <select
+                                        className="table-cell"
+                                        id="landConvertedToPeatYear"
+                                        name="landConvertedToPeatYear"
+                                        onChange={handleLandConvertedToPeatYear}
+                                        value={landConvertedToPeatYear}
+                                        defaultValue="Select year"
+                                        required
+                                      >
+
+                                        {options.map((option) => (
+                                          <option key={option} value={option}>
+                                            {option}{" "}
+                                          </option>
+                                        ))}
+                                    </select>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td className="row-title">
+                                      Peatland restoration (rewriting)
+                                  </td>
+                                  <td>
+                                      <input className="table-cell"
+                                          type="number"
+                                          step="1"
+                                          id="peatLandRestore"
+                                          min="0"
+                                          value={peatLandRestore}
+                                          onChange={handlePeatLandRestore}
+                                          required
+                                      />
+                                  </td>
+                                  <td>
+                                      <input className="table-cell"
+                                          type="number"
+                                          step="1"
+                                          id="peatLandRestoreMineral"
+                                          min="0"
+                                          value={peatLandRestoreMineral}
+                                          onChange={handlePeatLandRestoreMineral}
+                                          required
+                                      />
+                                  </td>
+                                  <td>
+                                      <input className="table-cell"
+                                          type="number"
+                                          step="1"
+                                          id="peatLandRestoreOrganic"
+                                          min="0"
+                                          value={peatLandRestoreOrganic}
+                                          onChange={handlePeatLandRestoreOrganic}
+                                          required
+                                      />
+                                  </td>
+                                  <td>
+                                    <select
+                                        className="table-cell"
+                                        id="peatLandRestoreYear"
+                                        name="peatLandRestoreYear"
+                                        onChange={handlePeatLandRestoreYear}
+                                        value={peatLandRestoreYear}
+                                        defaultValue="Select year"
+                                        required
+                                      >
+
+                                        {options.map((option) => (
+                                          <option key={option} value={option}>
+                                            {option}{" "}
+                                          </option>
+                                        ))}
+                                    </select>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td className="row-title">
+                                      Forest land to other wetlands/ flooded land
+                                  </td>
+                                  <td>
+                                      <input className="table-cell"
+                                          type="number"
+                                          step="1"
+                                          id="forestToWetland"
+                                          min="0"
+                                          value={forestToWetland}
+                                          onChange={handleForestToWetland}
+                                          required
+                                      />
+                                  </td>
+                                  <td>
+                                      <input className="table-cell"
+                                          type="number"
+                                          step="1"
+                                          id="forestToWetlandMineral"
+                                          min="0"
+                                          value={forestToWetlandMineral}
+                                          onChange={handleForestToWetlandMineral}
+                                          required
+                                      />
+                                  </td>
+                                  <td>
+                                      <input className="table-cell"
+                                          type="number"
+                                          step="1"
+                                          id="wetToGrassOrganic"
+                                          min="0"
+                                          value={forestToWetlandOrganic}
+                                          onChange={handleForestToWetlandOrganic}
+                                          required
+                                      />
+                                  </td>
+                                  <td>
+                                    <select
+                                        className="table-cell"
+                                        id="wetToGrassYear"
+                                        name="forestToWetland"
+                                        onChange={handleForestToWetlandYear}
+                                        value={forestToWetlandYear}
+                                        defaultValue="Select year"
+                                        required
+                                      >
+
+                                        {options.map((option) => (
+                                          <option key={option} value={option}>
+                                            {option}{" "}
+                                          </option>
+                                        ))}
+                                    </select>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td className="row-title">
+                                      Cropland to other wetlands/ flooded land
+                                  </td>
+                                  <td>
+                                      <input className="table-cell"
+                                          type="number"
+                                          step="1"
+                                          id="cropToWet"
+                                          min="0"
+                                          value={cropToWet}
+                                          onChange={handleCropToWet}
+                                          required
+                                      />
+                                  </td>
+                                  <td>
+                                      <input className="table-cell"
+                                          type="number"
+                                          step="1"
+                                          id="cropToWetMineral"
+                                          min="0"
+                                          value={cropToWetMineral}
+                                          onChange={handleCropToWetMineral}
+                                          required
+                                      />
+                                  </td>
+                                  <td>
+                                      <input className="table-cell"
+                                          type="number"
+                                          step="1"
+                                          id="cropToWetOrganic"
+                                          min="0"
+                                          value={cropToWetOrganic}
+                                          onChange={handleCropToWetOrganic}
+                                          required
+                                      />
+                                  </td>
+                                  <td>
+                                    <select
+                                        className="table-cell"
+                                        id="cropToWetYear"
+                                        name="cropToWetYear"
+                                        onChange={handleCropToWetYear}
+                                        value={cropToWetYear}
+                                        defaultValue="Select year"
+                                        required
+                                      >
+
+                                        {options.map((option) => (
+                                          <option key={option} value={option}>
+                                            {option}{" "}
+                                          </option>
+                                        ))}
+                                    </select>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td className="row-title">
+                                        Grassland to other wetlands/ flooded land
+                                  </td>
+                                  <td>
+                                      <input className="table-cell"
+                                          type="number"
+                                          step="1"
+                                          id="grassToWet"
+                                          min="0"
+                                          value={grassToWet}
+                                          onChange={handleGrassToWet}
+                                          required
+                                      />
+                                  </td>
+                                  <td>
+                                      <input className="table-cell"
+                                          type="number"
+                                          step="1"
+                                          id="grassToWetMineral"
+                                          min="0"
+                                          value={grassToWetMineral}
+                                          onChange={handleGrassToWetMineral}
+                                          required
+                                      />
+                                  </td>
+                                  <td>
+                                      <input className="table-cell"
+                                          type="number"
+                                          step="1"
+                                          id="grassToWetOrganic"
+                                          min="0"
+                                          value={grassToWetOrganic}
+                                          onChange={handleGrassToWetOrganic}
+                                          required
+                                      />
+                                  </td>
+                                  <td>
+                                    <select
+                                        className="table-cell"
+                                        id="grassToWetYear"
+                                        name="grassToWetYear"
+                                        onChange={handleGrassToWetYear}
+                                        value={grassToWetYear}
+                                        defaultValue="Select year"
+                                        required
+                                      >
+
+                                        {options.map((option) => (
+                                          <option key={option} value={option}>
+                                            {option}{" "}
+                                          </option>
+                                        ))}
                                     </select>
                                   </td>
                               </tr>
