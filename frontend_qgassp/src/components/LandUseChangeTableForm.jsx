@@ -139,19 +139,57 @@ import Chip from "@mui/material/Chip";
     // to Settlements vars
     // #region 
     const [forestToSettlements, setForestToSettlements] = useState(0);
+    const [forestToSettlementsMineral, setForestToSettlementsMineral] = useState(0);
+    const [forestToSettlementsOrganic, setForestToSettlementsOrganic] = useState(0);
+    const [forestToSettlementsYear, setForestToSettlementsYear] = useState(2022);
+
     const [cropToSettlements, setCropToSettlements] = useState(0);
+    const [cropToSettlementsMineral, setCropToSettlementsMineral] = useState(0);
+    const [cropToSettlementsOrganic, setCropToSettlementsOrganic] = useState(0);
+    const [cropToSettlementsYear, setCropToSettlementsYear] = useState(2022);
+
     const [grassToSettlements, setGrassToSettlements] = useState(0);
+    const [grassToSettlementsMineral, setGrassToSettlementsMineral] = useState(0);
+    const [grassToSettlementsOrganic, setGrassToSettlementsOrganic] = useState(0);
+    const [grassToSettlementsYear, setGrassToSettlementsYear] = useState(2022);
+
     const [wetToSettlements, setWetToSettlements] = useState(0);
+    const [wetToSettlementsMineral, setWetToSettlementsMineral] = useState(0);
+    const [wetToSettlementsOrganic, setWetToSettlementsOrganic] = useState(0);
+    const [wetToSettlementsYear, setWetToSettlementsYear] = useState(2022);
+
     const [otherToSettlements, setOtherToSettlements] = useState(0);
+    const [otherToSettlementsMineral, setOtherToSettlementsMineral] = useState(0);
+    const [otherToSettlementsOrganic, setOtherToSettlementsOrganic] = useState(0);
+    const [otherToSettlementsYear, setOtherToSettlementsYear] = useState(2022);
     // #endregion
 
     // to other land vars
     // #region 
     const [forestToOther, setForestToOther] = useState(0);
+    const [forestToOtherMineral, setForestToOtherMineral] = useState(0);
+    const [forestToOtherOrganic, setForestToOtherOrganic] = useState(0);
+    const [forestToOtherYear, setForestToOtherYear] = useState(2022);
+
     const [cropToOther, setCropToOther] = useState(0);
+    const [cropToOtherMineral, setCropToOtherMineral] = useState(0);
+    const [cropToOtherOrganic, setCropToOtherOrganic] = useState(0);
+    const [cropToOtherYear, setCropToOtherYear] = useState(2022);
+
     const [grassToOther, setGrassToOther] = useState(0);
+    const [grassToOtherMineral, setGrassToOtherMineral] = useState(0);
+    const [grassToOtherOrganic, setGrassToOtherOrganic] = useState(0);
+    const [grassToOtherYear, setGrassToOtherYear] = useState(2022);
+
     const [wetToOther, setWetToOther] = useState(0);
+    const [wetToOtherMineral, setWetToOtherMineral] = useState(0);
+    const [wetToOtherOrganic, setWetToOtherOrganic] = useState(0);
+    const [wetToOtherYear, setWetToOtherYear] = useState(2022);
+
     const [settlementsToOther, setSettlementsToOther] = useState(0);
+    const [settlementsToOtherMineral, setSettlementsToOtherMineral] = useState(0);
+    const [settlementsToOtherOrganic, setSettlementsToOtherOrganic] = useState(0);
+    const [settlementsToOtherYear, setSettlementsToOtherYear] = useState(2022);
     // #endregion
 
     const [totalArea, setTotalArea] = useState(0); // add values
@@ -519,6 +557,186 @@ import Chip from "@mui/material/Chip";
     };
      // #endregion
     
+    // to Settlements handlers
+    // #region 
+    // forest
+    const handleForestToSettlements = (e) => {
+      setForestToSettlements(parseInt(e.target.value));
+    };
+
+    const handleForestToSettlementsMineral = (e) => {
+      setForestToSettlementsMineral(parseInt(e.target.value));
+    };
+
+    const handleForestToSettlementsOrganic = (e) => {
+      setForestToSettlementsOrganic(parseInt(e.target.value));
+    };
+
+    const handleForestToSettlementsYear = (e) => {
+      e.preventDefault();
+      setForestToSettlementsYear(Number(e.target.value));
+    };
+     // crop
+     const handleCropToSettlements = (e) => {
+      setCropToSettlements(parseInt(e.target.value));
+    };
+
+    const handleCropToSettlementsMineral = (e) => {
+      setCropToSettlementsMineral(parseInt(e.target.value));
+    };
+
+    const handleCropToSettlementsOrganic = (e) => {
+      setCropToSettlementsOrganic(parseInt(e.target.value));
+    };
+
+    const handleCropToSettlementsYear = (e) => {
+      e.preventDefault();
+      setCropToSettlementsYear(Number(e.target.value));
+    };
+     // grass
+     const handleGrassToSettlements = (e) => {
+      setGrassToSettlements(parseInt(e.target.value));
+    };
+
+    const handleGrassToSettlementsMineral = (e) => {
+      setGrassToSettlementsMineral(parseInt(e.target.value));
+    };
+
+    const handleGrassToSettlementsOrganic = (e) => {
+      setGrassToSettlementsOrganic(parseInt(e.target.value));
+    };
+
+    const handleGrassToSettlementsYear = (e) => {
+      e.preventDefault();
+      setGrassToSettlementsYear(Number(e.target.value));
+    };
+     // wet
+     const handleWetToSettlements = (e) => {
+      setWetToSettlements(parseInt(e.target.value));
+    };
+
+    const handleWetToSettlementsMineral = (e) => {
+      setWetToSettlementsMineral(parseInt(e.target.value));
+    };
+
+    const handleWetToSettlementsOrganic = (e) => {
+      setWetToSettlementsOrganic(parseInt(e.target.value));
+    };
+
+    const handleWetToSettlementsYear = (e) => {
+      e.preventDefault();
+      setWetToSettlementsYear(Number(e.target.value));
+    };
+    // other
+    const handleOtherToSettlements = (e) => {
+      setOtherToSettlements(parseInt(e.target.value));
+    };
+
+    const handleOtherToSettlementsMineral = (e) => {
+      setOtherToSettlementsMineral(parseInt(e.target.value));
+    };
+
+    const handleOtherToSettlementsOrganic = (e) => {
+      setOtherToSettlementsOrganic(parseInt(e.target.value));
+    };
+
+    const handleOtherToSettlementsYear = (e) => {
+      e.preventDefault();
+      setOtherToSettlementsYear(Number(e.target.value));
+    };
+    // #endregion
+
+    // to other handlers
+    // #region 
+    // forest
+    const handleForestToOther = (e) => {
+      setForestToOther(parseInt(e.target.value));
+    };
+
+    const handleForestToOtherMineral = (e) => {
+      setForestToOtherMineral(parseInt(e.target.value));
+    };
+
+    const handleForestToOtherOrganic = (e) => {
+      setForestToOtherOrganic(parseInt(e.target.value));
+    };
+
+    const handleForestToOtherYear = (e) => {
+      e.preventDefault();
+      setForestToOtherYear(Number(e.target.value));
+    };
+
+    // crop
+    const handleCropToOther = (e) => {
+      setCropToOther(parseInt(e.target.value));
+    };
+
+    const handleCropToOtherMineral = (e) => {
+      setCropToOtherMineral(parseInt(e.target.value));
+    };
+
+    const handleCropToOtherOrganic = (e) => {
+      setCropToOtherOrganic(parseInt(e.target.value));
+    };
+
+    const handleCropToOtherYear = (e) => {
+      e.preventDefault();
+      setCropToOtherYear(Number(e.target.value));
+    };
+
+    // grass
+    const handleGrassToOther = (e) => {
+      setGrassToOther(parseInt(e.target.value));
+    };
+
+    const handleGrassToOtherMineral = (e) => {
+      setGrassToOtherMineral(parseInt(e.target.value));
+    };
+
+    const handleGrassToOtherOrganic = (e) => {
+      setGrassToOtherOrganic(parseInt(e.target.value));
+    };
+
+    const handleGrassToOtherYear = (e) => {
+      e.preventDefault();
+      setGrassToOtherYear(Number(e.target.value));
+    };
+
+    // wet
+    const handleWetToOther = (e) => {
+      setWetToOther(parseInt(e.target.value));
+    };
+
+    const handleWetToOtherMineral = (e) => {
+      setWetToOtherMineral(parseInt(e.target.value));
+    };
+
+    const handleWetToOtherOrganic = (e) => {
+      setWetToOtherOrganic(parseInt(e.target.value));
+    };
+
+    const handleWetToOtherYear = (e) => {
+      e.preventDefault();
+      setWetToOtherYear(Number(e.target.value));
+    };
+     // settlements
+    const handleSettlementsToOther = (e) => {
+      setSettlementsToOther(parseInt(e.target.value));
+    };
+
+    const handleSettlementsToOtherMineral = (e) => {
+      setSettlementsToOtherMineral(parseInt(e.target.value));
+    };
+
+    const handleSettlementsToOtherOrganic = (e) => {
+      setSettlementsToOtherOrganic(parseInt(e.target.value));
+    };
+
+    const handleSettlementsToOtherYear = (e) => {
+      e.preventDefault();
+      setSettlementsToOtherYear(Number(e.target.value));
+    };
+    // #endregion
 
     // functions for baseline generation
     const setLandUseChange = () => {
@@ -1718,6 +1936,592 @@ import Chip from "@mui/material/Chip";
                               </tr>
                           </tbody>
                       </table>
+                    </div>
+
+                    <div className="row">
+                        <table className="toSettlements tbl">
+                            <thead>
+                                <th className="row-title">Land-Use Change</th>
+                                <th>Total area, ha</th>
+                                <th>Soil area (mineral), ha</th>
+                                <th>Soil area (organic), ha</th>
+                                <th>Year of implementation</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td className="row-title">
+                                        Forest land to Settlements
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="forestToSettlements"
+                                            min="0"
+                                            value={forestToSettlements}
+                                            onChange={handleForestToSettlements}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="forestToSettlementsMineral"
+                                            min="0"
+                                            value={forestToSettlementsMineral}
+                                            onChange={handleForestToSettlementsMineral}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="forestToSettlementsOrganic"
+                                            min="0"
+                                            value={forestToSettlementsOrganic}
+                                            onChange={handleForestToSettlementsOrganic}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                      <select
+                                          className="table-cell"
+                                          id="forestToSettlementsYear"
+                                          name="forestToSettlementsYear"
+                                          onChange={handleForestToSettlementsYear}
+                                          value={forestToSettlementsYear}
+                                          defaultValue="Select year"
+                                          required
+                                        >
+
+                                          {options.map((option) => (
+                                            <option key={option} value={option}>
+                                              {option}{" "}
+                                            </option>
+                                          ))}
+                                      </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="row-title">
+                                          Cropland to Settlements
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="cropToSettlements"
+                                            min="0"
+                                            value={cropToSettlements}
+                                            onChange={handleCropToSettlements}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="cropToSettlementsMineral"
+                                            min="0"
+                                            value={cropToSettlementsMineral}
+                                            onChange={handleCropToSettlementsMineral}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="cropToSettlementsOrganic"
+                                            min="0"
+                                            value={cropToSettlementsOrganic}
+                                            onChange={handleCropToSettlementsOrganic}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                      <select
+                                          className="table-cell"
+                                          id="cropToSettlementsYear"
+                                          name="cropToSettlementsYear"
+                                          onChange={handleCropToSettlementsYear}
+                                          value={cropToSettlementsYear}
+                                          defaultValue="Select year"
+                                          required
+                                        >
+
+                                          {options.map((option) => (
+                                            <option key={option} value={option}>
+                                              {option}{" "}
+                                            </option>
+                                          ))}
+                                      </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="row-title">
+                                        Grass to Settlements
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="grassToSettlements"
+                                            min="0"
+                                            value={grassToSettlements}
+                                            onChange={handleGrassToSettlements}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="grassToSettlementsMineral"
+                                            min="0"
+                                            value={grassToSettlementsMineral}
+                                            onChange={handleGrassToSettlementsMineral}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="grassToSettlementsOrganic"
+                                            min="0"
+                                            value={grassToSettlementsOrganic}
+                                            onChange={handleGrassToSettlementsOrganic}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                      <select
+                                          className="table-cell"
+                                          id="wetToGrassYear"
+                                          name="forestToWetland"
+                                          onChange={handleGrassToSettlementsYear}
+                                          value={grassToSettlementsYear}
+                                          defaultValue="Select year"
+                                          required
+                                        >
+
+                                          {options.map((option) => (
+                                            <option key={option} value={option}>
+                                              {option}{" "}
+                                            </option>
+                                          ))}
+                                      </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="row-title">
+                                        Wetlands to Settlements
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="wetToSettlements"
+                                            min="0"
+                                            value={wetToSettlements}
+                                            onChange={handleWetToSettlements}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="wetToSettlementsMineral"
+                                            min="0"
+                                            value={wetToSettlementsMineral}
+                                            onChange={handleWetToSettlementsMineral}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="wetToSettlementsOrganic"
+                                            min="0"
+                                            value={wetToSettlementsOrganic}
+                                            onChange={handleWetToSettlementsOrganic}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                      <select
+                                          className="table-cell"
+                                          id="wetToSettlementsYear"
+                                          name="wetToSettlementsYear"
+                                          onChange={handleWetToSettlementsYear}
+                                          value={wetToSettlementsYear}
+                                          defaultValue="Select year"
+                                          required
+                                        >
+
+                                          {options.map((option) => (
+                                            <option key={option} value={option}>
+                                              {option}{" "}
+                                            </option>
+                                          ))}
+                                      </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="row-title">
+                                        Other to Settlements
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="otherToSettlements"
+                                            min="0"
+                                            value={otherToSettlements}
+                                            onChange={handleOtherToSettlements}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="otherToSettlementsMineral"
+                                            min="0"
+                                            value={otherToSettlementsMineral}
+                                            onChange={handleOtherToSettlementsMineral}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="otherToSettlementsOrganic"
+                                            min="0"
+                                            value={otherToSettlementsOrganic}
+                                            onChange={handleOtherToSettlementsOrganic}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                      <select
+                                          className="table-cell"
+                                          id="otherToSettlementsYear"
+                                          name="otherToSettlementsYear"
+                                          onChange={handleOtherToSettlementsYear}
+                                          value={otherToSettlementsYear}
+                                          defaultValue="Select year"
+                                          required
+                                        >
+
+                                          {options.map((option) => (
+                                            <option key={option} value={option}>
+                                              {option}{" "}
+                                            </option>
+                                          ))}
+                                      </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table className="toOther tbl">
+                            <thead>
+                                <th className="row-title">Land-Use Change</th>
+                                <th>Total area, ha</th>
+                                <th>Soil area (mineral), ha</th>
+                                <th>Soil area (organic), ha</th>
+                                <th>Year of implementation</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td className="row-title">
+                                        Forest land to other land
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="forestToOther"
+                                            min="0"
+                                            value={forestToOther}
+                                            onChange={handleForestToOther}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="forestToOtherMineral"
+                                            min="0"
+                                            value={forestToOtherMineral}
+                                            onChange={handleForestToOtherMineral}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="forestToOtherOrganic"
+                                            min="0"
+                                            value={forestToOtherOrganic}
+                                            onChange={handleForestToOtherOrganic}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                      <select
+                                          className="table-cell"
+                                          id="forestToOtherYear"
+                                          name="forestToOtherYear"
+                                          onChange={handleForestToOtherYear}
+                                          value={forestToOtherYear}
+                                          defaultValue="Select year"
+                                          required
+                                        >
+
+                                          {options.map((option) => (
+                                            <option key={option} value={option}>
+                                              {option}{" "}
+                                            </option>
+                                          ))}
+                                      </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="row-title">
+                                        Cropland land to other land
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="cropToOther"
+                                            min="0"
+                                            value={cropToOther}
+                                            onChange={handleCropToOther}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="cropToOtherMineral"
+                                            min="0"
+                                            value={cropToOtherMineral}
+                                            onChange={handleCropToOtherMineral}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="cropToOtherOrganic"
+                                            min="0"
+                                            value={cropToOtherOrganic}
+                                            onChange={handleCropToOtherOrganic}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                      <select
+                                          className="table-cell"
+                                          id="cropToOtherYear"
+                                          name="cropToOtherYear"
+                                          onChange={handleCropToOtherYear}
+                                          value={cropToOtherYear}
+                                          defaultValue="Select year"
+                                          required
+                                        >
+
+                                          {options.map((option) => (
+                                            <option key={option} value={option}>
+                                              {option}{" "}
+                                            </option>
+                                          ))}
+                                      </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="row-title">
+                                        Grassland to other land
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="grassToOther"
+                                            min="0"
+                                            value={grassToOther}
+                                            onChange={handleGrassToOther}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="cropToOtherMineral"
+                                            min="0"
+                                            value={grassToOtherMineral}
+                                            onChange={handleGrassToOtherMineral}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="cropToOtherOrganic"
+                                            min="0"
+                                            value={grassToOtherOrganic}
+                                            onChange={handleGrassToOtherOrganic}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                      <select
+                                          className="table-cell"
+                                          id="cropToOtherYear"
+                                          name="cropToOtherYear"
+                                          onChange={handleGrassToOtherYear}
+                                          value={grassToOtherYear}
+                                          defaultValue="Select year"
+                                          required
+                                        >
+
+                                          {options.map((option) => (
+                                            <option key={option} value={option}>
+                                              {option}{" "}
+                                            </option>
+                                          ))}
+                                      </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="row-title">
+                                        Wetlands to other land
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="wetToOther"
+                                            min="0"
+                                            value={wetToOther}
+                                            onChange={handleWetToOther}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="wetToOtherMineral"
+                                            min="0"
+                                            value={wetToOtherMineral}
+                                            onChange={handleWetToOtherMineral}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="wetToOtherOrganic"
+                                            min="0"
+                                            value={wetToOtherOrganic}
+                                            onChange={handleWetToOtherOrganic}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                      <select
+                                          className="table-cell"
+                                          id="wetToOtherYear"
+                                          name="wetToOtherYear"
+                                          onChange={handleWetToOtherYear}
+                                          value={wetToOtherYear}
+                                          defaultValue="Select year"
+                                          required
+                                        >
+
+                                          {options.map((option) => (
+                                            <option key={option} value={option}>
+                                              {option}{" "}
+                                            </option>
+                                          ))}
+                                      </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="row-title">
+                                        Settlements to other land
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="settlementsToOther"
+                                            min="0"
+                                            value={settlementsToOther}
+                                            onChange={handleSettlementsToOther}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="settlementsToOtherMineral"
+                                            min="0"
+                                            value={settlementsToOtherMineral}
+                                            onChange={handleSettlementsToOtherMineral}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            step="1"
+                                            id="settlementsToOtherOrganic"
+                                            min="0"
+                                            value={settlementsToOtherOrganic}
+                                            onChange={handleSettlementsToOtherOrganic}
+                                            required
+                                        />
+                                    </td>
+                                    <td>
+                                      <select
+                                          className="table-cell"
+                                          id="settlementsToOtherYear"
+                                          name="settlementsToOtherYear"
+                                          onChange={handleSettlementsToOtherYear}
+                                          value={settlementsToOtherYear}
+                                          defaultValue="Select year"
+                                          required
+                                        >
+
+                                          {options.map((option) => (
+                                            <option key={option} value={option}>
+                                              {option}{" "}
+                                            </option>
+                                          ))}
+                                      </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     
                     <div className="backStart">
