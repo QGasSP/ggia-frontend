@@ -192,9 +192,33 @@ import Chip from "@mui/material/Chip";
     const [settlementsToOtherYear, setSettlementsToOtherYear] = useState(2022);
     // #endregion
 
-    const [totalArea, setTotalArea] = useState(0); // add values
-    const [totalMineral, setTotalMineral] = useState(0); // add values
-    const [totalOrganic, setTotalOrganic] = useState(0); // add values
+    const [totalArea, setTotalArea] = useState(
+        cropToForest + grassToForest + wetToForest + 
+        settlementsToForest + otherToForest + forestToCrop + 
+        grassToCrop + wetToCrop + settlementsToCrop + otherToCrop +
+        forestToGrass + cropToGrass + wetToGrass + settlementsToGrass +
+        otherToGrass + landConvertedToPeat + peatLandRestore + forestToWetland +
+        cropToWet + grassToWet + forestToOther + wetToOther + grassToOther + 
+        cropToOther + settlementsToOther
+    );
+    const [totalMineral, setTotalMineral] = useState(
+      cropToForestMineral + grassToForestMineral + wetToForestMineral + 
+      settlementsToForestMineral + otherToForestMineral + forestToCropMineral + 
+      grassToCropMineral + wetToCropMineral + settlementsToCropMineral + otherToCropMineral +
+      forestToGrassMineral + cropToGrassMineral + wetToGrassMineral + settlementsToGrassMineral +
+      otherToGrassMineral + landConvertedToPeatMineral + peatLandRestoreMineral + forestToWetlandMineral +
+      cropToWetMineral + grassToWetMineral + forestToOtherMineral + wetToOtherMineral + grassToOtherMineral + 
+      cropToOtherMineral + settlementsToOtherMineral
+    );
+    const [totalOrganic, setTotalOrganic] = useState(
+      cropToForestOrganic + grassToForestOrganic + wetToForestOrganic + 
+      settlementsToForestOrganic + otherToForestOrganic + forestToCropOrganic + 
+      grassToCropOrganic + wetToCropOrganic + settlementsToCropOrganic + otherToCropOrganic +
+      forestToGrassOrganic + cropToGrassOrganic + wetToGrassOrganic + settlementsToGrassOrganic +
+      otherToGrassOrganic + landConvertedToPeatOrganic + peatLandRestoreOrganic + 
+      forestToWetlandOrganic + cropToWetOrganic + grassToWetOrganic + forestToOtherOrganic + 
+      wetToOtherOrganic + grassToOtherOrganic + cropToOtherOrganic + settlementsToOtherOrganic
+    );
     const [LUCbaseline, setLUCbaseline] = useState(false);
     const navigate = useNavigate();
 
@@ -740,7 +764,15 @@ import Chip from "@mui/material/Chip";
 
     // functions for baseline generation
     const setLandUseChange = () => {
-        // ?
+        setTotalArea(
+          cropToForest + grassToForest + wetToForest + 
+          settlementsToForest + otherToForest + forestToCrop + 
+          grassToCrop + wetToCrop + settlementsToCrop + otherToCrop +
+          forestToGrass + cropToGrass + wetToGrass + settlementsToGrass +
+          otherToGrass + landConvertedToPeat + peatLandRestore + forestToWetland +
+          cropToWet + grassToWet + forestToOther + wetToOther + grassToOther + 
+          cropToOther + settlementsToOther
+        );
         setLUCbaseline(true);
     };
 
@@ -1712,7 +1744,7 @@ import Chip from "@mui/material/Chip";
                               </tr>
                               <tr>
                                   <td className="row-title">
-                                      Peatland restoration (rewriting)
+                                      Peatland restoration (rewetting)
                                   </td>
                                   <td>
                                       <input className="table-cell"
