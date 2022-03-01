@@ -4,6 +4,7 @@ import { Header } from "./Header";
 import { Button } from "./Button";
 import { LUCBaseline } from "./LUCBaseline";
 import "../css/landusechange.css";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
@@ -192,7 +193,7 @@ import Chip from "@mui/material/Chip";
     const [settlementsToOtherYear, setSettlementsToOtherYear] = useState(2022);
     // #endregion
 
-    const [totalArea, setTotalArea] = useState(
+    const [totalArea_, setTotalArea] = useState(
         cropToForest + grassToForest + wetToForest + 
         settlementsToForest + otherToForest + forestToCrop + 
         grassToCrop + wetToCrop + settlementsToCrop + otherToCrop +
@@ -220,11 +221,57 @@ import Chip from "@mui/material/Chip";
       wetToOtherOrganic + grassToOtherOrganic + cropToOtherOrganic + settlementsToOtherOrganic
     );
     const [LUCbaseline, setLUCbaseline] = useState(false);
+    const [landUseChange, setLandUseChange] = useState("");
     const navigate = useNavigate();
+    const [error, setError] = useState("");
+   
 
     const options = [];
     for (let i = 2022; i < 2051; i++) options.push(i);
 
+
+    const goToLandUseChangeBaseline = () => {
+        // ?
+      setLUCbaseline(true);
+    };
+
+    const goBack = () => { // ?
+      navigate("/", { replace: true });
+    };
+
+    const setTotal = () => {
+      setTotalArea(
+        cropToForest + grassToForest + wetToForest + 
+        settlementsToForest + otherToForest + forestToCrop + 
+        grassToCrop + wetToCrop + settlementsToCrop + otherToCrop +
+        forestToGrass + cropToGrass + wetToGrass + settlementsToGrass +
+        otherToGrass + landConvertedToPeat + peatLandRestore + forestToWetland +
+        cropToWet + grassToWet + forestToOther + wetToOther + grassToOther + 
+        cropToOther + settlementsToOther + forestToSettlements + cropToSettlements +
+        grassToSettlements + wetToSettlements + otherToSettlements
+      );
+      setTotalMineral(
+        cropToForestMineral + grassToForestMineral + wetToForestMineral + 
+        settlementsToForestMineral + otherToForestMineral + forestToCropMineral + 
+        grassToCropMineral + wetToCropMineral + settlementsToCropMineral + otherToCropMineral +
+        forestToGrassMineral + cropToGrassMineral + wetToGrassMineral + settlementsToGrassMineral +
+        otherToGrassMineral + landConvertedToPeatMineral + peatLandRestoreMineral + forestToWetlandMineral +
+        cropToWetMineral + grassToWetMineral + forestToOtherMineral + wetToOtherMineral + grassToOtherMineral + 
+        cropToOtherMineral + settlementsToOtherMineral + forestToSettlementsMineral + cropToSettlementsMineral +
+        grassToSettlementsMineral + wetToSettlementsMineral + otherToSettlementsMineral
+      );
+      setTotalOrganic(
+        cropToForestOrganic + grassToForestOrganic + wetToForestOrganic + 
+        settlementsToForestOrganic + otherToForestOrganic + forestToCropOrganic + 
+        grassToCropOrganic + wetToCropOrganic + settlementsToCropOrganic + otherToCropOrganic +
+        forestToGrassOrganic + cropToGrassOrganic + wetToGrassOrganic + settlementsToGrassOrganic +
+        otherToGrassOrganic + landConvertedToPeatOrganic + peatLandRestoreOrganic + 
+        forestToWetlandOrganic + cropToWetOrganic + grassToWetOrganic + forestToOtherOrganic + 
+        wetToOtherOrganic + grassToOtherOrganic + cropToOtherOrganic + settlementsToOtherOrganic + 
+        forestToSettlementsOrganic + cropToSettlementsOrganic + grassToSettlementsOrganic +
+        wetToSettlementsOrganic + otherToSettlementsOrganic
+      );
+    };
     // toForest handlers
     // #region 
     // crop
@@ -762,19 +809,170 @@ import Chip from "@mui/material/Chip";
     };
     // #endregion
 
-    // functions for baseline generation
-    const setLandUseChange = () => {
-        setTotalArea(
-          cropToForest + grassToForest + wetToForest + 
-          settlementsToForest + otherToForest + forestToCrop + 
-          grassToCrop + wetToCrop + settlementsToCrop + otherToCrop +
-          forestToGrass + cropToGrass + wetToGrass + settlementsToGrass +
-          otherToGrass + landConvertedToPeat + peatLandRestore + forestToWetland +
-          cropToWet + grassToWet + forestToOther + wetToOther + grassToOther + 
-          cropToOther + settlementsToOther
-        );
-        setLUCbaseline(true);
+
+    const totalArea = {
+      "croplandToForestland": cropToForest,
+      "grasslandToForestland": grassToForest,
+      "wetlandToForestland": wetToForest,
+      "settlementToForestland": settlementsToForest,
+      "otherlandToForestland": otherToForest,
+      "forestlandToCropland": forestToCrop,
+      "grasslandToCropland": grassToCrop,
+      "wetlandToCropland": wetToCrop,
+      "settlementToCropland": settlementsToCrop,
+      "otherlandToCropland": otherToCrop,
+      "forestlandToGrassland": forestToGrass,
+      "croplandToGrassland": cropToGrass,
+      "wetlandToGrassland": wetToGrass,
+      "settlementToGrassland": settlementsToGrass,
+      "otherlandToGrassland": otherToGrass,
+      "forestlandToWetland": forestToWetland,
+      "croplandToWetland": cropToWet,
+      "grasslandToWetland": grassToWet,
+      "LandToPeatExtraction": landConvertedToPeat,
+      "PeatlandRestoration": peatLandRestore,
+      "forestlandToSettlement": forestToSettlements,
+      "croplandToSettlement": forestToSettlements,
+      "grasslandToSettlement": forestToSettlements,
+      "wetlandToSettlement": forestToSettlements,
+      "otherlandToSettlement": forestToSettlements,
+      "forestlandToOtherland": forestToOther, 
+      "croplandToOtherland": cropToOther,
+      "grasslandToOtherland": grassToOther,
+      "wetlandToOtherland": wetToOther,
+      "settlementToOtherland": settlementsToOther
     };
+    const mineral = {
+      "croplandToForestland": cropToForestMineral,
+      "grasslandToForestland": grassToForestMineral,
+      "wetlandToForestland": wetToForestMineral,
+      "settlementToForestland": settlementsToForestMineral,
+      "otherlandToForestland": otherToForestMineral,
+      "forestlandToCropland": forestToCropMineral,
+      "grasslandToCropland": grassToCropMineral,
+      "wetlandToCropland": wetToCropMineral,
+      "settlementToCropland": settlementsToCropMineral,
+      "otherlandToCropland": otherToCropMineral,
+      "forestlandToGrassland": forestToGrassMineral,
+      "croplandToGrassland": cropToGrassMineral,
+      "wetlandToGrassland": wetToGrassMineral,
+      "settlementToGrassland": settlementsToGrassMineral,
+      "otherlandToGrassland": otherToGrassMineral,
+      "forestlandToWetland": forestToWetlandMineral,
+      "croplandToWetland": cropToWetMineral,
+      "grasslandToWetland": grassToWetMineral,
+      "LandToPeatExtraction": landConvertedToPeatMineral,
+      "PeatlandRestoration": peatLandRestoreMineral,
+      "forestlandToSettlement": forestToSettlementsMineral,
+      "croplandToSettlement": forestToSettlementsMineral,
+      "grasslandToSettlement": forestToSettlementsMineral,
+      "wetlandToSettlement": forestToSettlementsMineral,
+      "otherlandToSettlement": forestToSettlementsMineral,
+      "forestlandToOtherland": forestToOtherMineral, 
+      "croplandToOtherland": cropToOtherMineral,
+      "grasslandToOtherland": grassToOtherMineral,
+      "wetlandToOtherland": wetToOtherMineral,
+      "settlementToOtherland": settlementsToOtherMineral
+    };
+    const organic = {
+      "croplandToForestland": cropToForestOrganic,
+      "grasslandToForestland": grassToForestOrganic,
+      "wetlandToForestland": wetToForestOrganic,
+      "settlementToForestland": settlementsToForestOrganic,
+      "otherlandToForestland": otherToForestOrganic,
+      "forestlandToCropland": forestToCropOrganic,
+      "grasslandToCropland": grassToCropOrganic,
+      "wetlandToCropland": wetToCropOrganic,
+      "settlementToCropland": settlementsToCropOrganic,
+      "otherlandToCropland": otherToCropOrganic,
+      "forestlandToGrassland": forestToGrassOrganic,
+      "croplandToGrassland": cropToGrassOrganic,
+      "wetlandToGrassland": wetToGrassOrganic,
+      "settlementToGrassland": settlementsToGrassOrganic,
+      "otherlandToGrassland": otherToGrassOrganic,
+      "forestlandToWetland": forestToWetlandOrganic,
+      "croplandToWetland": cropToWetOrganic,
+      "grasslandToWetland": grassToWetOrganic,
+      "LandToPeatExtraction": landConvertedToPeatOrganic,
+      "PeatlandRestoration": peatLandRestoreOrganic,
+      "forestlandToSettlement": forestToSettlementsOrganic,
+      "croplandToSettlement": forestToSettlementsOrganic,
+      "grasslandToSettlement": forestToSettlementsOrganic,
+      "wetlandToSettlement": forestToSettlementsOrganic,
+      "otherlandToSettlement": forestToSettlementsOrganic,
+      "forestlandToOtherland": forestToOtherOrganic, 
+      "croplandToOtherland": cropToOtherOrganic,
+      "grasslandToOtherland": grassToOtherOrganic,
+      "wetlandToOtherland": wetToOtherOrganic,
+      "settlementToOtherland": settlementsToOtherOrganic
+    };
+    const policyStartYear = {
+      "croplandToForestland": cropToForestYear,
+      "grasslandToForestland": grassToForestYear,
+      "wetlandToForestland": wetToForestYear,
+      "settlementToForestland": settlementsToForestYear,
+      "otherlandToForestland": otherToForestYear,
+      "forestlandToCropland": forestToCropYear,
+      "grasslandToCropland": grassToCropYear,
+      "wetlandToCropland": wetToCropYear,
+      "settlementToCropland": settlementsToCropYear,
+      "otherlandToCropland": otherToCropYear,
+      "forestlandToGrassland": forestToGrassYear,
+      "croplandToGrassland": cropToGrassYear,
+      "wetlandToGrassland": wetToGrassYear,
+      "settlementToGrassland": settlementsToGrassYear,
+      "otherlandToGrassland": otherToGrassYear,
+      "forestlandToWetland": forestToWetlandYear,
+      "croplandToWetland": cropToWetYear,
+      "grasslandToWetland": grassToWetYear,
+      "LandToPeatExtraction": landConvertedToPeatYear,
+      "PeatlandRestoration": peatLandRestoreYear,
+      "forestlandToSettlement": forestToSettlementsYear,
+      "croplandToSettlement": forestToSettlementsYear,
+      "grasslandToSettlement": forestToSettlementsYear,
+      "wetlandToSettlement": forestToSettlementsYear,
+      "otherlandToSettlement": forestToSettlementsYear,
+      "forestlandToOtherland": forestToOtherYear, 
+      "croplandToOtherland": cropToOtherYear,
+      "grasslandToOtherland": grassToOtherYear,
+      "wetlandToOtherland": wetToOtherYear,
+      "settlementToOtherland": settlementsToOtherYear
+    };
+
+    const setResponse = (response) => {
+      setLandUseChange(response);
+    };
+
+    useEffect(async () => {
+      const landUseChange = {
+          totalArea: totalArea,
+          mineral: mineral,
+          organic: organic,
+          policyStartYear: policyStartYear
+      };
+      // const rawData = { country, year, population, landUseChange };
+      const headers = {
+        "Content-type": "application/json",
+      };
+      axios
+        .post(
+          "https://ggia.ulno.net/api/v1/calculate/land-use-change",
+          landUseChange,
+          headers
+        )
+        .then((response) => setResponse(response.data))
+        .catch((error) => {
+          setError({ errorMessage: error.message });
+          // eslint-disable-next-line no-console
+          console.error("There was an error!", error);
+        });
+    }, []);
+
+
+    useEffect(() => {
+      localStorage.setItem("landUseChange", landUseChange);
+    }, [landUseChange]);
+    
 
     if (LUCbaseline === false) {
         return (
@@ -796,7 +994,7 @@ import Chip from "@mui/material/Chip";
               </div>
               <div className="luc_main">
                 <section>
-                  <form id="from_landusechange_type" onSubmit={setLandUseChange}>                   
+                  <form id="from_landusechange_type">                   
                     <div className="row">
                       <table className="toForest tbl">
                           <thead>
@@ -819,6 +1017,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={cropToForest}
                                           onChange={handleCropToForest}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -830,6 +1029,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={cropToForestMineral}
                                           onChange={handleCropToForestMineral}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -841,6 +1041,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={cropToForestOrganic}
                                           onChange={handleCropToForestOrganic}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -876,6 +1077,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={grassToForest}
                                           onChange={handleGrassToForest}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -887,6 +1089,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={grassToForestMineral}
                                           onChange={handleGrassToForestMineral}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -898,6 +1101,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={grassToForestOrganic}
                                           onChange={handleGrassToForestOrganic}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -932,6 +1136,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={wetToForest}
                                           onChange={handleWetToForest}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -943,6 +1148,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={wetToForestMineral}
                                           onChange={handleWetToForestMineral}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -954,6 +1160,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={wetToForestOrganic}
                                           onChange={handleWetToForestOrganic}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -965,6 +1172,7 @@ import Chip from "@mui/material/Chip";
                                         onChange={handleWetToForestYear}
                                         value={wetToForestYear}
                                         defaultValue="Select year"
+                                        onMouseLeave={setTotal}
                                         required
                                       >
 
@@ -988,6 +1196,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={settlementsToForest}
                                           onChange={handleSettlementsToForest}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -999,6 +1208,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={settlementsToForestMineral}
                                           onChange={handleSettlementsToForestMineral}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1010,6 +1220,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={settlementsToForestOrganic}
                                           onChange={handleSettlementsToForestOrganic}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1021,6 +1232,7 @@ import Chip from "@mui/material/Chip";
                                         onChange={handleSettlementsToForestYear}
                                         value={settlementsToForestYear}
                                         defaultValue="Select year"
+                                        onMouseLeave={setTotal}
                                         required
                                       >
 
@@ -1044,6 +1256,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={otherToForest}
                                           onChange={handleOtherToForest}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1055,6 +1268,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={otherToForestMineral}
                                           onChange={handleOtherToForestMineral}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1066,7 +1280,8 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={otherToForestOrganic}
                                           onChange={handleOtherToForestOrganic}
-                                          required
+                                          onMouseLeave={setTotal}
+                                        required
                                       />
                                   </td>
                                   <td>
@@ -1077,7 +1292,8 @@ import Chip from "@mui/material/Chip";
                                         onChange={handleOtherToForestYear}
                                         value={otherToForestYear}
                                         defaultValue="Select year"
-                                        required
+                                        onMouseLeave={setTotal}
+                                      required
                                       >
 
                                         {options.map((option) => (
@@ -1112,7 +1328,8 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={forestToCrop}
                                           onChange={handleForestToCrop}
-                                          required
+                                          onMouseLeave={setTotal}
+                                        required
                                       />
                                   </td>
                                   <td>
@@ -1123,7 +1340,8 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={forestToCropMineral}
                                           onChange={handleForestToCropMineral}
-                                          required
+                                          onMouseLeave={setTotal}
+                                        required
                                       />
                                   </td>
                                   <td>
@@ -1134,7 +1352,8 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={forestToCropOrganic}
                                           onChange={handleForestToCropOrganic}
-                                          required
+                                          onMouseLeave={setTotal}
+                                        required
                                       />
                                   </td>
                                   <td>
@@ -1145,7 +1364,8 @@ import Chip from "@mui/material/Chip";
                                         onChange={handleForestToCropYear}
                                         value={forestToCropYear}
                                         defaultValue="Select year"
-                                        required
+                                        onMouseLeave={setTotal}
+                                      required
                                       >
 
                                         {options.map((option) => (
@@ -1168,6 +1388,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={grassToCrop}
                                           onChange={handleGrassToCrop}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1179,6 +1400,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={grassToCropMineral}
                                           onChange={handleGrassToCropMineral}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1190,6 +1412,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={grassToCropOrganic}
                                           onChange={handleGrassToCropOrganic}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1201,7 +1424,7 @@ import Chip from "@mui/material/Chip";
                                         onChange={handleGrassToCropYear}
                                         value={grassToCropYear}
                                         defaultValue="Select year"
-                                        required
+                                          required
                                       >
 
                                         {options.map((option) => (
@@ -1224,6 +1447,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={wetToCrop}
                                           onChange={handleWetToCrop}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1235,6 +1459,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={wetToCropMineral}
                                           onChange={handleWetToCropMineral}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1246,6 +1471,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={wetToCropOrganic}
                                           onChange={handleWetToCropOrganic}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1257,7 +1483,7 @@ import Chip from "@mui/material/Chip";
                                         onChange={handleWetToCropYear}
                                         value={wetToCropYear}
                                         defaultValue="Select year"
-                                        required
+                                          required
                                       >
 
                                         {options.map((option) => (
@@ -1280,6 +1506,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={settlementsToCrop}
                                           onChange={handleSettlementsToCrop}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1291,6 +1518,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={settlementsToCropMineral}
                                           onChange={handleSettlementsToCropMineral}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1302,6 +1530,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={settlementsToCropOrganic}
                                           onChange={handleSettlementsToCropOrganic}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1313,7 +1542,7 @@ import Chip from "@mui/material/Chip";
                                         onChange={handleSettlementsToCropYear}
                                         value={settlementsToCropYear}
                                         defaultValue="Select year"
-                                        required
+                                          required
                                       >
 
                                         {options.map((option) => (
@@ -1336,6 +1565,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={otherToCrop}
                                           onChange={handleOtherToCrop}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1347,6 +1577,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={otherToCropMineral}
                                           onChange={handleOtherToCropMineral}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1358,6 +1589,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={otherToCropOrganic}
                                           onChange={handleOtherToCropOrganic}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1406,6 +1638,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={forestToGrass}
                                           onChange={handleForestToGrass}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1417,6 +1650,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={forestToGrassMineral}
                                           onChange={handleForestToGrassMineral}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1428,6 +1662,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={forestToGrassOrganic}
                                           onChange={handleForestToGrassOrganic}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1462,6 +1697,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={cropToGrass}
                                           onChange={handleCropToGrass}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1473,6 +1709,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={cropToGrassMineral}
                                           onChange={handleCropToGrassMineral}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1484,6 +1721,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={cropToGrassOrganic}
                                           onChange={handleCropToGrassOrganic}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1518,6 +1756,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={wetToGrass}
                                           onChange={handleWetToGrass}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1529,6 +1768,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={wetToGrassMineral}
                                           onChange={handleWetToGrassMineral}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1540,6 +1780,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={wetToGrassOrganic}
                                           onChange={handleWetToGrassOrganic}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1574,6 +1815,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={settlementsToGrass}
                                           onChange={handleSettlementsToGrass}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1585,6 +1827,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={settlementsToGrassMineral}
                                           onChange={handleSettlementsToGrassMineral}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1596,6 +1839,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={settlementsToGrassOrganic}
                                           onChange={handleSettlementsToGrassOrganic}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1630,6 +1874,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={otherToGrass}
                                           onChange={handleOtherToGrass}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1641,6 +1886,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={otherToGrassMineral}
                                           onChange={handleOtherToGrassMineral}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1652,6 +1898,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={otherToGrassOrganic}
                                           onChange={handleOtherToGrassOrganic}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1698,6 +1945,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={landConvertedToPeat}
                                           onChange={handleLandConvertedToPeat}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1709,6 +1957,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={landConvertedToPeatMineral}
                                           onChange={handleLandConvertedToPeatMineral}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1718,8 +1967,9 @@ import Chip from "@mui/material/Chip";
                                           step="1"
                                           id="landConvertedToPeatOrganic"
                                           min="0"
-                                          value={forestToGrassOrganic}
+                                          value={landConvertedToPeatOrganic}
                                           onChange={handleLandConvertedToPeatOrganic}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1754,6 +2004,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={peatLandRestore}
                                           onChange={handlePeatLandRestore}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1765,6 +2016,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={peatLandRestoreMineral}
                                           onChange={handlePeatLandRestoreMineral}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1776,6 +2028,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={peatLandRestoreOrganic}
                                           onChange={handlePeatLandRestoreOrganic}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1810,6 +2063,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={forestToWetland}
                                           onChange={handleForestToWetland}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1821,6 +2075,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={forestToWetlandMineral}
                                           onChange={handleForestToWetlandMineral}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1832,6 +2087,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={forestToWetlandOrganic}
                                           onChange={handleForestToWetlandOrganic}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1866,6 +2122,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={cropToWet}
                                           onChange={handleCropToWet}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1877,6 +2134,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={cropToWetMineral}
                                           onChange={handleCropToWetMineral}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1888,6 +2146,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={cropToWetOrganic}
                                           onChange={handleCropToWetOrganic}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1922,6 +2181,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={grassToWet}
                                           onChange={handleGrassToWet}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1933,6 +2193,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={grassToWetMineral}
                                           onChange={handleGrassToWetMineral}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1944,6 +2205,7 @@ import Chip from "@mui/material/Chip";
                                           min="0"
                                           value={grassToWetOrganic}
                                           onChange={handleGrassToWetOrganic}
+                                          onMouseLeave={setTotal}
                                           required
                                       />
                                   </td>
@@ -1955,6 +2217,7 @@ import Chip from "@mui/material/Chip";
                                         onChange={handleGrassToWetYear}
                                         value={grassToWetYear}
                                         defaultValue="Select year"
+                                        onMouseLeave={setTotal}
                                         required
                                       >
 
@@ -1992,7 +2255,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={forestToSettlements}
                                             onChange={handleForestToSettlements}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2003,7 +2267,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={forestToSettlementsMineral}
                                             onChange={handleForestToSettlementsMineral}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2014,7 +2279,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={forestToSettlementsOrganic}
                                             onChange={handleForestToSettlementsOrganic}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2025,6 +2291,7 @@ import Chip from "@mui/material/Chip";
                                           onChange={handleForestToSettlementsYear}
                                           value={forestToSettlementsYear}
                                           defaultValue="Select year"
+                                          onMouseLeave={setTotal}
                                           required
                                         >
 
@@ -2048,7 +2315,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={cropToSettlements}
                                             onChange={handleCropToSettlements}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2059,7 +2327,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={cropToSettlementsMineral}
                                             onChange={handleCropToSettlementsMineral}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2070,7 +2339,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={cropToSettlementsOrganic}
                                             onChange={handleCropToSettlementsOrganic}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2081,6 +2351,7 @@ import Chip from "@mui/material/Chip";
                                           onChange={handleCropToSettlementsYear}
                                           value={cropToSettlementsYear}
                                           defaultValue="Select year"
+                                          onMouseLeave={setTotal}
                                           required
                                         >
 
@@ -2104,7 +2375,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={grassToSettlements}
                                             onChange={handleGrassToSettlements}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2115,7 +2387,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={grassToSettlementsMineral}
                                             onChange={handleGrassToSettlementsMineral}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2126,7 +2399,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={grassToSettlementsOrganic}
                                             onChange={handleGrassToSettlementsOrganic}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2137,6 +2411,7 @@ import Chip from "@mui/material/Chip";
                                           onChange={handleGrassToSettlementsYear}
                                           value={grassToSettlementsYear}
                                           defaultValue="Select year"
+                                          onMouseLeave={setTotal}
                                           required
                                         >
 
@@ -2160,7 +2435,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={wetToSettlements}
                                             onChange={handleWetToSettlements}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2171,7 +2447,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={wetToSettlementsMineral}
                                             onChange={handleWetToSettlementsMineral}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2182,7 +2459,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={wetToSettlementsOrganic}
                                             onChange={handleWetToSettlementsOrganic}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2193,6 +2471,7 @@ import Chip from "@mui/material/Chip";
                                           onChange={handleWetToSettlementsYear}
                                           value={wetToSettlementsYear}
                                           defaultValue="Select year"
+                                          onMouseLeave={setTotal}
                                           required
                                         >
 
@@ -2216,7 +2495,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={otherToSettlements}
                                             onChange={handleOtherToSettlements}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2227,7 +2507,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={otherToSettlementsMineral}
                                             onChange={handleOtherToSettlementsMineral}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2238,7 +2519,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={otherToSettlementsOrganic}
                                             onChange={handleOtherToSettlementsOrganic}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2249,6 +2531,7 @@ import Chip from "@mui/material/Chip";
                                           onChange={handleOtherToSettlementsYear}
                                           value={otherToSettlementsYear}
                                           defaultValue="Select year"
+                                          onMouseLeave={setTotal}
                                           required
                                         >
 
@@ -2284,7 +2567,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={forestToOther}
                                             onChange={handleForestToOther}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2295,7 +2579,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={forestToOtherMineral}
                                             onChange={handleForestToOtherMineral}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2306,7 +2591,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={forestToOtherOrganic}
                                             onChange={handleForestToOtherOrganic}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2317,6 +2603,7 @@ import Chip from "@mui/material/Chip";
                                           onChange={handleForestToOtherYear}
                                           value={forestToOtherYear}
                                           defaultValue="Select year"
+                                          onMouseLeave={setTotal}
                                           required
                                         >
 
@@ -2340,7 +2627,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={cropToOther}
                                             onChange={handleCropToOther}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2351,7 +2639,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={cropToOtherMineral}
                                             onChange={handleCropToOtherMineral}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2362,7 +2651,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={cropToOtherOrganic}
                                             onChange={handleCropToOtherOrganic}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2373,6 +2663,7 @@ import Chip from "@mui/material/Chip";
                                           onChange={handleCropToOtherYear}
                                           value={cropToOtherYear}
                                           defaultValue="Select year"
+                                          onMouseLeave={setTotal}
                                           required
                                         >
 
@@ -2396,7 +2687,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={grassToOther}
                                             onChange={handleGrassToOther}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2407,7 +2699,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={grassToOtherMineral}
                                             onChange={handleGrassToOtherMineral}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2418,7 +2711,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={grassToOtherOrganic}
                                             onChange={handleGrassToOtherOrganic}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2429,6 +2723,7 @@ import Chip from "@mui/material/Chip";
                                           onChange={handleGrassToOtherYear}
                                           value={grassToOtherYear}
                                           defaultValue="Select year"
+                                          onMouseLeave={setTotal}
                                           required
                                         >
 
@@ -2452,7 +2747,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={wetToOther}
                                             onChange={handleWetToOther}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2463,7 +2759,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={wetToOtherMineral}
                                             onChange={handleWetToOtherMineral}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2474,7 +2771,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={wetToOtherOrganic}
                                             onChange={handleWetToOtherOrganic}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2485,6 +2783,7 @@ import Chip from "@mui/material/Chip";
                                           onChange={handleWetToOtherYear}
                                           value={wetToOtherYear}
                                           defaultValue="Select year"
+                                          onMouseLeave={setTotal}
                                           required
                                         >
 
@@ -2508,7 +2807,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={settlementsToOther}
                                             onChange={handleSettlementsToOther}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2519,7 +2819,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={settlementsToOtherMineral}
                                             onChange={handleSettlementsToOtherMineral}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2530,7 +2831,8 @@ import Chip from "@mui/material/Chip";
                                             min="0"
                                             value={settlementsToOtherOrganic}
                                             onChange={handleSettlementsToOtherOrganic}
-                                            required
+                                            onMouseLeave={setTotal}
+                                          required
                                         />
                                     </td>
                                     <td>
@@ -2541,6 +2843,7 @@ import Chip from "@mui/material/Chip";
                                           onChange={handleSettlementsToOtherYear}
                                           value={settlementsToOtherYear}
                                           defaultValue="Select year"
+                                          onMouseLeave={setTotal}
                                           required
                                         >
 
@@ -2551,6 +2854,48 @@ import Chip from "@mui/material/Chip";
                                           ))}
                                       </select>
                                     </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div className="row">
+                        <table>
+                            <thead>
+                                <th className="row-title">Land-Use Change</th>
+                                <th>Total area, ha</th>
+                                <th>Soil area (mineral), ha</th>
+                                <th>Soil area (organic), ha</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                  <td className="row-title">
+                                        Total area (ha)
+                                  </td>
+                                  <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            id="totalArea"
+                                            value={totalArea_}
+                                            disabled
+                                        />
+                                  </td>
+                                  <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            id="totalMineral"
+                                            value={totalMineral}
+                                            disabled
+                                        />
+                                  </td>
+                                  <td>
+                                        <input className="table-cell"
+                                            type="number"
+                                            id="totalOrganic"
+                                            value={totalOrganic}
+                                            disabled
+                                        />
+                                  </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -2571,6 +2916,7 @@ import Chip from "@mui/material/Chip";
                         size="small"
                         type="submit"
                         value="Submit"
+                        onClick={goToLandUseChangeBaseline}
                         label="Next &raquo;"
                         primary
                       />
@@ -2584,9 +2930,9 @@ import Chip from "@mui/material/Chip";
       } else {
         return (
           <LUCBaseline
-            country={country}
-            year={year}
-            population={population}
+            // country={country}
+            // year={year}
+            // population={population}
                     
           />
         );
@@ -2602,7 +2948,7 @@ import Chip from "@mui/material/Chip";
     user: PropTypes.shape({}),
     onLogin: PropTypes.func.isRequired,
     onLogout: PropTypes.func.isRequired,
-    onCreateAccount: PropTypes.func.isRequired,
+    onCreateAccount: PropTypes.func.isRequired
   };
   
   LandUseChangeTableForm.defaultProps = {
