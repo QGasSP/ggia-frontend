@@ -44,14 +44,14 @@ export const U2planner = ({
     const headers = {
       "Content-type": "application/json",
        "Access-Control-Allow-Origin": "*",
-    };
+    };await
     axios
       .post(
         "https://ggia-dev.ulno.net/api/v1/calculate/transport/new-development",
         rawData,
         headers
       )
-      .then((response) => setU2Response(response.data))
+      .then((response) => setU2Response(response.data.json))
       .catch((error) => {
         setU2Error({ errorMessage: error.message });
         // eslint-disable-next-line no-console
@@ -148,9 +148,8 @@ export const U2planner = ({
               <label>{newDevelopment.newSettlementDistribution.rural}</label>
               </div>
 
-             {/*  {Object.entries(baselinePopulation).map(([key,value])=>{<div>{key} : {value.toString()}</div>})} */}
-            		 
-       {/*   <XYPlot
+          
+             <XYPlot
               width={900}
               height={500}
               xType="ordinal"
@@ -251,7 +250,7 @@ export const U2planner = ({
                 strokeWidth="1.5"
                 style={{}}
               /> 
-            </XYPlot>    */}
+            </XYPlot>    
         
       
             <U2legend />

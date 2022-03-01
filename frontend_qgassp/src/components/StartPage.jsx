@@ -133,7 +133,6 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   type="submit"
                   value="Submit"
                   label="Next"
-                  primary
                 />
               </div>
             </form>

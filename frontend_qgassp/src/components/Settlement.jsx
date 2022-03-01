@@ -190,7 +190,7 @@ export const Settlement = ({
                     value="backStartPage"
                     onClick={() => navigate("/", { replace: true })}
                     label="&laquo; Previous"
-                    secondary
+                    secondary="true"
                   />
                 </div>
 
