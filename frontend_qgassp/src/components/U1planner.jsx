@@ -4,19 +4,14 @@ import { Header } from "./Header";
 import { Button } from "./Button";
 import "../css/u1planner.css";
 import axios from "axios";
-import { Legend } from "./Legend";
+
 import { useNavigate } from "react-router-dom";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 // import { NewResidents } from "./NewResidents";
 
 import {
-  XYPlot,
-  XAxis,
-  YAxis,
-  VerticalGridLines,
-  HorizontalGridLines,
-  VerticalBarSeries,
+  
   RadialChart,
   DiscreteColorLegend,
 } from "react-vis";
@@ -287,10 +282,11 @@ export const U1planner = ({
                     onChange={(e) => setNonResidentialRoad(e.target.value)}
                     defaultValue={nonResidentialRoad}
                   >
-                    <optgroup label="Select road transport intensity(very limited, national average or very intensive)">
-                      <option value="very_limited">0.25</option>
-                      <option value="national_average_intensity">1.0</option>
-                      <option value="very_intensive">2.50</option>
+                    <optgroup label="Select road transport intensity">
+                      <option value="non-existent">0</option>
+                      <option value="low">0.3</option>
+                      <option value="medium_intensity">2.0</option>
+                      <option value="high_intensity">2.50</option>
                     </optgroup>
                   </select>
                 </div>
@@ -305,10 +301,11 @@ export const U1planner = ({
                     onChange={(e) => setFreightRoad(e.target.value)}
                     defaultValue={freightRoad}
                   >
-                    <optgroup label="Select road transport intensity(very limited, national average or very intensive)">
-                      <option value="very_limited">0.25</option>
-                      <option value="national_average_intensity">1.0</option>
-                      <option value="very_intensive">2.50</option>
+                    <optgroup label="Select road transport intensity">
+                      <option value="non-existent">0</option>
+                      <option value="low">0.3</option>
+                      <option value="medium_intensity">2.0</option>
+                      <option value="high_intensity">2.50</option>
                     </optgroup>
                   </select>
                 </div>
@@ -322,10 +319,11 @@ export const U1planner = ({
                     onChange={(e) => setFreightRail(e.target.value)}
                     defaultValue={freightRail}
                   >
-                    <optgroup label="Select road transport intensity(very limited,national average or very intensive)">
-                      <option value="very_limited">0.25</option>
-                      <option value="national_average_intensity">1.0</option>
-                      <option value="very_intensive">2.50</option>
+                    <optgroup label="Select road transport intensity">
+                      <option value="non-existent">0</option>
+                      <option value="low">0.3</option>
+                      <option value="medium_intensity">2.0</option>
+                      <option value="high_intensity">2.50</option>
                     </optgroup>
                   </select>
                 </div>
@@ -340,199 +338,17 @@ export const U1planner = ({
                     onChange={(e) => setFreightInlandWaterway(e.target.value)}
                     defaultValue={freightInlandWaterway}
                   >
-                    <optgroup label="Select road transport intensity(very limited, national average or very intensive)">
-                      <option value="very_limited">0.25</option>
-                      <option value="national_average_intensity">1.0</option>
-                      <option value="very_intensive">2.50</option>
+                    <optgroup label="Select road transport intensity">
+                      <option value="non-existent">0</option>
+                      <option value="low">0.3</option>
+                      <option value="medium_intensity">2.0</option>
+                      <option value="high_intensity">2.50</option>
                     </optgroup>
                   </select>
                 </div>
               </form>
 
-              <Divider textAlign="left" flexItem>
-                {" "}
-                <b>Baseline - Transport CO2e emission</b>
-              </Divider>
-
-              <div className="piechart_container">
-                <div className="piechart_diagram">
-                  <div>
-                    <RadialChart
-                      data={[
-                        {
-                          angle:
-                            Math.round(
-                              (emission.bus / emission.total + Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Bus",
-                          color: "#8C0303",
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.metro / emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Metro",
-                          color: "#400D01",
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.train / emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Train",
-                          color: "#D90404",
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.road_transport / emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Road transport",
-                          color: "#595959",
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.car / emission.total + Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Car",
-                          color: "#A6036D",
-                          rotation: 90,
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.tram / emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Tram",
-                          color: " #C4D4F2",
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.rail_transport / emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Rail transport",
-                          color: "#80D941",
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.waterways_transport / emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Waterways transport",
-                          color: "#F2CE1B",
-                        },
-                      ]}
-                      colorType="literal"
-                      innerRadius={100}
-                      radius={140}
-                      getAngle={(d) => d.angle}
-                      width={350}
-                      height={350}
-                    />
-                  </div>
-                </div>
-                <div className="piechart_legend">
-                  <Legend />
-                </div>
-                <div></div>
-              </div>
-              <Divider textAlign="left" flexItem>
-                <b>Baseline - Transport CO2e emission/resident</b>
-              </Divider>
-
-              <div className="barchart_container">
-                <XYPlot
-                  xType="ordinal"
-                  width={1000}
-                  height={312}
-                  xDistance={200}
-                >
-                  <HorizontalGridLines />
-                  <VerticalGridLines />
-                  <VerticalBarSeries
-                    className="BaselineBarchart"
-                    data={[
-                      {
-                        y:
-                          Math.round((emission.bus + Number.EPSILON) * 100) /
-                          100,
-                        x: "Bus",
-                      },
-                      {
-                        y:
-                          Math.round((emission.metro + Number.EPSILON) * 100) /
-                          100,
-                        x: "Metro",
-                      },
-                      {
-                        y:
-                          Math.round((emission.train + Number.EPSILON) * 100) /
-                          100,
-                        x: "Train",
-                      },
-                      {
-                        y:
-                          Math.round(
-                            (emission.road_transport + Number.EPSILON) * 100
-                          ) / 100,
-                        x: "Road transport",
-                      },
-                      {
-                        y:
-                          Math.round((emission.car + Number.EPSILON) * 100) /
-                          100,
-                        x: "Car",
-                      },
-                      {
-                        y:
-                          Math.round((emission.tram + Number.EPSILON) * 100) /
-                          100,
-                        x: "Tram",
-                      },
-                      {
-                        y:
-                          Math.round(
-                            (emission.rail_transport + Number.EPSILON) * 100
-                          ) / 100,
-                        x: "Rail transport",
-                      },
-                      {
-                        y:
-                          Math.round(
-                            (emission.waterways_transport + Number.EPSILON) *
-                              100
-                          ) / 100,
-                        x: "Waterway transport",
-                      },
-                      {
-                        y:
-                          Math.round((emission.total + Number.EPSILON) * 100) /
-                          100,
-                        x: "total emissions",
-                      },
-                    ]}
-                  />
-                  <XAxis />
-                  <YAxis />
-                </XYPlot>
-              </div>
+            
               {/* 
               <Divider textAlign="left" flexItem>
                 <b>Projections: CO2e emissions per capita 2022-2050</b>
@@ -567,6 +383,7 @@ export const U1planner = ({
         projections={projections}
         settlementDistribution={settlementDistribution}
         baseline={baseline}
+        emission={emission}
       />
       /*  <NewResidents
         country={country}

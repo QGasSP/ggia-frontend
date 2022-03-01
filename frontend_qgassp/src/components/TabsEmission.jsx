@@ -51,8 +51,8 @@ export const TabsEmission = () => {
       >
         <Tab value="transport" label="Transport" />
         <Tab value="land_use" label="Land-use" />
-        <Tab value="consumption_based" label="Consumption-based" />
         <Tab value="buildings" label="Buildings" />
+        <Tab value="consumption_based" label="Consumption-based" />
       </Tabs>
      
     </Box>
