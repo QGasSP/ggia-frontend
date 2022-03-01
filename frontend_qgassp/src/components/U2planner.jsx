@@ -43,7 +43,7 @@ export const U2planner = ({
     const rawData = { baseline, newDevelopment };
     const headers = {
       "Content-type": "application/json",
-      "Access-Control-Allow-Origin": "*",
+       "Access-Control-Allow-Origin": "*",
     };
     axios
       .post(
@@ -55,13 +55,13 @@ export const U2planner = ({
       .catch((error) => {
         setU2Error({ errorMessage: error.message });
         // eslint-disable-next-line no-console
-        console.error("U2 Response data error---", errorU2);
+        console.error("U2 Response data error---", error);
       });
   }, []);
 
   const setU2Response = (response) => {
-    setNewPopulation(response.data["new_development"].impact);
-    setBaselinePopulation(response.data.baseline.projections);
+    setNewPopulation(response.data.new_development.impact.population);
+    setBaselinePopulation(response.data.baseline.projections.population);
   };
 
   const gotoU3planner = () => {
@@ -146,16 +146,11 @@ export const U2planner = ({
               <label htmlFor="rural">Rural</label>
               <label>{settlementDistribution.rural}</label>
               <label>{newDevelopment.newSettlementDistribution.rural}</label>
-            </div>
+              </div>
 
-            <div>{JSON.stringify(baselinePopulation)}</div>
-            <br />
-
-          {/*   <div>{JSON.stringify(newPopulation)}</div> */}
-            <br />
-
-            <br />
-            {/*     <XYPlot
+             {/*  {Object.entries(baselinePopulation).map(([key,value])=>{<div>{key} : {value.toString()}</div>})} */}
+            		 
+       {/*   <XYPlot
               width={900}
               height={500}
               xType="ordinal"
@@ -175,7 +170,8 @@ export const U2planner = ({
                 }}
               />
               <YAxis />
-              <LineSeries
+              
+            <LineSeries
                 curve={null}
                 data={[
                   { x: 2022, y: newPopulation[2022] },
@@ -254,8 +250,10 @@ export const U2planner = ({
                 strokeStyle="dashed"
                 strokeWidth="1.5"
                 style={{}}
-              />
-            </XYPlot>  */}
+              /> 
+            </XYPlot>    */}
+        
+      
             <U2legend />
 
             <div className="backButtonNew">
