@@ -1,27 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Button } from "./Button";
 import { Header } from "./Header";
 import "../css/startpage.css";
 import { Settlement } from "./Settlement";
+// import { useStorageInt } from "../reducers/useStorage";
 
 export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
-  /*  const [country, setCountry] = useState("");
+  const [country, setCountry] = useState("");
   const [year, setYear] = useState(0);
-  const [population, setPopulation] = useState(0); */
-
-  const [country, setCountry] = useState(() => {
-    const savedCountry = window.localStorage.getItem("country");
-    return window.localStorage.getItem("country") !== "" ? savedCountry : "";
-  });
-  const [year, setYear] = useState(() => {
-    const savedYear = window.localStorage.getItem("year");
-    return savedYear !== null ? JSON.parse(savedYear) : 0;
-  });
-  const [population, setPopulation] = useState(() => {
-    const savedPopulation = window.localStorage.getItem("population");
-    return savedPopulation !== null ? JSON.parse(savedPopulation) : 0;
-  });
+  const [population, setPopulation] = useState(0);
   const [next, setNext] = useState(false);
   const options = [];
   for (let i = 2022; i < 2051; i++) options.push(i);
@@ -40,19 +28,6 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
     e.preventDefault();
     setYear(Number(e.target.value));
   };
-
-  useEffect(() => {
-    localStorage.setItem("year", year);
-  }, [year]);
-
-  useEffect(() => {
-    localStorage.setItem("population", population);
-  }, [population]);
-
-  useEffect(() => {
-    localStorage.setItem("country", country);
-  }, [country]);
-
   const startBaseline = () => {
     setNext(true);
   };
@@ -86,7 +61,6 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   id="year_selection"
                   name="year_selection"
                   onChange={handleSelectedYear}
-                  value={year}
                   defaultValue="Select year"
                   required
                 >
@@ -109,7 +83,6 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   id="eu_countries"
                   name="eu_countries"
                   onChange={handleSelected}
-                  value={country}
                   defaultValue="Select country"
                   required
                 >
@@ -144,12 +117,12 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   Population of the assessment area
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   pattern="[0-9]*"
                   id="population_assessment"
-                  className="form-input"
-                  value={population}
-                  enterKeyHint="10000"
+                  className="population"
+                  placeholder="0"
+                  min="0"
                   onChange={handlePopulation}
                   required
                 />
@@ -160,7 +133,6 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   type="submit"
                   value="Submit"
                   label="Next"
-                  primary
                 />
               </div>
             </form>

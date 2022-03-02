@@ -1,14 +1,14 @@
 import React from "react";
 
-import { U2newdev } from "../components/U2planner";
+import { U2planner } from "../components/U2planner";
 import * as HeaderStories from "./Header.stories";
 
 export default {
   title: "QgasSP/U2 New Development",
-  component: U2newdev,
+  component: U2planner ,
 };
 
-const Template = (args) => <U2newdev {...args} />;
+const Template = (args) => <U2planner  {...args} />;
 
 export const LoggedIn = Template.bind({});
 LoggedIn.args = {

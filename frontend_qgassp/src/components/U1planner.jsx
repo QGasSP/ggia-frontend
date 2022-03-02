@@ -4,19 +4,14 @@ import { Header } from "./Header";
 import { Button } from "./Button";
 import "../css/u1planner.css";
 import axios from "axios";
-import { Legend } from "./Legend";
+
 import { useNavigate } from "react-router-dom";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 // import { LandUseChangeTableForm } from "./LandUseChangeTableForm";
 
 import {
-  XYPlot,
-  XAxis,
-  YAxis,
-  VerticalGridLines,
-  HorizontalGridLines,
-  VerticalBarSeries,
+  
   RadialChart,
   DiscreteColorLegend,
 } from "react-vis";
@@ -36,41 +31,29 @@ export const U1planner = ({
   country,
   year,
   population,
-  metropolitanCenter,
+  settlementDistribution,
+  /*  metropolitanCenter,
   urban,
   suburban,
   town,
-  rural,
+  rural, */
   total,
-  nextEmissions,
 }) => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const [nextU2view, setU2View] = useState(false);
   const [emission, setEmissionData] = useState("");
   const [projections, setProjections] = useState("");
+  const [baseline, setBaseline] = useState({});
 
-  const [settlementDistribution, setSettlementDistribution] = useState("");
+  const [nsArea, setNsArea] = useState(0);
+  const [ewArea, setEwArea] = useState(0);
 
-  const goToNewResidents = () => {
-    const settlementDist = {
-      metropolitanCenter,
-      urban,
-      suburban,
-      town,
-      rural,
-    };
-    setSettlementDistribution(settlementDist);
-    setU2View(true);
-  };
+  const [nonResidentialRoad, setNonResidentialRoad] = useState(0);
+  const [freightRoad, setFreightRoad] = useState(0);
+  const [freightRail, setFreightRail] = useState(0);
+  const [freightInlandWaterway, setFreightInlandWaterway] = useState(0);
 
-  const goBackSettlement = () => {
-    localStorage.removeItem("nextEmissions", nextEmissions);
-    navigate("/settlement", { replace: true });
-  };
-
-  /*   const [backSettlement, setBackSettlement] = useState(false); */
-  // const [settlementDistribution, setSettlementDistribution] = useState("");
   const settlementLabels = [
     { title: "urban", color: "#164059" },
     { title: "suburban", color: "#F25F29" },
@@ -80,21 +63,23 @@ export const U1planner = ({
   ];
 
   useEffect(async () => {
-    const settlementDistribution = {
-      metropolitanCenter,
-      urban,
-      suburban,
-      town,
-      rural,
+    const baseline = {
+      country,
+      year,
+      population,
+      settlementDistribution,
     };
-    const rawData = { country, year, population, settlementDistribution };
+    setBaseline({ baseline });
+    const raw = { baseline };
+
     const headers = {
       "Content-type": "application/json",
+      "Access-Control-Allow-Origin": "*",
     };
     axios
       .post(
-        "https://ggia.ulno.net/api/v1/calculate/transport",
-        rawData,
+        "https://ggia-dev.ulno.net/api/v1/calculate/transport/baseline",
+        raw,
         headers
       )
       .then((response) => setResponse(response.data))
@@ -106,17 +91,10 @@ export const U1planner = ({
   }, []);
 
   const setResponse = (response) => {
-    setEmissionData(response.baseline.emissions);
-    setProjections(response.baseline.projections);
+
+    setEmissionData(response.data.baseline.emissions);
+    setProjections(response.data.baseline.projections);
   };
-
-  useEffect(() => {
-    localStorage.setItem("emission", emission);
-  }, [emission]);
-
-  useEffect(() => {
-    localStorage.setItem("projections", projections);
-  }, [projections]);
 
   if (nextU2view === false) {
     return (
@@ -159,7 +137,7 @@ export const U1planner = ({
                     id="metropolitan"
                     min="0"
                     max="100"
-                    value={metropolitanCenter}
+                    value={settlementDistribution.metropolitanCenter}
                     readOnly
                   />
                 </div>
@@ -170,7 +148,7 @@ export const U1planner = ({
                     id="urban"
                     min="0"
                     max="100"
-                    value={urban}
+                    value={settlementDistribution.urban}
                     readOnly
                   />
                 </div>
@@ -181,7 +159,7 @@ export const U1planner = ({
                     id="suburban"
                     min="0"
                     max="100"
-                    value={suburban}
+                    value={settlementDistribution.suburban}
                     readOnly
                   />
                 </div>
@@ -192,7 +170,7 @@ export const U1planner = ({
                     id="town"
                     min="0"
                     max="100"
-                    value={town}
+                    value={settlementDistribution.town}
                     readOnly
                   />
                 </div>
@@ -203,7 +181,7 @@ export const U1planner = ({
                     id="rural"
                     min="0"
                     max="100"
-                    value={rural}
+                    value={settlementDistribution.rural}
                     readOnly
                   />
                 </div>
@@ -214,27 +192,27 @@ export const U1planner = ({
                     type="piechart"
                     data={[
                       {
-                        angle: urban,
+                        angle: settlementDistribution.urban,
                         label: "Urban",
                         color: "#164059",
                       },
                       {
-                        angle: suburban,
+                        angle: settlementDistribution.suburban,
                         label: "Suburban",
                         color: "#F25F29",
                       },
                       {
-                        angle: town,
+                        angle: settlementDistribution.town,
                         label: "Town",
                         color: "#F23A29",
                       },
                       {
-                        angle: rural,
+                        angle: settlementDistribution.rural,
                         label: "Rural",
                         color: "#D9D9D9",
                       },
                       {
-                        angle: metropolitanCenter,
+                        angle: settlementDistribution.metropolitanCenter,
                         label: "Metropolitan center",
                         color: "#730E16",
                       },
@@ -266,18 +244,32 @@ export const U1planner = ({
 
               <div>
                 <label htmlFor="ns_measure">N-S Measurement (km)</label>
-                <input type="text" id="ns_measure" />
+                <input
+                  type="text"
+                  id="ns_measure"
+                  min="0"
+                  onChange={(e) => setNsArea(e.target.value)}
+                  placeholder={nsArea}
+                  /*   value={nsArea} */
+                />
               </div>
               <div>
                 <label htmlFor="ew_measure">E-W Measurement (km)</label>
-                <input type="text" id="ew_measure" />
+                <input
+                  type="text"
+                  id="ew_measure"
+                  min="0"
+                  onChange={(e) => setEwArea(e.target.value)}
+                  placeholder={ewArea}
+                  /*  value={ewArea} */
+                />
               </div>
 
               <br />
               <form>
                 <div>
                   <label>
-                    <b>U1.2 Non-residential and freight</b>
+                    <b>U1.3 Non-residential and freight</b>
                   </label>
                   <label></label>
                 </div>
@@ -286,11 +278,17 @@ export const U1planner = ({
                     {" "}
                     Non-residential road transport
                   </label>
-                  <select id="non_resident_road">
-                    <optgroup label="Select road transport intensity"></optgroup>
-                    <option value="very_limited">0.25</option>
-                    <option value="national_average_intensity">1.0</option>
-                    <option value="very_intensive">2.50</option>
+                  <select
+                    id="non_resident_road"
+                    onChange={(e) => setNonResidentialRoad(e.target.value)}
+                    defaultValue={nonResidentialRoad}
+                  >
+                    <optgroup label="Select road transport intensity">
+                      <option value="non-existent">0</option>
+                      <option value="low">0.3</option>
+                      <option value="medium_intensity">2.0</option>
+                      <option value="high_intensity">2.50</option>
+                    </optgroup>
                   </select>
                 </div>
 
@@ -298,21 +296,36 @@ export const U1planner = ({
                   <label htmlFor="freight=road">
                     Freight transport by road
                   </label>
-                  <select id="freight_road" name="freight_road">
-                    <optgroup label="Select freight road intensity"></optgroup>
-                    <option value="very_limited">0.25</option>
-                    <option value="national_average_intensity">1.0</option>
-                    <option value="very_intensive">2.50</option>
+                  <select
+                    id="freight_road"
+                    name="freight_road"
+                    onChange={(e) => setFreightRoad(e.target.value)}
+                    defaultValue={freightRoad}
+                  >
+                    <optgroup label="Select road transport intensity">
+                      <option value="non-existent">0</option>
+                      <option value="low">0.3</option>
+                      <option value="medium_intensity">2.0</option>
+                      <option value="high_intensity">2.50</option>
+                    </optgroup>
                   </select>
                 </div>
                 <div>
                   <label htmlFor="freight_rail">
                     Freight transport by rail
                   </label>
-                  <select id="freight_rail" name="freight_rail">
-                    <option value="very_limited">0.25</option>
-                    <option value="national_average_intensity">1.0</option>
-                    <option value="very_intensive">2.50</option>
+                  <select
+                    id="freight_rail"
+                    name="freight_rail"
+                    onChange={(e) => setFreightRail(e.target.value)}
+                    defaultValue={freightRail}
+                  >
+                    <optgroup label="Select road transport intensity">
+                      <option value="non-existent">0</option>
+                      <option value="low">0.3</option>
+                      <option value="medium_intensity">2.0</option>
+                      <option value="high_intensity">2.50</option>
+                    </optgroup>
                   </select>
                 </div>
 
@@ -320,198 +333,23 @@ export const U1planner = ({
                   <label htmlFor="freight_waterway">
                     Freight transport by inland waterways
                   </label>
-                  <select id="freight_waterway" name="freight_waterway">
-                    <option value="very_limited">0.25</option>
-                    <option value="national_average_intensity">1.0</option>
-                    <option value="very_intensive">2.50</option>
+                  <select
+                    id="freight_waterway"
+                    name="freight_waterway"
+                    onChange={(e) => setFreightInlandWaterway(e.target.value)}
+                    defaultValue={freightInlandWaterway}
+                  >
+                    <optgroup label="Select road transport intensity">
+                      <option value="non-existent">0</option>
+                      <option value="low">0.3</option>
+                      <option value="medium_intensity">2.0</option>
+                      <option value="high_intensity">2.50</option>
+                    </optgroup>
                   </select>
                 </div>
               </form>
 
-              <Divider textAlign="left" flexItem>
-                {" "}
-                <b>Baseline - Transport CO2e emission</b>
-              </Divider>
-
-              <div className="piechart_container">
-                <div className="piechart_diagram">
-                  <div>
-                    <RadialChart
-                      data={[
-                        {
-                          angle:
-                            Math.round(
-                              (emission.bus / emission.total + Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Bus",
-                          color: "#8C0303",
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.metro / emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Metro",
-                          color: "#400D01",
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.train / emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Train",
-                          color: "#D90404",
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.road_transport / emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Road transport",
-                          color: "#595959",
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.car / emission.total + Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Car",
-                          color: "#A6036D",
-                          rotation: 90,
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.tram / emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Tram",
-                          color: " #C4D4F2",
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.rail_transport / emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Rail transport",
-                          color: "#80D941",
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.waterways_transport / emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Waterways transport",
-                          color: "#F2CE1B",
-                        },
-                      ]}
-                      colorType="literal"
-                      innerRadius={100}
-                      radius={140}
-                      getAngle={(d) => d.angle}
-                      width={350}
-                      height={350}
-                    />
-                  </div>
-                </div>
-                <div className="piechart_legend">
-                  <Legend />
-                </div>
-                <div></div>
-              </div>
-              <Divider textAlign="left" flexItem>
-                <b>Baseline - Transport CO2e emission/resident</b>
-              </Divider>
-
-              <div className="barchart_container">
-                <XYPlot
-                  xType="ordinal"
-                  width={1000}
-                  height={312}
-                  xDistance={200}
-                >
-                  <HorizontalGridLines />
-                  <VerticalGridLines />
-                  <VerticalBarSeries
-                    className="BaselineBarchart"
-                    data={[
-                      {
-                        y:
-                          Math.round((emission.bus + Number.EPSILON) * 100) /
-                          100,
-                        x: "Bus",
-                      },
-                      {
-                        y:
-                          Math.round((emission.metro + Number.EPSILON) * 100) /
-                          100,
-                        x: "Metro",
-                      },
-                      {
-                        y:
-                          Math.round((emission.train + Number.EPSILON) * 100) /
-                          100,
-                        x: "Train",
-                      },
-                      {
-                        y:
-                          Math.round(
-                            (emission.road_transport + Number.EPSILON) * 100
-                          ) / 100,
-                        x: "Road transport",
-                      },
-                      {
-                        y:
-                          Math.round((emission.car + Number.EPSILON) * 100) /
-                          100,
-                        x: "Car",
-                      },
-                      {
-                        y:
-                          Math.round((emission.tram + Number.EPSILON) * 100) /
-                          100,
-                        x: "Tram",
-                      },
-                      {
-                        y:
-                          Math.round(
-                            (emission.rail_transport + Number.EPSILON) * 100
-                          ) / 100,
-                        x: "Rail transport",
-                      },
-                      {
-                        y:
-                          Math.round(
-                            (emission.waterways_transport + Number.EPSILON) *
-                              100
-                          ) / 100,
-                        x: "Waterway transport",
-                      },
-                      {
-                        y:
-                          Math.round((emission.total + Number.EPSILON) * 100) /
-                          100,
-                        x: "total emissions",
-                      },
-                    ]}
-                  />
-                  <XAxis />
-                  <YAxis />
-                </XYPlot>
-              </div>
+            
               {/* 
               <Divider textAlign="left" flexItem>
                 <b>Projections: CO2e emissions per capita 2022-2050</b>
@@ -807,7 +645,7 @@ export const U1planner = ({
                 <Button
                   size="small"
                   value="backSettlement"
-                  onClick={goBackSettlement}
+                  onClick={() => navigate("settlement", { replace: true })}
                   label="&laquo; Previous"
                   secondary
                 />
@@ -816,7 +654,7 @@ export const U1planner = ({
                 <Button
                   size="small"
                   value="nextU2"
-                  onClick={goToNewResidents}
+                  onClick={() => setU2View(true)}
                   label="Next &raquo;"
                   primary
                 />
@@ -831,14 +669,9 @@ export const U1planner = ({
     return (
       <StackedBarchart
         projections={projections}
-        population={population}
-        metropolitanCenter={metropolitanCenter}
-        urban={urban}
-        suburban={suburban}
-        town={town}
-        rural={rural}
-        country={country}
-        year={year}
+        settlementDistribution={settlementDistribution}
+        baseline={baseline}
+        emission={emission}
       />
       /*  <NewResidents
         country={country}
@@ -851,12 +684,7 @@ export const U1planner = ({
 };
 
 U1planner.propTypes = {
-  nextEmissions: PropTypes.bool.isRequired,
-  metropolitanCenter: PropTypes.number.isRequired,
-  urban: PropTypes.number.isRequired,
-  suburban: PropTypes.number.isRequired,
-  town: PropTypes.number.isRequired,
-  rural: PropTypes.number.isRequired,
+  settlementDistribution: PropTypes.object.isRequired,
   population: PropTypes.number.isRequired,
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,

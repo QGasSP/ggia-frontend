@@ -9,6 +9,7 @@ import { NewResidents } from "../components/NewResidents";
 import { U2planner } from "../components/U2planner";
 import { StackedBarchart } from "../components/StackedBarchart";
 import { LUCBarchart } from "../components/LUCBarchart";
+import { LandUseChangeTableForm } from "../components/LandUseChangeTableForm";
 
 export const AppRoutes = () => {
   const routes = useRoutes([
@@ -21,6 +22,7 @@ export const AppRoutes = () => {
     { path: "newResidents", element: <NewResidents /> },
     { path: "u2planner", element: <U2planner /> },
     { path: "landUseChangeBarchart", element: <LUCBarchart /> },
+    { path: "landUseChangeTableForm", element: <LandUseChangeTableForm /> },
   ]);
   return routes;
 };

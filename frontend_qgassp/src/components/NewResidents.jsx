@@ -14,10 +14,8 @@ import Divider from "@mui/material/Divider";
  */
 
 export const NewResidents = ({
-  country,
-  year,
-  population,
   settlementDistribution,
+  baseline,
   user,
   onLogin,
   onLogout,
@@ -31,8 +29,8 @@ export const NewResidents = ({
   const [newResidents, setNewResidents] = useState("");
   const [yearStart, setYearStart] = useState(0);
   const [yearFinish, setYearFinish] = useState(0);
-  const [baseline, setBaseline] = useState("");
-  const [newDevelopment, setNewDevelopment] = useState("");
+
+  const [newDevelopment, setNewDevelopment] = useState({});
   const [updateU2charts, setU2charts] = useState(false);
   const [totalNewResidents, setTotalNewResidents] = useState(0.0);
   const navigate = useNavigate();
@@ -65,14 +63,6 @@ export const NewResidents = ({
   };
 
   const updateU2Planner = () => {
-    const baselineSettlement = {
-      country,
-      year,
-      population,
-      settlementDistribution,
-    };
-    setBaseline(baselineSettlement);
-
     const newSettlementDistribution = {
       metropolitanCenter,
       urban,
@@ -272,18 +262,17 @@ export const NewResidents = ({
   } else {
     return (
       <U2planner
-        country={country}
-        year={year}
-        population={population}
-        baseline={baseline}
+        baseline={baseline.baseline}
         newDevelopment={newDevelopment}
+        settlementDistribution={settlementDistribution}
       />
     );
   }
 };
 
 NewResidents.propTypes = {
-  settlementDistribution: PropTypes.array.isRequired,
+  baseline: PropTypes.object.isRequired,
+  settlementDistribution: PropTypes.object.isRequired,
   population: PropTypes.number.isRequired,
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,

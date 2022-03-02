@@ -12,7 +12,8 @@ import Chip from "@mui/material/Chip";
  */
 
 export const U3planner = ({
-  /*  year, */
+  baseline,
+  newDevelopment,
   user,
   onLogin,
   onLogout,
@@ -20,7 +21,7 @@ export const U3planner = ({
 }) => {
   const [yearStart, setYearStart] = useState(0);
   const [yearFinish, setYearFinish] = useState(0);
- 
+
   // const [baseline, setBaseline] = useState("");
   //   const [newDevelopment, setNewDevelopment] = useState("");
   //   const [updateU2charts, setU2charts] = useState(false);
@@ -34,30 +35,6 @@ export const U3planner = ({
     e.preventDefault();
     setYearFinish(Number(e.target.value));
   };
-  //   const updateU2Planner = () => {
-  //     const baselineSettlement = {
-  //       country,
-  //       year,
-  //       population,
-  //       settlementDistribution,
-  //     };
-  //     setBaseline(baselineSettlement);
-  //     const newSettlementDistribution = {
-  //       metropolitanCenter,
-  //       urban,
-  //       suburban,
-  //       town,
-  //       rural,
-  //     };
-  //   const newDevelopmentU2 = {
-  //     newResidents,
-  //     yearStart,
-  //     yearFinish,
-  //     newSettlementDistribution,
-  //   };
-  //     setNewDevelopment(newDevelopmentU2);
-  //     setTotalNewResidents(metropolitanCenter + urban + suburban + town + rural);
-  //     setU2charts(true);
 
   // if (updateU2charts === false && totalNewResidents !== 100) {
   return (
@@ -70,15 +47,15 @@ export const U3planner = ({
           onCreateAccount={onCreateAccount}
         />
       }
-         <div className="headerSettlement">
-            <Divider textAlign="left" flexItem>
-              {" "}
-              <Chip label="U3 POLICY QUANTIFICATION" />
-            </Divider>
-          </div>
+      <div className="headerSettlement">
+        <Divider textAlign="left" flexItem>
+          {" "}
+          <Chip label="U3 POLICY QUANTIFICATION" />
+        </Divider>
+      </div>
 
       <section>
-      {/*   <div>
+        {/*   <div>
           <h2>U3 POLICY QUANTIFICATION</h2>
         </div> */}
         {/* <form onSubmit={updateU2Planner}> */}
@@ -179,7 +156,7 @@ export const U3planner = ({
             <label>
               <b>U3.3 Modal split/Passenger transport</b>
             </label>
-            <label>withouth policy</label>
+            <label>withouthdiscor policy</label>
             <label>policy target %</label>
             <label>% of the area affeccted</label>
             <div>
@@ -561,7 +538,8 @@ export const U3planner = ({
 };
 
 U3planner.propTypes = {
-  /* year: PropTypes.number.isRequired, */
+  baseline: PropTypes.object.isRequired,
+  newDevelopment: PropTypes.object.isRequired,
   country: PropTypes.string.isRequired,
   user: PropTypes.shape({}),
   onLogin: PropTypes.func.isRequired,

@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
+import {Link} from "react-router-dom";
 import { blue } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router";
+import { LUCtableFromTo } from "./LUCtableFromTo";
+import { StartPage } from "./StartPage";
+
 /**
  * Tabs for the different emission types
  * @return {}
@@ -27,24 +31,14 @@ export const TabsEmission = () => {
   });
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    if(newValue==="land_use"){
+      <LUCtableFromTo/>
+    }else if(newValue==="transport"){
+      <StartPage/>
+    }
   };
 
-  const handleTransport = () => {
-    navigate("/", { replace: true });
-  };
-
-  /* const handleLandUse= () => {
-    
-  };
-
-  const handleConsumption= () => {
-    
-  };
-
-  const handleBuildings= () => {
-    
-  }; */
+  
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -55,15 +49,12 @@ export const TabsEmission = () => {
         indicatorColor={theme.secondary}
         aria-label="emission types"
       >
-        <Tab
-          value="transport"
-          label="Transport"
-          /*   onClick={handleTransport}  */
-        />
+        <Tab value="transport" label="Transport" />
         <Tab value="land_use" label="Land-use" />
-        <Tab value="consumption_based" label="Consumption-based" />
         <Tab value="buildings" label="Buildings" />
+        <Tab value="consumption_based" label="Consumption-based" />
       </Tabs>
+     
     </Box>
   );
 };
