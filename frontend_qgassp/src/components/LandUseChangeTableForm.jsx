@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Header } from "./Header";
 import { Button } from "./Button";
-import { LUCBaseline } from "./LUCBaseline";
+import { LUCBarchart } from "./LUCBarchart";
 import "../css/landusechange.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -18,10 +18,7 @@ import Chip from "@mui/material/Chip";
     user,
     onLogin,
     onLogout,
-    onCreateAccount,
-    country,
-    year,
-    population
+    onCreateAccount
   }) => {
     // to Forest vars
     // #region 
@@ -221,7 +218,7 @@ import Chip from "@mui/material/Chip";
       wetToOtherOrganic + grassToOtherOrganic + cropToOtherOrganic + settlementsToOtherOrganic
     );
     const [LUCbaseline, setLUCbaseline] = useState(false);
-    const [landUseChange, setLandUseChange] = useState("");
+    const [landUseChangeResponse, setLandUseChangeResponse] = useState("");
     const navigate = useNavigate();
     const [error, setError] = useState("");
    
@@ -231,7 +228,7 @@ import Chip from "@mui/material/Chip";
 
 
     const goToLandUseChangeBaseline = () => {
-        // ?
+      
       setLUCbaseline(true);
     };
 
@@ -940,38 +937,37 @@ import Chip from "@mui/material/Chip";
     };
 
     const setResponse = (response) => {
-      setLandUseChange(response);
+      setLandUseChangeResponse(response.data);
     };
 
     useEffect(async () => {
-      const landUseChange = {
+      const rawData = {
           totalArea: totalArea,
           mineral: mineral,
           organic: organic,
           policyStartYear: policyStartYear
       };
-      // const rawData = { country, year, population, landUseChange };
       const headers = {
         "Content-type": "application/json",
       };
       axios
         .post(
           "https://ggia.ulno.net/api/v1/calculate/land-use-change",
-          landUseChange,
+          rawData,
           headers
         )
         .then((response) => setResponse(response.data))
         .catch((error) => {
           setError({ errorMessage: error.message });
           // eslint-disable-next-line no-console
-          console.error("There was an error!", error);
+          // console.error("There was an error!", error);
         });
     }, []);
 
 
     useEffect(() => {
-      localStorage.setItem("landUseChange", landUseChange);
-    }, [landUseChange]);
+      localStorage.setItem("landUseChange", landUseChangeResponse);
+    }, [landUseChangeResponse]);
     
 
     if (LUCbaseline === false) {
@@ -2905,7 +2901,8 @@ import Chip from "@mui/material/Chip";
                       <Button
                         size="small"
                         value="backStartPage"
-                        onClick={() => navigate("/startPage", { replace: true })}
+                        // onClick={() => navigate("/startPage", { replace: true })}
+                        onClick={goBack}
                         label="&laquo; Previous"
                         secondary
                       />
@@ -2915,7 +2912,6 @@ import Chip from "@mui/material/Chip";
                       <Button
                         size="small"
                         type="submit"
-                        value="Submit"
                         onClick={goToLandUseChangeBaseline}
                         label="Next &raquo;"
                         primary
@@ -2929,11 +2925,8 @@ import Chip from "@mui/material/Chip";
         );
       } else {
         return (
-          <LUCBaseline
-            // country={country}
-            // year={year}
-            // population={population}
-                    
+          <LUCBarchart
+              landUseChangeResponse      
           />
         );
       }
@@ -2942,9 +2935,6 @@ import Chip from "@mui/material/Chip";
   
 
   LandUseChangeTableForm.propTypes = {
-    population: PropTypes.number.isRequired,
-    year: PropTypes.number.isRequired,
-    country: PropTypes.string.isRequired,
     user: PropTypes.shape({}),
     onLogin: PropTypes.func.isRequired,
     onLogout: PropTypes.func.isRequired,

@@ -8,7 +8,7 @@ import { Legend } from "./Legend";
 import { useNavigate } from "react-router-dom";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
-// import { NewResidents } from "./NewResidents";
+// import { LandUseChangeTableForm } from "./LandUseChangeTableForm";
 
 import {
   XYPlot,
@@ -27,7 +27,7 @@ import { StackedBarchart } from "./StackedBarchart";
  * U1 Planner baseline user input form
  * @return {}
  */
-// const BarSeries = VerticalBarSeries;
+const BarSeries = VerticalBarSeries;
 export const U1planner = ({
   user,
   onLogin,
@@ -106,8 +106,8 @@ export const U1planner = ({
   }, []);
 
   const setResponse = (response) => {
-    setEmissionData(response.data.emissions);
-    setProjections(response.data.projections);
+    setEmissionData(response.baseline.emissions);
+    setProjections(response.baseline.projections);
   };
 
   useEffect(() => {
@@ -516,8 +516,9 @@ export const U1planner = ({
               <Divider textAlign="left" flexItem>
                 <b>Projections: CO2e emissions per capita 2022-2050</b>
               </Divider> */}
-              {/*   <div>{JSON.stringify(projections.bus)}</div> */}
-              {/*  <div>
+                <div>{JSON.stringify(projections.bus)}</div>
+                <div>
+                {/*
                 <XYPlot width={900} height={500} stackBy="y" xType="ordinal">
                   <HorizontalGridLines />
                   <VerticalGridLines />
@@ -558,6 +559,9 @@ export const U1planner = ({
                       { x: 2050, y: projections.bus[2050] },
                     ]}
                   />
+                  
+                  </XYPlot>
+                  
                   <BarSeries
                     color="#A6036D"
                     data={[
@@ -817,6 +821,7 @@ export const U1planner = ({
                   primary
                 />
               </div>
+            </div>
             </div>
           </section>
         </article>
