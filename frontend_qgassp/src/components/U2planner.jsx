@@ -40,7 +40,7 @@ export const U2planner = ({
   const navigate = useNavigate();
 
   useEffect(async () => {
-    const rawData = { baseline, newDevelopment };
+    const rawData = { baseline, newDevelopment, newPopulation };
     const headers = {
       "Content-type": "application/json",
       "Access-Control-Allow-Origin": "*",
@@ -60,8 +60,9 @@ export const U2planner = ({
   }, []);
 
   const setU2Response = (response) => {
-    setNewPopulation(response.data["new_development"].impact);
-    setBaselinePopulation(response.data.baseline.projections);
+    // setNewPopulation(response.data["new_development"].impact);
+    setNewPopulation(response.data.new_development.impact.population);
+    setBaselinePopulation(response.data.baseline.projections.population);
   };
 
   const gotoU3planner = () => {
@@ -151,11 +152,11 @@ export const U2planner = ({
             <div>{JSON.stringify(baselinePopulation)}</div>
             <br />
 
-            {/*   <div>{JSON.stringify(newPopulation)}</div> */}
+            <div>{JSON.stringify(newPopulation)}</div>
             <br />
 
             <br />
-            {/*     <XYPlot
+            {/* <XYPlot
               width={900}
               height={500}
               xType="ordinal"

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Header } from "./Header";
 import { Button } from "./Button";
-import "../css/u2planner.css";
 import { useNavigate } from "react-router-dom";
 import "../css/u3.css";
+import axios from "axios";
 import {
   XYPlot,
   XAxis,
@@ -21,20 +21,31 @@ import Chip from "@mui/material/Chip";
 
 const BarSeries = VerticalBarSeries;
 /**
- * U3 user input
+ * U3 input display
  * @return {}
  */
 
 export const U3policies = ({
   year,
   user,
+  policyQuantification,
   onLogin,
   onLogout,
   onCreateAccount,
 }) => {
+  const [errorU3, setU3Error] = useState("");
   const [yearStart, setYearStart] = useState(0);
   const [yearFinish, setYearFinish] = useState(0);
+  const [expectedChange, setExpectedChange] = useState("");
+  const [emission, setEmissionData] = useState("");
   const navigate = useNavigate();
+  const [newPolicy, setU3Policy] = useState("");
+  const [passengerMob, setPassengerMobility] = useState("");
+  const [freightTrans, setFreightTransport] = useState("");
+  const [modalSplitPass, setModalSplitPass] = useState("");
+  const [modalFreShares, setModalFreightShares] = useState("");
+  const [modalSplitFre, setModalSplitFre] = useState("");
+  const [policyQuant, setPolicyQuantification] = useState("");
   // const [baseline, setBaseline] = useState("");
   //   const [newDevelopment, setNewDevelopment] = useState("");
   //   const [updateU2charts, setU2charts] = useState(false);
@@ -48,30 +59,43 @@ export const U3policies = ({
     e.preventDefault();
     setYearFinish(Number(e.target.value));
   };
-  //   const updateU2Planner = () => {
-  //     const baselineSettlement = {
-  //       country,
-  //       year,
-  //       population,
-  //       settlementDistribution,
-  //     };
-  //     setBaseline(baselineSettlement);
-  //     const newSettlementDistribution = {
-  //       metropolitanCenter,
-  //       urban,
-  //       suburban,
-  //       town,
-  //       rural,
-  //     };
-  //   const newDevelopmentU2 = {
-  //     newResidents,
-  //     yearStart,
-  //     yearFinish,
-  //     newSettlementDistribution,
-  //   };
-  //     setNewDevelopment(newDevelopmentU2);
-  //     setTotalNewResidents(metropolitanCenter + urban + suburban + town + rural);
-  //     setU2charts(true);
+
+  const handleExpectedChange = (e) => {
+    setExpectedChange(Number(e.target.value));
+  };
+
+  useEffect(async () => {
+    const policyQuant = {
+      passengerMob,
+      freightTrans,
+      modalSplitPass,
+      modalSplitFre,
+    };
+    setPolicyQuantification(policyQuant);
+    const raw = { policyQuantification };
+
+    const headers = {
+      "Content-type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    };
+    axios
+      .post(
+        "https://ggia-dev.ulno.net/api/v1/calculate/transport/policy_quantification",
+        raw,
+        headers
+      )
+      .then((response) => setU3Response(response.data))
+      .catch((error) => {
+        setU3Error({ errorMessage: error.message });
+        // eslint-disable-next-line no-console
+        console.error("There was an error!", errorU3);
+      });
+  }, []);
+
+  const setU3Response = (response) => {
+    setU3Policy(response.data.policy_quantification);
+    setEmissionData(response.data.baseline.emissions);
+  };
 
   // if (updateU2charts === false && totalNewResidents !== 100) {
   return (
@@ -84,7 +108,7 @@ export const U3policies = ({
           onCreateAccount={onCreateAccount}
         />
       }
-      <div className="headerSettlement">
+      <div className="headerU3policies">
         <Divider textAlign="left" flexItem>
           {" "}
           <Chip label="U3 POLICY QUANTIFICATION" />
@@ -92,28 +116,30 @@ export const U3policies = ({
       </div>
 
       <section>
+        <div>{policyQuantification}</div>
         <div>
-          {/* <div>
-          <h2>U3 POLICY QUANTIFICATION</h2>
-        </div> */}
-          {/* <form onSubmit={updateU2Planner}> */}
           <form>
             <div>
               <label>
                 <b>U3.1 Passenger mobility (resident and non-residential)</b>
               </label>
               <label>expected change %</label>
-              <label empty for spacing></label>
+              <label></label>
               <label>% of the area affected</label>
               <div>
                 <label>change in mobility %</label>
-                <label> expected change value goes here</label>
-                <label empty for spacing></label>
-                <label>% of the area affected goes here</label>
+                <label>
+                  {policyQuantification.passengerMob.expectedChange}
+                </label>
+                {/* <label>{policyQuant.passengerMob.expectedChange}</label> */}
+                <label></label>
+                <label>{policyQuantification.passengerMob.affectedArea}</label>
               </div>
               <div>
                 <label>Policy period</label>
-                <div id="divspace">
+                <label> {policyQuantification.passengerMob.yearStart}</label>
+                <label> {policyQuantification.passengerMob.yearFinish}</label>
+                {/* <div id="divspace">
                   <select
                     className="start_year"
                     id="start_year"
@@ -146,7 +172,7 @@ export const U3policies = ({
                       </option>
                     ))}
                   </select>
-                </div>
+                </div> */}
               </div>
             </div>
             <br />
@@ -155,17 +181,21 @@ export const U3policies = ({
                 <b>U3.2 Freight transport</b>
               </label>
               <label>expected change %</label>
-              <label empty for spacing></label>
-              <label>% of the area affected</label>
+              {/* <label empty for spacing></label>
+              <label>% of the area affected</label> */}
               <div>
                 <label>change in mobility %</label>
-                <label> expected change value goes here</label>
-                <label empty for spacing></label>
-                <label>% of the area affected goes here</label>
+                <label>
+                  {policyQuantification.freightTrans.expectedChange}
+                </label>
+                {/* <label empty for spacing></label>
+                <label>% of the area affected goes here</label> */}
               </div>
               <div>
                 <label>Policy period</label>
-                <div id="divspace">
+                <label> {policyQuantification.freightTrans.yearStart}</label>
+                <label> {policyQuantification.freightTrans.yearFinish}</label>
+                {/* <div id="divspace">
                   <select
                     className="start_year"
                     id="start_year"
@@ -198,7 +228,7 @@ export const U3policies = ({
                       </option>
                     ))}
                   </select>
-                </div>
+                </div> */}
               </div>
             </div>
             <br />
@@ -208,27 +238,35 @@ export const U3policies = ({
               </label>
               <label>without policy</label>
               <label>policy target %</label>
-              <label>% of the area affeccted</label>
+              <label>% of the population affected</label>
               <div>
                 <label>Share for bus</label>
-                <label></label>
-                <label>policy target goes here</label>
-                <label>% of the area affected</label>
+                <label>{emission.bus}</label>
+                <label> {policyQuantification.modalPassShares.bus}</label>
+                <label>
+                  {" "}
+                  {policyQuantification.modalSplitPass.affectedPopulation}
+                </label>
               </div>
               <div>
-                <label>Share for tram and metro</label>
-                <label></label>
-                <label>policy target goes here</label>
+                <label>Share for metro</label>
+                <label>{emission.metro}</label>
+                <label> {policyQuantification.modalPassShares.metro}</label>
+              </div>
+              <div>
+                <label>Share for tram</label>
+                <label>{emission.tram}</label>
+                <label> {policyQuantification.modalPassShares.tram}</label>
               </div>
               <div>
                 <label>Share for train</label>
-                <label></label>
-                <label>policy target goes here</label>
+                <label>{emission.train}</label>
+                <label> {policyQuantification.modalPassShares.train}</label>
               </div>
               <div>
                 <label>Car passenger</label>
-                <label></label>
-                <label>policy target goes here</label>
+                <label>{emission.car}</label>
+                <label> {policyQuantification.modalPassShares.car}</label>
               </div>
               <div>
                 <label>
@@ -239,7 +277,9 @@ export const U3policies = ({
               </div>
               <div>
                 <label>Policy period</label>
-                <div id="divspace">
+                <label> {policyQuantification.modalSplitPass.yearStart}</label>
+                <label> {policyQuantification.modalSplitPass.yearFinish}</label>
+                {/* <div id="divspace">
                   <select
                     className="start_year"
                     id="start_year"
@@ -272,7 +312,7 @@ export const U3policies = ({
                       </option>
                     ))}
                   </select>
-                </div>
+                </div> */}
               </div>
             </div>
             {/* <div className="column"> */}
@@ -361,29 +401,40 @@ export const U3policies = ({
               {/* <label>% of the area affeccted</label> */}
               <div>
                 <label>Share for rail</label>
-                <label></label>
-                <label>policy target goes here</label>
+                <label>{emission.rail_transport}</label>
+                <label>
+                  {" "}
+                  {policyQuantification.modalFreShares.railTransport}
+                </label>
               </div>
               <div>
                 <label>Share for inland waterways</label>
-                <label></label>
-                <label>policy target goes here</label>
+                <label>{emission.waterways_transport}</label>
+                <label>
+                  {" "}
+                  {policyQuantification.modalFreShares.waterwaysTransport}
+                </label>
               </div>
               <div>
                 <label>Share for road freight</label>
-                <label></label>
-                <label>policy target goes here</label>
+                <label>{emission.road_transport}</label>
+                <label>
+                  {" "}
+                  {policyQuantification.modalFreShares.roadTransport}
+                </label>
               </div>
               <div>
                 <label>
                   <b>Total</b>
                 </label>
-                <label></label>
+                <label>{emission.total}</label>
                 <label></label>
               </div>
               <div>
                 <label>Policy period</label>
-                <div id="divspace">
+                <label> {policyQuantification.modalSplitFre.yearStart}</label>
+                <label> {policyQuantification.modalSplitFre.yearFinish}</label>
+                {/* <div id="divspace">
                   <select
                     className="start_year"
                     id="start_year"
@@ -416,7 +467,7 @@ export const U3policies = ({
                       </option>
                     ))}
                   </select>
-                </div>
+                </div> */}
               </div>
             </div>
             <div id="divspace">
@@ -635,7 +686,7 @@ export const U3policies = ({
               />
             </div>
             <br />
-            <div>
+            {/* <div>
               <label>
                 <b>U3.6 Shares of fuel types/Cars</b>
               </label>
@@ -762,7 +813,8 @@ export const U3policies = ({
                   </select>
                 </div>
               </div>
-            </div>
+            </div> */}
+
             <div id="divspace">
               <RadialChart
                 type="piechart"
@@ -1291,8 +1343,8 @@ export const U3policies = ({
               <div className="backButton">
                 <Button
                   size="small"
-                  value="backNewResidents"
-                  onClick={() => navigate("/newresidents", { replace: true })}
+                  value="backU3planner"
+                  onClick={() => navigate("/U3plannner", { replace: true })}
                   label="&laquo; Previous"
                   secondary
                 />
@@ -1307,6 +1359,7 @@ export const U3policies = ({
 
 U3policies.propTypes = {
   year: PropTypes.number.isRequired,
+  policyQuantification: PropTypes.object.isRequired,
   country: PropTypes.string.isRequired,
   user: PropTypes.shape({}),
   onLogin: PropTypes.func.isRequired,

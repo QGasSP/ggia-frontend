@@ -20,7 +20,6 @@ const ITEMS = [
   { title: "Other Land", color: "#80D941" },
 ];
 
-
 export const LineLegendLandUse = () => {
   return (
     <div>

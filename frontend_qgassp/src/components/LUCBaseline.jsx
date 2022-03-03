@@ -12,14 +12,12 @@ import Chip from "@mui/material/Chip";
  * @return {}
  */
 
- export const LUCBaseline = ({
-    user,
-    onLogin,
-    onLogout,
-    onCreateAccount,
-    // country,
-    // year,
-    // population
-  }) => {
-
-  };
+export const LUCBaseline = ({
+  user,
+  onLogin,
+  onLogout,
+  onCreateAccount,
+  // country,
+  // year,
+  // population
+}) => {};
