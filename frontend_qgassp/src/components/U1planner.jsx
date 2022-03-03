@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Header } from "./Header";
 import { Button } from "./Button";
 import "../css/u1planner.css";
 import axios from "axios";
@@ -10,11 +9,7 @@ import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 // import { NewResidents } from "./NewResidents";
 
-import {
-  
-  RadialChart,
-  DiscreteColorLegend,
-} from "react-vis";
+import { RadialChart, DiscreteColorLegend } from "react-vis";
 // import { LineLegend } from "./LineLegend";
 import { StackedBarchart } from "./StackedBarchart";
 
@@ -23,22 +18,13 @@ import { StackedBarchart } from "./StackedBarchart";
  * @return {}
  */
 // const BarSeries = VerticalBarSeries;
-export const U1planner = ({
-  user,
-  onLogin,
-  onLogout,
-  onCreateAccount,
-  country,
-  year,
-  population,
-  settlementDistribution,
-  /*  metropolitanCenter,
-  urban,
-  suburban,
-  town,
-  rural, */
-  total,
-}) => {
+export const U1planner = ({ country, year, population }) => {
+  const [metropolitanCenter, setMetropolitan] = useState(parseFloat(0));
+  const [urban, setUrban] = useState(parseFloat(0));
+  const [suburban, setSubUrban] = useState(parseFloat(0));
+  const [town, setTown] = useState(parseFloat(0));
+  const [rural, setRural] = useState(parseFloat(0));
+
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const [nextU2view, setU2View] = useState(false);
@@ -54,6 +40,11 @@ export const U1planner = ({
   const [freightRail, setFreightRail] = useState(0);
   const [freightInlandWaterway, setFreightInlandWaterway] = useState(0);
 
+  const [total, setTotal] = useState(
+    metropolitanCenter + urban + suburban + town + rural
+  );
+  const [settlementDistribution, setSettlementDistribution] = useState("");
+
   const settlementLabels = [
     { title: "urban", color: "#164059" },
     { title: "suburban", color: "#F25F29" },
@@ -61,6 +52,50 @@ export const U1planner = ({
     { title: "rural", color: "#D9D9D9" },
     { title: "Metropolitan center", color: "#730E16" },
   ];
+
+  const handleMetropolitanCenter = (e) => {
+    e.preventDefault();
+    setMetropolitan(parseFloat(e.target.value));
+  };
+  const handleUrban = (e) => {
+    e.preventDefault();
+    setUrban(parseFloat(e.target.value));
+  };
+  const handleSuburban = (e) => {
+    e.preventDefault();
+    setSubUrban(parseFloat(e.target.value));
+  };
+  const handleTown = (e) => {
+    e.preventDefault();
+    setTown(parseFloat(e.target.value));
+  };
+  const handleRural = (e) => {
+    e.preventDefault();
+    setRural(parseFloat(e.target.value));
+  };
+
+  const setSettlementType = () => {
+    const settlementDist = {
+      metropolitanCenter,
+      urban,
+      suburban,
+      town,
+      rural,
+    };
+    setSettlementDistribution(settlementDist);
+    setTotal(metropolitanCenter + urban + suburban + town + rural);
+  };
+
+  const handleNsArea = (e) => {
+    setSettlementDistribution;
+    e.preventDefault();
+    setNsArea(e.target.value);
+  };
+
+  const handleEWArea = (e) => {
+    e.preventDefault();
+    setEwArea(e.target.value);
+  };
 
   useEffect(async () => {
     const baseline = {
@@ -99,145 +134,156 @@ export const U1planner = ({
     return (
       <div>
         <article>
-          {
-            <Header
-              user={user}
-              onLogin={onLogin}
-              onLogout={onLogout}
-              onCreateAccount={onCreateAccount}
-            />
-          }
           <div className="headerSettlement">
             <Divider textAlign="left" flexItem>
               {" "}
-              <Chip label="U1 PLANNER : BASELINE" />
+              <Chip label="TRANSPORT BASELINE" />
             </Divider>
           </div>
 
-          <section>
-            {/*   <div>
-              <h1 className="settlement_header">U1 PLANNER : BASELINE </h1>{" "}
-            </div> */}
-            {/*  <div>{JSON.stringify(emission.car)} </div>
-            <div>{error.errorMessage} </div> */}
-
-            <div className="row">
-              <div className="column">
-                <div className="settlement_headers">
-                  <label>
-                    <b>U1.1 Settlement type </b>
-                  </label>
-                  <label>Share ({total}%)</label>
-                </div>
-                <div>
-                  <label htmlFor="metropolitan">Metropolitan center</label>
-                  <input
-                    type="number"
-                    id="metropolitan"
-                    min="0"
-                    max="100"
-                    value={settlementDistribution.metropolitanCenter}
-                    readOnly
-                  />
-                </div>
-                <div>
-                  <label htmlFor="urban">Urban</label>
-                  <input
-                    type="number"
-                    id="urban"
-                    min="0"
-                    max="100"
-                    value={settlementDistribution.urban}
-                    readOnly
-                  />
-                </div>
-                <div>
-                  <label htmlFor="suburban"> Suburban</label>
-                  <input
-                    type="number"
-                    id="suburban"
-                    min="0"
-                    max="100"
-                    value={settlementDistribution.suburban}
-                    readOnly
-                  />
-                </div>
-                <div>
-                  <label htmlFor="town">Town</label>
-                  <input
-                    type="number"
-                    id="town"
-                    min="0"
-                    max="100"
-                    value={settlementDistribution.town}
-                    readOnly
-                  />
-                </div>
-                <div>
-                  <label htmlFor="rural">Rural</label>
-                  <input
-                    type="number"
-                    id="rural"
-                    min="0"
-                    max="100"
-                    value={settlementDistribution.rural}
-                    readOnly
-                  />
-                </div>
+          <section id="u1_section">
+            <div className="column">
+              <div className="settlement_headers">
+                <label>
+                  <b>Settlement type </b>
+                </label>
+                <label>Share ({total}%)</label>
               </div>
-              <div className="column">
-                <div>
-                  <RadialChart
-                    type="piechart"
-                    data={[
-                      {
-                        angle: settlementDistribution.urban,
-                        label: "Urban",
-                        color: "#164059",
-                      },
-                      {
-                        angle: settlementDistribution.suburban,
-                        label: "Suburban",
-                        color: "#F25F29",
-                      },
-                      {
-                        angle: settlementDistribution.town,
-                        label: "Town",
-                        color: "#F23A29",
-                      },
-                      {
-                        angle: settlementDistribution.rural,
-                        label: "Rural",
-                        color: "#D9D9D9",
-                      },
-                      {
-                        angle: settlementDistribution.metropolitanCenter,
-                        label: "Metropolitan center",
-                        color: "#730E16",
-                      },
-                    ]}
-                    width={180}
-                    height={180}
-                    colorType="literal"
-                    // labelsAboveChildren={true}
-                    /* labelsRadiusMultiplier={0.8}
+              <div>
+                <label htmlFor="metropolitan" className="settle_label">
+                  Metropolitan center
+                </label>
+                <input
+                  type="number"
+                  step="0.1"
+                  id="metropolitan"
+                  min="0"
+                  max="100"
+                  placeholder="0.00"
+                  /*  defaultValue={metropolitanCenter} */
+                  onChange={handleMetropolitanCenter}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="urban" className="settle_label">
+                  Urban
+                </label>
+                <input
+                  type="number"
+                  step="0.1"
+                  id="urban"
+                  min="0"
+                  max="100"
+                  placeholder="0.00"
+                  /*   value={urban} */
+                  onChange={handleUrban}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="suburban" className="settle_label">
+                  {" "}
+                  Suburban
+                </label>
+                <input
+                  type="number"
+                  id="suburban"
+                  step="any"
+                  min="0.0"
+                  max="100.0"
+                  placeholder="0.00"
+                  /*   defaultValue={suburban} */
+                  onChange={handleSuburban}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="town" className="settle_label">
+                  Town
+                </label>
+                <input
+                  type="number"
+                  id="town"
+                  step="0.1"
+                  min="0.0"
+                  max="100.0"
+                  placeholder="0.00"
+                  /*   value={town} */
+                  onChange={handleTown}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="rural" className="settle_label">
+                  Rural
+                </label>
+                <input
+                  type="number"
+                  id="rural"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                  /*   value={rural} */
+                  placeholder="0.00"
+                  onChange={handleRural}
+                  required
+                />
+              </div>
+            </div>
+            <div className="column">
+              <div>
+                <RadialChart
+                  type="piechart"
+                  data={[
+                    {
+                      angle: urban,
+                      label: "Urban",
+                      color: "#164059",
+                    },
+                    {
+                      angle: suburban,
+                      label: "Suburban",
+                      color: "#F25F29",
+                    },
+                    {
+                      angle: town,
+                      label: "Town",
+                      color: "#F23A29",
+                    },
+                    {
+                      angle: rural,
+                      label: "Rural",
+                      color: "#D9D9D9",
+                    },
+                    {
+                      angle: metropolitanCenter,
+                      label: "Metropolitan center",
+                      color: "#730E16",
+                    },
+                  ]}
+                  width={180}
+                  height={180}
+                  colorType="literal"
+                  // labelsAboveChildren={true}
+                  /* labelsRadiusMultiplier={0.8}
                     labelsStyle={{
                       fontSize: 8,
                       fontWeight: 900,
                     }} */
-                    //  showLabels
-                  />
-                </div>
-                <DiscreteColorLegend
-                  items={settlementLabels}
-                  orientation="horizontal"
-                  strokeWidth="40"
+                  //  showLabels
                 />
               </div>
+              <DiscreteColorLegend
+                items={settlementLabels}
+                orientation="horizontal"
+                strokeWidth="40"
+              />
             </div>
+
             <div className="settlementDiv">
               <label>
-                <b>U1.2 Area</b>
+                <b>Area</b>
               </label>
               <label>Km</label>
 
@@ -247,7 +293,8 @@ export const U1planner = ({
                   type="text"
                   id="ns_measure"
                   min="0"
-                  onChange={(e) => setNsArea(e.target.value)}
+                  onChange={handleNsArea}
+                  // onChange={(e) => setNsArea(e.target.value)}
                   placeholder={nsArea}
                   /*   value={nsArea} */
                 />
@@ -258,7 +305,7 @@ export const U1planner = ({
                   type="text"
                   id="ew_measure"
                   min="0"
-                  onChange={(e) => setEwArea(e.target.value)}
+                  onChange={handleEWArea}
                   placeholder={ewArea}
                   /*  value={ewArea} */
                 />
@@ -268,7 +315,7 @@ export const U1planner = ({
               <form>
                 <div>
                   <label>
-                    <b>U1.3 Non-residential and freight</b>
+                    <b>Non-residential and freight</b>
                   </label>
                   <label></label>
                 </div>
@@ -347,26 +394,11 @@ export const U1planner = ({
                   </select>
                 </div>
               </form>
-
-            
-              {/* 
-              <Divider textAlign="left" flexItem>
-                <b>Projections: CO2e emissions per capita 2022-2050</b>
-              </Divider> */}
-
-              <div className="backButton">
-                <Button
-                  size="small"
-                  value="backSettlement"
-                  onClick={() => navigate("settlement", { replace: true })}
-                  label="&laquo; Previous"
-                  secondary
-                />
-              </div>
               <div className="nextU2Button">
                 <Button
                   size="small"
                   value="nextU2"
+                  type="submit"
                   onClick={() => setU2View(true)}
                   label="Next &raquo;"
                   primary
@@ -385,28 +417,13 @@ export const U1planner = ({
         baseline={baseline}
         emission={emission}
       />
-      /*  <NewResidents
-        country={country}
-        year={year}
-        settlementDistribution={settlementDistribution}
-        population={population}
-      /> */
     );
   }
 };
 
 U1planner.propTypes = {
-  settlementDistribution: PropTypes.object.isRequired,
   population: PropTypes.number.isRequired,
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
   total: PropTypes.number.isRequired,
-  user: PropTypes.shape({}),
-  onLogin: PropTypes.func.isRequired,
-  onLogout: PropTypes.func.isRequired,
-  onCreateAccount: PropTypes.func.isRequired,
-};
-
-U1planner.defaultProps = {
-  user: null,
 };

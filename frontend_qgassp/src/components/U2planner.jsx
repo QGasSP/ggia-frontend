@@ -28,10 +28,6 @@ export const U2planner = ({
   baseline,
   newDevelopment,
   settlementDistribution,
-  user,
-  onLogin,
-  onLogout,
-  onCreateAccount,
 }) => {
   const [errorU2, setU2Error] = useState("");
   const [newPopulation, setNewPopulation] = useState("");
@@ -43,9 +39,9 @@ export const U2planner = ({
     const rawData = { baseline, newDevelopment };
     const headers = {
       "Content-type": "application/json",
-       "Access-Control-Allow-Origin": "*",
-    };await
-    axios
+      "Access-Control-Allow-Origin": "*",
+    };
+    await axios
       .post(
         "https://ggia-dev.ulno.net/api/v1/calculate/transport/new-development",
         rawData,
@@ -71,14 +67,8 @@ export const U2planner = ({
   if (nextU3planer === false) {
     return (
       <article>
-        {
-          <Header
-            user={user}
-            onLogin={onLogin}
-            onLogout={onLogout}
-            onCreateAccount={onCreateAccount}
-          />
-        }
+        <br />
+        <br />
         <div className="headerSettlement">
           <Divider textAlign="left" flexItem>
             {" "}
@@ -146,10 +136,9 @@ export const U2planner = ({
               <label htmlFor="rural">Rural</label>
               <label>{settlementDistribution.rural}</label>
               <label>{newDevelopment.newSettlementDistribution.rural}</label>
-              </div>
+            </div>
 
-          
-             <XYPlot
+            <XYPlot
               width={900}
               height={500}
               xType="ordinal"
@@ -169,8 +158,8 @@ export const U2planner = ({
                 }}
               />
               <YAxis />
-              
-            <LineSeries
+
+              <LineSeries
                 curve={null}
                 data={[
                   { x: 2022, y: newPopulation[2022] },
@@ -249,10 +238,9 @@ export const U2planner = ({
                 strokeStyle="dashed"
                 strokeWidth="1.5"
                 style={{}}
-              /> 
-            </XYPlot>    
-        
-      
+              />
+            </XYPlot>
+
             <U2legend />
 
             <div className="backButtonNew">
@@ -278,16 +266,7 @@ export const U2planner = ({
       </article>
     );
   } else {
-    return (
-      <U3planner
-        baseline={baseline}
-        newDevelopment={newDevelopment}
-        user={user}
-        onLogin={onLogin}
-        onLogout={onLogout}
-        onCreateAccount={onCreateAccount}
-      />
-    );
+    return <U3planner baseline={baseline} newDevelopment={newDevelopment} />;
   }
 };
 

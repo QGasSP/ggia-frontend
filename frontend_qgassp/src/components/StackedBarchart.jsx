@@ -29,10 +29,6 @@ export const StackedBarchart = ({
   baseline,
   settlementDistribution,
   emission,
-  user,
-  onLogin,
-  onLogout,
-  onCreateAccount,
 }) => {
   const [nextU2view, setU2View] = useState(false);
   const navigate = useNavigate();
@@ -44,198 +40,169 @@ export const StackedBarchart = ({
   if (nextU2view === false) {
     return (
       <article>
-        {
-          <Header
-            user={user}
-            onLogin={onLogin}
-            onLogout={onLogout}
-            onCreateAccount={onCreateAccount}
-          />
-        }
-          <Divider textAlign="left" flexItem>
-                {" "}
-                <b>Baseline - Transport CO2e emission</b>
-              </Divider>
+        <br />
+        <br />
+        <Divider textAlign="left" flexItem>
+          {" "}
+          <b>Baseline - Transport CO2e emission</b>
+        </Divider>
 
-              <div className="piechart_container">
-                <div className="piechart_diagram">
-                  <div>
-                    <RadialChart
-                      data={[
-                        {
-                          angle:
-                            Math.round(
-                              (emission.bus / emission.total + Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Bus",
-                          color: "#8C0303",
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.metro / emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Metro",
-                          color: "#400D01",
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.train / emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Train",
-                          color: "#D90404",
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.road_transport / emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Road transport",
-                          color: "#595959",
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.car / emission.total + Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Car",
-                          color: "#A6036D",
-                          rotation: 90,
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.tram / emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Tram",
-                          color: " #C4D4F2",
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.rail_transport / emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Rail transport",
-                          color: "#80D941",
-                        },
-                        {
-                          angle:
-                            Math.round(
-                              (emission.waterways_transport / emission.total +
-                                Number.EPSILON) *
-                                36000
-                            ) / 100,
-                          label: "Waterways transport",
-                          color: "#F2CE1B",
-                        },
-                      ]}
-                      colorType="literal"
-                      innerRadius={100}
-                      radius={140}
-                      getAngle={(d) => d.angle}
-                      width={350}
-                      height={350}
-                    />
-                  </div>
-                </div>
-                <div className="piechart_legend">
-                  <Legend />
-                </div>
-                <div></div>
-              </div>
-              <Divider textAlign="left" flexItem>
-                <b>Baseline - Transport CO2e emission/resident</b>
-              </Divider>
+        <div className="piechart_container">
+          <div className="piechart_diagram">
+            <div>
+              <RadialChart
+                data={[
+                  {
+                    angle:
+                      Math.round(
+                        (emission.bus / emission.total + Number.EPSILON) * 36000
+                      ) / 100,
+                    label: "Bus",
+                    color: "#8C0303",
+                  },
+                  {
+                    angle:
+                      Math.round(
+                        (emission.metro / emission.total + Number.EPSILON) *
+                          36000
+                      ) / 100,
+                    label: "Metro",
+                    color: "#400D01",
+                  },
+                  {
+                    angle:
+                      Math.round(
+                        (emission.train / emission.total + Number.EPSILON) *
+                          36000
+                      ) / 100,
+                    label: "Train",
+                    color: "#D90404",
+                  },
+                  {
+                    angle:
+                      Math.round(
+                        (emission.road_transport / emission.total +
+                          Number.EPSILON) *
+                          36000
+                      ) / 100,
+                    label: "Road transport",
+                    color: "#595959",
+                  },
+                  {
+                    angle:
+                      Math.round(
+                        (emission.car / emission.total + Number.EPSILON) * 36000
+                      ) / 100,
+                    label: "Car",
+                    color: "#A6036D",
+                    rotation: 90,
+                  },
+                  {
+                    angle:
+                      Math.round(
+                        (emission.tram / emission.total + Number.EPSILON) *
+                          36000
+                      ) / 100,
+                    label: "Tram",
+                    color: " #C4D4F2",
+                  },
+                  {
+                    angle:
+                      Math.round(
+                        (emission.rail_transport / emission.total +
+                          Number.EPSILON) *
+                          36000
+                      ) / 100,
+                    label: "Rail transport",
+                    color: "#80D941",
+                  },
+                  {
+                    angle:
+                      Math.round(
+                        (emission.waterways_transport / emission.total +
+                          Number.EPSILON) *
+                          36000
+                      ) / 100,
+                    label: "Waterways transport",
+                    color: "#F2CE1B",
+                  },
+                ]}
+                colorType="literal"
+                innerRadius={100}
+                radius={140}
+                getAngle={(d) => d.angle}
+                width={350}
+                height={350}
+              />
+            </div>
+          </div>
+          <div className="piechart_legend">
+            <Legend />
+          </div>
+          <div></div>
+        </div>
+        <Divider textAlign="left" flexItem>
+          <b>Baseline - Transport CO2e emission/resident</b>
+        </Divider>
 
-              <div className="barchart_container">
-                <XYPlot
-                  xType="ordinal"
-                  width={1000}
-                  height={312}
-                  xDistance={200}
-                >
-                  <HorizontalGridLines />
-                  <VerticalGridLines />
-                  <VerticalBarSeries
-                    className="BaselineBarchart"
-                    data={[
-                      {
-                        y:
-                          Math.round((emission.bus + Number.EPSILON) * 100) /
-                          100,
-                        x: "Bus",
-                      },
-                      {
-                        y:
-                          Math.round((emission.metro + Number.EPSILON) * 100) /
-                          100,
-                        x: "Metro",
-                      },
-                      {
-                        y:
-                          Math.round((emission.train + Number.EPSILON) * 100) /
-                          100,
-                        x: "Train",
-                      },
-                      {
-                        y:
-                          Math.round(
-                            (emission.road_transport + Number.EPSILON) * 100
-                          ) / 100,
-                        x: "Road transport",
-                      },
-                      {
-                        y:
-                          Math.round((emission.car + Number.EPSILON) * 100) /
-                          100,
-                        x: "Car",
-                      },
-                      {
-                        y:
-                          Math.round((emission.tram + Number.EPSILON) * 100) /
-                          100,
-                        x: "Tram",
-                      },
-                      {
-                        y:
-                          Math.round(
-                            (emission.rail_transport + Number.EPSILON) * 100
-                          ) / 100,
-                        x: "Rail transport",
-                      },
-                      {
-                        y:
-                          Math.round(
-                            (emission.waterways_transport + Number.EPSILON) *
-                              100
-                          ) / 100,
-                        x: "Waterway transport",
-                      },
-                      {
-                        y:
-                          Math.round((emission.total + Number.EPSILON) * 100) /
-                          100,
-                        x: "total emissions",
-                      },
-                    ]}
-                  />
-                  <XAxis />
-                  <YAxis />
-                </XYPlot>
-              </div>
+        <div className="barchart_container">
+          <XYPlot xType="ordinal" width={1000} height={312} xDistance={200}>
+            <HorizontalGridLines />
+            <VerticalGridLines />
+            <VerticalBarSeries
+              className="BaselineBarchart"
+              data={[
+                {
+                  y: Math.round((emission.bus + Number.EPSILON) * 100) / 100,
+                  x: "Bus",
+                },
+                {
+                  y: Math.round((emission.metro + Number.EPSILON) * 100) / 100,
+                  x: "Metro",
+                },
+                {
+                  y: Math.round((emission.train + Number.EPSILON) * 100) / 100,
+                  x: "Train",
+                },
+                {
+                  y:
+                    Math.round(
+                      (emission.road_transport + Number.EPSILON) * 100
+                    ) / 100,
+                  x: "Road transport",
+                },
+                {
+                  y: Math.round((emission.car + Number.EPSILON) * 100) / 100,
+                  x: "Car",
+                },
+                {
+                  y: Math.round((emission.tram + Number.EPSILON) * 100) / 100,
+                  x: "Tram",
+                },
+                {
+                  y:
+                    Math.round(
+                      (emission.rail_transport + Number.EPSILON) * 100
+                    ) / 100,
+                  x: "Rail transport",
+                },
+                {
+                  y:
+                    Math.round(
+                      (emission.waterways_transport + Number.EPSILON) * 100
+                    ) / 100,
+                  x: "Waterway transport",
+                },
+                {
+                  y: Math.round((emission.total + Number.EPSILON) * 100) / 100,
+                  x: "total emissions",
+                },
+              ]}
+            />
+            <XAxis />
+            <YAxis />
+          </XYPlot>
+        </div>
         <div className="headerSettlement">
           <Divider textAlign="left" flexItem>
             {" "}
@@ -530,15 +497,7 @@ export const StackedBarchart = ({
             <LineLegend />
           </div>
         </section>
-        <div className="backButton">
-          <Button
-            size="small"
-            value="backProjections"
-            onClick={() => navigate("u1planner", { replace: true })}
-            label="&laquo; Previous"
-            secondary
-          />
-        </div>
+
         <div className="nextU2Button">
           <Button
             size="small"
@@ -565,12 +524,4 @@ StackedBarchart.propTypes = {
   emission: PropTypes.object.isRequired,
   projections: PropTypes.object.isRequired,
   settlementDistribution: PropTypes.object.isRequired,
-  user: PropTypes.shape({}),
-  onLogin: PropTypes.func.isRequired,
-  onLogout: PropTypes.func.isRequired,
-  onCreateAccount: PropTypes.func.isRequired,
-};
-
-StackedBarchart.defaultProps = {
-  user: null,
 };

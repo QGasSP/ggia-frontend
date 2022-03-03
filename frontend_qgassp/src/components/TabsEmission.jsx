@@ -2,12 +2,9 @@ import React, { useState } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import {Link} from "react-router-dom";
 import { blue } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
-import { useNavigate } from "react-router";
-import { LUCtableFromTo } from "./LUCtableFromTo";
-import { StartPage } from "./StartPage";
+// import { useNavigate } from "react-router";
 
 /**
  * Tabs for the different emission types
@@ -16,7 +13,7 @@ import { StartPage } from "./StartPage";
 
 export const TabsEmission = () => {
   const [value, setValue] = useState("transport");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const theme = createTheme({
     palette: {
@@ -30,15 +27,7 @@ export const TabsEmission = () => {
     },
   });
 
-  const handleChange = (event, newValue) => {
-    if(newValue==="land_use"){
-      <LUCtableFromTo/>
-    }else if(newValue==="transport"){
-      <StartPage/>
-    }
-  };
-
-  
+  const handleChange = (event, value) => {};
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -49,12 +38,14 @@ export const TabsEmission = () => {
         indicatorColor={theme.secondary}
         aria-label="emission types"
       >
+        <Tab value="start" label="Start" />
         <Tab value="transport" label="Transport" />
         <Tab value="land_use" label="Land-use" />
         <Tab value="buildings" label="Buildings" />
         <Tab value="consumption_based" label="Consumption-based" />
+        <Tab value="local-data set" label="Create a local data-set" />
+        <Tab value="local-data set" label="user guide" />
       </Tabs>
-     
     </Box>
   );
 };

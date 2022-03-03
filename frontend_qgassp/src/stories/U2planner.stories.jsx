@@ -5,10 +5,10 @@ import * as HeaderStories from "./Header.stories";
 
 export default {
   title: "QgasSP/U2 New Development",
-  component: U2planner ,
+  component: U2planner,
 };
 
-const Template = (args) => <U2planner  {...args} />;
+const Template = (args) => <U2planner {...args} />;
 
 export const LoggedIn = Template.bind({});
 LoggedIn.args = {

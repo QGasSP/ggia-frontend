@@ -8,12 +8,11 @@ import { U1planner } from "../components/U1planner";
 import { NewResidents } from "../components/NewResidents";
 import { U2planner } from "../components/U2planner";
 import { StackedBarchart } from "../components/StackedBarchart";
-import { LUCBaseline } from "../components/LUCBaseline";
-import { LandUseChangeTableForm } from "../components/LandUseChangeTableForm";
+import { Welcome } from "../components/Welcome";
 
 export const AppRoutes = () => {
   const routes = useRoutes([
-    { path: "/", element: <StartPage /> },
+    { path: "/", element: <Welcome /> },
     { path: "startPage", element: <StartPage /> },
     { path: "settlement", element: <Settlement /> },
     { path: "u1planner", element: <U1planner /> },
@@ -21,8 +20,6 @@ export const AppRoutes = () => {
     { path: "stackedBarChart", element: <StackedBarchart /> },
     { path: "newResidents", element: <NewResidents /> },
     { path: "u2planner", element: <U2planner /> },
-    { path: "landUseChangeBaseline", element: <LUCBaseline /> },
-    { path: "landUseChangeTableForm", element: <LandUseChangeTableForm /> },
   ]);
   return routes;
 };

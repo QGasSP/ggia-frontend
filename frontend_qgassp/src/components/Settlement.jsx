@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Header } from "./Header";
 import { Button } from "./Button";
 import "../css/u1planner.css";
 import { U1planner } from "./U1planner";
@@ -13,15 +12,7 @@ import Chip from "@mui/material/Chip";
  * @return {}
  */
 
-export const Settlement = ({
-  user,
-  onLogin,
-  onLogout,
-  onCreateAccount,
-  country,
-  year,
-  population,
-}) => {
+export const Settlement = ({ country, year, population }) => {
   const [metropolitanCenter, setMetropolitan] = useState(parseFloat(0));
   const [urban, setUrban] = useState(parseFloat(0));
   const [suburban, setSubUrban] = useState(parseFloat(0));
@@ -74,14 +65,6 @@ export const Settlement = ({
     return (
       <div>
         <article>
-          {
-            <Header
-              user={user}
-              onLogin={onLogin}
-              onLogout={onLogout}
-              onCreateAccount={onCreateAccount}
-            />
-          }
           <div className="headerSettlement">
             <Divider textAlign="left" flexItem>
               {" "}
@@ -227,12 +210,4 @@ Settlement.propTypes = {
   population: PropTypes.number.isRequired,
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
-  user: PropTypes.shape({}),
-  onLogin: PropTypes.func.isRequired,
-  onLogout: PropTypes.func.isRequired,
-  onCreateAccount: PropTypes.func.isRequired,
-};
-
-Settlement.defaultProps = {
-  user: null,
 };

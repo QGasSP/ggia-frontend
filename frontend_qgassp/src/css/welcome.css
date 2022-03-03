@@ -1,0 +1,27 @@
+.start_button {
+  position: absolute;
+  left: 2%;
+  padding: 1rem;
+}
+
+.row_welcome {
+  display: flex;
+}
+
+.column_welcome {
+  flex: 50%;
+  padding: 1rem;
+  height: 100%;
+  font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.75rem;
+  text-align: left;
+}
+
+.section_welcome {
+  padding: 1.5em;
+}
+
+.youtube {
+  padding-bottom: 5%;
+  position: absolute;
+}

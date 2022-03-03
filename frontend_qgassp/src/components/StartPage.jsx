@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import { Button } from "./Button";
-import { Header } from "./Header";
 import "../css/startpage.css";
-import { Settlement } from "./Settlement";
+import { U1planner } from "./U1planner";
+import TabModules from "./TabModules";
 // import { useStorageInt } from "../reducers/useStorage";
+import Divider from "@mui/material/Divider";
+import Chip from "@mui/material/Chip";
 
-export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
+export const StartPage = () => {
   const [country, setCountry] = useState("");
   const [year, setYear] = useState(0);
   const [population, setPopulation] = useState(0);
@@ -35,23 +36,25 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
   if (next === false) {
     return (
       <article>
-        {
-          <Header
-            user={user}
-            onLogin={onLogin}
-            onLogout={onLogout}
-            onCreateAccount={onCreateAccount}
-          />
-        }
-        <div className="intro_main">
-          <section>
+        {/*  {<TabModules/>} */}
+        <br/>
+
+        <div>
+          <Divider textAlign="left" flexItem>
+            {" "}
+            <Chip label="ASSESEMENT AREA INFORMATION" />
+          </Divider>
+        </div>
+
+        <div className="row_start">
+          <div className="column_start">
             <header className="intro_header">
-              <h1 id="title" className="intro_h1">
-                <b>Select country for assessment</b>
+              <h1 id="title" className="header_start">
+                Fill in the basic information
               </h1>
             </header>
 
-            <form id="impact_start_form" onSubmit={startBaseline}>
+            <form onSubmit={startBaseline}>
               <div className="form-group">
                 <label htmlFor="year_selection" className="intro_label">
                   Year
@@ -127,31 +130,21 @@ export const StartPage = ({ user, onLogin, onLogout, onCreateAccount }) => {
                   required
                 />
               </div>
-              <div className="nextButton">
+              <div  className="next_u1">
                 <Button
-                  size="medium"
+                  size="small"
                   type="submit"
                   value="Submit"
-                  label="Next"
+                  label="Next &raquo;"
+                  primary="true"
                 />
               </div>
             </form>
-          </section>
+          </div>
         </div>
       </article>
     );
   } else {
-    return <Settlement country={country} year={year} population={population} />;
+    return <U1planner country={country} year={year} population={population} />;
   }
-};
-
-StartPage.propTypes = {
-  user: PropTypes.shape({}),
-  onLogin: PropTypes.func.isRequired,
-  onLogout: PropTypes.func.isRequired,
-  onCreateAccount: PropTypes.func.isRequired,
-};
-
-StartPage.defaultProps = {
-  user: null,
 };

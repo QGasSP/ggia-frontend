@@ -1,10 +1,19 @@
 .wrapper {
   font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 15px 20px;
+  padding: 10px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #d5eaea;
+}
+
+.wrapper_branding {
+  font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
 }
 
 svg {
@@ -62,4 +71,16 @@ h1 {
 
 button + button {
   margin-left: 10px;
+}
+
+.row_header {
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+}
+
+.column_header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

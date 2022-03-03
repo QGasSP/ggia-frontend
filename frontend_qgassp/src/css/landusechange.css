@@ -83,23 +83,26 @@ input[type="number"] {
   -webkit-appearance: textfield;
   appearance: textfield;
 }
-table{
+table {
   margin-bottom: 20px;
   width: 48%;
 }
-table td, th{
+table td,
+th {
   width: 100px;
   text-align: left;
   padding-right: 5px;
 }
-td.row-title, th.row-title{
+td.row-title,
+th.row-title {
   width: 170px;
   text-align: left;
 }
-input{
+input {
   outline: none;
 }
-input.table-cell, select.table-cell{
+input.table-cell,
+select.table-cell {
   width: 100px;
 }
 .piechart_container {
@@ -167,7 +170,7 @@ section div {
   margin: 0 auto;
 }
 
-.tbl{
+.tbl {
   border: 1px solid #333;
   padding: 5px;
   border-radius: 0.25rem;
