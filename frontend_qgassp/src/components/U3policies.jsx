@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Button } from "./Button";
 import { useNavigate } from "react-router-dom";
 import "../css/u3.css";
+import axios from "axios";
 import {
   XYPlot,
   XAxis,
@@ -454,7 +455,7 @@ export const U3policies = ({
               />
             </div>
             <br />
-            <div>
+            {/* <div>
               <label>
                 <b>U3.6 Shares of fuel types/Cars</b>
               </label>
