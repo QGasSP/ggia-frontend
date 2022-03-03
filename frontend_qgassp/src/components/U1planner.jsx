@@ -22,7 +22,7 @@ import { StackedBarchart } from "./StackedBarchart";
  * U1 Planner baseline user input form
  * @return {}
  */
-const BarSeries = VerticalBarSeries;
+// const BarSeries = VerticalBarSeries;
 export const U1planner = ({
   user,
   onLogin,
