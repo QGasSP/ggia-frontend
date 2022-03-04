@@ -253,6 +253,7 @@ export const NewResidents = ({
         baseline={baseline.baseline}
         newDevelopment={newDevelopment}
         settlementDistribution={settlementDistribution}
+        emission={emission}
       />
     );
   }
