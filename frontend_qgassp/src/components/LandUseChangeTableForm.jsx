@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Header } from "./Header";
 import { Button } from "./Button";
-import { LUCBaseline } from "./LUCBaseline";
+import { LUCBarChart } from "./LUCBarChart";
 import "../css/landusechange.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -277,7 +277,7 @@ export const LandUseChangeTableForm = ({
       cropToOtherOrganic +
       settlementsToOtherOrganic
   );
-  const [LUCbaseline, setLUCbaseline] = useState(false);
+  const [LUCBarChart, setLUCBarChart] = useState(false);
   const [landUseChangeResponse, setLandUseChangeResponse] = useState("");
   const navigate = useNavigate();
   const [error, setError] = useState("");
@@ -287,7 +287,7 @@ export const LandUseChangeTableForm = ({
 
   const goToLandUseChangeBaseline = () => {
     // ?
-    setLUCbaseline(true);
+    setLUCBarChart(true);
   };
 
   const goBack = () => {
@@ -1097,7 +1097,7 @@ export const LandUseChangeTableForm = ({
     localStorage.setItem("landUseChange", landUseChangeResponse);
   }, [landUseChangeResponse]);
 
-  if (LUCbaseline === false) {
+  if (LUCBarChart === false) {
     return (
       <div>
         <article>
@@ -3070,9 +3070,8 @@ export const LandUseChangeTableForm = ({
     );
   } else {
     return (
-      <LUCBaseline
-        country={country}
-        year={year}
+      <LUCBarChart
+        
       />
     );
   }
