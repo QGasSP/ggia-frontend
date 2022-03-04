@@ -2,11 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Header } from "./Header";
 import { Button } from "./Button";
-<<<<<<< HEAD
 import "../css/u3planner.css";
-=======
-import "../css/u2planner.css";
->>>>>>> e351a6cda6ec6e1bac3eacf5e42357bdea5211c1
 import { useNavigate } from "react-router-dom";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
@@ -17,11 +13,12 @@ import axios from "axios";
  * @return {}
  */
 
+
 export const U3planner = ({
   baseline,
   newDevelopment,
   policyQuantification,
-  emissions,
+  // emissions,
   user,
   onLogin,
   onLogout,
@@ -57,14 +54,6 @@ export const U3planner = ({
   const [policyQuant, setPolicyQuantification] = useState("");
   const navigate = useNavigate();
 
-<<<<<<< HEAD
-=======
-  // const [baseline, setBaseline] = useState("");
-  //   const [newDevelopment, setNewDevelopment] = useState("");
-  //   const [updateU2charts, setU2charts] = useState(false);
-  //   const [totalNewResidents, setTotalNewResidents] = useState(0.0);
-  const navigate = useNavigate();
->>>>>>> e351a6cda6ec6e1bac3eacf5e42357bdea5211c1
   const optionsNew = [];
   for (let i = 2022; i < 2051; i++) optionsNew.push(i);
   const handleStartYear = (e) => {
@@ -205,7 +194,7 @@ export const U3planner = ({
     });
   const setResponse = (response) => {
     setEmissionData(response.data.baseline.emissions);
-    setProjections(response.data.baseline.projections);
+    // setProjections(response.data.baseline.projections);
   };
 
   // const policyQuant = {
@@ -245,17 +234,11 @@ export const U3planner = ({
       </div>
 
       <section>
-<<<<<<< HEAD
         <form onSubmit={createPolicyQuantification}>
-=======
-        {/* <form onSubmit={updateU2Planner}> */}
-        <form>
->>>>>>> e351a6cda6ec6e1bac3eacf5e42357bdea5211c1
           <label>
             <b>U3.1 Passenger mobility (resident and non-residential)</b>
           </label>
           <label>expected change %</label>
-<<<<<<< HEAD
           <label></label>
           <label>% of the area affected</label>
           <div>
@@ -280,15 +263,6 @@ export const U3planner = ({
               onChange={handleAffectedPassArea}
               required
             />
-=======
-          <label empty for spacing></label>
-          <label>% of the area affected</label>
-          <div>
-            <label>change in mobility %</label>
-            <input id="inputspace" />
-            <label empty for spacing></label>
-            <input />
->>>>>>> e351a6cda6ec6e1bac3eacf5e42357bdea5211c1
           </div>
           <div>
             <label>Policy period</label>
@@ -333,7 +307,6 @@ export const U3planner = ({
               <b>U3.2 Freight transport</b>
             </label>
             <label>expected change %</label>
-<<<<<<< HEAD
             <label></label>
             <label>% of the area affected</label>
             <div>
@@ -358,15 +331,6 @@ export const U3planner = ({
                 onChange={handleAffectedFreArea}
                 required
               /> */}
-=======
-            <label empty for spacing></label>
-            <label>% of the area affected</label>
-            <div>
-              <label>change in freight transport %</label>
-              <input id="inputspace" />
-              <label empty for spacing></label>
-              <input />
->>>>>>> e351a6cda6ec6e1bac3eacf5e42357bdea5211c1
             </div>
             <div>
               <label>Policy period</label>
@@ -416,7 +380,6 @@ export const U3planner = ({
             <label>% of the area affeccted</label>
             <div>
               <label>Share for bus</label>
-<<<<<<< HEAD
               <label>{emission.bus}</label>
               <input
                 id="inputspace"
@@ -467,16 +430,6 @@ export const U3planner = ({
                 onChange={handlePassTransPolicyTarget}
                 required
               />
-=======
-              <label></label>
-              <input id="inputspace" />
-              <input />
-            </div>
-            <div>
-              <label>Share for tram and metro</label>
-              <label></label>
-              <input />
->>>>>>> e351a6cda6ec6e1bac3eacf5e42357bdea5211c1
             </div>
             <div>
               <label>Share for train</label>
@@ -541,46 +494,6 @@ export const U3planner = ({
                 </select>
               </div>
             </div>
-<<<<<<< HEAD
-=======
-            <div>
-              <label>Policy period</label>
-              <div id="divspace">
-                <select
-                  className="start_year"
-                  id="start_year"
-                  name="start_year"
-                  onChange={handleStartYear}
-                  defaultValue="2022"
-                  required
-                >
-                  <option value="DefaultOption">Select start year</option>
-                  {optionsNew.map((option) => (
-                    <option key={option} value={option}>
-                      {option}{" "}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <select
-                  className="finish_year"
-                  id="finish_year"
-                  name="finish_year"
-                  onChange={handleYearFinish}
-                  defaultValue="2022"
-                  required
-                >
-                  <option value="DefaultOption">Select end year</option>
-                  {optionsNew.map((option) => (
-                    <option key={option} value={option}>
-                      {option}{" "}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
->>>>>>> e351a6cda6ec6e1bac3eacf5e42357bdea5211c1
           </div>
           <br />
           <div>
@@ -667,46 +580,6 @@ export const U3planner = ({
                 </select>
               </div>
             </div>
-<<<<<<< HEAD
-=======
-            <div>
-              <label>Policy period</label>
-              <div id="divspace">
-                <select
-                  className="start_year"
-                  id="start_year"
-                  name="start_year"
-                  onChange={handleStartYear}
-                  defaultValue="2022"
-                  required
-                >
-                  <option value="DefaultOption">Select start year</option>
-                  {optionsNew.map((option) => (
-                    <option key={option} value={option}>
-                      {option}{" "}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <select
-                  className="finish_year"
-                  id="finish_year"
-                  name="finish_year"
-                  onChange={handleYearFinish}
-                  defaultValue="2022"
-                  required
-                >
-                  <option value="DefaultOption">Select end year</option>
-                  {optionsNew.map((option) => (
-                    <option key={option} value={option}>
-                      {option}{" "}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
->>>>>>> e351a6cda6ec6e1bac3eacf5e42357bdea5211c1
           </div>
           {/* <br />
           <div>
@@ -967,11 +840,7 @@ export const U3planner = ({
                 </select>
               </div>
             </div>
-<<<<<<< HEAD
           </div> */}
-=======
-          </div>
->>>>>>> e351a6cda6ec6e1bac3eacf5e42357bdea5211c1
           <br />
           <div>
             <div className="backButton">
@@ -987,12 +856,8 @@ export const U3planner = ({
               <Button
                 size="small"
                 value="nextU3"
-<<<<<<< HEAD
                 onClick={gotoU3policies}
                 // onClick={() => navigate("/u3policies", { replace: true })}
-=======
-                onClick={() => navigate("/u3policies", { replace: true })}
->>>>>>> e351a6cda6ec6e1bac3eacf5e42357bdea5211c1
                 label="Next &raquo;"
                 primary
               />

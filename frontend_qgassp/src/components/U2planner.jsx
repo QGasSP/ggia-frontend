@@ -152,11 +152,7 @@ export const U2planner = ({
             <div>{JSON.stringify(baselinePopulation)}</div>
             <br />
 
-<<<<<<< HEAD
-            <div>{JSON.stringify(newPopulation)}</div>
-=======
             {/*   <div>{JSON.stringify(newPopulation)}</div> */}
->>>>>>> e351a6cda6ec6e1bac3eacf5e42357bdea5211c1
             <br />
 
             <br />
