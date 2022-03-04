@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Header } from "./Header";
 import { Button } from "./Button";
 import { useNavigate } from "react-router-dom";
 import "../css/u3.css";
-import axios from "axios";
 import {
   XYPlot,
   XAxis,
@@ -29,6 +27,11 @@ export const U3policies = ({
   policyQuantification,
   emission,
   passengerMob,
+  freightTrans,
+  modalPassShares,
+  modalSplitPass,
+  modalFreShares,
+  modalSplitFre,
 }) => {
   const navigate = useNavigate();
 
@@ -58,46 +61,12 @@ export const U3policies = ({
                 <label>{passengerMob.expectedChange}</label>
                 {/* <label>{policyQuant.passengerMob.expectedChange}</label> */}
                 <label></label>
-                <label>{policyQuantification.passengerMob.affectedArea}</label>
+                <label>{passengerMob.affectedArea}</label>
               </div>
               <div>
                 <label>Policy period</label>
-                <label> {policyQuantification.passengerMob.yearStart}</label>
-                <label> {policyQuantification.passengerMob.yearFinish}</label>
-                {/* <div id="divspace">
-                  <select
-                    className="start_year"
-                    id="start_year"
-                    name="start_year"
-                    onChange={handleStartYear}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select start year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <select
-                    className="finish_year"
-                    id="finish_year"
-                    name="finish_year"
-                    onChange={handleYearFinish}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select end year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
-                </div> */}
+                <label> {passengerMob.yearStart}</label>
+                <label> {passengerMob.yearFinish}</label>
               </div>
             </div>
             <br />
@@ -111,49 +80,15 @@ export const U3policies = ({
               <div>
                 <label>change in mobility %</label>
                 <label>
-                  {policyQuantification.freightTrans.expectedChange}
+                  {freightTrans.expectedChange}
                 </label>
                 {/* <label empty for spacing></label>
                 <label>% of the area affected goes here</label> */}
               </div>
               <div>
                 <label>Policy period</label>
-                <label> {policyQuantification.freightTrans.yearStart}</label>
-                <label> {policyQuantification.freightTrans.yearFinish}</label>
-                {/* <div id="divspace">
-                  <select
-                    className="start_year"
-                    id="start_year"
-                    name="start_year"
-                    onChange={handleStartYear}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select start year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <select
-                    className="finish_year"
-                    id="finish_year"
-                    name="finish_year"
-                    onChange={handleYearFinish}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select end year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
-                </div> */}
+                <label> {freightTrans.yearStart}</label>
+                <label> {freightTrans.yearFinish}</label>
               </div>
             </div>
             <br />
@@ -167,31 +102,31 @@ export const U3policies = ({
               <div>
                 <label>Share for bus</label>
                 <label>{emission.bus}</label>
-                <label> {policyQuantification.modalPassShares.bus}</label>
+                <label> {modalPassShares.bus}</label>
                 <label>
                   {" "}
-                  {policyQuantification.modalSplitPass.affectedPopulation}
+                  {modalSplitPass.affectedPopulation}
                 </label>
               </div>
               <div>
                 <label>Share for metro</label>
                 <label>{emission.metro}</label>
-                <label> {policyQuantification.modalPassShares.metro}</label>
+                <label> {modalPassShares.metro}</label>
               </div>
               <div>
                 <label>Share for tram</label>
                 <label>{emission.tram}</label>
-                <label> {policyQuantification.modalPassShares.tram}</label>
+                <label> {modalPassShares.tram}</label>
               </div>
               <div>
                 <label>Share for train</label>
                 <label>{emission.train}</label>
-                <label> {policyQuantification.modalPassShares.train}</label>
+                <label> {modalPassShares.train}</label>
               </div>
               <div>
                 <label>Car passenger</label>
                 <label>{emission.car}</label>
-                <label> {policyQuantification.modalPassShares.car}</label>
+                <label> {modalPassShares.car}</label>
               </div>
               <div>
                 <label>
@@ -202,42 +137,8 @@ export const U3policies = ({
               </div>
               <div>
                 <label>Policy period</label>
-                <label> {policyQuantification.modalSplitPass.yearStart}</label>
-                <label> {policyQuantification.modalSplitPass.yearFinish}</label>
-                {/* <div id="divspace">
-                  <select
-                    className="start_year"
-                    id="start_year"
-                    name="start_year"
-                    onChange={handleStartYear}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select start year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <select
-                    className="finish_year"
-                    id="finish_year"
-                    name="finish_year"
-                    onChange={handleYearFinish}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select end year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
-                </div> */}
+                <label> {modalSplitPass.yearStart}</label>
+                <label> {modalSplitPass.yearFinish}</label>
               </div>
             </div>
             {/* <div className="column"> */}
@@ -329,7 +230,7 @@ export const U3policies = ({
                 <label>{emission.rail_transport}</label>
                 <label>
                   {" "}
-                  {policyQuantification.modalFreShares.railTransport}
+                  {modalFreShares.railTransport}
                 </label>
               </div>
               <div>
@@ -337,7 +238,7 @@ export const U3policies = ({
                 <label>{emission.waterways_transport}</label>
                 <label>
                   {" "}
-                  {policyQuantification.modalFreShares.waterwaysTransport}
+                  {modalFreShares.waterwaysTransport}
                 </label>
               </div>
               <div>
@@ -345,7 +246,7 @@ export const U3policies = ({
                 <label>{emission.road_transport}</label>
                 <label>
                   {" "}
-                  {policyQuantification.modalFreShares.roadTransport}
+                  {modalFreShares.roadTransport}
                 </label>
               </div>
               <div>
@@ -357,42 +258,8 @@ export const U3policies = ({
               </div>
               <div>
                 <label>Policy period</label>
-                <label> {policyQuantification.modalSplitFre.yearStart}</label>
-                <label> {policyQuantification.modalSplitFre.yearFinish}</label>
-                {/* <div id="divspace">
-                  <select
-                    className="start_year"
-                    id="start_year"
-                    name="start_year"
-                    onChange={handleStartYear}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select start year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <select
-                    className="finish_year"
-                    id="finish_year"
-                    name="finish_year"
-                    onChange={handleYearFinish}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select end year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
-                </div> */}
+                <label> {modalSplitFre.yearStart}</label>
+                <label> {modalSplitFre.yearFinish}</label>
               </div>
             </div>
             <div id="divspace">
@@ -506,40 +373,8 @@ export const U3policies = ({
               </div>
               <div>
                 <label>Policy period</label>
-                {/* <div id="divspace">
-                  <select
-                    className="start_year"
-                    id="start_year"
-                    name="start_year"
-                    onChange={handleStartYear}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select start year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
-                </div> */}
-                {/* <div>
-                  <select
-                    className="finish_year"
-                    id="finish_year"
-                    name="finish_year"
-                    onChange={handleYearFinish}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select end year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
-                </div> */}
+                <label> </label>
+                <label> </label>
               </div>
             </div>
             <div id="divspace">
@@ -703,40 +538,8 @@ export const U3policies = ({
               </div>
               <div>
                 <label>Policy period</label>
-                <div id="divspace">
-                  <select
-                    className="start_year"
-                    id="start_year"
-                    name="start_year"
-                    onChange={handleStartYear}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select start year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <select
-                    className="finish_year"
-                    id="finish_year"
-                    name="finish_year"
-                    onChange={handleYearFinish}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select end year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+                <label> </label>
+                <label> </label>
               </div>
             </div> */}
 
@@ -824,40 +627,8 @@ export const U3policies = ({
               </div>
               <div>
                 <label>Policy period</label>
-                {/* <div id="divspace">
-                  <select
-                    className="start_year"
-                    id="start_year"
-                    name="start_year"
-                    onChange={handleStartYear}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select start year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <select
-                    className="finish_year"
-                    id="finish_year"
-                    name="finish_year"
-                    onChange={handleYearFinish}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select end year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
-                </div> */}
+                <label> </label>
+                <label> </label>
               </div>
             </div>
             <div id="divspace">
@@ -1286,4 +1057,9 @@ U3policies.propTypes = {
   policyQuantification: PropTypes.object.isRequired,
   emission: PropTypes.object.isRequired,
   passengerMob: PropTypes.object.isRequired,
+  freightTrans: PropTypes.object.isRequired,
+  modalPassShares: PropTypes.object.isRequired,
+  modalSplitPass: PropTypes.object.isRequired,
+  modalFreShares: PropTypes.object.isRequired,
+  modalSplitFre: PropTypes.object.isRequired,
 };
