@@ -21,7 +21,6 @@ export const LandUseChangeTableForm = ({
   onCreateAccount,
   country,
   year,
-  population,
 }) => {
   // to Forest vars
   // #region
@@ -279,7 +278,7 @@ export const LandUseChangeTableForm = ({
       settlementsToOtherOrganic
   );
   const [LUCbaseline, setLUCbaseline] = useState(false);
-  const [landUseChange, setLandUseChange] = useState("");
+  const [landUseChangeResponse, setLandUseChangeResponse] = useState("");
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
@@ -1061,7 +1060,7 @@ export const LandUseChangeTableForm = ({
   };
 
   const setResponse = (response) => {
-    setLandUseChange(response);
+    setLandUseChangeResponse(response.data);
   };
 
   useEffect(async () => {
@@ -1071,6 +1070,11 @@ export const LandUseChangeTableForm = ({
       organic: organic,
       policyStartYear: policyStartYear,
     };
+    const rawData = {
+        country,
+        year,
+        landUseChange
+    };
     // const rawData = { country, year, population, landUseChange };
     const headers = {
       "Content-type": "application/json",
@@ -1078,7 +1082,7 @@ export const LandUseChangeTableForm = ({
     axios
       .post(
         "https://ggia.ulno.net/api/v1/calculate/land-use-change",
-        landUseChange,
+        rawData,
         headers
       )
       .then((response) => setResponse(response.data))
@@ -1090,8 +1094,8 @@ export const LandUseChangeTableForm = ({
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("landUseChange", landUseChange);
-  }, [landUseChange]);
+    localStorage.setItem("landUseChange", landUseChangeResponse);
+  }, [landUseChangeResponse]);
 
   if (LUCbaseline === false) {
     return (
@@ -3067,16 +3071,14 @@ export const LandUseChangeTableForm = ({
   } else {
     return (
       <LUCBaseline
-      // country={country}
-      // year={year}
-      // population={population}
+        country={country}
+        year={year}
       />
     );
   }
 };
 
 LandUseChangeTableForm.propTypes = {
-  population: PropTypes.number.isRequired,
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
   user: PropTypes.shape({}),
