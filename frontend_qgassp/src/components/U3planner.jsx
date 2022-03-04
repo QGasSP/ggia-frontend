@@ -1190,7 +1190,6 @@ export const U3planner = ({ baseline, newDevelopment, emission }) => {
 };
 
 U3planner.propTypes = {
-  policyQuantification: PropTypes.object.isRequired,
   baseline: PropTypes.object.isRequired,
   newDevelopment: PropTypes.object.isRequired,
   emission: PropTypes.object.isRequired,
