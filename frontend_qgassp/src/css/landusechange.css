@@ -103,7 +103,7 @@ input {
 }
 input.table-cell,
 select.table-cell {
-  width: 100px;
+  width: 100px !important;
 }
 .piechart_container {
   display: flex;

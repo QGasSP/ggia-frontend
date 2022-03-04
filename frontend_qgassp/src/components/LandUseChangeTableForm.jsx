@@ -3071,7 +3071,7 @@ export const LandUseChangeTableForm = ({
   } else {
     return (
       <LUCBarChart
-        
+        landUseChangeResponse={landUseChangeResponse}
       />
     );
   }

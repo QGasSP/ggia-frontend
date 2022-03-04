@@ -14,14 +14,14 @@ import PropTypes from "prop-types";
 
 // you need to declare this part like this, anywhere on the top, before export
 const BarSeries = VerticalBarSeries;
-//^^^^^^^^^^^
+// ^^^^^^^^^^^
 
 /**
  * LucStackedBarchart UI component
  * @return {}
  */
 
-export const LucStackedBarchart = ({ primary, size, ...props }) => {
+export const LucStackedBarchart = ({primary, size, landUseChangeResponse }) => {
   const mode = primary
     ? "storybook-LucStackedBarchart--small"
     : "storybook-LucStackedBarchart--large";
@@ -1097,8 +1097,8 @@ export const LucStackedBarchart = ({ primary, size, ...props }) => {
                     { x: 2050, y: -150 },
                   ]}
                 />
-              </XYPlot>
-              {/* ^^^^^^^^^^^^^^^^^^^^^ */}
+      </XYPlot>
+    {/* ^^^^^^^^^^^^^^^^^^^^^ */}
     </div>
   );
 };
