@@ -1015,7 +1015,7 @@ export const U3policies = ({
               >
                 <HorizontalGridLines style={{ stroke: "#B7E9ED" }} />
                 <VerticalGridLines style={{ stroke: "#B7E9ED" }} />
-                <VerticalBarSeries className="StackedBarchart" />
+                <VerticalBarSeries className="U3StackedBarchart" />
                 <XAxis
                   style={{
                     line: { stroke: "#ADDDE1" },
