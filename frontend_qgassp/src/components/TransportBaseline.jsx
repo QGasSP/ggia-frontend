@@ -25,24 +25,30 @@ export const TransportBaseline = ({ country, year, population }) => {
   const [total, setTotal] = useState(parseFloat(0));
   const [nextEmissions, setNextEmissions] = useState(false);
   const [settlementDistribution, setSettlementDistribution] = useState("");
+  const [setPieError, setPieChartErrorMessage] = useState("");
 
   const handleMetropolitanCenter = (e) => {
+    setPieChartErrorMessage("")
     e.preventDefault();
     setMetropolitan(parseFloat(e.target.value));
   };
   const handleUrban = (e) => {
+    setPieChartErrorMessage("")
     e.preventDefault();
     setUrban(parseFloat(e.target.value));
   };
   const handleSuburban = (e) => {
+    setPieChartErrorMessage("")
     e.preventDefault();
     setSubUrban(parseFloat(e.target.value));
   };
   const handleTown = (e) => {
+    setPieChartErrorMessage("")
     e.preventDefault();
     setTown(parseFloat(e.target.value));
   };
   const handleRural = (e) => {
+    setPieChartErrorMessage("")
     e.preventDefault();
     setRural(parseFloat(e.target.value));
   };
@@ -57,7 +63,7 @@ export const TransportBaseline = ({ country, year, population }) => {
     };
     setSettlementDistribution(settlementDist);
     setTotal(metropolitanCenter + urban + suburban + town + rural);
-    setNextEmissions(true);
+    setNextEmissions(true); 
   };
 
   return (
@@ -72,17 +78,21 @@ export const TransportBaseline = ({ country, year, population }) => {
 
         <section>
           <div className="row">
-
             <div className="column">
+            <div className="settlement_headers">
+                  <label>
+                    <b>U1.1 Settlement type </b>
+                  </label>
+                  <label>Share ({total}%) :  {setPieError}</label>
+                </div>
               <div>
                 <label htmlFor="metropolitan" className="settle_label">Metropolitan center</label>
                 <input
                   type="number"
-                  step="0.1"
+                  step="0.01"
                   id="metropolitan"
                   min="0"
                   max="100"
-                  placeholder="0.00"
                   /*  defaultValue={metropolitanCenter} */
                   onChange={handleMetropolitanCenter}
                   required
@@ -95,11 +105,10 @@ export const TransportBaseline = ({ country, year, population }) => {
                 </label>
                 <input
                   type="number"
-                  step="0.1"
+                  step="0.01"
                   id="urban"
                   min="0"
                   max="100"
-                  placeholder="0.00"
                   /*   value={urban} */
                   onChange={handleUrban}
                   required
@@ -115,9 +124,8 @@ export const TransportBaseline = ({ country, year, population }) => {
                   type="number"
                   id="suburban"
                   step="any"
-                  min="0.0"
+                  min="0.01"
                   max="100.0"
-                  placeholder="0.00"
                   /*   defaultValue={suburban} */
                   onChange={handleSuburban}
                   required
@@ -131,10 +139,9 @@ export const TransportBaseline = ({ country, year, population }) => {
                 <input
                   type="number"
                   id="town"
-                  step="0.1"
+                  step="0.01"
                   min="0.0"
                   max="100.0"
-                  placeholder="0.00"
                   /*   value={town} */
                   onChange={handleTown}
                   required
@@ -148,11 +155,10 @@ export const TransportBaseline = ({ country, year, population }) => {
                 <input
                   type="number"
                   id="rural"
-                  step="0.1"
+                  step="0.01"
                   min="0"
                   max="100"
                   /*   value={rural} */
-                  placeholder="0.00"
                   onChange={handleRural}
                   required
                 />
@@ -212,9 +218,10 @@ export const TransportBaseline = ({ country, year, population }) => {
             </div>
           </div>
 
-          {nextEmissions===true &&
+          {nextEmissions===true && total===100.00 &&
           <U1planner country={country} year={year} population={population} settlementDistribution={settlementDistribution}/>
           }
+
         </section>
       </article>
     </div>

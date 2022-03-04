@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Button } from "./Button";
 import "../css/u1planner.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { StackedBarchart } from "./StackedBarchart";
 
 /**
@@ -18,7 +17,6 @@ export const U1planner = ({
   settlementDistribution,
 }) => {
   const [error, setError] = useState("");
-  const navigate = useNavigate();
   const [nextU1Charts, setU1Charts] = useState(false);
   const [emission, setEmissionData] = useState("");
   const [projections, setProjections] = useState("");

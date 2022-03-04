@@ -119,7 +119,7 @@ export const StartPage = () => {
                 </label>
                 <input
                   type="number"
-                  pattern="[0-9]*"
+                  pattern="[0-9]*" 
                   id="population_assessment"
                   className="population"
                   placeholder="0"
