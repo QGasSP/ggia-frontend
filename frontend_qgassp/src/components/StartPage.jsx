@@ -50,7 +50,7 @@ export const StartPage = () => {
     return (
       <article>
         {/*  {<TabModules/>} */}
-        <br/>
+        <br />
 
         <div>
           <Divider textAlign="left" flexItem>
@@ -143,7 +143,7 @@ export const StartPage = () => {
                   required
                 />
               </div>
-              <div  className="next_u1">
+              <div className="next_u1">
                 <Button
                   size="small"
                   type="submit"
