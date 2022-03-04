@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Button } from "./Button";
 import { useNavigate } from "react-router-dom";
 import "../css/u3.css";
-import axios from "axios";
 import {
   XYPlot,
   XAxis,
@@ -545,8 +544,13 @@ export const U3policies = ({
               </div>
               <div>
                 <label>Policy period</label>
+<<<<<<< HEAD
                 <label>{fuelSharesCar.yearStart}</label>
                 <label>{fuelSharesCar.yearFinish}</label>
+=======
+                <label> </label>
+                <label> </label>
+>>>>>>> 0be0fd4 (improvements on BE connection for U3 pages)
               </div>
             </div>
 
