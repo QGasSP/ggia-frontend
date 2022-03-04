@@ -35,7 +35,7 @@ export const U2planner = ({
   const navigate = useNavigate();
 
   useEffect(async () => {
-    const rawData = { baseline, newDevelopment };
+    const rawData = { baseline, newDevelopment, newPopulation };
     const headers = {
       "Content-type": "application/json",
       "Access-Control-Allow-Origin": "*",
