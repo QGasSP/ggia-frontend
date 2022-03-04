@@ -16,6 +16,7 @@ import Divider from "@mui/material/Divider";
 export const NewResidents = ({
   settlementDistribution,
   baseline,
+  emission,
   user,
   onLogin,
   onLogout,
@@ -265,6 +266,7 @@ export const NewResidents = ({
         baseline={baseline.baseline}
         newDevelopment={newDevelopment}
         settlementDistribution={settlementDistribution}
+        emission={emission}
       />
     );
   }
@@ -280,6 +282,7 @@ NewResidents.propTypes = {
   onLogin: PropTypes.func.isRequired,
   onLogout: PropTypes.func.isRequired,
   onCreateAccount: PropTypes.func.isRequired,
+  emission: PropTypes.object.isRequired,
 };
 
 NewResidents.defaultProps = {

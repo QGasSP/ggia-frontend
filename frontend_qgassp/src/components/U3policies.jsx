@@ -26,88 +26,15 @@ const BarSeries = VerticalBarSeries;
  */
 
 export const U3policies = ({
-  year,
-  user,
   policyQuantification,
-  onLogin,
-  onLogout,
-  onCreateAccount,
+  emission,
+  passengerMob,
 }) => {
-  const [errorU3, setU3Error] = useState("");
-  const [yearStart, setYearStart] = useState(0);
-  const [yearFinish, setYearFinish] = useState(0);
-  const [expectedChange, setExpectedChange] = useState("");
-  const [emission, setEmissionData] = useState("");
   const navigate = useNavigate();
-  const [newPolicy, setU3Policy] = useState("");
-  const [passengerMob, setPassengerMobility] = useState("");
-  const [freightTrans, setFreightTransport] = useState("");
-  const [modalSplitPass, setModalSplitPass] = useState("");
-  const [modalFreShares, setModalFreightShares] = useState("");
-  const [modalSplitFre, setModalSplitFre] = useState("");
-  const [policyQuant, setPolicyQuantification] = useState("");
-  // const [baseline, setBaseline] = useState("");
-  //   const [newDevelopment, setNewDevelopment] = useState("");
-  //   const [updateU2charts, setU2charts] = useState(false);
-  //   const [totalNewResidents, setTotalNewResidents] = useState(0.0);
-  const optionsNew = [];
-  for (let i = 2022; i < 2051; i++) optionsNew.push(i);
-  const handleStartYear = (e) => {
-    setYearStart(Number(e.target.value));
-  };
-  const handleYearFinish = (e) => {
-    e.preventDefault();
-    setYearFinish(Number(e.target.value));
-  };
-
-  const handleExpectedChange = (e) => {
-    setExpectedChange(Number(e.target.value));
-  };
-
-  useEffect(async () => {
-    const policyQuant = {
-      passengerMob,
-      freightTrans,
-      modalSplitPass,
-      modalSplitFre,
-    };
-    setPolicyQuantification(policyQuant);
-    const raw = { policyQuantification };
-
-    const headers = {
-      "Content-type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-    };
-    axios
-      .post(
-        "https://ggia-dev.ulno.net/api/v1/calculate/transport/policy_quantification",
-        raw,
-        headers
-      )
-      .then((response) => setU3Response(response.data))
-      .catch((error) => {
-        setU3Error({ errorMessage: error.message });
-        // eslint-disable-next-line no-console
-        console.error("There was an error!", errorU3);
-      });
-  }, []);
-
-  const setU3Response = (response) => {
-    setU3Policy(response.data.policy_quantification);
-    setEmissionData(response.data.baseline.emissions);
-  };
 
   // if (updateU2charts === false && totalNewResidents !== 100) {
   return (
     <article>
-      {
-        <Header
-          user={user}
-          onLogin={onLogin}
-          onLogout={onLogout}
-          onCreateAccount={onCreateAccount}
-        />
-      }
       <div className="headerU3policies">
         <Divider textAlign="left" flexItem>
           {" "}
@@ -128,9 +55,7 @@ export const U3policies = ({
               <label>% of the area affected</label>
               <div>
                 <label>change in mobility %</label>
-                <label>
-                  {policyQuantification.passengerMob.expectedChange}
-                </label>
+                <label>{passengerMob.expectedChange}</label>
                 {/* <label>{policyQuant.passengerMob.expectedChange}</label> */}
                 <label></label>
                 <label>{policyQuantification.passengerMob.affectedArea}</label>
@@ -581,7 +506,7 @@ export const U3policies = ({
               </div>
               <div>
                 <label>Policy period</label>
-                <div id="divspace">
+                {/* <div id="divspace">
                   <select
                     className="start_year"
                     id="start_year"
@@ -597,8 +522,8 @@ export const U3policies = ({
                       </option>
                     ))}
                   </select>
-                </div>
-                <div>
+                </div> */}
+                {/* <div>
                   <select
                     className="finish_year"
                     id="finish_year"
@@ -614,7 +539,7 @@ export const U3policies = ({
                       </option>
                     ))}
                   </select>
-                </div>
+                </div> */}
               </div>
             </div>
             <div id="divspace">
@@ -899,7 +824,7 @@ export const U3policies = ({
               </div>
               <div>
                 <label>Policy period</label>
-                <div id="divspace">
+                {/* <div id="divspace">
                   <select
                     className="start_year"
                     id="start_year"
@@ -932,7 +857,7 @@ export const U3policies = ({
                       </option>
                     ))}
                   </select>
-                </div>
+                </div> */}
               </div>
             </div>
             <div id="divspace">
@@ -1358,15 +1283,7 @@ export const U3policies = ({
 };
 
 U3policies.propTypes = {
-  year: PropTypes.number.isRequired,
   policyQuantification: PropTypes.object.isRequired,
-  country: PropTypes.string.isRequired,
-  user: PropTypes.shape({}),
-  onLogin: PropTypes.func.isRequired,
-  onLogout: PropTypes.func.isRequired,
-  onCreateAccount: PropTypes.func.isRequired,
-};
-
-U3policies.defaultProps = {
-  user: null,
+  emission: PropTypes.object.isRequired,
+  passengerMob: PropTypes.object.isRequired,
 };

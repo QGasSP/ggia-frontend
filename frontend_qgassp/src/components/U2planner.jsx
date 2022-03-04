@@ -28,6 +28,7 @@ export const U2planner = ({
   baseline,
   newDevelopment,
   settlementDistribution,
+  emission,
 }) => {
   const [errorU2, setU2Error] = useState("");
   const [newPopulation, setNewPopulation] = useState("");
@@ -266,7 +267,13 @@ export const U2planner = ({
       </article>
     );
   } else {
-    return <U3planner baseline={baseline} newDevelopment={newDevelopment} />;
+    return (
+      <U3planner
+        baseline={baseline}
+        newDevelopment={newDevelopment}
+        emission={emission}
+      />
+    );
   }
 };
 
@@ -278,6 +285,7 @@ U2planner.propTypes = {
   onLogin: PropTypes.func.isRequired,
   onLogout: PropTypes.func.isRequired,
   onCreateAccount: PropTypes.func.isRequired,
+  emission: PropTypes.object.isRequired,
 };
 
 U2planner.defaultProps = {
