@@ -1118,7 +1118,7 @@ export const LandUseChangeTableForm = ({
           <div className="luc_main">
             <section>
               <form id="from_landusechange_type">
-                <div className="row">
+                <div className="luc_row">
                   <table className="toForest tbl">
                     <thead>
                       <th className="row-title">Land-Use Change</th>
@@ -1742,7 +1742,7 @@ export const LandUseChangeTableForm = ({
                   </table>
                 </div>
 
-                <div className="row">
+                <div className="luc_row">
                   <table className="toGrass tbl">
                     <thead>
                       <th className="row-title">Land-Use Change</th>
@@ -2369,7 +2369,7 @@ export const LandUseChangeTableForm = ({
                   </table>
                 </div>
 
-                <div className="row">
+                <div className="luc_row">
                   <table className="toSettlements tbl">
                     <thead>
                       <th className="row-title">Land-Use Change</th>
@@ -2999,7 +2999,7 @@ export const LandUseChangeTableForm = ({
                   </table>
                 </div>
 
-                <div className="row">
+                <div className="luc_row">
                   <table>
                     <thead>
                       <th className="row-title">Land-Use Change</th>

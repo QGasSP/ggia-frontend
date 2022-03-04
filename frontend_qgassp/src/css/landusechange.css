@@ -51,14 +51,14 @@ select {
   z-index: 1;
 }
 
-/* .row:after {
+/* .luc_row:after {
   margin-top: 1em;
   content: "";
   display: table;
   clear: both;
 } */
 
-.row {
+.luc_row {
   /* margin-left: 30px; */
   display: flex;
   justify-content: space-between;
@@ -70,20 +70,20 @@ select {
   }
 }
 
-/* Chrome, Safari, Edge, Opera hide input number up and down arrows*/
+/* Chrome, Safari, Edge, Opera hide input number up and down arluc_rows*/
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-/* Firefox hide input number up and down arrows*/
+/* Firefox hide input number up and down arluc_rows*/
 input[type="number"] {
   -moz-appearance: textfield;
   -webkit-appearance: textfield;
   appearance: textfield;
 }
-table {
+table.tbl {
   margin-bottom: 20px;
   width: 48%;
 }
@@ -93,8 +93,8 @@ th {
   text-align: left;
   padding-right: 5px;
 }
-td.row-title,
-th.row-title {
+td.luc_row-title,
+th.luc_row-title {
   width: 170px;
   text-align: left;
 }
