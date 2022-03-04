@@ -14,7 +14,7 @@ import { U3policies } from "./U3policies";
  */
 
 export const U3planner = ({ baseline, newDevelopment, emission }) => {
-  const [policyQuantification, setPolicyQunatification] = useState("");
+  const [policyQuantification, setPolicyQuantification] = useState("");
   const [yearStart, setYearStart] = useState(0);
   const [yearFinish, setYearFinish] = useState(0);
   const [nextU3policies, setU3policies] = useState(false);
@@ -30,6 +30,7 @@ export const U3planner = ({ baseline, newDevelopment, emission }) => {
   const [passengerMob, setPassengerMobility] = useState("");
   const [freightTrans, setFreightTransport] = useState("");
   const [modalSplitPass, setModalSplitPass] = useState("");
+  const [modalPassShares, setModalPassShares] = useState("");
   const [modalFreShares, setModalFreightShares] = useState("");
   const [modalSplitFre, setModalSplitFre] = useState("");
   const [bus, setBus] = useState(0);
@@ -41,7 +42,7 @@ export const U3planner = ({ baseline, newDevelopment, emission }) => {
   const [railTransport, setRailTransport] = useState(0);
   const [waterwaysTransport, setWaterwaysTransport] = useState(0);
   const [roadTransport, setRoadTransport] = useState(0);
-  const [policyQuant, setPolicyQuantification] = useState("");
+  // const [policyQuant, setPolicyQuantification] = useState("");
   const navigate = useNavigate();
 
   const optionsNew = [];
@@ -182,23 +183,9 @@ export const U3planner = ({ baseline, newDevelopment, emission }) => {
     setPolicyQuantification(response.data.policy_quantification);
   };
 
-  // const policyQuant = {
-  //   passengerMob,
-  //   freightTrans,
-  //   modalSplitPass,
-  //   modalSplitFre,
-  // };
-  // setPolicyQuantification(policyQuant);
-  // setPolicyQuantification({policyQuant});
-
   const gotoU3policies = () => {
     setU3policies(true);
   };
-
-  // const setResponse = (response) => {
-  //   setEmissionData(response.data.baseline.emissions);
-  //   setProjections(response.data.baseline.projections);
-  // };
 
   if (nextU3policies === false) {
     return (
@@ -366,7 +353,8 @@ export const U3planner = ({ baseline, newDevelopment, emission }) => {
                   placeholder="0"
                   min="0"
                   max="100"
-                  onChange={handlePassTransPolicyTarget}
+                  // onChange={handlePassTransPolicyTarget}
+                  onChange={handleBus}
                   required
                 />
                 <input
@@ -390,7 +378,7 @@ export const U3planner = ({ baseline, newDevelopment, emission }) => {
                   placeholder="0"
                   min="0"
                   max="100"
-                  onChange={handlePassTransPolicyTarget}
+                  onChange={handleMetro}
                   required
                 />
               </div>
@@ -404,7 +392,7 @@ export const U3planner = ({ baseline, newDevelopment, emission }) => {
                   placeholder="0"
                   min="0"
                   max="100"
-                  onChange={handlePassTransPolicyTarget}
+                  onChange={handleTram}
                   required
                 />
               </div>
@@ -418,7 +406,7 @@ export const U3planner = ({ baseline, newDevelopment, emission }) => {
                   placeholder="0"
                   min="0"
                   max="100"
-                  onChange={handlePassTransPolicyTarget}
+                  onChange={handleTrain}
                   required
                 />
               </div>
@@ -850,6 +838,11 @@ export const U3planner = ({ baseline, newDevelopment, emission }) => {
         emission={emission}
         policyQuantification={policyQuantification}
         passengerMob={passengerMob}
+        freightTrans={freightTrans}
+        modalPassShares={modalPassShares}
+        modalSplitPass={modalSplitPass}
+        modalFreShares={modalFreShares}
+        modalSplitFre={modalSplitFre}
       />
     );
   }
