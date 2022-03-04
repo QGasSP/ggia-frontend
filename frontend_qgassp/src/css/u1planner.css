@@ -139,7 +139,12 @@ section div {
 
 .nextU2Button {
   position: absolute;
-  right: 33%;
+  left: 33%;
+}
+
+.save_piechart{
+  position: absolute;
+  left: 33%;
 }
 
 .settlement_main {

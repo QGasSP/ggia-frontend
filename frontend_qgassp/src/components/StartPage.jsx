@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { Button } from "./Button";
 import "../css/startpage.css";
-import { U1planner } from "./U1planner";
-import TabModules from "./TabModules";
-// import { useStorageInt } from "../reducers/useStorage";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
+import { TransportBaseline } from "./TransportBaseline";
 
 export const StartPage = () => {
   const [country, setCountry] = useState("");
@@ -37,7 +35,7 @@ export const StartPage = () => {
     return (
       <article>
         {/*  {<TabModules/>} */}
-        <br/>
+        <br />
 
         <div>
           <Divider textAlign="left" flexItem>
@@ -130,7 +128,7 @@ export const StartPage = () => {
                   required
                 />
               </div>
-              <div  className="next_u1">
+              <div className="next_u1">
                 <Button
                   size="small"
                   type="submit"
@@ -145,6 +143,12 @@ export const StartPage = () => {
       </article>
     );
   } else {
-    return <U1planner country={country} year={year} population={population} />;
+    return (
+      <TransportBaseline
+        country={country}
+        year={year}
+        population={population}
+      />
+    );
   }
 };
