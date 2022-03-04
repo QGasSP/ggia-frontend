@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Button } from "./Button";
 import { useNavigate } from "react-router-dom";
 import "../css/u3.css";
-import axios from "axios";
 import {
   XYPlot,
   XAxis,
