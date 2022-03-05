@@ -32,6 +32,12 @@ export const U3policies = ({
   modalSplitPass,
   modalFreShares,
   modalSplitFre,
+  fuelSharesBusTypes,
+  fuelSharesBus,
+  fuelSharesCarTypes,
+  fuelSharesCar,
+  electricityTransTypes,
+  electricityTrans
 }) => {
   const navigate = useNavigate();
 
@@ -341,28 +347,28 @@ export const U3policies = ({
               <div>
                 <label>Petroleum products</label>
                 <label></label>
-                <label>policy target %</label>
-                <label>% of the area affeccted</label>
+                <label>{fuelSharesBusTypes.petrol}</label>
+                <label>{fuelSharesBus.affectedArea}</label>
               </div>
               <div>
                 <label>Liquified Petroleum Gas (LPG)</label>
                 <label></label>
-                <label>policy target %</label>
+                <label>{fuelSharesBusTypes.lpg}</label>
               </div>
               <div>
                 <label>Natural Gas (CNG)</label>
                 <label></label>
-                <label>policy target %</label>
+                <label>{fuelSharesBusTypes.cng}</label>
               </div>
               <div>
                 <label>Electricty</label>
                 <label></label>
-                <label>policy target %</label>
+                <label>{fuelSharesBusTypes.electricity}</label>
               </div>
               <div>
                 <label>Diesel</label>
                 <label></label>
-                <label>policy target %</label>
+                <label>{fuelSharesBusTypes.diesel}</label>
               </div>
               <div>
                 <label>
@@ -373,8 +379,8 @@ export const U3policies = ({
               </div>
               <div>
                 <label>Policy period</label>
-                <label> </label>
-                <label> </label>
+                <label>{fuelSharesBus.yearStart}</label>
+                <label>{fuelSharesBus.yearFinish}</label>
               </div>
             </div>
             <div id="divspace">
@@ -446,7 +452,7 @@ export const U3policies = ({
               />
             </div>
             <br />
-            {/* <div>
+            <div>
               <label>
                 <b>U3.6 Shares of fuel types/Cars</b>
               </label>
@@ -456,28 +462,28 @@ export const U3policies = ({
               <div>
                 <label>Liquified Petroleum Gas (LPG)</label>
                 <label></label>
-                <label>policy target %</label>
-                <label>% of the area affeccted</label>
+                <label>{fuelSharesCarTypes.lpg}</label>
+                <label>{fuelSharesCar.affectedArea}</label>
               </div>
               <div>
                 <label>Natural Gas (CNG)</label>
                 <label></label>
-                <label>policy target %</label>
+                <label>{fuelSharesCarTypes.cng}</label>
               </div>
               <div>
                 <label>Alternative Energy/biomethane NGV</label>
                 <label></label>
-                <label>policy target %</label>
+                <label>{fuelSharesCarTypes.ngv}</label>
               </div>
               <div>
                 <label>Hybrid electric-petrol</label>
                 <label></label>
-                <label>policy target %</label>
+                <label>{fuelSharesCarTypes.hep}</label>
               </div>
               <div>
                 <label>Plug-in hybrid petrol-electric PHEV</label>
                 <label></label>
-                <label>policy target %</label>
+                <label>{fuelSharesCarTypes.phev}</label>
               </div>
               <div>
                 <label>Hybrid diesel-electric</label>
@@ -492,42 +498,42 @@ export const U3policies = ({
               <div>
                 <label>Hydrogen and fuel cells</label>
                 <label></label>
-                <label>policy target %</label>
+                <label>{fuelSharesCarTypes.hydrogenfuel}</label>
               </div>
               <div>
                 <label>Bioethanol</label>
                 <label></label>
-                <label>policy target %</label>
+                <label>{fuelSharesCarTypes.bioethanol}</label>
               </div>
               <div>
                 <label>Bio-diesel</label>
                 <label></label>
-                <label>policy target %</label>
+                <label>{fuelSharesCarTypes.biodiesel}</label>
               </div>
               <div>
                 <label>Bi-fuel</label>
                 <label></label>
-                <label>policy target %</label>
+                <label>{fuelSharesCarTypes.bifuel}</label>
               </div>
               <div>
                 <label>Other (unknown)</label>
                 <label></label>
-                <label>policy target %</label>
+                <label>{fuelSharesCarTypes.other}</label>
               </div>
               <div>
                 <label>Electricity BEV</label>
                 <label></label>
-                <label>policy target %</label>
+                <label>{fuelSharesCarTypes.electricity}</label>
               </div>
               <div>
                 <label>Petrol, according to country selection</label>
                 <label></label>
-                <label>policy target %</label>
+                <label>{fuelSharesCarTypes.petrol}</label>
               </div>
               <div>
                 <label>Diesel, according to country selection</label>
                 <label></label>
-                <label>policy target %</label>
+                <label>{fuelSharesCarTypes.diesel}</label>
               </div>
               <div>
                 <label>
@@ -538,10 +544,10 @@ export const U3policies = ({
               </div>
               <div>
                 <label>Policy period</label>
-                <label> </label>
-                <label> </label>
+                <label>{fuelSharesCar.yearStart}</label>
+                <label>{fuelSharesCar.yearFinish}</label>
               </div>
-            </div> */}
+            </div>
 
             <div id="divspace">
               <RadialChart
@@ -622,13 +628,13 @@ export const U3policies = ({
               <div>
                 <label>Increase in the share of renewables</label>
                 <label>gCO2e/kWh without policy</label>
-                <label>policy target %</label>
-                <label>% of the area affected</label>
+                <label>{electricityTransTypes.renewables}</label>
+                <label>{electricityTrans.affectedArea}</label>
               </div>
               <div>
                 <label>Policy period</label>
-                <label> </label>
-                <label> </label>
+                <label>{electricityTrans.yearStart}</label>
+                <label>{electricityTrans.yearFinish}</label>
               </div>
             </div>
             <div id="divspace">
@@ -1062,4 +1068,10 @@ U3policies.propTypes = {
   modalSplitPass: PropTypes.object.isRequired,
   modalFreShares: PropTypes.object.isRequired,
   modalSplitFre: PropTypes.object.isRequired,
+  fuelSharesBusTypes: PropTypes.object.isRequired,
+  fuelSharesBus: PropTypes.object.isRequired,
+  fuelSharesCarTypes: PropTypes.object.isRequired,
+  fuelSharesCar: PropTypes.object.isRequired,
+  electricityTransTypes: PropTypes.object.isRequired,
+  electricityTrans: PropTypes.object.isRequired,
 };
