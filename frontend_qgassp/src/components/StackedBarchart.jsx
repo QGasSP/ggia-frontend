@@ -514,6 +514,7 @@ export const StackedBarchart = ({
       <NewResidents
         baseline={baseline}
         settlementDistribution={settlementDistribution}
+        projections={projections}
       />
     );
   }
