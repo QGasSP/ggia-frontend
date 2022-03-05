@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Button } from "./Button";
 import { useNavigate } from "react-router-dom";
 import "../css/u3.css";
+import axios from "axios";
 import {
   XYPlot,
   XAxis,
@@ -42,6 +43,26 @@ export const U3policies = ({
   electricityTrans
 }) => {
   const navigate = useNavigate();
+
+  useEffect(async () => {
+    const rawData = { baseline, policyQuantification };
+    const headers = {
+      "Content-type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    };
+    await axios
+      .post(
+        "https://ggia-dev.ulno.net/api/v1/calculate/transport",
+        rawData,
+        headers
+      )
+      .then((response) => setU3Response(response.data.json))
+      .catch((error) => {
+        setU3Error({ errorMessage: error.message });
+        // eslint-disable-next-line no-console
+        console.error("U3 Response data error---", error);
+      });
+  }, []);
 
   // if (updateU2charts === false && totalNewResidents !== 100) {
   return (
