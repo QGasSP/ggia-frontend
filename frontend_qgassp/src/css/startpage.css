@@ -65,7 +65,6 @@
 .next_u1 {
   padding-top: 0.5rem;
   position: absolute;
-<<<<<<< HEAD
   left: 1.5rem;
 }
 
@@ -73,9 +72,6 @@
   padding-top: 0.5rem;
   /*  position: absolute; */
   width: 25%;
-=======
-  right: 40%;
->>>>>>> 5a8eb0a (trying to connect U3 to BE)
 }
 
 .row_start {

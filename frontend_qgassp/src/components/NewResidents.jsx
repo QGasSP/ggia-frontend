@@ -254,6 +254,7 @@ export const NewResidents = ({
         newDevelopment={newDevelopment}
         settlementDistribution={settlementDistribution}
         emission={emission}
+        projections={projections}
       />
     );
   }

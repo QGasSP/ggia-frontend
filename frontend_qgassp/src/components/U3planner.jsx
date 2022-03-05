@@ -13,7 +13,7 @@ import { U3policies } from "./U3policies";
  * @return {}
  */
 
-export const U3planner = ({ baseline, newDevelopment, emission }) => {
+export const U3planner = ({ baseline, newDevelopment, emission, projections }) => {
   const [policyQuantification, setPolicyQuantification] = useState("");
   const [yearStart, setYearStart] = useState(0);
   const [yearFinish, setYearFinish] = useState(0);
@@ -1195,6 +1195,7 @@ export const U3planner = ({ baseline, newDevelopment, emission }) => {
         fuelSharesCar={fuelSharesCar}
         electricityTransTypes={electricityTransTypes}
         electricityTrans={electricityTrans}
+        projections={projections}
       />
     );
   }
@@ -1204,4 +1205,5 @@ U3planner.propTypes = {
   baseline: PropTypes.object.isRequired,
   newDevelopment: PropTypes.object.isRequired,
   emission: PropTypes.object.isRequired,
+  projections: PropTypes.object.isRequired,
 };
