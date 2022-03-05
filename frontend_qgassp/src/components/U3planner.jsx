@@ -42,6 +42,33 @@ export const U3planner = ({ baseline, newDevelopment, emission }) => {
   const [railTransport, setRailTransport] = useState(0);
   const [waterwaysTransport, setWaterwaysTransport] = useState(0);
   const [roadTransport, setRoadTransport] = useState(0);
+  const [lpg, setLpg] = useState(0);
+  const [cng, setCng] = useState(0);
+  const [electricity, setElectricity] = useState(0);
+  const [petrol, setPetrol] = useState(0);
+  const [diesel, setDiesel] = useState(0);
+  const [fuelSharesBusTypes, setFuelSharesBusTypes] = useState("");
+  const [fuelSharesBus, setFuelSharesBus] = useState("");
+  const [types, setTypes] = useState("");
+  const [ngv, setNgv] = useState(0);
+  const [hep, setHep] = useState(0);
+  const [phev, setPhev] = useState(0);
+  const [hydrogenfuel, setHydrogenfuel] = useState(0);
+  const [bioethanol, setBioethanol] = useState(0);
+  const [biodiesel, setBiodiesel] = useState(0);
+  const [bifuel, setBifuel] = useState(0);
+  const [other, setOther] = useState(0);
+  const [fuelSharesCarTypes, setFuelSharesCarTypes] = useState("");
+  const [fuelSharesCar, setFuelSharesCar] = useState("");
+  const [renewables, setRenewables] = useState(0);
+  const [electricityTransTypes, setElectricityTransTypes] = useState("");
+  const [electricityTrans, setElectricityTrans] = useState("");
+  
+
+
+
+
+
   // const [policyQuant, setPolicyQuantification] = useState("");
   const navigate = useNavigate();
 
@@ -111,6 +138,60 @@ export const U3planner = ({ baseline, newDevelopment, emission }) => {
     setRoadTransport(Number(e.target.value));
   };
 
+  const handleLpg = (e) => {
+    e.preventDefault();
+    setLpg(Number(e.target.value));
+  };
+  const handleCng = (e) => {
+    e.preventDefault();
+    setCng(Number(e.target.value));
+  };
+  const handleElectricity = (e) => {
+    e.preventDefault();
+    setElectricity(Number(e.target.value));
+  };
+  const handlePetrol = (e) => {
+    e.preventDefault();
+    setPetrol(Number(e.target.value));
+  };
+  const handleDiesel = (e) => {
+    e.preventDefault();
+    setDiesel(Number(e.target.value));
+  };
+
+  const handleNgv = (e) => {
+    e.preventDefault();
+    setNgv(Number(e.target.value));
+  };
+  const handleHep = (e) => {
+    e.preventDefault();
+    setHep(Number(e.target.value));
+  };
+  const handlePhev = (e) => {
+    e.preventDefault();
+    setPhev(Number(e.target.value));
+  };
+  const handleHydrogenfuel = (e) => {
+    e.preventDefault();
+    setHydrogenfuel(Number(e.target.value));
+  };
+  const handleBioethanol = (e) => {
+    e.preventDefault();
+    setBioethanol(Number(e.target.value));
+  };
+  const handleBiodiesel = (e) => {
+    e.preventDefault();
+    setBiodiesel(Number(e.target.value));
+  };
+  const handleBifuel = (e) => {
+    e.preventDefault();
+    setBifuel(Number(e.target.value));
+  };
+  const handleOther = (e) => {
+    e.preventDefault();
+    setOther(Number(e.target.value));
+  };
+
   const createPolicyQuantification = () => {
     const passengerMob = {
       expectedChange,
@@ -158,11 +239,69 @@ export const U3planner = ({ baseline, newDevelopment, emission }) => {
     };
     setModalSplitFre(modalSplitFre);
 
+    const fuelSharesBusTypes  = {
+      lpg,
+      cng,
+      electricity,
+      petrol,
+      diesel,
+    };
+    setFuelSharesBusTypes(fuelSharesBusTypes);
+
+    const fuelSharesBus  = {
+      types,
+      yearStart,
+      yearFinish,
+      affectedArea
+    };
+    setFuelSharesBus(fuelSharesBus);
+
+    const fuelSharesCarTypes  = {
+      lpg,
+      cng,
+      ngv,
+      hep,
+      phev,
+      hydrogenfuel,
+      bioethanol,
+      biodiesel,
+      bifuel,
+      other,
+      electricity,
+      petrol,
+      diesel,
+    };
+    setFuelSharesCarTypes(fuelSharesCarTypes);
+
+    const fuelSharesCar  = {
+      types,
+      yearStart,
+      yearFinish,
+      affectedArea
+    };
+    setFuelSharesCar(fuelSharesCar);
+
+    const electricityTransTypes  = {
+      renewables,
+    };
+    setElectricityTransTypes(electricityTransTypes);
+
+    const electricityTrans  = {
+      types,
+      yearStart,
+      yearFinish,
+      affectedArea
+    };
+    setElectricityTrans(electricityTrans);
+    
     const policyQuant = {
       passengerMob,
       freightTrans,
       modalSplitPass,
       modalSplitFre,
+      fuelSharesBus,
+      fuelSharesCar,
+      electricityTrans
     };
     setPolicyQuantification(policyQuant);
   };
@@ -546,7 +685,7 @@ export const U3planner = ({ baseline, newDevelopment, emission }) => {
                 </div>
               </div>
             </div>
-            {/* <br />
+            <br />
           <div>
             <label>
               <b>U3.5 Shares of fuel types/Bus transport</b>
@@ -557,36 +696,84 @@ export const U3planner = ({ baseline, newDevelopment, emission }) => {
             <div>
               <label>Petroleum products</label>
               <label></label>
-              <input id="inputspace" />
+              <input />
+              <input
+                  id="inputspace"
+                  type="number"
+                  step="0.1"
+                  // id="fre_policy_target"
+                  placeholder="0"
+                  min="0"
+                  max="100"
+                  onChange={handlePetrol}
+                  required
+                />
               <input />
             </div>
             <div>
               <label>Liquified Petroleum Gas (LPG)</label>
               <label></label>
-              <input />
+              <input
+                  //id="inputspace"
+                  type="number"
+                  step="0.1"
+                  id="bus_fuel_policy_target"
+                  placeholder="0.0"
+                  min="0"
+                  max="100"
+                  onChange={handleLpg}
+                  required
+                />
             </div>
             <div>
               <label>Natural Gas (CNG)</label>
               <label></label>
-              <input />
+              <input
+                  type="number"
+                  step="0.1"
+                  id="bus_fuel_policy_target"
+                  placeholder="0.0"
+                  min="0"
+                  max="100"
+                  onChange={handleCng}
+                  required
+                />
             </div>
             <div>
               <label>Electricty</label>
               <label></label>
-              <input />
+              <input
+                  type="number"
+                  step="0.1"
+                  id="bus_fuel_policy_target"
+                  placeholder="0.0"
+                  min="0"
+                  max="100"
+                  onChange={handleElectricity}
+                  required
+                />
             </div>
             <div>
               <label>Diesel</label>
               <label></label>
-              <input />
+              <input
+                  type="number"
+                  step="0.1"
+                  id="bus_fuel_policy_target"
+                  placeholder="0.0"
+                  min="0"
+                  max="100"
+                  onChange={handleDiesel}
+                  required
+                />
             </div>
-            <div>
+            {/* <div>
               <label>
                 <b>Total</b>
               </label>
               <label></label>
               <label></label>
-            </div>
+            </div> */}
             <div>
               <label>Policy period</label>
               <div id="divspace">
@@ -636,28 +823,74 @@ export const U3planner = ({ baseline, newDevelopment, emission }) => {
             <div>
               <label>Liquified Petroleum Gas (LPG)</label>
               <label></label>
-              <input id="inputspace" />
+              <input
+                  id="inputspace"
+                  type="number"
+                  step="0.1"
+                  // id="bus_fuel_policy_target"
+                  placeholder="0.0"
+                  min="0"
+                  max="100"
+                  onChange={handleLpg}
+                  required
+                />
               <input />
             </div>
             <div>
               <label>Natural Gas (CNG)</label>
               <label></label>
-              <input />
+              <input
+                  type="number"
+                  step="0.1"
+                  id="car_fuel_policy_target"
+                  placeholder="0.0"
+                  min="0"
+                  max="100"
+                  onChange={handleCng}
+                  required
+                />
             </div>
             <div>
               <label>Alternative Energy/biomethane NGV</label>
               <label></label>
-              <input />
+              <input
+                  type="number"
+                  step="0.1"
+                  id="car_fuel_policy_target"
+                  placeholder="0.0"
+                  min="0"
+                  max="100"
+                  onChange={handleNgv}
+                  required
+                />
             </div>
             <div>
               <label>Hybrid electric-petrol</label>
               <label></label>
-              <input />
+              <input
+                  type="number"
+                  step="0.1"
+                  id="car_fuel_policy_target"
+                  placeholder="0.0"
+                  min="0"
+                  max="100"
+                  onChange={handleHep}
+                  required
+                />
             </div>
             <div>
               <label>Plug-in hybrid petrol-electric PHEV</label>
               <label></label>
-              <input />
+              <input
+                  type="number"
+                  step="0.1"
+                  id="car_fuel_policy_target"
+                  placeholder="0.0"
+                  min="0"
+                  max="100"
+                  onChange={handlePhev}
+                  required
+                />
             </div>
             <div>
               <label>Hybrid diesel-electric</label>
@@ -672,50 +905,122 @@ export const U3planner = ({ baseline, newDevelopment, emission }) => {
             <div>
               <label>Hydrogen and fuel cells</label>
               <label></label>
-              <input />
+              <input
+                  type="number"
+                  step="0.1"
+                  id="car_fuel_policy_target"
+                  placeholder="0.0"
+                  min="0"
+                  max="100"
+                  onChange={handleHydrogenfuel}
+                  required
+                />
             </div>
             <div>
               <label>Bioethanol</label>
               <label></label>
-              <input />
+              <input
+                  type="number"
+                  step="0.1"
+                  id="car_fuel_policy_target"
+                  placeholder="0.0"
+                  min="0"
+                  max="100"
+                  onChange={handleBioethanol}
+                  required
+                />
             </div>
             <div>
               <label>Bio-diesel</label>
               <label></label>
-              <input />
+              <input
+                  type="number"
+                  step="0.1"
+                  id="car_fuel_policy_target"
+                  placeholder="0.0"
+                  min="0"
+                  max="100"
+                  onChange={handleBiodiesel}
+                  required
+                />
             </div>
             <div>
               <label>Bi-fuel</label>
               <label></label>
-              <input />
+              <input
+                  type="number"
+                  step="0.1"
+                  id="car_fuel_policy_target"
+                  placeholder="0.0"
+                  min="0"
+                  max="100"
+                  onChange={handleBifuel}
+                  required
+                />
             </div>
             <div>
               <label>Other (unknown)</label>
               <label></label>
-              <input />
+              <input
+                  type="number"
+                  step="0.1"
+                  id="car_fuel_policy_target"
+                  placeholder="0.0"
+                  min="0"
+                  max="100"
+                  onChange={handleOther}
+                  required
+                />
             </div>
             <div>
               <label>Electricity BEV</label>
               <label></label>
-              <input />
+              <input
+                  type="number"
+                  step="0.1"
+                  id="car_fuel_policy_target"
+                  placeholder="0.0"
+                  min="0"
+                  max="100"
+                  onChange={handleElectricity}
+                  required
+                />
             </div>
             <div>
               <label>Petrol, according to country selection</label>
               <label></label>
-              <input />
+              <input
+                  type="number"
+                  step="0.1"
+                  id="car_fuel_policy_target"
+                  placeholder="0.0"
+                  min="0"
+                  max="100"
+                  onChange={handlePetrol}
+                  required
+                />
             </div>
             <div>
               <label>Diesel, according to country selection</label>
               <label></label>
-              <input />
+              <input
+                  type="number"
+                  step="0.1"
+                  id="car_fuel_policy_target"
+                  placeholder="0.0"
+                  min="0"
+                  max="100"
+                  onChange={handleDiesel}
+                  required
+                />
             </div>
-            <div>
+            {/* <div>
               <label>
                 <b>Total</b>
               </label>
               <label></label>
               <label></label>
-            </div>
+            </div> */}
             <div>
               <label>Policy period</label>
               <div id="divspace">
@@ -765,8 +1070,26 @@ export const U3planner = ({ baseline, newDevelopment, emission }) => {
             <div>
               <label>Increase in the share of renewables</label>
               <input id="inputspace" />
-              <input id="inputspace" />
-              <input />
+              <input
+                  id="inputspace"
+                  type="number"
+                  step="0.1"
+                  // id="car_fuel_policy_target"
+                  placeholder="0"
+                  onChange={handleRenewables}
+                  required
+                />
+              <input
+                  // id="inputspace"
+                  type="number"
+                  step="0.1"
+                  id="electricity_trans_affected_area"
+                  placeholder="0"
+                  min="0"
+                  max="100"
+                  onChange={handleAffectedArea}
+                  required
+                />
             </div>
             <div>
               <label>Policy period</label>
@@ -805,7 +1128,7 @@ export const U3planner = ({ baseline, newDevelopment, emission }) => {
                 </select>
               </div>
             </div>
-          </div> */}
+          </div>
             <br />
             <div>
               <div className="backButton">
@@ -843,6 +1166,12 @@ export const U3planner = ({ baseline, newDevelopment, emission }) => {
         modalSplitPass={modalSplitPass}
         modalFreShares={modalFreShares}
         modalSplitFre={modalSplitFre}
+        fuelSharesBusTypes={fuelSharesBusTypes}
+        fuelSharesBus={fuelSharesBus}
+        fuelSharesCarTypes={fuelSharesCarTypes}
+        fuelSharesCar={fuelSharesCar}
+        electricityTransTypes={electricityTransTypes}
+        electricityTrans={electricityTrans}
       />
     );
   }
