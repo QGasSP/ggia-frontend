@@ -19,7 +19,8 @@ export const U3planner = ({ baseline, newDevelopment, emission }) => {
   const [yearFinish, setYearFinish] = useState(0);
   const [nextU3policies, setU3policies] = useState(false);
   const [errorU3, setU3Error] = useState("");
-  const [shares, setModalPassShares] = useState(0);
+  const [modalPassShares, setModalPassShares] = useState("");
+  const [shares, setShares] = useState("");
   const [expectedPassChange, setExpectedPassChange] = useState(0);
   const [affectedPassArea, setAffectedPassArea] = useState(0);
   const [expectedFreChange, setExpectedFreChange] = useState(0);
@@ -30,7 +31,7 @@ export const U3planner = ({ baseline, newDevelopment, emission }) => {
   const [passengerMob, setPassengerMobility] = useState("");
   const [freightTrans, setFreightTransport] = useState("");
   const [modalSplitPass, setModalSplitPass] = useState("");
-  const [modalPassShares, setModalPassShares] = useState("");
+  // const [modalPassShares, setModalPassShares] = useState("");
   const [modalFreShares, setModalFreightShares] = useState("");
   const [modalSplitFre, setModalSplitFre] = useState("");
   const [bus, setBus] = useState(0);
@@ -191,6 +192,16 @@ export const U3planner = ({ baseline, newDevelopment, emission }) => {
     e.preventDefault();
     setOther(Number(e.target.value));
   };
+  const handleRenewables = (e) => {
+    e.preventDefault();
+    setRenewables(Number(e.target.value));
+  };
+  const handleAffectedArea = (e) => {
+    e.preventDefault();
+    setAffectedArea(Number(e.target.value));
+  };
+
+
 
   const createPolicyQuantification = () => {
     const passengerMob = {
@@ -714,7 +725,7 @@ export const U3planner = ({ baseline, newDevelopment, emission }) => {
               <label>Liquified Petroleum Gas (LPG)</label>
               <label></label>
               <input
-                  //id="inputspace"
+                  // id="inputspace"
                   type="number"
                   step="0.1"
                   id="bus_fuel_policy_target"
