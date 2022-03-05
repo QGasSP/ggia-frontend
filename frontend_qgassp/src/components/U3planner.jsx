@@ -700,7 +700,18 @@ export const U3planner = ({ baseline, newDevelopment, emission, projections }) =
             <div>
               <label>Petroleum products</label>
               <label></label>
-              <input id="inputspace" />
+              <input />
+              <input
+                  id="inputspace"
+                  type="number"
+                  step="0.1"
+                  // id="fre_policy_target"
+                  placeholder="0"
+                  min="0"
+                  max="100"
+                  onChange={handlePetrol}
+                  required
+                />
               <input />
               <input
                   id="inputspace"

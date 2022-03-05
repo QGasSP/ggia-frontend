@@ -454,7 +454,7 @@ export const U3policies = ({
               />
             </div>
             <br />
-            {/* <div>
+            <div>
               <label>
                 <b>U3.6 Shares of fuel types/Cars</b>
               </label>
