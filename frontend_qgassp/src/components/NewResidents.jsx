@@ -17,6 +17,7 @@ export const NewResidents = ({
   settlementDistribution,
   baseline,
   emission,
+  projections,
   user,
   onLogin,
   onLogout,
@@ -267,6 +268,7 @@ export const NewResidents = ({
         newDevelopment={newDevelopment}
         settlementDistribution={settlementDistribution}
         emission={emission}
+        projections={projections}
       />
     );
   }
@@ -283,6 +285,7 @@ NewResidents.propTypes = {
   onLogout: PropTypes.func.isRequired,
   onCreateAccount: PropTypes.func.isRequired,
   emission: PropTypes.object.isRequired,
+  projections: PropTypes.object.isRequired,
 };
 
 NewResidents.defaultProps = {
