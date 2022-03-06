@@ -64,11 +64,6 @@ export const U3planner = ({ baseline, newDevelopment, emission, projections }) =
   const [renewables, setRenewables] = useState(0);
   const [electricityTransTypes, setElectricityTransTypes] = useState("");
   const [electricityTrans, setElectricityTrans] = useState("");
-  
-
-
-
-
 
   // const [policyQuant, setPolicyQuantification] = useState("");
   const navigate = useNavigate();
@@ -200,8 +195,6 @@ export const U3planner = ({ baseline, newDevelopment, emission, projections }) =
     e.preventDefault();
     setAffectedArea(Number(e.target.value));
   };
-
-
 
   const createPolicyQuantification = () => {
     const passengerMob = {

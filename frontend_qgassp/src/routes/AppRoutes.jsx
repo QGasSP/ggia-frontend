@@ -7,6 +7,8 @@ import { U2planner } from "../components/U2planner";
 import { StackedBarchart } from "../components/StackedBarchart";
 import { Welcome } from "../components/Welcome";
 import { TransportBaseline } from "../components/TransportBaseline";
+import { U3planner } from "../components/U3planner";
+import { U3policies } from "../components/U3policies";
 
 export const AppRoutes = () => {
   const routes = useRoutes([
@@ -16,6 +18,8 @@ export const AppRoutes = () => {
     { path: "stackedBarChart", element: <StackedBarchart /> },
     { path: "newResidents", element: <NewResidents /> },
     { path: "u2planner", element: <U2planner /> },
+    { path: "U3planner", element: <U3planner /> },
+    { path: "U3policies", element: <U3policies /> },
   ]);
   return routes;
 };

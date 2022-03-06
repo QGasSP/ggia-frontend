@@ -27,6 +27,7 @@ const BarSeries = VerticalBarSeries;
 export const U3policies = ({
   policyQuantification,
   emission,
+  baseline,
   projections,
   passengerMob,
   freightTrans,
@@ -42,26 +43,6 @@ export const U3policies = ({
   electricityTrans
 }) => {
   const navigate = useNavigate();
-
-  useEffect(async () => {
-    const rawData = { baseline, policyQuantification };
-    const headers = {
-      "Content-type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-    };
-    await axios
-      .post(
-        "https://ggia-dev.ulno.net/api/v1/calculate/transport",
-        rawData,
-        headers
-      )
-      .then((response) => setU3Response(response.data.json))
-      .catch((error) => {
-        setU3Error({ errorMessage: error.message });
-        // eslint-disable-next-line no-console
-        console.error("U3 Response data error---", error);
-      });
-  }, []);
 
   // if (updateU2charts === false && totalNewResidents !== 100) {
   return (
@@ -1084,6 +1065,7 @@ export const U3policies = ({
 U3policies.propTypes = {
   policyQuantification: PropTypes.object.isRequired,
   emission: PropTypes.object.isRequired,
+  baseline: PropTypes.object.isRequired,
   passengerMob: PropTypes.object.isRequired,
   freightTrans: PropTypes.object.isRequired,
   modalPassShares: PropTypes.object.isRequired,
