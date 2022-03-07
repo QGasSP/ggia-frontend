@@ -18,7 +18,7 @@ section h2 {
 }
 .settlement_header_labels {
   display: inline-block;
-  width: 300px;
+  width: 200px;
 }
 .label_settlement_type {
   display: "flex";
@@ -142,7 +142,7 @@ section div {
   left: 33%;
 }
 
-.save_piechart{
+.save_piechart {
   position: absolute;
   left: 33%;
 }

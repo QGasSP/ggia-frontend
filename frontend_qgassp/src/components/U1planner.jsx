@@ -22,13 +22,6 @@ export const U1planner = ({
   const [projections, setProjections] = useState("");
   const [baseline, setBaseline] = useState({});
 
-  const [nsArea, setNsArea] = useState(0);
-  const [ewArea, setEwArea] = useState(0);
-  const [nonResidentialRoad, setNonResidentialRoad] = useState(0);
-  const [freightRoad, setFreightRoad] = useState(0);
-  const [freightRail, setFreightRail] = useState(0);
-  const [freightInlandWaterway, setFreightInlandWaterway] = useState(0);
-
   useEffect(async () => {
     const baseline = {
       country,
@@ -62,118 +55,9 @@ export const U1planner = ({
     setProjections(response.data.baseline.projections);
   };
 
-  if (nextU1Charts=== false) {
-
-  return (
-    <>
-      <div className="settlementDiv">
-        <label>
-          <b>U1.2 Area</b>
-        </label>
-        <label>Km</label>
-
-        <div>
-          <label htmlFor="ns_measure">N-S Measurement (km)</label>
-          <input
-            type="text"
-            id="ns_measure"
-            min="0"
-            onChange={(e) => setNsArea(e.target.value)}
-            placeholder={nsArea}
-          />
-        </div>
-
-        <div>
-          <label htmlFor="ew_measure">E-W Measurement (km)</label>
-          <input
-            type="text"
-            id="ew_measure"
-            min="0"
-            onChange={(e) => setEwArea(e.target.value)}
-            placeholder={ewArea}
-          />
-        </div>
-
-        <br />
-
-        <div>
-          <label>
-            <b>U1.3 Non-residential and freight</b>
-          </label>
-          <label></label>
-        </div>
-        <div>
-          <label htmlFor="non_resident_road">
-            {" "}
-            Non-residential road transport
-          </label>
-          <select
-            id="non_resident_road"
-            onChange={(e) => setNonResidentialRoad(e.target.value)}
-            defaultValue={nonResidentialRoad}
-          >
-            <optgroup label="Select road transport intensity">
-              <option value="non-existent">0</option>
-              <option value="low">0.3</option>
-              <option value="medium_intensity">2.0</option>
-              <option value="high_intensity">2.50</option>
-            </optgroup>
-          </select>
-        </div>
-
-        <div>
-          <label htmlFor="freight=road">Freight transport by road</label>
-          <select
-            id="freight_road"
-            name="freight_road"
-            onChange={(e) => setFreightRoad(e.target.value)}
-            defaultValue={freightRoad}
-          >
-            <optgroup label="Select road transport intensity">
-              <option value="non-existent">0</option>
-              <option value="low">0.3</option>
-              <option value="medium_intensity">2.0</option>
-              <option value="high_intensity">2.50</option>
-            </optgroup>
-          </select>
-        </div>
-        <div>
-          <label htmlFor="freight_rail">Freight transport by rail</label>
-          <select
-            id="freight_rail"
-            name="freight_rail"
-            onChange={(e) => setFreightRail(e.target.value)}
-            defaultValue={freightRail}
-          >
-            <optgroup label="Select road transport intensity">
-              <option value="non-existent">0</option>
-              <option value="low">0.3</option>
-              <option value="medium_intensity">2.0</option>
-              <option value="high_intensity">2.50</option>
-            </optgroup>
-          </select>
-        </div>
-
-        <div>
-          <label htmlFor="freight_waterway">
-            Freight transport by inland waterways
-          </label>
-          <select
-            id="freight_waterway"
-            name="freight_waterway"
-            onChange={(e) => setFreightInlandWaterway(e.target.value)}
-            defaultValue={freightInlandWaterway}
-          >
-            <optgroup label="Select road transport intensity">
-              <option value="non-existent">0</option>
-              <option value="low">0.3</option>
-              <option value="medium_intensity">2.0</option>
-              <option value="high_intensity">2.50</option>
-            </optgroup>
-          </select>
-        </div>
-
-
+  if (nextU1Charts === false) {
+    return (
+      <>
         <div className="nextU2Button">
           <Button
             size="small"
@@ -183,20 +67,18 @@ export const U1planner = ({
             primary
           />
         </div>
-      </div>
-    </>
-  );
-} else {
-  return (
-    <StackedBarchart
-      projections={projections}
-      settlementDistribution={settlementDistribution}
-      baseline={baseline}
-      emission={emission}
-    />
-   
-  );
-}
+      </>
+    );
+  } else {
+    return (
+      <StackedBarchart
+        projections={projections}
+        settlementDistribution={settlementDistribution}
+        baseline={baseline}
+        emission={emission}
+      />
+    );
+  }
 };
 
 U1planner.propTypes = {

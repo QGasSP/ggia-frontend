@@ -27,28 +27,35 @@ export const TransportBaseline = ({ country, year, population }) => {
   const [settlementDistribution, setSettlementDistribution] = useState("");
   const [setPieError, setPieChartErrorMessage] = useState("");
 
+  const [nsArea, setNsArea] = useState(0);
+  const [ewArea, setEwArea] = useState(0);
+  const [nonResidentialRoad, setNonResidentialRoad] = useState(0);
+  const [freightRoad, setFreightRoad] = useState(0);
+  const [freightRail, setFreightRail] = useState(0);
+  const [freightInlandWaterway, setFreightInlandWaterway] = useState(0);
+
   const handleMetropolitanCenter = (e) => {
-    setPieChartErrorMessage("")
+    setPieChartErrorMessage("");
     e.preventDefault();
     setMetropolitan(parseFloat(e.target.value));
   };
   const handleUrban = (e) => {
-    setPieChartErrorMessage("")
+    setPieChartErrorMessage("");
     e.preventDefault();
     setUrban(parseFloat(e.target.value));
   };
   const handleSuburban = (e) => {
-    setPieChartErrorMessage("")
+    setPieChartErrorMessage("");
     e.preventDefault();
     setSubUrban(parseFloat(e.target.value));
   };
   const handleTown = (e) => {
-    setPieChartErrorMessage("")
+    setPieChartErrorMessage("");
     e.preventDefault();
     setTown(parseFloat(e.target.value));
   };
   const handleRural = (e) => {
-    setPieChartErrorMessage("")
+    setPieChartErrorMessage("");
     e.preventDefault();
     setRural(parseFloat(e.target.value));
   };
@@ -63,13 +70,13 @@ export const TransportBaseline = ({ country, year, population }) => {
     };
     setSettlementDistribution(settlementDist);
     setTotal(metropolitanCenter + urban + suburban + town + rural);
-    setNextEmissions(true); 
+    setNextEmissions(true);
   };
 
   return (
     <div>
       <article>
-        <div className="headerSettlement">
+        <div>
           <Divider textAlign="left" flexItem>
             {" "}
             <Chip label="TRANSPORT BASELINE" />
@@ -79,14 +86,18 @@ export const TransportBaseline = ({ country, year, population }) => {
         <section>
           <div className="row">
             <div className="column">
-            <div className="settlement_headers">
-                  <label>
-                    <b>U1.1 Settlement type </b>
-                  </label>
-                  <label>Share ({total}%) :  {setPieError}</label>
-                </div>
+              <div className="settlement_headers">
+                <label>
+                  <b>Settlement type </b>
+                </label>
+                <label>
+                  Share ({total}%) : {setPieError}
+                </label>
+              </div>
               <div>
-                <label htmlFor="metropolitan" className="settle_label">Metropolitan center</label>
+                <label htmlFor="metropolitan" className="settle_label">
+                  Metropolitan center
+                </label>
                 <input
                   type="number"
                   step="0.01"
@@ -164,14 +175,14 @@ export const TransportBaseline = ({ country, year, population }) => {
                 />
               </div>
               <div className="save_piechart">
-            <Button
-              size="small"
-              value="nextU2"
-              onClick={setSettlementType}
-              label="Save"
-              primary
-            />
-          </div>
+                <Button
+                  size="small"
+                  value="nextU2"
+                  onClick={setSettlementType}
+                  label="Save"
+                  primary
+                />
+              </div>
             </div>
 
             <div className="column">
@@ -217,11 +228,120 @@ export const TransportBaseline = ({ country, year, population }) => {
               />
             </div>
           </div>
+          <div className="settlementDiv">
+            <label>
+              <b>Area</b>
+            </label>
+            <label>Km</label>
 
-          {nextEmissions===true && total===100.00 &&
-          <U1planner country={country} year={year} population={population} settlementDistribution={settlementDistribution}/>
-          }
+            <div>
+              <label htmlFor="ns_measure">N-S Measurement (km)</label>
+              <input
+                type="text"
+                id="ns_measure"
+                min="0"
+                onChange={(e) => setNsArea(e.target.value)}
+                placeholder={nsArea}
+              />
+            </div>
 
+            <div>
+              <label htmlFor="ew_measure">E-W Measurement (km)</label>
+              <input
+                type="text"
+                id="ew_measure"
+                min="0"
+                onChange={(e) => setEwArea(e.target.value)}
+                placeholder={ewArea}
+              />
+            </div>
+
+            <div>
+              <label>
+                <b>U1.3 Non-residential and freight</b>
+              </label>
+              <label></label>
+            </div>
+            <div>
+              <label htmlFor="non_resident_road">
+                {" "}
+                Non-residential road transport
+              </label>
+              <select
+                id="non_resident_road"
+                onChange={(e) => setNonResidentialRoad(e.target.value)}
+                defaultValue={nonResidentialRoad}
+              >
+                <optgroup label="Select road transport intensity">
+                  <option value="non-existent">0</option>
+                  <option value="low">0.3</option>
+                  <option value="medium_intensity">2.0</option>
+                  <option value="high_intensity">2.50</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <div>
+              <label htmlFor="freight=road">Freight transport by road</label>
+              <select
+                id="freight_road"
+                name="freight_road"
+                onChange={(e) => setFreightRoad(e.target.value)}
+                defaultValue={freightRoad}
+              >
+                <optgroup label="Select road transport intensity">
+                  <option value="non-existent">0</option>
+                  <option value="low">0.3</option>
+                  <option value="medium_intensity">2.0</option>
+                  <option value="high_intensity">2.50</option>
+                </optgroup>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="freight_rail">Freight transport by rail</label>
+              <select
+                id="freight_rail"
+                name="freight_rail"
+                onChange={(e) => setFreightRail(e.target.value)}
+                defaultValue={freightRail}
+              >
+                <optgroup label="Select road transport intensity">
+                  <option value="non-existent">0</option>
+                  <option value="low">0.3</option>
+                  <option value="medium_intensity">2.0</option>
+                  <option value="high_intensity">2.50</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <div>
+              <label htmlFor="freight_waterway">
+                Freight transport by inland waterways
+              </label>
+              <select
+                id="freight_waterway"
+                name="freight_waterway"
+                onChange={(e) => setFreightInlandWaterway(e.target.value)}
+                defaultValue={freightInlandWaterway}
+              >
+                <optgroup label="Select road transport intensity">
+                  <option value="non-existent">0</option>
+                  <option value="low">0.3</option>
+                  <option value="medium_intensity">2.0</option>
+                  <option value="high_intensity">2.50</option>
+                </optgroup>
+              </select>
+            </div>
+          </div>
+
+          {nextEmissions === true && total === 100.0 && (
+            <U1planner
+              country={country}
+              year={year}
+              population={population}
+              settlementDistribution={settlementDistribution}
+            />
+          )}
         </section>
       </article>
     </div>

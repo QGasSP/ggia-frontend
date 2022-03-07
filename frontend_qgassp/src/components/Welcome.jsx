@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "./Button";
 import { StartPage } from "./StartPage";
+import Divider from "@mui/material/Divider";
 import "../css/welcome.css";
 
 /**
@@ -58,6 +59,7 @@ export const Welcome = () => {
                 />
               </div>
             </div>
+            <Divider orientation="vertical" flexItem></Divider>
             <div className="column_welcome">
               <br />
 

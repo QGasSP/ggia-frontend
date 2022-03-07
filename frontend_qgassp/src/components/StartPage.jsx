@@ -45,6 +45,7 @@ export const StartPage = () => {
         </div>
 
         <div className="row_start">
+
           <div className="column_start">
             <header className="intro_header">
               <h1 id="title" className="header_start">
@@ -58,9 +59,9 @@ export const StartPage = () => {
                   Year
                 </label>
                 <select
-                  className="intro_select"
                   id="year_selection"
                   name="year_selection"
+                  className="baseline_select"
                   onChange={handleSelectedYear}
                   defaultValue="Select year"
                   required
@@ -80,7 +81,7 @@ export const StartPage = () => {
                   Country
                 </label>
                 <select
-                  className="intro_select"
+                className="baseline_select"
                   id="eu_countries"
                   name="eu_countries"
                   onChange={handleSelected}
@@ -114,15 +115,17 @@ export const StartPage = () => {
                 </select>
               </div>
               <div className="form-group">
-                <label htmlFor="population_assessment" className="intro_label">
-                  Population of the assessment area
+                <label 
+                htmlFor="population_assessment" 
+                className="intro_label"
+                >
+                  Assessment area population
                 </label>
                 <input
                   type="number"
-                  pattern="[0-9]*" 
+                  pattern="[0-9]*"
                   id="population_assessment"
                   className="population"
-                  placeholder="0"
                   min="0"
                   onChange={handlePopulation}
                   required
@@ -139,6 +142,44 @@ export const StartPage = () => {
               </div>
             </form>
           </div>
+          <Divider orientation="vertical" flexItem></Divider>
+
+          <div className="column_start">
+          <header className="intro_header">
+              <h1 id="title" className="header_start">
+              Create local data-set
+              </h1>
+            </header>
+            <div >
+           <form>
+
+             <div className="form-group">
+                <label htmlFor="eu_countries" className="intro_label">
+                  Country&apos;s local data-set
+                </label>
+                <select
+                className="baseline_select"
+                  id="eu_countries"
+                  name="eu_countries"
+                  defaultValue="Select country"
+                  required
+                >
+                  <option value="DefaultOption">Select country</option>
+                  <option value="Austria">Austria</option>
+                </select>
+              </div>
+              <div className="local_dataset" >
+                <Button
+                  size="small"
+                  label="Next &raquo;"
+                  primary="true"
+                /></div> 
+             </form>
+               
+              </div>
+                
+          </div>
+
         </div>
       </article>
     );

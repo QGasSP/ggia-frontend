@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Header } from "./Header";
 import { U2legend } from "./U2legend";
 import axios from "axios";
 import "../css/u2planner.css";
