@@ -1060,38 +1060,38 @@ export const LandUseChangeTableForm = ({
   };
 
   const setResponse = (response) => {
-    setLandUseChangeResponse(response.data);
+    setLandUseChangeResponse(response);
   };
 
-  // useEffect(async () => {
-  //   const landUseChange = {
-  //     totalArea: totalArea,
-  //     mineral: mineral,
-  //     organic: organic,
-  //     policyStartYear: policyStartYear,
-  //   };
-  //   const rawData = {
-  //       country,
-  //       year,
-  //       landUseChange
-  //   };
-  //   // const rawData = { country, year, population, landUseChange };
-  //   const headers = {
-  //     "Content-type": "application/json",
-  //   };
-  //   axios
-  //     .post(
-  //       "https://ggia.ulno.net/api/v1/calculate/land-use-change",
-  //       rawData,
-  //       headers
-  //     )
-  //     .then((response) => setResponse(response.data))
-  //     .catch((error) => {
-  //       setError({ errorMessage: error.message });
-  //       // eslint-disable-next-line no-console
-  //       console.error("There was an error!", error);
-  //     });
-  // }, []);
+  useEffect(async () => {
+    const landUseChange = {
+      totalArea: totalArea,
+      mineral: mineral,
+      organic: organic,
+      policyStartYear: policyStartYear,
+    };
+    const rawData = {
+        country,
+        year,
+        landUseChange
+    };
+    const headers = {
+      "Content-type": "application/json",
+      "Access-Control-Allow-Origin": "*"
+    };
+    axios
+      .post(
+        "https://ggia.ulno.net/api/v1/calculate/land-use-change",
+        rawData,
+        headers
+      )
+      .then((response) => setResponse(response.data))
+      .catch((error) => {
+        setError({ errorMessage: error.message });
+        // eslint-disable-next-line no-console
+        console.error("There was an error!", error);
+      });
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("landUseChange", landUseChangeResponse);
@@ -3057,7 +3057,7 @@ export const LandUseChangeTableForm = ({
                     size="small"
                     type="submit"
                     value="Submit"
-                    // onClick={goToLandUseChangeBaseline}
+                    onClick={goToLandUseChangeBaseline}
                     label="Next &raquo;"
                     primary
                   />
@@ -3087,4 +3087,6 @@ LandUseChangeTableForm.propTypes = {
 
 LandUseChangeTableForm.defaultProps = {
   user: null,
+  country: 'Estonia',
+  year: 2023
 };
