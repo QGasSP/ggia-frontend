@@ -10,12 +10,6 @@ export default {
 
 const Template = (args) => <LUCBarChart {...args} />;
 
-export const VerticalBarchart = Template.bind({});
-VerticalBarchart.args = {
-  ortientation: "vertical",
-  label: "LUCBarChart",
-};
-
 export const LoggedIn = Template.bind({});
 LoggedIn.args = {
   ...HeaderStories.LoggedIn.args,
