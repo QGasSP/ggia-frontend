@@ -1060,28 +1060,28 @@ export const LandUseChangeTableForm = ({
   };
 
   const setResponse = (response) => {
-    setLandUseChangeResponse(response);
+    setLandUseChangeResponse(response.data);
   };
 
   useEffect(async () => {
     const landUseChange = {
       totalArea: totalArea,
       mineral: mineral,
-      organic: organic,
-      policyStartYear: policyStartYear,
+      organic: organic
     };
     const rawData = {
         country,
         year,
-        landUseChange
+        landUseChange,
+        policyStartYear
     };
     const headers = {
+      "Access-Control-Allow-Origin": "*",
       "Content-type": "application/json",
-      "Access-Control-Allow-Origin": "*"
     };
     axios
       .post(
-        "https://ggia.ulno.net/api/v1/calculate/land-use-change",
+        "https://ggia-dev.ulno.net/api/v1/calculate/land-use-change",
         rawData,
         headers
       )
@@ -1094,7 +1094,7 @@ export const LandUseChangeTableForm = ({
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("landUseChange", landUseChangeResponse);
+    localStorage.setItem("landUseChange", JSON.stringify(landUseChangeResponse));
   }, [landUseChangeResponse]);
 
   if (lucBarChart === false) {
@@ -3071,6 +3071,7 @@ export const LandUseChangeTableForm = ({
   } else {
     return (
       <LUCBarChart
+      landUseChangeResponse={landUseChangeResponse}
       />
     );
   }
