@@ -9,13 +9,10 @@ import {
   RadialChart,
 } from "react-vis";
 import PropTypes from "prop-types";
-import { Header } from "./Header";
 import { LineLegend } from "./LineLegend";
 import { Button } from "./Button";
 import { NewResidents } from "./NewResidents";
-import { useNavigate } from "react-router-dom";
 import Divider from "@mui/material/Divider";
-import Chip from "@mui/material/Chip";
 import { Legend } from "./Legend";
 
 const BarSeries = VerticalBarSeries;
@@ -31,7 +28,6 @@ export const StackedBarchart = ({
   emission,
 }) => {
   const [nextU2view, setU2View] = useState(false);
-  const navigate = useNavigate();
 
   const goToNewResidents = () => {
     setU2View(true);
@@ -40,8 +36,7 @@ export const StackedBarchart = ({
   if (nextU2view === false) {
     return (
       <article>
-        <br />
-        <br />
+      
         <Divider textAlign="left" flexItem>
           {" "}
           <b>Baseline - Transport CO2e emission</b>
@@ -146,7 +141,7 @@ export const StackedBarchart = ({
         </Divider>
 
         <div className="barchart_container">
-          <XYPlot xType="ordinal" width={1000} height={312} xDistance={200}>
+          <XYPlot xType="ordinal" width={1000} height={250} xDistance={200}>
             <HorizontalGridLines />
             <VerticalGridLines />
             <VerticalBarSeries
@@ -206,7 +201,7 @@ export const StackedBarchart = ({
         <div className="headerSettlement">
           <Divider textAlign="left" flexItem>
             {" "}
-            <Chip label="U1 Projections: 2022-2050" />
+            <b> Projections: 2022&ndash;2050</b>
           </Divider>
         </div>
 
@@ -215,7 +210,7 @@ export const StackedBarchart = ({
             <b>CO2e emissions per capita 2022-2050</b>
           </label>
           <div>
-            <XYPlot width={900} height={500} stackBy="y" xType="ordinal">
+            <XYPlot width={1000} height={500} stackBy="y" xType="ordinal">
               <HorizontalGridLines />
               <VerticalGridLines />
               <VerticalBarSeries className="StackedBarchart" />

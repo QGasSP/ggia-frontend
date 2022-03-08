@@ -26,6 +26,7 @@ export const TransportBaseline = ({ country, year, population }) => {
   const [nextEmissions, setNextEmissions] = useState(false);
   const [settlementDistribution, setSettlementDistribution] = useState("");
   const [setPieError, setPieChartErrorMessage] = useState("");
+  const [nextU1Charts, setU1Charts] = useState(false);
 
   const [nsArea, setNsArea] = useState(0);
   const [ewArea, setEwArea] = useState(0);
@@ -69,14 +70,19 @@ export const TransportBaseline = ({ country, year, population }) => {
       rural,
     };
     setSettlementDistribution(settlementDist);
-    setTotal(metropolitanCenter + urban + suburban + town + rural);
     setNextEmissions(true);
+  }; 
+
+  const getCurrentTotal = () => {
+    setTotal(metropolitanCenter + urban + suburban + town + rural);
   };
 
+
+  if (nextU1Charts === false) {
   return (
     <div>
       <article>
-        <div>
+        <div className="headerSettlement">
           <Divider textAlign="left" flexItem>
             {" "}
             <Chip label="TRANSPORT BASELINE" />
@@ -87,14 +93,14 @@ export const TransportBaseline = ({ country, year, population }) => {
           <div className="row">
             <div className="column">
               <div className="settlement_headers">
-                <label>
+                <label className="shareInfo">
                   <b>Settlement type </b>
                 </label>
                 <label>
-                  Share ({total}%) : {setPieError}
+                  Share ({total}%)
                 </label>
               </div>
-              <div>
+              <div >
                 <label htmlFor="metropolitan" className="settle_label">
                   Metropolitan center
                 </label>
@@ -106,11 +112,12 @@ export const TransportBaseline = ({ country, year, population }) => {
                   max="100"
                   /*  defaultValue={metropolitanCenter} */
                   onChange={handleMetropolitanCenter}
+                  onMouseLeave={getCurrentTotal}
                   required
                 />
               </div>
 
-              <div>
+              <div >
                 <label htmlFor="urban" className="settle_label">
                   Urban
                 </label>
@@ -122,6 +129,7 @@ export const TransportBaseline = ({ country, year, population }) => {
                   max="100"
                   /*   value={urban} */
                   onChange={handleUrban}
+                  onMouseLeave={getCurrentTotal}
                   required
                 />
               </div>
@@ -139,6 +147,7 @@ export const TransportBaseline = ({ country, year, population }) => {
                   max="100.0"
                   /*   defaultValue={suburban} */
                   onChange={handleSuburban}
+                  onMouseLeave={getCurrentTotal}
                   required
                 />
               </div>
@@ -155,10 +164,10 @@ export const TransportBaseline = ({ country, year, population }) => {
                   max="100.0"
                   /*   value={town} */
                   onChange={handleTown}
+                  onMouseLeave={getCurrentTotal}
                   required
                 />
               </div>
-
               <div>
                 <label htmlFor="rural" className="settle_label">
                   Rural
@@ -171,61 +180,67 @@ export const TransportBaseline = ({ country, year, population }) => {
                   max="100"
                   /*   value={rural} */
                   onChange={handleRural}
-                  required
-                />
+                  required />
               </div>
               <div className="save_piechart">
                 <Button
                   size="small"
                   value="nextU2"
                   onClick={setSettlementType}
+                  onMouseLeave={getCurrentTotal}
                   label="Save"
                   primary
                 />
               </div>
+              <br/>
             </div>
 
             <div className="column">
+            <label className="hide">Total shares should be 100%</label>
               <div>
-                <RadialChart
-                  type="piechart"
-                  data={[
-                    {
-                      angle: urban,
-                      label: "Urban",
-                      color: "#164059",
-                    },
-                    {
-                      angle: suburban,
-                      label: "Suburban",
-                      color: "#F25F29",
-                    },
-                    {
-                      angle: town,
-                      label: "Town",
-                      color: "#F23A29",
-                    },
-                    {
-                      angle: rural,
-                      label: "Rural",
-                      color: "#D9D9D9",
-                    },
-                    {
-                      angle: metropolitanCenter,
-                      label: "Metropolitan center",
-                      color: "#730E16",
-                    },
-                  ]}
-                  width={180}
-                  height={180}
-                  colorType="literal"
-                />
+                {total > 0 && total < 101 && (
+                  <RadialChart
+                    type="piechart"
+                    data={[
+                      {
+                        angle: urban,
+                        label: "Urban",
+                        color: "#164059",
+                      },
+                      {
+                        angle: suburban,
+                        label: "Suburban",
+                        color: "#F25F29",
+                      },
+                      {
+                        angle: town,
+                        label: "Town",
+                        color: "#F23A29",
+                      },
+                      {
+                        angle: rural,
+                        label: "Rural",
+                        color: "#D9D9D9",
+                      },
+                      {
+                        angle: metropolitanCenter,
+                        label: "Metropolitan center",
+                        color: "#730E16",
+                      },
+                    ]}
+                    width={180}
+                    height={180}
+                    colorType="literal"
+                  />
+                )}
               </div>
-              <DiscreteColorLegend
-                items={settlementLabels}
-                orientation="horizontal"
-                strokeWidth="40"
-              />
+              {total > 0 && total < 101 && (
+                <DiscreteColorLegend
+                  items={settlementLabels}
+                  orientation="horizontal"
+                  strokeWidth="40"
+                />
+              )}
             </div>
           </div>
           <div className="settlementDiv">
@@ -258,7 +273,7 @@ export const TransportBaseline = ({ country, year, population }) => {
 
             <div>
               <label>
-                <b>U1.3 Non-residential and freight</b>
+                <b>Non-residential and freight</b>
               </label>
               <label></label>
             </div>
@@ -333,19 +348,35 @@ export const TransportBaseline = ({ country, year, population }) => {
               </select>
             </div>
           </div>
-
-          {nextEmissions === true && total === 100.0 && (
+          <div className="nextU2Button">
+          <Button
+            size="small"
+            value="visualize_u1"
+            onClick={() => setU1Charts(true)}
+            label="Next &raquo;"
+            primary
+          />
+        </div>
+        {/*   {nextEmissions === true && total === 100.0 && (
             <U1planner
               country={country}
               year={year}
               population={population}
               settlementDistribution={settlementDistribution}
             />
-          )}
+          )} */}
         </section>
       </article>
     </div>
   );
+} else {
+  return  <U1planner
+  country={country}
+  year={year}
+  population={population}
+  settlementDistribution={settlementDistribution}
+/>;
+}
 };
 
 TransportBaseline.propTypes = {

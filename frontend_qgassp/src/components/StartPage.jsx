@@ -5,6 +5,7 @@ import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import { TransportBaseline } from "./TransportBaseline";
 
+
 export const StartPage = () => {
   const [country, setCountry] = useState("");
   const [year, setYear] = useState(0);
@@ -33,8 +34,9 @@ export const StartPage = () => {
 
   if (next === false) {
     return (
+      <>
       <article>
-        {/*  {<TabModules/>} */}
+       
         <br />
 
         <div>
@@ -45,7 +47,6 @@ export const StartPage = () => {
         </div>
 
         <div className="row_start">
-
           <div className="column_start">
             <header className="intro_header">
               <h1 id="title" className="header_start">
@@ -81,7 +82,7 @@ export const StartPage = () => {
                   Country
                 </label>
                 <select
-                className="baseline_select"
+                  className="baseline_select"
                   id="eu_countries"
                   name="eu_countries"
                   onChange={handleSelected}
@@ -115,10 +116,7 @@ export const StartPage = () => {
                 </select>
               </div>
               <div className="form-group">
-                <label 
-                htmlFor="population_assessment" 
-                className="intro_label"
-                >
+                <label htmlFor="population_assessment" className="intro_label">
                   Assessment area population
                 </label>
                 <input
@@ -145,43 +143,37 @@ export const StartPage = () => {
           <Divider orientation="vertical" flexItem></Divider>
 
           <div className="column_start">
-          <header className="intro_header">
+            <header className="intro_header">
               <h1 id="title" className="header_start">
-              Create local data-set
+                Create local data-set
               </h1>
             </header>
-            <div >
-           <form>
-
-             <div className="form-group">
-                <label htmlFor="eu_countries" className="intro_label">
-                  Country&apos;s local data-set
-                </label>
-                <select
-                className="baseline_select"
-                  id="eu_countries"
-                  name="eu_countries"
-                  defaultValue="Select country"
-                  required
-                >
-                  <option value="DefaultOption">Select country</option>
-                  <option value="Austria">Austria</option>
-                </select>
-              </div>
-              <div className="local_dataset" >
-                <Button
-                  size="small"
-                  label="Next &raquo;"
-                  primary="true"
-                /></div> 
-             </form>
-               
-              </div>
-                
+            <div>
+              <form>
+                <div className="form-group">
+                  <label htmlFor="eu_countries" className="intro_label">
+                    Country&apos;s local data-set
+                  </label>
+                  <select
+                    className="baseline_select"
+                    id="eu_countries"
+                    name="eu_countries"
+                    defaultValue="Select country"
+                    required
+                  >
+                    <option value="DefaultOption">Select country</option>
+                    <option value="Austria">Austria</option>
+                  </select>
+                </div>
+                <div className="local_dataset">
+                  <Button size="small" label="Next &raquo;" primary="true" />
+                </div>
+              </form>
+            </div>
           </div>
-
         </div>
       </article>
+      </>
     );
   } else {
     return (

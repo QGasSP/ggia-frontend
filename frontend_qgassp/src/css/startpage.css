@@ -18,7 +18,7 @@
   box-sizing: border-box;
 }
 
-.intro_label{
+.intro_label {
   display: inline-block;
   box-sizing: border-box;
   width: 35%;
@@ -30,7 +30,6 @@
   padding: 0.5rem 0.2rem;
 }
 
-
 @media (min-width: 40%) {
   form {
     margin-top: 0em;
@@ -41,19 +40,17 @@
   padding: 0.25rem;
   font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 100%;
-
 }
 
-
-.population{
-  width: 20% !important;
+.population {
+  width: 23% !important;
   line-height: 1.5rem;
   -moz-appearance: textfield;
   -webkit-appearance: textfield;
   appearance: textfield;
 }
 .baseline_select {
-  width: 21% !important;
+  width: 23% !important;
   line-height: 1.4rem;
   -moz-appearance: textfield;
   -webkit-appearance: textfield;
@@ -66,14 +63,14 @@
 }
 
 .next_u1 {
-  padding-top: 1rem;
+  padding-top: 0.5rem;
   position: absolute;
   left: 1.5rem;
 }
 
-.local_dataset{
+.local_dataset {
   padding-top: 0.5rem;
- /*  position: absolute; */
+  /*  position: absolute; */
   width: 25%;
 }
 

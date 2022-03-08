@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Header } from "./Header";
 import { Button } from "./Button";
 import "../css/u2planner.css";
 import { U2planner } from "./U2planner";
@@ -16,10 +15,7 @@ import Divider from "@mui/material/Divider";
 export const NewResidents = ({
   settlementDistribution,
   baseline,
-  user,
-  onLogin,
-  onLogout,
-  onCreateAccount,
+ 
 }) => {
   const [metropolitanCenter, setNsMetropolitan] = useState(parseFloat(0));
   const [urban, setNsUrban] = useState(parseFloat(0));
@@ -84,14 +80,6 @@ export const NewResidents = ({
   if (updateU2charts === false && totalNewResidents !== 100) {
     return (
       <article>
-        {
-          <Header
-            user={user}
-            onLogin={onLogin}
-            onLogout={onLogout}
-            onCreateAccount={onCreateAccount}
-          />
-        }
         <div className="headerSettlement">
           <Divider textAlign="left" flexItem>
             {" "}
@@ -106,7 +94,7 @@ export const NewResidents = ({
           <div className="newResidentDiv">
             <form onSubmit={updateU2Planner}>
               <label>
-                <b>U2.1 New residents</b>
+                <b>New residents</b>
               </label>
               <div>
                 <label htmlFor="new_residents">
@@ -162,7 +150,7 @@ export const NewResidents = ({
               </div>
               <br />
               <label>
-                <b>U2.2 Settlement type</b>
+                <b>Settlement type</b>
               </label>
               <label>
                 <b>Existing environment</b>
@@ -276,12 +264,5 @@ NewResidents.propTypes = {
   population: PropTypes.number.isRequired,
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
-  user: PropTypes.shape({}),
-  onLogin: PropTypes.func.isRequired,
-  onLogout: PropTypes.func.isRequired,
-  onCreateAccount: PropTypes.func.isRequired,
-};
-
-NewResidents.defaultProps = {
-  user: null,
+  
 };
