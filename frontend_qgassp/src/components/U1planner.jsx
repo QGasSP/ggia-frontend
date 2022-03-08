@@ -35,7 +35,6 @@ export const U1planner = ({
   const [nextNewResident, setNewResident] = useState(false);
 
   useEffect(async () => {
-    setNewResident(false);
     const baseline = {
       country,
       year,
@@ -71,10 +70,10 @@ export const U1planner = ({
 
   if (
     nextNewResident === false &&
-    Object.keys(emission).length !== 0 &&
+  //  Object.keys(emission).length !== 0 &&
     Object.keys(projections).length !== 0
   ) {
-    
+
     return (
       <>
         <article>
@@ -545,7 +544,7 @@ export const U1planner = ({
           <div className="nextU2Button">
             <Button
               size="small"
-              value="nextU2"
+              value="nextNewResident"
               onClick={() => setNewResident(true)}
               label="Next &raquo;"
               primary

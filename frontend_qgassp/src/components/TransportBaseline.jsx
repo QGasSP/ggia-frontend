@@ -23,7 +23,7 @@ export const TransportBaseline = ({ country, year, population }) => {
   const [town, setTown] = useState(parseFloat(0));
   const [rural, setRural] = useState(parseFloat(0));
   const [total, setTotal] = useState(parseFloat(0));
-  // const [nextEmissions, setNextEmissions] = useState(false);
+  const [nextEmissions, setNextEmissions] = useState(false);
   const [settlementDistribution, setSettlementDistribution] = useState("");
   const [nextU1Charts, setU1Charts] = useState(false);
 
@@ -64,6 +64,7 @@ export const TransportBaseline = ({ country, year, population }) => {
       rural,
     };
     setSettlementDistribution(settlementDist);
+    setNextEmissions(true);
   }; 
 
   const getCurrentTotal = () => {
@@ -173,14 +174,14 @@ export const TransportBaseline = ({ country, year, population }) => {
                   max="100"
                   /*   value={rural} */
                   onChange={handleRural}
+                  onMouseLeave={getCurrentTotal}
                   required />
               </div>
               <div className="save_piechart">
                 <Button
                   size="small"
-                  value="nextU2"
+                  value="save_settlement"
                   onClick={setSettlementType}
-                  onMouseLeave={getCurrentTotal}
                   label="Save"
                   primary
                 />
@@ -344,7 +345,7 @@ export const TransportBaseline = ({ country, year, population }) => {
           <div className="nextU2Button">
           <Button
             size="small"
-            value="visualize_u1"
+            value="charts"
             onClick={() => setU1Charts(true)}
             label="Next &raquo;"
             primary
