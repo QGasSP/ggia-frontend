@@ -23,9 +23,8 @@ export const TransportBaseline = ({ country, year, population }) => {
   const [town, setTown] = useState(parseFloat(0));
   const [rural, setRural] = useState(parseFloat(0));
   const [total, setTotal] = useState(parseFloat(0));
-  const [nextEmissions, setNextEmissions] = useState(false);
+  // const [nextEmissions, setNextEmissions] = useState(false);
   const [settlementDistribution, setSettlementDistribution] = useState("");
-  const [setPieError, setPieChartErrorMessage] = useState("");
   const [nextU1Charts, setU1Charts] = useState(false);
 
   const [nsArea, setNsArea] = useState(0);
@@ -36,27 +35,22 @@ export const TransportBaseline = ({ country, year, population }) => {
   const [freightInlandWaterway, setFreightInlandWaterway] = useState(0);
 
   const handleMetropolitanCenter = (e) => {
-    setPieChartErrorMessage("");
     e.preventDefault();
     setMetropolitan(parseFloat(e.target.value));
   };
   const handleUrban = (e) => {
-    setPieChartErrorMessage("");
     e.preventDefault();
     setUrban(parseFloat(e.target.value));
   };
   const handleSuburban = (e) => {
-    setPieChartErrorMessage("");
     e.preventDefault();
     setSubUrban(parseFloat(e.target.value));
   };
   const handleTown = (e) => {
-    setPieChartErrorMessage("");
     e.preventDefault();
     setTown(parseFloat(e.target.value));
   };
   const handleRural = (e) => {
-    setPieChartErrorMessage("");
     e.preventDefault();
     setRural(parseFloat(e.target.value));
   };
@@ -70,7 +64,6 @@ export const TransportBaseline = ({ country, year, population }) => {
       rural,
     };
     setSettlementDistribution(settlementDist);
-    setNextEmissions(true);
   }; 
 
   const getCurrentTotal = () => {
@@ -78,7 +71,7 @@ export const TransportBaseline = ({ country, year, population }) => {
   };
 
 
-  if (nextU1Charts === false) {
+  if (nextU1Charts === false ) {
   return (
     <div>
       <article>
@@ -357,14 +350,6 @@ export const TransportBaseline = ({ country, year, population }) => {
             primary
           />
         </div>
-        {/*   {nextEmissions === true && total === 100.0 && (
-            <U1planner
-              country={country}
-              year={year}
-              population={population}
-              settlementDistribution={settlementDistribution}
-            />
-          )} */}
         </section>
       </article>
     </div>
