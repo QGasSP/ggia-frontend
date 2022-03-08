@@ -34,11 +34,11 @@ export const U3planner = ({ baseline, newDevelopment, emission, projections }) =
   // const [modalPassShares, setModalPassShares] = useState("");
   const [modalFreShares, setModalFreightShares] = useState("");
   const [modalSplitFre, setModalSplitFre] = useState("");
-  const [bus, setBus] = useState(0);
-  const [metro, setMetro] = useState(0);
-  const [tram, setTram] = useState(0);
-  const [train, setTrain] = useState(0);
-  const [car, setCar] = useState(0);
+  const [buses, setBus] = useState(0);
+  const [metros, setMetro] = useState(0);
+  const [trams, setTram] = useState(0);
+  const [trains, setTrain] = useState(0);
+  const [cars, setCar] = useState(0);
   const [affectedPopulation, setAffectedPopulation] = useState(0);
   const [railTransport, setRailTransport] = useState(0);
   const [waterwaysTransport, setWaterwaysTransport] = useState(0);
@@ -213,11 +213,11 @@ export const U3planner = ({ baseline, newDevelopment, emission, projections }) =
     setFreightTransport(freightTrans);
 
     const modalPassShares = {
-      bus,
-      metro,
-      tram,
-      train,
-      car,
+      buses,
+      metros,
+      trams,
+      trains,
+      cars,
     };
     setModalPassShares(modalPassShares);
 
@@ -316,13 +316,13 @@ export const U3planner = ({ baseline, newDevelopment, emission, projections }) =
   };
   axios
     .post("https://ggia-dev.ulno.net/api/v1/calculate/transport", raw, headers)
-    .then((response) => setResponse(response.data))
+    .then((response) => setU3Response(response.data.json))
     .catch((error) => {
       setU3Error({ errorMessage: error.message });
       // eslint-disable-next-line no-console
       console.error("There was an error!", error);
     });
-  const setResponse = (response) => {
+  const setU3Response = (response) => {
     setPolicyQuantification(response.data.policy_quantification);
   };
 
