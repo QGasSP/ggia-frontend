@@ -515,6 +515,7 @@ export const StackedBarchart = ({
         baseline={baseline}
         settlementDistribution={settlementDistribution}
         projections={projections}
+        emission={emission}
       />
     );
   }
