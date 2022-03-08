@@ -14,7 +14,7 @@ import {
   RadialChart,
 } from "react-vis";
 
-import { NewResidents } from "./NewResidents";
+import {NewResidents} from "./NewResidents";
 import Divider from "@mui/material/Divider";
 import { Legend } from "./Legend";
 
@@ -564,6 +564,7 @@ export const U1planner = ({
       <NewResidents
         baseline={baseline}
         settlementDistribution={settlementDistribution}
+        emission={emission}
       />
     );
   }
