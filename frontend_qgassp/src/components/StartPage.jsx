@@ -10,7 +10,6 @@ export const StartPage = () => {
   // const [year, setYear] = useState(0);
   // const [population, setPopulation] = useState(0);
 
-
   const [country, setCountry] = useState(() => {
     const savedCountry = window.localStorage.getItem("country");
     return window.localStorage.getItem("country") !== "" ? savedCountry : "";
