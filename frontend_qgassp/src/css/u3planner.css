@@ -1,17 +1,18 @@
-section {
+/* section {
   font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
   line-height: 24px;
-  padding: 48px 20px;
+  padding: 0.5rem;
   margin: 0 auto;
   color: #333;
 }
 
 section h2 {
   font-weight: 900;
-  font-size: 24px;
+  font-size: 1.5em;
+  font-family: sans-serif;
   line-height: 1;
-  margin: 0 0 4px;
+  margin: 0 0 0.5rem;
   display: inline-block;
   vertical-align: top;
 }
@@ -55,3 +56,4 @@ section div {
 #divspace {
   margin-right: 110px;
 }
+ */

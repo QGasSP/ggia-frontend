@@ -487,7 +487,7 @@ export const U3planner = ({ baseline, newDevelopment, emission, projections }) =
               <label>% of the area affeccted</label>
               <div>
                 <label>Share for bus</label>
-                <label>{emission.bus}</label>
+           {/*      <label>{emission.bus}</label> */}
                 <input
                   id="inputspace"
                   type="number"
@@ -513,7 +513,7 @@ export const U3planner = ({ baseline, newDevelopment, emission, projections }) =
               </div>
               <div>
                 <label>Share for metro</label>
-                <label>{emission.metro}</label>
+            {/*     <label>{emission.metro}</label> */}
                 <input
                   type="number"
                   step="0.1"
@@ -527,7 +527,7 @@ export const U3planner = ({ baseline, newDevelopment, emission, projections }) =
               </div>
               <div>
                 <label>Share for tram</label>
-                <label>{emission.tram}</label>
+            {/*     <label>{emission.tram}</label> */}
                 <input
                   type="number"
                   step="0.1"
@@ -541,7 +541,7 @@ export const U3planner = ({ baseline, newDevelopment, emission, projections }) =
               </div>
               <div>
                 <label>Share for train</label>
-                <label>{emission.train}</label>
+              {/*   <label>{emission.train}</label> */}
                 <input
                   type="number"
                   step="0.1"
@@ -555,7 +555,7 @@ export const U3planner = ({ baseline, newDevelopment, emission, projections }) =
               </div>
               <div>
                 <label>Car passenger</label>
-                <label>{emission.car}</label>
+             {/*    <label>{emission.car}</label> */}
                 <label>This is calculated automatically</label>
               </div>
               {/* <div>
@@ -613,7 +613,7 @@ export const U3planner = ({ baseline, newDevelopment, emission, projections }) =
               {/* <label>% of the area affeccted</label> */}
               <div>
                 <label>Share for rail</label>
-                <label>{emission.rail_transport}</label>
+              {/*   <label>{emission.rail_transport}</label> */}
                 <input
                   type="number"
                   step="0.1"
@@ -627,7 +627,7 @@ export const U3planner = ({ baseline, newDevelopment, emission, projections }) =
               </div>
               <div>
                 <label>Share for inland waterways</label>
-                <label>{emission.waterways_transport}</label>
+               {/*  <label>{emission.waterways_transport}</label> */}
                 <input
                   type="number"
                   step="0.1"
@@ -641,7 +641,7 @@ export const U3planner = ({ baseline, newDevelopment, emission, projections }) =
               </div>
               <div>
                 <label>Share for road freight</label>
-                <label>{emission.road_transport}</label>
+              {/*   <label>{emission.road_transport}</label> */}
                 <label>This is calculated automatically</label>
               </div>
               {/* <div>
