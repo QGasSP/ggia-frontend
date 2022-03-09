@@ -16,6 +16,7 @@ import {
 
 import { NewResidents } from "./NewResidents";
 import Divider from "@mui/material/Divider";
+import Chip from "@mui/material/Chip";
 import { Legend } from "./Legend";
 
 /**
@@ -183,7 +184,7 @@ export const U1planner = ({
         </Divider>
 
         <div className="barchart_container">
-          <XYPlot xType="ordinal" width={1000} height={250} xDistance={200}>
+          <XYPlot xType="ordinal" width={1000} height={300} xDistance={200}>
             <HorizontalGridLines />
             <VerticalGridLines />
             <VerticalBarSeries
@@ -244,16 +245,16 @@ export const U1planner = ({
         <div className="headerSettlement">
           <Divider textAlign="left" flexItem>
             {" "}
-            <b> Projections: 2022&ndash;2050</b>
+            <Chip label="Projections" />
           </Divider>
         </div>
+        <br/>
 
-        <label>
-          <b>CO2e emissions per capita 2022-2050</b>
-        </label>
+        <Divider textAlign="left" flexItem>
+          {" "}
+          <b>CO2e emissions per capita 2023-2050</b>
+        </Divider>
 
-        {/*  {JSON.stringify(projections)}
-         */}
         <div>
           <XYPlot width={1000} height={500} stackBy="y" xType="ordinal">
             <HorizontalGridLines />

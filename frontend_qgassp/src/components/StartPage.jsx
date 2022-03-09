@@ -40,9 +40,7 @@ export const StartPage = () => {
     return (
       <>
       <article>
-       
         <br />
-
         <div>
           <Divider textAlign="left" flexItem>
             {" "}

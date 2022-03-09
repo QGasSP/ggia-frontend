@@ -223,16 +223,6 @@ export const NewResidents = ({
                   required
                 />
               </div>
-              {/* <div className="backButtonNew">
-                <Button
-                  size="small"
-                  value="backProjections"
-                  onClick={() => navigate("/u1planner", { replace: true })}
-                  label="&laquo; Previous"
-                  secondary
-                />
-              </div> */}
-
               <div className="nextButtonNew">
                 <Button
                   size="small"

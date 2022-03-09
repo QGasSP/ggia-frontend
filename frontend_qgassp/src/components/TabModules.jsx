@@ -1,12 +1,11 @@
 import { useState } from "react";
 import "../css/tabs.css";
 import { ModuleHeader } from "./ModuleHeader";
-// import { StartPage} from "./StartPage";
+import { StartPage} from "./StartPage";
 import { LandUseChangeTableForm } from "./LandUseChangeTableForm";
 import { Welcome } from "./Welcome";
-import { TransportBaseline } from "./TransportBaseline";
-/* import { TransportBaseline } from "./TransportBaseline"; */
-
+/* import { TransportBaseline } from "./TransportBaseline";
+ */
 export const TabModules = () => {
   const [toggleState, setToggleState] = useState(1);
   const [ggiaGuideUrl, setGgiaGuideUrl] = useState(
@@ -38,7 +37,7 @@ export const TabModules = () => {
 
           <button
             className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
-           /*  onClick={() => toggleTab(2)} */
+            onClick={() => toggleTab(2)}
             id="territorial"
           >
             Transport
@@ -87,6 +86,7 @@ export const TabModules = () => {
       <div className="content-tabs">
         <>
         {toggleState == 1 && <Welcome />}
+        {toggleState == 2 && <StartPage />}
         {toggleState == 3 && <LandUseChangeTableForm />}
         </>
       </div>
