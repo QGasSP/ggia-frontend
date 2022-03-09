@@ -3,9 +3,9 @@
 }
 
 .header_start {
-  text-align: center;
+  text-align: left;
   font-size: 1rem;
-  padding-top: 0.5rem;
+  padding-top: 0.75rem;
   /* font-weight: 700; */
   font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: black;
@@ -19,16 +19,15 @@
 }
 
 .intro_label {
-  width: 100%;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 35%;
   font-size: 1 rem;
   align-items: center;
-  font-family: sans-serif;
+  font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin-bottom: 0.5rem;
   cursor: default;
-}
-
-.intro_select {
-  display: block;
+  padding: 0.5rem 0.2rem;
 }
 
 @media (min-width: 40%) {
@@ -37,40 +36,25 @@
   }
 }
 .form-group {
-  margin: 0 auto 0rem auto;
+  display: block;
   padding: 0.25rem;
-  font-family: sans-serif;
-  width: 45%;
+  font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  width: 100%;
 }
-/* #impact_start_form{
-  
-} */
 
 .population {
-  display: block;
-  width: 100% !important;
-  height: 2.375rem;
-  border-radius: 0.25rem;
-  padding: 0.375rem 0.75rem;
-  font-family: sans-serif;
-  font-size: 1.125rem;
-  line-height: 1.4;
-  border: 1px solid #257322;
+  width: 23% !important;
+  line-height: 1.5rem;
   -moz-appearance: textfield;
   -webkit-appearance: textfield;
   appearance: textfield;
 }
-.intro_select {
-  background: var(--color-white);
-  font-family: sans-serif;
-  font-size: 1rem;
-  width: 100%;
-  border-radius: 0.25rem;
-  font-weight: 400;
-  line-height: 1.4;
-  align-items: center;
-  height: 2.375rem;
-  padding: 0.375rem 0.75rem;
+.baseline_select {
+  width: 23% !important;
+  line-height: 1.4rem;
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+  appearance: textfield;
 }
 
 .intro_main {
@@ -79,8 +63,15 @@
 }
 
 .next_u1 {
+  padding-top: 0.5rem;
   position: absolute;
-  right:40%;
+  left: 1.5rem;
+}
+
+.local_dataset {
+  padding-top: 0.5rem;
+  /*  position: absolute; */
+  width: 25%;
 }
 
 .row_start {
@@ -89,4 +80,6 @@
 
 .column_start {
   flex: 50%;
+  margin-left: 1.5rem;
+  align-content: flex-start;
 }

@@ -1,4 +1,4 @@
-const SERVER_ADDRESS = "https://ggia.ulno.net";
+const SERVER_ADDRESS = "https://ggia-dev.ulno.net/";
 
 const parse = async (fetchPromise) => {
   const response = await fetchPromise;
@@ -9,36 +9,25 @@ const parse = async (fetchPromise) => {
   }
 };
 
-const getCountryEmissions = ({ country }) => {
+const getTransportBaseline= ({ baseline }) => {
   return parse(
-    fetch(SERVER_ADDRESS + "/calc/emission", {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ type: "country", country }),
-    })
-  );
-};
-
-const postCountryEmissions = ({ country }) => {
-  return parse(
-    fetch(SERVER_ADDRESS + "/calc/emission/country", {
+    fetch(SERVER_ADDRESS + "/api/v1/calculate/transport/baseline", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify({ type: "country", country }),
+      body: JSON.stringify({ type: "baseline", baseline }),
     })
   );
 };
 
+
 /**
- * @return {Object} Server API - {getCountryEmissions, country}
+ * @return {Object} Server API - {getTransport, baseline}
  */
 export const createServer = () => {
   return {
-    getCalcEmissions: (params) => getCountryEmissions(params),
-    postCalcEmissions: (params) => postCountryEmissions(params),
+    getTransportBaseline: (params) => getTransportBaseline(params),
+   
   };
 };

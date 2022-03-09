@@ -36,7 +36,7 @@ Button.propTypes = {
   /**
    * How large should the button be?
    */
-  size: PropTypes.oneOf(["small", "medium", "large"]),
+  size: PropTypes.oneOf(["very_small", "small", "medium", "large"]),
   /**
    * Button contents
    */
