@@ -1,0 +1,11 @@
+.luc_legend{
+    display: flex;
+    justify-content: flex-start;
+}
+.ll_sub{
+    width: 180px;
+    margin: 0;
+}
+.rv-discrete-color-legend{
+    width: 200px !important;
+}
