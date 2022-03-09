@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button } from "./Button";
 import "../css/u1planner.css";
@@ -80,7 +80,10 @@ export const TransportBaseline = ({ country, year, population }) => {
   };
 
   useEffect(() => {
-    localStorage.setItem("settlementDistribution", JSON.stringify(settlementDistribution));
+    localStorage.setItem(
+      "settlementDistribution",
+      JSON.stringify(settlementDistribution)
+    );
   }, [settlementDistribution]);
 
   if (nextU1Charts === false) {
@@ -103,12 +106,12 @@ export const TransportBaseline = ({ country, year, population }) => {
                   </label>
                   <label>Share ({total}%)</label>
                 </div>
-                <div  className="div_transport">
+                <div className="div_transport">
                   <label htmlFor="metropolitan" className="settle_label">
                     Metropolitan center
                   </label>
                   <input
-                  className="input_transport"
+                    className="input_transport"
                     type="number"
                     step="0.01"
                     id="metropolitan"
@@ -121,12 +124,12 @@ export const TransportBaseline = ({ country, year, population }) => {
                   />
                 </div>
 
-                <div  className="div_transport">
+                <div className="div_transport">
                   <label htmlFor="urban" className="settle_label">
                     Urban
                   </label>
                   <input
-                   className="input_transport"
+                    className="input_transport"
                     type="number"
                     step="0.01"
                     id="urban"
@@ -139,13 +142,13 @@ export const TransportBaseline = ({ country, year, population }) => {
                   />
                 </div>
 
-                <div  className="div_transport">
+                <div className="div_transport">
                   <label htmlFor="suburban" className="settle_label">
                     {" "}
                     Suburban
                   </label>
                   <input
-                   className="input_transport"
+                    className="input_transport"
                     type="number"
                     id="suburban"
                     step="any"
@@ -158,12 +161,12 @@ export const TransportBaseline = ({ country, year, population }) => {
                   />
                 </div>
 
-                <div  className="div_transport">
+                <div className="div_transport">
                   <label htmlFor="town" className="settle_label">
                     Town
                   </label>
                   <input
-                   className="input_transport"
+                    className="input_transport"
                     type="number"
                     id="town"
                     step="0.01"
@@ -175,12 +178,12 @@ export const TransportBaseline = ({ country, year, population }) => {
                     required
                   />
                 </div>
-                <div  className="div_transport">
+                <div className="div_transport">
                   <label htmlFor="rural" className="settle_label">
                     Rural
                   </label>
                   <input
-                   className="input_transport"
+                    className="input_transport"
                     type="number"
                     id="rural"
                     step="0.01"
@@ -206,8 +209,8 @@ export const TransportBaseline = ({ country, year, population }) => {
               </div>
 
               <div className="column">
-               {/*  <label className="hide">Total shares should be 100%</label> */}
-                <div  className="div_transport">
+                {/*  <label className="hide">Total shares should be 100%</label> */}
+                <div className="div_transport">
                   {total > 0 && total < 101 && (
                     <RadialChart
                       type="piechart"
@@ -259,7 +262,7 @@ export const TransportBaseline = ({ country, year, population }) => {
               </label>
               <label>Km</label>
 
-              <div  className="div_transport">
+              <div className="div_transport">
                 <label htmlFor="ns_measure">N-S Measurement (km)</label>
                 <input
                   type="text"
@@ -270,7 +273,7 @@ export const TransportBaseline = ({ country, year, population }) => {
                 />
               </div>
 
-              <div  className="div_transport">
+              <div className="div_transport">
                 <label htmlFor="ew_measure">E-W Measurement (km)</label>
                 <input
                   type="text"
@@ -281,19 +284,19 @@ export const TransportBaseline = ({ country, year, population }) => {
                 />
               </div>
 
-              <div  className="div_transport">
+              <div className="div_transport">
                 <label>
                   <b>Non-residential and freight</b>
                 </label>
                 <label></label>
               </div>
-              <div  className="div_transport">
+              <div className="div_transport">
                 <label htmlFor="non_resident_road">
                   {" "}
                   Non-residential road transport
                 </label>
                 <select
-                className="select_transport"
+                  className="select_transport"
                   id="non_resident_road"
                   onChange={(e) => setNonResidentialRoad(e.target.value)}
                   defaultValue={nonResidentialRoad}
@@ -307,10 +310,10 @@ export const TransportBaseline = ({ country, year, population }) => {
                 </select>
               </div>
 
-              <div  className="div_transport">
+              <div className="div_transport">
                 <label htmlFor="freight=road">Freight transport by road</label>
                 <select
-                className="select_transport"
+                  className="select_transport"
                   id="freight_road"
                   name="freight_road"
                   onChange={(e) => setFreightRoad(e.target.value)}
@@ -327,7 +330,7 @@ export const TransportBaseline = ({ country, year, population }) => {
               <div>
                 <label htmlFor="freight_rail">Freight transport by rail</label>
                 <select
-                className="select_transport"
+                  className="select_transport"
                   id="freight_rail"
                   name="freight_rail"
                   onChange={(e) => setFreightRail(e.target.value)}
@@ -342,12 +345,12 @@ export const TransportBaseline = ({ country, year, population }) => {
                 </select>
               </div>
 
-              <div  className="div_transport">
+              <div className="div_transport">
                 <label htmlFor="freight_waterway">
                   Freight transport by inland waterways
                 </label>
                 <select
-                className="select_transport"
+                  className="select_transport"
                   id="freight_waterway"
                   name="freight_waterway"
                   onChange={(e) => setFreightInlandWaterway(e.target.value)}

@@ -38,7 +38,7 @@ export const TabModules = () => {
 
           <button
             className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
-           /*  onClick={() => toggleTab(2)} */
+            /*  onClick={() => toggleTab(2)} */
             id="territorial"
           >
             Transport
@@ -52,14 +52,14 @@ export const TabModules = () => {
           </button>
           <button
             className={toggleState === 4 ? "tabs active-tabs" : "tabs"}
-           /*  onClick={() => toggleTab(4)} */
+            /*  onClick={() => toggleTab(4)} */
             id="territorial"
           >
             Buildings
           </button>
           <button
             className={toggleState === 5 ? "tabs active-tabs" : "tabs"}
-          /*   onClick={() => toggleTab(5)} */
+            /*   onClick={() => toggleTab(5)} */
             id="consumption"
           >
             Consumption-based
@@ -68,7 +68,7 @@ export const TabModules = () => {
           </button>
           <button
             className={toggleState === 6 ? "tabs active-tabs" : "tabs"}
-           /*  onClick={() => toggleTab(6)} */
+            /*  onClick={() => toggleTab(6)} */
             id="local_data"
           >
             Create local data-set
@@ -86,8 +86,8 @@ export const TabModules = () => {
 
       <div className="content-tabs">
         <>
-        {toggleState == 1 && <Welcome />}
-        {toggleState == 3 && <LandUseChangeTableForm />}
+          {toggleState == 1 && <Welcome />}
+          {toggleState == 3 && <LandUseChangeTableForm />}
         </>
       </div>
     </>

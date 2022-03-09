@@ -6,9 +6,7 @@ import { Header } from "./components/Header";
 import PropTypes from "prop-types";
 import { Welcome } from "./components/Welcome";
 
-
 function App({ user, onLogin, onLogout, onCreateAccount }) {
- 
   return (
     <>
       {
@@ -19,9 +17,9 @@ function App({ user, onLogin, onLogout, onCreateAccount }) {
           onCreateAccount={onCreateAccount}
         />
       }
-     {/*  <Welcome/> */}
+      {/*  <Welcome/> */}
 
-     {/*  <Router>
+      {/*  <Router>
         <AppRoutes />
       </Router> */}
     </>

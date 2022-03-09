@@ -12,10 +12,10 @@
   font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 0.9rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding:0.2rem;
+  padding: 0.2rem;
   display: flex;
   align-items: center;
-  position: relative; 
+  position: relative;
 }
 
 .wrapper_branding {
@@ -95,19 +95,18 @@ button + button {
   justify-content: center;
 }
 
-
 .left {
   width: 14.5%;
   float: left;
-  background-color: #BfBfBf;
+  background-color: #bfbfbf;
 }
 
 .mid {
   width: 42.5%;
   float: left;
   text-align: center;
-  background-color:#ffeac1;
-  border:0.2rem solid #ffeac1;
+  background-color: #ffeac1;
+  border: 0.2rem solid #ffeac1;
 }
 
 .right {

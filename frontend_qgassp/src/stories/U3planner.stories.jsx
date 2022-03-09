@@ -8,7 +8,6 @@ export default {
 
 const Template = (args) => <U3planner {...args} />;
 
-
 export const DiscreteLegend = Template.bind({});
 DiscreteLegend.args = {
   primary: true,

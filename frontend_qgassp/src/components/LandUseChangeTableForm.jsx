@@ -12,10 +12,7 @@ import Chip from "@mui/material/Chip";
  * @return {}
  */
 
-export const LandUseChangeTableForm = ({
-  country,
-  year,
-}) => {
+export const LandUseChangeTableForm = ({ country, year }) => {
   // to Forest vars
   // #region
   const [cropToForest, setCropToForest] = useState(1);
@@ -284,7 +281,7 @@ export const LandUseChangeTableForm = ({
     setLUCBarChart(true);
   };
 
- /*  const goBack = () => {
+  /*  const goBack = () => {
     // ?
     navigate("/", { replace: true });
   }; */
@@ -1061,13 +1058,13 @@ export const LandUseChangeTableForm = ({
     const landUseChange = {
       totalArea: totalArea,
       mineral: mineral,
-      organic: organic
+      organic: organic,
     };
     const rawData = {
-        country,
-        year,
-        landUseChange,
-        policyStartYear
+      country,
+      year,
+      landUseChange,
+      policyStartYear,
     };
     const headers = {
       "Access-Control-Allow-Origin": "*",
@@ -1088,7 +1085,10 @@ export const LandUseChangeTableForm = ({
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("landUseChange", JSON.stringify(landUseChangeResponse));
+    localStorage.setItem(
+      "landUseChange",
+      JSON.stringify(landUseChangeResponse)
+    );
   }, [landUseChangeResponse]);
 
   if (lucBarChart === false) {
@@ -3028,7 +3028,7 @@ export const LandUseChangeTableForm = ({
                   </table>
                 </div>
 
-               {/*  <div className="backStart">
+                {/*  <div className="backStart">
                   <Button
                     size="small"
                     value="backStartPage"
@@ -3055,11 +3055,7 @@ export const LandUseChangeTableForm = ({
       </div>
     );
   } else {
-    return (
-      <LUCBarChart
-      landUseChangeResponse={landUseChangeResponse}
-      />
-    );
+    return <LUCBarChart landUseChangeResponse={landUseChangeResponse} />;
   }
 };
 
@@ -3069,6 +3065,6 @@ LandUseChangeTableForm.propTypes = {
 };
 
 LandUseChangeTableForm.defaultProps = {
-  country: 'Estonia',
-  year: 2023
+  country: "Estonia",
+  year: 2023,
 };
