@@ -15,7 +15,7 @@ import Divider from "@mui/material/Divider";
 export const NewResidents = ({
   settlementDistribution,
   baseline,
-  emissions,
+  emission,
   projections,
 }) => {
   const [nsMetropolitanCenter, setNsMetropolitan] = useState(parseFloat(0));
@@ -254,7 +254,7 @@ export const NewResidents = ({
         baseline={baseline.baseline}
         newDevelopment={newDevelopment}
         settlementDistribution={settlementDistribution}
-        emissions={emissions}
+        emission={emission}
         projections={projections}
       />
     );
@@ -264,6 +264,6 @@ export const NewResidents = ({
 NewResidents.propTypes = {
   baseline: PropTypes.object.isRequired,
   settlementDistribution: PropTypes.object.isRequired, 
-  emissions: PropTypes.object.isRequired,
+  emission: PropTypes.object.isRequired,
   projections: PropTypes.object.isRequired, 
 };
