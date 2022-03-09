@@ -27,6 +27,8 @@ export const U2planner = ({
   baseline,
   newDevelopment,
   settlementDistribution,
+  emission,
+  projections,
 }) => {
   const [errorU2, setU2Error] = useState("");
   const [newPopulation, setNewPopulation] = useState("");
@@ -74,7 +76,7 @@ export const U2planner = ({
         </div>
 
         <section>
-         {/*  <div>{newPopulation}</div> */}
+          {/*  <div>{newPopulation}</div> */}
           <form>
             <label>
               <b>New residents</b>
@@ -263,11 +265,13 @@ export const U2planner = ({
       </article>
     );
   } else {
-    return <U3planner baseline={baseline} newDevelopment={newDevelopment} />;
+    return <U3planner baseline={baseline} newDevelopment={newDevelopment}  emission={emission} projections={projections}/>;
   }
 };
-
+// baseline, newDevelopment, emission, projections
 U2planner.propTypes = {
+  emission: PropTypes.object.isRequired,
+  projections: PropTypes.object.isRequired,
   baseline: PropTypes.object.isRequired,
   settlementDistribution: PropTypes.object.isRequired,
   newDevelopment: PropTypes.object.isRequired,

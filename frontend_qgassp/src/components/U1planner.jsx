@@ -74,14 +74,6 @@ export const U1planner = ({
         console.error("There was an error!", error);
       });
   }, []);
-/* 
-  const setResponse = (response) => {
-    setEmissionData(response.emissions);
-    setProjections(response.projections);
-  }; */
-  const goToNewResidents = () => {
-    setNewResidentView(true);
-  };
 
   if (nextNewResidentview === false && Object.keys(projections).length !== 0) {
     return (
@@ -561,6 +553,8 @@ export const U1planner = ({
       <NewResidents
         baseline={baseline}
         settlementDistribution={settlementDistribution}
+        emission={emission}
+        projections={projections}
       />
     );
   } else {

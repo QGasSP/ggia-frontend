@@ -73,305 +73,315 @@ export const TransportBaseline = ({ country, year, population }) => {
     };
     setBaseline({ baseline });
     setNextEmissions(true);
-  }; 
+  };
 
   const getCurrentTotal = () => {
     setTotal(metropolitanCenter + urban + suburban + town + rural);
   };
 
+  if (nextU1Charts === false) {
+    return (
+      <div className="div_transport">
+        <article>
+          <div className="headerSettlement">
+            <Divider textAlign="left" flexItem>
+              {" "}
+              <Chip label="TRANSPORT BASELINE" />
+            </Divider>
+          </div>
 
-  if (nextU1Charts === false ) {
-  return (
-    <div>
-      <article>
-        <div className="headerSettlement">
-          <Divider textAlign="left" flexItem>
-            {" "}
-            <Chip label="TRANSPORT BASELINE" />
-          </Divider>
-        </div>
+          <section className="section-transport">
+            <div className="row">
+              <div className="column">
+                <div className="settlement_headers">
+                  <label className="shareInfo">
+                    <b>Settlement type </b>
+                  </label>
+                  <label>Share ({total}%)</label>
+                </div>
+                <div  className="div_transport">
+                  <label htmlFor="metropolitan" className="settle_label">
+                    Metropolitan center
+                  </label>
+                  <input
+                  className="input_transport"
+                    type="number"
+                    step="0.01"
+                    id="metropolitan"
+                    min="0"
+                    max="100"
+                    /*  defaultValue={metropolitanCenter} */
+                    onChange={handleMetropolitanCenter}
+                    onMouseLeave={getCurrentTotal}
+                    required
+                  />
+                </div>
 
-        <section>
-          <div className="row">
-            <div className="column">
-              <div className="settlement_headers">
-                <label className="shareInfo">
-                  <b>Settlement type </b>
-                </label>
-                <label>
-                  Share ({total}%)
-                </label>
-              </div>
-              <div >
-                <label htmlFor="metropolitan" className="settle_label">
-                  Metropolitan center
-                </label>
-                <input
-                  type="number"
-                  step="0.01"
-                  id="metropolitan"
-                  min="0"
-                  max="100"
-                  /*  defaultValue={metropolitanCenter} */
-                  onChange={handleMetropolitanCenter}
-                  onMouseLeave={getCurrentTotal}
-                  required
-                />
+                <div  className="div_transport">
+                  <label htmlFor="urban" className="settle_label">
+                    Urban
+                  </label>
+                  <input
+                   className="input_transport"
+                    type="number"
+                    step="0.01"
+                    id="urban"
+                    min="0"
+                    max="100"
+                    /*   value={urban} */
+                    onChange={handleUrban}
+                    onMouseLeave={getCurrentTotal}
+                    required
+                  />
+                </div>
+
+                <div  className="div_transport">
+                  <label htmlFor="suburban" className="settle_label">
+                    {" "}
+                    Suburban
+                  </label>
+                  <input
+                   className="input_transport"
+                    type="number"
+                    id="suburban"
+                    step="any"
+                    min="0.01"
+                    max="100.0"
+                    /*   defaultValue={suburban} */
+                    onChange={handleSuburban}
+                    onMouseLeave={getCurrentTotal}
+                    required
+                  />
+                </div>
+
+                <div  className="div_transport">
+                  <label htmlFor="town" className="settle_label">
+                    Town
+                  </label>
+                  <input
+                   className="input_transport"
+                    type="number"
+                    id="town"
+                    step="0.01"
+                    min="0.0"
+                    max="100.0"
+                    /*   value={town} */
+                    onChange={handleTown}
+                    onMouseLeave={getCurrentTotal}
+                    required
+                  />
+                </div>
+                <div  className="div_transport">
+                  <label htmlFor="rural" className="settle_label">
+                    Rural
+                  </label>
+                  <input
+                   className="input_transport"
+                    type="number"
+                    id="rural"
+                    step="0.01"
+                    min="0"
+                    max="100"
+                    /*   value={rural} */
+                    onChange={handleRural}
+                    onMouseLeave={getCurrentTotal}
+                    required
+                  />
+                </div>
+                <br />
+                <div className="save_piechart">
+                  <Button
+                    size="small"
+                    value="save_settlement"
+                    onClick={setSettlementType}
+                    label="Save"
+                    primary
+                  />
+                </div>
+                <br />
               </div>
 
-              <div >
-                <label htmlFor="urban" className="settle_label">
-                  Urban
-                </label>
-                <input
-                  type="number"
-                  step="0.01"
-                  id="urban"
-                  min="0"
-                  max="100"
-                  /*   value={urban} */
-                  onChange={handleUrban}
-                  onMouseLeave={getCurrentTotal}
-                  required
-                />
-              </div>
-
-              <div>
-                <label htmlFor="suburban" className="settle_label">
-                  {" "}
-                  Suburban
-                </label>
-                <input
-                  type="number"
-                  id="suburban"
-                  step="any"
-                  min="0.01"
-                  max="100.0"
-                  /*   defaultValue={suburban} */
-                  onChange={handleSuburban}
-                  onMouseLeave={getCurrentTotal}
-                  required
-                />
-              </div>
-
-              <div>
-                <label htmlFor="town" className="settle_label">
-                  Town
-                </label>
-                <input
-                  type="number"
-                  id="town"
-                  step="0.01"
-                  min="0.0"
-                  max="100.0"
-                  /*   value={town} */
-                  onChange={handleTown}
-                  onMouseLeave={getCurrentTotal}
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="rural" className="settle_label">
-                  Rural
-                </label>
-                <input
-                  type="number"
-                  id="rural"
-                  step="0.01"
-                  min="0"
-                  max="100"
-                  /*   value={rural} */
-                  onChange={handleRural}
-                  onMouseLeave={getCurrentTotal}
-                  required />
-              </div>
-              <div className="save_piechart">
-                <Button
-                  size="small"
-                  value="save_settlement"
-                  onClick={setSettlementType}
-                  label="Save"
-                  primary
-                />
-              </div>
-              <br/>
-            </div>
-
-            <div className="column">
-            <label className="hide">Total shares should be 100%</label>
-              <div>
+              <div className="column">
+               {/*  <label className="hide">Total shares should be 100%</label> */}
+                <div  className="div_transport">
+                  {total > 0 && total < 101 && (
+                    <RadialChart
+                      type="piechart"
+                      data={[
+                        {
+                          angle: urban,
+                          label: "Urban",
+                          color: "#164059",
+                        },
+                        {
+                          angle: suburban,
+                          label: "Suburban",
+                          color: "#F25F29",
+                        },
+                        {
+                          angle: town,
+                          label: "Town",
+                          color: "#F23A29",
+                        },
+                        {
+                          angle: rural,
+                          label: "Rural",
+                          color: "#D9D9D9",
+                        },
+                        {
+                          angle: metropolitanCenter,
+                          label: "Metropolitan center",
+                          color: "#730E16",
+                        },
+                      ]}
+                      width={180}
+                      height={180}
+                      colorType="literal"
+                    />
+                  )}
+                </div>
                 {total > 0 && total < 101 && (
-                  <RadialChart
-                    type="piechart"
-                    data={[
-                      {
-                        angle: urban,
-                        label: "Urban",
-                        color: "#164059",
-                      },
-                      {
-                        angle: suburban,
-                        label: "Suburban",
-                        color: "#F25F29",
-                      },
-                      {
-                        angle: town,
-                        label: "Town",
-                        color: "#F23A29",
-                      },
-                      {
-                        angle: rural,
-                        label: "Rural",
-                        color: "#D9D9D9",
-                      },
-                      {
-                        angle: metropolitanCenter,
-                        label: "Metropolitan center",
-                        color: "#730E16",
-                      },
-                    ]}
-                    width={180}
-                    height={180}
-                    colorType="literal"
+                  <DiscreteColorLegend
+                    items={settlementLabels}
+                    orientation="horizontal"
+                    strokeWidth="40"
                   />
                 )}
               </div>
-              {total > 0 && total < 101 && (
-                <DiscreteColorLegend
-                  items={settlementLabels}
-                  orientation="horizontal"
-                  strokeWidth="40"
-                />
-              )}
             </div>
-          </div>
-          <div className="settlementDiv">
-            <label>
-              <b>Area</b>
-            </label>
-            <label>Km</label>
-
-            <div>
-              <label htmlFor="ns_measure">N-S Measurement (km)</label>
-              <input
-                type="text"
-                id="ns_measure"
-                min="0"
-                onChange={(e) => setNsArea(e.target.value)}
-                placeholder={nsArea}
-              />
-            </div>
-
-            <div>
-              <label htmlFor="ew_measure">E-W Measurement (km)</label>
-              <input
-                type="text"
-                id="ew_measure"
-                min="0"
-                onChange={(e) => setEwArea(e.target.value)}
-                placeholder={ewArea}
-              />
-            </div>
-
-            <div>
+            <div className="settlementDiv">
               <label>
-                <b>Non-residential and freight</b>
+                <b>Area</b>
               </label>
-              <label></label>
-            </div>
-            <div>
-              <label htmlFor="non_resident_road">
-                {" "}
-                Non-residential road transport
-              </label>
-              <select
-                id="non_resident_road"
-                onChange={(e) => setNonResidentialRoad(e.target.value)}
-                defaultValue={nonResidentialRoad}
-              >
-                <optgroup label="Select road transport intensity">
-                  <option value="non-existent">0</option>
-                  <option value="low">0.3</option>
-                  <option value="medium_intensity">2.0</option>
-                  <option value="high_intensity">2.50</option>
-                </optgroup>
-              </select>
-            </div>
+              <label>Km</label>
 
-            <div>
-              <label htmlFor="freight=road">Freight transport by road</label>
-              <select
-                id="freight_road"
-                name="freight_road"
-                onChange={(e) => setFreightRoad(e.target.value)}
-                defaultValue={freightRoad}
-              >
-                <optgroup label="Select road transport intensity">
-                  <option value="non-existent">0</option>
-                  <option value="low">0.3</option>
-                  <option value="medium_intensity">2.0</option>
-                  <option value="high_intensity">2.50</option>
-                </optgroup>
-              </select>
-            </div>
-            <div>
-              <label htmlFor="freight_rail">Freight transport by rail</label>
-              <select
-                id="freight_rail"
-                name="freight_rail"
-                onChange={(e) => setFreightRail(e.target.value)}
-                defaultValue={freightRail}
-              >
-                <optgroup label="Select road transport intensity">
-                  <option value="non-existent">0</option>
-                  <option value="low">0.3</option>
-                  <option value="medium_intensity">2.0</option>
-                  <option value="high_intensity">2.50</option>
-                </optgroup>
-              </select>
-            </div>
+              <div  className="div_transport">
+                <label htmlFor="ns_measure">N-S Measurement (km)</label>
+                <input
+                  type="text"
+                  id="ns_measure"
+                  min="0"
+                  onChange={(e) => setNsArea(e.target.value)}
+                  placeholder={nsArea}
+                />
+              </div>
 
-            <div>
-              <label htmlFor="freight_waterway">
-                Freight transport by inland waterways
-              </label>
-              <select
-                id="freight_waterway"
-                name="freight_waterway"
-                onChange={(e) => setFreightInlandWaterway(e.target.value)}
-                defaultValue={freightInlandWaterway}
-              >
-                <optgroup label="Select road transport intensity">
-                  <option value="non-existent">0</option>
-                  <option value="low">0.3</option>
-                  <option value="medium_intensity">2.0</option>
-                  <option value="high_intensity">2.50</option>
-                </optgroup>
-              </select>
+              <div  className="div_transport">
+                <label htmlFor="ew_measure">E-W Measurement (km)</label>
+                <input
+                  type="text"
+                  id="ew_measure"
+                  min="0"
+                  onChange={(e) => setEwArea(e.target.value)}
+                  placeholder={ewArea}
+                />
+              </div>
+
+              <div  className="div_transport">
+                <label>
+                  <b>Non-residential and freight</b>
+                </label>
+                <label></label>
+              </div>
+              <div  className="div_transport">
+                <label htmlFor="non_resident_road">
+                  {" "}
+                  Non-residential road transport
+                </label>
+                <select
+                className="select_transport"
+                  id="non_resident_road"
+                  onChange={(e) => setNonResidentialRoad(e.target.value)}
+                  defaultValue={nonResidentialRoad}
+                >
+                  <optgroup label="Select road transport intensity">
+                    <option value="non-existent">0</option>
+                    <option value="low">0.3</option>
+                    <option value="medium_intensity">2.0</option>
+                    <option value="high_intensity">2.50</option>
+                  </optgroup>
+                </select>
+              </div>
+
+              <div  className="div_transport">
+                <label htmlFor="freight=road">Freight transport by road</label>
+                <select
+                className="select_transport"
+                  id="freight_road"
+                  name="freight_road"
+                  onChange={(e) => setFreightRoad(e.target.value)}
+                  defaultValue={freightRoad}
+                >
+                  <optgroup label="Select road transport intensity">
+                    <option value="non-existent">0</option>
+                    <option value="low">0.3</option>
+                    <option value="medium_intensity">2.0</option>
+                    <option value="high_intensity">2.50</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div>
+                <label htmlFor="freight_rail">Freight transport by rail</label>
+                <select
+                className="select_transport"
+                  id="freight_rail"
+                  name="freight_rail"
+                  onChange={(e) => setFreightRail(e.target.value)}
+                  defaultValue={freightRail}
+                >
+                  <optgroup label="Select road transport intensity">
+                    <option value="non-existent">0</option>
+                    <option value="low">0.3</option>
+                    <option value="medium_intensity">2.0</option>
+                    <option value="high_intensity">2.50</option>
+                  </optgroup>
+                </select>
+              </div>
+
+              <div  className="div_transport">
+                <label htmlFor="freight_waterway">
+                  Freight transport by inland waterways
+                </label>
+                <select
+                className="select_transport"
+                  id="freight_waterway"
+                  name="freight_waterway"
+                  onChange={(e) => setFreightInlandWaterway(e.target.value)}
+                  defaultValue={freightInlandWaterway}
+                >
+                  <optgroup label="Select road transport intensity">
+                    <option value="non-existent">0</option>
+                    <option value="low">0.3</option>
+                    <option value="medium_intensity">2.0</option>
+                    <option value="high_intensity">2.50</option>
+                  </optgroup>
+                </select>
+              </div>
             </div>
-          </div>
-          <div className="nextU2Button">
-          <Button
-            size="small"
-            value="charts"
-            onClick={() => setU1Charts(true)}
-            label="Next &raquo;"
-            primary
-          />
-        </div>
-        </section>
-      </article>
-    </div>
-  );
-} else if(nextU1Charts !== false ) {
-  return  <U1planner
-  country={country}
-  year={year}
-  population={population}
-  settlementDistribution={settlementDistribution}
-  baseline={baseline}
-/>;
-}
+            <div className="nextU2Button">
+              <Button
+                size="small"
+                value="charts"
+                onClick={() => setU1Charts(true)}
+                label="Next &raquo;"
+                primary
+              />
+            </div>
+          </section>
+        </article>
+      </div>
+    );
+  } else if (nextU1Charts !== false) {
+    return (
+      <U1planner
+        country={country}
+        year={year}
+        population={population}
+        settlementDistribution={settlementDistribution}
+        baseline={baseline}
+      />
+    );
+  }
 };
 
 TransportBaseline.propTypes = {
