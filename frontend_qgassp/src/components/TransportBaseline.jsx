@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import PropTypes from "prop-types";
 import { Button } from "./Button";
 import "../css/u1planner.css";
@@ -24,7 +24,7 @@ export const TransportBaseline = ({ country, year, population }) => {
   const [rural, setRural] = useState(parseFloat(0));
   const [total, setTotal] = useState(parseFloat(0));
   const [nextEmissions, setNextEmissions] = useState(false);
-  const [settlementDistribution, setSettlementDistribution] = useState("");
+  const [settlementDistribution, setSettlementDistribution] = useState({});
   const [nextU1Charts, setU1Charts] = useState(false);
 
   const [nsArea, setNsArea] = useState(0);
@@ -78,6 +78,10 @@ export const TransportBaseline = ({ country, year, population }) => {
   const getCurrentTotal = () => {
     setTotal(metropolitanCenter + urban + suburban + town + rural);
   };
+
+  useEffect(() => {
+    localStorage.setItem("settlementDistribution", JSON.stringify(settlementDistribution));
+  }, [settlementDistribution]);
 
   if (nextU1Charts === false) {
     return (

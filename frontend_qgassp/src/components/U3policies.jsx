@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button } from "./Button";
-import { useNavigate } from "react-router-dom";
 import "../css/u3.css";
 import axios from "axios";
 import {
@@ -42,7 +41,7 @@ export const U3policies = ({
   electricityTransTypes,
   electricityTrans
 }) => {
-  const navigate = useNavigate();
+
 
   // if (updateU2charts === false && totalNewResidents !== 100) {
   return (
@@ -1045,15 +1044,6 @@ export const U3policies = ({
             </div>
             <br />
             <div>
-              <div className="backButton">
-                <Button
-                  size="small"
-                  value="backU3planner"
-                  onClick={() => navigate("/U3plannner", { replace: true })}
-                  label="&laquo; Previous"
-                  secondary
-                />
-              </div>
             </div>
           </form>
         </div>

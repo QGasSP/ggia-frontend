@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button } from "./Button";
 import "../css/u3planner.css";
-import { useNavigate } from "react-router-dom";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import axios from "axios";
@@ -66,7 +65,6 @@ export const U3planner = ({ baseline, newDevelopment, emission, projections }) =
   const [electricityTrans, setElectricityTrans] = useState("");
 
   // const [policyQuant, setPolicyQuantification] = useState("");
-  const navigate = useNavigate();
 
   const optionsNew = [];
   for (let i = 2022; i < 2051; i++) optionsNew.push(i);
@@ -1171,15 +1169,7 @@ export const U3planner = ({ baseline, newDevelopment, emission, projections }) =
           </div>
             <br />
             <div>
-              <div className="backButton">
-                <Button
-                  size="small"
-                  value="backNewResidents"
-                  onClick={() => navigate("/newresidents", { replace: true })}
-                  label="&laquo; Previous"
-                  secondary
-                />
-              </div>
+             
               <div className="nextButtonNew">
                 <Button
                   size="small"

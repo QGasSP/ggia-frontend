@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { LUCBarChart } from "./LUCBarChart";
 import PropTypes from "prop-types";
-import { Header } from "./Header";
 import { Button } from "./Button";
 import "../css/landusechange.css";
 import axios from "axios";
-/* import { useNavigate } from "react-router-dom"; */
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 

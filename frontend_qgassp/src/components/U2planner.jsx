@@ -34,7 +34,7 @@ export const U2planner = ({
   const [newPopulation, setNewPopulation] = useState("");
   const [baselinePopulation, setBaselinePopulation] = useState("");
   const [nextU3planer, setU3planner] = useState(false);
-  const navigate = useNavigate();
+  
 
   useEffect(async () => {
     const rawData = { baseline, newDevelopment };
@@ -211,7 +211,7 @@ export const U2planner = ({
              
             </XYPlot>
 
-            {/*    <XYPlot
+               <XYPlot
               width={900}
               height={500}
               xType="ordinal"
@@ -313,10 +313,10 @@ export const U2planner = ({
                 style={{}}
               />
             </XYPlot>
- */}
+
             <U2legend />
 
-            <div className="backButtonNew">
+           {/*  <div className="backButtonNew">
               <Button
                 size="small"
                 value="backProjections"
@@ -324,7 +324,7 @@ export const U2planner = ({
                 label="&laquo; Previous"
                 secondary
               />
-            </div>
+            </div> */}
             <div className="nextU2Button">
               <Button
                 size="small"
