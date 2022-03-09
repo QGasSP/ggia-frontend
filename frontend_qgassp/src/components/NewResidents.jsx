@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Header } from "./Header";
 import { Button } from "./Button";
 import "../css/u2planner.css";
 import { U2planner } from "./U2planner";
@@ -16,16 +15,13 @@ import Divider from "@mui/material/Divider";
 export const NewResidents = ({
   settlementDistribution,
   baseline,
-  user,
-  onLogin,
-  onLogout,
-  onCreateAccount,
+ 
 }) => {
-  const [metropolitanCenter, setNsMetropolitan] = useState(parseFloat(0));
-  const [urban, setNsUrban] = useState(parseFloat(0));
-  const [suburban, setNsSubUrban] = useState(parseFloat(0));
-  const [town, setNsTown] = useState(parseFloat(0));
-  const [rural, setNsRural] = useState(parseFloat(0));
+  const [nsMetropolitanCenter, setNsMetropolitan] = useState(parseFloat(0));
+  const [nsUrban, setNsUrban] = useState(parseFloat(0));
+  const [nsSuburban, setNsSubUrban] = useState(parseFloat(0));
+  const [nsTown, setNsTown] = useState(parseFloat(0));
+  const [nsRural, setNsRural] = useState(parseFloat(0));
   const [newResidents, setNewResidents] = useState("");
   const [yearStart, setYearStart] = useState(0);
   const [yearFinish, setYearFinish] = useState(0);
@@ -64,11 +60,11 @@ export const NewResidents = ({
 
   const updateU2Planner = () => {
     const newSettlementDistribution = {
-      metropolitanCenter,
-      urban,
-      suburban,
-      town,
-      rural,
+      metropolitanCenter:nsMetropolitanCenter,
+      urban:nsUrban,
+      suburban:nsSuburban,
+      town:nsTown,
+      rural:nsRural,
     };
     const newDevelopmentU2 = {
       newResidents,
@@ -77,21 +73,13 @@ export const NewResidents = ({
       newSettlementDistribution,
     };
     setNewDevelopment(newDevelopmentU2);
-    setTotalNewResidents(metropolitanCenter + urban + suburban + town + rural);
+   // setTotalNewResidents(metropolitanCenter + urban + suburban + town + rural);
     setU2charts(true);
   };
 
   if (updateU2charts === false && totalNewResidents !== 100) {
     return (
       <article>
-        {
-          <Header
-            user={user}
-            onLogin={onLogin}
-            onLogout={onLogout}
-            onCreateAccount={onCreateAccount}
-          />
-        }
         <div className="headerSettlement">
           <Divider textAlign="left" flexItem>
             {" "}
@@ -106,7 +94,7 @@ export const NewResidents = ({
           <div className="newResidentDiv">
             <form onSubmit={updateU2Planner}>
               <label>
-                <b>U2.1 New residents</b>
+                <b>New residents</b>
               </label>
               <div>
                 <label htmlFor="new_residents">
@@ -162,7 +150,7 @@ export const NewResidents = ({
               </div>
               <br />
               <label>
-                <b>U2.2 Settlement type</b>
+                <b>Settlement type</b>
               </label>
               <label>
                 <b>Existing environment</b>
@@ -235,7 +223,7 @@ export const NewResidents = ({
                   required
                 />
               </div>
-              <div className="backButtonNew">
+              {/* <div className="backButtonNew">
                 <Button
                   size="small"
                   value="backProjections"
@@ -243,7 +231,7 @@ export const NewResidents = ({
                   label="&laquo; Previous"
                   secondary
                 />
-              </div>
+              </div> */}
 
               <div className="nextButtonNew">
                 <Button
@@ -272,16 +260,5 @@ export const NewResidents = ({
 
 NewResidents.propTypes = {
   baseline: PropTypes.object.isRequired,
-  settlementDistribution: PropTypes.object.isRequired,
-  population: PropTypes.number.isRequired,
-  year: PropTypes.number.isRequired,
-  country: PropTypes.string.isRequired,
-  user: PropTypes.shape({}),
-  onLogin: PropTypes.func.isRequired,
-  onLogout: PropTypes.func.isRequired,
-  onCreateAccount: PropTypes.func.isRequired,
-};
-
-NewResidents.defaultProps = {
-  user: null,
+  settlementDistribution: PropTypes.object.isRequired, 
 };

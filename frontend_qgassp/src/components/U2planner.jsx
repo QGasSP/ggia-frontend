@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Header } from "./Header";
 import { U2legend } from "./U2legend";
 import axios from "axios";
 import "../css/u2planner.css";
@@ -67,8 +66,6 @@ export const U2planner = ({
   if (nextU3planer === false) {
     return (
       <article>
-        <br />
-        <br />
         <div className="headerSettlement">
           <Divider textAlign="left" flexItem>
             {" "}
@@ -77,10 +74,10 @@ export const U2planner = ({
         </div>
 
         <section>
-          <div>{newPopulation}</div>
+         {/*  <div>{newPopulation}</div> */}
           <form>
             <label>
-              <b>U2.1 New residents</b>
+              <b>New residents</b>
             </label>
             <div>
               <label htmlFor="new_residents">
@@ -102,7 +99,7 @@ export const U2planner = ({
             </div>
             <br />
             <label>
-              <b>U2.2 Settlement type</b>
+              <b>Settlement type</b>
             </label>
             <label>
               <b>Existing environment</b>
