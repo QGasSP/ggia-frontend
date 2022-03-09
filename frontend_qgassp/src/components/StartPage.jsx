@@ -113,6 +113,15 @@ export const StartPage = () => {
                   <option value="Malta">Malta</option>
                   <option value="Netherlands">Netherlands</option>
                   <option value="Norway">Norway</option>
+                  <option value="Poland">Poland</option>
+                  <option value="Portugal">Portugal</option>
+                  <option value="Romania">Romania</option>
+                  <option value="Slovakia">Slovakia</option>
+                  <option value="Slovenia">Slovenia</option>
+                  <option value="Spain">Spain</option>
+                  <option value="Sweden">Sweden</option>
+                  <option value="Switzerlans">Switzerland</option>
+                  <option value="Uk">Uk</option>
                 </select>
               </div>
               <div className="form-group">
