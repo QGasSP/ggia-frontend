@@ -1,4 +1,4 @@
-/* section {
+.section-u3 {
   font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
   line-height: 24px;
@@ -6,8 +6,7 @@
   margin: 0 auto;
   color: #333;
 }
-
-section h2 {
+.section-u3 h2 {
   font-weight: 900;
   font-size: 1.5em;
   font-family: sans-serif;
@@ -16,44 +15,51 @@ section h2 {
   display: inline-block;
   vertical-align: top;
 }
-
-section label {
+.section-u3 label {
   display: inline-block;
   width: 300px;
 }
-section input,
+.section-u3 input,
 select {
   padding: 5px 10px;
   box-sizing: border-box;
+  width: 250px;
 }
-
-section select {
+.section-u3 select {
   display: inline-block;
   padding: 5px 10px;
   width: 187px;
   box-sizing: border-box;
 }
 
-section div {
+.section-u3 div {
   margin-bottom: 10px;
   display: inline-block;
+  width: 100%;
 }
 
-.backButtonNew {
+/* .backU3Button {
   position: absolute;
   left: 5%;
-}
+} */
 
-.nextButtonNew {
+.nextU3Button {
   position: absolute;
-  right: 30%;
+  left: 70%;
 }
 
 #inputspace {
-  margin-right: 110px;
+  margin-right: 50px;
 }
 
-#divspace {
-  margin-right: 110px;
+.divspace {
+  /* margin-right: 110px; */
+  width: 37% !important;
 }
- */
+.expectedchange {
+  display: flex;
+  justify-content: space-between;
+}
+.affected {
+  width: 50%;
+}

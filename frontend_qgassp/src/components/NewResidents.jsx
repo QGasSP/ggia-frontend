@@ -29,7 +29,7 @@ export const NewResidents = ({
   const [newDevelopment, setNewDevelopment] = useState({});
   const [updateU2charts, setU2charts] = useState(false);
   const [totalNewResidents, setTotalNewResidents] = useState(0.0);
-  
+
   const optionsNew = [];
   for (let i = 2022; i < 2051; i++) optionsNew.push(i);
 
@@ -60,11 +60,11 @@ export const NewResidents = ({
 
   const updateU2Planner = () => {
     const newSettlementDistribution = {
-      metropolitanCenter:nsMetropolitanCenter,
-      urban:nsUrban,
-      suburban:nsSuburban,
-      town:nsTown,
-      rural:nsRural,
+      metropolitanCenter: nsMetropolitanCenter,
+      urban: nsUrban,
+      suburban: nsSuburban,
+      town: nsTown,
+      rural: nsRural,
     };
     const newDevelopmentU2 = {
       newResidents,
@@ -73,7 +73,7 @@ export const NewResidents = ({
       newSettlementDistribution,
     };
     setNewDevelopment(newDevelopmentU2);
-   // setTotalNewResidents(metropolitanCenter + urban + suburban + town + rural);
+    // setTotalNewResidents(metropolitanCenter + urban + suburban + town + rural);
     setU2charts(true);
   };
 
@@ -252,7 +252,7 @@ export const NewResidents = ({
 
 NewResidents.propTypes = {
   baseline: PropTypes.object.isRequired,
-  settlementDistribution: PropTypes.object.isRequired, 
+  settlementDistribution: PropTypes.object.isRequired,
   emission: PropTypes.object.isRequired,
-  projections: PropTypes.object.isRequired, 
+  projections: PropTypes.object.isRequired,
 };

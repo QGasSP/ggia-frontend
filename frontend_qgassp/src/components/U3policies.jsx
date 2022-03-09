@@ -66,10 +66,10 @@ export const U3policies = ({
               <label>% of the area affected</label>
               <div>
                 <label>change in mobility %</label>
-                <label>{passengerMob.expectedChange}</label>
+                <label>{passengerMob.expectedPassChange}</label>
                 {/* <label>{policyQuant.passengerMob.expectedChange}</label> */}
                 <label></label>
-                <label>{passengerMob.affectedArea}</label>
+                <label>{passengerMob.affectedPassArea}</label>
               </div>
               <div>
                 <label>Policy period</label>
@@ -261,7 +261,7 @@ export const U3policies = ({
                 <label>
                   <b>Total</b>
                 </label>
-                <label>{emission.total}</label>
+                {/* <label>{emission.total}</label> */}
                 <label></label>
               </div>
               <div>
@@ -487,7 +487,7 @@ export const U3policies = ({
                 <label></label>
                 <label>{fuelSharesCarTypes.phev}</label>
               </div>
-              <div>
+              {/* <div>
                 <label>Hybrid diesel-electric</label>
                 <label></label>
                 <label>policy target %</label>
@@ -496,7 +496,7 @@ export const U3policies = ({
                 <label>Plug-in hybrid diesel-electric PHEV</label>
                 <label></label>
                 <label>policy target %</label>
-              </div>
+              </div> */}
               <div>
                 <label>Hydrogen and fuel cells</label>
                 <label></label>
@@ -708,7 +708,7 @@ export const U3policies = ({
               />
             </div>
             <br />
-            <div>
+            {/* <div>
               <XYPlot
                 width={900}
                 height={500}
@@ -1041,7 +1041,7 @@ export const U3policies = ({
                   ]}
                 />
               </XYPlot>
-            </div>
+            </div> */}
             <br />
             <div>
             </div>

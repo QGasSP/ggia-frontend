@@ -4,7 +4,6 @@ import "../css/startpage.css";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import { TransportBaseline } from "./TransportBaseline";
-import axios from "axios";
 
 export const StartPage = () => {
   /*  const [country, setCountry] = useState("");
@@ -133,6 +132,7 @@ export const StartPage = () => {
                     <option value="Portugal">Portugal</option>
                     <option value="Romania">Romania</option>
                     <option value="Slovakia">Slovakia</option>
+                    <option value="Slovenia">Slovenia</option>
                     <option value="Spain">Spain</option>
                     <option value="Sweden">Sweden</option>
                     <option value="Switzerlans">Switzerland</option>
@@ -183,8 +183,8 @@ export const StartPage = () => {
                     </label>
                     <select
                       className="baseline_select"
-                      id="eu_countries_dataset"
-                      name="eu_countries_dataset"
+                      id="eu_countries"
+                      name="eu_countries"
                       defaultValue="Select country"
                       required
                     >

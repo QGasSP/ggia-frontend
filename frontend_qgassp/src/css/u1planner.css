@@ -61,7 +61,6 @@
   margin-left: 0.5rem;
 }
 
-
 @media screen and (max-width: 600px) {
   .column {
     width: 50%;
@@ -136,8 +135,7 @@ input[type="number"] {
   position: absolute;
   right: 36%;
 }
-.share_label:hover + 
-.share_label_info{
+.share_label:hover + .share_label_info {
   display: block;
   color: red;
 }
@@ -149,7 +147,7 @@ input[type="number"] {
 
 .save_piechart {
   position: absolute;
-  left:31%;
+  left: 31%;
 }
 
 .settlement_main {
@@ -183,7 +181,6 @@ input[type="number"] {
 .settlementDiv {
   margin-left: 16px;
 }
- 
 
 .hide {
   display: none;

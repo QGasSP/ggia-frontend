@@ -1,5 +1,5 @@
 import React from "react";
-import {TabModules} from "../components/TabModules";
+import { TabModules } from "../components/TabModules";
 
 export default {
   title: '"QgasSP/TabModules',

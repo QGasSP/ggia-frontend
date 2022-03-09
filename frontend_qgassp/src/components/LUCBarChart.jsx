@@ -1,13 +1,13 @@
 import React from "react";
 import {
-    XYPlot,
-    XAxis,
-    YAxis,
-    HorizontalGridLines,
-    VerticalGridLines,
-    VerticalBarSeries,
-    DiscreteColorLegend,
-  } from "react-vis";
+  XYPlot,
+  XAxis,
+  YAxis,
+  HorizontalGridLines,
+  VerticalGridLines,
+  VerticalBarSeries,
+  DiscreteColorLegend,
+} from "react-vis";
 import PropTypes from "prop-types";
 import { LandUseChangeTableForm } from "./LandUseChangeTableForm";
 import { Header } from "./Header";
@@ -23,102 +23,354 @@ const BarSeries = VerticalBarSeries;
  * @return {}
  */
 
-export const LUCBarChart = ({landUseChangeResponse }) => {
+export const LUCBarChart = ({ landUseChangeResponse }) => {
   // landUseChangeResponse = JSON.parse(localStorage);
   return (
     <div>
       <XYPlot
-                width={900}
-                height={500}
-                xType="ordinal"
-                xDistance={200}
-                yDomain={[-1500, 1500]}
-                yType="linear"
-                stackBy="y"
-              >
-                <HorizontalGridLines />
-                <VerticalGridLines />
-                <VerticalBarSeries className="LucStackedBarchart" />
-                <XAxis
-                  style={{
-                    line: { stroke: "#ADDDE1" },
-                    ticks: { stroke: "#ADDDE1" },
-                    text: { stroke: "none", fill: "#6b6b76", fontWeight: 600 },
-                  }}
-                />
-                <YAxis />
-                {/* 1 */}
-                <BarSeries
-                  color="#ffdf43"
-                  data={[
-                    // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].croplandToForestland },
-                    { x: 2023, y0: 0, y: landUseChangeResponse.landUseChange[2023].croplandToForestland },
-                   { x: 2024, y0: 0, y: landUseChangeResponse.landUseChange[2024].croplandToForestland },
-                    { x: 2025, y0: 0, y: landUseChangeResponse.landUseChange[2025].croplandToForestland },
-                    { x: 2026, y0: 0, y: landUseChangeResponse.landUseChange[2026].croplandToForestland },
-                    { x: 2027, y0: 0, y: landUseChangeResponse.landUseChange[2027].croplandToForestland },
-                    { x: 2028, y0: 0, y: landUseChangeResponse.landUseChange[2028].croplandToForestland },
-                    { x: 2029, y0: 0, y: landUseChangeResponse.landUseChange[2029].croplandToForestland },
-                    { x: 2030, y0: 0, y: landUseChangeResponse.landUseChange[2030].croplandToForestland },
-                    { x: 2031, y0: 0, y: landUseChangeResponse.landUseChange[2031].croplandToForestland },
-                    { x: 2032, y0: 0, y: landUseChangeResponse.landUseChange[2032].croplandToForestland },
-                    { x: 2033, y0: 0, y: landUseChangeResponse.landUseChange[2033].croplandToForestland },
-                    { x: 2035, y0: 0, y: landUseChangeResponse.landUseChange[2034].croplandToForestland },
-                    { x: 2035, y0: 0, y: landUseChangeResponse.landUseChange[2035].croplandToForestland },
-                    { x: 2036, y0: 0, y: landUseChangeResponse.landUseChange[2036].croplandToForestland },
-                    { x: 2037, y0: 0, y: landUseChangeResponse.landUseChange[2037].croplandToForestland },
-                    { x: 2038, y0: 0, y: landUseChangeResponse.landUseChange[2038].croplandToForestland },
-                    { x: 2039, y0: 0, y: landUseChangeResponse.landUseChange[2039].croplandToForestland },
-                    { x: 2040, y0: 0, y: landUseChangeResponse.landUseChange[2040].croplandToForestland },
-                    { x: 2041, y0: 0, y: landUseChangeResponse.landUseChange[2041].croplandToForestland },
-                    { x: 2042, y0: 0, y: landUseChangeResponse.landUseChange[2042].croplandToForestland },
-                    { x: 2043, y0: 0, y: landUseChangeResponse.landUseChange[2043].croplandToForestland },
-                    { x: 2044, y0: 0, y: landUseChangeResponse.landUseChange[2044].croplandToForestland },
-                    { x: 2045, y0: 0, y: landUseChangeResponse.landUseChange[2045].croplandToForestland },
-                    { x: 2046, y0: 0, y: landUseChangeResponse.landUseChange[2046].croplandToForestland },
-                    { x: 2047, y0: 0, y: landUseChangeResponse.landUseChange[2047].croplandToForestland },
-                    { x: 2048, y0: 0, y: landUseChangeResponse.landUseChange[2048].croplandToForestland },
-                    { x: 2049, y0: 0, y: landUseChangeResponse.landUseChange[2049].croplandToForestland },
-                    { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].croplandToForestland },
-                  ]}
-                />
-                {/* 2 */}
-                <BarSeries
-                  color="#76918e"
-                  data={[
-                    // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].grasslandToForestland },
-                    { x: 2023, y0: 0, y: landUseChangeResponse.landUseChange[2023].grasslandToForestland },
-                   { x: 2024, y0: 0, y: landUseChangeResponse.landUseChange[2024].grasslandToForestland },
-                    { x: 2025, y0: 0, y: landUseChangeResponse.landUseChange[2025].grasslandToForestland },
-                    { x: 2026, y0: 0, y: landUseChangeResponse.landUseChange[2026].grasslandToForestland },
-                    { x: 2027, y0: 0, y: landUseChangeResponse.landUseChange[2027].grasslandToForestland },
-                    { x: 2028, y0: 0, y: landUseChangeResponse.landUseChange[2028].grasslandToForestland },
-                    { x: 2029, y0: 0, y: landUseChangeResponse.landUseChange[2029].grasslandToForestland },
-                    { x: 2030, y0: 0, y: landUseChangeResponse.landUseChange[2030].grasslandToForestland },
-                    { x: 2031, y0: 0, y: landUseChangeResponse.landUseChange[2031].grasslandToForestland },
-                    { x: 2032, y0: 0, y: landUseChangeResponse.landUseChange[2032].grasslandToForestland },
-                    { x: 2033, y0: 0, y: landUseChangeResponse.landUseChange[2033].grasslandToForestland },
-                    { x: 2035, y0: 0, y: landUseChangeResponse.landUseChange[2034].grasslandToForestland },
-                    { x: 2035, y0: 0, y: landUseChangeResponse.landUseChange[2035].grasslandToForestland },
-                    { x: 2036, y0: 0, y: landUseChangeResponse.landUseChange[2036].grasslandToForestland },
-                    { x: 2037, y0: 0, y: landUseChangeResponse.landUseChange[2037].grasslandToForestland },
-                    { x: 2038, y0: 0, y: landUseChangeResponse.landUseChange[2038].grasslandToForestland },
-                    { x: 2039, y0: 0, y: landUseChangeResponse.landUseChange[2039].grasslandToForestland },
-                    { x: 2040, y0: 0, y: landUseChangeResponse.landUseChange[2040].grasslandToForestland },
-                    { x: 2041, y0: 0, y: landUseChangeResponse.landUseChange[2041].grasslandToForestland },
-                    { x: 2042, y0: 0, y: landUseChangeResponse.landUseChange[2042].grasslandToForestland },
-                    { x: 2043, y0: 0, y: landUseChangeResponse.landUseChange[2043].grasslandToForestland },
-                    { x: 2044, y0: 0, y: landUseChangeResponse.landUseChange[2044].grasslandToForestland },
-                    { x: 2045, y0: 0, y: landUseChangeResponse.landUseChange[2045].grasslandToForestland },
-                    { x: 2046, y0: 0, y: landUseChangeResponse.landUseChange[2046].grasslandToForestland },
-                    { x: 2047, y0: 0, y: landUseChangeResponse.landUseChange[2047].grasslandToForestland },
-                    { x: 2048, y0: 0, y: landUseChangeResponse.landUseChange[2048].grasslandToForestland },
-                    { x: 2049, y0: 0, y: landUseChangeResponse.landUseChange[2049].grasslandToForestland },
-                    { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].grasslandToForestland },
-                  ]}
-                />
-                {/* 3 */}
-                {/* <BarSeries
+        width={900}
+        height={500}
+        xType="ordinal"
+        xDistance={200}
+        yDomain={[-1500, 1500]}
+        yType="linear"
+        stackBy="y"
+      >
+        <HorizontalGridLines />
+        <VerticalGridLines />
+        <VerticalBarSeries className="LucStackedBarchart" />
+        <XAxis
+          style={{
+            line: { stroke: "#ADDDE1" },
+            ticks: { stroke: "#ADDDE1" },
+            text: { stroke: "none", fill: "#6b6b76", fontWeight: 600 },
+          }}
+        />
+        <YAxis />
+        {/* 1 */}
+        <BarSeries
+          color="#ffdf43"
+          data={[
+            // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].croplandToForestland },
+            {
+              x: 2023,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2023].croplandToForestland,
+            },
+            {
+              x: 2024,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2024].croplandToForestland,
+            },
+            {
+              x: 2025,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2025].croplandToForestland,
+            },
+            {
+              x: 2026,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2026].croplandToForestland,
+            },
+            {
+              x: 2027,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2027].croplandToForestland,
+            },
+            {
+              x: 2028,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2028].croplandToForestland,
+            },
+            {
+              x: 2029,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2029].croplandToForestland,
+            },
+            {
+              x: 2030,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2030].croplandToForestland,
+            },
+            {
+              x: 2031,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2031].croplandToForestland,
+            },
+            {
+              x: 2032,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2032].croplandToForestland,
+            },
+            {
+              x: 2033,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2033].croplandToForestland,
+            },
+            {
+              x: 2035,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2034].croplandToForestland,
+            },
+            {
+              x: 2035,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2035].croplandToForestland,
+            },
+            {
+              x: 2036,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2036].croplandToForestland,
+            },
+            {
+              x: 2037,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2037].croplandToForestland,
+            },
+            {
+              x: 2038,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2038].croplandToForestland,
+            },
+            {
+              x: 2039,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2039].croplandToForestland,
+            },
+            {
+              x: 2040,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2040].croplandToForestland,
+            },
+            {
+              x: 2041,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2041].croplandToForestland,
+            },
+            {
+              x: 2042,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2042].croplandToForestland,
+            },
+            {
+              x: 2043,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2043].croplandToForestland,
+            },
+            {
+              x: 2044,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2044].croplandToForestland,
+            },
+            {
+              x: 2045,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2045].croplandToForestland,
+            },
+            {
+              x: 2046,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2046].croplandToForestland,
+            },
+            {
+              x: 2047,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2047].croplandToForestland,
+            },
+            {
+              x: 2048,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2048].croplandToForestland,
+            },
+            {
+              x: 2049,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2049].croplandToForestland,
+            },
+            {
+              x: 2050,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2050].croplandToForestland,
+            },
+          ]}
+        />
+        {/* 2 */}
+        <BarSeries
+          color="#76918e"
+          data={[
+            // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].grasslandToForestland },
+            {
+              x: 2023,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2023]
+                .grasslandToForestland,
+            },
+            {
+              x: 2024,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2024]
+                .grasslandToForestland,
+            },
+            {
+              x: 2025,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2025]
+                .grasslandToForestland,
+            },
+            {
+              x: 2026,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2026]
+                .grasslandToForestland,
+            },
+            {
+              x: 2027,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2027]
+                .grasslandToForestland,
+            },
+            {
+              x: 2028,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2028]
+                .grasslandToForestland,
+            },
+            {
+              x: 2029,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2029]
+                .grasslandToForestland,
+            },
+            {
+              x: 2030,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2030]
+                .grasslandToForestland,
+            },
+            {
+              x: 2031,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2031]
+                .grasslandToForestland,
+            },
+            {
+              x: 2032,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2032]
+                .grasslandToForestland,
+            },
+            {
+              x: 2033,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2033]
+                .grasslandToForestland,
+            },
+            {
+              x: 2035,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2034]
+                .grasslandToForestland,
+            },
+            {
+              x: 2035,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2035]
+                .grasslandToForestland,
+            },
+            {
+              x: 2036,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2036]
+                .grasslandToForestland,
+            },
+            {
+              x: 2037,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2037]
+                .grasslandToForestland,
+            },
+            {
+              x: 2038,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2038]
+                .grasslandToForestland,
+            },
+            {
+              x: 2039,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2039]
+                .grasslandToForestland,
+            },
+            {
+              x: 2040,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2040]
+                .grasslandToForestland,
+            },
+            {
+              x: 2041,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2041]
+                .grasslandToForestland,
+            },
+            {
+              x: 2042,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2042]
+                .grasslandToForestland,
+            },
+            {
+              x: 2043,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2043]
+                .grasslandToForestland,
+            },
+            {
+              x: 2044,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2044]
+                .grasslandToForestland,
+            },
+            {
+              x: 2045,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2045]
+                .grasslandToForestland,
+            },
+            {
+              x: 2046,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2046]
+                .grasslandToForestland,
+            },
+            {
+              x: 2047,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2047]
+                .grasslandToForestland,
+            },
+            {
+              x: 2048,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2048]
+                .grasslandToForestland,
+            },
+            {
+              x: 2049,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2049]
+                .grasslandToForestland,
+            },
+            {
+              x: 2050,
+              y0: 0,
+              y: landUseChangeResponse.landUseChange[2050]
+                .grasslandToForestland,
+            },
+          ]}
+        />
+        {/* 3 */}
+        {/* <BarSeries
                   color="#ce143d"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].wetlandToForestland },
@@ -152,8 +404,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].wetlandToForestland },
                   ]}
                 /> */}
-                {/* 4 */}
-                {/* <BarSeries
+        {/* 4 */}
+        {/* <BarSeries
                   color="#d6e7d9"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].settlementToForestland },
@@ -187,8 +439,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].settlementToForestland },
                   ]}
                 /> */}
-                {/* 5 */}
-                {/* <BarSeries
+        {/* 5 */}
+        {/* <BarSeries
                   color="#002117"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].otherlandToForestland },
@@ -222,8 +474,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].otherlandToForestland },
                   ]}
                 /> */}
-                {/* 6 */}
-                {/* <BarSeries
+        {/* 6 */}
+        {/* <BarSeries
                   color="#ef7d00"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].forestlandToCropland },
@@ -257,8 +509,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].forestlandToCropland },
                   ]}
                 /> */}
-                {/* 7 */}
-                {/* <BarSeries
+        {/* 7 */}
+        {/* <BarSeries
                   color="#6c3b00"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].grasslandToCropland },
@@ -292,8 +544,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].grasslandToCropland },
                   ]}
                 /> */}
-                {/* 8 */}
-                {/* <BarSeries
+        {/* 8 */}
+        {/* <BarSeries
                   color="#00aed5"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].wetlandToCropland },
@@ -327,8 +579,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].wetlandToCropland },
                   ]}
                 /> */}
-                {/* 9 */}
-                {/* <BarSeries
+        {/* 9 */}
+        {/* <BarSeries
                   color="#ffdf43"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].settlementToCropland },
@@ -362,8 +614,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].settlementToCropland },
                   ]}
                 /> */}
-                {/* 10 */}
-                {/* <BarSeries
+        {/* 10 */}
+        {/* <BarSeries
                   color="#76918e"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].otherlandToCropland },
@@ -397,8 +649,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].otherlandToCropland },
                   ]}
                 /> */}
-                {/* 11 */}
-                {/* <BarSeries
+        {/* 11 */}
+        {/* <BarSeries
                   color="#ce143d"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].forestlandToGrassland },
@@ -432,8 +684,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].forestlandToGrassland },
                   ]}
                 /> */}
-                {/* 12 */}
-                {/* <BarSeries
+        {/* 12 */}
+        {/* <BarSeries
                   color="#d6e7d9"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].croplandToGrassland },
@@ -467,8 +719,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].croplandToGrassland },
                   ]}
                 /> */}
-                {/* 13 */}
-                {/* <BarSeries
+        {/* 13 */}
+        {/* <BarSeries
                   color="#002117"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].wetlandToGrassland },
@@ -502,8 +754,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].wetlandToGrassland },
                   ]}
                 /> */}
-                {/* 14 */}
-                {/* <BarSeries
+        {/* 14 */}
+        {/* <BarSeries
                   color="#ef7d00"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].settlementToGrassland },
@@ -537,8 +789,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].settlementToGrassland },
                   ]}
                 /> */}
-                {/* 15 */}
-                {/* <BarSeries
+        {/* 15 */}
+        {/* <BarSeries
                   color="#6c3b00"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].otherlandToGrassland },
@@ -572,8 +824,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].otherlandToGrassland },
                   ]}
                 /> */}
-                {/* 16 */}
-                {/* <BarSeries
+        {/* 16 */}
+        {/* <BarSeries
                   color="#00aed5"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].forestlandToWetland },
@@ -607,8 +859,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].forestlandToWetland },
                   ]}
                 /> */}
-                {/* 17 */}
-                {/* <BarSeries
+        {/* 17 */}
+        {/* <BarSeries
                   color="#ffdf43"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].croplandToWetland },
@@ -642,8 +894,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].croplandToWetland },
                   ]}
                 /> */}
-                {/* 18 */}
-                {/* <BarSeries
+        {/* 18 */}
+        {/* <BarSeries
                   color="#76918e"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].grasslandToWetland },
@@ -677,8 +929,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].grasslandToWetland },
                   ]}
                 /> */}
-                {/* 19 */}
-                {/* <BarSeries
+        {/* 19 */}
+        {/* <BarSeries
                   color="#ce143d"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].LandToPeatExtraction },
@@ -712,8 +964,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].LandToPeatExtraction },
                   ]}
                 /> */}
-                {/* 20 */}
-                {/* <BarSeries
+        {/* 20 */}
+        {/* <BarSeries
                   color="#d6e7d9"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].PeatlandRestoration },
@@ -747,8 +999,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].PeatlandRestoration },
                   ]}
                 /> */}
-                {/* 21 */}
-                {/* <BarSeries
+        {/* 21 */}
+        {/* <BarSeries
                   color="#002117"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].forestlandToSettlement },
@@ -782,8 +1034,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].forestlandToSettlement },
                   ]}
                 /> */}
-                {/* 22 */}
-                {/* <BarSeries
+        {/* 22 */}
+        {/* <BarSeries
                   color="#ef7d00"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].croplandToSettlement },
@@ -817,8 +1069,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].croplandToSettlement },
                   ]}
                 /> */}
-                {/* 23 */}
-                {/* <BarSeries
+        {/* 23 */}
+        {/* <BarSeries
                   color="#6c3b00"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].grasslandToSettlement },
@@ -852,8 +1104,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].grasslandToSettlement },
                   ]}
                 /> */}
-                {/* 24 */}
-                {/* <BarSeries
+        {/* 24 */}
+        {/* <BarSeries
                   color="#00aed5"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].wetlandToSettlement },
@@ -887,8 +1139,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].wetlandToSettlement },
                   ]}
                 /> */}
-                {/* 25 */}
-                {/* <BarSeries
+        {/* 25 */}
+        {/* <BarSeries
                   color="#ffdf43"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].otherlandToSettlement },
@@ -922,8 +1174,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].otherlandToSettlement },
                   ]}
                 /> */}
-                {/* 26 */}
-                {/* <BarSeries
+        {/* 26 */}
+        {/* <BarSeries
                   color="#76918e"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].forestlandToOtherland },
@@ -957,8 +1209,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].forestlandToOtherland },
                   ]}
                 /> */}
-                {/* 27 */}
-                {/* <BarSeries
+        {/* 27 */}
+        {/* <BarSeries
                   color="#ce143d"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].croplandToOtherland },
@@ -992,8 +1244,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].croplandToOtherland },
                   ]}
                 /> */}
-                {/* 28 */}
-                {/* <BarSeries
+        {/* 28 */}
+        {/* <BarSeries
                   color="#d6e7d9"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].grasslandToOtherland },
@@ -1027,8 +1279,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].grasslandToOtherland },
                   ]}
                 /> */}
-                {/* 29 */}
-                {/* <BarSeries
+        {/* 29 */}
+        {/* <BarSeries
                   color="#002117"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].wetlandToOtherland },
@@ -1062,8 +1314,8 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     { x: 2050, y0: 0, y: landUseChangeResponse.landUseChange[2050].wetlandToOtherland },
                   ]}
                 /> */}
-                {/* 30 */}
-                {/* <BarSeries
+        {/* 30 */}
+        {/* <BarSeries
                   color="#ef7d00"
                   data={[
                     // { x: 2022, y0: 0, y: landUseChangeResponse.landUseChange[2022].settlementToOtherland },
@@ -1103,7 +1355,7 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
 };
 
 LUCBarChart.propTypes = {
-  landUseChangeResponse: PropTypes.object.isRequired
+  landUseChangeResponse: PropTypes.object.isRequired,
 };
 
 // LUCBarChart.defaultProps = {
@@ -1135,7 +1387,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1169,7 +1421,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1203,7 +1455,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1237,7 +1489,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1271,7 +1523,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1305,7 +1557,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1339,7 +1591,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1373,7 +1625,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1407,7 +1659,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1441,7 +1693,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1475,7 +1727,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1509,7 +1761,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1543,7 +1795,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1577,7 +1829,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1611,7 +1863,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1645,7 +1897,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1679,7 +1931,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1713,7 +1965,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1747,7 +1999,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1781,7 +2033,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1815,7 +2067,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1849,7 +2101,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1883,7 +2135,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1917,7 +2169,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1951,7 +2203,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -1985,7 +2237,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -2019,7 +2271,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -2053,7 +2305,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,
@@ -2087,7 +2339,7 @@ LUCBarChart.propTypes = {
 //                 "grasslandToSettlement": 1500,
 //                 "wetlandToSettlement": 1500,
 //                 "otherlandToSettlement": 1500,
-//                 "forestlandToOtherland": 1500, 
+//                 "forestlandToOtherland": 1500,
 //                 "croplandToOtherland": 1500,
 //                 "grasslandToOtherland": 1500,
 //                 "wetlandToOtherland": 1500,

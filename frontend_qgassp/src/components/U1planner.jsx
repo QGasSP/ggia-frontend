@@ -255,6 +255,8 @@ export const U1planner = ({
           <b>CO2e emissions per capita 2023-2050</b>
         </Divider>
 
+         {/* {JSON.stringify(projections)} */}
+        
         <div>
           <XYPlot width={1000} height={500} stackBy="y" xType="ordinal">
             <HorizontalGridLines />
@@ -560,7 +562,7 @@ export const U1planner = ({
     );
   } else {
     return <></>;
-  };
+  }
 };
 
 U1planner.propTypes = {

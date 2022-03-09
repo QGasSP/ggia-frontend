@@ -99,145 +99,117 @@ export const TransportBaseline = ({ country, year, population }) => {
           </div>
 
           <section className="section-transport">
-            <div className="settlementDiv">
-              <div className="row">
-                <div className="column">
-                  <div className="settlement_headers">
-                    <label className="shareInfo">
-                      <b>Settlement type </b>
-                    </label>
-                    <label>Share ({total}%)</label>
-                  </div>
-                  <div className="div_transport">
-                    <label htmlFor="metropolitan" className="settle_label">
-                      Metropolitan center
-                    </label>
-                    <input
-                      className="input_transport"
-                      type="number"
-                      step="0.01"
-                      id="metropolitan"
-                      min="0"
-                      max="100"
-                      /*  defaultValue={metropolitanCenter} */
-                      onChange={handleMetropolitanCenter}
-                      onMouseLeave={getCurrentTotal}
-                      required
-                    />
-                  </div>
-
-                  <div className="div_transport">
-                    <label htmlFor="urban" className="settle_label">
-                      Urban
-                    </label>
-                    <input
-                      className="input_transport"
-                      type="number"
-                      step="0.01"
-                      id="urban"
-                      min="0"
-                      max="100"
-                      /*   value={urban} */
-                      onChange={handleUrban}
-                      onMouseLeave={getCurrentTotal}
-                      required
-                    />
-                  </div>
-
-                  <div className="div_transport">
-                    <label htmlFor="suburban" className="settle_label">
-                      {" "}
-                      Suburban
-                    </label>
-                    <input
-                      className="input_transport"
-                      type="number"
-                      id="suburban"
-                      step="any"
-                      min="0.01"
-                      max="100.0"
-                      /*   defaultValue={suburban} */
-                      onChange={handleSuburban}
-                      onMouseLeave={getCurrentTotal}
-                      required
-                    />
-                  </div>
-
-                  <div className="div_transport">
-                    <label htmlFor="town" className="settle_label">
-                      Town
-                    </label>
-                    <input
-                      className="input_transport"
-                      type="number"
-                      id="town"
-                      step="0.01"
-                      min="0.0"
-                      max="100.0"
-                      /*   value={town} */
-                      onChange={handleTown}
-                      onMouseLeave={getCurrentTotal}
-                      required
-                    />
-                  </div>
-                  <div className="div_transport">
-                    <label htmlFor="rural" className="settle_label">
-                      Rural
-                    </label>
-                    <input
-                      className="input_transport"
-                      type="number"
-                      id="rural"
-                      step="0.01"
-                      min="0"
-                      max="100"
-                      /*   value={rural} */
-                      onChange={handleRural}
-                      onMouseLeave={getCurrentTotal}
-                      required
-                    />
-                  </div>
+            <div className="row">
+              <div className="column">
+                <div className="settlement_headers">
+                  <label className="shareInfo">
+                    <b>Settlement type </b>
+                  </label>
+                  <label>Share ({total}%)</label>
+                </div>
+                <div className="div_transport">
+                  <label htmlFor="metropolitan" className="settle_label">
+                    Metropolitan center
+                  </label>
+                  <input
+                    className="input_transport"
+                    type="number"
+                    step="0.01"
+                    id="metropolitan"
+                    min="0"
+                    max="100"
+                    /*  defaultValue={metropolitanCenter} */
+                    onChange={handleMetropolitanCenter}
+                    onMouseLeave={getCurrentTotal}
+                    required
+                  />
                 </div>
 
-                <div className="column">
-                  {/*  <label className="hide">Total shares should be 100%</label> */}
-                  <div className="div_transport">
-                    {total > 0 && total < 101 && (
-                      <RadialChart
-                        type="piechart"
-                        data={[
-                          {
-                            angle: urban,
-                            label: "Urban",
-                            color: "#164059",
-                          },
-                          {
-                            angle: suburban,
-                            label: "Suburban",
-                            color: "#F25F29",
-                          },
-                          {
-                            angle: town,
-                            label: "Town",
-                            color: "#F23A29",
-                          },
-                          {
-                            angle: rural,
-                            label: "Rural",
-                            color: "#D9D9D9",
-                          },
-                          {
-                            angle: metropolitanCenter,
-                            label: "Metropolitan center",
-                            color: "#730E16",
-                          },
-                        ]}
-                        width={180}
-                        height={180}
-                        colorType="literal"
-                      />
-                    )}
-                  </div>
+                <div className="div_transport">
+                  <label htmlFor="urban" className="settle_label">
+                    Urban
+                  </label>
+                  <input
+                    className="input_transport"
+                    type="number"
+                    step="0.01"
+                    id="urban"
+                    min="0"
+                    max="100"
+                    /*   value={urban} */
+                    onChange={handleUrban}
+                    onMouseLeave={getCurrentTotal}
+                    required
+                  />
+                </div>
+
+                <div className="div_transport">
+                  <label htmlFor="suburban" className="settle_label">
+                    {" "}
+                    Suburban
+                  </label>
+                  <input
+                    className="input_transport"
+                    type="number"
+                    id="suburban"
+                    step="any"
+                    min="0.01"
+                    max="100.0"
+                    /*   defaultValue={suburban} */
+                    onChange={handleSuburban}
+                    onMouseLeave={getCurrentTotal}
+                    required
+                  />
+                </div>
+
+                <div className="div_transport">
+                  <label htmlFor="town" className="settle_label">
+                    Town
+                  </label>
+                  <input
+                    className="input_transport"
+                    type="number"
+                    id="town"
+                    step="0.01"
+                    min="0.0"
+                    max="100.0"
+                    /*   value={town} */
+                    onChange={handleTown}
+                    onMouseLeave={getCurrentTotal}
+                    required
+                  />
+                </div>
+                <div className="div_transport">
+                  <label htmlFor="rural" className="settle_label">
+                    Rural
+                  </label>
+                  <input
+                    className="input_transport"
+                    type="number"
+                    id="rural"
+                    step="0.01"
+                    min="0"
+                    max="100"
+                    /*   value={rural} */
+                    onChange={handleRural}
+                    onMouseLeave={getCurrentTotal}
+                    required
+                  />
+                </div>
+                <br />
+                <div className="save_piechart">
+                  <Button
+                    size="small"
+                    value="save_settlement"
+                    onClick={setSettlementType}
+                    label="Save"
+                    primary
+                  />
+                </div>
+
+              <div className="column">
+                {/*  <label className="hide">Total shares should be 100%</label> */}
+                <div className="div_transport">
                   {total > 0 && total < 101 && (
                     <DiscreteColorLegend
                       items={settlementLabels}
@@ -273,7 +245,6 @@ export const TransportBaseline = ({ country, year, population }) => {
                   placeholder={ewArea}
                 />
               </div>
-              <br />
               <div className="div_transport">
                 <label>
                   <b>Non-residential and freight</b>
@@ -358,6 +329,7 @@ export const TransportBaseline = ({ country, year, population }) => {
                   </optgroup>
                 </select>
               </div>
+            </div>
             </div>
 
             {total == 100.00 && (
