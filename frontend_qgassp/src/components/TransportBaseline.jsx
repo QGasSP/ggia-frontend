@@ -33,6 +33,7 @@ export const TransportBaseline = ({ country, year, population }) => {
   const [freightRoad, setFreightRoad] = useState(0);
   const [freightRail, setFreightRail] = useState(0);
   const [freightInlandWaterway, setFreightInlandWaterway] = useState(0);
+  const [baseline, setBaseline] = useState({});
 
   const handleMetropolitanCenter = (e) => {
     e.preventDefault();
@@ -64,6 +65,13 @@ export const TransportBaseline = ({ country, year, population }) => {
       rural,
     };
     setSettlementDistribution(settlementDist);
+    const baseline = {
+      country,
+      year,
+      population,
+      settlementDistribution,
+    };
+    setBaseline({ baseline });
     setNextEmissions(true);
   }; 
 
@@ -355,12 +363,13 @@ export const TransportBaseline = ({ country, year, population }) => {
       </article>
     </div>
   );
-} else {
+} else if(nextU1Charts !== false ) {
   return  <U1planner
   country={country}
   year={year}
   population={population}
   settlementDistribution={settlementDistribution}
+  baseline={baseline}
 />;
 }
 };

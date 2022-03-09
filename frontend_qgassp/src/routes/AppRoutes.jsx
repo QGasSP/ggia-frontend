@@ -7,7 +7,8 @@ import { U2planner } from "../components/U2planner";
 import { Welcome } from "../components/Welcome";
 import { TransportBaseline } from "../components/TransportBaseline";
 import { U1planner } from "../components/U1planner";
-
+/* import { U3planner } from "../components/U3planner";
+ */
 export const AppRoutes = () => {
   const routes = useRoutes([
     { path: "/", element: <Welcome /> },
@@ -16,6 +17,7 @@ export const AppRoutes = () => {
     { path: "u1planner", element: <U1planner /> },
     { path: "newResidents", element: <NewResidents /> },
     { path: "u2planner", element: <U2planner /> },
+   /*  { path: "u3planner", element: <U3planner /> }, */
   ]);
   return routes;
 };
