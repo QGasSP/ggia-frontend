@@ -1,11 +1,14 @@
 import "./App.css";
 import "../node_modules/react-vis/dist/style.css";
-import { AppRoutes } from "./routes/AppRoutes";
-import { BrowserRouter as Router } from "react-router-dom";
+// import { AppRoutes } from "./routes/AppRoutes";
+// import { BrowserRouter as Router } from "react-router-dom";
 import { Header } from "./components/Header";
 import PropTypes from "prop-types";
+import { Welcome } from "./components/Welcome";
+
 
 function App({ user, onLogin, onLogout, onCreateAccount }) {
+ 
   return (
     <>
       {
@@ -16,10 +19,11 @@ function App({ user, onLogin, onLogout, onCreateAccount }) {
           onCreateAccount={onCreateAccount}
         />
       }
+     {/*  <Welcome/> */}
 
-      <Router>
+     {/*  <Router>
         <AppRoutes />
-      </Router>
+      </Router> */}
     </>
   );
 }

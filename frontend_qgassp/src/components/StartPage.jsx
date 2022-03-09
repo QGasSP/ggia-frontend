@@ -7,6 +7,10 @@ import { TransportBaseline } from "./TransportBaseline";
 
 
 export const StartPage = () => {
+ /*  const [country, setCountry] = useState("");
+  const [year, setYear] = useState(0);
+  const [population, setPopulation] = useState(0);
+ */
   const [country, setCountry] = useState("");
   const [year, setYear] = useState(0);
   const [population, setPopulation] = useState(0);
