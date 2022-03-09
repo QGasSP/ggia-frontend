@@ -1,14 +1,14 @@
-import { LUCBaseline } from "../components/LUCBaseline";
-import * as HeaderStories from "./Header.stories";
 import React from "react";
+import { LUCBarChart } from "../components/LUCBarChart";
+import * as HeaderStories from "./Header.stories";
 
 export default {
-  title: '"QgasSP/LUCBaseline',
-  component: LUCBaseline,
-  args: {},
+  title: '"QgasSP/LUCBarChart',
+  component: LUCBarChart,
+  argTypes: {},
 };
 
-const Template = (args) => <LUCBaseline {...args} />;
+const Template = (args) => <LUCBarChart {...args} />;
 
 export const LoggedIn = Template.bind({});
 LoggedIn.args = {
