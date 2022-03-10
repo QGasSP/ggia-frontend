@@ -1009,7 +1009,7 @@ export const U3policies = ({
                 <BarSeries
                   color="#00aed5"
                   data={[
-                    { x: 2022, y: policyQuantification.waterways_transportwaterways_transport[2022]},
+                    { x: 2022, y: policyQuantification.waterways_transport[2022]},
                     { x: 2023, y: policyQuantification.waterways_transport[2023]},
                     { x: 2024, y: policyQuantification.waterways_transport[2024]},
                     { x: 2025, y: policyQuantification.waterways_transport[2025]},
