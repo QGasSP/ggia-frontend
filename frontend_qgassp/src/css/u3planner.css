@@ -20,6 +20,9 @@
   margin-right: 5rem;
   width:60% !important;
 }
+.input_fuel_shares{
+  width: 15% !important;
+}
 
 .input_freight_change{
   margin-right: 5rem;

@@ -817,11 +817,11 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
 
               <div className="column_u3">
                 <div> <label>Without policy</label></div>
-                <div> <label>Data to be added</label></div>
-                <div> <label>Data to be added</label></div>
-                <div> <label>Data to be added</label></div>
-                <div> <label>Data to be added</label></div>
-                <div> <label>Data to be added</label></div>
+                <div> <label></label></div>
+                <div> <label></label></div>
+                <div> <label></label></div>
+                <div> <label></label></div>
+                <div> <label></label></div>
               </div>
 
               <div className="column_u3">
@@ -926,7 +926,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                 <label>Liquified Petroleum Gas (LPG)</label>
                 <label></label>
                 <input
-                  id="inputspace"
+                 className="input_fuel_shares"
                   type="number"
                   step="0.1"
                   // id="bus_fuel_policy_target"
@@ -936,12 +936,13 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                   onChange={handleLpg}
                   required
                 />
-                <input />
+                <input  className="input_fuel_shares"/>
               </div>
               <div>
                 <label>Natural Gas (CNG)</label>
                 <label></label>
                 <input
+                 className="input_fuel_shares"
                   type="number"
                   step="0.1"
                   id="car_fuel_policy_target"
@@ -956,6 +957,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                 <label>Alternative Energy/biomethane NGV</label>
                 <label></label>
                 <input
+                  className="input_fuel_shares"
                   type="number"
                   step="0.1"
                   id="car_fuel_policy_target"
@@ -970,6 +972,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                 <label>Hybrid electric-petrol</label>
                 <label></label>
                 <input
+                  className="input_fuel_shares"
                   type="number"
                   step="0.1"
                   id="car_fuel_policy_target"
@@ -984,6 +987,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                 <label>Plug-in hybrid petrol-electric PHEV</label>
                 <label></label>
                 <input
+                  className="input_fuel_shares"
                   type="number"
                   step="0.1"
                   id="car_fuel_policy_target"
@@ -1008,6 +1012,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                 <label>Hydrogen and fuel cells</label>
                 <label></label>
                 <input
+                  className="input_fuel_shares"
                   type="number"
                   step="0.1"
                   id="car_fuel_policy_target"
@@ -1022,6 +1027,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                 <label>Bioethanol</label>
                 <label></label>
                 <input
+                  className="input_fuel_shares"
                   type="number"
                   step="0.1"
                   id="car_fuel_policy_target"
@@ -1036,6 +1042,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                 <label>Bio-diesel</label>
                 <label></label>
                 <input
+                  className="input_fuel_shares"
                   type="number"
                   step="0.1"
                   id="car_fuel_policy_target"
@@ -1050,6 +1057,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                 <label>Bi-fuel</label>
                 <label></label>
                 <input
+                 className="input_fuel_shares"
                   type="number"
                   step="0.1"
                   id="car_fuel_policy_target"
@@ -1064,6 +1072,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                 <label>Other (unknown)</label>
                 <label></label>
                 <input
+                  className="input_fuel_shares"
                   type="number"
                   step="0.1"
                   id="car_fuel_policy_target"
@@ -1078,6 +1087,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                 <label>Electricity BEV</label>
                 <label></label>
                 <input
+                  className="input_fuel_shares"
                   type="number"
                   step="0.1"
                   id="car_fuel_policy_target"
@@ -1092,6 +1102,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                 <label>Petrol, according to country selection</label>
                 <label></label>
                 <input
+                  className="input_fuel_shares"
                   type="number"
                   step="0.1"
                   id="car_fuel_policy_target"
@@ -1106,6 +1117,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                 <label>Diesel, according to country selection</label>
                 <label></label>
                 <input
+                  className="input_fuel_shares"
                   type="number"
                   step="0.1"
                   id="car_fuel_policy_target"
