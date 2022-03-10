@@ -18,176 +18,176 @@ export const LandUseChangeTableForm = ({
 }) => {
   // to Forest vars
   // #region
-  const [cropToForest, setCropToForest] = useState(1);
-  const [cropToForestMineral, setCropToForestMineral] = useState(1);
-  const [cropToForestOrganic, setCropToForestOrganic] = useState(1);
-  const [cropToForestYear, setCropToForestYear] = useState(2022);
+  const [cropToForest, setCropToForest] = useState(2);
+  const [cropToForestMineral, setCropToForestMineral] = useState(2);
+  const [cropToForestOrganic, setCropToForestOrganic] = useState(2);
+  const [cropToForestYear, setCropToForestYear] = useState(2050);
 
-  const [grassToForest, setGrassToForest] = useState(1);
-  const [grassToForestMineral, setGrassToForestMineral] = useState(1);
-  const [grassToForestOrganic, setGrassToForestOrganic] = useState(1);
-  const [grassToForestYear, setGrassToForestYear] = useState(2022);
+  const [grassToForest, setGrassToForest] = useState(2);
+  const [grassToForestMineral, setGrassToForestMineral] = useState(2);
+  const [grassToForestOrganic, setGrassToForestOrganic] = useState(2);
+  const [grassToForestYear, setGrassToForestYear] = useState(2040);
 
-  const [wetToForest, setWetToForest] = useState(1);
-  const [wetToForestMineral, setWetToForestMineral] = useState(1);
-  const [wetToForestOrganic, setWetToForestOrganic] = useState(1);
-  const [wetToForestYear, setWetToForestYear] = useState(2022);
+  const [wetToForest, setWetToForest] = useState(2);
+  const [wetToForestMineral, setWetToForestMineral] = useState(2);
+  const [wetToForestOrganic, setWetToForestOrganic] = useState(2);
+  const [wetToForestYear, setWetToForestYear] = useState(2040);
 
-  const [settlementsToForest, setSettlementsToForest] = useState(1);
+  const [settlementsToForest, setSettlementsToForest] = useState(2);
   const [settlementsToForestMineral, setSettlementsToForestMineral] =
-    useState(1);
+    useState(2);
   const [settlementsToForestOrganic, setSettlementsToForestOrganic] =
-    useState(1);
-  const [settlementsToForestYear, setSettlementsToForestYear] = useState(2022);
+    useState(2);
+  const [settlementsToForestYear, setSettlementsToForestYear] = useState(2040);
 
-  const [otherToForest, setOtherToForest] = useState(1);
-  const [otherToForestMineral, setOtherToForestMineral] = useState(1);
-  const [otherToForestOrganic, setOtherToForestOrganic] = useState(1);
-  const [otherToForestYear, setOtherToForestYear] = useState(2022);
+  const [otherToForest, setOtherToForest] = useState(2);
+  const [otherToForestMineral, setOtherToForestMineral] = useState(2);
+  const [otherToForestOrganic, setOtherToForestOrganic] = useState(2);
+  const [otherToForestYear, setOtherToForestYear] = useState(2040);
   // #endregion
 
   // to Crop vars
   // #region
-  const [forestToCrop, setForestToCrop] = useState(1);
-  const [forestToCropMineral, setForestToCropMineral] = useState(1);
-  const [forestToCropOrganic, setForestToCropOrganic] = useState(1);
-  const [forestToCropYear, setForestToCropYear] = useState(2022);
+  const [forestToCrop, setForestToCrop] = useState(2);
+  const [forestToCropMineral, setForestToCropMineral] = useState(2);
+  const [forestToCropOrganic, setForestToCropOrganic] = useState(2);
+  const [forestToCropYear, setForestToCropYear] = useState(2040);
 
-  const [grassToCrop, setGrassToCrop] = useState(1);
-  const [grassToCropMineral, setGrassToCropMineral] = useState(1);
-  const [grassToCropOrganic, setGrassToCropOrganic] = useState(1);
-  const [grassToCropYear, setGrassToCropYear] = useState(2022);
+  const [grassToCrop, setGrassToCrop] = useState(2);
+  const [grassToCropMineral, setGrassToCropMineral] = useState(2);
+  const [grassToCropOrganic, setGrassToCropOrganic] = useState(2);
+  const [grassToCropYear, setGrassToCropYear] = useState(2040);
 
-  const [wetToCrop, setWetToCrop] = useState(1);
-  const [wetToCropMineral, setWetToCropMineral] = useState(1);
-  const [wetToCropOrganic, setWetToCropOrganic] = useState(1);
-  const [wetToCropYear, setWetToCropYear] = useState(2022);
+  const [wetToCrop, setWetToCrop] = useState(2);
+  const [wetToCropMineral, setWetToCropMineral] = useState(2);
+  const [wetToCropOrganic, setWetToCropOrganic] = useState(2);
+  const [wetToCropYear, setWetToCropYear] = useState(2040);
 
-  const [settlementsToCrop, setSettlementsToCrop] = useState(1);
-  const [settlementsToCropMineral, setSettlementsToCropMineral] = useState(1);
-  const [settlementsToCropOrganic, setSettlementsToCropOrganic] = useState(1);
-  const [settlementsToCropYear, setSettlementsToCropYear] = useState(2022);
+  const [settlementsToCrop, setSettlementsToCrop] = useState(2);
+  const [settlementsToCropMineral, setSettlementsToCropMineral] = useState(2);
+  const [settlementsToCropOrganic, setSettlementsToCropOrganic] = useState(2);
+  const [settlementsToCropYear, setSettlementsToCropYear] = useState(2040);
 
-  const [otherToCrop, setOtherToCrop] = useState(1);
-  const [otherToCropMineral, setOtherToCropMineral] = useState(1);
-  const [otherToCropOrganic, setOtherToCropOrganic] = useState(1);
-  const [otherToCropYear, setOtherToCropYear] = useState(2022);
+  const [otherToCrop, setOtherToCrop] = useState(2);
+  const [otherToCropMineral, setOtherToCropMineral] = useState(2);
+  const [otherToCropOrganic, setOtherToCropOrganic] = useState(2);
+  const [otherToCropYear, setOtherToCropYear] = useState(2040);
   // #endregion
 
   // to Grass vars
   // #region
-  const [forestToGrass, setForestToGrass] = useState(1);
-  const [forestToGrassMineral, setForestToGrassMineral] = useState(1);
-  const [forestToGrassOrganic, setForestToGrassOrganic] = useState(1);
-  const [forestToGrassYear, setForestToGrassYear] = useState(2022);
+  const [forestToGrass, setForestToGrass] = useState(2);
+  const [forestToGrassMineral, setForestToGrassMineral] = useState(2);
+  const [forestToGrassOrganic, setForestToGrassOrganic] = useState(2);
+  const [forestToGrassYear, setForestToGrassYear] = useState(2040);
 
-  const [cropToGrass, setCropToGrass] = useState(1);
-  const [cropToGrassMineral, setCropToGrassMineral] = useState(1);
-  const [cropToGrassOrganic, setCropToGrassOrganic] = useState(1);
-  const [cropToGrassYear, setCropToGrassYear] = useState(2022);
+  const [cropToGrass, setCropToGrass] = useState(2);
+  const [cropToGrassMineral, setCropToGrassMineral] = useState(2);
+  const [cropToGrassOrganic, setCropToGrassOrganic] = useState(2);
+  const [cropToGrassYear, setCropToGrassYear] = useState(2040);
 
-  const [wetToGrass, setWetToGrass] = useState(1);
-  const [wetToGrassMineral, setWetToGrassMineral] = useState(1);
-  const [wetToGrassOrganic, setWetToGrassOrganic] = useState(1);
-  const [wetToGrassYear, setWetToGrassYear] = useState(2022);
+  const [wetToGrass, setWetToGrass] = useState(2);
+  const [wetToGrassMineral, setWetToGrassMineral] = useState(2);
+  const [wetToGrassOrganic, setWetToGrassOrganic] = useState(2);
+  const [wetToGrassYear, setWetToGrassYear] = useState(2040);
 
-  const [settlementsToGrass, setSettlementsToGrass] = useState(1);
-  const [settlementsToGrassMineral, setSettlementsToGrassMineral] = useState(1);
-  const [settlementsToGrassOrganic, setSettlementsToGrassOrganic] = useState(1);
-  const [settlementsToGrassYear, setSettlementsToGrassYear] = useState(2022);
+  const [settlementsToGrass, setSettlementsToGrass] = useState(2);
+  const [settlementsToGrassMineral, setSettlementsToGrassMineral] = useState(2);
+  const [settlementsToGrassOrganic, setSettlementsToGrassOrganic] = useState(2);
+  const [settlementsToGrassYear, setSettlementsToGrassYear] = useState(2040);
 
-  const [otherToGrass, setOtherToGrass] = useState(1);
-  const [otherToGrassMineral, setOtherToGrassMineral] = useState(1);
-  const [otherToGrassOrganic, setOtherToGrassOrganic] = useState(1);
-  const [otherToGrassYear, setOtherToGrassYear] = useState(2022);
+  const [otherToGrass, setOtherToGrass] = useState(2);
+  const [otherToGrassMineral, setOtherToGrassMineral] = useState(2);
+  const [otherToGrassOrganic, setOtherToGrassOrganic] = useState(2);
+  const [otherToGrassYear, setOtherToGrassYear] = useState(2040);
   // #endregion
 
   // to other wetlands/flooded land vars
   // #region
-  const [landConvertedToPeat, setLandConvertedToPeat] = useState(1);
+  const [landConvertedToPeat, setLandConvertedToPeat] = useState(2);
   const [landConvertedToPeatMineral, setLandConvertedToPeatMineral] =
-    useState(1);
+    useState(2);
   const [landConvertedToPeatOrganic, setLandConvertedToPeatOrganic] =
-    useState(1);
-  const [landConvertedToPeatYear, setLandConvertedToPeatYear] = useState(2022);
+    useState(2);
+  const [landConvertedToPeatYear, setLandConvertedToPeatYear] = useState(2040);
 
-  const [peatLandRestore, setPeatLandRestore] = useState(1);
-  const [peatLandRestoreMineral, setPeatLandRestoreMineral] = useState(1);
-  const [peatLandRestoreOrganic, setPeatLandRestoreOrganic] = useState(1);
-  const [peatLandRestoreYear, setPeatLandRestoreYear] = useState(2022);
+  const [peatLandRestore, setPeatLandRestore] = useState(2);
+  const [peatLandRestoreMineral, setPeatLandRestoreMineral] = useState(2);
+  const [peatLandRestoreOrganic, setPeatLandRestoreOrganic] = useState(2);
+  const [peatLandRestoreYear, setPeatLandRestoreYear] = useState(2040);
 
-  const [forestToWetland, setForestToWetland] = useState(1);
-  const [forestToWetlandMineral, setForestToWetlandMineral] = useState(1);
-  const [forestToWetlandOrganic, setForestToWetlandOrganic] = useState(1);
-  const [forestToWetlandYear, setForestToWetlandYear] = useState(2022);
+  const [forestToWetland, setForestToWetland] = useState(2);
+  const [forestToWetlandMineral, setForestToWetlandMineral] = useState(2);
+  const [forestToWetlandOrganic, setForestToWetlandOrganic] = useState(2);
+  const [forestToWetlandYear, setForestToWetlandYear] = useState(2040);
 
-  const [cropToWet, setCropToWet] = useState(1);
-  const [cropToWetMineral, setCropToWetMineral] = useState(1);
-  const [cropToWetOrganic, setCropToWetOrganic] = useState(1);
-  const [cropToWetYear, setCropToWetYear] = useState(2022);
+  const [cropToWet, setCropToWet] = useState(2);
+  const [cropToWetMineral, setCropToWetMineral] = useState(2);
+  const [cropToWetOrganic, setCropToWetOrganic] = useState(2);
+  const [cropToWetYear, setCropToWetYear] = useState(2040);
 
-  const [grassToWet, setGrassToWet] = useState(1);
-  const [grassToWetMineral, setGrassToWetMineral] = useState(1);
-  const [grassToWetOrganic, setGrassToWetOrganic] = useState(1);
-  const [grassToWetYear, setGrassToWetYear] = useState(2022);
+  const [grassToWet, setGrassToWet] = useState(2);
+  const [grassToWetMineral, setGrassToWetMineral] = useState(2);
+  const [grassToWetOrganic, setGrassToWetOrganic] = useState(2);
+  const [grassToWetYear, setGrassToWetYear] = useState(2040);
   // #endregion
 
   // to Settlements vars
   // #region
-  const [forestToSettlements, setForestToSettlements] = useState(1);
+  const [forestToSettlements, setForestToSettlements] = useState(2);
   const [forestToSettlementsMineral, setForestToSettlementsMineral] =
-    useState(1);
+    useState(2);
   const [forestToSettlementsOrganic, setForestToSettlementsOrganic] =
-    useState(1);
-  const [forestToSettlementsYear, setForestToSettlementsYear] = useState(2022);
+    useState(2);
+  const [forestToSettlementsYear, setForestToSettlementsYear] = useState(2040);
 
-  const [cropToSettlements, setCropToSettlements] = useState(1);
-  const [cropToSettlementsMineral, setCropToSettlementsMineral] = useState(1);
-  const [cropToSettlementsOrganic, setCropToSettlementsOrganic] = useState(1);
-  const [cropToSettlementsYear, setCropToSettlementsYear] = useState(2022);
+  const [cropToSettlements, setCropToSettlements] = useState(2);
+  const [cropToSettlementsMineral, setCropToSettlementsMineral] = useState(2);
+  const [cropToSettlementsOrganic, setCropToSettlementsOrganic] = useState(2);
+  const [cropToSettlementsYear, setCropToSettlementsYear] = useState(2040);
 
-  const [grassToSettlements, setGrassToSettlements] = useState(1);
-  const [grassToSettlementsMineral, setGrassToSettlementsMineral] = useState(1);
-  const [grassToSettlementsOrganic, setGrassToSettlementsOrganic] = useState(1);
-  const [grassToSettlementsYear, setGrassToSettlementsYear] = useState(2022);
+  const [grassToSettlements, setGrassToSettlements] = useState(2);
+  const [grassToSettlementsMineral, setGrassToSettlementsMineral] = useState(2);
+  const [grassToSettlementsOrganic, setGrassToSettlementsOrganic] = useState(2);
+  const [grassToSettlementsYear, setGrassToSettlementsYear] = useState(2040);
 
-  const [wetToSettlements, setWetToSettlements] = useState(1);
-  const [wetToSettlementsMineral, setWetToSettlementsMineral] = useState(1);
-  const [wetToSettlementsOrganic, setWetToSettlementsOrganic] = useState(1);
-  const [wetToSettlementsYear, setWetToSettlementsYear] = useState(2022);
+  const [wetToSettlements, setWetToSettlements] = useState(2);
+  const [wetToSettlementsMineral, setWetToSettlementsMineral] = useState(2);
+  const [wetToSettlementsOrganic, setWetToSettlementsOrganic] = useState(2);
+  const [wetToSettlementsYear, setWetToSettlementsYear] = useState(2040);
 
-  const [otherToSettlements, setOtherToSettlements] = useState(1);
-  const [otherToSettlementsMineral, setOtherToSettlementsMineral] = useState(1);
-  const [otherToSettlementsOrganic, setOtherToSettlementsOrganic] = useState(1);
-  const [otherToSettlementsYear, setOtherToSettlementsYear] = useState(2022);
+  const [otherToSettlements, setOtherToSettlements] = useState(2);
+  const [otherToSettlementsMineral, setOtherToSettlementsMineral] = useState(2);
+  const [otherToSettlementsOrganic, setOtherToSettlementsOrganic] = useState(2);
+  const [otherToSettlementsYear, setOtherToSettlementsYear] = useState(2040);
   // #endregion
 
   // to other land vars
   // #region
-  const [forestToOther, setForestToOther] = useState(1);
-  const [forestToOtherMineral, setForestToOtherMineral] = useState(1);
-  const [forestToOtherOrganic, setForestToOtherOrganic] = useState(1);
-  const [forestToOtherYear, setForestToOtherYear] = useState(2022);
+  const [forestToOther, setForestToOther] = useState(2);
+  const [forestToOtherMineral, setForestToOtherMineral] = useState(2);
+  const [forestToOtherOrganic, setForestToOtherOrganic] = useState(2);
+  const [forestToOtherYear, setForestToOtherYear] = useState(2040);
 
-  const [cropToOther, setCropToOther] = useState(1);
-  const [cropToOtherMineral, setCropToOtherMineral] = useState(1);
-  const [cropToOtherOrganic, setCropToOtherOrganic] = useState(1);
-  const [cropToOtherYear, setCropToOtherYear] = useState(2022);
+  const [cropToOther, setCropToOther] = useState(2);
+  const [cropToOtherMineral, setCropToOtherMineral] = useState(2);
+  const [cropToOtherOrganic, setCropToOtherOrganic] = useState(2);
+  const [cropToOtherYear, setCropToOtherYear] = useState(2040);
 
-  const [grassToOther, setGrassToOther] = useState(1);
-  const [grassToOtherMineral, setGrassToOtherMineral] = useState(1);
-  const [grassToOtherOrganic, setGrassToOtherOrganic] = useState(1);
-  const [grassToOtherYear, setGrassToOtherYear] = useState(2022);
+  const [grassToOther, setGrassToOther] = useState(2);
+  const [grassToOtherMineral, setGrassToOtherMineral] = useState(2);
+  const [grassToOtherOrganic, setGrassToOtherOrganic] = useState(2);
+  const [grassToOtherYear, setGrassToOtherYear] = useState(2040);
 
-  const [wetToOther, setWetToOther] = useState(1);
-  const [wetToOtherMineral, setWetToOtherMineral] = useState(1);
-  const [wetToOtherOrganic, setWetToOtherOrganic] = useState(1);
-  const [wetToOtherYear, setWetToOtherYear] = useState(2022);
+  const [wetToOther, setWetToOther] = useState(2);
+  const [wetToOtherMineral, setWetToOtherMineral] = useState(2);
+  const [wetToOtherOrganic, setWetToOtherOrganic] = useState(2);
+  const [wetToOtherYear, setWetToOtherYear] = useState(2040);
 
-  const [settlementsToOther, setSettlementsToOther] = useState(1);
-  const [settlementsToOtherMineral, setSettlementsToOtherMineral] = useState(1);
-  const [settlementsToOtherOrganic, setSettlementsToOtherOrganic] = useState(1);
-  const [settlementsToOtherYear, setSettlementsToOtherYear] = useState(2022);
+  const [settlementsToOther, setSettlementsToOther] = useState(2);
+  const [settlementsToOtherMineral, setSettlementsToOtherMineral] = useState(2);
+  const [settlementsToOtherOrganic, setSettlementsToOtherOrganic] = useState(2);
+  const [settlementsToOtherYear, setSettlementsToOtherYear] = useState(2040);
   // #endregion
 
   const [totalArea_, setTotalArea] = useState(
@@ -280,7 +280,140 @@ export const LandUseChangeTableForm = ({
   for (let i = 2022; i < 2051; i++) options.push(i);
 
   const goToLandUseChangeBaseline = () => {
-    // ?
+    const totalArea = {
+      croplandToForestland: cropToForest,
+      grasslandToForestland: grassToForest,
+      wetlandToForestland: wetToForest,
+      settlementToForestland: settlementsToForest,
+      otherlandToForestland: otherToForest,
+      forestlandToCropland: forestToCrop,
+      grasslandToCropland: grassToCrop,
+      wetlandToCropland: wetToCrop,
+      settlementToCropland: settlementsToCrop,
+      otherlandToCropland: otherToCrop,
+      forestlandToGrassland: forestToGrass,
+      croplandToGrassland: cropToGrass,
+      wetlandToGrassland: wetToGrass,
+      settlementToGrassland: settlementsToGrass,
+      otherlandToGrassland: otherToGrass,
+      forestlandToWetland: forestToWetland,
+      croplandToWetland: cropToWet,
+      grasslandToWetland: grassToWet,
+      LandToPeatExtraction: landConvertedToPeat,
+      PeatlandRestoration: peatLandRestore,
+      forestlandToSettlement: forestToSettlements,
+      croplandToSettlement: forestToSettlements,
+      grasslandToSettlement: forestToSettlements,
+      wetlandToSettlement: forestToSettlements,
+      otherlandToSettlement: forestToSettlements,
+      forestlandToOtherland: forestToOther,
+      croplandToOtherland: cropToOther,
+      grasslandToOtherland: grassToOther,
+      wetlandToOtherland: wetToOther,
+      settlementToOtherland: settlementsToOther,
+    };
+    const mineral = {
+      croplandToForestland: cropToForestMineral,
+      grasslandToForestland: grassToForestMineral,
+      wetlandToForestland: wetToForestMineral,
+      settlementToForestland: settlementsToForestMineral,
+      otherlandToForestland: otherToForestMineral,
+      forestlandToCropland: forestToCropMineral,
+      grasslandToCropland: grassToCropMineral,
+      wetlandToCropland: wetToCropMineral,
+      settlementToCropland: settlementsToCropMineral,
+      otherlandToCropland: otherToCropMineral,
+      forestlandToGrassland: forestToGrassMineral,
+      croplandToGrassland: cropToGrassMineral,
+      wetlandToGrassland: wetToGrassMineral,
+      settlementToGrassland: settlementsToGrassMineral,
+      otherlandToGrassland: otherToGrassMineral,
+      forestlandToWetland: forestToWetlandMineral,
+      croplandToWetland: cropToWetMineral,
+      grasslandToWetland: grassToWetMineral,
+      LandToPeatExtraction: landConvertedToPeatMineral,
+      PeatlandRestoration: peatLandRestoreMineral,
+      forestlandToSettlement: forestToSettlementsMineral,
+      croplandToSettlement: forestToSettlementsMineral,
+      grasslandToSettlement: forestToSettlementsMineral,
+      wetlandToSettlement: forestToSettlementsMineral,
+      otherlandToSettlement: forestToSettlementsMineral,
+      forestlandToOtherland: forestToOtherMineral,
+      croplandToOtherland: cropToOtherMineral,
+      grasslandToOtherland: grassToOtherMineral,
+      wetlandToOtherland: wetToOtherMineral,
+      settlementToOtherland: settlementsToOtherMineral,
+    };
+    const organic = {
+      croplandToForestland: cropToForestOrganic,
+      grasslandToForestland: grassToForestOrganic,
+      wetlandToForestland: wetToForestOrganic,
+      settlementToForestland: settlementsToForestOrganic,
+      otherlandToForestland: otherToForestOrganic,
+      forestlandToCropland: forestToCropOrganic,
+      grasslandToCropland: grassToCropOrganic,
+      wetlandToCropland: wetToCropOrganic,
+      settlementToCropland: settlementsToCropOrganic,
+      otherlandToCropland: otherToCropOrganic,
+      forestlandToGrassland: forestToGrassOrganic,
+      croplandToGrassland: cropToGrassOrganic,
+      wetlandToGrassland: wetToGrassOrganic,
+      settlementToGrassland: settlementsToGrassOrganic,
+      otherlandToGrassland: otherToGrassOrganic,
+      forestlandToWetland: forestToWetlandOrganic,
+      croplandToWetland: cropToWetOrganic,
+      grasslandToWetland: grassToWetOrganic,
+      LandToPeatExtraction: landConvertedToPeatOrganic,
+      PeatlandRestoration: peatLandRestoreOrganic,
+      forestlandToSettlement: forestToSettlementsOrganic,
+      croplandToSettlement: forestToSettlementsOrganic,
+      grasslandToSettlement: forestToSettlementsOrganic,
+      wetlandToSettlement: forestToSettlementsOrganic,
+      otherlandToSettlement: forestToSettlementsOrganic,
+      forestlandToOtherland: forestToOtherOrganic,
+      croplandToOtherland: cropToOtherOrganic,
+      grasslandToOtherland: grassToOtherOrganic,
+      wetlandToOtherland: wetToOtherOrganic,
+      settlementToOtherland: settlementsToOtherOrganic,
+    };
+    const policyStartYear = {
+      croplandToForestland: cropToForestYear,
+      grasslandToForestland: grassToForestYear,
+      wetlandToForestland: wetToForestYear,
+      settlementToForestland: settlementsToForestYear,
+      otherlandToForestland: otherToForestYear,
+      forestlandToCropland: forestToCropYear,
+      grasslandToCropland: grassToCropYear,
+      wetlandToCropland: wetToCropYear,
+      settlementToCropland: settlementsToCropYear,
+      otherlandToCropland: otherToCropYear,
+      forestlandToGrassland: forestToGrassYear,
+      croplandToGrassland: cropToGrassYear,
+      wetlandToGrassland: wetToGrassYear,
+      settlementToGrassland: settlementsToGrassYear,
+      otherlandToGrassland: otherToGrassYear,
+      forestlandToWetland: forestToWetlandYear,
+      croplandToWetland: cropToWetYear,
+      grasslandToWetland: grassToWetYear,
+      LandToPeatExtraction: landConvertedToPeatYear,
+      PeatlandRestoration: peatLandRestoreYear,
+      forestlandToSettlement: forestToSettlementsYear,
+      croplandToSettlement: forestToSettlementsYear,
+      grasslandToSettlement: forestToSettlementsYear,
+      wetlandToSettlement: forestToSettlementsYear,
+      otherlandToSettlement: forestToSettlementsYear,
+      forestlandToOtherland: forestToOtherYear,
+      croplandToOtherland: cropToOtherYear,
+      grasslandToOtherland: grassToOtherYear,
+      wetlandToOtherland: wetToOtherYear,
+      settlementToOtherland: settlementsToOtherYear,
+    };
+    const landUseChange = {
+      totalArea: totalArea,
+      mineral: mineral,
+      organic: organic
+    };
+    
     setLUCBarChart(true);
   };
 
@@ -391,15 +524,18 @@ export const LandUseChangeTableForm = ({
   // #region
   // crop
   const handleCropToForest = (e) => {
-    setCropToForest(parseInt(e.target.value));
+    e.preventDefault();
+    setCropToForest(parseFloat(e.target.value));
   };
 
   const handleCropToForestMineral = (e) => {
-    setCropToForestMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setCropToForestMineral(parseFloat(e.target.value));
   };
 
   const handleCropToForestOrganic = (e) => {
-    setCropToForestOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setCropToForestOrganic(parseFloat(e.target.value));
   };
 
   const handleCropToForestYear = (e) => {
@@ -408,15 +544,18 @@ export const LandUseChangeTableForm = ({
   };
   // grass
   const handleGrassToForest = (e) => {
-    setGrassToForest(parseInt(e.target.value));
+    e.preventDefault();
+    setGrassToForest(parseFloat(e.target.value));
   };
 
   const handleGrassToForestMineral = (e) => {
-    setGrassToForestMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setGrassToForestMineral(parseFloat(e.target.value));
   };
 
   const handleGrassToForestOrganic = (e) => {
-    setGrassToForestOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setGrassToForestOrganic(parseFloat(e.target.value));
   };
 
   const handleGrassToForestYear = (e) => {
@@ -425,15 +564,18 @@ export const LandUseChangeTableForm = ({
   };
   // wet
   const handleWetToForest = (e) => {
-    setWetToForest(parseInt(e.target.value));
+    e.preventDefault();
+    setWetToForest(parseFloat(e.target.value));
   };
 
   const handleWetToForestMineral = (e) => {
-    setWetToForestMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setWetToForestMineral(parseFloat(e.target.value));
   };
 
   const handleWetToForestOrganic = (e) => {
-    setWetToForestOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setWetToForestOrganic(parseFloat(e.target.value));
   };
 
   const handleWetToForestYear = (e) => {
@@ -442,14 +584,17 @@ export const LandUseChangeTableForm = ({
   };
   // settlements
   const handleSettlementsToForest = (e) => {
-    setSettlementsToForest(parseInt(e.target.value));
+    e.preventDefault();
+    setSettlementsToForest(parseFloat(e.target.value));
   };
 
   const handleSettlementsToForestMineral = (e) => {
-    setSettlementsToForestMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setSettlementsToForestMineral(parseFloat(e.target.value));
   };
   const handleSettlementsToForestOrganic = (e) => {
-    setSettlementsToForestOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setSettlementsToForestOrganic(parseFloat(e.target.value));
   };
 
   const handleSettlementsToForestYear = (e) => {
@@ -458,15 +603,18 @@ export const LandUseChangeTableForm = ({
   };
   // other
   const handleOtherToForest = (e) => {
-    setOtherToForest(parseInt(e.target.value));
+    e.preventDefault();
+    setOtherToForest(parseFloat(e.target.value));
   };
 
   const handleOtherToForestMineral = (e) => {
-    setOtherToForestMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setOtherToForestMineral(parseFloat(e.target.value));
   };
 
   const handleOtherToForestOrganic = (e) => {
-    setOtherToForestOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setOtherToForestOrganic(parseFloat(e.target.value));
   };
 
   const handleOtherToForestYear = (e) => {
@@ -479,15 +627,18 @@ export const LandUseChangeTableForm = ({
   // #region
   // forest
   const handleForestToCrop = (e) => {
-    setForestToCrop(parseInt(e.target.value));
+    e.preventDefault();
+    setForestToCrop(parseFloat(e.target.value));
   };
 
   const handleForestToCropMineral = (e) => {
-    setForestToCropMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setForestToCropMineral(parseFloat(e.target.value));
   };
 
   const handleForestToCropOrganic = (e) => {
-    setForestToCropOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setForestToCropOrganic(parseFloat(e.target.value));
   };
 
   const handleForestToCropYear = (e) => {
@@ -496,15 +647,18 @@ export const LandUseChangeTableForm = ({
   };
   // grass
   const handleGrassToCrop = (e) => {
-    setGrassToCrop(parseInt(e.target.value));
+    e.preventDefault();
+    setGrassToCrop(parseFloat(e.target.value));
   };
 
   const handleGrassToCropMineral = (e) => {
-    setGrassToCropMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setGrassToCropMineral(parseFloat(e.target.value));
   };
 
   const handleGrassToCropOrganic = (e) => {
-    setGrassToCropOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setGrassToCropOrganic(parseFloat(e.target.value));
   };
 
   const handleGrassToCropYear = (e) => {
@@ -513,15 +667,18 @@ export const LandUseChangeTableForm = ({
   };
   // wetland
   const handleWetToCrop = (e) => {
-    setWetToCrop(parseInt(e.target.value));
+    e.preventDefault();
+    setWetToCrop(parseFloat(e.target.value));
   };
 
   const handleWetToCropMineral = (e) => {
-    setWetToCropMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setWetToCropMineral(parseFloat(e.target.value));
   };
 
   const handleWetToCropOrganic = (e) => {
-    setWetToCropOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setWetToCropOrganic(parseFloat(e.target.value));
   };
   const handleWetToCropYear = (e) => {
     e.preventDefault();
@@ -529,15 +686,18 @@ export const LandUseChangeTableForm = ({
   };
   // settlements
   const handleSettlementsToCrop = (e) => {
-    setSettlementsToCrop(parseInt(e.target.value));
+    e.preventDefault();
+    setSettlementsToCrop(parseFloat(e.target.value));
   };
 
   const handleSettlementsToCropMineral = (e) => {
-    setSettlementsToCropMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setSettlementsToCropMineral(parseFloat(e.target.value));
   };
 
   const handleSettlementsToCropOrganic = (e) => {
-    setSettlementsToCropOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setSettlementsToCropOrganic(parseFloat(e.target.value));
   };
   const handleSettlementsToCropYear = (e) => {
     e.preventDefault();
@@ -545,15 +705,18 @@ export const LandUseChangeTableForm = ({
   };
   // other land
   const handleOtherToCrop = (e) => {
-    setOtherToCrop(parseInt(e.target.value));
+    e.preventDefault();
+    setOtherToCrop(parseFloat(e.target.value));
   };
 
   const handleOtherToCropMineral = (e) => {
-    setOtherToCropMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setOtherToCropMineral(parseFloat(e.target.value));
   };
 
   const handleOtherToCropOrganic = (e) => {
-    setOtherToCropOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setOtherToCropOrganic(parseFloat(e.target.value));
   };
   const handleOtherToCropYear = (e) => {
     e.preventDefault();
@@ -565,15 +728,18 @@ export const LandUseChangeTableForm = ({
   // #region
   // forest
   const handleForestToGrass = (e) => {
-    setForestToGrass(parseInt(e.target.value));
+    e.preventDefault();
+    setForestToGrass(parseFloat(e.target.value));
   };
 
   const handleForestToGrassMineral = (e) => {
-    setForestToGrassMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setForestToGrassMineral(parseFloat(e.target.value));
   };
 
   const handleForestToGrassOrganic = (e) => {
-    setForestToGrassOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setForestToGrassOrganic(parseFloat(e.target.value));
   };
 
   const handleForestToGrassYear = (e) => {
@@ -582,15 +748,18 @@ export const LandUseChangeTableForm = ({
   };
   // crop
   const handleCropToGrass = (e) => {
-    setCropToGrass(parseInt(e.target.value));
+    e.preventDefault();
+    setCropToGrass(parseFloat(e.target.value));
   };
 
   const handleCropToGrassMineral = (e) => {
-    setCropToGrassMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setCropToGrassMineral(parseFloat(e.target.value));
   };
 
   const handleCropToGrassOrganic = (e) => {
-    setCropToGrassOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setCropToGrassOrganic(parseFloat(e.target.value));
   };
 
   const handleCropToGrassYear = (e) => {
@@ -599,15 +768,18 @@ export const LandUseChangeTableForm = ({
   };
   // wetlands
   const handleWetToGrass = (e) => {
-    setWetToGrass(parseInt(e.target.value));
+    e.preventDefault();
+    setWetToGrass(parseFloat(e.target.value));
   };
 
   const handleWetToGrassMineral = (e) => {
-    setWetToGrassMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setWetToGrassMineral(parseFloat(e.target.value));
   };
 
   const handleWetToGrassOrganic = (e) => {
-    setWetToGrassOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setWetToGrassOrganic(parseFloat(e.target.value));
   };
 
   const handleWetToGrassYear = (e) => {
@@ -616,15 +788,18 @@ export const LandUseChangeTableForm = ({
   };
   // settlements
   const handleSettlementsToGrass = (e) => {
-    setSettlementsToGrass(parseInt(e.target.value));
+    e.preventDefault();
+    setSettlementsToGrass(parseFloat(e.target.value));
   };
 
   const handleSettlementsToGrassMineral = (e) => {
-    setSettlementsToGrassMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setSettlementsToGrassMineral(parseFloat(e.target.value));
   };
 
   const handleSettlementsToGrassOrganic = (e) => {
-    setSettlementsToGrassOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setSettlementsToGrassOrganic(parseFloat(e.target.value));
   };
 
   const handleSettlementsToGrassYear = (e) => {
@@ -633,15 +808,18 @@ export const LandUseChangeTableForm = ({
   };
   // other land
   const handleOtherToGrass = (e) => {
-    setOtherToGrass(parseInt(e.target.value));
+    e.preventDefault();
+    setOtherToGrass(parseFloat(e.target.value));
   };
 
   const handleOtherToGrassMineral = (e) => {
-    setOtherToGrassMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setOtherToGrassMineral(parseFloat(e.target.value));
   };
 
   const handleOtherToGrassOrganic = (e) => {
-    setOtherToGrassOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setOtherToGrassOrganic(parseFloat(e.target.value));
   };
 
   const handleOtherToGrassYear = (e) => {
@@ -654,15 +832,18 @@ export const LandUseChangeTableForm = ({
   // #region
   // to peat extraction
   const handleLandConvertedToPeat = (e) => {
-    setLandConvertedToPeat(parseInt(e.target.value));
+    e.preventDefault();
+    setLandConvertedToPeat(parseFloat(e.target.value));
   };
 
   const handleLandConvertedToPeatMineral = (e) => {
-    setLandConvertedToPeatMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setLandConvertedToPeatMineral(parseFloat(e.target.value));
   };
 
   const handleLandConvertedToPeatOrganic = (e) => {
-    setLandConvertedToPeatOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setLandConvertedToPeatOrganic(parseFloat(e.target.value));
   };
 
   const handleLandConvertedToPeatYear = (e) => {
@@ -672,15 +853,18 @@ export const LandUseChangeTableForm = ({
 
   // to peatland restore
   const handlePeatLandRestore = (e) => {
-    setPeatLandRestore(parseInt(e.target.value));
+    e.preventDefault();
+    setPeatLandRestore(parseFloat(e.target.value));
   };
 
   const handlePeatLandRestoreMineral = (e) => {
-    setPeatLandRestoreMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setPeatLandRestoreMineral(parseFloat(e.target.value));
   };
 
   const handlePeatLandRestoreOrganic = (e) => {
-    setPeatLandRestoreOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setPeatLandRestoreOrganic(parseFloat(e.target.value));
   };
 
   const handlePeatLandRestoreYear = (e) => {
@@ -690,15 +874,18 @@ export const LandUseChangeTableForm = ({
 
   // forest to
   const handleForestToWetland = (e) => {
-    setForestToWetland(parseInt(e.target.value));
+    e.preventDefault();
+    setForestToWetland(parseFloat(e.target.value));
   };
 
   const handleForestToWetlandMineral = (e) => {
-    setForestToWetlandMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setForestToWetlandMineral(parseFloat(e.target.value));
   };
 
   const handleForestToWetlandOrganic = (e) => {
-    setForestToWetlandOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setForestToWetlandOrganic(parseFloat(e.target.value));
   };
 
   const handleForestToWetlandYear = (e) => {
@@ -708,15 +895,18 @@ export const LandUseChangeTableForm = ({
 
   // cropland to
   const handleCropToWet = (e) => {
-    setCropToWet(parseInt(e.target.value));
+    e.preventDefault();
+    setCropToWet(parseFloat(e.target.value));
   };
 
   const handleCropToWetMineral = (e) => {
-    setCropToWetMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setCropToWetMineral(parseFloat(e.target.value));
   };
 
   const handleCropToWetOrganic = (e) => {
-    setCropToWetOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setCropToWetOrganic(parseFloat(e.target.value));
   };
 
   const handleCropToWetYear = (e) => {
@@ -726,15 +916,18 @@ export const LandUseChangeTableForm = ({
 
   // grassland to
   const handleGrassToWet = (e) => {
-    setGrassToWet(parseInt(e.target.value));
+    e.preventDefault();
+    setGrassToWet(parseFloat(e.target.value));
   };
 
   const handleGrassToWetMineral = (e) => {
-    setGrassToWetMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setGrassToWetMineral(parseFloat(e.target.value));
   };
 
   const handleGrassToWetOrganic = (e) => {
-    setGrassToWetOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setGrassToWetOrganic(parseFloat(e.target.value));
   };
 
   const handleGrassToWetYear = (e) => {
@@ -747,15 +940,18 @@ export const LandUseChangeTableForm = ({
   // #region
   // forest
   const handleForestToSettlements = (e) => {
-    setForestToSettlements(parseInt(e.target.value));
+    e.preventDefault();
+    setForestToSettlements(parseFloat(e.target.value));
   };
 
   const handleForestToSettlementsMineral = (e) => {
-    setForestToSettlementsMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setForestToSettlementsMineral(parseFloat(e.target.value));
   };
 
   const handleForestToSettlementsOrganic = (e) => {
-    setForestToSettlementsOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setForestToSettlementsOrganic(parseFloat(e.target.value));
   };
 
   const handleForestToSettlementsYear = (e) => {
@@ -764,15 +960,18 @@ export const LandUseChangeTableForm = ({
   };
   // crop
   const handleCropToSettlements = (e) => {
-    setCropToSettlements(parseInt(e.target.value));
+    e.preventDefault();
+    setCropToSettlements(parseFloat(e.target.value));
   };
 
   const handleCropToSettlementsMineral = (e) => {
-    setCropToSettlementsMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setCropToSettlementsMineral(parseFloat(e.target.value));
   };
 
   const handleCropToSettlementsOrganic = (e) => {
-    setCropToSettlementsOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setCropToSettlementsOrganic(parseFloat(e.target.value));
   };
 
   const handleCropToSettlementsYear = (e) => {
@@ -781,15 +980,18 @@ export const LandUseChangeTableForm = ({
   };
   // grass
   const handleGrassToSettlements = (e) => {
-    setGrassToSettlements(parseInt(e.target.value));
+    e.preventDefault();
+    setGrassToSettlements(parseFloat(e.target.value));
   };
 
   const handleGrassToSettlementsMineral = (e) => {
-    setGrassToSettlementsMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setGrassToSettlementsMineral(parseFloat(e.target.value));
   };
 
   const handleGrassToSettlementsOrganic = (e) => {
-    setGrassToSettlementsOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setGrassToSettlementsOrganic(parseFloat(e.target.value));
   };
 
   const handleGrassToSettlementsYear = (e) => {
@@ -798,15 +1000,18 @@ export const LandUseChangeTableForm = ({
   };
   // wet
   const handleWetToSettlements = (e) => {
-    setWetToSettlements(parseInt(e.target.value));
+    e.preventDefault();
+    setWetToSettlements(parseFloat(e.target.value));
   };
 
   const handleWetToSettlementsMineral = (e) => {
-    setWetToSettlementsMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setWetToSettlementsMineral(parseFloat(e.target.value));
   };
 
   const handleWetToSettlementsOrganic = (e) => {
-    setWetToSettlementsOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setWetToSettlementsOrganic(parseFloat(e.target.value));
   };
 
   const handleWetToSettlementsYear = (e) => {
@@ -815,15 +1020,18 @@ export const LandUseChangeTableForm = ({
   };
   // other
   const handleOtherToSettlements = (e) => {
-    setOtherToSettlements(parseInt(e.target.value));
+    e.preventDefault();
+    setOtherToSettlements(parseFloat(e.target.value));
   };
 
   const handleOtherToSettlementsMineral = (e) => {
-    setOtherToSettlementsMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setOtherToSettlementsMineral(parseFloat(e.target.value));
   };
 
   const handleOtherToSettlementsOrganic = (e) => {
-    setOtherToSettlementsOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setOtherToSettlementsOrganic(parseFloat(e.target.value));
   };
 
   const handleOtherToSettlementsYear = (e) => {
@@ -836,15 +1044,18 @@ export const LandUseChangeTableForm = ({
   // #region
   // forest
   const handleForestToOther = (e) => {
-    setForestToOther(parseInt(e.target.value));
+    e.preventDefault();
+    setForestToOther(parseFloat(e.target.value));
   };
 
   const handleForestToOtherMineral = (e) => {
-    setForestToOtherMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setForestToOtherMineral(parseFloat(e.target.value));
   };
 
   const handleForestToOtherOrganic = (e) => {
-    setForestToOtherOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setForestToOtherOrganic(parseFloat(e.target.value));
   };
 
   const handleForestToOtherYear = (e) => {
@@ -854,15 +1065,18 @@ export const LandUseChangeTableForm = ({
 
   // crop
   const handleCropToOther = (e) => {
-    setCropToOther(parseInt(e.target.value));
+    e.preventDefault();
+    setCropToOther(parseFloat(e.target.value));
   };
 
   const handleCropToOtherMineral = (e) => {
-    setCropToOtherMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setCropToOtherMineral(parseFloat(e.target.value));
   };
 
   const handleCropToOtherOrganic = (e) => {
-    setCropToOtherOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setCropToOtherOrganic(parseFloat(e.target.value));
   };
 
   const handleCropToOtherYear = (e) => {
@@ -872,15 +1086,18 @@ export const LandUseChangeTableForm = ({
 
   // grass
   const handleGrassToOther = (e) => {
-    setGrassToOther(parseInt(e.target.value));
+    e.preventDefault();
+    setGrassToOther(parseFloat(e.target.value));
   };
 
   const handleGrassToOtherMineral = (e) => {
-    setGrassToOtherMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setGrassToOtherMineral(parseFloat(e.target.value));
   };
 
   const handleGrassToOtherOrganic = (e) => {
-    setGrassToOtherOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setGrassToOtherOrganic(parseFloat(e.target.value));
   };
 
   const handleGrassToOtherYear = (e) => {
@@ -890,15 +1107,18 @@ export const LandUseChangeTableForm = ({
 
   // wet
   const handleWetToOther = (e) => {
-    setWetToOther(parseInt(e.target.value));
+    e.preventDefault();
+    setWetToOther(parseFloat(e.target.value));
   };
 
   const handleWetToOtherMineral = (e) => {
-    setWetToOtherMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setWetToOtherMineral(parseFloat(e.target.value));
   };
 
   const handleWetToOtherOrganic = (e) => {
-    setWetToOtherOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setWetToOtherOrganic(parseFloat(e.target.value));
   };
 
   const handleWetToOtherYear = (e) => {
@@ -907,15 +1127,18 @@ export const LandUseChangeTableForm = ({
   };
   // settlements
   const handleSettlementsToOther = (e) => {
-    setSettlementsToOther(parseInt(e.target.value));
+    e.preventDefault();
+    setSettlementsToOther(parseFloat(e.target.value));
   };
 
   const handleSettlementsToOtherMineral = (e) => {
-    setSettlementsToOtherMineral(parseInt(e.target.value));
+    e.preventDefault();
+    setSettlementsToOtherMineral(parseFloat(e.target.value));
   };
 
   const handleSettlementsToOtherOrganic = (e) => {
-    setSettlementsToOtherOrganic(parseInt(e.target.value));
+    e.preventDefault();
+    setSettlementsToOtherOrganic(parseFloat(e.target.value));
   };
 
   const handleSettlementsToOtherYear = (e) => {
@@ -924,140 +1147,145 @@ export const LandUseChangeTableForm = ({
   };
   // #endregion
 
-  const totalArea = {
-    croplandToForestland: cropToForest,
-    grasslandToForestland: grassToForest,
-    wetlandToForestland: wetToForest,
-    settlementToForestland: settlementsToForest,
-    otherlandToForestland: otherToForest,
-    forestlandToCropland: forestToCrop,
-    grasslandToCropland: grassToCrop,
-    wetlandToCropland: wetToCrop,
-    settlementToCropland: settlementsToCrop,
-    otherlandToCropland: otherToCrop,
-    forestlandToGrassland: forestToGrass,
-    croplandToGrassland: cropToGrass,
-    wetlandToGrassland: wetToGrass,
-    settlementToGrassland: settlementsToGrass,
-    otherlandToGrassland: otherToGrass,
-    forestlandToWetland: forestToWetland,
-    croplandToWetland: cropToWet,
-    grasslandToWetland: grassToWet,
-    LandToPeatExtraction: landConvertedToPeat,
-    PeatlandRestoration: peatLandRestore,
-    forestlandToSettlement: forestToSettlements,
-    croplandToSettlement: forestToSettlements,
-    grasslandToSettlement: forestToSettlements,
-    wetlandToSettlement: forestToSettlements,
-    otherlandToSettlement: forestToSettlements,
-    forestlandToOtherland: forestToOther,
-    croplandToOtherland: cropToOther,
-    grasslandToOtherland: grassToOther,
-    wetlandToOtherland: wetToOther,
-    settlementToOtherland: settlementsToOther,
-  };
-  const mineral = {
-    croplandToForestland: cropToForestMineral,
-    grasslandToForestland: grassToForestMineral,
-    wetlandToForestland: wetToForestMineral,
-    settlementToForestland: settlementsToForestMineral,
-    otherlandToForestland: otherToForestMineral,
-    forestlandToCropland: forestToCropMineral,
-    grasslandToCropland: grassToCropMineral,
-    wetlandToCropland: wetToCropMineral,
-    settlementToCropland: settlementsToCropMineral,
-    otherlandToCropland: otherToCropMineral,
-    forestlandToGrassland: forestToGrassMineral,
-    croplandToGrassland: cropToGrassMineral,
-    wetlandToGrassland: wetToGrassMineral,
-    settlementToGrassland: settlementsToGrassMineral,
-    otherlandToGrassland: otherToGrassMineral,
-    forestlandToWetland: forestToWetlandMineral,
-    croplandToWetland: cropToWetMineral,
-    grasslandToWetland: grassToWetMineral,
-    LandToPeatExtraction: landConvertedToPeatMineral,
-    PeatlandRestoration: peatLandRestoreMineral,
-    forestlandToSettlement: forestToSettlementsMineral,
-    croplandToSettlement: forestToSettlementsMineral,
-    grasslandToSettlement: forestToSettlementsMineral,
-    wetlandToSettlement: forestToSettlementsMineral,
-    otherlandToSettlement: forestToSettlementsMineral,
-    forestlandToOtherland: forestToOtherMineral,
-    croplandToOtherland: cropToOtherMineral,
-    grasslandToOtherland: grassToOtherMineral,
-    wetlandToOtherland: wetToOtherMineral,
-    settlementToOtherland: settlementsToOtherMineral,
-  };
-  const organic = {
-    croplandToForestland: cropToForestOrganic,
-    grasslandToForestland: grassToForestOrganic,
-    wetlandToForestland: wetToForestOrganic,
-    settlementToForestland: settlementsToForestOrganic,
-    otherlandToForestland: otherToForestOrganic,
-    forestlandToCropland: forestToCropOrganic,
-    grasslandToCropland: grassToCropOrganic,
-    wetlandToCropland: wetToCropOrganic,
-    settlementToCropland: settlementsToCropOrganic,
-    otherlandToCropland: otherToCropOrganic,
-    forestlandToGrassland: forestToGrassOrganic,
-    croplandToGrassland: cropToGrassOrganic,
-    wetlandToGrassland: wetToGrassOrganic,
-    settlementToGrassland: settlementsToGrassOrganic,
-    otherlandToGrassland: otherToGrassOrganic,
-    forestlandToWetland: forestToWetlandOrganic,
-    croplandToWetland: cropToWetOrganic,
-    grasslandToWetland: grassToWetOrganic,
-    LandToPeatExtraction: landConvertedToPeatOrganic,
-    PeatlandRestoration: peatLandRestoreOrganic,
-    forestlandToSettlement: forestToSettlementsOrganic,
-    croplandToSettlement: forestToSettlementsOrganic,
-    grasslandToSettlement: forestToSettlementsOrganic,
-    wetlandToSettlement: forestToSettlementsOrganic,
-    otherlandToSettlement: forestToSettlementsOrganic,
-    forestlandToOtherland: forestToOtherOrganic,
-    croplandToOtherland: cropToOtherOrganic,
-    grasslandToOtherland: grassToOtherOrganic,
-    wetlandToOtherland: wetToOtherOrganic,
-    settlementToOtherland: settlementsToOtherOrganic,
-  };
-  const policyStartYear = {
-    croplandToForestland: cropToForestYear,
-    grasslandToForestland: grassToForestYear,
-    wetlandToForestland: wetToForestYear,
-    settlementToForestland: settlementsToForestYear,
-    otherlandToForestland: otherToForestYear,
-    forestlandToCropland: forestToCropYear,
-    grasslandToCropland: grassToCropYear,
-    wetlandToCropland: wetToCropYear,
-    settlementToCropland: settlementsToCropYear,
-    otherlandToCropland: otherToCropYear,
-    forestlandToGrassland: forestToGrassYear,
-    croplandToGrassland: cropToGrassYear,
-    wetlandToGrassland: wetToGrassYear,
-    settlementToGrassland: settlementsToGrassYear,
-    otherlandToGrassland: otherToGrassYear,
-    forestlandToWetland: forestToWetlandYear,
-    croplandToWetland: cropToWetYear,
-    grasslandToWetland: grassToWetYear,
-    LandToPeatExtraction: landConvertedToPeatYear,
-    PeatlandRestoration: peatLandRestoreYear,
-    forestlandToSettlement: forestToSettlementsYear,
-    croplandToSettlement: forestToSettlementsYear,
-    grasslandToSettlement: forestToSettlementsYear,
-    wetlandToSettlement: forestToSettlementsYear,
-    otherlandToSettlement: forestToSettlementsYear,
-    forestlandToOtherland: forestToOtherYear,
-    croplandToOtherland: cropToOtherYear,
-    grasslandToOtherland: grassToOtherYear,
-    wetlandToOtherland: wetToOtherYear,
-    settlementToOtherland: settlementsToOtherYear,
-  };
+ 
 
   const setResponse = (response) => {
     setLandUseChangeResponse(response.data);
   };
 
+  useEffect(() => {
+    localStorage.setItem("cropToForestYear", cropToForestYear);
+  }, [cropToForestYear]);
+ 
   useEffect(async () => {
+    const totalArea = {
+      croplandToForestland: cropToForest,
+      grasslandToForestland: grassToForest,
+      wetlandToForestland: wetToForest,
+      settlementToForestland: settlementsToForest,
+      otherlandToForestland: otherToForest,
+      forestlandToCropland: forestToCrop,
+      grasslandToCropland: grassToCrop,
+      wetlandToCropland: wetToCrop,
+      settlementToCropland: settlementsToCrop,
+      otherlandToCropland: otherToCrop,
+      forestlandToGrassland: forestToGrass,
+      croplandToGrassland: cropToGrass,
+      wetlandToGrassland: wetToGrass,
+      settlementToGrassland: settlementsToGrass,
+      otherlandToGrassland: otherToGrass,
+      forestlandToWetland: forestToWetland,
+      croplandToWetland: cropToWet,
+      grasslandToWetland: grassToWet,
+      LandToPeatExtraction: landConvertedToPeat,
+      PeatlandRestoration: peatLandRestore,
+      forestlandToSettlement: forestToSettlements,
+      croplandToSettlement: forestToSettlements,
+      grasslandToSettlement: forestToSettlements,
+      wetlandToSettlement: forestToSettlements,
+      otherlandToSettlement: forestToSettlements,
+      forestlandToOtherland: forestToOther,
+      croplandToOtherland: cropToOther,
+      grasslandToOtherland: grassToOther,
+      wetlandToOtherland: wetToOther,
+      settlementToOtherland: settlementsToOther,
+    };
+    const mineral = {
+      croplandToForestland: cropToForestMineral,
+      grasslandToForestland: grassToForestMineral,
+      wetlandToForestland: wetToForestMineral,
+      settlementToForestland: settlementsToForestMineral,
+      otherlandToForestland: otherToForestMineral,
+      forestlandToCropland: forestToCropMineral,
+      grasslandToCropland: grassToCropMineral,
+      wetlandToCropland: wetToCropMineral,
+      settlementToCropland: settlementsToCropMineral,
+      otherlandToCropland: otherToCropMineral,
+      forestlandToGrassland: forestToGrassMineral,
+      croplandToGrassland: cropToGrassMineral,
+      wetlandToGrassland: wetToGrassMineral,
+      settlementToGrassland: settlementsToGrassMineral,
+      otherlandToGrassland: otherToGrassMineral,
+      forestlandToWetland: forestToWetlandMineral,
+      croplandToWetland: cropToWetMineral,
+      grasslandToWetland: grassToWetMineral,
+      LandToPeatExtraction: landConvertedToPeatMineral,
+      PeatlandRestoration: peatLandRestoreMineral,
+      forestlandToSettlement: forestToSettlementsMineral,
+      croplandToSettlement: forestToSettlementsMineral,
+      grasslandToSettlement: forestToSettlementsMineral,
+      wetlandToSettlement: forestToSettlementsMineral,
+      otherlandToSettlement: forestToSettlementsMineral,
+      forestlandToOtherland: forestToOtherMineral,
+      croplandToOtherland: cropToOtherMineral,
+      grasslandToOtherland: grassToOtherMineral,
+      wetlandToOtherland: wetToOtherMineral,
+      settlementToOtherland: settlementsToOtherMineral,
+    };
+    const organic = {
+      croplandToForestland: cropToForestOrganic,
+      grasslandToForestland: grassToForestOrganic,
+      wetlandToForestland: wetToForestOrganic,
+      settlementToForestland: settlementsToForestOrganic,
+      otherlandToForestland: otherToForestOrganic,
+      forestlandToCropland: forestToCropOrganic,
+      grasslandToCropland: grassToCropOrganic,
+      wetlandToCropland: wetToCropOrganic,
+      settlementToCropland: settlementsToCropOrganic,
+      otherlandToCropland: otherToCropOrganic,
+      forestlandToGrassland: forestToGrassOrganic,
+      croplandToGrassland: cropToGrassOrganic,
+      wetlandToGrassland: wetToGrassOrganic,
+      settlementToGrassland: settlementsToGrassOrganic,
+      otherlandToGrassland: otherToGrassOrganic,
+      forestlandToWetland: forestToWetlandOrganic,
+      croplandToWetland: cropToWetOrganic,
+      grasslandToWetland: grassToWetOrganic,
+      LandToPeatExtraction: landConvertedToPeatOrganic,
+      PeatlandRestoration: peatLandRestoreOrganic,
+      forestlandToSettlement: forestToSettlementsOrganic,
+      croplandToSettlement: forestToSettlementsOrganic,
+      grasslandToSettlement: forestToSettlementsOrganic,
+      wetlandToSettlement: forestToSettlementsOrganic,
+      otherlandToSettlement: forestToSettlementsOrganic,
+      forestlandToOtherland: forestToOtherOrganic,
+      croplandToOtherland: cropToOtherOrganic,
+      grasslandToOtherland: grassToOtherOrganic,
+      wetlandToOtherland: wetToOtherOrganic,
+      settlementToOtherland: settlementsToOtherOrganic,
+    };
+    const policyStartYear = {
+      croplandToForestland: cropToForestYear,
+      grasslandToForestland: grassToForestYear,
+      wetlandToForestland: wetToForestYear,
+      settlementToForestland: settlementsToForestYear,
+      otherlandToForestland: otherToForestYear,
+      forestlandToCropland: forestToCropYear,
+      grasslandToCropland: grassToCropYear,
+      wetlandToCropland: wetToCropYear,
+      settlementToCropland: settlementsToCropYear,
+      otherlandToCropland: otherToCropYear,
+      forestlandToGrassland: forestToGrassYear,
+      croplandToGrassland: cropToGrassYear,
+      wetlandToGrassland: wetToGrassYear,
+      settlementToGrassland: settlementsToGrassYear,
+      otherlandToGrassland: otherToGrassYear,
+      forestlandToWetland: forestToWetlandYear,
+      croplandToWetland: cropToWetYear,
+      grasslandToWetland: grassToWetYear,
+      LandToPeatExtraction: landConvertedToPeatYear,
+      PeatlandRestoration: peatLandRestoreYear,
+      forestlandToSettlement: forestToSettlementsYear,
+      croplandToSettlement: forestToSettlementsYear,
+      grasslandToSettlement: forestToSettlementsYear,
+      wetlandToSettlement: forestToSettlementsYear,
+      otherlandToSettlement: forestToSettlementsYear,
+      forestlandToOtherland: forestToOtherYear,
+      croplandToOtherland: cropToOtherYear,
+      grasslandToOtherland: grassToOtherYear,
+      wetlandToOtherland: wetToOtherYear,
+      settlementToOtherland: settlementsToOtherYear,
+    };
     const landUseChange = {
       totalArea: totalArea,
       mineral: mineral,
@@ -1090,6 +1318,8 @@ export const LandUseChangeTableForm = ({
   useEffect(() => {
     localStorage.setItem("landUseChange", JSON.stringify(landUseChangeResponse));
   }, [landUseChangeResponse]);
+
+ 
 
   if (lucBarChart === false) {
     return (
