@@ -25,6 +25,20 @@ select {
   padding: 5px 10px;
   box-sizing: border-box;
 }
+.ns_input{
+  padding: 5px 10px;
+  box-sizing: border-box;
+}
+
+.ns_select{
+  padding: 5px 10px;
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 5px 10px;
+  width: 187px;
+  box-sizing: border-box;
+}
+
 
 .section_u2planner select {
   display: inline-block;

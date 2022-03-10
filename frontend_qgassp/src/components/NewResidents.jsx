@@ -108,13 +108,13 @@ export const NewResidents = ({
                   required
                 />
                 <label>
-                  &nbsp;&nbsp;0 = no new developments to be quantified
+                  &nbsp;&nbsp;&nbsp; 0 = no new developments to be quantified
                 </label>
               </div>
               <div>
                 <label htmlFor="start_year"> Start</label>
                 <select
-                  className="start_year"
+                  className="ns_select"
                   id="start_year"
                   name="start_year"
                   onChange={handleStartYear}
@@ -133,7 +133,7 @@ export const NewResidents = ({
               <div>
                 <label htmlFor="finish_year"> End</label>
                 <select
-                  className="finish_year"
+                  className="ns_select"
                   id="finish_year"
                   name="finish_year"
                   onChange={handleYearFinish}

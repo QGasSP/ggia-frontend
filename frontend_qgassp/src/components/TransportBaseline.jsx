@@ -260,6 +260,7 @@ export const TransportBaseline = ({ country, year, population }) => {
                   min="0"
                   onChange={(e) => setNsArea(e.target.value)}
                   placeholder={nsArea}
+                  required
                 />
               </div>
 
@@ -271,6 +272,7 @@ export const TransportBaseline = ({ country, year, population }) => {
                   min="0"
                   onChange={(e) => setEwArea(e.target.value)}
                   placeholder={ewArea}
+                  required
                 />
               </div>
               <br />

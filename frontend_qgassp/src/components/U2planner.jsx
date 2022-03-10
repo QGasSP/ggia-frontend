@@ -17,7 +17,7 @@ import {
 import { U3planner } from "./U3planner";
 
 /**
- * U1 Planner user input form for baseline
+ * U2 Planner component for visualization of  baseline vs new-resident population
  * @return {}
  */
 
@@ -30,7 +30,7 @@ export const U2planner = ({
 }) => {
   const [errorU2, setU2Error] = useState("");
   const [newPopulation, setNewPopulation] = useState("");
-  const [baselinePopulation, setBaselinePopulation] = useState("");
+  // const [baselinePopulation, setBaselinePopulation] = useState("");
   const [nextU3planer, setU3planner] = useState(false);
 
   useEffect(() => {
