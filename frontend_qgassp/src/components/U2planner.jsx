@@ -35,6 +35,10 @@ export const U2planner = ({
   const [baselinePopulation, setBaselinePopulation] = useState("");
   const [nextU3planer, setU3planner] = useState(false);
 
+  useEffect(() => {
+    localStorage.setItem("projections", JSON.stringify(projections));
+  }, [projections]);
+
   useEffect(async () => {
     const rawData = { baseline, newDevelopment, projections };
     const headers = {
@@ -47,7 +51,7 @@ export const U2planner = ({
         rawData,
         headers
       )
-      .then((response) => setU2Response(response.data.json))
+      .then((response) => setU2Response(response.data))
       .catch((error) => {
         setU2Error({ errorMessage: error.message });
         // eslint-disable-next-line no-console
@@ -59,7 +63,6 @@ export const U2planner = ({
     setNewPopulation(response.data.new_development.impact.population);
     // setBaselinePopulation(response.data.baseline.projections.population);
   };
-  {JSON.stringify(projections.population)}
 
   const gotoU3planner = () => {
     setU3planner(true);
@@ -137,8 +140,8 @@ export const U2planner = ({
               <label>{newDevelopment.newSettlementDistribution.rural}</label>
             </div>
             
-            {JSON.stringify(newPopulation)}
-            {JSON.stringify(baselinePopulation)}
+            {/* {JSON.stringify(projections.population)}
+            {JSON.stringify(newDevelopment.impact.population)} */}
 
             {/* <XYPlot>
               <AreaSeries

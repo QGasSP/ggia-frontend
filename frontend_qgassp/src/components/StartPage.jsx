@@ -4,6 +4,7 @@ import "../css/startpage.css";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import { TransportBaseline } from "./TransportBaseline";
+import axios from "axios";
 
 export const StartPage = () => {
   /*  const [country, setCountry] = useState("");
