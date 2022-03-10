@@ -1,59 +1,76 @@
-/* section {
+.section_u3{
   font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
   line-height: 24px;
-  padding: 0.5rem;
-  margin: 0 auto;
+  padding-left: 0.5rem;
+  margin: 0.5rem;
   color: #333;
 }
 
-section h2 {
-  font-weight: 900;
-  font-size: 1.5em;
-  font-family: sans-serif;
-  line-height: 1;
-  margin: 0 0 0.5rem;
-  display: inline-block;
-  vertical-align: top;
-}
-
-section label {
-  display: inline-block;
-  width: 300px;
-}
-section input,
-select {
-  padding: 5px 10px;
-  box-sizing: border-box;
-}
-
-section select {
-  display: inline-block;
-  padding: 5px 10px;
-  width: 187px;
-  box-sizing: border-box;
-}
-
-section div {
-  margin-bottom: 10px;
-  display: inline-block;
-}
-
-.backButtonNew {
-  position: absolute;
-  left: 5%;
-}
-
-.nextButtonNew {
-  position: absolute;
-  right: 30%;
-}
-
 #inputspace {
-  margin-right: 110px;
+  margin-right: 5rem;
+  width:60% !important;
 }
 
-#divspace {
-  margin-right: 110px;
+.input_u3_planner {
+  margin-right: 5rem;
+  width:60% !important;
 }
- */
+
+.input_freight_change{
+  margin-right: 5rem;
+  width:60% !important;
+}
+
+
+.expectedchange {
+  display: flex;
+  justify-content: space-between;
+}
+.affected {
+  width: 50%;
+}
+
+
+.nextU3Button {
+  position: absolute;
+  left: 70%;
+}
+.label_u3{
+  width:25%;
+}
+
+
+#electricity_trans_affected_area{
+  width:60%;
+}
+
+#pass_policy_target{
+  width:25%;
+}
+.select_u3 {
+  width:60%;
+}
+
+.input_affected_area {
+  width: 60% !important;
+}
+
+/* 
+.input_freight_change{
+} */
+
+
+.column_u3 {
+  float: left;
+  width: 25%;
+ /*  height: 9rem;  */
+}
+
+/* Clear floats after the columns */
+.row_u3:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+

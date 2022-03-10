@@ -8,7 +8,7 @@ import axios from "axios";
 import { U3policies } from "./U3policies";
 
 /**
- * U3 user input
+ * U3 planner component for user inputs for policy quantification
  * @return {}
  */
 
@@ -340,114 +340,181 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
         <div className="headerSettlement">
           <Divider textAlign="left" flexItem>
             {" "}
-            <Chip label="U3 POLICY QUANTIFICATION" />
+            <Chip label="POLICY QUANTIFICATION" />
           </Divider>
         </div>
 
         <section className="section-u3">
           <form onSubmit={createPolicyQuantification}>
-            <label>
-              <b>U3.1 Passenger mobility (resident and non-residential)</b>
-            </label>
-            <label>expected change %</label>
-            <label></label>
-            <label>% of the area affected</label>
-            <div>
-              <label>change in mobility %</label>
-              <input
-                id="inputspace"
-                type="number"
-                step="0.1"
-                // id="pass_expected_change"
-                placeholder="0"
-                onChange={handleExpectedPassChange}
-                required
-              />
-              <input
-                type="number"
-                step="0.1"
-                id="pass_affected_area"
-                placeholder="0"
-                min="0"
-                max="100"
-                onChange={handleAffectedPassArea}
-                required
-              />
-            </div>
-            <div>
-              <label>Policy period</label>
-              <div className="divspace">
-                <select
-                  className="start_year"
-                  id="start_year"
-                  name="start_year"
-                  onChange={handleStartYear}
-                  defaultValue="2022"
-                  required
-                >
-                  <option value="DefaultOption">Select start year</option>
-                  {optionsNew.map((option) => (
-                    <option key={option} value={option}>
-                      {option}{" "}
-                    </option>
-                  ))}
-                </select>
+            <div className="row_u3">
+              {/*  passenger mobility section start */}
+              <div className="column_u3">
+                <div>
+                  {" "}
+                  <label>
+                    <b>Passenger mobility (Residential and Non)</b>
+                  </label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Change in mobility %</label>
+                </div>
+                <div>
+                  <label>Policy period</label>
+                  <div className="divspace">
+                    <select
+                      className="select_u3"
+                      name="start_year"
+                      onChange={handleStartYear}
+                      defaultValue="2022"
+                      required
+                    >
+                      <option value="DefaultOption">Select start year</option>
+                      {optionsNew.map((option) => (
+                        <option key={option} value={option}>
+                          {option}{" "}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <select
+                    className="select_u3"
+                    name="finish_year"
+                    onChange={handleYearFinish}
+                    defaultValue="2022"
+                    required
+                  >
+                    <option value="DefaultOption">Select end year</option>
+                    {optionsNew.map((option) => (
+                      <option key={option} value={option}>
+                        {option}{" "}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
-              <div className="divspace">
-                <select
-                  className="finish_year"
-                  id="finish_year"
-                  name="finish_year"
-                  onChange={handleYearFinish}
-                  defaultValue="2022"
-                  required
-                >
-                  <option value="DefaultOption">Select end year</option>
-                  {optionsNew.map((option) => (
-                    <option key={option} value={option}>
-                      {option}{" "}
-                    </option>
-                  ))}
-                </select>
+              <div className="column_u3">
+                <div>
+                  {" "}
+                  <label>Expected change %</label>
+                </div>
+                <div>
+                  {" "}
+                  <input
+                    id="inputspace"
+                    type="number"
+                    step="0.1"
+                    // id="pass_expected_change"
+                    placeholder="0"
+                    onChange={handleExpectedPassChange}
+                    required
+                  />
+                </div>
               </div>
-            </div>
-            <br />
-            <div>
-              <label>
-                <b>U3.2 Freight transport</b>
-              </label>
-              <label>expected change %</label>
-              <label></label>
-              {/* <label>% of the area affected</label> */}
-              <div>
-                <label>change in freight transport %</label>
+              <div className="column_u3">
+                {/* <label className="space_holder"></label> */}
+                <label>% of the area affected</label>
                 <input
-                  id="inputspace"
+                  className="input_affected_area"
                   type="number"
                   step="0.1"
-                  // id="freight_expected_change"
+                  placeholder="0"
+                  min="0"
+                  max="100"
+                  onChange={handleAffectedPassArea}
+                  required
+                />
+              </div>
+              <div className="column_u3"></div>
+            </div>
+            {/*  passenger mobility section end*/}
+
+            {/*  freight transport section */}
+            <div className="row_u3">
+              <div className="column_u3">
+                <div>
+                  <label>
+                    <b>Freight transport</b>
+                  </label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Change in freight transport %</label>
+                </div>
+                <div>
+                  <div>
+                    {" "}
+                    <label>Policy period</label>
+                  </div>
+
+                  <div className="divspace">
+                    <select
+                      className="select_u3"
+                      id="start_year"
+                      name="start_year"
+                      onChange={handleStartYear}
+                      defaultValue="2022"
+                      required
+                    >
+                      <option value="DefaultOption">Select start year</option>
+                      {optionsNew.map((option) => (
+                        <option key={option} value={option}>
+                          {option}{" "}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="divspace">
+                    <select
+                      className="select_u3"
+                      id="finish_year"
+                      name="finish_year"
+                      onChange={handleYearFinish}
+                      defaultValue="2022"
+                      required
+                    >
+                      <option value="DefaultOption">Select end year</option>
+                      {optionsNew.map((option) => (
+                        <option key={option} value={option}>
+                          {option}{" "}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div className="column_u3">
+                <label>Expected change %</label>
+                <input
+                  className="input_freight_change"
+                  type="number"
+                  step="0.1"
                   placeholder="0"
                   onChange={handleExpectedFreChange}
                   required
                 />
-                <label></label>
-                {/* <input
-                type="number"
-                step="0.1"
-                id="freight_affected_area"
-                placeholder="0.00"
-                min="0"
-                max="100"
-                onChange={handleAffectedFreArea}
-                required
-              /> */}
               </div>
+              <div className="column_u3"></div>
+              <div className="column_u3"></div>
+            </div>
+            {/*  freight transport section end */}
+
+            <br />
+
+            {/* modal split-passenger transport section start */}
+            <div className="row_u3">
+              <div className="column_u3" >
+              <div><label><b>Modal split/Passenger transport</b></label></div>
+              <div><label>Share for bus</label></div>
+              <div><label>Share for metro</label></div>
+              <div><label>Share for tram</label></div>
+              <div><label>Share for train</label></div>
+              <div><label>CarPassenger</label></div>
               <div>
                 <label>Policy period</label>
                 <div className="divspace">
                   <select
-                    className="start_year"
-                    id="start_year"
+                   className="select_u3"
                     name="start_year"
                     onChange={handleStartYear}
                     defaultValue="2022"
@@ -463,8 +530,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                 </div>
                 <div className="divspace">
                   <select
-                    className="finish_year"
-                    id="finish_year"
+                    className="select_u3"
                     name="finish_year"
                     onChange={handleYearFinish}
                     defaultValue="2022"
@@ -479,20 +545,23 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                   </select>
                 </div>
               </div>
-            </div>
-            <br />
-            <div>
-              <label>
-                <b>U3.3 Modal split/Passenger transport</b>
-              </label>
-              <label>without policy</label>
-              <label>policy target %</label>
-              <label>% of the area affeccted</label>
-              <div>
-                <label>Share for bus</label>
-                <label>{emission.bus}</label>
+              </div>
+
+              <div className="column_u3" >
+                <div>  <label>Without policy</label></div>
+                <div><label>{emission.bus}</label></div>
+                <div><label>{emission.metro}</label></div>
+                <div><label>{emission.tram}</label></div>
+                <div><label>{emission.train}</label></div>
+                <div><label>{emission.car}</label></div>
+              </div>
+              
+              <div className="column_u3">
+              
+                <label>Policy target %</label>
+               {/*  bus */}
                 <input
-                  id="inputspace"
+                   className="input_u3_planner"
                   type="number"
                   step="0.1"
                   // id="pass_policy_target"
@@ -503,10 +572,58 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                   onChange={handleBus}
                   required
                 />
+               {/*  metro */}
+               <div> <input
+                  type="number"
+                  step="0.1"
+                  className="input_u3_planner"
+                  placeholder="0"
+                  min="0"
+                  max="100"
+                  onChange={handleMetro}
+                  required
+                /></div>
+              
+              {/*   tram */}
+              <div> <input
+                  type="number"
+                  step="0.1"
+                  id="inputspace"
+                  placeholder="0"
+                  min="0"
+                  max="100"
+                  onChange={handleTram}
+                  required
+                /></div>
+             
+
+               {/*  train */}
+               <div> <input
+                  type="number"
+                  step="0.1"
+                  className="input_u3_planner"
+                  placeholder="0"
+                  min="0"
+                  max="100"
+                  onChange={handleTrain}
+                  required
+                /></div>
+              
+
+             {/*    car */}
+             <div>This is calculated automatically</div>
+            
+               
+              
+              </div>
+              <div className="column_u3">
+               
+                <label>% of the area affeccted</label>
                 <input
                   type="number"
                   step="0.1"
-                  id="pass_affected_area"
+                  className="input_u3_planner"
+                 
                   placeholder="0"
                   min="0"
                   max="100"
@@ -514,105 +631,16 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                   required
                 />
               </div>
-              <div>
-                <label>Share for metro</label>
-                <label>{emission.metro}</label>
-                <input
-                  type="number"
-                  step="0.1"
-                  id="pass_policy_target"
-                  placeholder="0"
-                  min="0"
-                  max="100"
-                  onChange={handleMetro}
-                  required
-                />
-              </div>
-              <div>
-                <label>Share for tram</label>
-                <label>{emission.tram}</label>
-                <input
-                  type="number"
-                  step="0.1"
-                  id="pass_policy_target"
-                  placeholder="0"
-                  min="0"
-                  max="100"
-                  onChange={handleTram}
-                  required
-                />
-              </div>
-              <div>
-                <label>Share for train</label>
-                <label>{emission.train}</label>
-                <input
-                  type="number"
-                  step="0.1"
-                  id="pass_policy_target"
-                  placeholder="0"
-                  min="0"
-                  max="100"
-                  onChange={handleTrain}
-                  required
-                />
-              </div>
-              <div>
-                <label>Car passenger</label>
-                <label>{emission.car}</label>
-                <label></label>
-                <label>This is calculated automatically</label>
-              </div>
-              {/* <div>
-              <label>
-                <b>Total</b>
-              </label>
-              <label></label>
-              <label>This is calculated automatically</label>
-            </div> */}
-              <div>
-                <label>Policy period</label>
-                <div className="divspace">
-                  <select
-                    className="start_year"
-                    id="start_year"
-                    name="start_year"
-                    onChange={handleStartYear}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select start year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="divspace">
-                  <select
-                    className="finish_year"
-                    id="finish_year"
-                    name="finish_year"
-                    onChange={handleYearFinish}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select end year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
             </div>
+            {/* modal split-passenger transport section send */}
+
+          
             <br />
             <div>
               <label>
-                <b>U3.4 Modal split/Freight transport</b>
+                <b>Modal split/Freight transport</b>
               </label>
-              <label>withouth policy</label>
+              <label>without policy</label>
               <label>policy target %</label>
               {/* <label>% of the area affeccted</label> */}
               <div>
@@ -696,9 +724,9 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
             <br />
             <div>
               <label>
-                <b>U3.5 Shares of fuel types/Bus transport</b>
+                <b>Shares of fuel types/Bus transport</b>
               </label>
-              <label>withouth policy</label>
+              <label>without policy</label>
               <label>policy target %</label>
               <label>% of the area affeccted</label>
               <div>
@@ -822,9 +850,9 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
             <br />
             <div>
               <label>
-                <b>U3.6 Shares of fuel types/Cars</b>
+                <b>Shares of fuel types/Cars</b>
               </label>
-              <label>withouth policy</label>
+              <label>without policy</label>
               <label>policy target %</label>
               <label>% of the area affeccted</label>
               <div>
@@ -1069,7 +1097,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
             <br />
             <div>
               <label>
-                <b>U3.7 Electricity for transport</b>
+                <b>Electricity for transport</b>
               </label>
               <label>gCO2e/kWh without policy</label>
               <label>policy target %</label>
@@ -1136,7 +1164,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                 </div>
               </div>
             </div>
-            <br/>
+            <br />
             <div className="nextU3Button">
               <Button
                 size="small"
