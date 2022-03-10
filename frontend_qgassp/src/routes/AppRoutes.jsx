@@ -10,7 +10,6 @@ import { U1planner } from "../components/U1planner";
 import { U3planner } from "../components/U3planner";
 import { U3policies } from "../components/U3policies";
 
-
 export const AppRoutes = () => {
   const routes = useRoutes([
     { path: "/", element: <Welcome /> },

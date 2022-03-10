@@ -39,10 +39,8 @@ export const U3policies = ({
   fuelSharesCarTypes,
   fuelSharesCar,
   electricityTransTypes,
-  electricityTrans
+  electricityTrans,
 }) => {
-
-
   // if (updateU2charts === false && totalNewResidents !== 100) {
   return (
     <article>
@@ -87,9 +85,7 @@ export const U3policies = ({
               <label>% of the area affected</label> */}
               <div>
                 <label>change in mobility %</label>
-                <label>
-                  {freightTrans.expectedChange}
-                </label>
+                <label>{freightTrans.expectedChange}</label>
                 {/* <label empty for spacing></label>
                 <label>% of the area affected goes here</label> */}
               </div>
@@ -111,10 +107,7 @@ export const U3policies = ({
                 <label>Share for bus</label>
                 <label>{emission.bus}</label>
                 <label> {modalPassShares.bus}</label>
-                <label>
-                  {" "}
-                  {modalSplitPass.affectedPopulation}
-                </label>
+                <label> {modalSplitPass.affectedPopulation}</label>
               </div>
               <div>
                 <label>Share for metro</label>
@@ -236,26 +229,17 @@ export const U3policies = ({
               <div>
                 <label>Share for rail</label>
                 <label>{emission.rail_transport}</label>
-                <label>
-                  {" "}
-                  {modalFreShares.railTransport}
-                </label>
+                <label> {modalFreShares.railTransport}</label>
               </div>
               <div>
                 <label>Share for inland waterways</label>
                 <label>{emission.waterways_transport}</label>
-                <label>
-                  {" "}
-                  {modalFreShares.waterwaysTransport}
-                </label>
+                <label> {modalFreShares.waterwaysTransport}</label>
               </div>
               <div>
                 <label>Share for road freight</label>
                 <label>{emission.road_transport}</label>
-                <label>
-                  {" "}
-                  {modalFreShares.roadTransport}
-                </label>
+                <label> {modalFreShares.roadTransport}</label>
               </div>
               <div>
                 <label>
@@ -708,7 +692,7 @@ export const U3policies = ({
               />
             </div>
             <br />
-            {/* <div>
+            <div>
               <XYPlot
                 width={900}
                 height={500}
@@ -728,38 +712,78 @@ export const U3policies = ({
                   }}
                 />
                 <YAxis />
+                {/* <LineSeries
+                  curve={null}
+                  data={[
+                    { x: 2022, y: projections.total[2022] },
+                    { x: 2023, y: projections.total[2023] },
+                    { x: 2024, y: projections.total[2024] },
+                    { x: 2025, y: projections.total[2025] },
+                    { x: 2026, y: projections.total[2026] },
+                    { x: 2027, y: projections.total[2027] },
+                    { x: 2028, y: projections.total[2028] },
+                    { x: 2029, y: projections.total[2029] },
+                    { x: 2030, y: projections.total[2030] },
+                    { x: 2031, y: projections.total[2031] },
+                    { x: 2032, y: projections.total[2032] },
+                    { x: 2033, y: projections.total[2033] },
+                    { x: 2034, y: projections.total[2034] },
+                    { x: 2035, y: projections.total[2035] },
+                    { x: 2036, y: projections.total[2036] },
+                    { x: 2037, y: projections.total[2037] },
+                    { x: 2038, y: projections.total[2038] },
+                    { x: 2039, y: projections.total[2039] },
+                    { x: 2040, y: projections.total[2040] },
+                    { x: 2041, y: projections.total[2041] },
+                    { x: 2042, y: projections.total[2042] },
+                    { x: 2043, y: projections.total[2043] },
+                    { x: 2044, y: projections.total[2044] },
+                    { x: 2045, y: projections.total[2045] },
+                    { x: 2046, y: projections.total[2046] },
+                    { x: 2047, y: projections.total[2047] },
+                    { x: 2048, y: projections.total[2048] },
+                    { x: 2049, y: projections.total[2049] },
+                    { x: 2050, y: projections.total[2050] },
+                  ]}
+                  opacity={1}
+                  stroke="rgba(102,116,155,1)"
+                  strokeDasharray=""
+                  strokeStyle="dashed"
+                  strokeWidth="1.5"
+                  style={{}}
+                /> */}
                 <LineSeries
                   curve={null}
                   data={[
-                    { x: 2022, y: projections.total[2022]},
-                    { x: 2023, y: projections.total[2023]},
-                    { x: 2024, y: projections.total[2024]},
-                    { x: 2025, y: projections.total[2025]},
-                    { x: 2026, y: projections.total[2026]},
-                    { x: 2027, y: projections.total[2027]},
-                    { x: 2028, y: projections.total[2028]},
-                    { x: 2029, y: projections.total[2029]},
-                    { x: 2030, y: projections.total[2030]},
-                    { x: 2031, y: projections.total[2031]},
-                    { x: 2032, y: projections.total[2032]},
-                    { x: 2033, y: projections.total[2033]},
-                    { x: 2034, y: projections.total[2034]},
-                    { x: 2035, y: projections.total[2035]},
-                    { x: 2036, y: projections.total[2036]},
-                    { x: 2037, y: projections.total[2037]},
-                    { x: 2038, y: projections.total[2038]},
-                    { x: 2039, y: projections.total[2039]},
-                    { x: 2040, y: projections.total[2040]},
-                    { x: 2041, y: projections.total[2041]},
-                    { x: 2042, y: projections.total[2042]},
-                    { x: 2043, y: projections.total[2043]},
-                    { x: 2044, y: projections.total[2044]},
-                    { x: 2045, y: projections.total[2045]},
-                    { x: 2046, y: projections.total[2046]},
-                    { x: 2047, y: projections.total[2047]},
-                    { x: 2048, y: projections.total[2048]},
-                    { x: 2049, y: projections.total[2049]},
-                    { x: 2050, y: projections.total[2050]},
+                    { x: 2022, y: 12000 },
+                    { x: 2023, y: 16200 },
+                    { x: 2024, y: 16300 },
+                    { x: 2025, y: 16340 },
+                    { x: 2026, y: 16360 },
+                    { x: 2027, y: 16220 },
+                    { x: 2028, y: 16000 },
+                    { x: 2029, y: 14000 },
+                    { x: 2030, y: 16550 },
+                    { x: 2031, y: 16300 },
+                    { x: 2032, y: 16200 },
+                    { x: 2033, y: 15600 },
+                    { x: 2034, y: 15800 },
+                    { x: 2035, y: 16000 },
+                    { x: 2036, y: 16100 },
+                    { x: 2037, y: 16200 },
+                    { x: 2038, y: 16300 },
+                    { x: 2039, y: 16400 },
+                    { x: 2040, y: 16500 },
+                    { x: 2041, y: 16400 },
+                    { x: 2042, y: 16300 },
+                    { x: 2043, y: 16200 },
+                    { x: 2044, y: 16100 },
+                    { x: 2045, y: 16000 },
+                    { x: 2046, y: 15900 },
+                    { x: 2047, y: 16000 },
+                    { x: 2048, y: 16000 },
+                    { x: 2049, y: 16000 },
+                    { x: 2050, y: 16000 },
                   ]}
                   opacity={1}
                   stroke="rgba(102,116,155,1)"
@@ -769,6 +793,210 @@ export const U3policies = ({
                   style={{}}
                 />
                 <BarSeries
+                  color="#8C0303"
+                  data={[
+                    { x: 2022, y: 1500 },
+                    { x: 2023, y: 1500 },
+                    { x: 2024, y: 1500 },
+                    { x: 2025, y: 1500 },
+                    { x: 2026, y: 1500 },
+                    { x: 2027, y: 1500 },
+                    { x: 2028, y: 1500 },
+                    { x: 2029, y: 1500 },
+                    { x: 2030, y: 1500 },
+                    { x: 2031, y: 1500 },
+                    { x: 2032, y: 1500 },
+                    { x: 2033, y: 1500 },
+                    { x: 2034, y: 1500 },
+                    { x: 2035, y: 1500 },
+                    { x: 2036, y: 1500 },
+                    { x: 2037, y: 1500 },
+                    { x: 2038, y: 1500 },
+                    { x: 2039, y: 1500 },
+                    { x: 2040, y: 1500 },
+                    { x: 2041, y: 1500 },
+                    { x: 2042, y: 1500 },
+                    { x: 2043, y: 1500 },
+                    { x: 2044, y: 1500 },
+                    { x: 2045, y: 1500 },
+                    { x: 2046, y: 1500 },
+                    { x: 2047, y: 1500 },
+                    { x: 2048, y: 1500 },
+                    { x: 2049, y: 1500 },
+                    { x: 2050, y: 1500 },
+                  ]}
+                />
+                <BarSeries
+                  color="#A6036D"
+                  data={[
+                    { x: 2022, y: 1500 },
+                    { x: 2023, y: 1500 },
+                    { x: 2024, y: 1500 },
+                    { x: 2025, y: 1500 },
+                    { x: 2026, y: 1500 },
+                    { x: 2027, y: 1500 },
+                    { x: 2028, y: 1500 },
+                    { x: 2029, y: 1500 },
+                    { x: 2030, y: 1500 },
+                    { x: 2031, y: 1500 },
+                    { x: 2032, y: 1500 },
+                    { x: 2033, y: 1500 },
+                    { x: 2034, y: 1500 },
+                    { x: 2035, y: 1500 },
+                    { x: 2036, y: 1500 },
+                    { x: 2037, y: 1500 },
+                    { x: 2038, y: 1500 },
+                    { x: 2039, y: 1500 },
+                    { x: 2040, y: 1500 },
+                    { x: 2041, y: 1500 },
+                    { x: 2042, y: 1500 },
+                    { x: 2043, y: 1500 },
+                    { x: 2044, y: 1500 },
+                    { x: 2045, y: 1500 },
+                    { x: 2046, y: 1500 },
+                    { x: 2047, y: 1500 },
+                    { x: 2048, y: 1500 },
+                    { x: 2049, y: 1500 },
+                    { x: 2050, y: 1500 },
+                  ]}
+                />
+                <BarSeries
+                  color="#400D01"
+                  data={[
+                    { x: 2022, y: 1500 },
+                    { x: 2023, y: 1500 },
+                    { x: 2024, y: 1500 },
+                    { x: 2025, y: 1500 },
+                    { x: 2026, y: 1500 },
+                    { x: 2027, y: 1500 },
+                    { x: 2028, y: 1500 },
+                    { x: 2029, y: 1500 },
+                    { x: 2030, y: 1500 },
+                    { x: 2031, y: 1500 },
+                    { x: 2032, y: 1500 },
+                    { x: 2033, y: 1500 },
+                    { x: 2034, y: 1500 },
+                    { x: 2035, y: 1500 },
+                    { x: 2036, y: 1500 },
+                    { x: 2037, y: 1500 },
+                    { x: 2038, y: 1500 },
+                    { x: 2039, y: 1500 },
+                    { x: 2040, y: 1500 },
+                    { x: 2041, y: 1500 },
+                    { x: 2042, y: 1500 },
+                    { x: 2043, y: 1500 },
+                    { x: 2044, y: 1500 },
+                    { x: 2045, y: 1500 },
+                    { x: 2046, y: 1500 },
+                    { x: 2047, y: 1500 },
+                    { x: 2048, y: 1500 },
+                    { x: 2049, y: 1500 },
+                    { x: 2050, y: 1500 },
+                  ]}
+                />
+                <BarSeries
+                  color="#C4D4F2"
+                  data={[
+                    { x: 2022, y: 1500 },
+                    { x: 2023, y: 1500 },
+                    { x: 2024, y: 1500 },
+                    { x: 2025, y: 1500 },
+                    { x: 2026, y: 1500 },
+                    { x: 2027, y: 1500 },
+                    { x: 2028, y: 1500 },
+                    { x: 2029, y: 1500 },
+                    { x: 2030, y: 1500 },
+                    { x: 2031, y: 1500 },
+                    { x: 2032, y: 1500 },
+                    { x: 2033, y: 1500 },
+                    { x: 2034, y: 1500 },
+                    { x: 2035, y: 1500 },
+                    { x: 2036, y: 1500 },
+                    { x: 2037, y: 1500 },
+                    { x: 2038, y: 1500 },
+                    { x: 2039, y: 1500 },
+                    { x: 2040, y: 1500 },
+                    { x: 2041, y: 1500 },
+                    { x: 2042, y: 1500 },
+                    { x: 2043, y: 1500 },
+                    { x: 2044, y: 1500 },
+                    { x: 2045, y: 1500 },
+                    { x: 2046, y: 1500 },
+                    { x: 2047, y: 1500 },
+                    { x: 2048, y: 1500 },
+                    { x: 2049, y: 1500 },
+                    { x: 2050, y: 1500 },
+                  ]}
+                />
+                <BarSeries
+                  color="#D90404"
+                  data={[
+                    { x: 2022, y: 1500 },
+                    { x: 2023, y: 1500 },
+                    { x: 2024, y: 1500 },
+                    { x: 2025, y: 1500 },
+                    { x: 2026, y: 1500 },
+                    { x: 2027, y: 1500 },
+                    { x: 2028, y: 1500 },
+                    { x: 2029, y: 1500 },
+                    { x: 2030, y: 1500 },
+                    { x: 2031, y: 1500 },
+                    { x: 2032, y: 1500 },
+                    { x: 2033, y: 1500 },
+                    { x: 2034, y: 1500 },
+                    { x: 2035, y: 1500 },
+                    { x: 2036, y: 1500 },
+                    { x: 2037, y: 1500 },
+                    { x: 2038, y: 1500 },
+                    { x: 2039, y: 1500 },
+                    { x: 2040, y: 1500 },
+                    { x: 2041, y: 1500 },
+                    { x: 2042, y: 1500 },
+                    { x: 2043, y: 1500 },
+                    { x: 2044, y: 1500 },
+                    { x: 2045, y: 1500 },
+                    { x: 2046, y: 1500 },
+                    { x: 2047, y: 1500 },
+                    { x: 2048, y: 1500 },
+                    { x: 2049, y: 1500 },
+                    { x: 2050, y: 1500 },
+                  ]}
+                />
+                <BarSeries
+                  color="#80D941"
+                  data={[
+                    { x: 2022, y: 1500 },
+                    { x: 2023, y: 1500 },
+                    { x: 2024, y: 1500 },
+                    { x: 2025, y: 1500 },
+                    { x: 2026, y: 1500 },
+                    { x: 2027, y: 1500 },
+                    { x: 2028, y: 1500 },
+                    { x: 2029, y: 1500 },
+                    { x: 2030, y: 1500 },
+                    { x: 2031, y: 1500 },
+                    { x: 2032, y: 1500 },
+                    { x: 2033, y: 1500 },
+                    { x: 2034, y: 1500 },
+                    { x: 2035, y: 1500 },
+                    { x: 2036, y: 1500 },
+                    { x: 2037, y: 1500 },
+                    { x: 2038, y: 1500 },
+                    { x: 2039, y: 1500 },
+                    { x: 2040, y: 1500 },
+                    { x: 2041, y: 1500 },
+                    { x: 2042, y: 1500 },
+                    { x: 2043, y: 1500 },
+                    { x: 2044, y: 1500 },
+                    { x: 2045, y: 1500 },
+                    { x: 2046, y: 1500 },
+                    { x: 2047, y: 1500 },
+                    { x: 2048, y: 1500 },
+                    { x: 2049, y: 1500 },
+                    { x: 2050, y: 1500 },
+                  ]}
+                />
+                {/* <BarSeries
                   color="#ffdf43"
                   data={[
                     { x: 2022, y: policyQuantification.bus[2022]},
@@ -1039,12 +1267,11 @@ export const U3policies = ({
                     { x: 2049, y: policyQuantification.waterways_transport[2049]},
                     { x: 2050, y: policyQuantification.waterways_transport[2050]},
                   ]}
-                />
+                /> */}
               </XYPlot>
-            </div> */}
-            <br />
-            <div>
             </div>
+            <br />
+            <div></div>
           </form>
         </div>
       </section>

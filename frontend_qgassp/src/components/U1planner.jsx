@@ -248,15 +248,15 @@ export const U1planner = ({
             <Chip label="Projections" />
           </Divider>
         </div>
-        <br/>
+        <br />
 
         <Divider textAlign="left" flexItem>
           {" "}
           <b>CO2e emissions per capita 2023-2050</b>
         </Divider>
 
-         {/* {JSON.stringify(projections)} */}
-        
+        {/* {JSON.stringify(projections)} */}
+
         <div>
           <XYPlot width={1000} height={500} stackBy="y" xType="ordinal">
             <HorizontalGridLines />

@@ -207,132 +207,136 @@ export const TransportBaseline = ({ country, year, population }) => {
                   />
                 </div>
 
-              <div className="column">
-                {/*  <label className="hide">Total shares should be 100%</label> */}
+                <div className="column">
+                  {/*  <label className="hide">Total shares should be 100%</label> */}
+                  <div className="div_transport">
+                    {total > 0 && total < 101 && (
+                      <DiscreteColorLegend
+                        items={settlementLabels}
+                        orientation="horizontal"
+                        strokeWidth="40"
+                      />
+                    )}
+                  </div>
+                </div>
+
+                <label>
+                  <b>Area</b>{" "}
+                </label>
+                <label>Km</label>
                 <div className="div_transport">
-                  {total > 0 && total < 101 && (
-                    <DiscreteColorLegend
-                      items={settlementLabels}
-                      orientation="horizontal"
-                      strokeWidth="40"
-                    />
-                  )}
+                  <label htmlFor="ns_measure">N-S Measurement (km)</label>
+                  <input
+                    type="text"
+                    id="ns_measure"
+                    min="0"
+                    onChange={(e) => setNsArea(e.target.value)}
+                    placeholder={nsArea}
+                  />
+                </div>
+
+                <div className="div_transport">
+                  <label htmlFor="ew_measure">E-W Measurement (km)</label>
+                  <input
+                    type="text"
+                    id="ew_measure"
+                    min="0"
+                    onChange={(e) => setEwArea(e.target.value)}
+                    placeholder={ewArea}
+                  />
+                </div>
+                <div className="div_transport">
+                  <label>
+                    <b>Non-residential and freight</b>
+                  </label>
+                  <label>Transport intensity</label>
+                </div>
+                <div className="div_transport">
+                  <label htmlFor="non_resident_road">
+                    {" "}
+                    Non-residential road transport
+                  </label>
+                  <select
+                    className="select_transport"
+                    id="non_resident_road"
+                    onChange={(e) => setNonResidentialRoad(e.target.value)}
+                    defaultValue={nonResidentialRoad}
+                  >
+                    <option value="DefaultOption">Select intensity</option>
+                    <optgroup label="Select transport intensity">
+                      <option value="non-existent">0</option>
+                      <option value="low">0.3</option>
+                      <option value="medium_intensity">2.0</option>
+                      <option value="high_intensity">2.50</option>
+                    </optgroup>
+                  </select>
+                </div>
+
+                <div className="div_transport">
+                  <label htmlFor="freight=road">
+                    Freight transport by road
+                  </label>
+                  <select
+                    className="select_transport"
+                    id="freight_road"
+                    name="freight_road"
+                    onChange={(e) => setFreightRoad(e.target.value)}
+                    defaultValue={freightRoad}
+                  >
+                    <option value="DefaultOption">Select intensity</option>
+                    <optgroup label="Select road transport intensity">
+                      <option value="non-existent">0</option>
+                      <option value="low">0.3</option>
+                      <option value="medium_intensity">2.0</option>
+                      <option value="high_intensity">2.50</option>
+                    </optgroup>
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor="freight_rail">
+                    Freight transport by rail
+                  </label>
+                  <select
+                    className="select_transport"
+                    id="freight_rail"
+                    name="freight_rail"
+                    onChange={(e) => setFreightRail(e.target.value)}
+                    defaultValue={freightRail}
+                  >
+                    <option value="DefaultOption">Select intensity</option>
+                    <optgroup label="Select road transport intensity">
+                      <option value="non-existent">0</option>
+                      <option value="low">0.3</option>
+                      <option value="medium_intensity">2.0</option>
+                      <option value="high_intensity">2.50</option>
+                    </optgroup>
+                  </select>
+                </div>
+
+                <div className="div_transport">
+                  <label htmlFor="freight_waterway">
+                    Freight transport by inland waterways
+                  </label>
+                  <select
+                    className="select_transport"
+                    id="freight_waterway"
+                    name="freight_waterway"
+                    onChange={(e) => setFreightInlandWaterway(e.target.value)}
+                    defaultValue={freightInlandWaterway}
+                  >
+                    <option value="DefaultOption">Select intensity</option>
+                    <optgroup label="Select road transport intensity">
+                      <option value="non-existent">0</option>
+                      <option value="low">0.3</option>
+                      <option value="medium_intensity">2.0</option>
+                      <option value="high_intensity">2.50</option>
+                    </optgroup>
+                  </select>
                 </div>
               </div>
-
-              <label>
-                <b>Area</b>{" "}
-              </label>
-              <label>Km</label>
-              <div className="div_transport">
-                <label htmlFor="ns_measure">N-S Measurement (km)</label>
-                <input
-                  type="text"
-                  id="ns_measure"
-                  min="0"
-                  onChange={(e) => setNsArea(e.target.value)}
-                  placeholder={nsArea}
-                />
-              </div>
-
-              <div className="div_transport">
-                <label htmlFor="ew_measure">E-W Measurement (km)</label>
-                <input
-                  type="text"
-                  id="ew_measure"
-                  min="0"
-                  onChange={(e) => setEwArea(e.target.value)}
-                  placeholder={ewArea}
-                />
-              </div>
-              <div className="div_transport">
-                <label>
-                  <b>Non-residential and freight</b>
-                </label>
-                <label>Transport intensity</label>
-              </div>
-              <div className="div_transport">
-                <label htmlFor="non_resident_road">
-                  {" "}
-                  Non-residential road transport
-                </label>
-                <select
-                  className="select_transport"
-                  id="non_resident_road"
-                  onChange={(e) => setNonResidentialRoad(e.target.value)}
-                  defaultValue={nonResidentialRoad}
-                >
-                  <option value="DefaultOption">Select intensity</option>
-                  <optgroup label="Select transport intensity">
-                    <option value="non-existent">0</option>
-                    <option value="low">0.3</option>
-                    <option value="medium_intensity">2.0</option>
-                    <option value="high_intensity">2.50</option>
-                  </optgroup>
-                </select>
-              </div>
-
-              <div className="div_transport">
-                <label htmlFor="freight=road">Freight transport by road</label>
-                <select
-                  className="select_transport"
-                  id="freight_road"
-                  name="freight_road"
-                  onChange={(e) => setFreightRoad(e.target.value)}
-                  defaultValue={freightRoad}
-                >
-                  <option value="DefaultOption">Select intensity</option>
-                  <optgroup label="Select road transport intensity">
-                    <option value="non-existent">0</option>
-                    <option value="low">0.3</option>
-                    <option value="medium_intensity">2.0</option>
-                    <option value="high_intensity">2.50</option>
-                  </optgroup>
-                </select>
-              </div>
-              <div>
-                <label htmlFor="freight_rail">Freight transport by rail</label>
-                <select
-                  className="select_transport"
-                  id="freight_rail"
-                  name="freight_rail"
-                  onChange={(e) => setFreightRail(e.target.value)}
-                  defaultValue={freightRail}
-                >
-                  <option value="DefaultOption">Select intensity</option>
-                  <optgroup label="Select road transport intensity">
-                    <option value="non-existent">0</option>
-                    <option value="low">0.3</option>
-                    <option value="medium_intensity">2.0</option>
-                    <option value="high_intensity">2.50</option>
-                  </optgroup>
-                </select>
-              </div>
-
-              <div className="div_transport">
-                <label htmlFor="freight_waterway">
-                  Freight transport by inland waterways
-                </label>
-                <select
-                  className="select_transport"
-                  id="freight_waterway"
-                  name="freight_waterway"
-                  onChange={(e) => setFreightInlandWaterway(e.target.value)}
-                  defaultValue={freightInlandWaterway}
-                >
-                  <option value="DefaultOption">Select intensity</option>
-                  <optgroup label="Select road transport intensity">
-                    <option value="non-existent">0</option>
-                    <option value="low">0.3</option>
-                    <option value="medium_intensity">2.0</option>
-                    <option value="high_intensity">2.50</option>
-                  </optgroup>
-                </select>
-              </div>
-            </div>
             </div>
 
-            {total == 100.00 && (
+            {total == 100.0 && (
               <div className="nextU2Button">
                 <Button
                   size="small"

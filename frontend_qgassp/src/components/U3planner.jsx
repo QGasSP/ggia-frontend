@@ -1136,7 +1136,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                 </div>
               </div>
             </div>
-            <br/>
+            <br />
             <div className="nextU3Button">
               <Button
                 size="small"

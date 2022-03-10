@@ -139,7 +139,7 @@ export const U2planner = ({
               <label>{settlementDistribution.rural}</label>
               <label>{newDevelopment.newSettlementDistribution.rural}</label>
             </div>
-            
+
             {/* {JSON.stringify(projections.population)}
             {JSON.stringify(newDevelopment.impact.population)} */}
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../css/tabs.css";
 import { ModuleHeader } from "./ModuleHeader";
-import { StartPage} from "./StartPage";
+import { StartPage } from "./StartPage";
 import { LandUseChangeTableForm } from "./LandUseChangeTableForm";
 import { Welcome } from "./Welcome";
 /* import { TransportBaseline } from "./TransportBaseline";
