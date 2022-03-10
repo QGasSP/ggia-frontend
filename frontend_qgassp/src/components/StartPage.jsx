@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Button } from "./Button";
 import "../css/startpage.css";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import { TransportBaseline } from "./TransportBaseline";
+import axios from "axios";
 
 
 export const StartPage = () => {
@@ -15,6 +16,9 @@ export const StartPage = () => {
   const [year, setYear] = useState(0);
   const [population, setPopulation] = useState(0);
   const [next, setNext] = useState(false);
+  const [euCountries, setEuCountries] = useState("");
+  const [errorStartPage, setCountriesError] = useState("");
+
   const options = [];
   for (let i = 2022; i < 2051; i++) options.push(i);
 
@@ -36,6 +40,17 @@ export const StartPage = () => {
     setNext(true);
   };
 
+  useEffect(async () => {
+    await axios
+      .get("https://ggia-dev.ulno.net/api/v1/countries")
+      .then((response) => setEuCountries(response.data.data.countries))
+      .catch((error) => {
+        setCountriesError({ errorMessage: error.message });
+        // eslint-disable-next-line no-console
+        console.error("Eu countries Response data error---", error);
+      });
+  }, []);
+
   if (next === false) {
     return (
       <>
@@ -47,7 +62,7 @@ export const StartPage = () => {
             <Chip label="ASSESEMENT AREA INFORMATION" />
           </Divider>
         </div>
-
+  
         <div className="row_start">
           <div className="column_start">
             <header className="intro_header">
@@ -119,7 +134,6 @@ export const StartPage = () => {
                   <option value="Portugal">Portugal</option>
                   <option value="Romania">Romania</option>
                   <option value="Slovakia">Slovakia</option>
-                  <option value="Slovenia">Slovenia</option>
                   <option value="Spain">Spain</option>
                   <option value="Sweden">Sweden</option>
                   <option value="Switzerlans">Switzerland</option>
