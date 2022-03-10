@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button } from "./Button";
-import { useNavigate } from "react-router-dom";
-import "../css/u3.css";
+import "../css/u3policies.css";
 import axios from "axios";
 import {
   XYPlot,
@@ -42,7 +41,7 @@ export const U3policies = ({
   electricityTransTypes,
   electricityTrans
 }) => {
-  const navigate = useNavigate();
+
 
   // if (updateU2charts === false && totalNewResidents !== 100) {
   return (
@@ -67,10 +66,10 @@ export const U3policies = ({
               <label>% of the area affected</label>
               <div>
                 <label>change in mobility %</label>
-                <label>{passengerMob.expectedChange}</label>
+                <label>{passengerMob.expectedPassChange}</label>
                 {/* <label>{policyQuant.passengerMob.expectedChange}</label> */}
                 <label></label>
-                <label>{passengerMob.affectedArea}</label>
+                <label>{passengerMob.affectedPassArea}</label>
               </div>
               <div>
                 <label>Policy period</label>
@@ -262,7 +261,7 @@ export const U3policies = ({
                 <label>
                   <b>Total</b>
                 </label>
-                <label>{emission.total}</label>
+                {/* <label>{emission.total}</label> */}
                 <label></label>
               </div>
               <div>
@@ -488,7 +487,7 @@ export const U3policies = ({
                 <label></label>
                 <label>{fuelSharesCarTypes.phev}</label>
               </div>
-              <div>
+              {/* <div>
                 <label>Hybrid diesel-electric</label>
                 <label></label>
                 <label>policy target %</label>
@@ -497,7 +496,7 @@ export const U3policies = ({
                 <label>Plug-in hybrid diesel-electric PHEV</label>
                 <label></label>
                 <label>policy target %</label>
-              </div>
+              </div> */}
               <div>
                 <label>Hydrogen and fuel cells</label>
                 <label></label>
@@ -709,7 +708,7 @@ export const U3policies = ({
               />
             </div>
             <br />
-            <div>
+            {/* <div>
               <XYPlot
                 width={900}
                 height={500}
@@ -1010,7 +1009,7 @@ export const U3policies = ({
                 <BarSeries
                   color="#00aed5"
                   data={[
-                    { x: 2022, y: policyQuantification.waterways_transportwaterways_transport[2022]},
+                    { x: 2022, y: policyQuantification.waterways_transport[2022]},
                     { x: 2023, y: policyQuantification.waterways_transport[2023]},
                     { x: 2024, y: policyQuantification.waterways_transport[2024]},
                     { x: 2025, y: policyQuantification.waterways_transport[2025]},
@@ -1042,18 +1041,9 @@ export const U3policies = ({
                   ]}
                 />
               </XYPlot>
-            </div>
+            </div> */}
             <br />
             <div>
-              <div className="backButton">
-                <Button
-                  size="small"
-                  value="backU3planner"
-                  onClick={() => navigate("/U3plannner", { replace: true })}
-                  label="&laquo; Previous"
-                  secondary
-                />
-              </div>
             </div>
           </form>
         </div>

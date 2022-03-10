@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Button } from "./Button";
 import "../css/u2planner.css";
 import { U2planner } from "./U2planner";
-import { useNavigate } from "react-router-dom";
 import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 
@@ -24,13 +23,13 @@ export const NewResidents = ({
   const [nsTown, setNsTown] = useState(parseFloat(0));
   const [nsRural, setNsRural] = useState(parseFloat(0));
   const [newResidents, setNewResidents] = useState("");
-  const [yearStart, setYearStart] = useState(0);
-  const [yearFinish, setYearFinish] = useState(0);
+  const [yearStart, setYearStart] = useState(2022);
+  const [yearFinish, setYearFinish] = useState(2050);
 
   const [newDevelopment, setNewDevelopment] = useState({});
   const [updateU2charts, setU2charts] = useState(false);
   const [totalNewResidents, setTotalNewResidents] = useState(0.0);
-  const navigate = useNavigate();
+  
   const optionsNew = [];
   for (let i = 2022; i < 2051; i++) optionsNew.push(i);
 
@@ -109,13 +108,13 @@ export const NewResidents = ({
                   required
                 />
                 <label>
-                  &nbsp;&nbsp;0 = no new developments to be quantified
+                  &nbsp;&nbsp;&nbsp; 0 = no new developments to be quantified
                 </label>
               </div>
               <div>
                 <label htmlFor="start_year"> Start</label>
                 <select
-                  className="start_year"
+                  className="ns_select"
                   id="start_year"
                   name="start_year"
                   onChange={handleStartYear}
@@ -134,7 +133,7 @@ export const NewResidents = ({
               <div>
                 <label htmlFor="finish_year"> End</label>
                 <select
-                  className="finish_year"
+                  className="ns_select"
                   id="finish_year"
                   name="finish_year"
                   onChange={handleYearFinish}
@@ -224,16 +223,6 @@ export const NewResidents = ({
                   required
                 />
               </div>
-              {/* <div className="backButtonNew">
-                <Button
-                  size="small"
-                  value="backProjections"
-                  onClick={() => navigate("/u1planner", { replace: true })}
-                  label="&laquo; Previous"
-                  secondary
-                />
-              </div> */}
-
               <div className="nextButtonNew">
                 <Button
                   size="small"

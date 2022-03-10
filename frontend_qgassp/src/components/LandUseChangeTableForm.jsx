@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { LUCBarChart } from "./LUCBarChart";
 import PropTypes from "prop-types";
-import { Header } from "./Header";
 import { Button } from "./Button";
 import "../css/landusechange.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 
@@ -15,10 +13,6 @@ import Chip from "@mui/material/Chip";
  */
 
 export const LandUseChangeTableForm = ({
-  user,
-  onLogin,
-  onLogout,
-  onCreateAccount,
   country,
   year,
 }) => {
@@ -279,7 +273,7 @@ export const LandUseChangeTableForm = ({
   );
   const [lucBarChart, setLUCBarChart] = useState(false);
   const [landUseChangeResponse, setLandUseChangeResponse] = useState("");
-  const navigate = useNavigate();
+  /* const navigate = useNavigate(); */
   const [error, setError] = useState("");
 
   const options = [];
@@ -423,10 +417,10 @@ export const LandUseChangeTableForm = ({
     setLUCBarChart(true);
   };
 
-  const goBack = () => {
-
+ /*  const goBack = () => {
+    // ?
     navigate("/", { replace: true });
-  };
+  }; */
 
   const setTotal = () => {
     setTotalArea(
@@ -1331,7 +1325,6 @@ export const LandUseChangeTableForm = ({
     return (
       <div>
         <article>
-          
           <div className="headerSettlement">
             <Divider textAlign="left" flexItem>
               {" "}
@@ -3265,7 +3258,7 @@ export const LandUseChangeTableForm = ({
                   </table>
                 </div>
 
-                <div className="backStart">
+               {/*  <div className="backStart">
                   <Button
                     size="small"
                     value="backStartPage"
@@ -3273,7 +3266,7 @@ export const LandUseChangeTableForm = ({
                     label="&laquo; Previous"
                     secondary
                   />
-                </div>
+                </div> */}
 
                 <div className="nextU1Button">
                   <Button
@@ -3303,14 +3296,9 @@ export const LandUseChangeTableForm = ({
 LandUseChangeTableForm.propTypes = {
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
-  user: PropTypes.shape({}),
-  onLogin: PropTypes.func.isRequired,
-  onLogout: PropTypes.func.isRequired,
-  onCreateAccount: PropTypes.func.isRequired,
 };
 
 LandUseChangeTableForm.defaultProps = {
-  user: null,
   country: 'Estonia',
   year: 2023
 };
