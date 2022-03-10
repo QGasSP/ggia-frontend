@@ -40,7 +40,7 @@ export const StartPage = () => {
   };
 
   useEffect(async () => {
-    await axios
+    axios
       .get("https://ggia-dev.ulno.net/api/v1/countries")
       .then((response) => setEuCountries(response.data.data.countries))
       .catch((error) => {

@@ -23,8 +23,8 @@ export const NewResidents = ({
   const [nsTown, setNsTown] = useState(parseFloat(0));
   const [nsRural, setNsRural] = useState(parseFloat(0));
   const [newResidents, setNewResidents] = useState("");
-  const [yearStart, setYearStart] = useState(0);
-  const [yearFinish, setYearFinish] = useState(0);
+  const [yearStart, setYearStart] = useState(2022);
+  const [yearFinish, setYearFinish] = useState(2050);
 
   const [newDevelopment, setNewDevelopment] = useState({});
   const [updateU2charts, setU2charts] = useState(false);
