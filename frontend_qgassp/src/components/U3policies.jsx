@@ -46,6 +46,7 @@ export const U3policies = ({
   // if (updateU2charts === false && totalNewResidents !== 100) {
   return (
     <article>
+        <br/>
       <div className="headerU3policies">
         <Divider textAlign="left" flexItem>
           {" "}
@@ -54,12 +55,13 @@ export const U3policies = ({
       </div>
 
       <section>
+      
         <div>{policyQuantification}</div>
         <div>
           <form>
             <div>
               <label>
-                <b>U3.1 Passenger mobility (resident and non-residential)</b>
+                <b>Passenger mobility (resident and non-residential)</b>
               </label>
               <label>expected change %</label>
               <label></label>
@@ -80,7 +82,7 @@ export const U3policies = ({
             <br />
             <div>
               <label>
-                <b>U3.2 Freight transport</b>
+                <b>Freight transport</b>
               </label>
               <label>expected change %</label>
               {/* <label empty for spacing></label>
@@ -102,7 +104,7 @@ export const U3policies = ({
             <br />
             <div>
               <label>
-                <b>U3.3 Modal split/Passenger transport</b>
+                <b>Modal split/Passenger transport</b>
               </label>
               <label>without policy</label>
               <label>policy target %</label>
@@ -228,7 +230,7 @@ export const U3policies = ({
             <br />
             <div>
               <label>
-                <b>U3.4 Modal split/Freight transport</b>
+                <b>Modal split/Freight transport</b>
               </label>
               <label>withouth policy</label>
               <label>policy target %</label>
@@ -341,7 +343,7 @@ export const U3policies = ({
             <br />
             <div>
               <label>
-                <b>U3.5 Shares of fuel types/Bus transport</b>
+                <b>Shares of fuel types/Bus transport</b>
               </label>
               <label>withouth policy</label>
               <label>policy target %</label>
@@ -456,7 +458,7 @@ export const U3policies = ({
             <br />
             <div>
               <label>
-                <b>U3.6 Shares of fuel types/Cars</b>
+                <b>Shares of fuel types/Cars</b>
               </label>
               <label>withouth policy</label>
               <label>policy target %</label>
@@ -622,7 +624,7 @@ export const U3policies = ({
             <br />
             <div>
               <label>
-                <b>U3.7 Electricity for transport</b>
+                <b>Electricity for transport</b>
               </label>
               <label>gCO2e/kWh without policy</label>
               <label>policy target %</label>
