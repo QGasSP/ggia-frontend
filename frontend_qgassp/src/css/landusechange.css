@@ -60,13 +60,24 @@ select {
 
 .luc_row {
   /* margin-left: 30px; */
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 @media screen and (max-width: 600px) {
   .column {
     width: 50%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .tbl {
+    width: 100%;
+  }
+  .luc_row{
+    align-items: center;
   }
 }
 
@@ -201,4 +212,18 @@ section div {
 
 .settlementDiv {
   margin-left: 30px;
+}
+
+.btn-luc-submit{
+  background-color: #003399;
+  border: 1px #003399 solid;
+  color: #fff;
+  padding: 0.375rem 0.75rem;
+  font-family: sans-serif;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: .7s;
+}
+.btn-luc-submit:hover{
+  background-color: #003399b0;
 }
