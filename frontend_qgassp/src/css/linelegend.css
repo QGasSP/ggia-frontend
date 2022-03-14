@@ -3,9 +3,9 @@
     justify-content: flex-start;
 }
 .ll_sub{
-    width: 180px;
+    width: 1200px;
     margin: 0;
 }
 .rv-discrete-color-legend{
-    width: 200px !important;
+    width: 100%;
 }
