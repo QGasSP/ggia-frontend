@@ -38,7 +38,7 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
       <div className="luc_container">
         <div className="landusechange_bar">
           <XYPlot
-                    width={850}
+                    width={1200}
                     height={500}
                     xType="ordinal"
                     xDistance={200}
@@ -1109,11 +1109,10 @@ export const LUCBarChart = ({landUseChangeResponse }) => {
                     />
           </XYPlot>
         </div>
-        <div className="luc_legendline">
-          <LineLegendLandUse />
-        </div>
       </div>
-
+      <div className="luc_legendline">
+          <LineLegendLandUse />
+      </div>
       
     </div>
   );
