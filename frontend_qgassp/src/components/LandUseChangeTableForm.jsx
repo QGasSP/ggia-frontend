@@ -432,6 +432,9 @@ export const LandUseChangeTableForm = ({
       "Access-Control-Allow-Origin": "*",
       "Content-type": "application/json",
     };
+    setNextBtnStyle({
+      display: 'none'
+    });
     setLoadingStyle({
       display: 'block'
     });
