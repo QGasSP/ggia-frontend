@@ -35,10 +35,6 @@ const ITEMS = [
   { title: "Settlement To Otherland", color: "#620d00" },
 ];
 
-const ITEMS2 = [
-  
-];
-
 export const LineLegendLandUse = () => {
   return (
     <div className="luc_legend">
@@ -46,10 +42,6 @@ export const LineLegendLandUse = () => {
         <svg height={0} width={0}></svg>
         <DiscreteColorLegend orientation="horizontal" items={ITEMS} />
       </section>
-      {/* <section className="ll_sub">
-        <svg height={0} width={0}></svg>
-        <DiscreteColorLegend orientation="vertical" items={ITEMS2} />
-      </section> */}
     </div>
     
   );
