@@ -7,10 +7,8 @@ import {
     HorizontalGridLines,
     VerticalGridLines,
     VerticalBarSeries,
-    DiscreteColorLegend
   } from "react-vis";
 import PropTypes from "prop-types";
-import { Header } from "./Header";
 import { LineLegendLandUse } from "./LineLegendLandUse";
 import { Button } from "./Button";
 import Divider from "@mui/material/Divider";
@@ -23,10 +21,7 @@ const BarSeries = VerticalBarSeries;
  */
 
 export const LUCBarChart = ({landUseChangeResponse }) => {
-  // landUseChangeResponse.landUseChange[2023].croplandToForestland = 100;
-  // landUseChangeResponse.landUseChange[2024].croplandToForestland = -100;
-  // landUseChangeResponse.landUseChange[2023].grasslandToForestland = 150;
-  // landUseChangeResponse.landUseChange[2024].grasslandToForestland = -150;
+
   return (
     <div>
       <Divider textAlign="left" flexItem>
