@@ -9,8 +9,8 @@ export default {
 
 const Template = (args) => <LineLegendLandUse {...args} />;
 
-export const DiscreteLegend = Template.bind({});
-DiscreteLegend.args = {
+export const DiscreteLegendLuc = Template.bind({});
+DiscreteLegendLuc.args = {
   primary: true,
   label: "LineLegendLandUse",
 };
