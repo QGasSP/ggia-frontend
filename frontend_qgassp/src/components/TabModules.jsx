@@ -38,21 +38,21 @@ export const TabModules = () => {
           <button
             className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
             onClick={() => toggleTab(2)}
-            id="territorial"
+            id="transport"
           >
             Transport
           </button>
           <button
             className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
             onClick={() => toggleTab(3)}
-            id="territorial"
+            id="luc"
           >
             Land-use change
           </button>
           <button
             className={toggleState === 4 ? "tabs active-tabs" : "tabs"}
            /*  onClick={() => toggleTab(4)} */
-            id="territorial"
+            id="buildings"
           >
             Buildings
           </button>
