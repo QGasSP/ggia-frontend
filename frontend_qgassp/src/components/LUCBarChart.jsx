@@ -10,7 +10,6 @@ import {
   } from "react-vis";
 import PropTypes from "prop-types";
 import { LineLegendLandUse } from "./LineLegendLandUse";
-import { Button } from "./Button";
 import Divider from "@mui/material/Divider";
 
 const BarSeries = VerticalBarSeries;
