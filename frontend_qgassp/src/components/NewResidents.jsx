@@ -73,7 +73,7 @@ export const NewResidents = ({
       newSettlementDistribution,
     };
     setNewDevelopment(newDevelopmentU2);
-   // setTotalNewResidents(metropolitanCenter + urban + suburban + town + rural);
+    setTotalNewResidents(nsMetropolitanCenter + nsUrban + nsSuburban + nsTown + nsRural);
     setU2charts(true);
   };
 
