@@ -16,6 +16,7 @@ export const NewResidents = ({
   baseline,
   emission,
   projections,
+  year,
 }) => {
   const [nsMetropolitanCenter, setNsMetropolitan] = useState(parseFloat(0));
   const [nsUrban, setNsUrban] = useState(parseFloat(0));
@@ -23,12 +24,15 @@ export const NewResidents = ({
   const [nsTown, setNsTown] = useState(parseFloat(0));
   const [nsRural, setNsRural] = useState(parseFloat(0));
   const [newResidents, setNewResidents] = useState("");
-  const [yearStart, setYearStart] = useState(2022);
+  const [yearStart, setYearStart] = useState(year);
   const [yearFinish, setYearFinish] = useState(2050);
 
   const [newDevelopment, setNewDevelopment] = useState({});
   const [updateU2charts, setU2charts] = useState(false);
   const [totalNewResidents, setTotalNewResidents] = useState(0.0);
+
+  const optionsNewStart = [];
+  for (let i = year; i < 2051; i++) optionsNewStart.push(i);
   
   const optionsNew = [];
   for (let i = 2022; i < 2051; i++) optionsNew.push(i);
@@ -118,11 +122,11 @@ export const NewResidents = ({
                   id="start_year"
                   name="start_year"
                   onChange={handleStartYear}
-                  defaultValue="2022"
+                  defaultValue={yearStart}
                   required
                 >
                   <option value="DefaultOption">Select start year</option>
-                  {optionsNew.map((option) => (
+                  {optionsNewStart.map((option) => (
                     <option key={option} value={option}>
                       {option}{" "}
                     </option>
@@ -137,10 +141,10 @@ export const NewResidents = ({
                   id="finish_year"
                   name="finish_year"
                   onChange={handleYearFinish}
-                  defaultValue="2022"
+                  defaultValue={yearFinish}
                   required
                 >
-                  <option value="DefaultOption">Select start year</option>
+                  <option value="DefaultOption">Select end year</option>
                   {optionsNew.map((option) => (
                     <option key={option} value={option}>
                       {option}{" "}
@@ -251,6 +255,7 @@ export const NewResidents = ({
 };
 
 NewResidents.propTypes = {
+  year: PropTypes.number.isRequired,
   baseline: PropTypes.object.isRequired,
   settlementDistribution: PropTypes.object.isRequired, 
   emission: PropTypes.object.isRequired,

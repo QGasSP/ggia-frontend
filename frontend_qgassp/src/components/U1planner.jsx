@@ -556,6 +556,7 @@ export const U1planner = ({
         settlementDistribution={settlementDistribution}
         emission={emission}
         projections={projections}
+        year={year}
       />
     );
   } else {

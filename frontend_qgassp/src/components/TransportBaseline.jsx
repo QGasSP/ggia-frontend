@@ -29,10 +29,10 @@ export const TransportBaseline = ({ country, year, population }) => {
 
   const [nsArea, setNsArea] = useState(0);
   const [ewArea, setEwArea] = useState(0);
-  const [nonResidentialRoad, setNonResidentialRoad] = useState(0);
-  const [freightRoad, setFreightRoad] = useState(0);
-  const [freightRail, setFreightRail] = useState(0);
-  const [freightInlandWaterway, setFreightInlandWaterway] = useState(0);
+  const [nonResidentialRoad, setNonResidentialRoad] = useState("");
+  const [freightRoad, setFreightRoad] = useState("");
+  const [freightRail, setFreightRail] = useState("");
+  const [freightInlandWaterway, setFreightInlandWaterway] = useState("");
   const [baseline, setBaseline] = useState({});
 
   const handleMetropolitanCenter = (e) => {
