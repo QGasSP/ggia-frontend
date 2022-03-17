@@ -4,6 +4,7 @@ import { ModuleHeader } from "./ModuleHeader";
 import { StartPage } from "./StartPage";
 import { LandUseChangeTableForm } from "./LandUseChangeTableForm";
 import { Welcome } from "./Welcome";
+import { BuildingBaseline } from "./BuildingBaseline";
 /* import { TransportBaseline } from "./TransportBaseline";
  */
 export const TabModules = () => {
@@ -48,7 +49,7 @@ export const TabModules = () => {
           </button>
           <button
             className={toggleState === 4 ? "tabs active-tabs" : "tabs"}
-            /*  onClick={() => toggleTab(4)} */
+            onClick={() => toggleTab(4)} 
             id="buildings"
           >
             Buildings
@@ -85,6 +86,7 @@ export const TabModules = () => {
           {toggleState == 1 && <Welcome />}
           {toggleState == 2 && <StartPage />}
           {toggleState == 3 && <LandUseChangeTableForm />}
+          {toggleState == 4 && <BuildingBaseline />}
         </>
       </div>
     </>
