@@ -7,10 +7,6 @@ import { TransportBaseline } from "./TransportBaseline";
 import axios from "axios";
 
 export const StartPage = () => {
-  /*  const [country, setCountry] = useState("");
-  const [year, setYear] = useState(0);
-  const [population, setPopulation] = useState(0);
- */
   const [country, setCountry] = useState("");
   const [year, setYear] = useState(0);
   const [population, setPopulation] = useState(0);
@@ -46,7 +42,7 @@ export const StartPage = () => {
       .catch((error) => {
         setCountriesError({ errorMessage: error.message });
         // eslint-disable-next-line no-console
-        console.error("Eu countries Response data error---", error);
+        console.error("Eu countries Response data error---", errorStartPage);
       });
   }, []);
 
@@ -164,10 +160,10 @@ export const StartPage = () => {
                     >
                       <option value="DefaultOption">Select country</option>
                       {euCountries.map((country) => (
-                      <option key={country} value={country}>
-                        {country}{" "}
-                      </option>
-                    ))}
+                        <option key={country} value={country}>
+                          {country}{" "}
+                        </option>
+                      ))}
                     </select>
                   </div>
                   <div className="local_dataset">
