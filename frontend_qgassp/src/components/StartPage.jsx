@@ -15,7 +15,7 @@ export const StartPage = () => {
   const [year, setYear] = useState(0);
   const [population, setPopulation] = useState(0);
   const [next, setNext] = useState(false);
-  const [euCountries, setEuCountries] = useState("");
+  const [euCountries, setEuCountries] = useState([]);
   const [errorStartPage, setCountriesError] = useState("");
 
   const options = [];
@@ -106,37 +106,11 @@ export const StartPage = () => {
                     required
                   >
                     <option value="DefaultOption">Select country</option>
-                    <option value="Austria">Austria</option>
-                    <option value="Belgium">Belgium</option>
-                    <option value="Bulgaria">Bulgaria</option>
-                    <option value="Croatia">Croatia</option>
-                    <option value="Cyprus">Cyprus</option>
-                    <option value="Czechia">Czechia</option>
-                    <option value="Denmark">Denmark</option>
-                    <option value="Estonia">Estonia</option>
-                    <option value="Finland">Finland</option>
-                    <option value="France">France</option>
-                    <option value="Germany">Germany</option>
-                    <option value="Greece">Greece</option>
-                    <option value="Hungary">Hungary</option>
-                    <option value="Iceland">Iceland</option>
-                    <option value="Ireland">Ireland</option>
-                    <option value="Italy">Italy</option>
-                    <option value="Latvia">Latvia</option>
-                    <option value="Liechtenstein">Liechtenstein</option>
-                    <option value="Lithuania">Lithuania</option>
-                    <option value="Luxembourg">Luxembourg</option>
-                    <option value="Malta">Malta</option>
-                    <option value="Netherlands">Netherlands</option>
-                    <option value="Norway">Norway</option>
-                    <option value="Poland">Poland</option>
-                    <option value="Portugal">Portugal</option>
-                    <option value="Romania">Romania</option>
-                    <option value="Slovakia">Slovakia</option>
-                    <option value="Spain">Spain</option>
-                    <option value="Sweden">Sweden</option>
-                    <option value="Switzerlans">Switzerland</option>
-                    <option value="Uk">Uk</option>
+                    {euCountries.map((country) => (
+                      <option key={country} value={country}>
+                        {country}{" "}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div className="form-group">
@@ -189,37 +163,11 @@ export const StartPage = () => {
                       required
                     >
                       <option value="DefaultOption">Select country</option>
-                      <option value="Austria">Austria</option>
-                      <option value="Belgium">Belgium</option>
-                      <option value="Bulgaria">Bulgaria</option>
-                      <option value="Croatia">Croatia</option>
-                      <option value="Cyprus">Cyprus</option>
-                      <option value="Czechia">Czechia</option>
-                      <option value="Denmark">Denmark</option>
-                      <option value="Estonia">Estonia</option>
-                      <option value="Finland">Finland</option>
-                      <option value="France">France</option>
-                      <option value="Germany">Germany</option>
-                      <option value="Greece">Greece</option>
-                      <option value="Hungary">Hungary</option>
-                      <option value="Iceland">Iceland</option>
-                      <option value="Ireland">Ireland</option>
-                      <option value="Italy">Italy</option>
-                      <option value="Latvia">Latvia</option>
-                      <option value="Liechtenstein">Liechtenstein</option>
-                      <option value="Lithuania">Lithuania</option>
-                      <option value="Luxembourg">Luxembourg</option>
-                      <option value="Malta">Malta</option>
-                      <option value="Netherlands">Netherlands</option>
-                      <option value="Norway">Norway</option>
-                      <option value="Poland">Poland</option>
-                      <option value="Portugal">Portugal</option>
-                      <option value="Romania">Romania</option>
-                      <option value="Slovakia">Slovakia</option>
-                      <option value="Spain">Spain</option>
-                      <option value="Sweden">Sweden</option>
-                      <option value="Switzerlans">Switzerland</option>
-                      <option value="Uk">Uk</option>
+                      {euCountries.map((country) => (
+                      <option key={country} value={country}>
+                        {country}{" "}
+                      </option>
+                    ))}
                     </select>
                   </div>
                   <div className="local_dataset">
