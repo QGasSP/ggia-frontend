@@ -53,7 +53,7 @@ export const U2planner = ({
       .catch((error) => {
         setU2Error({ errorMessage: error.message });
         // eslint-disable-next-line no-console
-        console.error("U2 Response data error---", error);
+        console.error("U2 Response data error---", errorU2);
       });
   }, []);
 

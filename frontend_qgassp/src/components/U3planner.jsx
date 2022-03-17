@@ -323,7 +323,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
       .catch((error) => {
         setU3Error({ errorMessage: error.message });
         // eslint-disable-next-line no-console
-        console.error("There was an error!", error);
+        console.error("There was an error!", errorU3);
       });
   }, []);
   const setU3Response = (response) => {

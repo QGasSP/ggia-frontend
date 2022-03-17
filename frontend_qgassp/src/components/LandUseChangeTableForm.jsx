@@ -280,7 +280,7 @@ export const LandUseChangeTableForm = ({
   const [loadingStyles, setLoadingStyle] = useState({
     display: 'none',
   });
-  const [error, setError] = useState("");
+  const [errorLuc, setLucError] = useState("");
   const options = [];
   for (let i = 2022; i < 2051; i++) options.push(i);
 
@@ -454,9 +454,9 @@ export const LandUseChangeTableForm = ({
         });
       })   
       .catch((error) => {
-        setError({ errorMessage: error.message });
+        setLucError({ errorMessage: error.message });
         // eslint-disable-next-line no-console
-        console.error("There was an error!", error);
+        console.error("There was an error!", errorLuc);
       });
   };
 

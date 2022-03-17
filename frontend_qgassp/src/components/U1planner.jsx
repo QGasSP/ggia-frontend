@@ -30,7 +30,7 @@ export const U1planner = ({
   population,
   settlementDistribution,
 }) => {
-  const [error, setError] = useState("");
+  const [errorU1planner, setU1PlannerError] = useState("");
   const [emission, setEmissionData] = useState("");
   const [projections, setProjections] = useState("");
   const [baseline, setBaseline] = useState({});
@@ -70,9 +70,9 @@ export const U1planner = ({
         setProjections(response.data.data.baseline.projections);
       })
       .catch((error) => {
-        setError({ errorMessage: error.message });
+        setU1PlannerError({ errorMessage: error.message });
         // eslint-disable-next-line no-console
-        console.error("There was an error!", error);
+        console.error("There was an error!", errorU1planner);
       });
   }, []);
 

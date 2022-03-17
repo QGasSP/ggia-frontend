@@ -1,17 +1,14 @@
 import { useState } from "react";
 import "../css/tabs.css";
 import { ModuleHeader } from "./ModuleHeader";
-import { StartPage} from "./StartPage";
+import { StartPage } from "./StartPage";
 import { LandUseChangeTableForm } from "./LandUseChangeTableForm";
 import { Welcome } from "./Welcome";
 /* import { TransportBaseline } from "./TransportBaseline";
  */
 export const TabModules = () => {
   const [toggleState, setToggleState] = useState(1);
-  const [ggiaGuideUrl, setGgiaGuideUrl] = useState(
-    "https://github.com/QGasSP/ggia/wiki"
-  );
-
+  const ggiaGuideUrl = "https://github.com/QGasSP/ggia/wiki";
   const toggleTab = (index) => {
     setToggleState(index);
   };
@@ -51,14 +48,14 @@ export const TabModules = () => {
           </button>
           <button
             className={toggleState === 4 ? "tabs active-tabs" : "tabs"}
-           /*  onClick={() => toggleTab(4)} */
+            /*  onClick={() => toggleTab(4)} */
             id="buildings"
           >
             Buildings
           </button>
           <button
             className={toggleState === 5 ? "tabs active-tabs" : "tabs"}
-          /*   onClick={() => toggleTab(5)} */
+            /*   onClick={() => toggleTab(5)} */
             id="consumption"
           >
             Consumption-based
@@ -67,7 +64,7 @@ export const TabModules = () => {
           </button>
           <button
             className={toggleState === 6 ? "tabs active-tabs" : "tabs"}
-           /*  onClick={() => toggleTab(6)} */
+            /*  onClick={() => toggleTab(6)} */
             id="local_data"
           >
             Create local data-set
@@ -85,9 +82,9 @@ export const TabModules = () => {
 
       <div className="content-tabs">
         <>
-        {toggleState == 1 && <Welcome />}
-        {toggleState == 2 && <StartPage />}
-        {toggleState == 3 && <LandUseChangeTableForm />}
+          {toggleState == 1 && <Welcome />}
+          {toggleState == 2 && <StartPage />}
+          {toggleState == 3 && <LandUseChangeTableForm />}
         </>
       </div>
     </>
