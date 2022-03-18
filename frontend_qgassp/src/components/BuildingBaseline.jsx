@@ -253,7 +253,7 @@ export const BuildingBaseline = ({ country, year, population }) => {
 
                 <div className="column">
                   <div className="div_transport">
-                    {(
+                    {residentialTotal > 0 && (
                       <RadialChart
                         type="piechart"
                         data={[
@@ -422,7 +422,7 @@ export const BuildingBaseline = ({ country, year, population }) => {
 
                 <div className="column">
                     <div className="div_transport">
-                    {(
+                    {commTotal > 0 && (
                         <RadialChart
                         type="piechart"
                         data={[
