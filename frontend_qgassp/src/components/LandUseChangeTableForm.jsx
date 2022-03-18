@@ -15,10 +15,8 @@ import { CircularProgress } from '@mui/material';
 
 export const LandUseChangeTableForm = () => {
 
-    // const year = parseInt(localStorage.getItem("year"));
-    const year = 2022;
-    const country = "Estonia";
-    // const country = localStorage.getItem("country");
+    const year = parseInt(localStorage.getItem("year"));
+    const country = localStorage.getItem("country");
   // to Forest vars
   // #region
   const [cropToForest, setCropToForest] = useState(0);
