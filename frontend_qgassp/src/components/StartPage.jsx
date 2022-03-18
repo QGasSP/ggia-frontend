@@ -5,11 +5,12 @@ import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import { TransportBaseline } from "./TransportBaseline";
 import axios from "axios";
+import { useStorageInt, useStorageString } from "../reducers/useStorage";
 
 export const StartPage = () => {
-  const [country, setCountry] = useState("");
-  const [year, setYear] = useState(0);
-  const [population, setPopulation] = useState(0);
+  const [country, setCountry] = useStorageString("country","");
+  const [year, setYear] = useStorageInt("year",0);
+  const [population, setPopulation] = useStorageInt("population",0);
   const [next, setNext] = useState(false);
   const [euCountries, setEuCountries] = useState([]);
   const [errorStartPage, setCountriesError] = useState("");
