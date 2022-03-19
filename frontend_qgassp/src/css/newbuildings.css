@@ -1,0 +1,17 @@
+.buildings-tbl{
+    width: 100%;
+}
+
+.buildings-tbl .table-cell{
+    width: 90% !important;
+}
+
+.buildings-tbl th, .buildings-tbl td{
+    width: 150px;
+    text-align: center;
+}
+.buildings-tbl th.row-title, .buildings-tbl td.row-title{
+    width: 150px;
+    text-align: left;
+}
+
