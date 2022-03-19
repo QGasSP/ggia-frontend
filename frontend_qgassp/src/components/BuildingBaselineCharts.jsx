@@ -1,4 +1,3 @@
-// BuildingBaselineCharts
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button } from "./Button";
@@ -22,7 +21,7 @@ import { Legend } from "./Legend";
 
 
 /**
- * U1 Planner baseline user input form
+ * BuildingBaselineCharts baseline 
  * @return {}
  */
  const BarSeries = VerticalBarSeries;

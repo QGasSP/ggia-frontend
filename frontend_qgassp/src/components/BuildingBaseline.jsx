@@ -9,6 +9,11 @@ import Chip from "@mui/material/Chip";
 
 import { RadialChart, DiscreteColorLegend } from "react-vis";
 
+/**
+ * BuildingsBaseline user input form
+ * @return {}
+ */
+
 const residentialLabels = [
   { title: "apartment", color: "#164059" },
   { title: "terraced", color: "#F25F29" },
