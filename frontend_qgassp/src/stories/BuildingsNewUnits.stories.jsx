@@ -9,8 +9,8 @@ export default {
 
 const Template = (args) => <BuildingsNewUnits {...args} />;
 
-export const BaselineCharts = Template.bind({});
-BaselineCharts.args = {
+export const BaselineInput = Template.bind({});
+BaselineInput.args = {
   primary: true,
   label: "BuildingsNewUnits",
 };
