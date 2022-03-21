@@ -21,15 +21,99 @@ import Divider from "@mui/material/Divider";
     year,
   }) => {
       year = 2022;
-    const [nsMetropolitanCenter, setNsMetropolitan] = useState(parseFloat(0));
-    const [nsUrban, setNsUrban] = useState(parseFloat(0));
-    const [nsSuburban, setNsSubUrban] = useState(parseFloat(0));
-    const [nsTown, setNsTown] = useState(parseFloat(0));
-    const [nsRural, setNsRural] = useState(parseFloat(0));
+    // apartment
+    // #region 
+    const [apartmentUnits, setApartmentUnits] = useState(parseInt(0));
+    const [apartmentArea, setApartmentArea] = useState(parseInt(0));
+    const [apartmentStartYear, setApartmentStartYear] = useState(Number(year));
+    const [apartmentEndYear, setApartmentEndYear] = useState(Number(year));
+    const [apartmentEnergy, setApartmentEnergy] = useState(parseInt(0));
+    // #endregion
+
+    // terraced
+    // #region 
+    const [terracedUnits, setTerracedUnits] = useState(parseInt(0));
+    const [terracedArea, setTerracedArea] = useState(parseInt(0));
+    const [terracedStartYear, setTerracedStartYear] = useState(Number(year));
+    const [terracedEndYear, setTerracedEndYear] = useState(Number(year));
+    const [terracedEnergy, setTerracedEnergy] = useState(parseInt(0));
+    // #endregion
+
+    // semiDetached
+    // #region 
+    const [semiDetachedUnits, setSemiDetachedUnits] = useState(parseInt(0));
+    const [semiDetachedArea, setSemiDetachedArea] = useState(parseInt(0));
+    const [semiDetachedStartYear, setSemiDetachedStartYear] = useState(Number(year));
+    const [semiDetachedEndYear, setSemiDetachedEndYear] = useState(Number(year));
+    const [semiDetachedEnergy, setSemiDetachedEnergy] = useState(parseInt(0));
+    // #endregion
+
+    // detached
+    // #region 
+    const [detachedUnits, setDetachedUnits] = useState(parseInt(0));
+    const [detachedArea, setDetachedArea] = useState(parseInt(0));
+    const [detachedStartYear, setDetachedStartYear] = useState(Number(year));
+    const [detachedEndYear, setDetachedEndYear] = useState(Number(year));
+    const [detachedEnergy, setDetachedEnergy] = useState(parseInt(0));
+    // #endregion
+
+
+
+    // retail
+    // #region 
+    const [retailUnits, setRetailUnits] = useState(parseInt(0));
+    const [retailArea, setRetailArea] = useState(parseInt(0));
+    const [retailStartYear, setRetailStartYear] = useState(Number(year));
+    const [retailEndYear, setRetailEndYear] = useState(Number(year));
+    const [retailEnergy, setRetailEnergy] = useState(parseInt(0));
+    // #endregion
+
+    // health
+    // #region 
+    const [healthUnits, setHealthUnits] = useState(parseInt(0));
+    const [healthArea, setHealthArea] = useState(parseInt(0));
+    const [healthStartYear, setHealthStartYear] = useState(Number(year));
+    const [healthEndYear, setHealthEndYear] = useState(Number(year));
+    const [healthEnergy, setHealthEnergy] = useState(parseInt(0));
+    // #endregion
+
+    // hospitality
+    // #region 
+    const [hospitalityUnits, setHospitalityUnits] = useState(parseInt(0));
+    const [hospitalityArea, setHospitalityArea] = useState(parseInt(0));
+    const [hospitalityStartYear, setHospitalityStartYear] = useState(Number(year));
+    const [hospitalityEndYear, setHospitalityEndYear] = useState(Number(year));
+    const [hospitalityEnergy, setHospitalityEnergy] = useState(parseInt(0));
+    // #endregion
+
+    // offices
+    // #region 
+    const [officesUnits, setOfficesUnits] = useState(parseInt(0));
+    const [officesArea, setOfficesArea] = useState(parseInt(0));
+    const [officesStartYear, setOfficesStartYear] = useState(Number(year));
+    const [officesEndYear, setOfficesEndYear] = useState(Number(year));
+    const [officesEnergy, setOfficesEnergy] = useState(parseInt(0));
+    // #endregion
+
+    // industrial
+    // #region 
+    const [industrialUnits, setIndustrialUnits] = useState(parseInt(0));
+    const [industrialArea, setIndustrialArea] = useState(parseInt(0));
+    const [industrialStartYear, setIndustrialStartYear] = useState(Number(year));
+    const [industrialEndYear, setIndustrialEndYear] = useState(Number(year));
+    const [industrialEnergy, setIndustrialEnergy] = useState(parseInt(0));
+    // #endregion
+
+    // warehouses
+    // #region 
+    const [warehousesUnits, setWarehousesUnits] = useState(parseInt(0));
+    const [warehousesArea, setWarehousesArea] = useState(parseInt(0));
+    const [warehousesStartYear, setWarehousesStartYear] = useState(Number(year));
+    const [warehousesEndYear, setWarehousesEndYear] = useState(Number(year));
+    const [warehousesEnergy, setWarehousesEnergy] = useState(parseInt(0));
+    // #endregion
 
     const [newResidents, setNewResidents] = useState("");
-    const [yearStart, setYearStart] = useState(year);
-    const [yearFinish, setYearFinish] = useState(2050);
 
     const [newDevelopment, setNewDevelopment] = useState({});
     const [updateU2charts, setU2charts] = useState(false);
@@ -41,49 +125,211 @@ import Divider from "@mui/material/Divider";
     const optionsNew = [];
     for (let i = year; i < 2051; i++) optionsNew.push(i);
   
-    const handleNsMetropolitanCenter = (e) => {
-      setNsMetropolitan(parseFloat(e.target.value));
+    // apartment handlers
+    // #region 
+    const handleApartmentUnits = (e) => {
+      setApartmentUnits(parseInt(e.target.value));
     };
-    const handleNsUrban = (e) => {
-      setNsUrban(parseFloat(e.target.value));
+    const handleApartmentArea = (e) => {
+      setApartmentArea(parseInt(e.target.value));
     };
-    const handleNsSuburban = (e) => {
-      setNsSubUrban(parseFloat(e.target.value));
+    const handleApartmentStartYear = (e) => {
+      setApartmentStartYear(parseInt(e.target.value));
     };
-    const handleNsTown = (e) => {
-      setNsTown(parseFloat(e.target.value));
+    const handleApartmentEndYear = (e) => {
+      setApartmentEndYear(parseInt(e.target.value));
     };
-    const handleNsRural = (e) => {
-      setNsRural(parseFloat(e.target.value));
+    const handleApartmentEnergy = (e) => {
+      setApartmentEnergy(parseInt(e.target.value));
     };
-    const handleStartYear = (e) => {
-      setYearStart(Number(e.target.value));
+    // #endregion
+    
+    // terraced handlers
+    // #region 
+    const handleTerracedUnits = (e) => {
+      setTerracedUnits(parseInt(e.target.value));
     };
-    const handleYearFinish = (e) => {
-      setYearFinish(Number(e.target.value));
+    const handleTerracedArea = (e) => {
+      setTerracedArea(parseInt(e.target.value));
     };
+    const handleTerracedStartYear = (e) => {
+      setTerracedStartYear(parseInt(e.target.value));
+    };
+    const handleTerracedEndYear = (e) => {
+      setTerracedEndYear(parseInt(e.target.value));
+    };
+    const handleTerracedEnergy = (e) => {
+      setTerracedEnergy(parseInt(e.target.value));
+    };
+    // #endregion
+
+    // semi-detached handlers
+    // #region 
+    const handleSemiDetachedUnits = (e) => {
+      setSemiDetachedUnits(parseInt(e.target.value));
+    };
+    const handleSemiDetachedArea = (e) => {
+      setSemiDetachedArea(parseInt(e.target.value));
+    };
+    const handleSemiDetachedStartYear = (e) => {
+      setSemiDetachedStartYear(parseInt(e.target.value));
+    };
+    const handleSemiDetachedEndYear = (e) => {
+      setSemiDetachedEndYear(parseInt(e.target.value));
+    };
+    const handleSemiDetachedEnergy = (e) => {
+      setSemiDetachedEnergy(parseInt(e.target.value));
+    };
+    // #endregion
+
+    // apartment handlers
+    // #region 
+    const handleDetachedUnits = (e) => {
+      setDetachedUnits(parseInt(e.target.value));
+    };
+    const handleDetachedArea = (e) => {
+      setDetachedArea(parseInt(e.target.value));
+    };
+    const handleDetachedStartYear = (e) => {
+      setDetachedStartYear(parseInt(e.target.value));
+    };
+    const handleDetachedEndYear = (e) => {
+      setDetachedEndYear(parseInt(e.target.value));
+    };
+    const handleDetachedEnergy = (e) => {
+      setDetachedEnergy(parseInt(e.target.value));
+    };
+    // #endregion
+
+
+    // retail handlers
+    // #region 
+    const handleRetailUnits = (e) => {
+      setRetailUnits(parseInt(e.target.value));
+    };
+    const handleRetailArea = (e) => {
+      setRetailArea(parseInt(e.target.value));
+    };
+    const handleRetailStartYear = (e) => {
+      setRetailStartYear(parseInt(e.target.value));
+    };
+    const handleRetailEndYear = (e) => {
+      setRetailEndYear(parseInt(e.target.value));
+    };
+    const handleRetailEnergy = (e) => {
+      setRetailEnergy(parseInt(e.target.value));
+    };
+    // #endregion
+
+    // health handlers
+    // #region 
+    const handleHealthUnits = (e) => {
+      setHealthUnits(parseInt(e.target.value));
+    };
+    const handleHealthArea = (e) => {
+      setHealthArea(parseInt(e.target.value));
+    };
+    const handleHealthStartYear = (e) => {
+      setHealthStartYear(parseInt(e.target.value));
+    };
+    const handleHealthEndYear = (e) => {
+      setHealthEndYear(parseInt(e.target.value));
+    };
+    const handleHealthEnergy = (e) => {
+      setHealthEnergy(parseInt(e.target.value));
+    };
+    // #endregion
+
+    // hospitality handlers
+    // #region 
+    const handleHospitalityUnits = (e) => {
+      setHospitalityUnits(parseInt(e.target.value));
+    };
+    const handleHospitalityArea = (e) => {
+      setHospitalityArea(parseInt(e.target.value));
+    };
+    const handleHospitalityStartYear = (e) => {
+      setHospitalityStartYear(parseInt(e.target.value));
+    };
+    const handleHospitalityEndYear = (e) => {
+      setHospitalityEndYear(parseInt(e.target.value));
+    };
+    const handleHospitalityEnergy = (e) => {
+      setHospitalityEnergy(parseInt(e.target.value));
+    };
+    // #endregion
+    
+    // offices handlers
+    // #region 
+    const handleOfficesUnits = (e) => {
+      setOfficesUnits(parseInt(e.target.value));
+    };
+    const handleOfficesArea = (e) => {
+      setOfficesArea(parseInt(e.target.value));
+    };
+    const handleOfficesStartYear = (e) => {
+      setOfficesStartYear(parseInt(e.target.value));
+    };
+    const handleOfficesEndYear = (e) => {
+      setOfficesEndYear(parseInt(e.target.value));
+    };
+    const handleOfficesEnergy = (e) => {
+      setOfficesEnergy(parseInt(e.target.value));
+    };
+    // #endregion
+    
+    // industrial handlers
+    // #region 
+    const handleIndustrialUnits = (e) => {
+      setIndustrialUnits(parseInt(e.target.value));
+    };
+    const handleIndustrialArea = (e) => {
+      setIndustrialArea(parseInt(e.target.value));
+    };
+    const handleIndustrialStartYear = (e) => {
+      setIndustrialStartYear(parseInt(e.target.value));
+    };
+    const handleIndustrialEndYear = (e) => {
+      setIndustrialEndYear(parseInt(e.target.value));
+    };
+    const handleIndustrialEnergy = (e) => {
+      setIndustrialEnergy(parseInt(e.target.value));
+    };
+    // #endregion
+
+    // warehouses handlers
+    // #region 
+    const handleWarehousesUnits = (e) => {
+      setWarehousesUnits(parseInt(e.target.value));
+    };
+    const handleWarehousesArea = (e) => {
+      setWarehousesArea(parseInt(e.target.value));
+    };
+    const handleWarehousesStartYear = (e) => {
+      setWarehousesStartYear(parseInt(e.target.value));
+    };
+    const handleWarehousesEndYear = (e) => {
+      setWarehousesEndYear(parseInt(e.target.value));
+    };
+    const handleWarehousesEnergy = (e) => {
+      setWarehousesEnergy(parseInt(e.target.value));
+    };
+    // #endregion
+
+
     const handleNewResident = (e) => {
       setNewResidents(Number(e.target.value));
     };
   
     const updateU2Planner = () => {
       const newSettlementDistribution = {
-        metropolitanCenter: nsMetropolitanCenter,
-        urban: nsUrban,
-        suburban: nsSuburban,
-        town: nsTown,
-        rural: nsRural,
+        
       };
       const newDevelopmentU2 = {
-        newResidents,
-        yearStart,
-        yearFinish,
-        newSettlementDistribution,
+        
       };
-      setNewDevelopment(newDevelopmentU2);
-      setTotalNewResidents(
-        nsMetropolitanCenter + nsUrban + nsSuburban + nsTown + nsRural
-      );
+      // setNewDevelopment(newDevelopmentU2);
+      
     //   setU2charts(true);
     };
   
@@ -121,11 +367,12 @@ import Divider from "@mui/material/Divider";
                                 className="table-cell"
                                 type="number"
                                 step="1"
-                                // id="apartment"
+                                id="apartment-units"
+                                name="apartment-units"
                                 min="0"
-                                // value={apartmentNumber}
-                                // onChange={handleApartmentNumber}
-                                // onMouseLeave={setTotal}
+                                value={apartmentUnits}
+                                onChange={handleApartmentUnits}
+                                defaultValue="Select year"
                                 required
                               />
                             </td>
@@ -134,23 +381,23 @@ import Divider from "@mui/material/Divider";
                                 className="table-cell"
                                 type="number"
                                 step="1"
-                                // id="apartment"
+                                id="apartment-area"
+                                name="apartment-area"
                                 min="0"
-                                // value={apartmentNumber}
-                                // onChange={handleApartmentNumber}
-                                // onMouseLeave={setTotal}
+                                value={apartmentArea}
+                                onChange={handleApartmentArea}
+                                defaultValue="Select year"
                                 required
                               />
                             </td>
                             <td>
                                 <select
                                     className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
+                                    id="apartment-start-year"
+                                    name="apartment-start-year"
+                                    value={apartmentStartYear}
+                                    onChange={handleApartmentStartYear}
                                     defaultValue="Select year"
-                                    // onMouseLeave={setTotal}
                                     required
                                 >
                                     {optionsNewStart.map((option) => (
@@ -163,12 +410,11 @@ import Divider from "@mui/material/Divider";
                             <td>
                                 <select
                                     className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
+                                    id="apartment-end-year"
+                                    name="apartment-end-year"
+                                    value={apartmentEndYear}
+                                    onChange={handleApartmentEndYear}
                                     defaultValue="Select year"
-                                    // onMouseLeave={setTotal}
                                     required
                                 >
                                     {optionsNewStart.map((option) => (
@@ -183,11 +429,10 @@ import Divider from "@mui/material/Divider";
                                 className="table-cell"
                                 type="number"
                                 step="1"
-                                // id="apartment"
+                                id="apartment-energy"
                                 min="0"
-                                // value={apartmentNumber}
-                                // onChange={handleApartmentNumber}
-                                // onMouseLeave={setTotal}
+                                value={apartmentEnergy}
+                                onChange={handleApartmentEnergy}
                                 required
                               />
                             </td>
@@ -199,11 +444,11 @@ import Divider from "@mui/material/Divider";
                                 className="table-cell"
                                 type="number"
                                 step="1"
-                                // id="apartment"
+                                id="terraced-units"
+                                name="terraced-units"
                                 min="0"
-                                // value={apartmentNumber}
-                                // onChange={handleApartmentNumber}
-                                // onMouseLeave={setTotal}
+                                value={terracedUnits}
+                                onChange={handleTerracedUnits}
                                 required
                               />
                             </td>
@@ -212,23 +457,22 @@ import Divider from "@mui/material/Divider";
                                 className="table-cell"
                                 type="number"
                                 step="1"
-                                // id="apartment"
+                                id="terraced-area"
+                                name="terraced-area"
                                 min="0"
-                                // value={apartmentNumber}
-                                // onChange={handleApartmentNumber}
-                                // onMouseLeave={setTotal}
+                                value={terracedArea}
+                                onChange={handleTerracedArea}
                                 required
                               />
                             </td>
                             <td>
                                 <select
                                     className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
+                                    id="terraced-start-year"
+                                    name="terraced-start-year"
+                                    onChange={handleTerracedStartYear}
+                                    value={terracedStartYear}
                                     defaultValue="Select year"
-                                    // onMouseLeave={setTotal}
                                     required
                                 >
                                     {optionsNewStart.map((option) => (
@@ -241,12 +485,11 @@ import Divider from "@mui/material/Divider";
                             <td>
                                 <select
                                     className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
+                                    id="terraced-end-year"
+                                    name="terraced-end-year"
+                                    onChange={handleTerracedEndYear}
+                                    value={terracedEndYear}
                                     defaultValue="Select year"
-                                    // onMouseLeave={setTotal}
                                     required
                                 >
                                     {optionsNewStart.map((option) => (
@@ -261,27 +504,27 @@ import Divider from "@mui/material/Divider";
                                 className="table-cell"
                                 type="number"
                                 step="1"
-                                // id="apartment"
+                                id="terraced-energy"
+                                name="terraced-energy"
                                 min="0"
-                                // value={apartmentNumber}
-                                // onChange={handleApartmentNumber}
-                                // onMouseLeave={setTotal}
+                                value={terracedEnergy}
+                                onChange={handleTerracedEnergy}
                                 required
                               />
                             </td>
                           </tr>
                           <tr>
-                            <td className="row-title">Semi-detached</td>
+                            <td className="row-title">Semi-Detached</td>
                             <td>
                               <input
                                 className="table-cell"
                                 type="number"
                                 step="1"
-                                // id="apartment"
+                                id="semiDetached-units"
+                                name="semiDetached-units"
                                 min="0"
-                                // value={apartmentNumber}
-                                // onChange={handleApartmentNumber}
-                                // onMouseLeave={setTotal}
+                                value={semiDetachedUnits}
+                                onChange={handleSemiDetachedUnits}
                                 required
                               />
                             </td>
@@ -290,23 +533,22 @@ import Divider from "@mui/material/Divider";
                                 className="table-cell"
                                 type="number"
                                 step="1"
-                                // id="apartment"
+                                id="semiDetached-area"
+                                name="semiDetached-area"
                                 min="0"
-                                // value={apartmentNumber}
-                                // onChange={handleApartmentNumber}
-                                // onMouseLeave={setTotal}
+                                value={semiDetachedArea}
+                                onChange={handleSemiDetachedArea}
                                 required
                               />
                             </td>
                             <td>
                                 <select
                                     className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
+                                    id="semiDetached-start-year"
+                                    name="semiDetached-start-year"
+                                    onChange={handleSemiDetachedStartYear}
+                                    value={semiDetachedStartYear}
                                     defaultValue="Select year"
-                                    // onMouseLeave={setTotal}
                                     required
                                 >
                                     {optionsNewStart.map((option) => (
@@ -319,12 +561,11 @@ import Divider from "@mui/material/Divider";
                             <td>
                                 <select
                                     className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
+                                    id="semiDetached-end-year"
+                                    name="semiDetached-end-year"
+                                    onChange={handleSemiDetachedEndYear}
+                                    value={semiDetachedEndYear}
                                     defaultValue="Select year"
-                                    // onMouseLeave={setTotal}
                                     required
                                 >
                                     {optionsNewStart.map((option) => (
@@ -339,11 +580,11 @@ import Divider from "@mui/material/Divider";
                                 className="table-cell"
                                 type="number"
                                 step="1"
-                                // id="apartment"
+                                id="semiDetached-energy"
+                                name="semiDetached-energy"
                                 min="0"
-                                // value={apartmentNumber}
-                                // onChange={handleApartmentNumber}
-                                // onMouseLeave={setTotal}
+                                value={semiDetachedEnergy}
+                                onChange={handleSemiDetachedEnergy}
                                 required
                               />
                             </td>
@@ -355,11 +596,11 @@ import Divider from "@mui/material/Divider";
                                 className="table-cell"
                                 type="number"
                                 step="1"
-                                // id="apartment"
+                                id="detached-units"
+                                name="detached-units"
                                 min="0"
-                                // value={apartmentNumber}
-                                // onChange={handleApartmentNumber}
-                                // onMouseLeave={setTotal}
+                                value={detachedUnits}
+                                onChange={handleDetachedUnits}
                                 required
                               />
                             </td>
@@ -368,23 +609,22 @@ import Divider from "@mui/material/Divider";
                                 className="table-cell"
                                 type="number"
                                 step="1"
-                                // id="apartment"
+                                id="detached-area"
+                                name="detached-area"
                                 min="0"
-                                // value={apartmentNumber}
-                                // onChange={handleApartmentNumber}
-                                // onMouseLeave={setTotal}
+                                value={detachedArea}
+                                onChange={handleDetachedArea}
                                 required
                               />
                             </td>
                             <td>
                                 <select
                                     className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
+                                    id="detached-start-year"
+                                    name="detached-start-year"
+                                    onChange={handleDetachedStartYear}
+                                    value={detachedStartYear}
                                     defaultValue="Select year"
-                                    // onMouseLeave={setTotal}
                                     required
                                 >
                                     {optionsNewStart.map((option) => (
@@ -397,12 +637,11 @@ import Divider from "@mui/material/Divider";
                             <td>
                                 <select
                                     className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
+                                    id="detached-end-year"
+                                    name="detached-end-year"
+                                    onChange={handleDetachedEndYear}
+                                    value={detachedEndYear}
                                     defaultValue="Select year"
-                                    // onMouseLeave={setTotal}
                                     required
                                 >
                                     {optionsNewStart.map((option) => (
@@ -417,11 +656,11 @@ import Divider from "@mui/material/Divider";
                                 className="table-cell"
                                 type="number"
                                 step="1"
-                                // id="apartment"
+                                id="detached-energy"
+                                name="detached-energy"
                                 min="0"
-                                // value={apartmentNumber}
-                                // onChange={handleApartmentNumber}
-                                // onMouseLeave={setTotal}
+                                value={detachedEnergy}
+                                onChange={handleDetachedEnergy}
                                 required
                               />
                             </td>
@@ -454,11 +693,11 @@ import Divider from "@mui/material/Divider";
                                     className="table-cell"
                                     type="number"
                                     step="1"
-                                    // id="apartment"
+                                    id="retail-units"
+                                    name="retail-units"
                                     min="0"
-                                    // value={apartmentNumber}
-                                    // onChange={handleApartmentNumber}
-                                    // onMouseLeave={setTotal}
+                                    value={retailUnits}
+                                    onChange={handleRetailUnits}
                                     required
                                   />
                                 </td>
@@ -467,23 +706,22 @@ import Divider from "@mui/material/Divider";
                                     className="table-cell"
                                     type="number"
                                     step="1"
-                                    // id="apartment"
+                                    id="retail-area"
+                                    name="retail-area"
                                     min="0"
-                                    // value={apartmentNumber}
-                                    // onChange={handleApartmentNumber}
-                                    // onMouseLeave={setTotal}
+                                    value={retailArea}
+                                    onChange={handleRetailArea}
                                     required
                                   />
                                 </td>
                                 <td>
                                     <select
                                         className="table-cell"
-                                        id=""
-                                        name=""
-                                        // onChange={handleForestToCropYear}
-                                        // value={forestToCropYear}
+                                        id="retail-start-year"
+                                        name="retail-start-year"
+                                        onChange={handleRetailStartYear}
+                                        value={retailStartYear}
                                         defaultValue="Select year"
-                                        // onMouseLeave={setTotal}
                                         required
                                     >
                                         {optionsNewStart.map((option) => (
@@ -496,12 +734,11 @@ import Divider from "@mui/material/Divider";
                                 <td>
                                     <select
                                         className="table-cell"
-                                        id=""
-                                        name=""
-                                        // onChange={handleForestToCropYear}
-                                        // value={forestToCropYear}
+                                        id="retail-end-year"
+                                        name="retail-end-year"
+                                        onChange={handleRetailEndYear}
+                                        value={retailEndYear}
                                         defaultValue="Select year"
-                                        // onMouseLeave={setTotal}
                                         required
                                     >
                                         {optionsNewStart.map((option) => (
@@ -516,11 +753,11 @@ import Divider from "@mui/material/Divider";
                                     className="table-cell"
                                     type="number"
                                     step="1"
-                                    // id="apartment"
+                                    id="retail-energy"
+                                    name="retail-energy"
                                     min="0"
-                                    // value={apartmentNumber}
-                                    // onChange={handleApartmentNumber}
-                                    // onMouseLeave={setTotal}
+                                    value={retailEnergy}
+                                    onChange={handleRetailEnergy}
                                     required
                                   />
                                 </td>
@@ -528,40 +765,39 @@ import Divider from "@mui/material/Divider";
                               <tr>
                                 <td className="row-title">Health</td>
                                 <td>
-                                  <input
-                                    className="table-cell"
-                                    type="number"
-                                    step="1"
-                                    // id="apartment"
-                                    min="0"
-                                    // value={apartmentNumber}
-                                    // onChange={handleApartmentNumber}
-                                    // onMouseLeave={setTotal}
-                                    required
-                                  />
+                                    <input
+                                        className="table-cell"
+                                        type="number"
+                                        step="1"
+                                        id="health-units"
+                                        name="health-units"
+                                        min="0"
+                                        value={healthUnits}
+                                        onChange={handleHealthUnits}
+                                        required
+                                    />
                                 </td>
                                 <td>
-                                  <input
-                                    className="table-cell"
-                                    type="number"
-                                    step="1"
-                                    // id="apartment"
-                                    min="0"
-                                    // value={apartmentNumber}
-                                    // onChange={handleApartmentNumber}
-                                    // onMouseLeave={setTotal}
-                                    required
-                                  />
+                                    <input
+                                        className="table-cell"
+                                        type="number"
+                                        step="1"
+                                        id="health-area"
+                                        name="health-area"
+                                        min="0"
+                                        value={healthArea}
+                                        onChange={handleHealthArea}
+                                        required
+                                    />
                                 </td>
                                 <td>
                                     <select
                                         className="table-cell"
-                                        id=""
-                                        name=""
-                                        // onChange={handleForestToCropYear}
-                                        // value={forestToCropYear}
+                                        id="health-start-year"
+                                        name="health-start-year"
+                                        onChange={handleHealthStartYear}
+                                        value={healthStartYear}
                                         defaultValue="Select year"
-                                        // onMouseLeave={setTotal}
                                         required
                                     >
                                         {optionsNewStart.map((option) => (
@@ -574,12 +810,11 @@ import Divider from "@mui/material/Divider";
                                 <td>
                                     <select
                                         className="table-cell"
-                                        id=""
-                                        name=""
-                                        // onChange={handleForestToCropYear}
-                                        // value={forestToCropYear}
+                                        id="health-end-year"
+                                        name="health-end-year"
+                                        onChange={handleHealthEndYear}
+                                        value={healthEndYear}
                                         defaultValue="Select year"
-                                        // onMouseLeave={setTotal}
                                         required
                                     >
                                         {optionsNewStart.map((option) => (
@@ -591,332 +826,324 @@ import Divider from "@mui/material/Divider";
                                 </td>
                                 <td>
                                   <input
-                                    className="table-cell"
-                                    type="number"
-                                    step="1"
-                                    // id="apartment"
-                                    min="0"
-                                    // value={apartmentNumber}
-                                    // onChange={handleApartmentNumber}
-                                    // onMouseLeave={setTotal}
-                                    required
+                                      className="table-cell"
+                                      type="number"
+                                      step="1"
+                                      id="health-energy"
+                                      name="health-energy"
+                                      min="0"
+                                      value={healthEnergy}
+                                      onChange={handleHealthEnergy}
+                                      required
                                   />
                                 </td>
                               </tr>
                               <tr>
-                                <td className="row-title">Hospitality</td>
-                                <td>
-                                  <input
-                                    className="table-cell"
-                                    type="number"
-                                    step="1"
-                                    // id="apartment"
-                                    min="0"
-                                    // value={apartmentNumber}
-                                    // onChange={handleApartmentNumber}
-                                    // onMouseLeave={setTotal}
-                                    required
-                                  />
-                                </td>
-                                <td>
-                                  <input
-                                    className="table-cell"
-                                    type="number"
-                                    step="1"
-                                    // id="apartment"
-                                    min="0"
-                                    // value={apartmentNumber}
-                                    // onChange={handleApartmentNumber}
-                                    // onMouseLeave={setTotal}
-                                    required
-                                  />
-                                </td>
-                                <td>
-                                    <select
-                                        className="table-cell"
-                                        id=""
-                                        name=""
-                                        // onChange={handleForestToCropYear}
-                                        // value={forestToCropYear}
-                                        defaultValue="Select year"
-                                        // onMouseLeave={setTotal}
-                                        required
-                                    >
-                                        {optionsNewStart.map((option) => (
-                                        <option key={option} value={option}>
-                                            {option}{" "}
-                                        </option>
-                                        ))}
-                                    </select>
-                                </td>
-                                <td>
-                                    <select
-                                        className="table-cell"
-                                        id=""
-                                        name=""
-                                        // onChange={handleForestToCropYear}
-                                        // value={forestToCropYear}
-                                        defaultValue="Select year"
-                                        // onMouseLeave={setTotal}
-                                        required
-                                    >
-                                        {optionsNewStart.map((option) => (
-                                        <option key={option} value={option}>
-                                            {option}{" "}
-                                        </option>
-                                        ))}
-                                    </select>
-                                </td>
-                                <td>
-                                  <input
-                                    className="table-cell"
-                                    type="number"
-                                    step="1"
-                                    // id="apartment"
-                                    min="0"
-                                    // value={apartmentNumber}
-                                    // onChange={handleApartmentNumber}
-                                    // onMouseLeave={setTotal}
-                                    required
-                                  />
-                                </td>
+                              <td className="row-title">Hospitality</td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="hospitality-units"
+                                  name="hospitality-units"
+                                  min="0"
+                                  value={hospitalityUnits}
+                                  onChange={handleHospitalityUnits}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="hospitality-area"
+                                  name="hospitality-area"
+                                  min="0"
+                                  value={hospitalityArea}
+                                  onChange={handleHospitalityArea}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                  <select
+                                      className="table-cell"
+                                      id="hospitality-start-year"
+                                      name="hospitality-start-year"
+                                      onChange={handleHospitalityStartYear}
+                                      value={hospitalityStartYear}
+                                      defaultValue="Select year"
+                                      required
+                                  >
+                                      {optionsNewStart.map((option) => (
+                                      <option key={option} value={option}>
+                                          {option}{" "}
+                                      </option>
+                                      ))}
+                                  </select>
+                              </td>
+                              <td>
+                                  <select
+                                      className="table-cell"
+                                      id="hospitality-end-year"
+                                      name="hospitality-end-year"
+                                      onChange={handleHospitalityEndYear}
+                                      value={hospitalityEndYear}
+                                      defaultValue="Select year"
+                                      required
+                                  >
+                                      {optionsNewStart.map((option) => (
+                                      <option key={option} value={option}>
+                                          {option}{" "}
+                                      </option>
+                                      ))}
+                                  </select>
+                              </td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="hospitality-energy"
+                                  name="hospitality-energy"
+                                  min="0"
+                                  value={hospitalityEnergy}
+                                  onChange={handleHospitalityEnergy}
+                                  required
+                                />
+                              </td>
                               </tr>
                               <tr>
-                                <td className="row-title">Offices</td>
-                                <td>
-                                  <input
-                                    className="table-cell"
-                                    type="number"
-                                    step="1"
-                                    // id="apartment"
-                                    min="0"
-                                    // value={apartmentNumber}
-                                    // onChange={handleApartmentNumber}
-                                    // onMouseLeave={setTotal}
-                                    required
-                                  />
-                                </td>
-                                <td>
-                                  <input
-                                    className="table-cell"
-                                    type="number"
-                                    step="1"
-                                    // id="apartment"
-                                    min="0"
-                                    // value={apartmentNumber}
-                                    // onChange={handleApartmentNumber}
-                                    // onMouseLeave={setTotal}
-                                    required
-                                  />
-                                </td>
-                                <td>
-                                    <select
-                                        className="table-cell"
-                                        id=""
-                                        name=""
-                                        // onChange={handleForestToCropYear}
-                                        // value={forestToCropYear}
-                                        defaultValue="Select year"
-                                        // onMouseLeave={setTotal}
-                                        required
-                                    >
-                                        {optionsNewStart.map((option) => (
-                                        <option key={option} value={option}>
-                                            {option}{" "}
-                                        </option>
-                                        ))}
-                                    </select>
-                                </td>
-                                <td>
-                                    <select
-                                        className="table-cell"
-                                        id=""
-                                        name=""
-                                        // onChange={handleForestToCropYear}
-                                        // value={forestToCropYear}
-                                        defaultValue="Select year"
-                                        // onMouseLeave={setTotal}
-                                        required
-                                    >
-                                        {optionsNewStart.map((option) => (
-                                        <option key={option} value={option}>
-                                            {option}{" "}
-                                        </option>
-                                        ))}
-                                    </select>
-                                </td>
-                                <td>
-                                  <input
-                                    className="table-cell"
-                                    type="number"
-                                    step="1"
-                                    // id="apartment"
-                                    min="0"
-                                    // value={apartmentNumber}
-                                    // onChange={handleApartmentNumber}
-                                    // onMouseLeave={setTotal}
-                                    required
-                                  />
-                                </td>
+                              <td className="row-title">Offices</td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="offices-units"
+                                  name="offices-units"
+                                  min="0"
+                                  value={officesUnits}
+                                  onChange={handleOfficesUnits}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="offices-area"
+                                  name="offices-area"
+                                  min="0"
+                                  value={officesArea}
+                                  onChange={handleOfficesArea}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                  <select
+                                      className="table-cell"
+                                      id="offices-start-year"
+                                      name="offices-start-year"
+                                      onChange={handleOfficesStartYear}
+                                      value={officesStartYear}
+                                      defaultValue="Select year"
+                                      required
+                                  >
+                                      {optionsNewStart.map((option) => (
+                                      <option key={option} value={option}>
+                                          {option}{" "}
+                                      </option>
+                                      ))}
+                                  </select>
+                              </td>
+                              <td>
+                                  <select
+                                      className="table-cell"
+                                      id="offices-end-year"
+                                      name="offices-end-year"
+                                      onChange={handleOfficesEndYear}
+                                      value={officesEndYear}
+                                      defaultValue="Select year"
+                                      required
+                                  >
+                                      {optionsNewStart.map((option) => (
+                                      <option key={option} value={option}>
+                                          {option}{" "}
+                                      </option>
+                                      ))}
+                                  </select>
+                              </td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="offices-energy"
+                                  name="offices-energy"
+                                  min="0"
+                                  value={officesEnergy}
+                                  onChange={handleOfficesEnergy}
+                                  required
+                                />
+                              </td>
                               </tr>
                               <tr>
-                                <td className="row-title">Industrial</td>
-                                <td>
-                                  <input
-                                    className="table-cell"
-                                    type="number"
-                                    step="1"
-                                    // id="apartment"
-                                    min="0"
-                                    // value={apartmentNumber}
-                                    // onChange={handleApartmentNumber}
-                                    // onMouseLeave={setTotal}
-                                    required
-                                  />
-                                </td>
-                                <td>
-                                  <input
-                                    className="table-cell"
-                                    type="number"
-                                    step="1"
-                                    // id="apartment"
-                                    min="0"
-                                    // value={apartmentNumber}
-                                    // onChange={handleApartmentNumber}
-                                    // onMouseLeave={setTotal}
-                                    required
-                                  />
-                                </td>
-                                <td>
-                                    <select
-                                        className="table-cell"
-                                        id=""
-                                        name=""
-                                        // onChange={handleForestToCropYear}
-                                        // value={forestToCropYear}
-                                        defaultValue="Select year"
-                                        // onMouseLeave={setTotal}
-                                        required
-                                    >
-                                        {optionsNewStart.map((option) => (
-                                        <option key={option} value={option}>
-                                            {option}{" "}
-                                        </option>
-                                        ))}
-                                    </select>
-                                </td>
-                                <td>
-                                    <select
-                                        className="table-cell"
-                                        id=""
-                                        name=""
-                                        // onChange={handleForestToCropYear}
-                                        // value={forestToCropYear}
-                                        defaultValue="Select year"
-                                        // onMouseLeave={setTotal}
-                                        required
-                                    >
-                                        {optionsNewStart.map((option) => (
-                                        <option key={option} value={option}>
-                                            {option}{" "}
-                                        </option>
-                                        ))}
-                                    </select>
-                                </td>
-                                <td>
-                                  <input
-                                    className="table-cell"
-                                    type="number"
-                                    step="1"
-                                    // id="apartment"
-                                    min="0"
-                                    // value={apartmentNumber}
-                                    // onChange={handleApartmentNumber}
-                                    // onMouseLeave={setTotal}
-                                    required
-                                  />
-                                </td>
+                              <td className="row-title">Industrial</td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="industrial-units"
+                                  name="industrial-units"
+                                  min="0"
+                                  value={industrialUnits}
+                                  onChange={handleIndustrialUnits}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="industrial-area"
+                                  name="industrial-area"
+                                  min="0"
+                                  value={industrialArea}
+                                  onChange={handleIndustrialArea}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                  <select
+                                      className="table-cell"
+                                      id="industrial-start-year"
+                                      name="industrial-start-year"
+                                      onChange={handleIndustrialStartYear}
+                                      value={industrialStartYear}
+                                      defaultValue="Select year"
+                                      required
+                                  >
+                                      {optionsNewStart.map((option) => (
+                                      <option key={option} value={option}>
+                                          {option}{" "}
+                                      </option>
+                                      ))}
+                                  </select>
+                              </td>
+                              <td>
+                                  <select
+                                      className="table-cell"
+                                      id="industrial-end-year"
+                                      name="industrial-end-year"
+                                      onChange={handleIndustrialEndYear}
+                                      value={industrialEndYear}
+                                      defaultValue="Select year"
+                                      required
+                                  >
+                                      {optionsNewStart.map((option) => (
+                                      <option key={option} value={option}>
+                                          {option}{" "}
+                                      </option>
+                                      ))}
+                                  </select>
+                              </td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="industrial-energy"
+                                  name="industrial-energy"
+                                  min="0"
+                                  value={industrialEnergy}
+                                  onChange={handleIndustrialEnergy}
+                                  required
+                                />
+                              </td>
                               </tr>
                               <tr>
-                                <td className="row-title">Warehouses</td>
-                                <td>
-                                  <input
-                                    className="table-cell"
-                                    type="number"
-                                    step="1"
-                                    // id="apartment"
-                                    min="0"
-                                    // value={apartmentNumber}
-                                    // onChange={handleApartmentNumber}
-                                    // onMouseLeave={setTotal}
-                                    required
-                                  />
-                                </td>
-                                <td>
-                                  <input
-                                    className="table-cell"
-                                    type="number"
-                                    step="1"
-                                    // id="apartment"
-                                    min="0"
-                                    // value={apartmentNumber}
-                                    // onChange={handleApartmentNumber}
-                                    // onMouseLeave={setTotal}
-                                    required
-                                  />
-                                </td>
-                                <td>
-                                    <select
-                                        className="table-cell"
-                                        id=""
-                                        name=""
-                                        // onChange={handleForestToCropYear}
-                                        // value={forestToCropYear}
-                                        defaultValue="Select year"
-                                        // onMouseLeave={setTotal}
-                                        required
-                                    >
-                                        {optionsNewStart.map((option) => (
-                                        <option key={option} value={option}>
-                                            {option}{" "}
-                                        </option>
-                                        ))}
-                                    </select>
-                                </td>
-                                <td>
-                                    <select
-                                        className="table-cell"
-                                        id=""
-                                        name=""
-                                        // onChange={handleForestToCropYear}
-                                        // value={forestToCropYear}
-                                        defaultValue="Select year"
-                                        // onMouseLeave={setTotal}
-                                        required
-                                    >
-                                        {optionsNewStart.map((option) => (
-                                        <option key={option} value={option}>
-                                            {option}{" "}
-                                        </option>
-                                        ))}
-                                    </select>
-                                </td>
-                                <td>
-                                  <input
-                                    className="table-cell"
-                                    type="number"
-                                    step="1"
-                                    // id="apartment"
-                                    min="0"
-                                    // value={apartmentNumber}
-                                    // onChange={handleApartmentNumber}
-                                    // onMouseLeave={setTotal}
-                                    required
-                                  />
-                                </td>
+                              <td className="row-title">Warehouses</td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="warehouses-units"
+                                  name="warehouses-units"
+                                  min="0"
+                                  value={warehousesUnits}
+                                  onChange={handleWarehousesUnits}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="warehouses-area"
+                                  name="warehouses-area"
+                                  min="0"
+                                  value={warehousesArea}
+                                  onChange={handleWarehousesArea}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                  <select
+                                      className="table-cell"
+                                      id="warehouses-start-year"
+                                      name="warehouses-start-year"
+                                      onChange={handleWarehousesStartYear}
+                                      value={warehousesStartYear}
+                                      defaultValue="Select year"
+                                      required
+                                  >
+                                      {optionsNewStart.map((option) => (
+                                      <option key={option} value={option}>
+                                          {option}{" "}
+                                      </option>
+                                      ))}
+                                  </select>
+                              </td>
+                              <td>
+                                  <select
+                                      className="table-cell"
+                                      id="warehouses-end-year"
+                                      name="warehouses-end-year"
+                                      onChange={handleWarehousesEndYear}
+                                      value={warehousesEndYear}
+                                      defaultValue="Select year"
+                                      required
+                                  >
+                                      {optionsNewStart.map((option) => (
+                                      <option key={option} value={option}>
+                                          {option}{" "}
+                                      </option>
+                                      ))}
+                                  </select>
+                              </td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="warehouses-energy"
+                                  name="warehouses-energy"
+                                  min="0"
+                                  value={warehousesEnergy}
+                                  onChange={handleWarehousesEnergy}
+                                  required
+                                />
+                              </td>
                               </tr>
                             </tbody>
-                          </table>
+                      </table>
                     </form>
                 </div>
             </section>
