@@ -14,4 +14,10 @@
     width: 150px;
     text-align: left;
 }
+.buildings-policy-tbl th th{
+    width: 250px;
+}
+.buildings-policy-tbl .first-cell{
+    width: 100% !important;
+}
 
