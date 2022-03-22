@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button } from "./Button";
-import { U1planner } from "./U1planner";
+import { BuildingBaselineCharts } from "./BuildingBaselineCharts";
 import "../css/buildingbaseline.css";
 
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 
 import { RadialChart, DiscreteColorLegend } from "react-vis";
+
+/**
+ * BuildingsBaseline user input form
+ * @return {}
+ */
 
 const residentialLabels = [
   { title: "apartment", color: "#164059" },
@@ -57,7 +62,7 @@ export const BuildingBaseline = ({ country, year, population }) => {
   const [commercial, setCommercial] = useState({});
   const [nextU1Charts, setU1Charts] = useState(false);
 //   const [nextPage, setNextPage] = useState(false);
-  const [baseline, setBaseline] = useState({});
+  const [buildingsBaseline, setBuildingsBaseline] = useState({});
 
   // handlers for residential units
   // #region 
@@ -133,17 +138,17 @@ export const BuildingBaseline = ({ country, year, population }) => {
       residential,
       commercial
     };
-    setBaseline({ baseline });
+    setBuildingsBaseline({ baseline });
     // setNextPage(true);
     setU1Charts(true);
   };
 
   useEffect(() => {
     localStorage.setItem(
-      "baseline",
-      JSON.stringify(baseline)
+      "buildingsBaseline",
+      JSON.stringify(buildingsBaseline)
     );
-  }, [baseline]);
+  }, [buildingsBaseline]);
 
   if (nextU1Charts === false) {
     return (
@@ -493,13 +498,13 @@ export const BuildingBaseline = ({ country, year, population }) => {
     );
   } else if (nextU1Charts !== false) {
     return (
-      <U1planner
+      <BuildingBaselineCharts
         country={country}
         year={year}
         population={population}
         residential={residential}
         commercial={commercial}
-        baseline={baseline}
+        buildingsBaseline={buildingsBaseline}
       />
     );
   }
