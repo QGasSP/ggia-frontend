@@ -76,6 +76,8 @@ export const U1planner = ({
       });
   }, []);
 
+  
+
   if (nextNewResidentview === false && Object.keys(projections).length !== 0) {
     return (
       <article>
@@ -254,6 +256,14 @@ export const U1planner = ({
           {" "}
           <b>CO2e emissions per capita 2023-2050</b>
         </Divider>
+     {/*  
+        [{
+       Object.keys(projections.bus).map((key, i) => (
+        <p key={i}>
+          &#123;x: {key},y: {projections.bus[key]}&#125;,
+        </p>
+      ))
+       }] */}
 
         <div>
           <XYPlot width={1000} height={500} stackBy="y" xType="ordinal">
