@@ -14,7 +14,7 @@ import Divider from "@mui/material/Divider";
  */
 
  export const BuildingsNewUnits = ({
-    settlementDistribution,
+    // settlementDistribution,
     baseline,
     emission,
     projections,
@@ -366,10 +366,10 @@ import Divider from "@mui/material/Divider";
         "end_year": healthEndYear
       };
       const hospitality = {
-        "floor_area": hospitalitydArea,
-        "num_of_units": hospitalitydUnits,
-        "start_year": hospitalitydStartYear,
-        "end_year": hospitalitydEndYear
+        "floor_area": hospitalityArea,
+        "num_of_units": hospitalityUnits,
+        "start_year": hospitalityStartYear,
+        "end_year": hospitalityEndYear
       };
       const offices = {
         "floor_area": officesArea,
@@ -378,10 +378,10 @@ import Divider from "@mui/material/Divider";
         "end_year": officesEndYear
       };
       const industrial = {
-        "floor_area": industrialdArea,
-        "num_of_units": industrialdUnits,
-        "start_year": industrialdStartYear,
-        "end_year": industrialdEndYear
+        "floor_area": industrialArea,
+        "num_of_units": industrialUnits,
+        "start_year": industrialStartYear,
+        "end_year": industrialEndYear
       };
       const warehouses = {
         "floor_area": warehousesArea,
@@ -1238,8 +1238,8 @@ import Divider from "@mui/material/Divider";
       return (
         <U2planner
           baseline={baseline.baseline}
-          newDevelopment={newDevelopment}
-          settlementDistribution={settlementDistribution}
+          // newDevelopment={newDevelopment}
+          // settlementDistribution={settlementDistribution}
           emission={emission}
           projections={projections}
         />
@@ -1250,7 +1250,7 @@ import Divider from "@mui/material/Divider";
   BuildingsNewUnits.propTypes = {
     year: PropTypes.number.isRequired,
     baseline: PropTypes.object.isRequired,
-    settlementDistribution: PropTypes.object.isRequired,
+    // newResidents: PropTypes.object.isRequired,
     emission: PropTypes.object.isRequired,
     projections: PropTypes.object.isRequired,
   };
