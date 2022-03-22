@@ -31,7 +31,7 @@ export const ConsumptionBaseline = () => {
     { title: "S", color: "#76918e", strokeWidth: 13 },
   ];
 
-  const capitaEmissions= [
+  const capitaEmissions = [
     { title: "RF", color: "#3d58a3", strokeWidth: 13 },
     { title: "BL", color: "#ef7d00", strokeWidth: 13 },
     { title: "PN", color: "#52974c", strokeWidth: 13 },
@@ -193,10 +193,11 @@ export const ConsumptionBaseline = () => {
               {" "}
               <b>Annual household emissions country_name_update</b>
             </Divider>
-            <br />
-
             <div>
-              <LineLegendConsumption colorItems={hseHoldEmissions} orientation="horizontal"/>
+              <LineLegendConsumption
+                colorItems={hseHoldEmissions}
+                orientation="horizontal"
+              />
               <label className="y-axis-label">Emissions/ kG C02 eq</label>
               <XYPlot width={1000} height={500} stackBy="y" xType="ordinal">
                 <HorizontalGridLines />
@@ -239,8 +240,8 @@ export const ConsumptionBaseline = () => {
                     { x: 2050, y: 440 },
                   ]}
                 />
-                 <BarSeries
-                    /* h0 */
+                <BarSeries
+                  /* h0 */
                   color="#ef7d00"
                   data={[
                     { x: 2022, y: 1000 },
@@ -274,8 +275,8 @@ export const ConsumptionBaseline = () => {
                     { x: 2050, y: 440 },
                   ]}
                 />
-                 <BarSeries
-                 /*  tf */
+                <BarSeries
+                  /*  tf */
                   color="#95c11f"
                   data={[
                     { x: 2022, y: 1000 },
@@ -309,7 +310,7 @@ export const ConsumptionBaseline = () => {
                     { x: 2050, y: 440 },
                   ]}
                 />
-                 <BarSeries
+                <BarSeries
                   /*  t0 */
                   color="#ce143d"
                   data={[
@@ -344,8 +345,8 @@ export const ConsumptionBaseline = () => {
                     { x: 2050, y: 440 },
                   ]}
                 />
-                 <BarSeries
-                   /*  At */
+                <BarSeries
+                  /*  At */
                   color="#845f9e"
                   data={[
                     { x: 2022, y: 1000 },
@@ -379,8 +380,8 @@ export const ConsumptionBaseline = () => {
                     { x: 2050, y: 440 },
                   ]}
                 />
-                 <BarSeries
-                   /* F  */
+                <BarSeries
+                  /* F  */
                   color="#996e35"
                   data={[
                     { x: 2022, y: 1000 },
@@ -414,8 +415,8 @@ export const ConsumptionBaseline = () => {
                     { x: 2050, y: 440 },
                   ]}
                 />
-                 <BarSeries
-                   /* tG  */
+                <BarSeries
+                  /* tG  */
                   color="#e1719a"
                   data={[
                     { x: 2022, y: 1000 },
@@ -449,8 +450,8 @@ export const ConsumptionBaseline = () => {
                     { x: 2050, y: 440 },
                   ]}
                 />
-                 <BarSeries
-                   /* S */
+                <BarSeries
+                  /* S */
                   color="#76918e"
                   data={[
                     { x: 2022, y: 1000 },
@@ -493,9 +494,11 @@ export const ConsumptionBaseline = () => {
               {" "}
               <b>Per capita emissions by sector for country-name policies</b>
             </Divider>
-            <br />
 
-            <LineLegendConsumption colorItems={capitaEmissions} orientation="horizontal"/>
+            <LineLegendConsumption
+              colorItems={capitaEmissions}
+              orientation="horizontal"
+            />
             <XYPlot xType="ordinal" width={1000} height={400} xDistance={100}>
               <VerticalGridLines />
               <HorizontalGridLines />
@@ -509,18 +512,13 @@ export const ConsumptionBaseline = () => {
                 data={RfData}
                 color="#3d58a3"
               />
-              <BarSeries 
-              data={BlData} 
-              color="#ef7d00"/>
+              <BarSeries data={BlData} color="#ef7d00" />
               <BarSeries
-              color="#52974c"
+                color="#52974c"
                 className="vertical-bar-series-example"
                 data={PnData}
               />
-              <BarSeries 
-              color="#ce143d"
-              data={NaData} 
-              />
+              <BarSeries color="#ce143d" data={NaData} />
               {/*  <LabelSeries data={labelData} getLabel={(d) => d.x} /> */}
             </XYPlot>
             <div>
