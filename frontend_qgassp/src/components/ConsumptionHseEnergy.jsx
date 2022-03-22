@@ -31,7 +31,7 @@ export const ConsumptionHseEnergy = () => {
             <div className="div_transport">
               <label htmlFor="policy_year">
                 {" "}
-                What year is the policy implemented?
+                Policy implementation year
               </label>
               <select
                 className="select_policy_year"

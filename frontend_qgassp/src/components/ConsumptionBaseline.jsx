@@ -15,10 +15,29 @@ import {
 } from "react-vis";
 import { Label } from "reactstrap";
 import { ConsumptionHseEnergy } from "./ConsumptionHseEnergy";
+import { LineLegendConsumption } from "./LineLegendConsumption";
 
 export const ConsumptionBaseline = () => {
   const BarSeries = VerticalBarSeries;
   const [nextCBQuantification, setCbq] = useState(false);
+  const hseHoldEmissions = [
+    { title: "HE", color: "#3d58a3", strokeWidth: 13 },
+    { title: "HO", color: "#ef7d00", strokeWidth: 13 },
+    { title: "TF", color: "#95c11f", strokeWidth: 13 },
+    { title: "TO", color: "#ce143d", strokeWidth: 13 },
+    { title: "AT", color: "#845f9e", strokeWidth: 13 },
+    { title: "F", color: "#996e35", strokeWidth: 13 },
+    { title: "TG", color: "#e1719a", strokeWidth: 13 },
+    { title: "S", color: "#76918e", strokeWidth: 13 },
+  ];
+
+  const capitaEmissions= [
+    { title: "RF", color: "#3d58a3", strokeWidth: 13 },
+    { title: "BL", color: "#ef7d00", strokeWidth: 13 },
+    { title: "PN", color: "#52974c", strokeWidth: 13 },
+    { title: "NA", color: "#ce143d", strokeWidth: 13 },
+  ];
+
   const RfData = [
     { x: "Housing_energy", y: 10 },
     { x: "Housing_other", y: 5 },
@@ -177,6 +196,7 @@ export const ConsumptionBaseline = () => {
             <br />
 
             <div>
+              <LineLegendConsumption colorItems={hseHoldEmissions} orientation="horizontal"/>
               <label className="y-axis-label">Emissions/ kG C02 eq</label>
               <XYPlot width={1000} height={500} stackBy="y" xType="ordinal">
                 <HorizontalGridLines />
@@ -185,7 +205,253 @@ export const ConsumptionBaseline = () => {
                 <XAxis title="Year" />
                 <YAxis title="Emissions/ kG C02 eq" />
                 <BarSeries
-                  color="#8C0303"
+                  /* he */
+                  color="#3d58a3"
+                  data={[
+                    { x: 2022, y: 1000 },
+                    { x: 2023, y: 980 },
+                    { x: 2024, y: 960 },
+                    { x: 2025, y: 940 },
+                    { x: 2026, y: 920 },
+                    { x: 2027, y: 900 },
+                    { x: 2028, y: 880 },
+                    { x: 2029, y: 860 },
+                    { x: 2030, y: 840 },
+                    { x: 2031, y: 820 },
+                    { x: 2032, y: 800 },
+                    { x: 2033, y: 780 },
+                    { x: 2034, y: 760 },
+                    { x: 2035, y: 740 },
+                    { x: 2036, y: 720 },
+                    { x: 2037, y: 700 },
+                    { x: 2038, y: 680 },
+                    { x: 2039, y: 660 },
+                    { x: 2040, y: 640 },
+                    { x: 2041, y: 620 },
+                    { x: 2042, y: 600 },
+                    { x: 2043, y: 580 },
+                    { x: 2044, y: 560 },
+                    { x: 2045, y: 540 },
+                    { x: 2046, y: 520 },
+                    { x: 2047, y: 500 },
+                    { x: 2048, y: 480 },
+                    { x: 2049, y: 460 },
+                    { x: 2050, y: 440 },
+                  ]}
+                />
+                 <BarSeries
+                    /* h0 */
+                  color="#ef7d00"
+                  data={[
+                    { x: 2022, y: 1000 },
+                    { x: 2023, y: 980 },
+                    { x: 2024, y: 960 },
+                    { x: 2025, y: 940 },
+                    { x: 2026, y: 920 },
+                    { x: 2027, y: 900 },
+                    { x: 2028, y: 880 },
+                    { x: 2029, y: 860 },
+                    { x: 2030, y: 840 },
+                    { x: 2031, y: 820 },
+                    { x: 2032, y: 800 },
+                    { x: 2033, y: 780 },
+                    { x: 2034, y: 760 },
+                    { x: 2035, y: 740 },
+                    { x: 2036, y: 720 },
+                    { x: 2037, y: 700 },
+                    { x: 2038, y: 680 },
+                    { x: 2039, y: 660 },
+                    { x: 2040, y: 640 },
+                    { x: 2041, y: 620 },
+                    { x: 2042, y: 600 },
+                    { x: 2043, y: 580 },
+                    { x: 2044, y: 560 },
+                    { x: 2045, y: 540 },
+                    { x: 2046, y: 520 },
+                    { x: 2047, y: 500 },
+                    { x: 2048, y: 480 },
+                    { x: 2049, y: 460 },
+                    { x: 2050, y: 440 },
+                  ]}
+                />
+                 <BarSeries
+                 /*  tf */
+                  color="#95c11f"
+                  data={[
+                    { x: 2022, y: 1000 },
+                    { x: 2023, y: 980 },
+                    { x: 2024, y: 960 },
+                    { x: 2025, y: 940 },
+                    { x: 2026, y: 920 },
+                    { x: 2027, y: 900 },
+                    { x: 2028, y: 880 },
+                    { x: 2029, y: 860 },
+                    { x: 2030, y: 840 },
+                    { x: 2031, y: 820 },
+                    { x: 2032, y: 800 },
+                    { x: 2033, y: 780 },
+                    { x: 2034, y: 760 },
+                    { x: 2035, y: 740 },
+                    { x: 2036, y: 720 },
+                    { x: 2037, y: 700 },
+                    { x: 2038, y: 680 },
+                    { x: 2039, y: 660 },
+                    { x: 2040, y: 640 },
+                    { x: 2041, y: 620 },
+                    { x: 2042, y: 600 },
+                    { x: 2043, y: 580 },
+                    { x: 2044, y: 560 },
+                    { x: 2045, y: 540 },
+                    { x: 2046, y: 520 },
+                    { x: 2047, y: 500 },
+                    { x: 2048, y: 480 },
+                    { x: 2049, y: 460 },
+                    { x: 2050, y: 440 },
+                  ]}
+                />
+                 <BarSeries
+                  /*  t0 */
+                  color="#ce143d"
+                  data={[
+                    { x: 2022, y: 1000 },
+                    { x: 2023, y: 980 },
+                    { x: 2024, y: 960 },
+                    { x: 2025, y: 940 },
+                    { x: 2026, y: 920 },
+                    { x: 2027, y: 900 },
+                    { x: 2028, y: 880 },
+                    { x: 2029, y: 860 },
+                    { x: 2030, y: 840 },
+                    { x: 2031, y: 820 },
+                    { x: 2032, y: 800 },
+                    { x: 2033, y: 780 },
+                    { x: 2034, y: 760 },
+                    { x: 2035, y: 740 },
+                    { x: 2036, y: 720 },
+                    { x: 2037, y: 700 },
+                    { x: 2038, y: 680 },
+                    { x: 2039, y: 660 },
+                    { x: 2040, y: 640 },
+                    { x: 2041, y: 620 },
+                    { x: 2042, y: 600 },
+                    { x: 2043, y: 580 },
+                    { x: 2044, y: 560 },
+                    { x: 2045, y: 540 },
+                    { x: 2046, y: 520 },
+                    { x: 2047, y: 500 },
+                    { x: 2048, y: 480 },
+                    { x: 2049, y: 460 },
+                    { x: 2050, y: 440 },
+                  ]}
+                />
+                 <BarSeries
+                   /*  At */
+                  color="#845f9e"
+                  data={[
+                    { x: 2022, y: 1000 },
+                    { x: 2023, y: 980 },
+                    { x: 2024, y: 960 },
+                    { x: 2025, y: 940 },
+                    { x: 2026, y: 920 },
+                    { x: 2027, y: 900 },
+                    { x: 2028, y: 880 },
+                    { x: 2029, y: 860 },
+                    { x: 2030, y: 840 },
+                    { x: 2031, y: 820 },
+                    { x: 2032, y: 800 },
+                    { x: 2033, y: 780 },
+                    { x: 2034, y: 760 },
+                    { x: 2035, y: 740 },
+                    { x: 2036, y: 720 },
+                    { x: 2037, y: 700 },
+                    { x: 2038, y: 680 },
+                    { x: 2039, y: 660 },
+                    { x: 2040, y: 640 },
+                    { x: 2041, y: 620 },
+                    { x: 2042, y: 600 },
+                    { x: 2043, y: 580 },
+                    { x: 2044, y: 560 },
+                    { x: 2045, y: 540 },
+                    { x: 2046, y: 520 },
+                    { x: 2047, y: 500 },
+                    { x: 2048, y: 480 },
+                    { x: 2049, y: 460 },
+                    { x: 2050, y: 440 },
+                  ]}
+                />
+                 <BarSeries
+                   /* F  */
+                  color="#996e35"
+                  data={[
+                    { x: 2022, y: 1000 },
+                    { x: 2023, y: 980 },
+                    { x: 2024, y: 960 },
+                    { x: 2025, y: 940 },
+                    { x: 2026, y: 920 },
+                    { x: 2027, y: 900 },
+                    { x: 2028, y: 880 },
+                    { x: 2029, y: 860 },
+                    { x: 2030, y: 840 },
+                    { x: 2031, y: 820 },
+                    { x: 2032, y: 800 },
+                    { x: 2033, y: 780 },
+                    { x: 2034, y: 760 },
+                    { x: 2035, y: 740 },
+                    { x: 2036, y: 720 },
+                    { x: 2037, y: 700 },
+                    { x: 2038, y: 680 },
+                    { x: 2039, y: 660 },
+                    { x: 2040, y: 640 },
+                    { x: 2041, y: 620 },
+                    { x: 2042, y: 600 },
+                    { x: 2043, y: 580 },
+                    { x: 2044, y: 560 },
+                    { x: 2045, y: 540 },
+                    { x: 2046, y: 520 },
+                    { x: 2047, y: 500 },
+                    { x: 2048, y: 480 },
+                    { x: 2049, y: 460 },
+                    { x: 2050, y: 440 },
+                  ]}
+                />
+                 <BarSeries
+                   /* tG  */
+                  color="#e1719a"
+                  data={[
+                    { x: 2022, y: 1000 },
+                    { x: 2023, y: 980 },
+                    { x: 2024, y: 960 },
+                    { x: 2025, y: 940 },
+                    { x: 2026, y: 920 },
+                    { x: 2027, y: 900 },
+                    { x: 2028, y: 880 },
+                    { x: 2029, y: 860 },
+                    { x: 2030, y: 840 },
+                    { x: 2031, y: 820 },
+                    { x: 2032, y: 800 },
+                    { x: 2033, y: 780 },
+                    { x: 2034, y: 760 },
+                    { x: 2035, y: 740 },
+                    { x: 2036, y: 720 },
+                    { x: 2037, y: 700 },
+                    { x: 2038, y: 680 },
+                    { x: 2039, y: 660 },
+                    { x: 2040, y: 640 },
+                    { x: 2041, y: 620 },
+                    { x: 2042, y: 600 },
+                    { x: 2043, y: 580 },
+                    { x: 2044, y: 560 },
+                    { x: 2045, y: 540 },
+                    { x: 2046, y: 520 },
+                    { x: 2047, y: 500 },
+                    { x: 2048, y: 480 },
+                    { x: 2049, y: 460 },
+                    { x: 2050, y: 440 },
+                  ]}
+                />
+                 <BarSeries
+                   /* S */
+                  color="#76918e"
                   data={[
                     { x: 2022, y: 1000 },
                     { x: 2023, y: 980 },
@@ -229,6 +495,7 @@ export const ConsumptionBaseline = () => {
             </Divider>
             <br />
 
+            <LineLegendConsumption colorItems={capitaEmissions} orientation="horizontal"/>
             <XYPlot xType="ordinal" width={1000} height={400} xDistance={100}>
               <VerticalGridLines />
               <HorizontalGridLines />
@@ -240,13 +507,20 @@ export const ConsumptionBaseline = () => {
               <BarSeries
                 className="vertical-bar-series-example"
                 data={RfData}
+                color="#3d58a3"
               />
-              <BarSeries data={BlData} />
+              <BarSeries 
+              data={BlData} 
+              color="#ef7d00"/>
               <BarSeries
+              color="#52974c"
                 className="vertical-bar-series-example"
                 data={PnData}
               />
-              <BarSeries data={NaData} />
+              <BarSeries 
+              color="#ce143d"
+              data={NaData} 
+              />
               {/*  <LabelSeries data={labelData} getLabel={(d) => d.x} /> */}
             </XYPlot>
             <div>
