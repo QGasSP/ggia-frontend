@@ -115,9 +115,9 @@ import Divider from "@mui/material/Divider";
 
     const [newResidents, setNewResidents] = useState("");
 
-    const [newDevelopment, setNewDevelopment] = useState({});
+    const [newSettlementCommercial, setNewSettlementCommercial] = useState({});
+    const [newSettlementResidental, setNewSettlementResidental] = useState({});
     const [updateU2charts, setU2charts] = useState(false);
-    const [totalNewUnits, setTotalNewResidents] = useState(0.0);
   
     const optionsNewStart = [];
     for (let i = year; i < 2051; i++) optionsNewStart.push(i);
@@ -317,23 +317,94 @@ import Divider from "@mui/material/Divider";
     // #endregion
 
 
-    const handleNewResident = (e) => {
-      setNewResidents(Number(e.target.value));
-    };
+    // const handleNewResident = (e) => {
+    //   setNewResidents(Number(e.target.value));
+    // };
   
     const updateU2Planner = () => {
-      const newSettlementDistribution = {
-        
+
+      const apartment = {
+        "floor_area": apartmentArea,
+        "num_of_units": apartmentUnits,
+        "start_year": apartmentStartYear,
+        "end_year": apartmentEndYear
       };
-      const newDevelopmentU2 = {
-        
+      const terraced = {
+        "floor_area": terracedArea,
+        "num_of_units": terracedUnits,
+        "start_year": terracedStartYear,
+        "end_year": terracedEndYear
       };
-      // setNewDevelopment(newDevelopmentU2);
+      const semiDetached = {
+        "floor_area": semiDetachedArea,
+        "num_of_units": semiDetachedUnits,
+        "start_year": semiDetachedStartYear,
+        "end_year": semiDetachedEndYear
+      };
+      const detached = {
+        "floor_area": detachedArea,
+        "num_of_units": detachedUnits,
+        "start_year": detachedStartYear,
+        "end_year": detachedEndYear
+      };
+      const newSettlementResidentals = {
+        "apartment":apartment,
+        "terraced":terraced,
+        "semi_detached":semiDetached,
+        "detached":detached
+      };
+      const retail = {
+        "floor_area": retailArea,
+        "num_of_units": retailUnits,
+        "start_year": retailEndYear,
+        "end_year": retailEndYear
+      };
+      const health = {
+        "floor_area": healthArea,
+        "num_of_units": healthUnits,
+        "start_year": healthStartYear,
+        "end_year": healthEndYear
+      };
+      const hospitality = {
+        "floor_area": hospitalitydArea,
+        "num_of_units": hospitalitydUnits,
+        "start_year": hospitalitydStartYear,
+        "end_year": hospitalitydEndYear
+      };
+      const offices = {
+        "floor_area": officesArea,
+        "num_of_units": officesUnits,
+        "start_year": officesStartYear,
+        "end_year": officesEndYear
+      };
+      const industrial = {
+        "floor_area": industrialdArea,
+        "num_of_units": industrialdUnits,
+        "start_year": industrialdStartYear,
+        "end_year": industrialdEndYear
+      };
+      const warehouses = {
+        "floor_area": warehousesArea,
+        "num_of_units": warehousesUnits,
+        "start_year": warehousesStartYear,
+        "end_year": warehousesEndYear
+      };
+      const newSettlementCommercials = {
+        "retail":retail,
+        "health":health,
+        "hospitality":hospitality,
+        "offices":offices,
+        "industrial":industrial,
+        "warehouses":warehouses,
+      };
+
+      setNewSettlementResidental(newSettlementResidentals);
+      setNewSettlementCommercial(newSettlementCommercials);
       
-    //   setU2charts(true);
+      setU2charts(true);
     };
   
-    if (updateU2charts === false && totalNewUnits !== 100) {
+    if (updateU2charts === false) {
       return (
         <article>
           <div className="headerSettlement">
