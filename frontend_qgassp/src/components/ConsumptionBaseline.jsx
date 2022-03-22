@@ -120,7 +120,7 @@ export const ConsumptionBaseline = () => {
                   type="number"
                   min="0"
                   id="house_occupancy"
-                  placeholder="no default value yet"
+                  placeholder="0"
                   required
                 />
               </div>
