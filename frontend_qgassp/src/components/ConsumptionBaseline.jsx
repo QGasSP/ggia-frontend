@@ -1,8 +1,9 @@
-import React from "react";
+import React ,{useState}from "react";
 import "../css/startpage.css";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import "../css/u1planner.css";
+import { Button } from "./Button";
 import {
   XYPlot,
   VerticalGridLines,
@@ -13,9 +14,11 @@ import {
   /* LabelSeries, */
 } from "react-vis";
 import { Label } from "reactstrap";
+import { ConsumptionHseEnergy } from "./ConsumptionHseEnergy";
 
 export const ConsumptionBaseline = () => {
   const BarSeries = VerticalBarSeries;
+  const [nextCBQuantification, setCbq] = useState(false);
   const RfData = [
     { x: "Housing_energy", y: 10 },
     { x: "Housing_other", y: 5 },
@@ -70,6 +73,8 @@ export const ConsumptionBaseline = () => {
   })); */
 
   // const BarSeries = useCanvas ? VerticalBarSeriesCanvas : VerticalBarSeries;
+
+  if (nextCBQuantification === false) {
   return (
     <>
       <article>
@@ -81,6 +86,7 @@ export const ConsumptionBaseline = () => {
           </Divider>
         </div>
         <section>
+        <div className="settlementDiv">
           <div className="div_transport">
             <label>
               <b>Area type</b>
@@ -110,8 +116,9 @@ export const ConsumptionBaseline = () => {
               Average house occupancy level
             </label>
             <input
-              className="input_transport"
+              className="input_occupancy"
               type="number"
+              min="0"
               id="house_occupancy"
               placeholder="no default value yet"
               required
@@ -157,12 +164,14 @@ export const ConsumptionBaseline = () => {
               </optgroup>
             </select>
           </div>
+          </div>
 
           <br />
           <Divider textAlign="left" flexItem>
             {" "}
             <b>Annual household emissions country_name_update</b>
           </Divider>
+          <br/>
 
           <div>
             <label className="y-axis-label">Emissions/ kG C02 eq</label>
@@ -215,6 +224,7 @@ export const ConsumptionBaseline = () => {
             {" "}
             <b>Per capita emissions by sector for country-name policies</b>
           </Divider>
+          <br/>
 
           <XYPlot xType="ordinal" width={1000} height={400} xDistance={100}>
             <VerticalGridLines />
@@ -232,8 +242,23 @@ export const ConsumptionBaseline = () => {
          <div>
            <Label ><b>Total emissions for the area in year is ...</b></Label>
          </div>
+
+         <div className="nextCBQ">
+                <Button
+                  size="small"
+                  value="charts"
+                  onClick={() => setCbq(true)}
+                  label="Next &raquo;"
+                  primary
+                />
+              </div>
         </section>
       </article>
     </>
   );
+} else {
+  return (
+    <ConsumptionHseEnergy/>
+  );
+}
 };
