@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 function getStorageValue(key, defaultValue) {
   const saved = window.localStorage.getItem(key);
-  return saved !== null ? JSON.parse(saved) : defaultValue;
+  return saved !== null ? saved : defaultValue;
 }
 
 export const useStorageInt = (key, defaultValue) => {
@@ -23,7 +23,7 @@ export const useStorageString = (key, defaultValue) => {
   });
 
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(value));
+    localStorage.setItem(key, value);
   }, [key, value]);
 
   return [value, setValue];
