@@ -13,11 +13,11 @@ import Divider from "@mui/material/Divider";
  */
 
  export const BuildingsNewUnits = ({
-    // settlementDistribution,
     baseline,
-    emission,
-    projections,
+    emissionResidential,
+    emissionCommercial,
     year,
+    country
   }) => {
       year = 2022;
     // apartment
@@ -1237,8 +1237,10 @@ import Divider from "@mui/material/Divider";
       return (
         <BuldingsNewUnitsCharts
           baseline={baseline.baseline}
-          emission={emission}
-          projections={projections}
+          newSettlementCommercial={newSettlementCommercial}
+          newSettlementResidental={newSettlementResidental}
+          country={country}
+          year={year}
         />
       );
     }
@@ -1246,8 +1248,9 @@ import Divider from "@mui/material/Divider";
   
   BuildingsNewUnits.propTypes = {
     year: PropTypes.number.isRequired,
+    country: PropTypes.string.isRequired,
     baseline: PropTypes.object.isRequired,
-    emission: PropTypes.object.isRequired,
-    projections: PropTypes.object.isRequired,
+    emissionCommercial: PropTypes.object.isRequired,
+    emissionResidential: PropTypes.object.isRequired,
   };
   

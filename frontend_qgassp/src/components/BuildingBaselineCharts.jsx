@@ -28,10 +28,9 @@ import { Legend } from "./Legend";
  export const BuildingBaselineCharts = ({
    country,
    year,
-   population,
    residential,
    commercial,
-   baseline,
+   baseline
  }) => {
    const [errorBBC, setErrorBBC] = useState("");
    const [emissionResidential, setEmissionResidential] = useState("");
@@ -563,10 +562,10 @@ import { Legend } from "./Legend";
      return (
        <BuildingsNewUnits
          baseline={baseline}
-        //  settlementDistribution={settlementDistribution}
          emissionResidential={emissionResidential}
          emissionCommercial={emissionCommercial}
          year={year}
+         country={country}
        />
      );
    } else {
@@ -578,7 +577,6 @@ import { Legend } from "./Legend";
    residential: PropTypes.object.isRequired,
    commercial: PropTypes.object.isRequired,
    baseline: PropTypes.object.isRequired,
-   population: PropTypes.number.isRequired,
    year: PropTypes.number.isRequired,
    country: PropTypes.string.isRequired,
  };

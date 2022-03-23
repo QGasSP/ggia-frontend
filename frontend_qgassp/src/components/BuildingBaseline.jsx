@@ -28,7 +28,12 @@ const buildingLabels = [
     { title: "industrial", color: "ffcc00" },
     { title: "warehouses", color: "#008f75" },
 ];
-export const BuildingBaseline = ({ country, year, population }) => {
+export const BuildingBaseline = () => {
+
+  // const year = parseInt(localStorage.getItem("year"));
+  const year = 2022;
+  const country = 'Latvia';
+  // const country = localStorage.getItem("country");
 
   // residential units
   // #region 
@@ -501,7 +506,6 @@ export const BuildingBaseline = ({ country, year, population }) => {
       <BuildingBaselineCharts
         country={country}
         year={year}
-        population={population}
         residential={residential}
         commercial={commercial}
         buildingsBaseline={buildingsBaseline}
@@ -510,8 +514,3 @@ export const BuildingBaseline = ({ country, year, population }) => {
   }
 };
 
-BuildingBaseline.propTypes = {
-  population: PropTypes.number.isRequired,
-  year: PropTypes.number.isRequired,
-  country: PropTypes.string.isRequired,
-};

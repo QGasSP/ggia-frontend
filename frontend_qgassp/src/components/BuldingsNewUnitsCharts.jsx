@@ -14,7 +14,7 @@ import {
   RadialChart,
 } from "react-vis";
 
-import { BuildingsNewUnits } from "./BuildingsNewUnits";
+import { BuildingsPolicies } from "./BuildingsPolicies";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import { Legend } from "./Legend";
@@ -26,11 +26,11 @@ import { Legend } from "./Legend";
  */
  const BarSeries = VerticalBarSeries;
  export const BuldingsNewUnitsCharts = ({
-   country,
-   year,
-   residential,
-   commercial,
    baseline,
+   newSettlementCommercial,
+   newSettlementResidential,
+   country,
+   year
  }) => {
    year = 2022;
    const [errorBBC, setErrorBBC] = useState("");
@@ -561,9 +561,8 @@ import { Legend } from "./Legend";
      );
    } else if (nextNewUnitsView === true) {
      return (
-       <BuildingsNewUnits
+       <BuildingsPolicies
          baseline={baseline}
-        //  settlementDistribution={settlementDistribution}
          emissionResidential={emissionResidential}
          emissionCommercial={emissionCommercial}
          year={year}
@@ -575,10 +574,9 @@ import { Legend } from "./Legend";
  };
  
  BuldingsNewUnitsCharts.propTypes = {
-   residential: PropTypes.object.isRequired,
-   commercial: PropTypes.object.isRequired,
+   newSettlementResidential: PropTypes.object.isRequired,
+   newSettlementCommercial: PropTypes.object.isRequired,
    baseline: PropTypes.object.isRequired,
-   population: PropTypes.number.isRequired,
    year: PropTypes.number.isRequired,
    country: PropTypes.string.isRequired,
  };
