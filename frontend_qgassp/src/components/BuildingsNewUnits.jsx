@@ -1,4 +1,3 @@
-// BuildingsNewUnits
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Button } from "./Button";
@@ -1236,10 +1235,8 @@ import Divider from "@mui/material/Divider";
       );
     } else {
       return (
-        <U2planner
+        <BuldingsNewUnitsCharts
           baseline={baseline.baseline}
-          // newDevelopment={newDevelopment}
-          // settlementDistribution={settlementDistribution}
           emission={emission}
           projections={projections}
         />
@@ -1250,7 +1247,6 @@ import Divider from "@mui/material/Divider";
   BuildingsNewUnits.propTypes = {
     year: PropTypes.number.isRequired,
     baseline: PropTypes.object.isRequired,
-    // newResidents: PropTypes.object.isRequired,
     emission: PropTypes.object.isRequired,
     projections: PropTypes.object.isRequired,
   };

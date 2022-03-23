@@ -289,7 +289,7 @@ export const BuildingBaseline = ({ country, year, population }) => {
                       />
                     )}
                   </div>
-                  {(
+                  {residentialTotal > 0 &&(
                     <DiscreteColorLegend
                       items={residentialLabels}
                       orientation="horizontal"
@@ -468,7 +468,7 @@ export const BuildingBaseline = ({ country, year, population }) => {
                         />
                     )}
                     </div>
-                    {(
+                    {commTotal > 0 && (
                     <DiscreteColorLegend
                         items={buildingLabels}
                         orientation="horizontal"
