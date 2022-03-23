@@ -16,7 +16,7 @@ import {
 import { Label } from "reactstrap";
 import { ConsumptionHseEnergy } from "./ConsumptionHseEnergy";
 import { LineLegendConsumption } from "./LineLegendConsumption";
-import { CbBreadcrumb } from "./CbBreadcrumb";
+/* import { CbBreadcrumb } from "./CbBreadcrumb"; */
 
 export const ConsumptionBaseline = () => {
   const BarSeries = VerticalBarSeries;
@@ -98,9 +98,9 @@ export const ConsumptionBaseline = () => {
     return (
       <>
         <br />
-        <div className="settlementDiv">
+       {/*  <div className="settlementDiv">
           <CbBreadcrumb />
-        </div>
+        </div> */}
         <article>
           <br />
           <div>
