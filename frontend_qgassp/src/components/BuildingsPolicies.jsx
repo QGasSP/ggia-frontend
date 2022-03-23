@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Button } from "./Button";
 import "../css/u2planner.css";
 import "../css/newbuildings.css";
-import { U2planner } from "./U2planner";
+import { BuildingsPoliciesCharts } from "./BuildingsPoliciesCharts";
 import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 
