@@ -64,7 +64,7 @@ export const ConsumptionHseEnergy = () => {
 
             <div className="div_transport">
               <label htmlFor="new_residence_building" className="settle_label">
-                New residential buildings (gross SQM)
+                Size of new residential buildings (gross SQM)
               </label>
               <input
                 className="input_occupancy"

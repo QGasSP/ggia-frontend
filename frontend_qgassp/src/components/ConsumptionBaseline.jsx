@@ -16,6 +16,7 @@ import {
 import { Label } from "reactstrap";
 import { ConsumptionHseEnergy } from "./ConsumptionHseEnergy";
 import { LineLegendConsumption } from "./LineLegendConsumption";
+import { CbBreadcrumb } from "./CbBreadcrumb";
 
 export const ConsumptionBaseline = () => {
   const BarSeries = VerticalBarSeries;
@@ -96,6 +97,10 @@ export const ConsumptionBaseline = () => {
   if (nextCBQuantification === false) {
     return (
       <>
+        <br />
+        <div className="settlementDiv">
+          <CbBreadcrumb />
+        </div>
         <article>
           <br />
           <div>
@@ -194,10 +199,12 @@ export const ConsumptionBaseline = () => {
               <b>Annual household emissions country_name_update</b>
             </Divider>
             <div>
-              <LineLegendConsumption
-                colorItems={hseHoldEmissions}
-                orientation="horizontal"
-              />
+              <div className="settlementDiv">
+                <LineLegendConsumption
+                  colorItems={hseHoldEmissions}
+                  orientation="horizontal"
+                />
+              </div>
               <label className="y-axis-label">Emissions/ kG C02 eq</label>
               <XYPlot width={1000} height={500} stackBy="y" xType="ordinal">
                 <HorizontalGridLines />
@@ -494,17 +501,18 @@ export const ConsumptionBaseline = () => {
               {" "}
               <b>Per capita emissions by sector for country-name policies</b>
             </Divider>
-
-            <LineLegendConsumption
-              colorItems={capitaEmissions}
-              orientation="horizontal"
-            />
+            <div className="settlementDiv">
+              <LineLegendConsumption
+                colorItems={capitaEmissions}
+                orientation="horizontal"
+              />
+            </div>
             <XYPlot xType="ordinal" width={1000} height={400} xDistance={100}>
               <VerticalGridLines />
               <HorizontalGridLines />
               <XAxis
-                title="Emissions sector"
-                /* style={{ fontWeight: 800 }} */
+              /* title="Emissions sector" */
+              /* style={{ fontWeight: 800 }} */
               />
               <YAxis title="Emissions/ kG C02 eq" />
               <BarSeries
