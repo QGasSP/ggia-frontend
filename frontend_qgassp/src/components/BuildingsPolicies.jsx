@@ -1244,7 +1244,7 @@ import Divider from "@mui/material/Divider";
       );
     } else {
       return (
-        <U2planner
+        <BuildingsPoliciesCharts
           // baseline={baseline.baseline}
           // newDevelopment={newDevelopment}
           // settlementDistribution={settlementDistribution}

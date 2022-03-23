@@ -28,11 +28,11 @@ import { Legend } from "./Legend";
  export const BuldingsNewUnitsCharts = ({
    country,
    year,
-   population,
    residential,
    commercial,
    baseline,
  }) => {
+   year = 2022;
    const [errorBBC, setErrorBBC] = useState("");
    const [emissionResidential, setEmissionResidential] = useState("");
    const [emissionCommercial, setEmissionCommercial] = useState("");

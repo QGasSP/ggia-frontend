@@ -28,7 +28,6 @@ import { Legend } from "./Legend";
  export const BuildingsPoliciesCharts = ({
    country,
    year,
-   population,
    residential,
    commercial,
    baseline,
