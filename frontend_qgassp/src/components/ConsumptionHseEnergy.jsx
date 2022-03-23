@@ -196,11 +196,13 @@ export const ConsumptionHseEnergy = () => {
               {" "}
               <b>Sustainable heating </b>
             </Divider>
+            <br/>
             <div className="div_transport">
               <label htmlFor="source_breakdown">
-                <b>Select to view heating sources in the area?</b>
+                <b>Select to view breakdown of heating sources in the area</b>
               </label>
               <input
+              className="checkbox_cb"
                 type="checkbox"
                 id="source_breakdown"
                 checked={checked}

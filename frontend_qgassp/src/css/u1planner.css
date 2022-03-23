@@ -202,3 +202,9 @@ input[type="number"] {
   display: block;
   color: red;
 }
+
+.checkbox_cb{
+  height: 1.5rem;
+  width: 1.5rem;
+  color: blue !important;
+}
