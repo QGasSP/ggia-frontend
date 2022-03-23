@@ -76,7 +76,7 @@ select {
   .tbl {
     width: 100%;
   }
-  .luc_row{
+  .luc_row {
     align-items: center;
   }
 }
@@ -214,7 +214,7 @@ section div {
   margin-left: 30px;
 }
 
-.btn-luc-submit{
+.btn-luc-submit {
   background-color: #003399;
   border: 1px #003399 solid;
   color: #fff;
@@ -222,9 +222,9 @@ section div {
   font-family: sans-serif;
   box-sizing: border-box;
   cursor: pointer;
-  transition: .7s;
+  transition: 0.7s;
 }
-.btn-luc-reset{
+.btn-luc-reset {
   background-color: #606c85;
   border: 1px #606c85 solid;
   color: #fff;
@@ -232,12 +232,12 @@ section div {
   font-family: sans-serif;
   box-sizing: border-box;
   cursor: pointer;
-  transition: .7s;
+  transition: 0.7s;
 }
-.btn-luc-submit:hover{
+.btn-luc-submit:hover {
   background-color: #003399b0;
 }
 
-.btn-luc-reset:hover{
+.btn-luc-reset:hover {
   background-color: #606c85b0;
 }

@@ -57,7 +57,7 @@ export const TabModules = () => {
           </button>
           <button
             className={toggleState === 5 ? "tabs active-tabs" : "tabs"}
-            onClick={() => toggleTab(5)} 
+            onClick={() => toggleTab(5)}
             id="consumption"
           >
             Consumption-based
@@ -66,14 +66,14 @@ export const TabModules = () => {
           </button>
           <button
             className={toggleState === 6 ? "tabs active-tabs" : "tabs"}
-            onClick={() => toggleTab(6)} 
+            onClick={() => toggleTab(6)}
             id="local_data"
           >
             Create local data-set
           </button>
           <button
             className={toggleState === 7 ? "tabs active-tabs" : "tabs"}
-           /*  onClick={() => toggleTab(7)} */
+            /*  onClick={() => toggleTab(7)} */
             onClick={openGuide}
             id="user_guide"
           >
@@ -88,7 +88,7 @@ export const TabModules = () => {
           {toggleState == 2 && <StartPage />}
           {toggleState == 3 && <LandUseChangeTableForm />}
           {toggleState == 4 && <BuildingBaseline />}
-          {toggleState == 5 && <ConsumptionBaseline />} 
+          {toggleState == 5 && <ConsumptionBaseline />}
           {toggleState == 6 && <StartPage />}
         </>
       </div>

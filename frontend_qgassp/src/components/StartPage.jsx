@@ -8,9 +8,9 @@ import axios from "axios";
 import { useStorageInt, useStorageString } from "../reducers/useStorage";
 
 export const StartPage = () => {
-  const [country, setCountry] = useStorageString("country","");
-  const [year, setYear] = useStorageInt("year",0);
-  const [population, setPopulation] = useStorageInt("population",0);
+  const [country, setCountry] = useStorageString("country", "");
+  const [year, setYear] = useStorageInt("year", 0);
+  const [population, setPopulation] = useStorageInt("population", 0);
   const [next, setNext] = useState(false);
   const [euCountries, setEuCountries] = useState([]);
   const [errorStartPage, setCountriesError] = useState("");

@@ -14,5 +14,3 @@ ConsumptionStart.args = {
   primary: true,
   label: "ConsumptionBaseline",
 };
-
-

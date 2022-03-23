@@ -13,14 +13,14 @@ import { U3policies } from "./U3policies";
  */
 
 export const U3planner = ({ emission, baseline, newDevelopment }) => {
-  const [policyQuantification, setPolicyQuantification] = useState("");
+  const [policyQuantification, setPolicyQuantification] = useState({});
   const [yearStart, setYearStart] = useState(0);
   const [yearFinish, setYearFinish] = useState(0);
   const [nextU3policies, setU3policies] = useState(false);
   const [errorU3, setU3Error] = useState("");
   const [modalPassShares, setModalPassShares] = useState("");
   const [shares, setShares] = useState("");
-  const [expectedPassChange, setExpectedPassChange] = useState(0);
+  const [expectedPassChange, setExpectedPassChange] = useState("");
   const [affectedPassArea, setAffectedPassArea] = useState(0);
   const [expectedFreChange, setExpectedFreChange] = useState(0);
   const [passTransPolicyTarget, setPassTransPolicyTarget] = useState(0);
@@ -33,11 +33,11 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
   // const [modalPassShares, setModalPassShares] = useState("");
   const [modalFreShares, setModalFreightShares] = useState("");
   const [modalSplitFre, setModalSplitFre] = useState("");
-  const [buses, setBus] = useState(0);
-  const [metros, setMetro] = useState(0);
-  const [trams, setTram] = useState(0);
-  const [trains, setTrain] = useState(0);
-  const [cars, setCar] = useState(0);
+  const [bus, setBus] = useState(0);
+  const [metro, setMetro] = useState(0);
+  const [tram, setTram] = useState(0);
+  const [train, setTrain] = useState(0);
+  const [car, setCar] = useState(0);
   const [affectedPopulation, setAffectedPopulation] = useState(0);
   const [railTransport, setRailTransport] = useState(0);
   const [waterwaysTransport, setWaterwaysTransport] = useState(0);
@@ -63,8 +63,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
   const [renewables, setRenewables] = useState(0);
   const [electricityTransTypes, setElectricityTransTypes] = useState("");
   const [electricityTrans, setElectricityTrans] = useState("");
-
-  // const [policyQuant, setPolicyQuantification] = useState("");
+  // const [policyQuant, setPolicyQuant] = useState({});
 
   const optionsNew = [];
   for (let i = 2022; i < 2051; i++) optionsNew.push(i);
@@ -79,6 +78,11 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
     e.preventDefault();
     setExpectedPassChange(Number(e.target.value));
   };
+  const handleExpectedChange = (e) => {
+    e.preventDefault();
+    setExpectedChange(Number(e.target.value));
+  };
+
   const handleAffectedPassArea = (e) => {
     e.preventDefault();
     setAffectedPassArea(Number(e.target.value));
@@ -211,16 +215,17 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
     setFreightTransport(freightTrans);
 
     const modalPassShares = {
-      buses,
-      metros,
-      trams,
-      trains,
-      cars,
+      bus,
+      metro,
+      tram,
+      train,
+      car,
     };
     setModalPassShares(modalPassShares);
 
     const modalSplitPass = {
-      shares,
+      // shares,
+      modalPassShares,
       affectedPopulation,
       yearStart,
       yearFinish,
@@ -235,7 +240,8 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
     setModalFreightShares(modalFreShares);
 
     const modalSplitFre = {
-      shares,
+      // shares,
+      modalFreShares,
       yearStart,
       yearFinish,
     };
@@ -251,7 +257,8 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
     setFuelSharesBusTypes(fuelSharesBusTypes);
 
     const fuelSharesBus = {
-      types,
+      // types,
+      fuelSharesBusTypes,
       yearStart,
       yearFinish,
       affectedArea,
@@ -276,7 +283,8 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
     setFuelSharesCarTypes(fuelSharesCarTypes);
 
     const fuelSharesCar = {
-      types,
+      // types,
+      fuelSharesCarTypes,
       yearStart,
       yearFinish,
       affectedArea,
@@ -406,7 +414,8 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                     step="0.1"
                     // id="pass_expected_change"
                     placeholder="0"
-                    onChange={handleExpectedPassChange}
+                    onChange={handleExpectedChange}
+                    // onChange={handleExpectedPassChange}
                     required
                   />
                 </div>
@@ -421,7 +430,8 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                   placeholder="0"
                   min="0"
                   max="100"
-                  onChange={handleAffectedPassArea}
+                  onChange={handleAffectedArea}
+                  // onChange={handleAffectedPassArea}
                   required
                 />
               </div>
@@ -655,7 +665,8 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                   placeholder="0"
                   min="0"
                   max="100"
-                  onChange={handleAffectedPassArea}
+                  onChange={handleAffectedPopulation}
+                  // onChange={handleAffectedPassArea}
                   required
                 />
               </div>
@@ -680,7 +691,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                   placeholder="0"
                   min="0"
                   max="100"
-                  onChange={handleFreTransPolicyTarget}
+                  onChange={handleRailTransport}
                   required
                 />
               </div>
@@ -694,7 +705,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                   placeholder="0"
                   min="0"
                   max="100"
-                  onChange={handleFreTransPolicyTarget}
+                  onChange={handleWaterwaysTransport}
                   required
                 />
               </div>
@@ -709,12 +720,12 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
               </label>
               <label></label>
               <label></label>
-            </div> */}
+              </div> */}
               <div>
                 <label>Policy period</label>
                 <div className="divspace">
                   <select
-                     className="select_freight"
+                    className="select_freight"
                     id="start_year"
                     name="start_year"
                     onChange={handleStartYear}
@@ -731,7 +742,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                 </div>
                 <div className="divspace">
                   <select
-                     className="select_freight"
+                    className="select_freight"
                     id="finish_year"
                     name="finish_year"
                     onChange={handleYearFinish}
@@ -816,12 +827,30 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
               </div>
 
               <div className="column_u3">
-                <div> <label>Without policy</label></div>
-                <div> <label></label></div>
-                <div> <label></label></div>
-                <div> <label></label></div>
-                <div> <label></label></div>
-                <div> <label></label></div>
+                <div>
+                  {" "}
+                  <label>Without policy</label>
+                </div>
+                <div>
+                  {" "}
+                  <label></label>
+                </div>
+                <div>
+                  {" "}
+                  <label></label>
+                </div>
+                <div>
+                  {" "}
+                  <label></label>
+                </div>
+                <div>
+                  {" "}
+                  <label></label>
+                </div>
+                <div>
+                  {" "}
+                  <label></label>
+                </div>
               </div>
 
               <div className="column_u3">
@@ -831,8 +860,8 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                 <div>
                   {" "}
                   <input
-                  className="input_u3_planner "
-                  /*   id="inputspace" */
+                    className="input_u3_planner "
+                    /*   id="inputspace" */
                     type="number"
                     step="0.1"
                     // id="fre_policy_target"
@@ -861,7 +890,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                 <div>
                   {" "}
                   <input
-                   className="input_u3_planner "
+                    className="input_u3_planner "
                     type="number"
                     step="0.1"
                     id="bus_fuel_policy_target"
@@ -874,7 +903,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                 </div>
                 <div>
                   <input
-                   className="input_u3_planner "
+                    className="input_u3_planner "
                     type="number"
                     step="0.1"
                     id="bus_fuel_policy_target"
@@ -887,7 +916,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                 </div>
                 <div>
                   <input
-                   className="input_u3_planner "
+                    className="input_u3_planner "
                     type="number"
                     step="0.1"
                     id="bus_fuel_policy_target"
@@ -902,7 +931,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
               <div className="column_u3">
                 <label>% of the area affeccted</label>
                 <input
-                 className="input_u3_planner "
+                  className="input_u3_planner "
                   type="number"
                   step="0.1"
                   placeholder="0"
@@ -913,7 +942,6 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
             </div>
             {/* fuel-bus transport section end */}
 
-         
             <br />
             <div>
               <label>
@@ -926,7 +954,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                 <label>Liquified Petroleum Gas (LPG)</label>
                 <label></label>
                 <input
-                 className="input_fuel_shares"
+                  className="input_fuel_shares"
                   type="number"
                   step="0.1"
                   // id="bus_fuel_policy_target"
@@ -936,13 +964,13 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                   onChange={handleLpg}
                   required
                 />
-                <input  className="input_fuel_shares"/>
+                <input className="input_fuel_shares" />
               </div>
               <div>
                 <label>Natural Gas (CNG)</label>
                 <label></label>
                 <input
-                 className="input_fuel_shares"
+                  className="input_fuel_shares"
                   type="number"
                   step="0.1"
                   id="car_fuel_policy_target"
@@ -1057,7 +1085,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                 <label>Bi-fuel</label>
                 <label></label>
                 <input
-                 className="input_fuel_shares"
+                  className="input_fuel_shares"
                   type="number"
                   step="0.1"
                   id="car_fuel_policy_target"
@@ -1175,62 +1203,63 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
             </div>
 
             <br />
-           {/*  electricity for transport start */}
-           <div className="row_u3">
-              <div className="column_u3" >
-              <div><label>
-                <b>Electricity for transport</b>
-              </label></div>
-              <div><label>Increase in the share of renewables</label></div>
-            
-              <div>
-                <label>Policy period</label>
-                <div className="divspace">
-                  <select
-                    className="select_u3"
-                    id="start_year"
-                    name="start_year"
-                    onChange={handleStartYear}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select start year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
+            {/*  electricity for transport start */}
+            <div className="row_u3">
+              <div className="column_u3">
+                <div>
+                  <label>
+                    <b>Electricity for transport</b>
+                  </label>
                 </div>
-                <div className="divspace">
-                  <select
-                    className="select_u3"
-                    id="finish_year"
-                    name="finish_year"
-                    onChange={handleYearFinish}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select end year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
+                <div>
+                  <label>Increase in the share of renewables</label>
                 </div>
-              </div>
-              
-              </div>
-              <div className="column_u3" >
-                <label>gCO2e/kWh without policy</label>
-           
+
+                <div>
+                  <label>Policy period</label>
+                  <div className="divspace">
+                    <select
+                      className="select_u3"
+                      id="start_year"
+                      name="start_year"
+                      onChange={handleStartYear}
+                      defaultValue="2022"
+                      required
+                    >
+                      <option value="DefaultOption">Select start year</option>
+                      {optionsNew.map((option) => (
+                        <option key={option} value={option}>
+                          {option}{" "}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="divspace">
+                    <select
+                      className="select_u3"
+                      id="finish_year"
+                      name="finish_year"
+                      onChange={handleYearFinish}
+                      defaultValue="2022"
+                      required
+                    >
+                      <option value="DefaultOption">Select end year</option>
+                      {optionsNew.map((option) => (
+                        <option key={option} value={option}>
+                          {option}{" "}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
               </div>
               <div className="column_u3">
-                
+                <label>gCO2e/kWh without policy</label>
+              </div>
+              <div className="column_u3">
                 <label>Policy target %</label>
                 <input
-                 className="input_u3_planner"
+                  className="input_u3_planner"
                   type="number"
                   step="0.1"
                   // id="car_fuel_policy_target"
@@ -1238,7 +1267,6 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                   onChange={handleRenewables}
                   required
                 />
-              
               </div>
               <div className="column_u3">
                 <label>% of the area affected</label>
@@ -1255,9 +1283,8 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                 />
               </div>
             </div>
-          {/*  electricity for transport end */}
+            {/*  electricity for transport end */}
 
-    
             <br />
             <div className="nextU3Button">
               <Button

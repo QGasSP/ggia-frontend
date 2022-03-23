@@ -14,5 +14,3 @@ ConsumptionEnergy.args = {
   primary: true,
   label: "ConsumptionHseEnergy",
 };
-
-

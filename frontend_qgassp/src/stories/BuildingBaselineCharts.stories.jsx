@@ -1,5 +1,5 @@
 import React from "react";
-import {BuildingBaselineCharts} from "../components/BuildingBaselineCharts";
+import { BuildingBaselineCharts } from "../components/BuildingBaselineCharts";
 
 export default {
   title: '"QgasSP/BuildingBaselineCharts',

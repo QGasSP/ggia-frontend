@@ -77,8 +77,6 @@ export const ConsumptionHseEnergy = () => {
             </div>
           </div>
 
-
-
           <div className="nextCBQ">
             <Button
               size="small"

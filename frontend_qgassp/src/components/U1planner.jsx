@@ -76,8 +76,6 @@ export const U1planner = ({
       });
   }, []);
 
-  
-
   if (nextNewResidentview === false && Object.keys(projections).length !== 0) {
     return (
       <article>
@@ -250,13 +248,13 @@ export const U1planner = ({
             <Chip label="Projections" />
           </Divider>
         </div>
-        <br/>
+        <br />
 
         <Divider textAlign="left" flexItem>
           {" "}
           <b>CO2e emissions per capita 2023-2050</b>
         </Divider>
-     {/*  
+        {/*  
         [{
        Object.keys(projections.bus).map((key, i) => (
         <p key={i}>
@@ -571,7 +569,7 @@ export const U1planner = ({
     );
   } else {
     return <></>;
-  };
+  }
 };
 
 U1planner.propTypes = {

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button } from "./Button";
-import "../css/u3policies.css";
+// import "../css/u3policies.css";
+import "../css/u3planner.css";
 import axios from "axios";
 import {
   XYPlot,
@@ -39,14 +40,12 @@ export const U3policies = ({
   fuelSharesCarTypes,
   fuelSharesCar,
   electricityTransTypes,
-  electricityTrans
+  electricityTrans,
 }) => {
-
-
   // if (updateU2charts === false && totalNewResidents !== 100) {
   return (
     <article>
-        <br/>
+      <br />
       <div className="headerU3policies">
         <Divider textAlign="left" flexItem>
           {" "}
@@ -54,103 +53,160 @@ export const U3policies = ({
         </Divider>
       </div>
 
-      <section>
-      
+      <section className="section-u3">
         <div>{policyQuantification}</div>
         <div>
           <form>
-            <div>
-              <label>
-                <b>Passenger mobility (resident and non-residential)</b>
-              </label>
-              <label>expected change %</label>
-              <label></label>
-              <label>% of the area affected</label>
-              <div>
-                <label>change in mobility %</label>
-                <label>{passengerMob.expectedPassChange}</label>
-                {/* <label>{policyQuant.passengerMob.expectedChange}</label> */}
-                <label></label>
-                <label>{passengerMob.affectedPassArea}</label>
-              </div>
-              <div>
-                <label>Policy period</label>
-                <label> {passengerMob.yearStart}</label>
-                <label> {passengerMob.yearFinish}</label>
-              </div>
-            </div>
-            <br />
-            <div>
-              <label>
-                <b>Freight transport</b>
-              </label>
-              <label>expected change %</label>
-              {/* <label empty for spacing></label>
-              <label>% of the area affected</label> */}
-              <div>
-                <label>change in mobility %</label>
-                <label>
-                  {freightTrans.expectedChange}
-                </label>
-                {/* <label empty for spacing></label>
-                <label>% of the area affected goes here</label> */}
-              </div>
-              <div>
-                <label>Policy period</label>
-                <label> {freightTrans.yearStart}</label>
-                <label> {freightTrans.yearFinish}</label>
-              </div>
-            </div>
-            <br />
-            <div>
-              <label>
-                <b>Modal split/Passenger transport</b>
-              </label>
-              <label>without policy</label>
-              <label>policy target %</label>
-              <label>% of the population affected</label>
-              <div>
-                <label>Share for bus</label>
-                <label>{emission.bus}</label>
-                <label> {modalPassShares.bus}</label>
-                <label>
+            <div className="row_u3">
+              {/*  passenger mobility section start */}
+              <div className="column_u3">
+                <div>
                   {" "}
-                  {modalSplitPass.affectedPopulation}
-                </label>
+                  <label>
+                    <b>Passenger mobility (Residential and Non)</b>
+                  </label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Change in mobility %</label>
+                </div>
+                <div>
+                  <label>Policy period</label>
+                  <label> {passengerMob.yearStart}</label>
+                  <label> {passengerMob.yearFinish}</label>
+                </div>
               </div>
-              <div>
-                <label>Share for metro</label>
-                <label>{emission.metro}</label>
-                <label> {modalPassShares.metro}</label>
+              <div className="column_u3">
+                <div>
+                  {" "}
+                  <label>Expected change %</label>
+                </div>
+                <label>{passengerMob.expectedChange}</label>
               </div>
-              <div>
-                <label>Share for tram</label>
-                <label>{emission.tram}</label>
-                <label> {modalPassShares.tram}</label>
+              <div className="column_u3">
+                {/* <label className="space_holder"></label> */}
+                <label>% of the area affected</label>
+                <label>{passengerMob.affectedArea}</label>
               </div>
-              <div>
-                <label>Share for train</label>
-                <label>{emission.train}</label>
-                <label> {modalPassShares.train}</label>
+              <div className="column_u3"></div>
+            </div>
+            {/*  passenger mobility section end*/}
+
+            {/*  freight transport section */}
+            <div className="row_u3">
+              <div className="column_u3">
+                <div>
+                  <label>
+                    <b>Freight transport</b>
+                  </label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Change in freight transport %</label>
+                </div>
+                <div>
+                  <div>
+                    {" "}
+                    <label>Policy period</label>
+                  </div>
+                  <label> {freightTrans.yearStart}</label>
+                  <label> {freightTrans.yearFinish}</label>
+                </div>
               </div>
-              <div>
-                <label>Car passenger</label>
-                <label>{emission.car}</label>
-                <label> {modalPassShares.car}</label>
+              <div className="column_u3">
+                <label>Expected change %</label>
+                <label>{freightTrans.expectedChange}</label>
               </div>
-              <div>
-                <label>
-                  <b>Total</b>
-                </label>
-                <label></label>
-                <label></label>
+              <div className="column_u3"></div>
+              <div className="column_u3"></div>
+            </div>
+            {/*  freight transport section end */}
+
+            <br />
+
+            {/* modal split-passenger transport section start */}
+
+            <div className="row_u3">
+              <div className="column_u3">
+                <div>
+                  <label>
+                    <b>Modal split/Passenger transport</b>
+                  </label>
+                </div>
+                <div>
+                  <label>Share for bus</label>
+                </div>
+                <div>
+                  <label>Share for metro</label>
+                </div>
+                <div>
+                  <label>Share for tram</label>
+                </div>
+                <div>
+                  <label>Share for train</label>
+                </div>
+                <div>
+                  <label>CarPassenger</label>
+                </div>
+                <div>
+                  <label>Policy period</label>
+                  <label> {modalSplitPass.yearStart}</label>
+                  <label> {modalSplitPass.yearFinish}</label>
+                </div>
               </div>
-              <div>
-                <label>Policy period</label>
-                <label> {modalSplitPass.yearStart}</label>
-                <label> {modalSplitPass.yearFinish}</label>
+
+              <div className="column_u3">
+                <div>
+                  {" "}
+                  <label>Without policy</label>
+                </div>
+                <div>
+                  <label>{emission.bus}</label>
+                </div>
+                <div>
+                  <label>{emission.metro}</label>
+                </div>
+                <div>
+                  <label>{emission.tram}</label>
+                </div>
+                <div>
+                  <label>{emission.train}</label>
+                </div>
+                <div>
+                  <label>{emission.car}</label>
+                </div>
+              </div>
+
+              <div className="column_u3">
+                <label>Policy target %</label>
+                {/*  bus */}
+                <label> {modalSplitPass.modalPassShares.bus}</label>
+                {/*  metro */}
+                <div>
+                  {" "}
+                  <label> {modalSplitPass.modalPassShares.metro}</label>
+                </div>
+                {/*   tram */}
+                <div>
+                  {" "}
+                  <label> {modalSplitPass.modalPassShares.tram}</label>
+                </div>
+                {/*  train */}
+                <div>
+                  {" "}
+                  <label> {modalSplitPass.modalPassShares.train}</label>
+                </div>
+                {/*    car */}
+                <div>
+                  <label> {modalSplitPass.modalPassShares.car}</label>
+                </div>
+              </div>
+              <div className="column_u3">
+                <label>% of the area affeccted</label>
+                <label> {modalSplitPass.affectedPopulation}</label>
               </div>
             </div>
+            {/* modal split-passenger transport section end */}
             {/* <div className="column"> */}
             <div id="divspace">
               <RadialChart
@@ -220,56 +276,61 @@ export const U3policies = ({
                 colorType="literal"
               />
             </div>
-
-            {/* <DiscreteColorLegend
-                items={settlementLabels}
-                orientation="horizontal"
-                strokeWidth="40"
-              /> */}
-            {/* </div> */}
             <br />
-            <div>
-              <label>
-                <b>Modal split/Freight transport</b>
-              </label>
-              <label>withouth policy</label>
-              <label>policy target %</label>
-              {/* <label>% of the area affeccted</label> */}
-              <div>
-                <label>Share for rail</label>
-                <label>{emission.rail_transport}</label>
-                <label>
+
+            <div className="row_u3">
+              <div className="column_u3">
+                <div>
+                  <label>
+                    <b>Modal split/Freight transport</b>
+                  </label>
+                </div>
+                <div>
+                  <label>Share for rail</label>
+                </div>
+                <div>
+                  <label>Share for inland waterways</label>
+                </div>
+                <div>
+                  <label>Share for road freight</label>
+                </div>
+                <div>
+                  <label>Policy period</label>
+                  <label> {modalSplitFre.yearStart}</label>
+                  <label> {modalSplitFre.yearFinish}</label>
+                </div>
+              </div>
+
+              <div className="column_u3">
+                <div>
                   {" "}
-                  {modalFreShares.railTransport}
-                </label>
+                  <label>Without policy</label>
+                </div>
+                <div>
+                  <label>{emission.rail_transport}</label>
+                </div>
+                <div>
+                  <label>{emission.waterways_transport}</label>
+                </div>
+                <div>
+                  <label>{emission.road_transport}</label>
+                </div>
               </div>
-              <div>
-                <label>Share for inland waterways</label>
-                <label>{emission.waterways_transport}</label>
-                <label>
+
+              <div className="column_u3">
+                <label>Policy target %</label>
+                {/*  rail */}
+                <label> {modalSplitFre.modalFreShares.railTransport}</label>
+                {/*  water */}
+                <div>
                   {" "}
-                  {modalFreShares.waterwaysTransport}
-                </label>
-              </div>
-              <div>
-                <label>Share for road freight</label>
-                <label>{emission.road_transport}</label>
-                <label>
+                  <label> {modalSplitFre.modalFreShares.waterwaysTransport}</label>
+                </div>
+                {/*   road */}
+                <div>
                   {" "}
-                  {modalFreShares.roadTransport}
-                </label>
-              </div>
-              <div>
-                <label>
-                  <b>Total</b>
-                </label>
-                {/* <label>{emission.total}</label> */}
-                <label></label>
-              </div>
-              <div>
-                <label>Policy period</label>
-                <label> {modalSplitFre.yearStart}</label>
-                <label> {modalSplitFre.yearFinish}</label>
+                  <label> {modalSplitFre.modalFreShares.roadTransport}</label>
+                </div>
               </div>
             </div>
             <div id="divspace">
@@ -341,52 +402,97 @@ export const U3policies = ({
               />
             </div>
             <br />
-            <div>
-              <label>
-                <b>Shares of fuel types/Bus transport</b>
-              </label>
-              <label>withouth policy</label>
-              <label>policy target %</label>
-              <label>% of the area affeccted</label>
-              <div>
-                <label>Petroleum products</label>
-                <label></label>
-                <label>{fuelSharesBusTypes.petrol}</label>
+            {/* fuel-bus transport section start*/}
+            <div className="row_u3">
+              <div className="column_u3">
+                <div>
+                  {" "}
+                  <label>
+                    <b>Shares of fuel types/Bus transport</b>{" "}
+                  </label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Petroleum products</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Liquified Petroleum Gas (LPG)</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Natural Gas (CNG)</label>
+                </div>
+                <div>
+                  <label>Electricty</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Diesel</label>
+                </div>
+                <div>
+                  <label>Policy period</label>
+                  <label>{fuelSharesBus.yearStart}</label>
+                  <label>{fuelSharesBus.yearFinish}</label>
+                </div>
+              </div>
+
+              <div className="column_u3">
+                <div>
+                  {" "}
+                  <label>Without policy</label>
+                </div>
+                <div>
+                  {" "}
+                  <label></label>
+                </div>
+                <div>
+                  {" "}
+                  <label></label>
+                </div>
+                <div>
+                  {" "}
+                  <label></label>
+                </div>
+                <div>
+                  {" "}
+                  <label></label>
+                </div>
+                <div>
+                  {" "}
+                  <label></label>
+                </div>
+              </div>
+
+              <div className="column_u3">
+                <div>
+                  <label>Policy target %</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>{fuelSharesBus.fuelSharesBusTypes.petrol}</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>{fuelSharesBus.fuelSharesBusTypes.lpg}</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>{fuelSharesBus.fuelSharesBusTypes.cng}</label>
+                </div>
+                <div>
+                  <label>{fuelSharesBus.fuelSharesBusTypes.electricity}</label>
+                </div>
+                <div>
+                  <label>{fuelSharesBus.fuelSharesBusTypes.diesel}</label>
+                </div>
+              </div>
+              <div className="column_u3">
+                <label>% of the area affeccted</label>
                 <label>{fuelSharesBus.affectedArea}</label>
               </div>
-              <div>
-                <label>Liquified Petroleum Gas (LPG)</label>
-                <label></label>
-                <label>{fuelSharesBusTypes.lpg}</label>
-              </div>
-              <div>
-                <label>Natural Gas (CNG)</label>
-                <label></label>
-                <label>{fuelSharesBusTypes.cng}</label>
-              </div>
-              <div>
-                <label>Electricty</label>
-                <label></label>
-                <label>{fuelSharesBusTypes.electricity}</label>
-              </div>
-              <div>
-                <label>Diesel</label>
-                <label></label>
-                <label>{fuelSharesBusTypes.diesel}</label>
-              </div>
-              <div>
-                <label>
-                  <b>Total</b>
-                </label>
-                <label></label>
-                <label></label>
-              </div>
-              <div>
-                <label>Policy period</label>
-                <label>{fuelSharesBus.yearStart}</label>
-                <label>{fuelSharesBus.yearFinish}</label>
-              </div>
             </div>
+            {/* fuel-bus transport section end */}
             <div id="divspace">
               <RadialChart
                 type="piechart"
@@ -456,103 +562,191 @@ export const U3policies = ({
               />
             </div>
             <br />
-            <div>
-              <label>
-                <b>Shares of fuel types/Cars</b>
-              </label>
-              <label>withouth policy</label>
-              <label>policy target %</label>
-              <label>% of the area affeccted</label>
-              <div>
-                <label>Liquified Petroleum Gas (LPG)</label>
-                <label></label>
-                <label>{fuelSharesCarTypes.lpg}</label>
+
+            {/* fuel-car section start*/}
+            <div className="row_u3">
+              <div className="column_u3">
+                <div>
+                  {" "}
+                  <label>
+                    <b>Shares of fuel types/Cars</b>
+                  </label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Liquified Petroleum Gas (LPG)</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Natural Gas (CNG)</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Hybrid electric-petrol</label>
+                </div>
+                <div>
+                  <label>Plug-in hybrid petrol-electric PHEV</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Hydrogen and fuel cells</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Bioethanol</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Bio-diesel</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Bi-fuel</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Other (unknown)</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Electricity BEV</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Petrol, according to country selection</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Diesel, according to country selection</label>
+                </div>
+                <div>
+                  <label>Policy period</label>
+                  <label>{fuelSharesCar.yearStart}</label>
+                  <label>{fuelSharesCar.yearFinish}</label>
+                </div>
+              </div>
+              <div className="column_u3">
+                <div>
+                  {" "}
+                  <label>Without policy</label>
+                </div>
+                <div>
+                  {" "}
+                  <label></label>
+                </div>
+                <div>
+                  {" "}
+                  <label></label>
+                </div>
+                <div>
+                  {" "}
+                  <label></label>
+                </div>
+                <div>
+                  {" "}
+                  <label></label>
+                </div>
+                <div>
+                  {" "}
+                  <label></label>
+                </div>
+                <div>
+                  {" "}
+                  <label></label>
+                </div>
+                <div>
+                  {" "}
+                  <label></label>
+                </div>
+                <div>
+                  {" "}
+                  <label></label>
+                </div>
+                <div>
+                  {" "}
+                  <label></label>
+                </div>
+                <div>
+                  {" "}
+                  <label></label>
+                </div>
+                <div>
+                  {" "}
+                  <label></label>
+                </div>
+                <div>
+                  {" "}
+                  <label></label>
+                </div>
+                <div>
+                  {" "}
+                  <label></label>
+                </div>
+              </div>
+
+              <div className="column_u3">
+                <div>
+                  <label>Policy target %</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>{fuelSharesCarTypes.lpg}</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>{fuelSharesCarTypes.cng}</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>{fuelSharesCarTypes.ngv}</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>{fuelSharesCarTypes.hep}</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>{fuelSharesCarTypes.phev}</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>{fuelSharesCarTypes.hydrogenfuel}</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>{fuelSharesCarTypes.bioethanol}</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>{fuelSharesCarTypes.biodiesel}</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>{fuelSharesCarTypes.bifuel}</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>{fuelSharesCarTypes.other}</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>{fuelSharesCarTypes.electricity}</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>{fuelSharesCarTypes.petrol}</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>{fuelSharesCarTypes.diesel}</label>
+                </div>
+              </div>
+              <div className="column_u3">
+                <label>% of the area affeccted</label>
                 <label>{fuelSharesCar.affectedArea}</label>
               </div>
-              <div>
-                <label>Natural Gas (CNG)</label>
-                <label></label>
-                <label>{fuelSharesCarTypes.cng}</label>
-              </div>
-              <div>
-                <label>Alternative Energy/biomethane NGV</label>
-                <label></label>
-                <label>{fuelSharesCarTypes.ngv}</label>
-              </div>
-              <div>
-                <label>Hybrid electric-petrol</label>
-                <label></label>
-                <label>{fuelSharesCarTypes.hep}</label>
-              </div>
-              <div>
-                <label>Plug-in hybrid petrol-electric PHEV</label>
-                <label></label>
-                <label>{fuelSharesCarTypes.phev}</label>
-              </div>
-              {/* <div>
-                <label>Hybrid diesel-electric</label>
-                <label></label>
-                <label>policy target %</label>
-              </div>
-              <div>
-                <label>Plug-in hybrid diesel-electric PHEV</label>
-                <label></label>
-                <label>policy target %</label>
-              </div> */}
-              <div>
-                <label>Hydrogen and fuel cells</label>
-                <label></label>
-                <label>{fuelSharesCarTypes.hydrogenfuel}</label>
-              </div>
-              <div>
-                <label>Bioethanol</label>
-                <label></label>
-                <label>{fuelSharesCarTypes.bioethanol}</label>
-              </div>
-              <div>
-                <label>Bio-diesel</label>
-                <label></label>
-                <label>{fuelSharesCarTypes.biodiesel}</label>
-              </div>
-              <div>
-                <label>Bi-fuel</label>
-                <label></label>
-                <label>{fuelSharesCarTypes.bifuel}</label>
-              </div>
-              <div>
-                <label>Other (unknown)</label>
-                <label></label>
-                <label>{fuelSharesCarTypes.other}</label>
-              </div>
-              <div>
-                <label>Electricity BEV</label>
-                <label></label>
-                <label>{fuelSharesCarTypes.electricity}</label>
-              </div>
-              <div>
-                <label>Petrol, according to country selection</label>
-                <label></label>
-                <label>{fuelSharesCarTypes.petrol}</label>
-              </div>
-              <div>
-                <label>Diesel, according to country selection</label>
-                <label></label>
-                <label>{fuelSharesCarTypes.diesel}</label>
-              </div>
-              <div>
-                <label>
-                  <b>Total</b>
-                </label>
-                <label></label>
-                <label></label>
-              </div>
-              <div>
-                <label>Policy period</label>
-                <label>{fuelSharesCar.yearStart}</label>
-                <label>{fuelSharesCar.yearFinish}</label>
-              </div>
             </div>
-
+            {/* fuel-car section end */}
             <div id="divspace">
               <RadialChart
                 type="piechart"
@@ -622,25 +816,38 @@ export const U3policies = ({
               />
             </div>
             <br />
-            <div>
-              <label>
-                <b>Electricity for transport</b>
-              </label>
-              <label>gCO2e/kWh without policy</label>
-              <label>policy target %</label>
-              <label>% of the area affected</label>
-              <div>
-                <label>Increase in the share of renewables</label>
+
+            {/*  electricity for transport start */}
+            <div className="row_u3">
+              <div className="column_u3">
+                <div>
+                  <label>
+                    <b>Electricity for transport</b>
+                  </label>
+                </div>
+                <div>
+                  <label>Increase in the share of renewables</label>
+                </div>
+
+                <div>
+                  <label>Policy period</label>
+                  <label>{electricityTrans.yearStart}</label>
+                  <label>{electricityTrans.yearFinish}</label>
+                </div>
+              </div>
+              <div className="column_u3">
                 <label>gCO2e/kWh without policy</label>
+              </div>
+              <div className="column_u3">
+                <label>Policy target %</label>
                 <label>{electricityTransTypes.renewables}</label>
+              </div>
+              <div className="column_u3">
+                <label>% of the area affected</label>
                 <label>{electricityTrans.affectedArea}</label>
               </div>
-              <div>
-                <label>Policy period</label>
-                <label>{electricityTrans.yearStart}</label>
-                <label>{electricityTrans.yearFinish}</label>
-              </div>
             </div>
+            {/*  electricity for transport end */}
             <div id="divspace">
               <RadialChart
                 type="piechart"
@@ -1289,8 +1496,7 @@ export const U3policies = ({
               </XYPlot>
             </div>
             <br />
-            <div>
-            </div>
+            <div></div>
           </form>
         </div>
       </section>

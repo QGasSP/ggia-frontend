@@ -1,23 +1,24 @@
-.buildings-tbl{
-    width: 100%;
+.buildings-tbl {
+  width: 100%;
 }
 
-.buildings-tbl .table-cell{
-    width: 90% !important;
+.buildings-tbl .table-cell {
+  width: 90% !important;
 }
 
-.buildings-tbl th, .buildings-tbl td{
-    width: 150px;
-    text-align: center;
+.buildings-tbl th,
+.buildings-tbl td {
+  width: 150px;
+  text-align: center;
 }
-.buildings-tbl th.row-title, .buildings-tbl td.row-title{
-    width: 150px;
-    text-align: left;
+.buildings-tbl th.row-title,
+.buildings-tbl td.row-title {
+  width: 150px;
+  text-align: left;
 }
-.buildings-policy-tbl th th{
-    width: 250px;
+.buildings-policy-tbl th th {
+  width: 250px;
 }
-.buildings-policy-tbl .first-cell{
-    width: 100% !important;
+.buildings-policy-tbl .first-cell {
+  width: 100% !important;
 }
-

@@ -1,5 +1,5 @@
 import React from "react";
-import {BuildingsPolicies} from "../components/BuildingsPolicies";
+import { BuildingsPolicies } from "../components/BuildingsPolicies";
 
 export default {
   title: '"QgasSP/BuildingsPolicies',

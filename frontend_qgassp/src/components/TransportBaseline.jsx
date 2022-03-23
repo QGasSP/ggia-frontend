@@ -297,7 +297,9 @@ export const TransportBaseline = ({ country, year, population }) => {
                   <optgroup label="Select transport intensity">
                     <option value="non-existent">non-existent: 0</option>
                     <option value="low">low: 0.3</option>
-                    <option value="medium_intensity">medium-intensity: 2.0</option>
+                    <option value="medium_intensity">
+                      medium-intensity: 2.0
+                    </option>
                     <option value="high_intensity">high-intensity: 2.50</option>
                   </optgroup>
                 </select>
@@ -314,9 +316,11 @@ export const TransportBaseline = ({ country, year, population }) => {
                 >
                   <option value="DefaultOption">Select intensity</option>
                   <optgroup label="Select road transport intensity">
-                  <option value="non-existent">non-existent: 0</option>
+                    <option value="non-existent">non-existent: 0</option>
                     <option value="low">low: 0.3</option>
-                    <option value="medium_intensity">medium-intensity: 2.0</option>
+                    <option value="medium_intensity">
+                      medium-intensity: 2.0
+                    </option>
                     <option value="high_intensity">high-intensity: 2.50</option>
                   </optgroup>
                 </select>
@@ -332,9 +336,11 @@ export const TransportBaseline = ({ country, year, population }) => {
                 >
                   <option value="DefaultOption">Select intensity</option>
                   <optgroup label="Select road transport intensity">
-                  <option value="non-existent">non-existent: 0</option>
+                    <option value="non-existent">non-existent: 0</option>
                     <option value="low">low: 0.3</option>
-                    <option value="medium_intensity">medium-intensity: 2.0</option>
+                    <option value="medium_intensity">
+                      medium-intensity: 2.0
+                    </option>
                     <option value="high_intensity">high-intensity: 2.50</option>
                   </optgroup>
                 </select>
@@ -353,16 +359,18 @@ export const TransportBaseline = ({ country, year, population }) => {
                 >
                   <option value="DefaultOption">Select intensity</option>
                   <optgroup label="Select road transport intensity">
-                  <option value="non-existent">non-existent: 0</option>
+                    <option value="non-existent">non-existent: 0</option>
                     <option value="low">low: 0.3</option>
-                    <option value="medium_intensity">medium-intensity: 2.0</option>
+                    <option value="medium_intensity">
+                      medium-intensity: 2.0
+                    </option>
                     <option value="high_intensity">high-intensity: 2.50</option>
                   </optgroup>
                 </select>
               </div>
             </div>
 
-            {total == 100.00 && (
+            {total == 100.0 && (
               <div className="nextU2Button">
                 <Button
                   size="small"

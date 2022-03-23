@@ -6,7 +6,7 @@ import "../css/landusechange.css";
 import axios from "axios";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
-import { CircularProgress } from '@mui/material';
+import { CircularProgress } from "@mui/material";
 
 /**
  * LUC inputs table from to
@@ -14,9 +14,8 @@ import { CircularProgress } from '@mui/material';
  */
 
 export const LandUseChangeTableForm = () => {
-
-    const year = parseInt(localStorage.getItem("year"));
-    const country = localStorage.getItem("country");
+  const year = parseInt(localStorage.getItem("year"));
+  const country = localStorage.getItem("country");
   // to Forest vars
   // #region
   const [cropToForest, setCropToForest] = useState(0);
@@ -275,10 +274,10 @@ export const LandUseChangeTableForm = () => {
   const [lucBarChart, setLUCBarChart] = useState(false);
   const [landUseChangeResponse, setLandUseChangeResponse] = useState("");
   const [nextBtnStyles, setNextBtnStyle] = useState({
-    display: 'none',
+    display: "none",
   });
   const [loadingStyles, setLoadingStyle] = useState({
-    display: 'none',
+    display: "none",
   });
   const [errorLuc, setLucError] = useState("");
   const options = [];
@@ -420,23 +419,23 @@ export const LandUseChangeTableForm = () => {
     const landUseChange = {
       totalArea: totalArea,
       mineral: mineral,
-      organic: organic
+      organic: organic,
     };
     const rawData = {
-        country: country,
-        year: year,
-        landUseChange,
-        policyStartYear
+      country: country,
+      year: year,
+      landUseChange,
+      policyStartYear,
     };
     const headers = {
       "Access-Control-Allow-Origin": "*",
       "Content-type": "application/json",
     };
     setNextBtnStyle({
-      display: 'none'
+      display: "none",
     });
     setLoadingStyle({
-      display: 'block'
+      display: "block",
     });
     axios
       .post(
@@ -444,15 +443,15 @@ export const LandUseChangeTableForm = () => {
         rawData,
         headers
       )
-      .then((response) => setResponse(response.data))   
-      .then( () => {
+      .then((response) => setResponse(response.data))
+      .then(() => {
         setNextBtnStyle({
-          display: 'block'
+          display: "block",
         });
         setLoadingStyle({
-          display: 'none'
+          display: "none",
         });
-      })   
+      })
       .catch((error) => {
         setLucError({ errorMessage: error.message });
         // eslint-disable-next-line no-console
@@ -1185,176 +1184,176 @@ export const LandUseChangeTableForm = () => {
   };
   // #endregion
 
- const handleResetValues = (e) => {
-  e.preventDefault();
-  // crop
-  // #region 
-  setCropToForest(0);
-  setCropToForestMineral(0);
-  setCropToForestOrganic(0);
-  setCropToForestYear(year);
+  const handleResetValues = (e) => {
+    e.preventDefault();
+    // crop
+    // #region
+    setCropToForest(0);
+    setCropToForestMineral(0);
+    setCropToForestOrganic(0);
+    setCropToForestYear(year);
 
-  setCropToGrass(0);
-  setCropToGrassMineral(0);
-  setCropToGrassOrganic(0);
-  setCropToGrassYear(year);
+    setCropToGrass(0);
+    setCropToGrassMineral(0);
+    setCropToGrassOrganic(0);
+    setCropToGrassYear(year);
 
-  setCropToOther(0);
-  setCropToOtherMineral(0);
-  setCropToOtherOrganic(0);
-  setCropToOtherYear(year);
+    setCropToOther(0);
+    setCropToOtherMineral(0);
+    setCropToOtherOrganic(0);
+    setCropToOtherYear(year);
 
-  setCropToSettlements(0);
-  setCropToSettlementsMineral(0);
-  setCropToSettlementsOrganic(0);
-  setCropToSettlementsYear(year);
+    setCropToSettlements(0);
+    setCropToSettlementsMineral(0);
+    setCropToSettlementsOrganic(0);
+    setCropToSettlementsYear(year);
 
-  setCropToWet(0);
-  setCropToWetMineral(0);
-  setCropToWetOrganic(0);
-  setCropToWetYear(year);
-  // #endregion
-  
-  // grass
-  // #region 
-  setGrassToCrop(0);
-  setGrassToCropMineral(0);
-  setGrassToCropOrganic(0);
-  setGrassToCropYear(year);
+    setCropToWet(0);
+    setCropToWetMineral(0);
+    setCropToWetOrganic(0);
+    setCropToWetYear(year);
+    // #endregion
 
-  setGrassToForest(0);
-  setGrassToForestMineral(0);
-  setGrassToForestOrganic(0);
-  setGrassToForestYear(year);
+    // grass
+    // #region
+    setGrassToCrop(0);
+    setGrassToCropMineral(0);
+    setGrassToCropOrganic(0);
+    setGrassToCropYear(year);
 
-  setGrassToOther(0);
-  setGrassToOtherMineral(0);
-  setGrassToOtherOrganic(0);
-  setGrassToOtherYear(year);
+    setGrassToForest(0);
+    setGrassToForestMineral(0);
+    setGrassToForestOrganic(0);
+    setGrassToForestYear(year);
 
-  setGrassToSettlements(0);
-  setGrassToSettlementsMineral(0);
-  setGrassToSettlementsOrganic(0);
-  setGrassToSettlementsYear(year);
+    setGrassToOther(0);
+    setGrassToOtherMineral(0);
+    setGrassToOtherOrganic(0);
+    setGrassToOtherYear(year);
 
-  setGrassToWet(0);
-  setGrassToWetMineral(0);
-  setGrassToWetOrganic(0);
-  setGrassToWetYear(year);
-  // #endregion
+    setGrassToSettlements(0);
+    setGrassToSettlementsMineral(0);
+    setGrassToSettlementsOrganic(0);
+    setGrassToSettlementsYear(year);
 
-  // forest
-  // #region 
-  setForestToCrop(0);
-  setForestToCropMineral(0);
-  setForestToCropOrganic(0);
-  setForestToCropYear(year);
+    setGrassToWet(0);
+    setGrassToWetMineral(0);
+    setGrassToWetOrganic(0);
+    setGrassToWetYear(year);
+    // #endregion
 
-  setForestToGrass(0);
-  setForestToGrassMineral(0);
-  setForestToGrassOrganic(0);
-  setForestToGrassYear(year);
+    // forest
+    // #region
+    setForestToCrop(0);
+    setForestToCropMineral(0);
+    setForestToCropOrganic(0);
+    setForestToCropYear(year);
 
-  setForestToSettlements(0);
-  setForestToSettlementsMineral(0);
-  setForestToSettlementsOrganic(0);
-  setForestToSettlementsYear(year);
+    setForestToGrass(0);
+    setForestToGrassMineral(0);
+    setForestToGrassOrganic(0);
+    setForestToGrassYear(year);
 
-  setForestToOther(0);
-  setForestToOtherMineral(0);
-  setForestToOtherOrganic(0);
-  setForestToOtherYear(year);
+    setForestToSettlements(0);
+    setForestToSettlementsMineral(0);
+    setForestToSettlementsOrganic(0);
+    setForestToSettlementsYear(year);
 
-  setForestToWetland(0);
-  setForestToWetlandMineral(0);
-  setForestToWetlandOrganic(0);
-  setForestToWetlandYear(year);
-  // #endregion
+    setForestToOther(0);
+    setForestToOtherMineral(0);
+    setForestToOtherOrganic(0);
+    setForestToOtherYear(year);
 
-  // other
-  // #region
-  setOtherToCrop(0);
-  setOtherToCropMineral(0);
-  setOtherToCropOrganic(0);
-  setOtherToCropYear(year); 
+    setForestToWetland(0);
+    setForestToWetlandMineral(0);
+    setForestToWetlandOrganic(0);
+    setForestToWetlandYear(year);
+    // #endregion
 
-  setOtherToGrass(0);
-  setOtherToGrassMineral(0);
-  setOtherToGrassOrganic(0);
-  setOtherToGrassYear(year);
+    // other
+    // #region
+    setOtherToCrop(0);
+    setOtherToCropMineral(0);
+    setOtherToCropOrganic(0);
+    setOtherToCropYear(year);
 
-  setOtherToForest(0);
-  setOtherToForestMineral(0);
-  setOtherToForestOrganic(0);
-  setOtherToForestYear(year);
+    setOtherToGrass(0);
+    setOtherToGrassMineral(0);
+    setOtherToGrassOrganic(0);
+    setOtherToGrassYear(year);
 
-  setOtherToSettlements(0);
-  setOtherToSettlementsMineral(0);
-  setOtherToSettlementsOrganic(0);
-  setOtherToSettlementsYear(year);
+    setOtherToForest(0);
+    setOtherToForestMineral(0);
+    setOtherToForestOrganic(0);
+    setOtherToForestYear(year);
 
-  setLandConvertedToPeat(0);
-  setLandConvertedToPeatMineral(0);
-  setLandConvertedToPeatOrganic(0);
-  setLandConvertedToPeatYear(year); 
+    setOtherToSettlements(0);
+    setOtherToSettlementsMineral(0);
+    setOtherToSettlementsOrganic(0);
+    setOtherToSettlementsYear(year);
 
-  setPeatLandRestore(0);
-  setPeatLandRestoreMineral(0);
-  setPeatLandRestoreOrganic(0);
-  setPeatLandRestoreYear(year);
-  // #endregion
+    setLandConvertedToPeat(0);
+    setLandConvertedToPeatMineral(0);
+    setLandConvertedToPeatOrganic(0);
+    setLandConvertedToPeatYear(year);
 
-  // settlements
-  // #region
-  setSettlementsToCrop(0);
-  setSettlementsToCropMineral(0);
-  setSettlementsToCropOrganic(0);
-  setSettlementsToCropYear(year); 
+    setPeatLandRestore(0);
+    setPeatLandRestoreMineral(0);
+    setPeatLandRestoreOrganic(0);
+    setPeatLandRestoreYear(year);
+    // #endregion
 
-  setSettlementsToGrass(0);
-  setSettlementsToGrassMineral(0);
-  setSettlementsToGrassOrganic(0);
-  setSettlementsToGrassYear(year);
+    // settlements
+    // #region
+    setSettlementsToCrop(0);
+    setSettlementsToCropMineral(0);
+    setSettlementsToCropOrganic(0);
+    setSettlementsToCropYear(year);
 
-  setSettlementsToForest(0);
-  setSettlementsToForestMineral(0);
-  setSettlementsToForestOrganic(0);
-  setSettlementsToForestYear(year);
+    setSettlementsToGrass(0);
+    setSettlementsToGrassMineral(0);
+    setSettlementsToGrassOrganic(0);
+    setSettlementsToGrassYear(year);
 
-  setSettlementsToOther(0);
-  setSettlementsToOtherMineral(0);
-  setSettlementsToOtherOrganic(0);
-  setSettlementsToOtherYear(year);
-  // #endregion
+    setSettlementsToForest(0);
+    setSettlementsToForestMineral(0);
+    setSettlementsToForestOrganic(0);
+    setSettlementsToForestYear(year);
 
-  // wetlands
-  // #region
-  setWetToCrop(0);
-  setWetToCropMineral(0);
-  setWetToCropOrganic(0);
-  setWetToCropYear(year);
+    setSettlementsToOther(0);
+    setSettlementsToOtherMineral(0);
+    setSettlementsToOtherOrganic(0);
+    setSettlementsToOtherYear(year);
+    // #endregion
 
-  setWetToGrass(0);
-  setWetToGrassMineral(0);
-  setWetToGrassOrganic(0);
-  setWetToGrassYear(year);
+    // wetlands
+    // #region
+    setWetToCrop(0);
+    setWetToCropMineral(0);
+    setWetToCropOrganic(0);
+    setWetToCropYear(year);
 
-  setWetToForest(0);
-  setWetToForestMineral(0);
-  setWetToForestOrganic(0);
-  setWetToForestYear(year);
+    setWetToGrass(0);
+    setWetToGrassMineral(0);
+    setWetToGrassOrganic(0);
+    setWetToGrassYear(year);
 
-  setWetToOther(0);
-  setWetToOtherMineral(0);
-  setWetToOtherOrganic(0);
-  setWetToOtherYear(year);
+    setWetToForest(0);
+    setWetToForestMineral(0);
+    setWetToForestOrganic(0);
+    setWetToForestYear(year);
 
-  setWetToSettlements(0);
-  setWetToSettlementsMineral(0);
-  setWetToSettlementsOrganic(0);
-  setWetToSettlementsYear(year);
-  // #endregion
-};
+    setWetToOther(0);
+    setWetToOtherMineral(0);
+    setWetToOtherOrganic(0);
+    setWetToOtherYear(year);
+
+    setWetToSettlements(0);
+    setWetToSettlementsMineral(0);
+    setWetToSettlementsOrganic(0);
+    setWetToSettlementsYear(year);
+    // #endregion
+  };
   const setResponse = (response) => {
     setLandUseChangeResponse(response.data);
   };
@@ -1362,7 +1361,6 @@ export const LandUseChangeTableForm = () => {
   // useEffect(() => {
   //   localStorage.setItem("landUseChange", JSON.stringify(landUseChangeResponse));
   // }, [landUseChangeResponse]);
- 
 
   if (lucBarChart === false) {
     return (
@@ -3321,7 +3319,7 @@ export const LandUseChangeTableForm = () => {
                   </table>
                 </div>
 
-               {/*  <div className="backStart">
+                {/*  <div className="backStart">
                   <Button
                     size="small"
                     value="backStartPage"
@@ -3342,7 +3340,7 @@ export const LandUseChangeTableForm = () => {
                     primary
                     style={nextBtnStyles}
                   />
-                  <CircularProgress label="loading"  style={loadingStyles}/>
+                  <CircularProgress label="loading" style={loadingStyles} />
                 </div>
               </form>
             </section>
@@ -3351,11 +3349,7 @@ export const LandUseChangeTableForm = () => {
       </div>
     );
   } else {
-    return (
-      <LUCBarChart
-      landUseChangeResponse={landUseChangeResponse}
-      />
-    );
+    return <LUCBarChart landUseChangeResponse={landUseChangeResponse} />;
   }
 };
 
