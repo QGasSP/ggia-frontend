@@ -21,11 +21,11 @@ import { Legend } from "./Legend";
 
 
 /**
- * BuldingsNewUnitsCharts baseline 
+ * BuildingsPoliciesCharts baseline 
  * @return {}
  */
  const BarSeries = VerticalBarSeries;
- export const BuldingsNewUnitsCharts = ({
+ export const BuildingsPoliciesCharts = ({
    country,
    year,
    population,
@@ -574,7 +574,7 @@ import { Legend } from "./Legend";
    };
  };
  
- BuldingsNewUnitsCharts.propTypes = {
+ BuildingsPoliciesCharts.propTypes = {
    residential: PropTypes.object.isRequired,
    commercial: PropTypes.object.isRequired,
    baseline: PropTypes.object.isRequired,
