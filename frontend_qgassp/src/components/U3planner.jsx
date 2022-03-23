@@ -19,18 +19,11 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
   const [nextU3policies, setU3policies] = useState(false);
   const [errorU3, setU3Error] = useState("");
   const [modalPassShares, setModalPassShares] = useState("");
-  const [shares, setShares] = useState("");
-  const [expectedPassChange, setExpectedPassChange] = useState("");
-  const [affectedPassArea, setAffectedPassArea] = useState(0);
-  const [expectedFreChange, setExpectedFreChange] = useState(0);
-  const [passTransPolicyTarget, setPassTransPolicyTarget] = useState(0);
-  const [freTransPolicyTarget, setFreTransPolicyTarget] = useState(0);
   const [expectedChange, setExpectedChange] = useState(0);
   const [affectedArea, setAffectedArea] = useState(0);
-  const [passengerMob, setPassengerMobility] = useState("");
+  const [passengerMob, setPassengerMobility] = useState({});
   const [freightTrans, setFreightTransport] = useState("");
   const [modalSplitPass, setModalSplitPass] = useState("");
-  // const [modalPassShares, setModalPassShares] = useState("");
   const [modalFreShares, setModalFreightShares] = useState("");
   const [modalSplitFre, setModalSplitFre] = useState("");
   const [bus, setBus] = useState(0);
@@ -63,7 +56,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
   const [renewables, setRenewables] = useState(0);
   const [electricityTransTypes, setElectricityTransTypes] = useState("");
   const [electricityTrans, setElectricityTrans] = useState("");
-  // const [policyQuant, setPolicyQuant] = useState({});
+  const [policyQuant, setPolicyQuant] = useState({});
 
   const optionsNew = [];
   for (let i = 2022; i < 2051; i++) optionsNew.push(i);
@@ -74,30 +67,9 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
     e.preventDefault();
     setYearFinish(Number(e.target.value));
   };
-  const handleExpectedPassChange = (e) => {
-    e.preventDefault();
-    setExpectedPassChange(Number(e.target.value));
-  };
   const handleExpectedChange = (e) => {
     e.preventDefault();
     setExpectedChange(Number(e.target.value));
-  };
-
-  const handleAffectedPassArea = (e) => {
-    e.preventDefault();
-    setAffectedPassArea(Number(e.target.value));
-  };
-  const handleExpectedFreChange = (e) => {
-    e.preventDefault();
-    setExpectedFreChange(Number(e.target.value));
-  };
-  const handlePassTransPolicyTarget = (e) => {
-    e.preventDefault();
-    setPassTransPolicyTarget(Number(e.target.value));
-  };
-  const handleFreTransPolicyTarget = (e) => {
-    e.preventDefault();
-    setFreTransPolicyTarget(Number(e.target.value));
   };
   const handleBus = (e) => {
     e.preventDefault();
@@ -135,7 +107,6 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
     e.preventDefault();
     setRoadTransport(Number(e.target.value));
   };
-
   const handleLpg = (e) => {
     e.preventDefault();
     setLpg(Number(e.target.value));
@@ -156,7 +127,6 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
     e.preventDefault();
     setDiesel(Number(e.target.value));
   };
-
   const handleNgv = (e) => {
     e.preventDefault();
     setNgv(Number(e.target.value));
@@ -224,7 +194,6 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
     setModalPassShares(modalPassShares);
 
     const modalSplitPass = {
-      // shares,
       modalPassShares,
       affectedPopulation,
       yearStart,
@@ -240,7 +209,6 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
     setModalFreightShares(modalFreShares);
 
     const modalSplitFre = {
-      // shares,
       modalFreShares,
       yearStart,
       yearFinish,
@@ -257,7 +225,6 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
     setFuelSharesBusTypes(fuelSharesBusTypes);
 
     const fuelSharesBus = {
-      // types,
       fuelSharesBusTypes,
       yearStart,
       yearFinish,
@@ -283,7 +250,6 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
     setFuelSharesCarTypes(fuelSharesCarTypes);
 
     const fuelSharesCar = {
-      // types,
       fuelSharesCarTypes,
       yearStart,
       yearFinish,
@@ -313,30 +279,30 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
       fuelSharesCar,
       electricityTrans,
     };
-    setPolicyQuantification(policyQuant);
+    setPolicyQuant(policyQuant);
   };
-  useEffect(async () => {
-    const raw = { baseline, newDevelopment, policyQuantification };
-    const headers = {
-      "Content-type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-    };
-    axios
-      .post(
-        "https://ggia-dev.ulno.net/api/v1/calculate/transport",
-        raw,
-        headers
-      )
-      .then((response) => setU3Response(response.data.json))
-      .catch((error) => {
-        setU3Error({ errorMessage: error.message });
-        // eslint-disable-next-line no-console
-        console.error("There was an error!", errorU3);
-      });
-  }, []);
-  const setU3Response = (response) => {
-    setPolicyQuantification(response.data.policy_quantification);
-  };
+  // useEffect(async () => {
+  //   const raw = { baseline, newDevelopment, policyQuantification };
+  //   const headers = {
+  //     "Content-type": "application/json",
+  //     "Access-Control-Allow-Origin": "*",
+  //   };
+  //   axios
+  //     .post(
+  //       "https://ggia-dev.ulno.net/api/v1/calculate/transport",
+  //       raw,
+  //       headers
+  //     )
+  //     .then((response) => setU3Response(response.data.json))
+  //     .catch((error) => {
+  //       setU3Error({ errorMessage: error.message });
+  //       // eslint-disable-next-line no-console
+  //       console.error("There was an error!", errorU3);
+  //     });
+  // }, []);
+  // const setU3Response = (response) => {
+  //   setPolicyQuantification(response.data.policy_quantification);
+  // };
 
   const gotoU3policies = () => {
     setU3policies(true);
@@ -500,7 +466,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                   type="number"
                   step="0.1"
                   placeholder="0"
-                  onChange={handleExpectedFreChange}
+                  onChange={handleExpectedChange}
                   required
                 />
               </div>
@@ -1319,6 +1285,8 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
         electricityTrans={electricityTrans}
         newDevelopment={newDevelopment}
         baseline={baseline}
+        policyQuant={policyQuant}
+
         // projections={projections}
       />
     );
