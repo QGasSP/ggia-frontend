@@ -14,8 +14,6 @@ import Divider from "@mui/material/Divider";
 
  export const BuildingsPolicies = ({
     baseline,
-    emissionResidential,
-    emissionCommercial,
     year,
   }) => {
       year = 2022;

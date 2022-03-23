@@ -139,7 +139,6 @@ export const BuildingBaseline = () => {
     const baseline = {
       country,
       year,
-      population,
       residential,
       commercial
     };
