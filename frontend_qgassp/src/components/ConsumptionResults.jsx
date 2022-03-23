@@ -27,6 +27,18 @@ export const ConsumptionResults = () => {
     { title: "NA", color: "#ce143d", strokeWidth: 13 },
   ];
 
+  const RfBaseline = [
+    { x: "Housing_energy", y: 2 },
+    { x: "Housing_other", y: 4 },
+    { x: "Transport_fuels", y: 10 },
+    { x: "Transport_other", y: 20 },
+    { x: "Air_travel", y: 18 },
+    { x: "Food", y: 50 },
+    { x: "Tabgible_goods", y: 3 },
+    { x: "Services", y: 4 },
+    { x: "Total_emissions", y: 80 },
+  ];
+
   
   const RfData = [
     { x: "Housing_energy", y: 10 },
@@ -94,9 +106,47 @@ export const ConsumptionResults = () => {
                 <VerticalBarSeries className="StackedBarchart" />
                 <XAxis title="Year" />
                 <YAxis title="Emissions/ kG C02 eq" />
+                <LineSeries
+            /*   baseline */
+            color="#000000"
+            curve="curveNatural"
+            strokeWidth="4"
+            data={[
+              { x: 2022, y: 0 },
+              { x: 2023, y: 980 },
+              { x: 2024, y: 960 },
+              { x: 2025, y: 940 },
+              { x: 2026, y: 920 },
+              { x: 2027, y: 900 },
+              { x: 2028, y: 880 },
+              { x: 2029, y: 860 },
+              { x: 2030, y: 840 },
+              { x: 2031, y: 820 },
+              { x: 2032, y: 800 },
+              { x: 2033, y: 780 },
+              { x: 2034, y: 760 },
+              { x: 2035, y: 740 },
+              { x: 2036, y: 720 },
+              { x: 2037, y: 700 },
+              { x: 2038, y: 680 },
+              { x: 2039, y: 660 },
+              { x: 2040, y: 640 },
+              { x: 2041, y: 620 },
+              { x: 2042, y: 600 },
+              { x: 2043, y: 580 },
+              { x: 2044, y: 560 },
+              { x: 2045, y: 540 },
+              { x: 2046, y: 520 },
+              { x: 2047, y: 500 },
+              { x: 2048, y: 480 },
+              { x: 2049, y: 460 },
+              { x: 2050, y: 440 },
+            ]}
+          />
                 <BarSeries
                   /* he */
                   color="#3d58a3"
+                  opacity={0.31}
                   data={[
                     { x: 2022, y: 1000 },
                     { x: 2023, y: 980 },
@@ -132,6 +182,7 @@ export const ConsumptionResults = () => {
                 <BarSeries
                   /* h0 */
                   color="#ef7d00"
+                  opacity={0.31}
                   data={[
                     { x: 2022, y: 1000 },
                     { x: 2023, y: 980 },
@@ -167,6 +218,7 @@ export const ConsumptionResults = () => {
                 <BarSeries
                   /*  tf */
                   color="#95c11f"
+                  opacity={0.31}
                   data={[
                     { x: 2022, y: 1000 },
                     { x: 2023, y: 980 },
@@ -202,6 +254,7 @@ export const ConsumptionResults = () => {
                 <BarSeries
                   /*  t0 */
                   color="#ce143d"
+                  opacity={0.31}
                   data={[
                     { x: 2022, y: 1000 },
                     { x: 2023, y: 980 },
@@ -237,6 +290,7 @@ export const ConsumptionResults = () => {
                 <BarSeries
                   /*  At */
                   color="#845f9e"
+                  opacity={0.31}
                   data={[
                     { x: 2022, y: 1000 },
                     { x: 2023, y: 980 },
@@ -272,6 +326,7 @@ export const ConsumptionResults = () => {
                 <BarSeries
                   /* F  */
                   color="#996e35"
+                  opacity={0.31}
                   data={[
                     { x: 2022, y: 1000 },
                     { x: 2023, y: 980 },
@@ -307,6 +362,7 @@ export const ConsumptionResults = () => {
                 <BarSeries
                   /* tG  */
                   color="#e1719a"
+                  opacity={0.31}
                   data={[
                     { x: 2022, y: 1000 },
                     { x: 2023, y: 980 },
@@ -342,6 +398,7 @@ export const ConsumptionResults = () => {
                 <BarSeries
                   /* S */
                   color="#76918e"
+                  opacity={0.31}
                   data={[
                     { x: 2022, y: 1000 },
                     { x: 2023, y: 980 },
@@ -391,18 +448,24 @@ export const ConsumptionResults = () => {
               
               />
               <YAxis title="Emissions/ kG C02 eq" />
+              <LineSeries
+                data={RfBaseline}
+                color="#000"
+              />
               <BarSeries
                 className="vertical-bar-series-example"
+                opacity={0.55}
                 data={RfData}
                 color="#3d58a3"
               />
-              <BarSeries data={BlData} color="#ef7d00" />
+              <BarSeries data={BlData} color="#ef7d00"  opacity={0.55}/>
               <BarSeries
                 color="#52974c"
+                opacity={0.55}
                 className="vertical-bar-series-example"
                 data={PnData}
               />
-              <BarSeries color="#ce143d" data={NaData} />
+              <BarSeries color="#ce143d" data={NaData}  opacity={0.55} />
              
             </XYPlot>
 
@@ -422,13 +485,13 @@ export const ConsumptionResults = () => {
         <XYPlot xType="ordinal" width={1000} height={400}>
           <VerticalGridLines />
           <HorizontalGridLines />
-          <XAxis />
+          <XAxis title="Year" />
           <YAxis />
           <LineSeries
             /*  rf */
             color="#3d58a3"
             curve="curveNatural"
-            strokeWidth="4"
+            strokeWidth="2"
             data={[
               { x: 2022, y: 0 },
               { x: 2023, y: 100 },
@@ -465,7 +528,7 @@ export const ConsumptionResults = () => {
             /*  BL */
             color="#ef7d00"
             curve="curveNatural"
-            strokeWidth="4"
+            strokeWidth="2"
             data={[
               { x: 2022, y: 0 },
               { x: 2023, y: 980 },
@@ -502,7 +565,7 @@ export const ConsumptionResults = () => {
             /*   PN */
             color="#52974c"
             curve="curveNatural"
-            strokeWidth="4"
+            strokeWidth="1.5"
             data={[
               { x: 2022, y: 1000 },
               { x: 2023, y: 980 },
@@ -539,7 +602,7 @@ export const ConsumptionResults = () => {
             /*   NA */
             color="#ce143d"
             curve="curveNatural"
-            strokeWidth="4"
+            strokeWidth="2"
             data={[
               { x: 2022, y: 0 },
               { x: 2023, y: 980 },
