@@ -31,10 +31,11 @@ body {
   word-wrap: break-word;
   background: #d5eaea;
   cursor: pointer;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.274);
+  border-bottom: 0.1rem solid rgba(0, 0, 0, 0.274);
   box-sizing: content-box;
   position: relative;
   outline: none;
+  font-size: 1vw;
 }
 /* .tabs:not(:last-child) {
   border-right: 1px solid rgba(0, 0, 0, 0.274);
