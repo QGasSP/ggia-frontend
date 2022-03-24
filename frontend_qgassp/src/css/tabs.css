@@ -31,7 +31,7 @@ body {
   word-wrap: break-word;
   background: #d5eaea;
   cursor: pointer;
-  border-bottom: 0.1rem solid rgba(0, 0, 0, 0.274);
+  border-bottom: 0.0042333328rem solid rgba(0, 0, 0, 0.274);
   box-sizing: content-box;
   position: relative;
   outline: none;
