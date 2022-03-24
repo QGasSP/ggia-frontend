@@ -3354,6 +3354,7 @@ export const LandUseChangeTableForm = () => {
     return (
       <LUCBarChart
       landUseChangeResponse={landUseChangeResponse}
+      year={year}
       />
     );
   }
