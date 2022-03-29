@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { LUCBarChart } from "./LUCBarChart";
-import PropTypes from "prop-types";
 import { Button } from "./Button";
 import "../css/landusechange.css";
 import axios from "axios";
@@ -438,6 +437,7 @@ export const LandUseChangeTableForm = () => {
     setLoadingStyle({
       display: 'block'
     });
+    localStorage.setItem("landUseChangeRequest", JSON.stringify(rawData));
     axios
       .post(
         "https://ggia-dev.ulno.net/api/v1/calculate/land-use-change",
@@ -1359,9 +1359,9 @@ export const LandUseChangeTableForm = () => {
     setLandUseChangeResponse(response.data);
   };
 
-  // useEffect(() => {
-  //   localStorage.setItem("landUseChange", JSON.stringify(landUseChangeResponse));
-  // }, [landUseChangeResponse]);
+  useEffect(() => {
+    localStorage.setItem("landUseChangeResponse", JSON.stringify(landUseChangeResponse));
+  }, [landUseChangeResponse]);
  
 
   if (lucBarChart === false) {
@@ -1435,7 +1435,6 @@ export const LandUseChangeTableForm = () => {
                             name="cropToForestYear"
                             onChange={handleCropToForestYear}
                             value={cropToForestYear}
-                            defaultValue="Select year"
                             required
                           >
                             <option value="DefaultOption">Select year</option>
@@ -1496,7 +1495,6 @@ export const LandUseChangeTableForm = () => {
                             name="grassToForestYear"
                             onChange={handleGrassToForestYear}
                             value={grassToForestYear}
-                            defaultValue="Select year"
                             required
                           >
                             {options.map((option) => (
@@ -1555,7 +1553,6 @@ export const LandUseChangeTableForm = () => {
                             name="wetToForestYear"
                             onChange={handleWetToForestYear}
                             value={wetToForestYear}
-                            defaultValue="Select year"
                             onMouseLeave={setTotal}
                             required
                           >
@@ -1617,7 +1614,6 @@ export const LandUseChangeTableForm = () => {
                             name="settlementsToForestYear"
                             onChange={handleSettlementsToForestYear}
                             value={settlementsToForestYear}
-                            defaultValue="Select year"
                             onMouseLeave={setTotal}
                             required
                           >
@@ -1677,7 +1673,6 @@ export const LandUseChangeTableForm = () => {
                             name="otherToForestYear"
                             onChange={handleOtherToForestYear}
                             value={otherToForestYear}
-                            defaultValue="Select year"
                             onMouseLeave={setTotal}
                             required
                           >
@@ -1749,7 +1744,6 @@ export const LandUseChangeTableForm = () => {
                             name="forestToCropYear"
                             onChange={handleForestToCropYear}
                             value={forestToCropYear}
-                            defaultValue="Select year"
                             onMouseLeave={setTotal}
                             required
                           >
@@ -1809,7 +1803,6 @@ export const LandUseChangeTableForm = () => {
                             name="grassToCropYear"
                             onChange={handleGrassToCropYear}
                             value={grassToCropYear}
-                            defaultValue="Select year"
                             required
                           >
                             {options.map((option) => (
@@ -1868,7 +1861,6 @@ export const LandUseChangeTableForm = () => {
                             name="wetToCropYear"
                             onChange={handleWetToCropYear}
                             value={wetToCropYear}
-                            defaultValue="Select year"
                             required
                           >
                             {options.map((option) => (
@@ -1927,7 +1919,6 @@ export const LandUseChangeTableForm = () => {
                             name="settlementsToCropYear"
                             onChange={handleSettlementsToCropYear}
                             value={settlementsToCropYear}
-                            defaultValue="Select year"
                             required
                           >
                             {options.map((option) => (
@@ -1986,7 +1977,6 @@ export const LandUseChangeTableForm = () => {
                             name="otherToCropYear"
                             onChange={handleOtherToCropYear}
                             value={otherToCropYear}
-                            defaultValue="Select year"
                             required
                           >
                             {options.map((option) => (
@@ -2059,7 +2049,6 @@ export const LandUseChangeTableForm = () => {
                             name="forestToGrassYear"
                             onChange={handleForestToGrassYear}
                             value={forestToGrassYear}
-                            defaultValue="Select year"
                             required
                           >
                             {options.map((option) => (
@@ -2118,7 +2107,6 @@ export const LandUseChangeTableForm = () => {
                             name="cropToGrassYear"
                             onChange={handleCropToGrassYear}
                             value={cropToGrassYear}
-                            defaultValue="Select year"
                             required
                           >
                             {options.map((option) => (
@@ -2177,7 +2165,6 @@ export const LandUseChangeTableForm = () => {
                             name="wetToGrassYear"
                             onChange={handleWetToGrassYear}
                             value={wetToGrassYear}
-                            defaultValue="Select year"
                             required
                           >
                             {options.map((option) => (
@@ -2236,7 +2223,6 @@ export const LandUseChangeTableForm = () => {
                             name="settlementsToGrassYear"
                             onChange={handleSettlementsToGrassYear}
                             value={settlementsToGrassYear}
-                            defaultValue="Select year"
                             required
                           >
                             {options.map((option) => (
@@ -2295,7 +2281,6 @@ export const LandUseChangeTableForm = () => {
                             name="otherToGrassYear"
                             onChange={handleOtherToGrassYear}
                             value={otherToGrassYear}
-                            defaultValue="Select year"
                             required
                           >
                             {options.map((option) => (
@@ -2368,7 +2353,6 @@ export const LandUseChangeTableForm = () => {
                             name="landConvertedToPeatYear"
                             onChange={handleLandConvertedToPeatYear}
                             value={landConvertedToPeatYear}
-                            defaultValue="Select year"
                             required
                           >
                             {options.map((option) => (
@@ -2429,7 +2413,6 @@ export const LandUseChangeTableForm = () => {
                             name="peatLandRestoreYear"
                             onChange={handlePeatLandRestoreYear}
                             value={peatLandRestoreYear}
-                            defaultValue="Select year"
                             required
                           >
                             {options.map((option) => (
@@ -2490,7 +2473,6 @@ export const LandUseChangeTableForm = () => {
                             name="forestToWetland"
                             onChange={handleForestToWetlandYear}
                             value={forestToWetlandYear}
-                            defaultValue="Select year"
                             required
                           >
                             {options.map((option) => (
@@ -2551,7 +2533,6 @@ export const LandUseChangeTableForm = () => {
                             name="cropToWetYear"
                             onChange={handleCropToWetYear}
                             value={cropToWetYear}
-                            defaultValue="Select year"
                             required
                           >
                             {options.map((option) => (
@@ -2612,7 +2593,6 @@ export const LandUseChangeTableForm = () => {
                             name="grassToWetYear"
                             onChange={handleGrassToWetYear}
                             value={grassToWetYear}
-                            defaultValue="Select year"
                             onMouseLeave={setTotal}
                             required
                           >
@@ -2688,7 +2668,6 @@ export const LandUseChangeTableForm = () => {
                             name="forestToSettlementsYear"
                             onChange={handleForestToSettlementsYear}
                             value={forestToSettlementsYear}
-                            defaultValue="Select year"
                             onMouseLeave={setTotal}
                             required
                           >
@@ -2748,7 +2727,6 @@ export const LandUseChangeTableForm = () => {
                             name="cropToSettlementsYear"
                             onChange={handleCropToSettlementsYear}
                             value={cropToSettlementsYear}
-                            defaultValue="Select year"
                             onMouseLeave={setTotal}
                             required
                           >
@@ -2808,7 +2786,6 @@ export const LandUseChangeTableForm = () => {
                             name="forestToWetland"
                             onChange={handleGrassToSettlementsYear}
                             value={grassToSettlementsYear}
-                            defaultValue="Select year"
                             onMouseLeave={setTotal}
                             required
                           >
@@ -2868,7 +2845,6 @@ export const LandUseChangeTableForm = () => {
                             name="wetToSettlementsYear"
                             onChange={handleWetToSettlementsYear}
                             value={wetToSettlementsYear}
-                            defaultValue="Select year"
                             onMouseLeave={setTotal}
                             required
                           >
@@ -2928,7 +2904,6 @@ export const LandUseChangeTableForm = () => {
                             name="otherToSettlementsYear"
                             onChange={handleOtherToSettlementsYear}
                             value={otherToSettlementsYear}
-                            defaultValue="Select year"
                             onMouseLeave={setTotal}
                             required
                           >
@@ -3000,7 +2975,6 @@ export const LandUseChangeTableForm = () => {
                             name="forestToOtherYear"
                             onChange={handleForestToOtherYear}
                             value={forestToOtherYear}
-                            defaultValue="Select year"
                             onMouseLeave={setTotal}
                             required
                           >
@@ -3062,7 +3036,6 @@ export const LandUseChangeTableForm = () => {
                             name="cropToOtherYear"
                             onChange={handleCropToOtherYear}
                             value={cropToOtherYear}
-                            defaultValue="Select year"
                             onMouseLeave={setTotal}
                             required
                           >
@@ -3122,7 +3095,6 @@ export const LandUseChangeTableForm = () => {
                             name="cropToOtherYear"
                             onChange={handleGrassToOtherYear}
                             value={grassToOtherYear}
-                            defaultValue="Select year"
                             onMouseLeave={setTotal}
                             required
                           >
@@ -3182,7 +3154,6 @@ export const LandUseChangeTableForm = () => {
                             name="wetToOtherYear"
                             onChange={handleWetToOtherYear}
                             value={wetToOtherYear}
-                            defaultValue="Select year"
                             onMouseLeave={setTotal}
                             required
                           >
@@ -3242,7 +3213,6 @@ export const LandUseChangeTableForm = () => {
                             name="settlementsToOtherYear"
                             onChange={handleSettlementsToOtherYear}
                             value={settlementsToOtherYear}
-                            defaultValue="Select year"
                             onMouseLeave={setTotal}
                             required
                           >

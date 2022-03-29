@@ -2,6 +2,7 @@ import React from "react";
 import "../css/lucbarchart.css";
 import {
     XYPlot,
+    FlexibleXYPlot,
     XAxis,
     YAxis,
     HorizontalGridLines,
@@ -20,7 +21,6 @@ const BarSeries = VerticalBarSeries;
  */
 
 export const LUCBarChart = ({landUseChangeResponse, year }) => {
-
   const dataCroplandToForestland = [];
   for (let i = year; i < 2051; i++){
     dataCroplandToForestland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].croplandToForestland });
@@ -142,6 +142,7 @@ export const LUCBarChart = ({landUseChangeResponse, year }) => {
     dataSettlementToOtherland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].settlementToOtherland });
   };
   
+
   return (
     <div>
       <Divider textAlign="left" flexItem>
@@ -149,11 +150,11 @@ export const LUCBarChart = ({landUseChangeResponse, year }) => {
       </Divider>
       <div className="luc_container">
         <div className="landusechange_bar">
-          <XYPlot
+          <FlexibleXYPlot
                     width={1200}
                     height={500}
-                    xType="ordinal"
-                    xDistance={200}
+                    xType="linear"
+                    // xDistance={100}
                     yDomain={[-1500, 1500]}
                     yType="linear"
                     stackBy="y"
@@ -168,7 +169,7 @@ export const LUCBarChart = ({landUseChangeResponse, year }) => {
                         text: { stroke: "none", fill: "#6b6b76", fontWeight: 600 },
                       }}
                     />
-                    <YAxis />
+                    <YAxis/>
                     {/* 1 */}
                     <BarSeries
                       color="#ffdf43"
@@ -1287,7 +1288,7 @@ export const LUCBarChart = ({landUseChangeResponse, year }) => {
                       // ]}
                       // #endregion
                     />
-          </XYPlot>
+          </FlexibleXYPlot>
         </div>
       </div>
       <div className="luc_legendline">
