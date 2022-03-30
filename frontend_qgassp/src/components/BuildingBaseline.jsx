@@ -314,7 +314,7 @@ export const BuildingBaseline = () => {
                 <div className="column">
                     <div className="settlement_headers">
                     <label className="shareInfo">
-                        <b>Buildings </b>
+                        <b>Buildings (m<sup>2</sup>)</b>
                     </label>
                     </div>
                     <div className="div_transport">

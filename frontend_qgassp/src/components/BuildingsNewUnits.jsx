@@ -413,19 +413,19 @@ import Divider from "@mui/material/Divider";
             </Divider>
           </div>
   
-          <section>
             <section>
-                <Divider textAlign="left" flexItem>
-                    {" "}
-                    <b>New residential units</b>
-                </Divider>
+                <section>
+                  <Divider textAlign="left" flexItem>
+                      {" "}
+                      <b>New residential units</b>
+                  </Divider>
+                </section>
                 <div className="newResidentDiv">
                   <form>
                   <table className="buildings-tbl">
                         <thead>
                           <th className="row-title">Residential unit type</th>
                           <th>Number of units</th>
-                          <th>Total floor area</th>
                           <th colSpan={2}>New units completed between</th>
                           <th>% of energy from renewables</th>
                         </thead>
@@ -442,20 +442,6 @@ import Divider from "@mui/material/Divider";
                                 min="0"
                                 value={apartmentUnits}
                                 onChange={handleApartmentUnits}
-                                defaultValue="Select year"
-                                required
-                              />
-                            </td>
-                            <td>
-                              <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                id="apartment-area"
-                                name="apartment-area"
-                                min="0"
-                                value={apartmentArea}
-                                onChange={handleApartmentArea}
                                 defaultValue="Select year"
                                 required
                               />
@@ -523,19 +509,6 @@ import Divider from "@mui/material/Divider";
                               />
                             </td>
                             <td>
-                              <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                id="terraced-area"
-                                name="terraced-area"
-                                min="0"
-                                value={terracedArea}
-                                onChange={handleTerracedArea}
-                                required
-                              />
-                            </td>
-                            <td>
                                 <select
                                     className="table-cell"
                                     id="terraced-start-year"
@@ -595,19 +568,6 @@ import Divider from "@mui/material/Divider";
                                 min="0"
                                 value={semiDetachedUnits}
                                 onChange={handleSemiDetachedUnits}
-                                required
-                              />
-                            </td>
-                            <td>
-                              <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                id="semiDetached-area"
-                                name="semiDetached-area"
-                                min="0"
-                                value={semiDetachedArea}
-                                onChange={handleSemiDetachedArea}
                                 required
                               />
                             </td>
@@ -675,19 +635,6 @@ import Divider from "@mui/material/Divider";
                               />
                             </td>
                             <td>
-                              <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                id="detached-area"
-                                name="detached-area"
-                                min="0"
-                                value={detachedArea}
-                                onChange={handleDetachedArea}
-                                required
-                              />
-                            </td>
-                            <td>
                                 <select
                                     className="table-cell"
                                     id="detached-start-year"
@@ -741,36 +688,24 @@ import Divider from "@mui/material/Divider";
                 </div>
             </section>
             <section>
-                <Divider textAlign="left" flexItem>
-                    {" "}
-                    <b>New commercial buildings</b>
-                </Divider>
+                <section>
+                  <Divider textAlign="left" flexItem>
+                      {" "}
+                      <b>New commercial buildings</b>
+                  </Divider>
+                </section>
                 <div className="newResidentDiv">
                     <form>
                       <table className="buildings-tbl">
                             <thead>
                               <th className="row-title">Commercial building type</th>
-                              <th>Number of units</th>
                               <th>Total floor area</th>
-                              <th colSpan={2}>New units completed between</th>
-                              <th>% of energy from renewables</th>
+                              <th colSpan={2}>New buildings completed between</th>
+                              <th>% of electricty from renewables</th>
                             </thead>
                             <tbody>
                               <tr>
                                 <td className="row-title">Retail</td>
-                                <td>
-                                  <input
-                                    className="table-cell"
-                                    type="number"
-                                    step="1"
-                                    id="retail-units"
-                                    name="retail-units"
-                                    min="0"
-                                    value={retailUnits}
-                                    onChange={handleRetailUnits}
-                                    required
-                                  />
-                                </td>
                                 <td>
                                   <input
                                     className="table-cell"
@@ -839,19 +774,6 @@ import Divider from "@mui/material/Divider";
                                         className="table-cell"
                                         type="number"
                                         step="1"
-                                        id="health-units"
-                                        name="health-units"
-                                        min="0"
-                                        value={healthUnits}
-                                        onChange={handleHealthUnits}
-                                        required
-                                    />
-                                </td>
-                                <td>
-                                    <input
-                                        className="table-cell"
-                                        type="number"
-                                        step="1"
                                         id="health-area"
                                         name="health-area"
                                         min="0"
@@ -910,19 +832,6 @@ import Divider from "@mui/material/Divider";
                               </tr>
                               <tr>
                               <td className="row-title">Hospitality</td>
-                              <td>
-                                <input
-                                  className="table-cell"
-                                  type="number"
-                                  step="1"
-                                  id="hospitality-units"
-                                  name="hospitality-units"
-                                  min="0"
-                                  value={hospitalityUnits}
-                                  onChange={handleHospitalityUnits}
-                                  required
-                                />
-                              </td>
                               <td>
                                 <input
                                   className="table-cell"
@@ -991,19 +900,6 @@ import Divider from "@mui/material/Divider";
                                   className="table-cell"
                                   type="number"
                                   step="1"
-                                  id="offices-units"
-                                  name="offices-units"
-                                  min="0"
-                                  value={officesUnits}
-                                  onChange={handleOfficesUnits}
-                                  required
-                                />
-                              </td>
-                              <td>
-                                <input
-                                  className="table-cell"
-                                  type="number"
-                                  step="1"
                                   id="offices-area"
                                   name="offices-area"
                                   min="0"
@@ -1062,19 +958,6 @@ import Divider from "@mui/material/Divider";
                               </tr>
                               <tr>
                               <td className="row-title">Industrial</td>
-                              <td>
-                                <input
-                                  className="table-cell"
-                                  type="number"
-                                  step="1"
-                                  id="industrial-units"
-                                  name="industrial-units"
-                                  min="0"
-                                  value={industrialUnits}
-                                  onChange={handleIndustrialUnits}
-                                  required
-                                />
-                              </td>
                               <td>
                                 <input
                                   className="table-cell"
@@ -1143,19 +1026,6 @@ import Divider from "@mui/material/Divider";
                                   className="table-cell"
                                   type="number"
                                   step="1"
-                                  id="warehouses-units"
-                                  name="warehouses-units"
-                                  min="0"
-                                  value={warehousesUnits}
-                                  onChange={handleWarehousesUnits}
-                                  required
-                                />
-                              </td>
-                              <td>
-                                <input
-                                  className="table-cell"
-                                  type="number"
-                                  step="1"
                                   id="warehouses-area"
                                   name="warehouses-area"
                                   min="0"
@@ -1217,7 +1087,6 @@ import Divider from "@mui/material/Divider";
                     </form>
                 </div>
             </section>
-          </section>
           <section>
                 {(
                 <div className="nextU2Button">
@@ -1230,7 +1099,7 @@ import Divider from "@mui/material/Divider";
                     />
                 </div>
                 )}
-            </section>
+          </section>
         </article>
       );
     } else {

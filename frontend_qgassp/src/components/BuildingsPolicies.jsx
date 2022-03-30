@@ -207,12 +207,13 @@ import Divider from "@mui/material/Divider";
               <Chip label="U8 POLICY QUANTIFICATION" />
             </Divider>
           </div>
-          <section>
             <section>
-                <Divider textAlign="left" flexItem>
-                    {" "}
-                    <b>U8.1 Retrofits of residental buildings</b>
-                </Divider>
+                <section>
+                  <Divider textAlign="left" flexItem>
+                      {" "}
+                      <b>U8.1 Retrofits of residental buildings</b>
+                  </Divider>
+                </section>
                 <div className="newResidentDiv">
                   <form>
                   <table className="buildings-policy-tbl buildings-tbl">
@@ -718,10 +719,12 @@ import Divider from "@mui/material/Divider";
                 </div>
             </section>
             <section>
-                <Divider textAlign="left" flexItem>
-                    {" "}
-                    <b>U8.2 Retrofits of commercial buildings</b>
-                </Divider>
+                <section>
+                  <Divider textAlign="left" flexItem>
+                      {" "}
+                      <b>U8.2 Retrofits of commercial buildings</b>
+                  </Divider>
+                </section>
                 <div className="newResidentDiv">
                   <form>
                   <table className="buildings-policy-tbl buildings-tbl">
@@ -730,10 +733,14 @@ import Divider from "@mui/material/Divider";
                           <th>Total floor area</th>
                           <th colSpan={2}>
                             Indicative energy use kWh/(m<sup>2</sup>a)
-                          <th>before</th>
-                          <th>after</th>
+                            <th>before</th>
+                            <th>after</th>
                           </th>
-                          <th>% of energy from renewables</th>
+                          <th>% of electricty from renewables</th>
+                          <th colSpan={2}>Number of retrofit buildings suppling Space and Water Heating through low carbon heat and electricity
+                            <th>Low Carbon Heat</th>
+                            <th>Electricity</th>
+                          </th>
                         </thead>
                         <tbody>
                           <tr>
@@ -768,52 +775,67 @@ import Divider from "@mui/material/Divider";
                               />
                             </td>
                             <td>
-                                <select
-                                    className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select indicator"
-                                    required
-                                >
-                                    {optionsIndicators.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
-                            </td>
-                            <td>
-                                <select
-                                    className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select indicator"
-                                    // onMouseLeave={setTotal}
-                                    required
-                                >
-                                    {optionsIndicators.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
+                              <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="firstSelector"
+                                  min="0"
+                                  // value={firstSelectorNumber}
+                                  // onChange={handleFirstSelectorNumber}
+                                  // onMouseLeave={setTotal}
+                                  required
+                                />
                             </td>
                             <td>
                               <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                // id="firstSelector"
-                                min="0"
-                                // value={firstSelectorNumber}
-                                // onChange={handleFirstSelectorNumber}
-                                // onMouseLeave={setTotal}
-                                required
-                              />
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="firstSelector"
+                                  min="0"
+                                  // value={firstSelectorNumber}
+                                  // onChange={handleFirstSelectorNumber}
+                                  // onMouseLeave={setTotal}
+                                  required
+                                />
+                            </td>
+                            <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="firstSelector"
+                                  min="0"
+                                  // value={firstSelectorNumber}
+                                  // onChange={handleFirstSelectorNumber}
+                                  // onMouseLeave={setTotal}
+                                  required
+                                />
+                            </td>
+                            <td>
+                              <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="carbonHeat"
+                                  min="0"
+                                  // value={carbonHeat}
+                                  // onChange={handleCarbonHeat}
+                                  required
+                                />
+                            </td>
+                            <td>
+                              <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="electricity"
+                                  min="0"
+                                  // value={electricity}
+                                  // onChange={handleElectricity}
+                                  required
+                                />
                             </td>
                           </tr>
                           <tr>
@@ -848,40 +870,30 @@ import Divider from "@mui/material/Divider";
                               />
                             </td>
                             <td>
-                                <select
-                                    className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select indicator"
-                                    // onMouseLeave={setTotal}
-                                    required
-                                >
-                                    {optionsIndicators.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
+                            <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="firstSelector"
+                                  min="0"
+                                  // value={firstSelectorNumber}
+                                  // onChange={handleFirstSelectorNumber}
+                                  // onMouseLeave={setTotal}
+                                  required
+                                />
                             </td>
                             <td>
-                                <select
-                                    className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select indicator"
-                                    // onMouseLeave={setTotal}
-                                    required
-                                >
-                                    {optionsIndicators.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
+                            <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="firstSelector"
+                                  min="0"
+                                  // value={firstSelectorNumber}
+                                  // onChange={handleFirstSelectorNumber}
+                                  // onMouseLeave={setTotal}
+                                  required
+                                />
                             </td>
                             <td>
                               <input
@@ -895,6 +907,30 @@ import Divider from "@mui/material/Divider";
                                 // onMouseLeave={setTotal}
                                 required
                               />
+                            </td>
+                            <td>
+                              <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="carbonHeat"
+                                  min="0"
+                                  // value={carbonHeat}
+                                  // onChange={handleCarbonHeat}
+                                  required
+                                />
+                            </td>
+                            <td>
+                              <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="electricity"
+                                  min="0"
+                                  // value={electricity}
+                                  // onChange={handleElectricity}
+                                  required
+                                />
                             </td>
                           </tr>
                           <tr>
@@ -929,40 +965,30 @@ import Divider from "@mui/material/Divider";
                               />
                             </td>
                             <td>
-                                <select
-                                    className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select indicator"
-                                    // onMouseLeave={setTotal}
-                                    required
-                                >
-                                    {optionsIndicators.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
+                            <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="firstSelector"
+                                  min="0"
+                                  // value={firstSelectorNumber}
+                                  // onChange={handleFirstSelectorNumber}
+                                  // onMouseLeave={setTotal}
+                                  required
+                                />
                             </td>
                             <td>
-                                <select
-                                    className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select indicator"
-                                    // onMouseLeave={setTotal}
-                                    required
-                                >
-                                    {optionsIndicators.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
+                            <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="firstSelector"
+                                  min="0"
+                                  // value={firstSelectorNumber}
+                                  // onChange={handleFirstSelectorNumber}
+                                  // onMouseLeave={setTotal}
+                                  required
+                                />
                             </td>
                             <td>
                               <input
@@ -976,6 +1002,30 @@ import Divider from "@mui/material/Divider";
                                 // onMouseLeave={setTotal}
                                 required
                               />
+                            </td>
+                            <td>
+                              <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="carbonHeat"
+                                  min="0"
+                                  // value={carbonHeat}
+                                  // onChange={handleCarbonHeat}
+                                  required
+                                />
+                            </td>
+                            <td>
+                              <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="electricity"
+                                  min="0"
+                                  // value={electricity}
+                                  // onChange={handleElectricity}
+                                  required
+                                />
                             </td>
                           </tr>
                           <tr>
@@ -1010,40 +1060,30 @@ import Divider from "@mui/material/Divider";
                               />
                             </td>
                             <td>
-                                <select
-                                    className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select indicator"
-                                    // onMouseLeave={setTotal}
-                                    required
-                                >
-                                    {optionsIndicators.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
+                            <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="firstSelector"
+                                  min="0"
+                                  // value={firstSelectorNumber}
+                                  // onChange={handleFirstSelectorNumber}
+                                  // onMouseLeave={setTotal}
+                                  required
+                                />
                             </td>
                             <td>
-                                <select
-                                    className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select indicator"
-                                    // onMouseLeave={setTotal}
-                                    required
-                                >
-                                    {optionsIndicators.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
+                            <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="firstSelector"
+                                  min="0"
+                                  // value={firstSelectorNumber}
+                                  // onChange={handleFirstSelectorNumber}
+                                  // onMouseLeave={setTotal}
+                                  required
+                                />
                             </td>
                             <td>
                               <input
@@ -1057,6 +1097,30 @@ import Divider from "@mui/material/Divider";
                                 // onMouseLeave={setTotal}
                                 required
                               />
+                            </td>
+                            <td>
+                              <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="carbonHeat"
+                                  min="0"
+                                  // value={carbonHeat}
+                                  // onChange={handleCarbonHeat}
+                                  required
+                                />
+                            </td>
+                            <td>
+                              <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="electricity"
+                                  min="0"
+                                  // value={electricity}
+                                  // onChange={handleElectricity}
+                                  required
+                                />
                             </td>
                           </tr>
                           <tr>
@@ -1091,40 +1155,30 @@ import Divider from "@mui/material/Divider";
                               />
                             </td>
                             <td>
-                                <select
-                                    className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select indicator"
-                                    // onMouseLeave={setTotal}
-                                    required
-                                >
-                                    {optionsIndicators.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
+                            <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="firstSelector"
+                                  min="0"
+                                  // value={firstSelectorNumber}
+                                  // onChange={handleFirstSelectorNumber}
+                                  // onMouseLeave={setTotal}
+                                  required
+                                />
                             </td>
                             <td>
-                                <select
-                                    className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select indicator"
-                                    // onMouseLeave={setTotal}
-                                    required
-                                >
-                                    {optionsIndicators.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
+                            <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="firstSelector"
+                                  min="0"
+                                  // value={firstSelectorNumber}
+                                  // onChange={handleFirstSelectorNumber}
+                                  // onMouseLeave={setTotal}
+                                  required
+                                />
                             </td>
                             <td>
                               <input
@@ -1138,6 +1192,30 @@ import Divider from "@mui/material/Divider";
                                 // onMouseLeave={setTotal}
                                 required
                               />
+                            </td>
+                            <td>
+                              <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="carbonHeat"
+                                  min="0"
+                                  // value={carbonHeat}
+                                  // onChange={handleCarbonHeat}
+                                  required
+                                />
+                            </td>
+                            <td>
+                              <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="electricity"
+                                  min="0"
+                                  // value={electricity}
+                                  // onChange={handleElectricity}
+                                  required
+                                />
                             </td>
                           </tr>
                           <tr>
@@ -1172,40 +1250,30 @@ import Divider from "@mui/material/Divider";
                               />
                             </td>
                             <td>
-                                <select
-                                    className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select indicator"
-                                    // onMouseLeave={setTotal}
-                                    required
-                                >
-                                    {optionsIndicators.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
+                            <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="firstSelector"
+                                  min="0"
+                                  // value={firstSelectorNumber}
+                                  // onChange={handleFirstSelectorNumber}
+                                  // onMouseLeave={setTotal}
+                                  required
+                                />
                             </td>
                             <td>
-                                <select
-                                    className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select indicator"
-                                    // onMouseLeave={setTotal}
-                                    required
-                                >
-                                    {optionsIndicators.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
+                              <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="firstSelector"
+                                  min="0"
+                                  // value={firstSelectorNumber}
+                                  // onChange={handleFirstSelectorNumber}
+                                  // onMouseLeave={setTotal}
+                                  required
+                              />
                             </td>
                             <td>
                               <input
@@ -1219,6 +1287,30 @@ import Divider from "@mui/material/Divider";
                                 // onMouseLeave={setTotal}
                                 required
                               />
+                            </td>
+                            <td>
+                              <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="carbonHeat"
+                                  min="0"
+                                  // value={carbonHeat}
+                                  // onChange={handleCarbonHeat}
+                                  required
+                                />
+                            </td>
+                            <td>
+                              <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  // id="electricity"
+                                  min="0"
+                                  // value={electricity}
+                                  // onChange={handleElectricity}
+                                  required
+                                />
                             </td>
                           </tr>
                         </tbody>
@@ -1226,7 +1318,6 @@ import Divider from "@mui/material/Divider";
                   </form>
                 </div>
             </section>
-          </section>
           <section>
                 {(
                 <div className="nextU2Button">
