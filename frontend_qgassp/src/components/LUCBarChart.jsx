@@ -21,6 +21,7 @@ const BarSeries = VerticalBarSeries;
  */
 
 export const LUCBarChart = ({landUseChangeResponse, year }) => {
+  // #region data distribution
   const dataCroplandToForestland = [];
   for (let i = year; i < 2051; i++){
     dataCroplandToForestland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].croplandToForestland });
@@ -141,7 +142,9 @@ export const LUCBarChart = ({landUseChangeResponse, year }) => {
   for (let i = year; i < 2051; i++){
     dataSettlementToOtherland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].settlementToOtherland });
   };
-  
+  // #endregion
+
+  localStorage.landUse = JSON.stringify(landUseChangeResponse);
 
   return (
     <div>
@@ -154,7 +157,6 @@ export const LUCBarChart = ({landUseChangeResponse, year }) => {
                     width={1200}
                     height={500}
                     xType="linear"
-                    // xDistance={100}
                     yDomain={[-1500, 1500]}
                     yType="linear"
                     stackBy="y"
