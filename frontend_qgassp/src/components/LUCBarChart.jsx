@@ -158,7 +158,6 @@ export const LUCBarChart = ({landUseChangeResponse, year }) => {
                     height={500}
                     xType="linear"
                     yDomain={[-1500, 1500]}
-                    yType="linear"
                     stackBy="y"
                   >
                     <HorizontalGridLines />
