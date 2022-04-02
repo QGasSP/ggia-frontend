@@ -28,20 +28,20 @@ export const U3policies = ({
   policyQuantification,
   emission,
   baseline,
-  projections,
-  policyQuant
-  // passengerMob,
-  // freightTrans,
-  // modalPassShares,
-  // modalSplitPass,
-  // modalFreShares,
-  // modalSplitFre,
-  // fuelSharesBusTypes,
-  // fuelSharesBus,
-  // fuelSharesCarTypes,
-  // fuelSharesCar,
-  // electricityTransTypes,
-  // electricityTrans,
+  // projections,
+  policyQuant,
+  passengerMob,
+  freightTrans,
+  modalPassShares,
+  modalSplitPass,
+  modalFreShares,
+  modalSplitFre,
+  fuelSharesBusTypes,
+  fuelSharesBus,
+  fuelSharesCarTypes,
+  fuelSharesCar,
+  electricityTransTypes,
+  electricityTrans,
 }) => {
   // if (updateU2charts === false && totalNewResidents !== 100) {
   return (
@@ -73,8 +73,10 @@ export const U3policies = ({
                 </div>
                 <div>
                   <label>Policy period</label>
-                  <label> {policyQuant.passengerMob.yearStart}</label>
-                  <label> {policyQuant.passengerMob.yearFinish}</label>
+                  {/* <label> {policyQuant.passengerMob.yearStart}</label> */}
+                  <label> {passengerMob.yearStart}</label>
+                  {/* <label> {policyQuant.passengerMob.yearFinish}</label> */}
+                  <label> {passengerMob.yearFinish}</label>
                 </div>
               </div>
               <div className="column_u3">
@@ -82,12 +84,13 @@ export const U3policies = ({
                   {" "}
                   <label>Expected change %</label>
                 </div>
-                <label>{policyQuant.passengerMob.expectedChange}</label>
+                {/* <label>{policyQuant.passengerMob.expectedChange}</label> */}
+                <label>{passengerMob.expectedChange}</label>
               </div>
               <div className="column_u3">
                 {/* <label className="space_holder"></label> */}
                 <label>% of the area affected</label>
-                <label>{policyQuant.passengerMob.affectedArea}</label>
+                <label>{passengerMob.affectedArea}</label>
               </div>
               <div className="column_u3"></div>
             </div>
@@ -110,13 +113,13 @@ export const U3policies = ({
                     {" "}
                     <label>Policy period</label>
                   </div>
-                  <label> {policyQuant.freightTrans.yearStart}</label>
-                  <label> {policyQuant.freightTrans.yearFinish}</label>
+                  <label> {freightTrans.yearStart}</label>
+                  <label> {freightTrans.yearFinish}</label>
                 </div>
               </div>
               <div className="column_u3">
                 <label>Expected change %</label>
-                <label>{policyQuant.freightTrans.expectedChange}</label>
+                <label>{freightTrans.expectedChange}</label>
               </div>
               <div className="column_u3"></div>
               <div className="column_u3"></div>
@@ -151,8 +154,8 @@ export const U3policies = ({
                 </div>
                 <div>
                   <label>Policy period</label>
-                  <label> {policyQuant.modalSplitPass.yearStart}</label>
-                  <label> {policyQuant.modalSplitPass.yearFinish}</label>
+                  <label> {modalSplitPass.yearStart}</label>
+                  <label> {modalSplitPass.yearFinish}</label>
                 </div>
               </div>
 
@@ -181,30 +184,30 @@ export const U3policies = ({
               <div className="column_u3">
                 <label>Policy target %</label>
                 {/*  bus */}
-                <label> {policyQuant.modalSplitPass.modalPassShares.bus}</label>
+                <label> {modalPassShares.bus}</label>
                 {/*  metro */}
                 <div>
                   {" "}
-                  <label> {policyQuant.modalSplitPass.modalPassShares.metro}</label>
+                  <label> {modalPassShares.metro}</label>
                 </div>
                 {/*   tram */}
                 <div>
                   {" "}
-                  <label> {policyQuant.modalSplitPass.modalPassShares.tram}</label>
+                  <label> {modalPassShares.tram}</label>
                 </div>
                 {/*  train */}
                 <div>
                   {" "}
-                  <label> {policyQuant.modalSplitPass.modalPassShares.train}</label>
+                  <label> {modalPassShares.train}</label>
                 </div>
                 {/*    car */}
                 <div>
-                  <label> {policyQuant.modalSplitPass.modalPassShares.car}</label>
+                  <label> {modalPassShares.car}</label>
                 </div>
               </div>
               <div className="column_u3">
                 <label>% of the area affeccted</label>
-                <label> {policyQuant.modalSplitPass.affectedPopulation}</label>
+                <label> {modalSplitPass.affectedPopulation}</label>
               </div>
             </div>
             {/* modal split-passenger transport section end */}
@@ -297,8 +300,8 @@ export const U3policies = ({
                 </div>
                 <div>
                   <label>Policy period</label>
-                  <label> {policyQuant.modalSplitFre.yearStart}</label>
-                  <label> {policyQuant.modalSplitFre.yearFinish}</label>
+                  <label> {modalSplitFre.yearStart}</label>
+                  <label> {modalSplitFre.yearFinish}</label>
                 </div>
               </div>
 
@@ -321,16 +324,16 @@ export const U3policies = ({
               <div className="column_u3">
                 <label>Policy target %</label>
                 {/*  rail */}
-                <label> {policyQuant.modalSplitFre.modalFreShares.railTransport}</label>
+                <label> {modalFreShares.railTransport}</label>
                 {/*  water */}
                 <div>
                   {" "}
-                  <label> {policyQuant.modalSplitFre.modalFreShares.waterwaysTransport}</label>
+                  <label> {modalFreShares.waterwaysTransport}</label>
                 </div>
                 {/*   road */}
                 <div>
                   {" "}
-                  <label> {policyQuant.modalSplitFre.modalFreShares.roadTransport}</label>
+                  <label> {modalFreShares.roadTransport}</label>
                 </div>
               </div>
             </div>
@@ -433,8 +436,8 @@ export const U3policies = ({
                 </div>
                 <div>
                   <label>Policy period</label>
-                  <label>{policyQuant.fuelSharesBus.yearStart}</label>
-                  <label>{policyQuant.fuelSharesBus.yearFinish}</label>
+                  <label>{fuelSharesBus.yearStart}</label>
+                  <label>{fuelSharesBus.yearFinish}</label>
                 </div>
               </div>
 
@@ -471,26 +474,26 @@ export const U3policies = ({
                 </div>
                 <div>
                   {" "}
-                  <label>{policyQuant.fuelSharesBus.fuelSharesBusTypes.petrol}</label>
+                  <label>{fuelSharesBusTypes.petrol}</label>
                 </div>
                 <div>
                   {" "}
-                  <label>{policyQuant.fuelSharesBus.fuelSharesBusTypes.lpg}</label>
+                  <label>{fuelSharesBusTypes.lpg}</label>
                 </div>
                 <div>
                   {" "}
-                  <label>{policyQuant.fuelSharesBus.fuelSharesBusTypes.cng}</label>
+                  <label>{fuelSharesBusTypes.cng}</label>
                 </div>
                 <div>
-                  <label>{policyQuant.fuelSharesBus.fuelSharesBusTypes.electricity}</label>
+                  <label>{fuelSharesBusTypes.electricity}</label>
                 </div>
                 <div>
-                  <label>{policyQuant.fuelSharesBus.fuelSharesBusTypes.diesel}</label>
+                  <label>{fuelSharesBusTypes.diesel}</label>
                 </div>
               </div>
               <div className="column_u3">
                 <label>% of the area affeccted</label>
-                <label>{policyQuant.fuelSharesBus.affectedArea}</label>
+                <label>{fuelSharesBus.affectedArea}</label>
               </div>
             </div>
             {/* fuel-bus transport section end */}
@@ -622,8 +625,8 @@ export const U3policies = ({
                 </div>
                 <div>
                   <label>Policy period</label>
-                  <label>{policyQuant.fuelSharesCar.yearStart}</label>
-                  <label>{policyQuant.fuelSharesCar.yearFinish}</label>
+                  <label>{fuelSharesCar.yearStart}</label>
+                  <label>{fuelSharesCar.yearFinish}</label>
                 </div>
               </div>
               <div className="column_u3">
@@ -691,60 +694,60 @@ export const U3policies = ({
                 </div>
                 <div>
                   {" "}
-                  <label>{policyQuant.fuelSharesCarTypes.lpg}</label>
+                  <label>{fuelSharesCarTypes.lpg}</label>
                 </div>
                 <div>
                   {" "}
-                  <label>{policyQuant.fuelSharesCarTypes.cng}</label>
+                  <label>{fuelSharesCarTypes.cng}</label>
                 </div>
                 <div>
                   {" "}
-                  <label>{policyQuant.fuelSharesCarTypes.ngv}</label>
+                  <label>{fuelSharesCarTypes.ngv}</label>
                 </div>
                 <div>
                   {" "}
-                  <label>{policyQuant.fuelSharesCarTypes.hep}</label>
+                  <label>{fuelSharesCarTypes.hep}</label>
                 </div>
                 <div>
                   {" "}
-                  <label>{policyQuant.fuelSharesCarTypes.phev}</label>
+                  <label>{fuelSharesCarTypes.phev}</label>
                 </div>
                 <div>
                   {" "}
-                  <label>{policyQuant.fuelSharesCarTypes.hydrogenfuel}</label>
+                  <label>{fuelSharesCarTypes.hydrogenfuel}</label>
                 </div>
                 <div>
                   {" "}
-                  <label>{policyQuant.fuelSharesCarTypes.bioethanol}</label>
+                  <label>{fuelSharesCarTypes.bioethanol}</label>
                 </div>
                 <div>
                   {" "}
-                  <label>{policyQuant.fuelSharesCarTypes.biodiesel}</label>
+                  <label>{fuelSharesCarTypes.biodiesel}</label>
                 </div>
                 <div>
                   {" "}
-                  <label>{policyQuant.fuelSharesCarTypes.bifuel}</label>
+                  <label>{fuelSharesCarTypes.bifuel}</label>
                 </div>
                 <div>
                   {" "}
-                  <label>{policyQuant.fuelSharesCarTypes.other}</label>
+                  <label>{fuelSharesCarTypes.other}</label>
                 </div>
                 <div>
                   {" "}
-                  <label>{policyQuant.fuelSharesCarTypes.electricity}</label>
+                  <label>{fuelSharesCarTypes.electricity}</label>
                 </div>
                 <div>
                   {" "}
-                  <label>{policyQuant.fuelSharesCarTypes.petrol}</label>
+                  <label>{fuelSharesCarTypes.petrol}</label>
                 </div>
                 <div>
                   {" "}
-                  <label>{policyQuant.fuelSharesCarTypes.diesel}</label>
+                  <label>{fuelSharesCarTypes.diesel}</label>
                 </div>
               </div>
               <div className="column_u3">
                 <label>% of the area affeccted</label>
-                <label>{policyQuant.fuelSharesCar.affectedArea}</label>
+                <label>{fuelSharesCar.affectedArea}</label>
               </div>
             </div>
             {/* fuel-car section end */}
@@ -832,8 +835,8 @@ export const U3policies = ({
 
                 <div>
                   <label>Policy period</label>
-                  <label>{policyQuant.electricityTrans.yearStart}</label>
-                  <label>{policyQuant.electricityTrans.yearFinish}</label>
+                  <label>{electricityTrans.yearStart}</label>
+                  <label>{electricityTrans.yearFinish}</label>
                 </div>
               </div>
               <div className="column_u3">
@@ -841,11 +844,11 @@ export const U3policies = ({
               </div>
               <div className="column_u3">
                 <label>Policy target %</label>
-                <label>{policyQuant.electricityTransTypes.renewables}</label>
+                <label>{electricityTransTypes.renewables}</label>
               </div>
               <div className="column_u3">
                 <label>% of the area affected</label>
-                <label>{policyQuant.electricityTrans.affectedArea}</label>
+                <label>{electricityTrans.affectedArea}</label>
               </div>
             </div>
             {/*  electricity for transport end */}
@@ -1510,17 +1513,17 @@ U3policies.propTypes = {
   emission: PropTypes.object.isRequired,
   baseline: PropTypes.object.isRequired,
   policyQuant: PropTypes.object.isRequired,
-  // passengerMob: PropTypes.object.isRequired,
-  // freightTrans: PropTypes.object.isRequired,
-  // modalPassShares: PropTypes.object.isRequired,
-  // modalSplitPass: PropTypes.object.isRequired,
-  // modalFreShares: PropTypes.object.isRequired,
-  // modalSplitFre: PropTypes.object.isRequired,
-  // fuelSharesBusTypes: PropTypes.object.isRequired,
-  // fuelSharesBus: PropTypes.object.isRequired,
-  // fuelSharesCarTypes: PropTypes.object.isRequired,
-  // fuelSharesCar: PropTypes.object.isRequired,
-  // electricityTransTypes: PropTypes.object.isRequired,
-  // electricityTrans: PropTypes.object.isRequired,
-  projections: PropTypes.object.isRequired,
+  passengerMob: PropTypes.object.isRequired,
+  freightTrans: PropTypes.object.isRequired,
+  modalPassShares: PropTypes.object.isRequired,
+  modalSplitPass: PropTypes.object.isRequired,
+  modalFreShares: PropTypes.object.isRequired,
+  modalSplitFre: PropTypes.object.isRequired,
+  fuelSharesBusTypes: PropTypes.object.isRequired,
+  fuelSharesBus: PropTypes.object.isRequired,
+  fuelSharesCarTypes: PropTypes.object.isRequired,
+  fuelSharesCar: PropTypes.object.isRequired,
+  electricityTransTypes: PropTypes.object.isRequired,
+  electricityTrans: PropTypes.object.isRequired,
+  // projections: PropTypes.object.isRequired,
 };

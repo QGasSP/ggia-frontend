@@ -18,14 +18,14 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
   const [yearFinish, setYearFinish] = useState(0);
   const [nextU3policies, setU3policies] = useState(false);
   const [errorU3, setU3Error] = useState("");
-  const [modalPassShares, setModalPassShares] = useState("");
+  const [modalPassShares, setModalPassShares] = useState({});
   const [expectedChange, setExpectedChange] = useState(0);
   const [affectedArea, setAffectedArea] = useState(0);
   const [passengerMob, setPassengerMobility] = useState({});
-  const [freightTrans, setFreightTransport] = useState("");
-  const [modalSplitPass, setModalSplitPass] = useState("");
-  const [modalFreShares, setModalFreightShares] = useState("");
-  const [modalSplitFre, setModalSplitFre] = useState("");
+  const [freightTrans, setFreightTransport] = useState({});
+  const [modalSplitPass, setModalSplitPass] = useState({});
+  const [modalFreShares, setModalFreightShares] = useState({});
+  const [modalSplitFre, setModalSplitFre] = useState({});
   const [bus, setBus] = useState(0);
   const [metro, setMetro] = useState(0);
   const [tram, setTram] = useState(0);
@@ -40,8 +40,8 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
   const [electricity, setElectricity] = useState(0);
   const [petrol, setPetrol] = useState(0);
   const [diesel, setDiesel] = useState(0);
-  const [fuelSharesBusTypes, setFuelSharesBusTypes] = useState("");
-  const [fuelSharesBus, setFuelSharesBus] = useState("");
+  const [fuelSharesBusTypes, setFuelSharesBusTypes] = useState({});
+  const [fuelSharesBus, setFuelSharesBus] = useState({});
   const [types, setTypes] = useState("");
   const [ngv, setNgv] = useState(0);
   const [hep, setHep] = useState(0);
@@ -51,15 +51,20 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
   const [biodiesel, setBiodiesel] = useState(0);
   const [bifuel, setBifuel] = useState(0);
   const [other, setOther] = useState(0);
-  const [fuelSharesCarTypes, setFuelSharesCarTypes] = useState("");
-  const [fuelSharesCar, setFuelSharesCar] = useState("");
+  const [fuelSharesCarTypes, setFuelSharesCarTypes] = useState({});
+  const [fuelSharesCar, setFuelSharesCar] = useState({});
   const [renewables, setRenewables] = useState(0);
-  const [electricityTransTypes, setElectricityTransTypes] = useState("");
-  const [electricityTrans, setElectricityTrans] = useState("");
+  const [electricityTransTypes, setElectricityTransTypes] = useState({});
+  const [electricityTrans, setElectricityTrans] = useState({});
   const [policyQuant, setPolicyQuant] = useState({});
+
+  const optionsNewStart = [];
+  for (let i = 2022; i < 2051; i++) optionsNewStart.push(i);
 
   const optionsNew = [];
   for (let i = 2022; i < 2051; i++) optionsNew.push(i);
+  // const optionsNew = [];
+  // for (let i = 2022; i < 2051; i++) optionsNew.push(i);
   const handleStartYear = (e) => {
     setYearStart(Number(e.target.value));
   };
@@ -340,7 +345,8 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                       className="select_u3"
                       name="start_year"
                       onChange={handleStartYear}
-                      defaultValue="2022"
+                      // defaultValue="2022"
+                      defaultValue={yearStart}
                       required
                     >
                       <option value="DefaultOption">Select start year</option>
@@ -355,7 +361,8 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                     className="select_u3"
                     name="finish_year"
                     onChange={handleYearFinish}
-                    defaultValue="2022"
+                    defaultValue={yearFinish}
+                    // defaultValue="2022"
                     required
                   >
                     <option value="DefaultOption">Select end year</option>
@@ -429,7 +436,8 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                       id="start_year"
                       name="start_year"
                       onChange={handleStartYear}
-                      defaultValue="2022"
+                      // defaultValue="2022"
+                      defaultValue={yearStart}
                       required
                     >
                       <option value="DefaultOption">Select start year</option>
@@ -446,7 +454,8 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                       id="finish_year"
                       name="finish_year"
                       onChange={handleYearFinish}
-                      defaultValue="2022"
+                      defaultValue={yearFinish}
+                      // defaultValue="2022"
                       required
                     >
                       <option value="DefaultOption">Select end year</option>
@@ -507,7 +516,8 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                       className="select_u3"
                       name="start_year"
                       onChange={handleStartYear}
-                      defaultValue="2022"
+                      // defaultValue="2022"
+                      defaultValue={yearStart}
                       required
                     >
                       <option value="DefaultOption">Select start year</option>
@@ -523,7 +533,8 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                       className="select_u3"
                       name="finish_year"
                       onChange={handleYearFinish}
-                      defaultValue="2022"
+                      defaultValue={yearFinish}
+                      // defaultValue="2022"
                       required
                     >
                       <option value="DefaultOption">Select end year</option>
@@ -695,7 +706,8 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                     id="start_year"
                     name="start_year"
                     onChange={handleStartYear}
-                    defaultValue="2022"
+                    defaultValue={yearStart}
+                    // defaultValue="2022"
                     required
                   >
                     <option value="DefaultOption">Select start year</option>
@@ -712,7 +724,8 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                     id="finish_year"
                     name="finish_year"
                     onChange={handleYearFinish}
-                    defaultValue="2022"
+                    defaultValue={yearFinish}
+                    // defaultValue="2022"
                     required
                   >
                     <option value="DefaultOption">Select end year</option>
@@ -762,7 +775,8 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                       className="select_u3"
                       name="start_year"
                       onChange={handleStartYear}
-                      defaultValue="2022"
+                      defaultValue={yearStart}
+                      // defaultValue="2022"
                       required
                     >
                       <option value="DefaultOption">Select start year</option>
@@ -778,7 +792,8 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                       className="select_u3"
                       name="finish_year"
                       onChange={handleYearFinish}
-                      defaultValue="2022"
+                      defaultValue={yearFinish}
+                      // defaultValue="2022"
                       required
                     >
                       <option value="DefaultOption">Select end year</option>
@@ -1137,7 +1152,8 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                     id="start_year"
                     name="start_year"
                     onChange={handleStartYear}
-                    defaultValue="2022"
+                    defaultValue={yearStart}
+                    // defaultValue="2022"
                     required
                   >
                     <option value="DefaultOption">Select start year</option>
@@ -1154,7 +1170,8 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                     id="finish_year"
                     name="finish_year"
                     onChange={handleYearFinish}
-                    defaultValue="2022"
+                    defaultValue={yearFinish}
+                    // defaultValue="2022"
                     required
                   >
                     <option value="DefaultOption">Select end year</option>
@@ -1189,7 +1206,8 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                       id="start_year"
                       name="start_year"
                       onChange={handleStartYear}
-                      defaultValue="2022"
+                      defaultValue={yearStart}
+                      // defaultValue="2022"
                       required
                     >
                       <option value="DefaultOption">Select start year</option>
@@ -1206,7 +1224,8 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                       id="finish_year"
                       name="finish_year"
                       onChange={handleYearFinish}
-                      defaultValue="2022"
+                      defaultValue={yearFinish}
+                      // defaultValue="2022"
                       required
                     >
                       <option value="DefaultOption">Select end year</option>
