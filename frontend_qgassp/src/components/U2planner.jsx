@@ -148,14 +148,15 @@ export const U2planner = ({
             >
               <HorizontalGridLines style={{ stroke: "#B7E9ED" }} />
               <VerticalGridLines style={{ stroke: "#B7E9ED" }} />
-              <XAxis
+              <XAxis title="Year" />
+              {/* <XAxis
                 position="start"
                 style={{
                   line: { stroke: "#ADDDE1" },
                   ticks: { stroke: "#ADDDE1" },
                   text: { stroke: "none", fill: "#6b6b76", fontWeight: 600 },
                 }}
-              />
+              /> */}
               <YAxis />
 
               <LineSeries

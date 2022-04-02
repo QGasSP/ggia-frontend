@@ -437,7 +437,6 @@ export const LandUseChangeTableForm = () => {
     setLoadingStyle({
       display: 'block'
     });
-    localStorage.setItem("landUseChangeRequest", JSON.stringify(rawData));
     axios
       .post(
         "https://ggia-dev.ulno.net/api/v1/calculate/land-use-change",
@@ -1359,11 +1358,6 @@ export const LandUseChangeTableForm = () => {
     setLandUseChangeResponse(response.data);
   };
 
-  useEffect(() => {
-    localStorage.setItem("landUseChangeResponse", JSON.stringify(landUseChangeResponse));
-  }, [landUseChangeResponse]);
- 
-
   if (lucBarChart === false) {
     return (
       <div>
@@ -1380,11 +1374,13 @@ export const LandUseChangeTableForm = () => {
                 <div className="luc_row">
                   <table className="toForest tbl">
                     <thead>
-                      <th className="row-title">Land-Use Change</th>
-                      <th>Total area, ha</th>
-                      <th>Soil area (mineral), ha</th>
-                      <th>Soil area (organic), ha</th>
-                      <th>Year of implementation</th>
+                      <tr>
+                        <th className="row-title">Land-Use Change</th>
+                        <th>Total area, ha</th>
+                        <th>Soil area (mineral), ha</th>
+                        <th>Soil area (organic), ha</th>
+                        <th>Year of implementation</th>
+                      </tr>
                     </thead>
                     <tbody>
                       <tr>
@@ -1689,11 +1685,13 @@ export const LandUseChangeTableForm = () => {
 
                   <table className="toCrop tbl">
                     <thead>
-                      <th className="row-title">Land-Use Change</th>
-                      <th>Total area, ha</th>
-                      <th>Soil area (mineral), ha</th>
-                      <th>Soil area (organic), ha</th>
-                      <th>Year of implementation</th>
+                      <tr>
+                        <th className="row-title">Land-Use Change</th>
+                        <th>Total area, ha</th>
+                        <th>Soil area (mineral), ha</th>
+                        <th>Soil area (organic), ha</th>
+                        <th>Year of implementation</th>
+                      </tr>
                     </thead>
                     <tbody>
                       <tr>
@@ -1994,11 +1992,13 @@ export const LandUseChangeTableForm = () => {
                 <div className="luc_row">
                   <table className="toGrass tbl">
                     <thead>
-                      <th className="row-title">Land-Use Change</th>
-                      <th>Total area, ha</th>
-                      <th>Soil area (mineral), ha</th>
-                      <th>Soil area (organic), ha</th>
-                      <th>Year of implementation</th>
+                      <tr>
+                        <th className="row-title">Land-Use Change</th>
+                        <th>Total area, ha</th>
+                        <th>Soil area (mineral), ha</th>
+                        <th>Soil area (organic), ha</th>
+                        <th>Year of implementation</th>
+                      </tr>
                     </thead>
                     <tbody>
                       <tr>
@@ -2296,11 +2296,13 @@ export const LandUseChangeTableForm = () => {
 
                   <table className="toWet tbl">
                     <thead>
-                      <th className="row-title">Land-Use Change</th>
-                      <th>Total area, ha</th>
-                      <th>Soil area (mineral), ha</th>
-                      <th>Soil area (organic), ha</th>
-                      <th>Year of implementation</th>
+                      <tr>
+                        <th className="row-title">Land-Use Change</th>
+                        <th>Total area, ha</th>
+                        <th>Soil area (mineral), ha</th>
+                        <th>Soil area (organic), ha</th>
+                        <th>Year of implementation</th>
+                      </tr>
                     </thead>
                     <tbody>
                       <tr>
@@ -2611,11 +2613,13 @@ export const LandUseChangeTableForm = () => {
                 <div className="luc_row">
                   <table className="toSettlements tbl">
                     <thead>
-                      <th className="row-title">Land-Use Change</th>
-                      <th>Total area, ha</th>
-                      <th>Soil area (mineral), ha</th>
-                      <th>Soil area (organic), ha</th>
-                      <th>Year of implementation</th>
+                      <tr>
+                        <th className="row-title">Land-Use Change</th>
+                        <th>Total area, ha</th>
+                        <th>Soil area (mineral), ha</th>
+                        <th>Soil area (organic), ha</th>
+                        <th>Year of implementation</th>
+                      </tr>
                     </thead>
                     <tbody>
                       <tr>
@@ -2920,11 +2924,13 @@ export const LandUseChangeTableForm = () => {
 
                   <table className="toOther tbl">
                     <thead>
-                      <th className="row-title">Land-Use Change</th>
-                      <th>Total area, ha</th>
-                      <th>Soil area (mineral), ha</th>
-                      <th>Soil area (organic), ha</th>
-                      <th>Year of implementation</th>
+                      <tr>
+                        <th className="row-title">Land-Use Change</th>
+                        <th>Total area, ha</th>
+                        <th>Soil area (mineral), ha</th>
+                        <th>Soil area (organic), ha</th>
+                        <th>Year of implementation</th>
+                      </tr>
                     </thead>
                     <tbody>
                       <tr>
@@ -3231,10 +3237,12 @@ export const LandUseChangeTableForm = () => {
                 <div className="luc_row">
                   <table>
                     <thead>
-                      <th className="row-title">Land-Use Change</th>
-                      <th>Total area, ha</th>
-                      <th>Soil area (mineral), ha</th>
-                      <th>Soil area (organic), ha</th>
+                      <tr>
+                        <th className="row-title">Land-Use Change</th>
+                        <th>Total area, ha</th>
+                        <th>Soil area (mineral), ha</th>
+                        <th>Soil area (organic), ha</th>
+                      </tr>
                     </thead>
                     <tbody>
                       <tr>
@@ -3273,7 +3281,7 @@ export const LandUseChangeTableForm = () => {
                             id="btn"
                             value="Submit"
                             onClick={setLandUseChangeChart}
-                            primary
+                            primary="true"
                           />
                         </td>
                         <td>
@@ -3283,7 +3291,7 @@ export const LandUseChangeTableForm = () => {
                             id="btn-reset"
                             value="Reset"
                             onClick={handleResetValues}
-                            secondary
+                            secondary="true"
                           />
                         </td>
                       </tr>
@@ -3297,7 +3305,7 @@ export const LandUseChangeTableForm = () => {
                     value="backStartPage"
                     onClick={() => navigate("/startPage", { replace: true })}
                     label="&laquo; Previous"
-                    secondary
+                    secondary="true"
                   />
                 </div> */}
 
@@ -3309,7 +3317,7 @@ export const LandUseChangeTableForm = () => {
                     value="Submit"
                     onClick={goToLandUseChangeBaseline}
                     label="Next &raquo;"
-                    primary
+                    primary="true"
                     style={nextBtnStyles}
                   />
                   <CircularProgress label="loading"  style={loadingStyles}/>
@@ -3329,13 +3337,3 @@ export const LandUseChangeTableForm = () => {
     );
   }
 };
-
-// LandUseChangeTableForm.propTypes = {
-//   year: PropTypes.number.isRequired,
-//   country: PropTypes.string.isRequired,
-// };
-
-// LandUseChangeTableForm.defaultProps = {
-//   country: 'Estonia',
-//   year: 2023
-// };

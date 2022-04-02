@@ -4,20 +4,99 @@ import "../css/u1planner.css";
 import Chip from "@mui/material/Chip";
 import { Button } from "./Button";
 import { ConsumptionResults } from "./ConsumptionResults";
+import PropTypes from "prop-types";
 
 /**
  * Consumption transport UI
  * @return {}
  */
 
-export const ConsumptionTransport = () => {
+export const ConsumptionTransport = ({ policyYear,
+  newFloorArea,
+  popSizePolicy,
+  effGain,
+  effScaler,
+  localElectricity,
+  elType,
+  elScaler,
+  sHeating,
+  districtProp,
+  liquidsProp,
+  solidsProp,
+  gasesProp,
+  districtValue
+
+}
+ 
+) => {
   const [nextCBResults, setCbResults] = useState(false);
 
+  const [biofuelTakeup, setBioFuelTakeup] = useState(false);
+  const [bioScaler, setBioScaler] = useState(0);
+
+  const [evTakeup, setEvTakeup] = useState(false);
+  const [evScaler, setEvScaler] = useState(0);
+
+  const [modalShift, setModalShift] = useState(false);
+
+  const [msFuelScaler, setMsFuelScaler] = useState(0);
+  const [msVehScaler, setMsVehScaler] = useState(0);
+  const [msPtScaler, setMsPtScaler] = useState(0);
+
+  const country = localStorage.getItem("country");
+  const year = localStorage.getItem("year");
+  const region = localStorage.getItem("country");
+  const popSize = localStorage.getItem("population");
+  const areaType = localStorage.getItem("areaType");
+  const houseSize = localStorage.getItem("houseSize");
+  const incomeChoice = localStorage.getItem("incomeChoice");
+  const effScalerInitial = localStorage.getItem("effScalerInitial");
+
+  const [consumptionRequest, setConsumptionRequest] = useState({});
+
+  const handleRequestObject = (e) => {
+    e.preventDefault();
+    setCbResults(true);
+    setConsumptionRequest({
+      country,
+      year,
+      popSize,
+      region,
+      areaType,
+      houseSize,
+      incomeChoice,
+      effScalerInitial,
+      policyYear, 
+      popSizePolicy,
+      newFloorArea,
+      effGain,
+      effScaler,
+      localElectricity,
+      elType,
+      elScaler,
+      sHeating,
+      districtProp,
+      solidsProp,
+      liquidsProp,
+      gasesProp,
+      districtValue,
+      biofuelTakeup,
+      bioScaler,
+      evTakeup,
+      evScaler,
+      modalShift,
+      msFuelScaler,
+      msVehScaler,
+      msPtScaler,
+    }
+    )
+  };
+
+ 
   if (nextCBResults === false) {
-  return (
-    <article>
-      <section>
-        
+    return (
+      <article>
+        <section>
           <Divider textAlign="left" flexItem>
             {" "}
             <Chip label="Transportation" />
@@ -30,34 +109,38 @@ export const ConsumptionTransport = () => {
               <label></label>
             </div>
             <div className="div_transport">
-              <label htmlFor="energy_prd">Consider biofuel in transport?</label>
+              <label htmlFor="biofuelTakeup">
+                Consider biofuel in transport?
+              </label>
               <select
                 className="prod_energy_options"
                 id="energy_prod"
-                // onChange={(e) => setEnergy options(e.target.value)}
-                defaultValue=""
+                onChange={(e) => setBioFuelTakeup(e.target.value)}
+                defaultValue={biofuelTakeup}
               >
                 <option value="DefaultOption">Select an option</option>
-                <option value="yes_prod">Yes</option>
-                <option value="no_prod">No</option>
+                <option value={true}>Yes</option>
+                <option value={false}>No</option>
               </select>
             </div>
+
             <div className="div_transport">
-              <label htmlFor="energy_reduction" className="settle_label">
-                Proportion of biofuels in transport?
+              <label htmlFor="bioScaler" className="settle_label">
+                what percentage of transport fuels are covered by biofuels?
               </label>
               <input
                 className="input_occupancy"
                 type="number"
-                id="energy_reduction"
+                id="bioScaler"
                 min="0"
                 max="100"
-                placeholder="0-100 %"
+                defaultValue={bioScaler}
+                onChange={(e) => setBioScaler(e.target.value)}
                 required
               />
             </div>
+         
             <br />
-
             <div className="div_transport">
               <label>
                 <b>Electric vehicles</b>
@@ -65,84 +148,146 @@ export const ConsumptionTransport = () => {
               <label></label>
             </div>
             <div className="div_transport">
-              <label htmlFor="energy_reduction" className="settle_label">
-                Proportion of electric vehicles in private transport
+              <label htmlFor="evTakeUp">
+                {" "}
+                Consider introduction of electric vehicles?
+              </label>
+              <select
+                className="prod_energy_options"
+                id="evTakeup"
+                onChange={(e) => setEvTakeup(e.target.value)}
+                defaultValue={evTakeup}
+              >
+                <option value="DefaultOption">Select an option</option>
+                <option value={true}>Yes</option>
+                <option value={false}>No</option>
+              </select>
+            </div>
+
+            <div className="div_transport">
+              <label htmlFor="evScaler" className="settle_label">
+                what percentage of private vehicles are electric?
               </label>
               <input
                 className="input_occupancy"
                 type="number"
-                id="energy_reduction"
+                id="evScaler"
+                onChange={(e) => setEvScaler(e.target.value)}
                 min="0"
                 max="100"
-                placeholder="0-100 %"
+                defaultValue={evScaler}
                 required
               />
             </div>
+
+            {/*  ------------------------------------------------- */}
+
             <div className="div_transport">
               <label>
                 <b>Modal shift</b>
               </label>
               <label></label>
             </div>
+
             <div className="div_transport">
-              <label htmlFor="energy_reduction" className="settle_label">
-                Relative decrease in private transport fuel use
+              <label htmlFor="modalShift">
+                Consider transport modal shift?
+              </label>
+              <select
+                className="prod_energy_options"
+                id="modalShift"
+                onChange={(e) => setModalShift(e.target.value)}
+                defaultValue={modalShift}
+              >
+                <option value="DefaultOption">Select an option</option>
+                <option value={true}>Yes</option>
+                <option value={false}>No</option>
+              </select>
+            </div>
+         
+
+            <div className="div_transport">
+              <label htmlFor="msFuelScaler" className="settle_label">
+                what percentage of private vehicle use is reduced?
               </label>
               <input
                 className="input_occupancy"
                 type="number"
-                id="energy_reduction"
+                id="msFuelScaler"
+                onChange={(e) => setMsFuelScaler(e.target.value)}
+                defaultValue={msFuelScaler}
                 min="0"
                 max="100"
-                placeholder="0-100 %"
                 required
               />
             </div>
             <div className="div_transport">
-              <label htmlFor="energy_reduction" className="settle_label">
-                Relative decrease in private transport ownership
+              <label htmlFor="msVehScaler" className="settle_label">
+                what percentage of private vehicle ownership is reduced?
               </label>
               <input
                 className="input_occupancy"
                 type="number"
-                id="energy_reduction"
+                id="msVehScaler"
+                onChange={(e) => setMsVehScaler(e.target.value)}
+                defaultValue={msVehScaler}
                 min="0"
                 max="100"
-                placeholder="0-100 %"
                 required
               />
             </div>
             <div className="div_transport">
-              <label htmlFor="energy_reduction" className="settle_label">
-                Relative increase in public transport
+              <label htmlFor="msPtScaler" className="settle_label">
+                what percentage is public transport use increased?
               </label>
               <input
                 className="input_occupancy"
                 type="number"
-                id="energy_reduction"
+                id="msPtScaler"
+                onChange={(e) => setMsPtScaler(e.target.value)}
+                defaultValue={msPtScaler}
                 min="0"
                 max="100"
-                placeholder="0-100 %"
                 required
               />
             </div>
-       
           </div>
           <div className="nextCBQ">
             <Button
               size="small"
               value="charts"
-              onClick={() => setCbResults(true)}
+              onClick={handleRequestObject}
               label="Next &raquo;"
               primary
             />
           </div>
-        
-        <br />
-      </section>
-    </article>
-   );
+
+          <br />
+        </section>
+      </article>
+    );
   } else {
-    return <ConsumptionResults />;
+    return (
+      <ConsumptionResults
+       consumptionRequest={consumptionRequest}
+      />
+    );
   }
+};
+
+ConsumptionTransport.propTypes = {
+  policyYear: PropTypes.number.isRequired,
+  newFloorArea: PropTypes.number.isRequired,
+  popSizePolicy: PropTypes.number.isRequired,
+  effGain: PropTypes.string.isRequired,
+  effScaler: PropTypes.number.isRequired,
+  localElectricity: PropTypes.string.isRequired,
+  elType: PropTypes.string.isRequired,
+  elScaler: PropTypes.number.isRequired,
+  sHeating: PropTypes.string.isRequired,
+  districtProp: PropTypes.number.isRequired,
+  liquidsProp: PropTypes.number.isRequired,
+  solidsProp: PropTypes.number.isRequired,
+  gasesProp: PropTypes.number.isRequired,
+  districtValue: PropTypes.number.isRequired,
 };

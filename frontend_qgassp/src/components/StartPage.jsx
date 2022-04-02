@@ -17,6 +17,9 @@ export const StartPage = () => {
 
   const options = [];
   for (let i = 2022; i < 2051; i++) options.push(i);
+  useEffect(() => {
+    localStorage.setItem("options", options);
+  }, [options]);
 
   const handleSelected = (e) => {
     e.preventDefault();

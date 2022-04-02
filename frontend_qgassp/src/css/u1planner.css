@@ -208,3 +208,10 @@ input[type="number"] {
   width: 1.5rem;
   color: blue !important;
 }
+
+.tableTotalEmissions{
+  border: 1px solid black;
+  text-align: left;
+  padding: 0.5rem;
+  font-size: 1vw;
+}

@@ -40,3 +40,16 @@ export const useStorageFloat = (key, defaultValue) => {
 
   return [value, setValue];
 };
+
+
+export const useStorageBool = (key, defaultValue) => {
+  const [value, setValue] = useState(() => {
+    return getStorageValue(key, defaultValue);
+  });
+
+  useEffect(() => {
+    localStorage.setItem(key, value);
+  }, [key, value]);
+
+  return [value, setValue];
+};
