@@ -1,0 +1,17 @@
+.buildings-tbl{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.buildings-tbl td, .buildings-tbl th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+.buildings-tbl tr:nth-child(even), .buildings-tbl th {
+    background-color: #dddddd;
+}
+.buildings-baseline{
+    padding: 0 20px;
+}
