@@ -3,8 +3,6 @@ import Divider from "@mui/material/Divider";
 import "../css/u1planner.css";
 import Chip from "@mui/material/Chip";
 import axios from "axios";
-
-import { LineLegendConsumption } from "./LineLegendConsumption";
 import PropTypes from "prop-types";
 import { ConsumptionSummary } from "./ConsumptionSummary";
 
@@ -16,15 +14,12 @@ import { ConsumptionSummary } from "./ConsumptionSummary";
 export const ConsumptionResults = ({ consumptionRequest }) => {
   const [blTransport, setBlTransport] = useState({});
   const [blTotalEmmissions, setBlTotalEmissions] = useState({});
+  const [bLTotalAreaEmissions, setBlTotalAreaEmissions] = useState({});
   const [p1, setP1] = useState({});
   const [p1TotalEmissions, setP1totalEmissions] = useState({});
+  const [p1TotalAreaEmissions, setP1totalAreaEmissions] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-
-  const resultsLegend = [
-    { title: "RF", color: "#3d58a3", strokeWidth: 13 },
-    { title: "BL", color: "#ef7d00", strokeWidth: 13 },
-  ];
 
   const fetchConsumptionData = () => {
     const headers = { "Content-type": "application/json" };
@@ -37,11 +32,17 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
       )
       .then((response) => {
         // eslint-disable-next-line no-console
-        console.log()
+        console.log();
         setBlTransport(response.data.data.consumption.BL);
         setBlTotalEmissions(response.data.data.consumption.BLTotalEmissions);
+        setP1totalAreaEmissions(
+          response.data.data.consumption.P1TotalAreaEmissions
+        );
         setP1(response.data.data.consumption.P1);
         setP1totalEmissions(response.data.data.consumption.P1TotalEmissions);
+        setBlTotalAreaEmissions(
+          response.data.data.consumption.BLTotalAreaEmissions
+        );
         setIsLoading(false);
       })
       .catch((error) => {
@@ -85,10 +86,12 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
         </Divider>
         <>
           <ConsumptionSummary
-            blTransport={blTransport}
-            blTotalEmmissions={blTotalEmmissions}
-            p1={p1}
             p1TotalEmissions={p1TotalEmissions}
+            blTotalEmmissions={blTotalEmmissions}
+            bLTotalAreaEmissions={bLTotalAreaEmissions}
+            p1TotalAreaEmissions={p1TotalAreaEmissions}
+            blTransport={blTransport}
+            p1={p1}
           />
         </>
         {isError && <div>Error fetching data.</div>}

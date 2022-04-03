@@ -15,7 +15,6 @@ import {
 
 import PropTypes from "prop-types";
 
-
 /**
  * Consumption Results
  * @return {}
@@ -26,6 +25,8 @@ export const ConsumptionSummary = ({
   blTotalEmmissions,
   p1,
   p1TotalEmissions,
+  bLTotalAreaEmissions,
+  p1TotalAreaEmissions,
 }) => {
   const country = localStorage.getItem("country");
   const resultsLegend = [
@@ -759,13 +760,7 @@ export const ConsumptionSummary = ({
         <b> {country}: Baseline total emissions vs Policy total emissions</b>
       </Divider>
       <br />
-      <XYPlot
-        xType="ordinal"
-        width={1000}
-        height={400}
-        margin={{ left: 80 }}
-        yDomain={[0, 1500]}
-      >
+      <XYPlot xType="ordinal" width={1000} height={500} margin={{ left: 100 }}>
         <VerticalGridLines />
         <HorizontalGridLines />
         <XAxis title="Year" />
@@ -776,37 +771,37 @@ export const ConsumptionSummary = ({
           curve={null}
           strokeWidth="2"
           data={[
-            { x: 2020, y: blTotalEmmissions["2020"] },
-            { x: 2021, y: blTotalEmmissions["2021"] },
-            { x: 2022, y: blTotalEmmissions["2022"] },
-            { x: 2023, y: blTotalEmmissions["2023"] },
-            { x: 2024, y: blTotalEmmissions["2024"] },
-            { x: 2025, y: blTotalEmmissions["2025"] },
-            { x: 2026, y: blTotalEmmissions["2026"] },
-            { x: 2027, y: blTotalEmmissions["2027"] },
-            { x: 2028, y: blTotalEmmissions["2028"] },
-            { x: 2029, y: blTotalEmmissions["2029"] },
-            { x: 2030, y: blTotalEmmissions["2030"] },
-            { x: 2031, y: blTotalEmmissions["2031"] },
-            { x: 2032, y: blTotalEmmissions["2032"] },
-            { x: 2033, y: blTotalEmmissions["2033"] },
-            { x: 2034, y: blTotalEmmissions["2034"] },
-            { x: 2035, y: blTotalEmmissions["2035"] },
-            { x: 2036, y: blTotalEmmissions["2036"] },
-            { x: 2037, y: blTotalEmmissions["2037"] },
-            { x: 2038, y: blTotalEmmissions["2038"] },
-            { x: 2039, y: blTotalEmmissions["2039"] },
-            { x: 2040, y: blTotalEmmissions["2040"] },
-            { x: 2041, y: blTotalEmmissions["2041"] },
-            { x: 2042, y: blTotalEmmissions["2042"] },
-            { x: 2043, y: blTotalEmmissions["2043"] },
-            { x: 2044, y: blTotalEmmissions["2044"] },
-            { x: 2045, y: blTotalEmmissions["2045"] },
-            { x: 2046, y: blTotalEmmissions["2046"] },
-            { x: 2047, y: blTotalEmmissions["2047"] },
-            { x: 2048, y: blTotalEmmissions["2048"] },
-            { x: 2049, y: blTotalEmmissions["2049"] },
-            { x: 2050, y: blTotalEmmissions["2050"] },
+            { x: 2020, y: bLTotalAreaEmissions["2020"] },
+            { x: 2021, y: bLTotalAreaEmissions["2021"] },
+            { x: 2022, y: bLTotalAreaEmissions["2022"] },
+            { x: 2023, y: bLTotalAreaEmissions["2023"] },
+            { x: 2024, y: bLTotalAreaEmissions["2024"] },
+            { x: 2025, y: bLTotalAreaEmissions["2025"] },
+            { x: 2026, y: bLTotalAreaEmissions["2026"] },
+            { x: 2027, y: bLTotalAreaEmissions["2027"] },
+            { x: 2028, y: bLTotalAreaEmissions["2028"] },
+            { x: 2029, y: bLTotalAreaEmissions["2029"] },
+            { x: 2030, y: bLTotalAreaEmissions["2030"] },
+            { x: 2031, y: bLTotalAreaEmissions["2031"] },
+            { x: 2032, y: bLTotalAreaEmissions["2032"] },
+            { x: 2033, y: bLTotalAreaEmissions["2033"] },
+            { x: 2034, y: bLTotalAreaEmissions["2034"] },
+            { x: 2035, y: bLTotalAreaEmissions["2035"] },
+            { x: 2036, y: bLTotalAreaEmissions["2036"] },
+            { x: 2037, y: bLTotalAreaEmissions["2037"] },
+            { x: 2038, y: bLTotalAreaEmissions["2038"] },
+            { x: 2039, y: bLTotalAreaEmissions["2039"] },
+            { x: 2040, y: bLTotalAreaEmissions["2040"] },
+            { x: 2041, y: bLTotalAreaEmissions["2041"] },
+            { x: 2042, y: bLTotalAreaEmissions["2042"] },
+            { x: 2043, y: bLTotalAreaEmissions["2043"] },
+            { x: 2044, y: bLTotalAreaEmissions["2044"] },
+            { x: 2045, y: bLTotalAreaEmissions["2045"] },
+            { x: 2046, y: bLTotalAreaEmissions["2046"] },
+            { x: 2047, y: bLTotalAreaEmissions["2047"] },
+            { x: 2048, y: bLTotalAreaEmissions["2048"] },
+            { x: 2049, y: bLTotalAreaEmissions["2049"] },
+            { x: 2050, y: bLTotalAreaEmissions["2050"] },
           ]}
         />
         <LineSeries
@@ -814,37 +809,37 @@ export const ConsumptionSummary = ({
           curve={null}
           strokeWidth="2"
           data={[
-            { x: 2020, y: p1TotalEmissions["2020"] },
-            { x: 2021, y: p1TotalEmissions["2021"] },
-            { x: 2022, y: p1TotalEmissions["2022"] },
-            { x: 2023, y: p1TotalEmissions["2023"] },
-            { x: 2024, y: p1TotalEmissions["2024"] },
-            { x: 2025, y: p1TotalEmissions["2025"] },
-            { x: 2026, y: p1TotalEmissions["2026"] },
-            { x: 2027, y: p1TotalEmissions["2027"] },
-            { x: 2028, y: p1TotalEmissions["2028"] },
-            { x: 2029, y: p1TotalEmissions["2029"] },
-            { x: 2030, y: p1TotalEmissions["2030"] },
-            { x: 2031, y: p1TotalEmissions["2031"] },
-            { x: 2032, y: p1TotalEmissions["2032"] },
-            { x: 2033, y: p1TotalEmissions["2033"] },
-            { x: 2034, y: p1TotalEmissions["2034"] },
-            { x: 2035, y: p1TotalEmissions["2035"] },
-            { x: 2036, y: p1TotalEmissions["2036"] },
-            { x: 2037, y: p1TotalEmissions["2037"] },
-            { x: 2038, y: p1TotalEmissions["2038"] },
-            { x: 2039, y: p1TotalEmissions["2039"] },
-            { x: 2040, y: p1TotalEmissions["2040"] },
-            { x: 2041, y: p1TotalEmissions["2041"] },
-            { x: 2042, y: p1TotalEmissions["2042"] },
-            { x: 2043, y: p1TotalEmissions["2043"] },
-            { x: 2044, y: p1TotalEmissions["2044"] },
-            { x: 2045, y: p1TotalEmissions["2045"] },
-            { x: 2046, y: p1TotalEmissions["2046"] },
-            { x: 2047, y: p1TotalEmissions["2047"] },
-            { x: 2048, y: p1TotalEmissions["2048"] },
-            { x: 2049, y: p1TotalEmissions["2049"] },
-            { x: 2050, y: p1TotalEmissions["2050"] },
+            { x: 2020, y: p1TotalAreaEmissions["2020"] },
+            { x: 2021, y: p1TotalAreaEmissions["2021"] },
+            { x: 2022, y: p1TotalAreaEmissions["2022"] },
+            { x: 2023, y: p1TotalAreaEmissions["2023"] },
+            { x: 2024, y: p1TotalAreaEmissions["2024"] },
+            { x: 2025, y: p1TotalAreaEmissions["2025"] },
+            { x: 2026, y: p1TotalAreaEmissions["2026"] },
+            { x: 2027, y: p1TotalAreaEmissions["2027"] },
+            { x: 2028, y: p1TotalAreaEmissions["2028"] },
+            { x: 2029, y: p1TotalAreaEmissions["2029"] },
+            { x: 2030, y: p1TotalAreaEmissions["2030"] },
+            { x: 2031, y: p1TotalAreaEmissions["2031"] },
+            { x: 2032, y: p1TotalAreaEmissions["2032"] },
+            { x: 2033, y: p1TotalAreaEmissions["2033"] },
+            { x: 2034, y: p1TotalAreaEmissions["2034"] },
+            { x: 2035, y: p1TotalAreaEmissions["2035"] },
+            { x: 2036, y: p1TotalAreaEmissions["2036"] },
+            { x: 2037, y: p1TotalAreaEmissions["2037"] },
+            { x: 2038, y: p1TotalAreaEmissions["2038"] },
+            { x: 2039, y: p1TotalAreaEmissions["2039"] },
+            { x: 2040, y: p1TotalAreaEmissions["2040"] },
+            { x: 2041, y: p1TotalAreaEmissions["2041"] },
+            { x: 2042, y: p1TotalAreaEmissions["2042"] },
+            { x: 2043, y: p1TotalAreaEmissions["2043"] },
+            { x: 2044, y: p1TotalAreaEmissions["2044"] },
+            { x: 2045, y: p1TotalAreaEmissions["2045"] },
+            { x: 2046, y: p1TotalAreaEmissions["2046"] },
+            { x: 2047, y: p1TotalAreaEmissions["2047"] },
+            { x: 2048, y: p1TotalAreaEmissions["2048"] },
+            { x: 2049, y: p1TotalAreaEmissions["2049"] },
+            { x: 2050, y: p1TotalAreaEmissions["2050"] },
           ]}
         />
       </XYPlot>
@@ -863,4 +858,6 @@ ConsumptionSummary.propTypes = {
   blTotalEmmissions: PropTypes.object.isRequired,
   p1: PropTypes.object.isRequired,
   p1TotalEmissions: PropTypes.object.isRequired,
+  bLTotalAreaEmissions: PropTypes.object.isRequired,
+  p1TotalAreaEmissions: PropTypes.object.isRequired,
 };
