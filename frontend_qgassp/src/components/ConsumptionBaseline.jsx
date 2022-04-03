@@ -10,10 +10,13 @@ import { useStorageInt, useStorageString } from "../reducers/useStorage";
 export const ConsumptionBaseline = () => {
   const [nextShowCharts, setNextShow] = useState(false);
 
-  const [areaType, setAreaType] = useStorageString("areaType","");
-  const [houseSize, setHouseSize] = useStorageInt("houseSize",0);
-  const [incomeChoice, setIncomeChoice] = useStorageInt("incomeChoice",0);
-  const [effScalerInitial, setEffScalerInitial] =useStorageString("effScalerInitial","normal");
+  const [areaType, setAreaType] = useStorageString("areaType", "");
+  const [houseSize, setHouseSize] = useStorageInt("houseSize", 0);
+  const [incomeChoice, setIncomeChoice] = useStorageInt("incomeChoice", 0);
+  const [effScalerInitial, setEffScalerInitial] = useStorageString(
+    "effScalerInitial",
+    "normal"
+  );
 
   const handleHouseSize = (e) => {
     e.preventDefault();
@@ -24,7 +27,6 @@ export const ConsumptionBaseline = () => {
     e.preventDefault();
     setIncomeChoice(Number(e.target.value));
   };
-
 
   const showConsumptionBaseline = () => {
     setNextShow(true);
@@ -102,7 +104,6 @@ export const ConsumptionBaseline = () => {
                     name="income_choice"
                     onChange={handleIncomeChoice}
                     defaultValue={incomeChoice}
-                   
                   >
                     <option value="DefaultOption">Select Income </option>
                     <optgroup label="Household income levels">
@@ -159,8 +160,8 @@ export const ConsumptionBaseline = () => {
     return (
       <ConsumptionBaselineResults
         areaType={areaType}
-        houseSize={houseSize}
-        incomeChoice={incomeChoice}
+        houseSize={parseInt(houseSize)}
+        incomeChoice={parseInt(incomeChoice)}
         effScalerInitial={effScalerInitial}
       />
     );

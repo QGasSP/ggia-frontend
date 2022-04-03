@@ -6,17 +6,21 @@ import { LandUseChangeTableForm } from "./LandUseChangeTableForm";
 import { Welcome } from "./Welcome";
 import { BuildingBaseline } from "./BuildingBaseline";
 import { ConsumptionBaseline } from "./ConsumptionBaseline";
+import { TransportBaseline } from "./TransportBaseline";
 /* import { TransportBaseline } from "./TransportBaseline";
  */
 export const TabModules = () => {
   const [toggleState, setToggleState] = useState(1);
+  const next = localStorage.getItem("next");
+
   const ggiaGuideUrl = "https://github.com/QGasSP/ggia/wiki";
+
   const toggleTab = (index) => {
     setToggleState(index);
   };
 
   const openGuide = () => {
-    toggleTab(7);
+    // toggleTab(7);
     window.open(ggiaGuideUrl, "_blank");
   };
 
@@ -57,7 +61,7 @@ export const TabModules = () => {
           </button>
           <button
             className={toggleState === 5 ? "tabs active-tabs" : "tabs"}
-            onClick={() => toggleTab(5)} 
+            onClick={() => toggleTab(5)}
             id="consumption"
           >
             Consumption-based
@@ -66,14 +70,14 @@ export const TabModules = () => {
           </button>
           <button
             className={toggleState === 6 ? "tabs active-tabs" : "tabs"}
-            onClick={() => toggleTab(6)} 
+            onClick={() => toggleTab(6)}
             id="local_data"
           >
             Create local data-set
           </button>
           <button
             className={toggleState === 7 ? "tabs active-tabs" : "tabs"}
-           /*  onClick={() => toggleTab(7)} */
+            /*  onClick={() => toggleTab(7)} */
             onClick={openGuide}
             id="user_guide"
           >
@@ -81,14 +85,13 @@ export const TabModules = () => {
           </button>
         </div>
       </div>
-
       <div className="content-tabs">
         <>
           {toggleState == 1 && <Welcome />}
-          {toggleState == 2 && <StartPage />}
+          {toggleState == 2 && <TransportBaseline />}
           {toggleState == 3 && <LandUseChangeTableForm />}
           {toggleState == 4 && <BuildingBaseline />}
-          {toggleState == 5 && <ConsumptionBaseline />} 
+          {toggleState == 5 && <ConsumptionBaseline />}
           {toggleState == 6 && <StartPage />}
         </>
       </div>

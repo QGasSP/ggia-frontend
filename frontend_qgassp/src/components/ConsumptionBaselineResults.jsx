@@ -10,7 +10,6 @@ import {
   YAxis,
   HorizontalGridLines,
   VerticalBarSeries,
-  /* LabelSeries, */
 } from "react-vis";
 
 import { LineLegendConsumption } from "./LineLegendConsumption";
@@ -18,9 +17,7 @@ import { hseHoldEmissions } from "../reducers/Consumption";
 import axios from "axios";
 import { Button } from "./Button";
 import { ConsumptionHseEnergy } from "./ConsumptionHseEnergy";
-/* import { CbBreadcrumb } from "./CbBreadcrumb"; */
 
-// const BarSeries = useCanvas ? VerticalBarSeriesCanvas : VerticalBarSeries;
 const BarSeries = VerticalBarSeries;
 
 export const ConsumptionBaselineResults = ({
@@ -32,7 +29,7 @@ export const ConsumptionBaselineResults = ({
   const country = localStorage.getItem("country");
   const year = parseInt(localStorage.getItem("year"));
   const region = localStorage.getItem("country");
-  const popSize =  parseInt(localStorage.getItem("population"));
+  const popSize = parseInt(localStorage.getItem("population"));
   const [bL, setBL] = useState({});
   const [bLTotalEmissions, setBLTotalEmissions] = useState({});
 
@@ -41,10 +38,11 @@ export const ConsumptionBaselineResults = ({
   const [solidsProp, setSolidsProp] = useState(0);
   const [gasesProp, setGasesProp] = useState(0);
   const [districtValue, setDistrictValue] = useState(0);
+  const [isBaselineLoading, setIsLoadingBaseline] = useState(true);
+  const [isResponseError, setIsResponseError] = useState(false);
 
   const [nextCBQuantification, setCbq] = useState(false);
-
-  useEffect(async () => {
+  const fetchConsumptionBaseline = () => {
     const rawData = {
       country,
       year,
@@ -58,7 +56,7 @@ export const ConsumptionBaselineResults = ({
     const headers = {
       "Content-type": "application/json",
     };
-    await axios
+    axios
       .post(
         "https://ggia-dev.ulno.net/api/v1/calculate/consumption",
         rawData,
@@ -72,19 +70,33 @@ export const ConsumptionBaselineResults = ({
         setSolidsProp(response.data.data.consumption.solidsProp);
         setGasesProp(response.data.data.consumption.gasesProp);
         setDistrictValue(response.data.data.consumption.districtValue);
+        setIsLoadingBaseline(false);
       })
       .catch((error) => {
+        setIsLoadingBaseline(false);
+        setIsResponseError(true);
         // eslint-disable-next-line no-console
         console.error("There was an error!", error.message);
       });
+  };
+
+  useEffect(async () => {
+    fetchConsumptionBaseline();
   }, []);
 
   useEffect(() => {
     localStorage.setItem("bL", JSON.stringify(bL));
   }, [bL]);
 
-  // && Object.keys(bL).length
-  if (nextCBQuantification === false && Object.keys(bL).length !== 0) {
+  useEffect(() => {
+    localStorage.setItem("bLTotalEmissions", JSON.stringify(bLTotalEmissions));
+  }, [bLTotalEmissions]);
+
+  if (isBaselineLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (nextCBQuantification === false) {
     return (
       <>
         <br />
@@ -99,21 +111,6 @@ export const ConsumptionBaselineResults = ({
               orientation="horizontal"
             />
           </div>
-
-          {/*    <b>HE</b>
-          <p>{JSON.stringify(bL.housingEnergy[2030])}</p>
-          <b>HO</b>
-          <p>{JSON.stringify(bL.housingOther)}</p>
-          <b>TF</b>
-          <p>{JSON.stringify(bL.transportFuels)}</p>
-          <b>TO</b>
-          <p>{JSON.stringify(bL.transportOther)}</p>
-          <b>FOOD</b>
-          <p>{JSON.stringify(bL.food)}</p>
-          <b>Tangible goods</b>
-          <p>{JSON.stringify(bL.tangibleGoods)}</p>
-          <b>Services</b>
-          <p>{JSON.stringify(bL.services)}</p> */}
 
           <XYPlot width={1000} height={500} stackBy="y" xType="ordinal">
             <HorizontalGridLines />
@@ -451,9 +448,10 @@ export const ConsumptionBaselineResults = ({
             primary
           />
         </div>
+        {isResponseError && <div>Error fetching data.</div>}
       </>
     );
-  } else if (nextCBQuantification === true) {
+  } else {
     return (
       <ConsumptionHseEnergy
         districtProp={districtProp}
@@ -463,8 +461,6 @@ export const ConsumptionBaselineResults = ({
         districtValue={districtValue}
       />
     );
-  } else {
-    return <></>;
   }
 };
 

@@ -7,7 +7,7 @@ import { ConsumptionTransport } from "./ConsumptionTransport";
 import PropTypes from "prop-types";
 
 /**
- * Welcome page UI component
+ * Consumption house energy UI component
  * @return {}
  */
 const ceYes = true;
@@ -33,15 +33,14 @@ export const ConsumptionHseEnergy = ({
   const [elScaler, setElectricityScaler] = useState(0);
   const [sHeating, setShareHeating] = useState(false);
 
-/*   const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(false);
   const handleBreakdownChange = (e) => {
     e.target.checked;
     setChecked(!checked);
-  }; */
+  };
 
   const optionsCb = [];
   for (let i = 2022; i < 2051; i++) optionsCb.push(i);
-
 
   const handlePolicyYear = (e) => {
     e.preventDefault();
@@ -68,8 +67,6 @@ export const ConsumptionHseEnergy = ({
     setElectricityScaler(Number(e.target.value));
   };
 
- 
-
   if (nextCBTransport === false) {
     return (
       <article>
@@ -91,14 +88,13 @@ export const ConsumptionHseEnergy = ({
                 defaultValue={policyYear}
                 required
               >
-                
                 <option value="DefaultOption">Select year</option>
 
-                    {optionsCb.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
+                {optionsCb.map((option) => (
+                  <option key={option} value={option}>
+                    {option}{" "}
+                  </option>
+                ))}
               </select>
             </div>
 
@@ -284,16 +280,16 @@ export const ConsumptionHseEnergy = ({
               <label htmlFor="source_breakdown">
                 <b>Select to view breakdown of heating sources in the area</b>
               </label>
-            {/*   <input
+              <input
                 className="checkbox_cb"
                 type="checkbox"
                 id="source_breakdown"
                 checked={checked}
                 onChange={handleBreakdownChange}
-              /> */}
+              />
             </div>
 
-         {/*    {checked && ( */}
+            {checked && (
               <div className="div_transport">
                 <label>District heating</label>
                 <label>{districtProp}</label>
@@ -310,7 +306,7 @@ export const ConsumptionHseEnergy = ({
                 <label> District value</label>
                 <label>{districtValue}</label>
               </div>
-         {/*    )} */}
+            )}
           </div>
 
           <div className="nextCBQ">

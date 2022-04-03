@@ -5,13 +5,14 @@ import Chip from "@mui/material/Chip";
 import { Button } from "./Button";
 import { ConsumptionResults } from "./ConsumptionResults";
 import PropTypes from "prop-types";
-
+import axios from "axios";
 /**
  * Consumption transport UI
  * @return {}
  */
 
-export const ConsumptionTransport = ({ policyYear,
+export const ConsumptionTransport = ({
+  policyYear,
   newFloorArea,
   popSizePolicy,
   effGain,
@@ -24,11 +25,13 @@ export const ConsumptionTransport = ({ policyYear,
   liquidsProp,
   solidsProp,
   gasesProp,
-  districtValue
-
-}
- 
-) => {
+  districtValue,
+}) => {
+  const [blTransport, setBlTransport] = useState({});
+  const [blTotalEmmissions, setBlTotalEmissions] = useState({});
+  const [p1, setP1] = useState({});
+  const [p1TotalEmissions, setP1totalEmissions] = useState({});
+  
   const [nextCBResults, setCbResults] = useState(false);
 
   const [biofuelTakeup, setBioFuelTakeup] = useState(false);
@@ -44,19 +47,45 @@ export const ConsumptionTransport = ({ policyYear,
   const [msPtScaler, setMsPtScaler] = useState(0);
 
   const country = localStorage.getItem("country");
-  const year = localStorage.getItem("year");
+  const year = parseInt(localStorage.getItem("year"));
   const region = localStorage.getItem("country");
-  const popSize = localStorage.getItem("population");
+  const popSize = parseInt(localStorage.getItem("population"));
   const areaType = localStorage.getItem("areaType");
-  const houseSize = localStorage.getItem("houseSize");
-  const incomeChoice = localStorage.getItem("incomeChoice");
+  const houseSize = parseInt(localStorage.getItem("houseSize"));
+  const incomeChoice = parseInt(localStorage.getItem("incomeChoice"));
   const effScalerInitial = localStorage.getItem("effScalerInitial");
 
   const [consumptionRequest, setConsumptionRequest] = useState({});
 
+  const handleBioScaler = (e) => {
+    e.preventDefault();
+    setBioScaler(Number(e.target.value));
+  };
+
+  const handleEvScaler = (e) => {
+    e.preventDefault();
+    setEvScaler(Number(e.target.value));
+  };
+
+  const handleMsFuelScaler = (e) => {
+    e.preventDefault();
+    setMsFuelScaler(Number(e.target.value));
+  };
+
+  const handleMsVehScaler = (e) => {
+    e.preventDefault();
+    setMsVehScaler(Number(e.target.value));
+  };
+
+  const handleMsPtScaler = (e) => {
+    e.preventDefault();
+    setMsPtScaler(Number(e.target.value));
+  };
+
   const handleRequestObject = (e) => {
     e.preventDefault();
     setCbResults(true);
+
     setConsumptionRequest({
       country,
       year,
@@ -66,7 +95,7 @@ export const ConsumptionTransport = ({ policyYear,
       houseSize,
       incomeChoice,
       effScalerInitial,
-      policyYear, 
+      policyYear,
       popSizePolicy,
       newFloorArea,
       effGain,
@@ -88,11 +117,9 @@ export const ConsumptionTransport = ({ policyYear,
       msFuelScaler,
       msVehScaler,
       msPtScaler,
-    }
-    )
+    });
   };
 
- 
   if (nextCBResults === false) {
     return (
       <article>
@@ -135,11 +162,11 @@ export const ConsumptionTransport = ({ policyYear,
                 min="0"
                 max="100"
                 defaultValue={bioScaler}
-                onChange={(e) => setBioScaler(e.target.value)}
+                onChange={handleBioScaler}
                 required
               />
             </div>
-         
+
             <br />
             <div className="div_transport">
               <label>
@@ -172,7 +199,7 @@ export const ConsumptionTransport = ({ policyYear,
                 className="input_occupancy"
                 type="number"
                 id="evScaler"
-                onChange={(e) => setEvScaler(e.target.value)}
+                onChange={handleEvScaler}
                 min="0"
                 max="100"
                 defaultValue={evScaler}
@@ -204,7 +231,6 @@ export const ConsumptionTransport = ({ policyYear,
                 <option value={false}>No</option>
               </select>
             </div>
-         
 
             <div className="div_transport">
               <label htmlFor="msFuelScaler" className="settle_label">
@@ -214,7 +240,7 @@ export const ConsumptionTransport = ({ policyYear,
                 className="input_occupancy"
                 type="number"
                 id="msFuelScaler"
-                onChange={(e) => setMsFuelScaler(e.target.value)}
+                onChange={handleMsFuelScaler}
                 defaultValue={msFuelScaler}
                 min="0"
                 max="100"
@@ -229,7 +255,7 @@ export const ConsumptionTransport = ({ policyYear,
                 className="input_occupancy"
                 type="number"
                 id="msVehScaler"
-                onChange={(e) => setMsVehScaler(e.target.value)}
+                onChange={handleMsVehScaler}
                 defaultValue={msVehScaler}
                 min="0"
                 max="100"
@@ -244,7 +270,7 @@ export const ConsumptionTransport = ({ policyYear,
                 className="input_occupancy"
                 type="number"
                 id="msPtScaler"
-                onChange={(e) => setMsPtScaler(e.target.value)}
+                onChange={handleMsPtScaler}
                 defaultValue={msPtScaler}
                 min="0"
                 max="100"
@@ -267,11 +293,7 @@ export const ConsumptionTransport = ({ policyYear,
       </article>
     );
   } else {
-    return (
-      <ConsumptionResults
-       consumptionRequest={consumptionRequest}
-      />
-    );
+    return <ConsumptionResults consumptionRequest={consumptionRequest} />;
   }
 };
 
