@@ -11,7 +11,7 @@ import { TransportBaseline } from "./TransportBaseline";
  */
 export const TabModules = () => {
   const [toggleState, setToggleState] = useState(1);
-  const next = localStorage.getItem("next");
+ 
 
   const ggiaGuideUrl = "https://github.com/QGasSP/ggia/wiki";
 

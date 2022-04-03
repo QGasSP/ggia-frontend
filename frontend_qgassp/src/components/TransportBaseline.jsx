@@ -23,7 +23,7 @@ export const TransportBaseline = ({ country, year, population }) => {
   const [town, setTown] = useState(parseFloat(0));
   const [rural, setRural] = useState(parseFloat(0));
   const [total, setTotal] = useState(parseFloat(0));
-  const next = localStorage.getItem("next");
+
   // const [nextEmissions, setNextEmissions] = useState(false);
   const [settlementDistribution, setSettlementDistribution] = useState({});
   const [nextU1Charts, setU1Charts] = useState(false);

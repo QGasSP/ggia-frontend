@@ -1,6 +1,7 @@
 import React from "react";
 import Divider from "@mui/material/Divider";
 import "../css/u1planner.css";
+import { LineLegendConsumption } from "./LineLegendConsumption";
 
 import {
   XYPlot,
@@ -13,6 +14,7 @@ import {
 } from "react-vis";
 
 import PropTypes from "prop-types";
+
 
 /**
  * Consumption Results
@@ -29,9 +31,7 @@ export const ConsumptionSummary = ({
   const resultsLegend = [
     { title: "Baseline total emissions", color: "#3d58a3", strokeWidth: 13 },
     { title: "Policy total emissions", color: "#ef7d00", strokeWidth: 13 },
-   
   ];
-
 
   return (
     <>
@@ -759,7 +759,13 @@ export const ConsumptionSummary = ({
         <b> {country}: Baseline total emissions vs Policy total emissions</b>
       </Divider>
       <br />
-      <XYPlot xType="ordinal" width={1000} height={400} margin={{ left: 80 }} yDomain={[0, 1500]}>
+      <XYPlot
+        xType="ordinal"
+        width={1000}
+        height={400}
+        margin={{ left: 80 }}
+        yDomain={[0, 1500]}
+      >
         <VerticalGridLines />
         <HorizontalGridLines />
         <XAxis title="Year" />
@@ -843,11 +849,11 @@ export const ConsumptionSummary = ({
         />
       </XYPlot>
       <div className="settlementDiv">
-              <LineLegendConsumption
-                colorItems={resultsLegend}
-                orientation="horizontal"
-              />
-            </div>
+        <LineLegendConsumption
+          colorItems={resultsLegend}
+          orientation="horizontal"
+        />
+      </div>
     </>
   );
 };

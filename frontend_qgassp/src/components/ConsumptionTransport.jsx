@@ -5,7 +5,6 @@ import Chip from "@mui/material/Chip";
 import { Button } from "./Button";
 import { ConsumptionResults } from "./ConsumptionResults";
 import PropTypes from "prop-types";
-import axios from "axios";
 /**
  * Consumption transport UI
  * @return {}
@@ -27,10 +26,7 @@ export const ConsumptionTransport = ({
   gasesProp,
   districtValue,
 }) => {
-  const [blTransport, setBlTransport] = useState({});
-  const [blTotalEmmissions, setBlTotalEmissions] = useState({});
-  const [p1, setP1] = useState({});
-  const [p1TotalEmissions, setP1totalEmissions] = useState({});
+  
   
   const [nextCBResults, setCbResults] = useState(false);
 
