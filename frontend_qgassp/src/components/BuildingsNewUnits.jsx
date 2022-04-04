@@ -6,6 +6,8 @@ import "../css/newbuildings.css";
 import { BuldingsNewUnitsCharts } from "./BuldingsNewUnitsCharts";
 import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
+import axios from "axios";
+
 
 /**
  * BuildingsNewUnits user input form
@@ -23,7 +25,6 @@ import Divider from "@mui/material/Divider";
     // apartment
     // #region 
     const [apartmentUnits, setApartmentUnits] = useState(parseInt(0));
-    const [apartmentArea, setApartmentArea] = useState(parseInt(0));
     const [apartmentStartYear, setApartmentStartYear] = useState(Number(year));
     const [apartmentEndYear, setApartmentEndYear] = useState(Number(year));
     const [apartmentEnergy, setApartmentEnergy] = useState(parseInt(0));
@@ -32,7 +33,6 @@ import Divider from "@mui/material/Divider";
     // terraced
     // #region 
     const [terracedUnits, setTerracedUnits] = useState(parseInt(0));
-    const [terracedArea, setTerracedArea] = useState(parseInt(0));
     const [terracedStartYear, setTerracedStartYear] = useState(Number(year));
     const [terracedEndYear, setTerracedEndYear] = useState(Number(year));
     const [terracedEnergy, setTerracedEnergy] = useState(parseInt(0));
@@ -41,7 +41,6 @@ import Divider from "@mui/material/Divider";
     // semiDetached
     // #region 
     const [semiDetachedUnits, setSemiDetachedUnits] = useState(parseInt(0));
-    const [semiDetachedArea, setSemiDetachedArea] = useState(parseInt(0));
     const [semiDetachedStartYear, setSemiDetachedStartYear] = useState(Number(year));
     const [semiDetachedEndYear, setSemiDetachedEndYear] = useState(Number(year));
     const [semiDetachedEnergy, setSemiDetachedEnergy] = useState(parseInt(0));
@@ -50,7 +49,6 @@ import Divider from "@mui/material/Divider";
     // detached
     // #region 
     const [detachedUnits, setDetachedUnits] = useState(parseInt(0));
-    const [detachedArea, setDetachedArea] = useState(parseInt(0));
     const [detachedStartYear, setDetachedStartYear] = useState(Number(year));
     const [detachedEndYear, setDetachedEndYear] = useState(Number(year));
     const [detachedEnergy, setDetachedEnergy] = useState(parseInt(0));
@@ -60,7 +58,6 @@ import Divider from "@mui/material/Divider";
 
     // retail
     // #region 
-    const [retailUnits, setRetailUnits] = useState(parseInt(0));
     const [retailArea, setRetailArea] = useState(parseInt(0));
     const [retailStartYear, setRetailStartYear] = useState(Number(year));
     const [retailEndYear, setRetailEndYear] = useState(Number(year));
@@ -69,7 +66,6 @@ import Divider from "@mui/material/Divider";
 
     // health
     // #region 
-    const [healthUnits, setHealthUnits] = useState(parseInt(0));
     const [healthArea, setHealthArea] = useState(parseInt(0));
     const [healthStartYear, setHealthStartYear] = useState(Number(year));
     const [healthEndYear, setHealthEndYear] = useState(Number(year));
@@ -78,7 +74,6 @@ import Divider from "@mui/material/Divider";
 
     // hospitality
     // #region 
-    const [hospitalityUnits, setHospitalityUnits] = useState(parseInt(0));
     const [hospitalityArea, setHospitalityArea] = useState(parseInt(0));
     const [hospitalityStartYear, setHospitalityStartYear] = useState(Number(year));
     const [hospitalityEndYear, setHospitalityEndYear] = useState(Number(year));
@@ -87,7 +82,6 @@ import Divider from "@mui/material/Divider";
 
     // offices
     // #region 
-    const [officesUnits, setOfficesUnits] = useState(parseInt(0));
     const [officesArea, setOfficesArea] = useState(parseInt(0));
     const [officesStartYear, setOfficesStartYear] = useState(Number(year));
     const [officesEndYear, setOfficesEndYear] = useState(Number(year));
@@ -96,7 +90,6 @@ import Divider from "@mui/material/Divider";
 
     // industrial
     // #region 
-    const [industrialUnits, setIndustrialUnits] = useState(parseInt(0));
     const [industrialArea, setIndustrialArea] = useState(parseInt(0));
     const [industrialStartYear, setIndustrialStartYear] = useState(Number(year));
     const [industrialEndYear, setIndustrialEndYear] = useState(Number(year));
@@ -105,19 +98,21 @@ import Divider from "@mui/material/Divider";
 
     // warehouses
     // #region 
-    const [warehousesUnits, setWarehousesUnits] = useState(parseInt(0));
     const [warehousesArea, setWarehousesArea] = useState(parseInt(0));
     const [warehousesStartYear, setWarehousesStartYear] = useState(Number(year));
     const [warehousesEndYear, setWarehousesEndYear] = useState(Number(year));
     const [warehousesEnergy, setWarehousesEnergy] = useState(parseInt(0));
     // #endregion
 
-    const [newResidents, setNewResidents] = useState("");
-
-    const [newSettlementCommercial, setNewSettlementCommercial] = useState({});
-    const [newSettlementResidental, setNewSettlementResidental] = useState({});
+    // const [newSettlementCommercial, setNewSettlementCommercial] = useState({});
+    // const [newSettlementResidental, setNewSettlementResidental] = useState({});
     const [updateU2charts, setU2charts] = useState(false);
-  
+    const [errorBuildNewUnits, setErrorBuildNewUnits] = useState("");
+    const [newSettlementBuildingsResponse, setNewSettlementBuildingsResponse] = useState({});
+    const setBuildingsNewUnitsResponse = (response) => {
+      setNewSettlementBuildingsResponse(response.data);
+    };
+
     const optionsNewStart = [];
     for (let i = year; i < 2051; i++) optionsNewStart.push(i);
   
@@ -128,9 +123,6 @@ import Divider from "@mui/material/Divider";
     // #region 
     const handleApartmentUnits = (e) => {
       setApartmentUnits(parseInt(e.target.value));
-    };
-    const handleApartmentArea = (e) => {
-      setApartmentArea(parseInt(e.target.value));
     };
     const handleApartmentStartYear = (e) => {
       setApartmentStartYear(parseInt(e.target.value));
@@ -148,9 +140,6 @@ import Divider from "@mui/material/Divider";
     const handleTerracedUnits = (e) => {
       setTerracedUnits(parseInt(e.target.value));
     };
-    const handleTerracedArea = (e) => {
-      setTerracedArea(parseInt(e.target.value));
-    };
     const handleTerracedStartYear = (e) => {
       setTerracedStartYear(parseInt(e.target.value));
     };
@@ -166,9 +155,6 @@ import Divider from "@mui/material/Divider";
     // #region 
     const handleSemiDetachedUnits = (e) => {
       setSemiDetachedUnits(parseInt(e.target.value));
-    };
-    const handleSemiDetachedArea = (e) => {
-      setSemiDetachedArea(parseInt(e.target.value));
     };
     const handleSemiDetachedStartYear = (e) => {
       setSemiDetachedStartYear(parseInt(e.target.value));
@@ -186,9 +172,6 @@ import Divider from "@mui/material/Divider";
     const handleDetachedUnits = (e) => {
       setDetachedUnits(parseInt(e.target.value));
     };
-    const handleDetachedArea = (e) => {
-      setDetachedArea(parseInt(e.target.value));
-    };
     const handleDetachedStartYear = (e) => {
       setDetachedStartYear(parseInt(e.target.value));
     };
@@ -203,9 +186,6 @@ import Divider from "@mui/material/Divider";
 
     // retail handlers
     // #region 
-    const handleRetailUnits = (e) => {
-      setRetailUnits(parseInt(e.target.value));
-    };
     const handleRetailArea = (e) => {
       setRetailArea(parseInt(e.target.value));
     };
@@ -222,9 +202,6 @@ import Divider from "@mui/material/Divider";
 
     // health handlers
     // #region 
-    const handleHealthUnits = (e) => {
-      setHealthUnits(parseInt(e.target.value));
-    };
     const handleHealthArea = (e) => {
       setHealthArea(parseInt(e.target.value));
     };
@@ -241,9 +218,6 @@ import Divider from "@mui/material/Divider";
 
     // hospitality handlers
     // #region 
-    const handleHospitalityUnits = (e) => {
-      setHospitalityUnits(parseInt(e.target.value));
-    };
     const handleHospitalityArea = (e) => {
       setHospitalityArea(parseInt(e.target.value));
     };
@@ -260,9 +234,6 @@ import Divider from "@mui/material/Divider";
     
     // offices handlers
     // #region 
-    const handleOfficesUnits = (e) => {
-      setOfficesUnits(parseInt(e.target.value));
-    };
     const handleOfficesArea = (e) => {
       setOfficesArea(parseInt(e.target.value));
     };
@@ -279,9 +250,6 @@ import Divider from "@mui/material/Divider";
     
     // industrial handlers
     // #region 
-    const handleIndustrialUnits = (e) => {
-      setIndustrialUnits(parseInt(e.target.value));
-    };
     const handleIndustrialArea = (e) => {
       setIndustrialArea(parseInt(e.target.value));
     };
@@ -298,9 +266,6 @@ import Divider from "@mui/material/Divider";
 
     // warehouses handlers
     // #region 
-    const handleWarehousesUnits = (e) => {
-      setWarehousesUnits(parseInt(e.target.value));
-    };
     const handleWarehousesArea = (e) => {
       setWarehousesArea(parseInt(e.target.value));
     };
@@ -323,82 +288,116 @@ import Divider from "@mui/material/Divider";
     const updateU2Planner = () => {
 
       const apartment = {
-        "floor_area": apartmentArea,
-        "num_of_units": apartmentUnits,
-        "start_year": apartmentStartYear,
-        "end_year": apartmentEndYear
+        "numberOfUnits": apartmentUnits,
+        "startYear": apartmentStartYear,
+        "endYear": apartmentEndYear,
+        "renewableEnergyPercent": apartmentEnergy
       };
       const terraced = {
-        "floor_area": terracedArea,
-        "num_of_units": terracedUnits,
-        "start_year": terracedStartYear,
-        "end_year": terracedEndYear
+        "numberOfUnits": terracedUnits,
+        "startYear": terracedStartYear,
+        "endYear": terracedEndYear,
+        "renewableEnergyPercent": terracedEnergy
       };
       const semiDetached = {
-        "floor_area": semiDetachedArea,
-        "num_of_units": semiDetachedUnits,
-        "start_year": semiDetachedStartYear,
-        "end_year": semiDetachedEndYear
+        "numberOfUnits": semiDetachedUnits,
+        "startYear": semiDetachedStartYear,
+        "endYear": semiDetachedEndYear,
+        "renewableEnergyPercent": semiDetachedEnergy
       };
       const detached = {
-        "floor_area": detachedArea,
-        "num_of_units": detachedUnits,
-        "start_year": detachedStartYear,
-        "end_year": detachedEndYear
-      };
-      const newSettlementResidentals = {
-        "apartment":apartment,
-        "terraced":terraced,
-        "semi_detached":semiDetached,
-        "detached":detached
+        "numberOfUnits": detachedUnits,
+        "startYear": detachedStartYear,
+        "endYear": detachedEndYear,
+        "renewableEnergyPercent": detachedEnergy
       };
       const retail = {
-        "floor_area": retailArea,
-        "num_of_units": retailUnits,
-        "start_year": retailEndYear,
-        "end_year": retailEndYear
+        "floorArea": retailArea,
+        "renewableEnergyPercent": retailEnergy,
+        "startYear": retailEndYear,
+        "endYear": retailEndYear
       };
       const health = {
-        "floor_area": healthArea,
-        "num_of_units": healthUnits,
-        "start_year": healthStartYear,
-        "end_year": healthEndYear
+        "floorArea": healthArea,
+        "renewableEnergyPercent": healthEnergy,
+        "startYear": healthStartYear,
+        "endYear": healthEndYear
       };
       const hospitality = {
-        "floor_area": hospitalityArea,
-        "num_of_units": hospitalityUnits,
-        "start_year": hospitalityStartYear,
-        "end_year": hospitalityEndYear
+        "floorArea": hospitalityArea,
+        "renewableEnergyPercent": hospitalityEnergy,
+        "startYear": hospitalityStartYear,
+        "endYear": hospitalityEndYear
       };
       const offices = {
-        "floor_area": officesArea,
-        "num_of_units": officesUnits,
-        "start_year": officesStartYear,
-        "end_year": officesEndYear
+        "floorArea": officesArea,
+        "renewableEnergyPercent": hospitalityEnergy,
+        "startYear": officesStartYear,
+        "endYear": officesEndYear
       };
       const industrial = {
-        "floor_area": industrialArea,
-        "num_of_units": industrialUnits,
-        "start_year": industrialStartYear,
-        "end_year": industrialEndYear
+        "floorArea": industrialArea,
+        "renewableEnergyPercent": industrialEnergy,
+        "startYear": industrialStartYear,
+        "endYear": industrialEndYear
       };
       const warehouses = {
-        "floor_area": warehousesArea,
-        "num_of_units": warehousesUnits,
-        "start_year": warehousesStartYear,
-        "end_year": warehousesEndYear
-      };
-      const newSettlementCommercials = {
-        "retail":retail,
-        "health":health,
-        "hospitality":hospitality,
-        "offices":offices,
-        "industrial":industrial,
-        "warehouses":warehouses,
+        "floorArea": warehousesArea,
+        "renewableEnergyPercent": warehousesEnergy,
+        "startYear": warehousesStartYear,
+        "endYear": warehousesEndYear
       };
 
-      setNewSettlementResidental(newSettlementResidentals);
-      setNewSettlementCommercial(newSettlementCommercials);
+      const newSettlement = {
+        "residential":{
+          "apartment": apartment,
+          "terraced": terraced,
+          "semidetached": semiDetached,
+          "detached": detached
+        },
+        "commercial":{
+            retail,
+            health,
+            hospitality,
+            offices,
+            industrial,
+            warehouses
+        }
+      }
+      const headers = {
+        "Access-Control-Allow-Origin": "*",
+        "Content-type": "application/json",
+      };
+      // axios
+      // .post(
+      //   "https://ggia-dev.ulno.net/api/v1/calculate/buildings",
+      //   newSettlement,
+      //   headers
+      // )
+      // .then((response) => setBuildingsNewUnitsResponse(response.data))    
+      // .catch((error) => {
+      //   setErrorBuildNewUnits({ errorMessage: error.message });
+      //   // eslint-disable-next-line no-console
+      //   console.error("There was an error!", errorBuildNewUnits);
+      // });
+
+      // const newSettlementResidentals = {
+      //   "apartment":apartment,
+      //   "terraced":terraced,
+      //   "semi_detached":semiDetached,
+      //   "detached":detached
+      // };
+      // const newSettlementCommercials = {
+      //   "retail":retail,
+      //   "health":health,
+      //   "hospitality":hospitality,
+      //   "offices":offices,
+      //   "industrial":industrial,
+      //   "warehouses":warehouses,
+      // };
+
+      // setNewSettlementResidental(newSettlementResidentals);
+      // setNewSettlementCommercial(newSettlementCommercials);
       
       setU2charts(true);
     };
@@ -1105,9 +1104,9 @@ import Divider from "@mui/material/Divider";
     } else {
       return (
         <BuldingsNewUnitsCharts
-          baseline={baseline.baseline}
-          newSettlementCommercial={newSettlementCommercial}
-          newSettlementResidental={newSettlementResidental}
+          newSettlementBuildingsResponse={newSettlementBuildingsResponse}
+          // newSettlementCommercial={newSettlementCommercial}
+          // newSettlementResidental={newSettlementResidental}
           country={country}
           year={year}
         />
