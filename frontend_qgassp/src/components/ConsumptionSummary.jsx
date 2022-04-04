@@ -27,6 +27,7 @@ export const ConsumptionSummary = ({
   p1TotalEmissions,
   bLTotalAreaEmissions,
   p1TotalAreaEmissions,
+  p1TotalAreaEmissionsMax,
 }) => {
   const country = localStorage.getItem("country");
   const resultsLegend = [
@@ -760,15 +761,23 @@ export const ConsumptionSummary = ({
         <b> {country}: Baseline total emissions vs Policy total emissions</b>
       </Divider>
       <br />
-      <XYPlot xType="ordinal" width={1000} height={500} margin={{ left: 100 }}>
+      <XYPlot 
+      xType="ordinal" 
+      width={1000} 
+      height={500} 
+      margin={{ left: 100 }}
+      yDomain={[0, p1TotalAreaEmissionsMax]}
+      >
         <VerticalGridLines />
         <HorizontalGridLines />
         <XAxis title="Year" />
         <YAxis />
         <LineSeries
           className="linemark-series-example-2"
-          color="#3d58a3"
           curve={null}
+          color="#3d58a3"
+          strokeStyle="solid"
+          style={{}}
           strokeWidth="2"
           data={[
             { x: 2020, y: bLTotalAreaEmissions["2020"] },
@@ -860,4 +869,5 @@ ConsumptionSummary.propTypes = {
   p1TotalEmissions: PropTypes.object.isRequired,
   bLTotalAreaEmissions: PropTypes.object.isRequired,
   p1TotalAreaEmissions: PropTypes.object.isRequired,
+  p1TotalAreaEmissionsMax:PropTypes.number.isRequired,
 };

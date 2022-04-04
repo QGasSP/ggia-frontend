@@ -20,6 +20,8 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
   const [p1TotalAreaEmissions, setP1totalAreaEmissions] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [ p1TotalAreaEmissionsMax, setYMax] = useState(false);
+  // P1TotalAreaEmissionsMax
 
   const fetchConsumptionData = () => {
     const headers = { "Content-type": "application/json" };
@@ -43,6 +45,7 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
         setBlTotalAreaEmissions(
           response.data.data.consumption.BLTotalAreaEmissions
         );
+        setYMax(response.data.data.consumption.P1TotalAreaEmissionsMax);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -86,6 +89,7 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
         </Divider>
         <>
           <ConsumptionSummary
+           p1TotalAreaEmissionsMax={ p1TotalAreaEmissionsMax}
             p1TotalEmissions={p1TotalEmissions}
             blTotalEmmissions={blTotalEmmissions}
             bLTotalAreaEmissions={bLTotalAreaEmissions}
