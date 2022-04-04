@@ -83,6 +83,7 @@ import Chip from "@mui/material/Chip";
 //    }, []);
  
   //  if (nextNewUnitsView === false && Object.keys(emissionsByEndUse).length !== 0) 
+  if(nextNewUnitsView === false)
    {
      return (
        <article>
@@ -96,7 +97,7 @@ import Chip from "@mui/material/Chip";
          </section>
 
          {/* table 1 6X9 */}
-         <table className="buildings-tbl">
+         <table className="buildings-table">
            <thead>
                 <tr>
                   <th>tCO2/a</th>
@@ -175,7 +176,7 @@ import Chip from "@mui/material/Chip";
          </section>
  
         {/* table 2 8X9 */}
-        <table className="buildings-tbl">
+        <table className="buildings-table">
            <thead>
                 <tr>
                   <th>tCO2/a</th>
@@ -813,289 +814,7 @@ import Chip from "@mui/material/Chip";
              <YAxis />
            </XYPlot>
          </div>
-
-         <div>
-           <XYPlot width={1000} height={500} stackBy="y" xType="ordinal">
-             <HorizontalGridLines />
-             <VerticalGridLines />
-             <VerticalBarSeries className="StackedBarchart" />
-             <XAxis />
-             <YAxis />
-             <BarSeries
-               color="#8C0303"
-               data={[
-                 { x: 2022, y: emissionCommercial.bus[2022] },
-                 { x: 2023, y: emissionCommercial.bus[2023] },
-                 { x: 2024, y: emissionCommercial.bus[2024] },
-                 { x: 2025, y: emissionCommercial.bus[2025] },
-                 { x: 2026, y: emissionCommercial.bus[2026] },
-                 { x: 2027, y: emissionCommercial.bus[2027] },
-                 { x: 2028, y: emissionCommercial.bus[2028] },
-                 { x: 2029, y: emissionCommercial.bus[2029] },
-                 { x: 2030, y: emissionCommercial.bus[2030] },
-                 { x: 2031, y: emissionCommercial.bus[2031] },
-                 { x: 2032, y: emissionCommercial.bus[2032] },
-                 { x: 2033, y: emissionCommercial.bus[2033] },
-                 { x: 2034, y: emissionCommercial.bus[2034] },
-                 { x: 2035, y: emissionCommercial.bus[2035] },
-                 { x: 2036, y: emissionCommercial.bus[2036] },
-                 { x: 2037, y: emissionCommercial.bus[2037] },
-                 { x: 2038, y: emissionCommercial.bus[2038] },
-                 { x: 2039, y: emissionCommercial.bus[2039] },
-                 { x: 2040, y: emissionCommercial.bus[2040] },
-                 { x: 2041, y: emissionCommercial.bus[2041] },
-                 { x: 2042, y: emissionCommercial.bus[2042] },
-                 { x: 2043, y: emissionCommercial.bus[2043] },
-                 { x: 2044, y: emissionCommercial.bus[2044] },
-                 { x: 2045, y: emissionCommercial.bus[2045] },
-                 { x: 2046, y: emissionCommercial.bus[2046] },
-                 { x: 2047, y: emissionCommercial.bus[2047] },
-                 { x: 2048, y: emissionCommercial.bus[2048] },
-                 { x: 2049, y: emissionCommercial.bus[2049] },
-                 { x: 2050, y: emissionCommercial.bus[2050] },
-               ]}
-             />
-             <BarSeries
-               color="#A6036D"
-               data={[
-                 { x: 2022, y: emissionCommercial.car[2022] },
-                 { x: 2023, y: emissionCommercial.car[2023] },
-                 { x: 2024, y: emissionCommercial.car[2024] },
-                 { x: 2025, y: emissionCommercial.car[2025] },
-                 { x: 2026, y: emissionCommercial.car[2026] },
-                 { x: 2027, y: emissionCommercial.car[2027] },
-                 { x: 2028, y: emissionCommercial.car[2028] },
-                 { x: 2029, y: emissionCommercial.car[2029] },
-                 { x: 2030, y: emissionCommercial.car[2030] },
-                 { x: 2031, y: emissionCommercial.car[2031] },
-                 { x: 2032, y: emissionCommercial.car[2032] },
-                 { x: 2033, y: emissionCommercial.car[2033] },
-                 { x: 2034, y: emissionCommercial.car[2034] },
-                 { x: 2035, y: emissionCommercial.car[2035] },
-                 { x: 2036, y: emissionCommercial.car[2036] },
-                 { x: 2037, y: emissionCommercial.car[2037] },
-                 { x: 2038, y: emissionCommercial.car[2038] },
-                 { x: 2039, y: emissionCommercial.car[2039] },
-                 { x: 2040, y: emissionCommercial.car[2040] },
-                 { x: 2041, y: emissionCommercial.car[2041] },
-                 { x: 2042, y: emissionCommercial.car[2042] },
-                 { x: 2043, y: emissionCommercial.car[2043] },
-                 { x: 2044, y: emissionCommercial.car[2044] },
-                 { x: 2045, y: emissionCommercial.car[2045] },
-                 { x: 2046, y: emissionCommercial.car[2046] },
-                 { x: 2047, y: emissionCommercial.car[2047] },
-                 { x: 2048, y: emissionCommercial.car[2048] },
-                 { x: 2049, y: emissionCommercial.car[2049] },
-                 { x: 2050, y: emissionCommercial.car[2050] },
-               ]}
-             />
-             <BarSeries
-               color="#400D01"
-               data={[
-                 { x: 2022, y: emissionCommercial.metro[2022] },
-                 { x: 2023, y: emissionCommercial.metro[2023] },
-                 { x: 2024, y: emissionCommercial.metro[2024] },
-                 { x: 2025, y: emissionCommercial.metro[2025] },
-                 { x: 2026, y: emissionCommercial.metro[2026] },
-                 { x: 2027, y: emissionCommercial.metro[2027] },
-                 { x: 2028, y: emissionCommercial.metro[2028] },
-                 { x: 2029, y: emissionCommercial.metro[2029] },
-                 { x: 2030, y: emissionCommercial.metro[2030] },
-                 { x: 2031, y: emissionCommercial.metro[2031] },
-                 { x: 2032, y: emissionCommercial.metro[2032] },
-                 { x: 2033, y: emissionCommercial.metro[2033] },
-                 { x: 2034, y: emissionCommercial.metro[2034] },
-                 { x: 2035, y: emissionCommercial.metro[2035] },
-                 { x: 2036, y: emissionCommercial.metro[2036] },
-                 { x: 2037, y: emissionCommercial.metro[2037] },
-                 { x: 2038, y: emissionCommercial.metro[2038] },
-                 { x: 2039, y: emissionCommercial.metro[2039] },
-                 { x: 2040, y: emissionCommercial.metro[2040] },
-                 { x: 2041, y: emissionCommercial.metro[2041] },
-                 { x: 2042, y: emissionCommercial.metro[2042] },
-                 { x: 2043, y: emissionCommercial.metro[2043] },
-                 { x: 2044, y: emissionCommercial.metro[2044] },
-                 { x: 2045, y: emissionCommercial.metro[2045] },
-                 { x: 2046, y: emissionCommercial.metro[2046] },
-                 { x: 2047, y: emissionCommercial.metro[2047] },
-                 { x: 2048, y: emissionCommercial.metro[2048] },
-                 { x: 2049, y: emissionCommercial.metro[2049] },
-                 { x: 2050, y: emissionCommercial.metro[2050] },
-               ]}
-             />
-             <BarSeries
-               color=" #C4D4F2"
-               data={[
-                 { x: 2022, y: emissionCommercial.tram[2022] },
-                 { x: 2023, y: emissionCommercial.tram[2023] },
-                 { x: 2024, y: emissionCommercial.tram[2024] },
-                 { x: 2025, y: emissionCommercial.tram[2025] },
-                 { x: 2026, y: emissionCommercial.tram[2026] },
-                 { x: 2027, y: emissionCommercial.tram[2027] },
-                 { x: 2028, y: emissionCommercial.tram[2028] },
-                 { x: 2029, y: emissionCommercial.tram[2029] },
-                 { x: 2030, y: emissionCommercial.tram[2030] },
-                 { x: 2031, y: emissionCommercial.tram[2031] },
-                 { x: 2032, y: emissionCommercial.tram[2032] },
-                 { x: 2033, y: emissionCommercial.tram[2033] },
-                 { x: 2034, y: emissionCommercial.tram[2034] },
-                 { x: 2035, y: emissionCommercial.tram[2035] },
-                 { x: 2036, y: emissionCommercial.tram[2036] },
-                 { x: 2037, y: emissionCommercial.tram[2037] },
-                 { x: 2038, y: emissionCommercial.tram[2038] },
-                 { x: 2039, y: emissionCommercial.tram[2039] },
-                 { x: 2040, y: emissionCommercial.tram[2040] },
-                 { x: 2041, y: emissionCommercial.tram[2041] },
-                 { x: 2042, y: emissionCommercial.tram[2042] },
-                 { x: 2043, y: emissionCommercial.tram[2043] },
-                 { x: 2044, y: emissionCommercial.tram[2044] },
-                 { x: 2045, y: emissionCommercial.tram[2045] },
-                 { x: 2046, y: emissionCommercial.tram[2046] },
-                 { x: 2047, y: emissionCommercial.tram[2047] },
-                 { x: 2048, y: emissionCommercial.tram[2048] },
-                 { x: 2049, y: emissionCommercial.tram[2049] },
-                 { x: 2050, y: emissionCommercial.tram[2050] },
-               ]}
-             />
-             <BarSeries
-               color="#D90404"
-               data={[
-                 { x: 2022, y: emissionCommercial.train[2022] },
-                 { x: 2023, y: emissionCommercial.train[2023] },
-                 { x: 2024, y: emissionCommercial.train[2024] },
-                 { x: 2025, y: emissionCommercial.train[2025] },
-                 { x: 2026, y: emissionCommercial.train[2026] },
-                 { x: 2027, y: emissionCommercial.train[2027] },
-                 { x: 2028, y: emissionCommercial.train[2028] },
-                 { x: 2029, y: emissionCommercial.train[2029] },
-                 { x: 2030, y: emissionCommercial.train[2030] },
-                 { x: 2031, y: emissionCommercial.train[2031] },
-                 { x: 2032, y: emissionCommercial.train[2032] },
-                 { x: 2033, y: emissionCommercial.train[2033] },
-                 { x: 2034, y: emissionCommercial.train[2034] },
-                 { x: 2035, y: emissionCommercial.train[2035] },
-                 { x: 2036, y: emissionCommercial.train[2036] },
-                 { x: 2037, y: emissionCommercial.train[2037] },
-                 { x: 2038, y: emissionCommercial.train[2038] },
-                 { x: 2039, y: emissionCommercial.train[2039] },
-                 { x: 2040, y: emissionCommercial.train[2040] },
-                 { x: 2041, y: emissionCommercial.train[2041] },
-                 { x: 2042, y: emissionCommercial.train[2042] },
-                 { x: 2043, y: emissionCommercial.train[2043] },
-                 { x: 2044, y: emissionCommercial.train[2044] },
-                 { x: 2045, y: emissionCommercial.train[2045] },
-                 { x: 2046, y: emissionCommercial.train[2046] },
-                 { x: 2047, y: emissionCommercial.train[2047] },
-                 { x: 2048, y: emissionCommercial.train[2048] },
-                 { x: 2049, y: emissionCommercial.train[2049] },
-                 { x: 2050, y: emissionCommercial.train[2050] },
-               ]}
-             />
-             <BarSeries
-               color="#80D941"
-               data={[
-                 { x: 2022, y: emissionCommercial.rail_transport[2022] },
-                 { x: 2023, y: emissionCommercial.rail_transport[2023] },
-                 { x: 2024, y: emissionCommercial.rail_transport[2024] },
-                 { x: 2025, y: emissionCommercial.rail_transport[2025] },
-                 { x: 2026, y: emissionCommercial.rail_transport[2026] },
-                 { x: 2027, y: emissionCommercial.rail_transport[2027] },
-                 { x: 2028, y: emissionCommercial.rail_transport[2028] },
-                 { x: 2029, y: emissionCommercial.rail_transport[2029] },
-                 { x: 2030, y: emissionCommercial.rail_transport[2030] },
-                 { x: 2031, y: emissionCommercial.rail_transport[2031] },
-                 { x: 2032, y: emissionCommercial.rail_transport[2032] },
-                 { x: 2033, y: emissionCommercial.rail_transport[2033] },
-                 { x: 2034, y: emissionCommercial.rail_transport[2034] },
-                 { x: 2035, y: emissionCommercial.rail_transport[2035] },
-                 { x: 2036, y: emissionCommercial.rail_transport[2036] },
-                 { x: 2037, y: emissionCommercial.rail_transport[2037] },
-                 { x: 2038, y: emissionCommercial.rail_transport[2038] },
-                 { x: 2039, y: emissionCommercial.rail_transport[2039] },
-                 { x: 2040, y: emissionCommercial.rail_transport[2040] },
-                 { x: 2041, y: emissionCommercial.rail_transport[2041] },
-                 { x: 2042, y: emissionCommercial.rail_transport[2042] },
-                 { x: 2043, y: emissionCommercial.rail_transport[2043] },
-                 { x: 2044, y: emissionCommercial.rail_transport[2044] },
-                 { x: 2045, y: emissionCommercial.rail_transport[2045] },
-                 { x: 2046, y: emissionCommercial.rail_transport[2046] },
-                 { x: 2047, y: emissionCommercial.rail_transport[2047] },
-                 { x: 2048, y: emissionCommercial.rail_transport[2048] },
-                 { x: 2049, y: emissionCommercial.rail_transport[2049] },
-                 { x: 2050, y: emissionCommercial.rail_transport[2050] },
-               ]}
-             />
-             <BarSeries
-               color="#595959"
-               data={[
-                 { x: 2022, y: emissionCommercial.road_transport[2022] },
-                 { x: 2023, y: emissionCommercial.road_transport[2023] },
-                 { x: 2024, y: emissionCommercial.road_transport[2024] },
-                 { x: 2025, y: emissionCommercial.road_transport[2025] },
-                 { x: 2026, y: emissionCommercial.road_transport[2026] },
-                 { x: 2027, y: emissionCommercial.road_transport[2027] },
-                 { x: 2028, y: emissionCommercial.road_transport[2028] },
-                 { x: 2029, y: emissionCommercial.road_transport[2029] },
-                 { x: 2030, y: emissionCommercial.road_transport[2030] },
-                 { x: 2031, y: emissionCommercial.road_transport[2031] },
-                 { x: 2032, y: emissionCommercial.road_transport[2032] },
-                 { x: 2033, y: emissionCommercial.road_transport[2033] },
-                 { x: 2034, y: emissionCommercial.road_transport[2034] },
-                 { x: 2035, y: emissionCommercial.road_transport[2035] },
-                 { x: 2036, y: emissionCommercial.road_transport[2036] },
-                 { x: 2037, y: emissionCommercial.road_transport[2037] },
-                 { x: 2038, y: emissionCommercial.road_transport[2038] },
-                 { x: 2039, y: emissionCommercial.road_transport[2039] },
-                 { x: 2040, y: emissionCommercial.road_transport[2040] },
-                 { x: 2041, y: emissionCommercial.road_transport[2041] },
-                 { x: 2042, y: emissionCommercial.road_transport[2042] },
-                 { x: 2043, y: emissionCommercial.road_transport[2043] },
-                 { x: 2044, y: emissionCommercial.road_transport[2044] },
-                 { x: 2045, y: emissionCommercial.road_transport[2045] },
-                 { x: 2046, y: emissionCommercial.road_transport[2046] },
-                 { x: 2047, y: emissionCommercial.road_transport[2047] },
-                 { x: 2048, y: emissionCommercial.road_transport[2048] },
-                 { x: 2049, y: emissionCommercial.road_transport[2049] },
-                 { x: 2050, y: emissionCommercial.road_transport[2050] },
-               ]}
-             />
-             <BarSeries
-               color="#F2CE1B"
-               data={[
-                 { x: 2022, y: emissionCommercial.waterways_transport[2022] },
-                 { x: 2023, y: emissionCommercial.waterways_transport[2023] },
-                 { x: 2024, y: emissionCommercial.waterways_transport[2024] },
-                 { x: 2025, y: emissionCommercial.waterways_transport[2025] },
-                 { x: 2026, y: emissionCommercial.waterways_transport[2026] },
-                 { x: 2027, y: emissionCommercial.waterways_transport[2027] },
-                 { x: 2028, y: emissionCommercial.waterways_transport[2028] },
-                 { x: 2029, y: emissionCommercial.waterways_transport[2029] },
-                 { x: 2030, y: emissionCommercial.waterways_transport[2030] },
-                 { x: 2031, y: emissionCommercial.waterways_transport[2031] },
-                 { x: 2032, y: emissionCommercial.waterways_transport[2032] },
-                 { x: 2033, y: emissionCommercial.waterways_transport[2033] },
-                 { x: 2034, y: emissionCommercial.waterways_transport[2034] },
-                 { x: 2035, y: emissionCommercial.waterways_transport[2035] },
-                 { x: 2036, y: emissionCommercial.waterways_transport[2036] },
-                 { x: 2037, y: emissionCommercial.waterways_transport[2037] },
-                 { x: 2038, y: emissionCommercial.waterways_transport[2038] },
-                 { x: 2039, y: emissionCommercial.waterways_transport[2039] },
-                 { x: 2040, y: emissionCommercial.waterways_transport[2040] },
-                 { x: 2041, y: emissionCommercial.waterways_transport[2041] },
-                 { x: 2042, y: emissionCommercial.waterways_transport[2042] },
-                 { x: 2043, y: emissionCommercial.waterways_transport[2043] },
-                 { x: 2044, y: emissionCommercial.waterways_transport[2044] },
-                 { x: 2045, y: emissionCommercial.waterways_transport[2045] },
-                 { x: 2046, y: emissionCommercial.waterways_transport[2046] },
-                 { x: 2047, y: emissionCommercial.waterways_transport[2047] },
-                 { x: 2048, y: emissionCommercial.waterways_transport[2048] },
-                 { x: 2049, y: emissionCommercial.waterways_transport[2049] },
-                 { x: 2050, y: emissionCommercial.waterways_transport[2050] },
-               ]}
-             />
-           </XYPlot>
-           <LineLegend />
-         </div> */}
+         */}
 
          <div className="nextU2Button">
            <Button
@@ -1109,17 +828,17 @@ import Chip from "@mui/material/Chip";
        </article>
      );
    } 
-  //  else if (nextNewUnitsView === true) {
-  //    return (
-  //      <BuildingsNewUnits
-  //        baseline={baseline}
-  //        emissionResidential={emissionResidential}
-  //        emissionCommercial={emissionCommercial}
-  //        year={year}
-  //        country={country}
-  //      />
-  //    )
-  //  } 
+   else if (nextNewUnitsView === true) {
+     return (
+       <BuildingsNewUnits
+         baseline={baseline}
+         emissionResidential={emissionResidential}
+         emissionCommercial={emissionCommercial}
+         year={year}
+         country={country}
+       />
+     );
+   } 
   //  else {
   //    return <></>;
   //  }

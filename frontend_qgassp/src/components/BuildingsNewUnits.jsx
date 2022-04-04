@@ -1093,7 +1093,7 @@ import Divider from "@mui/material/Divider";
                     <Button
                     size="small"
                     value="charts"
-                    // onClick={setBuildingTypes}
+                    onClick={updateU2Planner}
                     label="Next &raquo;"
                     primary
                     />

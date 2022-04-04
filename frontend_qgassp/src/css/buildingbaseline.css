@@ -1,15 +1,15 @@
-.buildings-tbl{
+.buildings-table{
     border-collapse: collapse;
     width: 100%;
 }
 
-.buildings-tbl td, .buildings-tbl th {
+.buildings-table td, .buildings-table th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
   }
   
-.buildings-tbl tr:nth-child(even), .buildings-tbl th {
+.buildings-table tr:nth-child(even), .buildings-table th {
     background-color: #dddddd;
 }
 .buildings-baseline{
