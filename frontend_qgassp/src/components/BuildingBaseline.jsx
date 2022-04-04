@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { Button } from "./Button";
 import { BuildingBaselineCharts } from "./BuildingBaselineCharts";
 import "../css/buildingbaseline.css";
+import axios from "axios";
 
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
@@ -31,9 +31,12 @@ const buildingLabels = [
 export const BuildingBaseline = () => {
 
   // const year = parseInt(localStorage.getItem("year"));
-  const year = 2022;
+  const year = 2023;
   const country = 'Latvia';
+  const population = 15000;
   // const country = localStorage.getItem("country");
+  // const population = localStorage.getItem("population");
+
 
   // residential units
   // #region 
@@ -65,9 +68,12 @@ export const BuildingBaseline = () => {
 
   const [residential, setResidential] = useState({});
   const [commercial, setCommercial] = useState({});
-  const [nextU1Charts, setU1Charts] = useState(false);
-//   const [nextPage, setNextPage] = useState(false);
-  const [buildingsBaseline, setBuildingsBaseline] = useState({});
+  const [buildingsBaselineCharts, setBuildingsBaselineCharts] = useState(false);
+  const [errorBuildBaseline, setErrorBuildBaseline] = useState("");
+  const [buildingsBaselineResponse, setBuildingsBaselineResponse] = useState({});
+  const setBuildingsResponse = (response) => {
+    setBuildingsBaselineResponse(response.data);
+  };
 
   // handlers for residential units
   // #region 
@@ -139,22 +145,38 @@ export const BuildingBaseline = () => {
     const baseline = {
       country,
       year,
+      population,
       residential,
       commercial
     };
-    setBuildingsBaseline({ baseline });
-    // setNextPage(true);
-    setU1Charts(true);
+    const headers = {
+      "Access-Control-Allow-Origin": "*",
+      "Content-type": "application/json",
+    };
+    // axios
+    // .post(
+    //   "https://ggia-dev.ulno.net/api/v1/calculate/buildings",
+    //   baseline,
+    //   headers
+    // )
+    // .then((response) => setBuildingsResponse(response.data))    
+    // .catch((error) => {
+    //   setErrorBuildBaseline({ errorMessage: error.message });
+    //   // eslint-disable-next-line no-console
+    //   console.error("There was an error!", errorBuildBaseline);
+    // });
+
+    setBuildingsBaselineCharts(true);
   };
 
   useEffect(() => {
     localStorage.setItem(
-      "buildingsBaseline",
-      JSON.stringify(buildingsBaseline)
+      "buildingsBaselineResponse",
+      JSON.stringify(buildingsBaselineResponse)
     );
-  }, [buildingsBaseline]);
+  }, [buildingsBaselineResponse]);
 
-  if (nextU1Charts === false) {
+  if (buildingsBaselineCharts === false) {
     return (
       <div className="div_transport">
         <article>
@@ -500,14 +522,14 @@ export const BuildingBaseline = () => {
         </article>
       </div>
     );
-  } else if (nextU1Charts !== false) {
+  } else if (buildingsBaselineCharts !== false) {
     return (
       <BuildingBaselineCharts
         country={country}
         year={year}
         residential={residential}
         commercial={commercial}
-        buildingsBaseline={buildingsBaseline}
+        buildingsBaselineResponse={buildingsBaselineResponse}
       />
     );
   }
