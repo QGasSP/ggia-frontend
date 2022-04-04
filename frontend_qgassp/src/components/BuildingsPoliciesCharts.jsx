@@ -566,10 +566,10 @@ import { Legend } from "./Legend";
  };
  
  BuildingsPoliciesCharts.propTypes = {
-   residential: PropTypes.object.isRequired,
-   commercial: PropTypes.object.isRequired,
-   baseline: PropTypes.object.isRequired,
-   population: PropTypes.number.isRequired,
+  //  residential: PropTypes.object.isRequired,
+  //  commercial: PropTypes.object.isRequired,
+  //  baseline: PropTypes.object.isRequired,
+  //  population: PropTypes.number.isRequired,
    year: PropTypes.number.isRequired,
    country: PropTypes.string.isRequired,
  };

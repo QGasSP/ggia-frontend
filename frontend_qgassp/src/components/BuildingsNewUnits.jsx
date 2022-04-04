@@ -421,268 +421,270 @@ import axios from "axios";
                 </section>
                 <div className="newResidentDiv">
                   <form>
-                  <table className="buildings-tbl">
-                        <thead>
-                          <th className="row-title">Residential unit type</th>
-                          <th>Number of units</th>
-                          <th colSpan={2}>New units completed between</th>
-                          <th>% of energy from renewables</th>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td className="row-title">Apartment</td>
-                            <td>
-                              <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                id="apartment-units"
-                                name="apartment-units"
-                                min="0"
-                                value={apartmentUnits}
-                                onChange={handleApartmentUnits}
-                                defaultValue="Select year"
-                                required
-                              />
-                            </td>
-                            <td>
-                                <select
-                                    className="table-cell"
-                                    id="apartment-start-year"
-                                    name="apartment-start-year"
-                                    value={apartmentStartYear}
-                                    onChange={handleApartmentStartYear}
-                                    defaultValue="Select year"
-                                    required
-                                >
-                                    {optionsNewStart.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
-                            </td>
-                            <td>
-                                <select
-                                    className="table-cell"
-                                    id="apartment-end-year"
-                                    name="apartment-end-year"
-                                    value={apartmentEndYear}
-                                    onChange={handleApartmentEndYear}
-                                    defaultValue="Select year"
-                                    required
-                                >
-                                    {optionsNewStart.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
-                            </td>
-                            <td>
-                              <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                id="apartment-energy"
-                                min="0"
-                                value={apartmentEnergy}
-                                onChange={handleApartmentEnergy}
-                                required
-                              />
-                            </td>
-                          </tr>
-                          <tr>
-                            <td className="row-title">Terraced</td>
-                            <td>
-                              <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                id="terraced-units"
-                                name="terraced-units"
-                                min="0"
-                                value={terracedUnits}
-                                onChange={handleTerracedUnits}
-                                required
-                              />
-                            </td>
-                            <td>
-                                <select
-                                    className="table-cell"
-                                    id="terraced-start-year"
-                                    name="terraced-start-year"
-                                    onChange={handleTerracedStartYear}
-                                    value={terracedStartYear}
-                                    defaultValue="Select year"
-                                    required
-                                >
-                                    {optionsNewStart.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
-                            </td>
-                            <td>
-                                <select
-                                    className="table-cell"
-                                    id="terraced-end-year"
-                                    name="terraced-end-year"
-                                    onChange={handleTerracedEndYear}
-                                    value={terracedEndYear}
-                                    defaultValue="Select year"
-                                    required
-                                >
-                                    {optionsNewStart.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
-                            </td>
-                            <td>
-                              <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                id="terraced-energy"
-                                name="terraced-energy"
-                                min="0"
-                                value={terracedEnergy}
-                                onChange={handleTerracedEnergy}
-                                required
-                              />
-                            </td>
-                          </tr>
-                          <tr>
-                            <td className="row-title">Semi-Detached</td>
-                            <td>
-                              <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                id="semiDetached-units"
-                                name="semiDetached-units"
-                                min="0"
-                                value={semiDetachedUnits}
-                                onChange={handleSemiDetachedUnits}
-                                required
-                              />
-                            </td>
-                            <td>
-                                <select
-                                    className="table-cell"
-                                    id="semiDetached-start-year"
-                                    name="semiDetached-start-year"
-                                    onChange={handleSemiDetachedStartYear}
-                                    value={semiDetachedStartYear}
-                                    defaultValue="Select year"
-                                    required
-                                >
-                                    {optionsNewStart.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
-                            </td>
-                            <td>
-                                <select
-                                    className="table-cell"
-                                    id="semiDetached-end-year"
-                                    name="semiDetached-end-year"
-                                    onChange={handleSemiDetachedEndYear}
-                                    value={semiDetachedEndYear}
-                                    defaultValue="Select year"
-                                    required
-                                >
-                                    {optionsNewStart.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
-                            </td>
-                            <td>
-                              <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                id="semiDetached-energy"
-                                name="semiDetached-energy"
-                                min="0"
-                                value={semiDetachedEnergy}
-                                onChange={handleSemiDetachedEnergy}
-                                required
-                              />
-                            </td>
-                          </tr>
-                          <tr>
-                            <td className="row-title">Detached</td>
-                            <td>
-                              <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                id="detached-units"
-                                name="detached-units"
-                                min="0"
-                                value={detachedUnits}
-                                onChange={handleDetachedUnits}
-                                required
-                              />
-                            </td>
-                            <td>
-                                <select
-                                    className="table-cell"
-                                    id="detached-start-year"
-                                    name="detached-start-year"
-                                    onChange={handleDetachedStartYear}
-                                    value={detachedStartYear}
-                                    defaultValue="Select year"
-                                    required
-                                >
-                                    {optionsNewStart.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
-                            </td>
-                            <td>
-                                <select
-                                    className="table-cell"
-                                    id="detached-end-year"
-                                    name="detached-end-year"
-                                    onChange={handleDetachedEndYear}
-                                    value={detachedEndYear}
-                                    defaultValue="Select year"
-                                    required
-                                >
-                                    {optionsNewStart.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
-                            </td>
-                            <td>
-                              <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                id="detached-energy"
-                                name="detached-energy"
-                                min="0"
-                                value={detachedEnergy}
-                                onChange={handleDetachedEnergy}
-                                required
-                              />
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
+                    <table className="buildings-tbl">
+                          <thead>
+                            <tr>
+                              <th className="row-title">Residential unit type</th>
+                              <th>Number of units</th>
+                              <th colSpan={2}>New units completed between</th>
+                              <th>% of energy from renewables</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td className="row-title">Apartment</td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="apartment-units"
+                                  name="apartment-units"
+                                  min="0"
+                                  value={apartmentUnits}
+                                  onChange={handleApartmentUnits}
+                                  
+                                  required
+                                />
+                              </td>
+                              <td>
+                                  <select
+                                      className="table-cell"
+                                      id="apartment-start-year"
+                                      name="apartment-start-year"
+                                      value={apartmentStartYear}
+                                      onChange={handleApartmentStartYear}
+                                      
+                                      required
+                                  >
+                                      {optionsNewStart.map((option) => (
+                                      <option key={option} value={option}>
+                                          {option}{" "}
+                                      </option>
+                                      ))}
+                                  </select>
+                              </td>
+                              <td>
+                                  <select
+                                      className="table-cell"
+                                      id="apartment-end-year"
+                                      name="apartment-end-year"
+                                      value={apartmentEndYear}
+                                      onChange={handleApartmentEndYear}
+                                      
+                                      required
+                                  >
+                                      {optionsNewStart.map((option) => (
+                                      <option key={option} value={option}>
+                                          {option}{" "}
+                                      </option>
+                                      ))}
+                                  </select>
+                              </td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="apartment-energy"
+                                  min="0"
+                                  value={apartmentEnergy}
+                                  onChange={handleApartmentEnergy}
+                                  required
+                                />
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="row-title">Terraced</td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="terraced-units"
+                                  name="terraced-units"
+                                  min="0"
+                                  value={terracedUnits}
+                                  onChange={handleTerracedUnits}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                  <select
+                                      className="table-cell"
+                                      id="terraced-start-year"
+                                      name="terraced-start-year"
+                                      onChange={handleTerracedStartYear}
+                                      value={terracedStartYear}
+                                      
+                                      required
+                                  >
+                                      {optionsNewStart.map((option) => (
+                                      <option key={option} value={option}>
+                                          {option}{" "}
+                                      </option>
+                                      ))}
+                                  </select>
+                              </td>
+                              <td>
+                                  <select
+                                      className="table-cell"
+                                      id="terraced-end-year"
+                                      name="terraced-end-year"
+                                      onChange={handleTerracedEndYear}
+                                      value={terracedEndYear}
+                                      
+                                      required
+                                  >
+                                      {optionsNewStart.map((option) => (
+                                      <option key={option} value={option}>
+                                          {option}{" "}
+                                      </option>
+                                      ))}
+                                  </select>
+                              </td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="terraced-energy"
+                                  name="terraced-energy"
+                                  min="0"
+                                  value={terracedEnergy}
+                                  onChange={handleTerracedEnergy}
+                                  required
+                                />
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="row-title">Semi-Detached</td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="semiDetached-units"
+                                  name="semiDetached-units"
+                                  min="0"
+                                  value={semiDetachedUnits}
+                                  onChange={handleSemiDetachedUnits}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                  <select
+                                      className="table-cell"
+                                      id="semiDetached-start-year"
+                                      name="semiDetached-start-year"
+                                      onChange={handleSemiDetachedStartYear}
+                                      value={semiDetachedStartYear}
+                                      
+                                      required
+                                  >
+                                      {optionsNewStart.map((option) => (
+                                      <option key={option} value={option}>
+                                          {option}{" "}
+                                      </option>
+                                      ))}
+                                  </select>
+                              </td>
+                              <td>
+                                  <select
+                                      className="table-cell"
+                                      id="semiDetached-end-year"
+                                      name="semiDetached-end-year"
+                                      onChange={handleSemiDetachedEndYear}
+                                      value={semiDetachedEndYear}
+                                      
+                                      required
+                                  >
+                                      {optionsNewStart.map((option) => (
+                                      <option key={option} value={option}>
+                                          {option}{" "}
+                                      </option>
+                                      ))}
+                                  </select>
+                              </td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="semiDetached-energy"
+                                  name="semiDetached-energy"
+                                  min="0"
+                                  value={semiDetachedEnergy}
+                                  onChange={handleSemiDetachedEnergy}
+                                  required
+                                />
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="row-title">Detached</td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="detached-units"
+                                  name="detached-units"
+                                  min="0"
+                                  value={detachedUnits}
+                                  onChange={handleDetachedUnits}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                  <select
+                                      className="table-cell"
+                                      id="detached-start-year"
+                                      name="detached-start-year"
+                                      onChange={handleDetachedStartYear}
+                                      value={detachedStartYear}
+                                      
+                                      required
+                                  >
+                                      {optionsNewStart.map((option) => (
+                                      <option key={option} value={option}>
+                                          {option}{" "}
+                                      </option>
+                                      ))}
+                                  </select>
+                              </td>
+                              <td>
+                                  <select
+                                      className="table-cell"
+                                      id="detached-end-year"
+                                      name="detached-end-year"
+                                      onChange={handleDetachedEndYear}
+                                      value={detachedEndYear}
+                                      
+                                      required
+                                  >
+                                      {optionsNewStart.map((option) => (
+                                      <option key={option} value={option}>
+                                          {option}{" "}
+                                      </option>
+                                      ))}
+                                  </select>
+                              </td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="detached-energy"
+                                  name="detached-energy"
+                                  min="0"
+                                  value={detachedEnergy}
+                                  onChange={handleDetachedEnergy}
+                                  required
+                                />
+                              </td>
+                            </tr>
+                          </tbody>
+                    </table>
                   </form>
                 </div>
             </section>
@@ -697,10 +699,12 @@ import axios from "axios";
                     <form>
                       <table className="buildings-tbl">
                             <thead>
-                              <th className="row-title">Commercial building type</th>
-                              <th>Total floor area</th>
-                              <th colSpan={2}>New buildings completed between</th>
-                              <th>% of electricty from renewables</th>
+                              <tr>
+                                <th className="row-title">Commercial building type</th>
+                                <th>Total floor area</th>
+                                <th colSpan={2}>New buildings completed between</th>
+                                <th>% of electricty from renewables</th>
+                              </tr>
                             </thead>
                             <tbody>
                               <tr>
@@ -725,7 +729,7 @@ import axios from "axios";
                                         name="retail-start-year"
                                         onChange={handleRetailStartYear}
                                         value={retailStartYear}
-                                        defaultValue="Select year"
+                                        
                                         required
                                     >
                                         {optionsNewStart.map((option) => (
@@ -742,7 +746,7 @@ import axios from "axios";
                                         name="retail-end-year"
                                         onChange={handleRetailEndYear}
                                         value={retailEndYear}
-                                        defaultValue="Select year"
+                                        
                                         required
                                     >
                                         {optionsNewStart.map((option) => (
@@ -788,7 +792,7 @@ import axios from "axios";
                                         name="health-start-year"
                                         onChange={handleHealthStartYear}
                                         value={healthStartYear}
-                                        defaultValue="Select year"
+                                        
                                         required
                                     >
                                         {optionsNewStart.map((option) => (
@@ -805,7 +809,7 @@ import axios from "axios";
                                         name="health-end-year"
                                         onChange={handleHealthEndYear}
                                         value={healthEndYear}
-                                        defaultValue="Select year"
+                                        
                                         required
                                     >
                                         {optionsNewStart.map((option) => (
@@ -851,7 +855,7 @@ import axios from "axios";
                                       name="hospitality-start-year"
                                       onChange={handleHospitalityStartYear}
                                       value={hospitalityStartYear}
-                                      defaultValue="Select year"
+                                      
                                       required
                                   >
                                       {optionsNewStart.map((option) => (
@@ -868,7 +872,7 @@ import axios from "axios";
                                       name="hospitality-end-year"
                                       onChange={handleHospitalityEndYear}
                                       value={hospitalityEndYear}
-                                      defaultValue="Select year"
+                                      
                                       required
                                   >
                                       {optionsNewStart.map((option) => (
@@ -914,7 +918,7 @@ import axios from "axios";
                                       name="offices-start-year"
                                       onChange={handleOfficesStartYear}
                                       value={officesStartYear}
-                                      defaultValue="Select year"
+                                      
                                       required
                                   >
                                       {optionsNewStart.map((option) => (
@@ -931,7 +935,7 @@ import axios from "axios";
                                       name="offices-end-year"
                                       onChange={handleOfficesEndYear}
                                       value={officesEndYear}
-                                      defaultValue="Select year"
+                                      
                                       required
                                   >
                                       {optionsNewStart.map((option) => (
@@ -977,7 +981,7 @@ import axios from "axios";
                                       name="industrial-start-year"
                                       onChange={handleIndustrialStartYear}
                                       value={industrialStartYear}
-                                      defaultValue="Select year"
+                                      
                                       required
                                   >
                                       {optionsNewStart.map((option) => (
@@ -994,7 +998,7 @@ import axios from "axios";
                                       name="industrial-end-year"
                                       onChange={handleIndustrialEndYear}
                                       value={industrialEndYear}
-                                      defaultValue="Select year"
+                                      
                                       required
                                   >
                                       {optionsNewStart.map((option) => (
@@ -1040,7 +1044,7 @@ import axios from "axios";
                                       name="warehouses-start-year"
                                       onChange={handleWarehousesStartYear}
                                       value={warehousesStartYear}
-                                      defaultValue="Select year"
+                                      
                                       required
                                   >
                                       {optionsNewStart.map((option) => (
@@ -1057,7 +1061,7 @@ import axios from "axios";
                                       name="warehouses-end-year"
                                       onChange={handleWarehousesEndYear}
                                       value={warehousesEndYear}
-                                      defaultValue="Select year"
+                                      
                                       required
                                   >
                                       {optionsNewStart.map((option) => (
@@ -1118,7 +1122,7 @@ import axios from "axios";
     year: PropTypes.number.isRequired,
     country: PropTypes.string.isRequired,
     baseline: PropTypes.object.isRequired,
-    emissionCommercial: PropTypes.object.isRequired,
-    emissionResidential: PropTypes.object.isRequired,
+    // emissionCommercial: PropTypes.object.isRequired,
+    // emissionResidential: PropTypes.object.isRequired
   };
   

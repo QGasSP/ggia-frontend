@@ -577,9 +577,9 @@ import { Legend } from "./Legend";
  };
  
  BuldingsNewUnitsCharts.propTypes = {
-   newSettlementResidential: PropTypes.object.isRequired,
-   newSettlementCommercial: PropTypes.object.isRequired,
-   baseline: PropTypes.object.isRequired,
+  //  newSettlementResidential: PropTypes.object.isRequired,
+  //  newSettlementCommercial: PropTypes.object.isRequired,
+   newSettlementBuildingsResponse: PropTypes.object.isRequired,
    year: PropTypes.number.isRequired,
    country: PropTypes.string.isRequired,
  };

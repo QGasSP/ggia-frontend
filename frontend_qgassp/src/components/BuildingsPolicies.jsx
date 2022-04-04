@@ -216,22 +216,183 @@ import Divider from "@mui/material/Divider";
                 </section>
                 <div className="newResidentDiv">
                   <form>
-                  <table className="buildings-policy-tbl buildings-tbl">
-                        <thead>
-                          <tr>
-                            <th className="row-title">Select residential unit</th>
-                            <th>Total floor area</th>
-                            <th colSpan={2}>
-                              Indicative energy use
-                            <th>before</th>
-                            <th>after</th>
-                            </th>
-                            <th>% of energy from renewables</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
+                    <table className="buildings-policy-tbl buildings-tbl">
+                      <thead>
+                        <tr>
+                          <th className="row-title">Select residential unit</th>
+                          <th>Total floor area</th>
+                          <th colSpan={2}>
+                            Indicative energy use
+                          <th>before</th>
+                          <th>after</th>
+                          </th>
+                          <th>% of energy from renewables</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                          <select
+                              className="table-cell first-cell"
+                              id=""
+                              name=""
+                              // onChange={handleForestToCropYear}
+                              // value={forestToCropYear}
+                              defaultValue="Select unit type"
+                              required
+                              >
+                              {optionsResidents.map((option) => (
+                              <option key={option} value={option}>
+                                  {option}{" "}
+                              </option>
+                              ))}
+                          </select>
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              // id="firstSelector"
+                              min="0"
+                              // value={firstSelectorNumber}
+                              // onChange={handleFirstSelectorNumber}
+                              // onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                              <select
+                                  className="table-cell"
+                                  id=""
+                                  name=""
+                                  // onChange={handleForestToCropYear}
+                                  // value={forestToCropYear}
+                                  defaultValue="Select indicator"
+                                  required
+                              >
+                                  {optionsIndicators.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                          </td>
+                          <td>
+                              <select
+                                  className="table-cell"
+                                  id=""
+                                  name=""
+                                  // onChange={handleForestToCropYear}
+                                  // value={forestToCropYear}
+                                  defaultValue="Select indicator"
+                                  // onMouseLeave={setTotal}
+                                  required
+                              >
+                                  {optionsIndicators.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              // id="firstSelector"
+                              min="0"
+                              // value={firstSelectorNumber}
+                              // onChange={handleFirstSelectorNumber}
+                              // onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <select
+                                  className="table-cell first-cell"
+                                  id=""
+                                  name=""
+                                  // onChange={handleForestToCropYear}
+                                  // value={forestToCropYear}
+                                  defaultValue="Select unit type"
+                                  required
+                                  >
+                                  {optionsResidents.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              // id="firstSelector"
+                              min="0"
+                              // value={firstSelectorNumber}
+                              // onChange={handleFirstSelectorNumber}
+                              // onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                              <select
+                                  className="table-cell"
+                                  id=""
+                                  name=""
+                                  // onChange={handleForestToCropYear}
+                                  // value={forestToCropYear}
+                                  defaultValue="Select indicator"
+                                  // onMouseLeave={setTotal}
+                                  required
+                              >
+                                  {optionsIndicators.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                          </td>
+                          <td>
+                              <select
+                                  className="table-cell"
+                                  id=""
+                                  name=""
+                                  // onChange={handleForestToCropYear}
+                                  // value={forestToCropYear}
+                                  defaultValue="Select indicator"
+                                  // onMouseLeave={setTotal}
+                                  required
+                              >
+                                  {optionsIndicators.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              // id="firstSelector"
+                              min="0"
+                              // value={firstSelectorNumber}
+                              // onChange={handleFirstSelectorNumber}
+                              // onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
                             <select
                                 className="table-cell first-cell"
                                 id=""
@@ -247,476 +408,315 @@ import Divider from "@mui/material/Divider";
                                 </option>
                                 ))}
                             </select>
-                            </td>
-                            <td>
-                              <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                // id="firstSelector"
-                                min="0"
-                                // value={firstSelectorNumber}
-                                // onChange={handleFirstSelectorNumber}
-                                // onMouseLeave={setTotal}
-                                required
-                              />
-                            </td>
-                            <td>
-                                <select
-                                    className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select indicator"
-                                    required
-                                >
-                                    {optionsIndicators.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
-                            </td>
-                            <td>
-                                <select
-                                    className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select indicator"
-                                    // onMouseLeave={setTotal}
-                                    required
-                                >
-                                    {optionsIndicators.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
-                            </td>
-                            <td>
-                              <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                // id="firstSelector"
-                                min="0"
-                                // value={firstSelectorNumber}
-                                // onChange={handleFirstSelectorNumber}
-                                // onMouseLeave={setTotal}
-                                required
-                              />
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              // id="firstSelector"
+                              min="0"
+                              // value={firstSelectorNumber}
+                              // onChange={handleFirstSelectorNumber}
+                              // onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
                               <select
-                                    className="table-cell first-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select unit type"
-                                    required
-                                    >
-                                    {optionsResidents.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
-                            </td>
-                            <td>
-                              <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                // id="firstSelector"
-                                min="0"
-                                // value={firstSelectorNumber}
-                                // onChange={handleFirstSelectorNumber}
-                                // onMouseLeave={setTotal}
-                                required
-                              />
-                            </td>
-                            <td>
-                                <select
-                                    className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select indicator"
-                                    // onMouseLeave={setTotal}
-                                    required
-                                >
-                                    {optionsIndicators.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
-                            </td>
-                            <td>
-                                <select
-                                    className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select indicator"
-                                    // onMouseLeave={setTotal}
-                                    required
-                                >
-                                    {optionsIndicators.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
-                            </td>
-                            <td>
-                              <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                // id="firstSelector"
-                                min="0"
-                                // value={firstSelectorNumber}
-                                // onChange={handleFirstSelectorNumber}
-                                // onMouseLeave={setTotal}
-                                required
-                              />
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <select
-                                  className="table-cell first-cell"
+                                  className="table-cell"
                                   id=""
                                   name=""
                                   // onChange={handleForestToCropYear}
                                   // value={forestToCropYear}
-                                  defaultValue="Select unit type"
+                                  defaultValue="Select indicator"
+                                  // onMouseLeave={setTotal}
                                   required
-                                  >
-                                  {optionsResidents.map((option) => (
+                              >
+                                  {optionsIndicators.map((option) => (
                                   <option key={option} value={option}>
                                       {option}{" "}
                                   </option>
                                   ))}
                               </select>
-                            </td>
-                            <td>
-                              <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                // id="firstSelector"
-                                min="0"
-                                // value={firstSelectorNumber}
-                                // onChange={handleFirstSelectorNumber}
-                                // onMouseLeave={setTotal}
-                                required
-                              />
-                            </td>
-                            <td>
-                                <select
-                                    className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select indicator"
-                                    // onMouseLeave={setTotal}
-                                    required
-                                >
-                                    {optionsIndicators.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
-                            </td>
-                            <td>
-                                <select
-                                    className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select indicator"
-                                    // onMouseLeave={setTotal}
-                                    required
-                                >
-                                    {optionsIndicators.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
-                            </td>
-                            <td>
-                              <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                // id="firstSelector"
-                                min="0"
-                                // value={firstSelectorNumber}
-                                // onChange={handleFirstSelectorNumber}
-                                // onMouseLeave={setTotal}
-                                required
-                              />
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
+                          </td>
+                          <td>
                               <select
-                                  className="table-cell first-cell"
+                                  className="table-cell"
                                   id=""
                                   name=""
                                   // onChange={handleForestToCropYear}
                                   // value={forestToCropYear}
-                                  defaultValue="Select unit type"
+                                  defaultValue="Select indicator"
+                                  // onMouseLeave={setTotal}
                                   required
-                                  >
-                                  {optionsResidents.map((option) => (
+                              >
+                                  {optionsIndicators.map((option) => (
                                   <option key={option} value={option}>
                                       {option}{" "}
                                   </option>
                                   ))}
                               </select>
-                            </td>
-                            <td>
-                              <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                // id="firstSelector"
-                                min="0"
-                                // value={firstSelectorNumber}
-                                // onChange={handleFirstSelectorNumber}
-                                // onMouseLeave={setTotal}
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              // id="firstSelector"
+                              min="0"
+                              // value={firstSelectorNumber}
+                              // onChange={handleFirstSelectorNumber}
+                              // onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <select
+                                className="table-cell first-cell"
+                                id=""
+                                name=""
+                                // onChange={handleForestToCropYear}
+                                // value={forestToCropYear}
+                                defaultValue="Select unit type"
                                 required
-                              />
-                            </td>
-                            <td>
-                                <select
-                                    className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select indicator"
-                                    // onMouseLeave={setTotal}
-                                    required
                                 >
-                                    {optionsIndicators.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
-                            </td>
-                            <td>
-                                <select
-                                    className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select indicator"
-                                    // onMouseLeave={setTotal}
-                                    required
-                                >
-                                    {optionsIndicators.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
-                            </td>
-                            <td>
-                              <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                // id="firstSelector"
-                                min="0"
-                                // value={firstSelectorNumber}
-                                // onChange={handleFirstSelectorNumber}
-                                // onMouseLeave={setTotal}
-                                required
-                              />
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
+                                {optionsResidents.map((option) => (
+                                <option key={option} value={option}>
+                                    {option}{" "}
+                                </option>
+                                ))}
+                            </select>
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              // id="firstSelector"
+                              min="0"
+                              // value={firstSelectorNumber}
+                              // onChange={handleFirstSelectorNumber}
+                              // onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
                               <select
-                                  className="table-cell first-cell"
+                                  className="table-cell"
                                   id=""
                                   name=""
                                   // onChange={handleForestToCropYear}
                                   // value={forestToCropYear}
-                                  defaultValue="Select unit type"
+                                  defaultValue="Select indicator"
+                                  // onMouseLeave={setTotal}
                                   required
-                                  >
-                                  {optionsResidents.map((option) => (
+                              >
+                                  {optionsIndicators.map((option) => (
                                   <option key={option} value={option}>
                                       {option}{" "}
                                   </option>
                                   ))}
                               </select>
-                            </td>
-                            <td>
-                              <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                // id="firstSelector"
-                                min="0"
-                                // value={firstSelectorNumber}
-                                // onChange={handleFirstSelectorNumber}
-                                // onMouseLeave={setTotal}
-                                required
-                              />
-                            </td>
-                            <td>
-                                <select
-                                    className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select indicator"
-                                    // onMouseLeave={setTotal}
-                                    required
-                                >
-                                    {optionsIndicators.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
-                            </td>
-                            <td>
-                                <select
-                                    className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select indicator"
-                                    // onMouseLeave={setTotal}
-                                    required
-                                >
-                                    {optionsIndicators.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
-                            </td>
-                            <td>
-                              <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                // id="firstSelector"
-                                min="0"
-                                // value={firstSelectorNumber}
-                                // onChange={handleFirstSelectorNumber}
-                                // onMouseLeave={setTotal}
-                                required
-                              />
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
+                          </td>
+                          <td>
                               <select
-                                  className="table-cell first-cell"
+                                  className="table-cell"
                                   id=""
                                   name=""
                                   // onChange={handleForestToCropYear}
                                   // value={forestToCropYear}
-                                  defaultValue="Select unit type"
+                                  defaultValue="Select indicator"
+                                  // onMouseLeave={setTotal}
                                   required
-                                  >
-                                  {optionsResidents.map((option) => (
+                              >
+                                  {optionsIndicators.map((option) => (
                                   <option key={option} value={option}>
                                       {option}{" "}
                                   </option>
                                   ))}
                               </select>
-                            </td>
-                            <td>
-                              <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                // id="firstSelector"
-                                min="0"
-                                // value={firstSelectorNumber}
-                                // onChange={handleFirstSelectorNumber}
-                                // onMouseLeave={setTotal}
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              // id="firstSelector"
+                              min="0"
+                              // value={firstSelectorNumber}
+                              // onChange={handleFirstSelectorNumber}
+                              // onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <select
+                                className="table-cell first-cell"
+                                id=""
+                                name=""
+                                // onChange={handleForestToCropYear}
+                                // value={forestToCropYear}
+                                defaultValue="Select unit type"
                                 required
-                              />
-                            </td>
-                            <td>
-                                <select
-                                    className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select indicator"
-                                    // onMouseLeave={setTotal}
-                                    required
                                 >
-                                    {optionsIndicators.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
-                            </td>
-                            <td>
-                                <select
-                                    className="table-cell"
-                                    id=""
-                                    name=""
-                                    // onChange={handleForestToCropYear}
-                                    // value={forestToCropYear}
-                                    defaultValue="Select indicator"
-                                    // onMouseLeave={setTotal}
-                                    required
-                                >
-                                    {optionsIndicators.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}{" "}
-                                    </option>
-                                    ))}
-                                </select>
-                            </td>
-                            <td>
-                              <input
-                                className="table-cell"
-                                type="number"
-                                step="1"
-                                // id="firstSelector"
-                                min="0"
-                                // value={firstSelectorNumber}
-                                // onChange={handleFirstSelectorNumber}
-                                // onMouseLeave={setTotal}
+                                {optionsResidents.map((option) => (
+                                <option key={option} value={option}>
+                                    {option}{" "}
+                                </option>
+                                ))}
+                            </select>
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              // id="firstSelector"
+                              min="0"
+                              // value={firstSelectorNumber}
+                              // onChange={handleFirstSelectorNumber}
+                              // onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                              <select
+                                  className="table-cell"
+                                  id=""
+                                  name=""
+                                  // onChange={handleForestToCropYear}
+                                  // value={forestToCropYear}
+                                  defaultValue="Select indicator"
+                                  // onMouseLeave={setTotal}
+                                  required
+                              >
+                                  {optionsIndicators.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                          </td>
+                          <td>
+                              <select
+                                  className="table-cell"
+                                  id=""
+                                  name=""
+                                  // onChange={handleForestToCropYear}
+                                  // value={forestToCropYear}
+                                  defaultValue="Select indicator"
+                                  // onMouseLeave={setTotal}
+                                  required
+                              >
+                                  {optionsIndicators.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              // id="firstSelector"
+                              min="0"
+                              // value={firstSelectorNumber}
+                              // onChange={handleFirstSelectorNumber}
+                              // onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <select
+                                className="table-cell first-cell"
+                                id=""
+                                name=""
+                                // onChange={handleForestToCropYear}
+                                // value={forestToCropYear}
+                                defaultValue="Select unit type"
                                 required
-                              />
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
+                                >
+                                {optionsResidents.map((option) => (
+                                <option key={option} value={option}>
+                                    {option}{" "}
+                                </option>
+                                ))}
+                            </select>
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              // id="firstSelector"
+                              min="0"
+                              // value={firstSelectorNumber}
+                              // onChange={handleFirstSelectorNumber}
+                              // onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                              <select
+                                  className="table-cell"
+                                  id=""
+                                  name=""
+                                  // onChange={handleForestToCropYear}
+                                  // value={forestToCropYear}
+                                  defaultValue="Select indicator"
+                                  // onMouseLeave={setTotal}
+                                  required
+                              >
+                                  {optionsIndicators.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                          </td>
+                          <td>
+                              <select
+                                  className="table-cell"
+                                  id=""
+                                  name=""
+                                  // onChange={handleForestToCropYear}
+                                  // value={forestToCropYear}
+                                  defaultValue="Select indicator"
+                                  // onMouseLeave={setTotal}
+                                  required
+                              >
+                                  {optionsIndicators.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              // id="firstSelector"
+                              min="0"
+                              // value={firstSelectorNumber}
+                              // onChange={handleFirstSelectorNumber}
+                              // onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </form>
                 </div>
             </section>
@@ -729,7 +729,7 @@ import Divider from "@mui/material/Divider";
                 </section>
                 <div className="newResidentDiv">
                   <form>
-                  <table className="buildings-policy-tbl buildings-tbl">
+                    <table className="buildings-policy-tbl buildings-tbl">
                         <thead>
                           <tr>
                             <th className="row-title">Select building type</th>
@@ -1318,7 +1318,7 @@ import Divider from "@mui/material/Divider";
                             </td>
                           </tr>
                         </tbody>
-                      </table>
+                    </table>
                   </form>
                 </div>
             </section>
@@ -1354,9 +1354,9 @@ import Divider from "@mui/material/Divider";
   
   BuildingsPolicies.propTypes = {
     year: PropTypes.number.isRequired,
-    baseline: PropTypes.object.isRequired,
-    settlementDistribution: PropTypes.object.isRequired,
-    emission: PropTypes.object.isRequired,
-    projections: PropTypes.object.isRequired
+    country: PropTypes.string.isRequired,
+    // settlementDistribution: PropTypes.object.isRequired,
+    // emission: PropTypes.object.isRequired,
+    // projections: PropTypes.object.isRequired
   };
   
