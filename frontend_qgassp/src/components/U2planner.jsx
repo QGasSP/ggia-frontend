@@ -15,6 +15,7 @@ import {
   LineSeries,
 } from "react-vis";
 import { U3planner } from "./U3planner";
+import urlPrefix from "../Config";
 
 /**
  * U2 Planner component for visualization of  baseline vs new-resident population
@@ -45,7 +46,7 @@ export const U2planner = ({
     };
     await axios
       .post(
-        "https://ggia-dev.ulno.net/api/v1/calculate/transport/new-development",
+        urlPrefix + "/api/v1/calculate/transport/new-development",
         rawData,
         headers
       )

@@ -6,6 +6,7 @@ import Chip from "@mui/material/Chip";
 import { TransportBaseline } from "./TransportBaseline";
 import axios from "axios";
 import { useStorageInt, useStorageString } from "../reducers/useStorage";
+import urlPrefix from "../Config";
 
 export const StartPage = () => {
   const [country, setCountry] = useStorageString("country","");
@@ -41,12 +42,12 @@ export const StartPage = () => {
 
   useEffect(async () => {
     axios
-      .get("https://ggia-dev.ulno.net/api/v1/countries")
+      .get(urlPrefix + "/api/v1/countries")
       .then((response) => setEuCountries(response.data.data.countries))
       .catch((error) => {
         setCountriesError({ errorMessage: error.message });
         // eslint-disable-next-line no-console
-        console.error("Eu countries Response data error---", errorStartPage);
+        console.error("Eu countries Response data error - url " + urlPrefix + "---", errorStartPage);
       });
   }, []);
 
@@ -58,7 +59,7 @@ export const StartPage = () => {
           <div>
             <Divider textAlign="left" flexItem>
               {" "}
-              <Chip label="ASSESEMENT AREA INFORMATION" />
+              <Chip label="ASSESSMENT AREA INFORMATION" />
             </Divider>
           </div>
 

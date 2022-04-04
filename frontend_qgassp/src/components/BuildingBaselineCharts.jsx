@@ -16,6 +16,7 @@ import { BuildingsNewUnits } from "./BuildingsNewUnits";
 import { LineLegendBuildingBaselineCharts } from "./LineLegendBuildingBaselineCharts";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
+import urlPrefix from "../Config";
 
 
 /**
@@ -65,7 +66,7 @@ import Chip from "@mui/material/Chip";
 //      };
 //      axios
 //        .post(
-//          "https://ggia-dev.ulno.net/api/v1/calculate/buildings",
+//          urlPrefix + "/api/v1/calculate/buildings",
 //          raw,
 //          headers
 //        )

@@ -4,6 +4,8 @@ import { BuildingBaselineCharts } from "./BuildingBaselineCharts";
 import "../css/buildingbaseline.css";
 import axios from "axios";
 
+import urlPrefix from "../Config";
+
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 
@@ -155,7 +157,7 @@ export const BuildingBaseline = () => {
     };
     // axios
     // .post(
-    //   "https://ggia-dev.ulno.net/api/v1/calculate/buildings",
+    //   urlPrefix + "/api/v1/calculate/buildings",
     //   baseline,
     //   headers
     // )

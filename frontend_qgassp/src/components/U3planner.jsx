@@ -6,6 +6,7 @@ import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import axios from "axios";
 import { U3policies } from "./U3policies";
+import urlPrefix from "../Config";
 
 /**
  * U3 planner component for user inputs for policy quantification
@@ -315,7 +316,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
     };
     axios
       .post(
-        "https://ggia-dev.ulno.net/api/v1/calculate/transport",
+        urlPrefix + "/api/v1/calculate/transport",
         raw,
         headers
       )

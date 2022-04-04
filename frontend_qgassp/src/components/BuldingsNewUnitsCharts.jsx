@@ -18,6 +18,7 @@ import { BuildingsPolicies } from "./BuildingsPolicies";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import { Legend } from "./Legend";
+import urlPrefix from "../Config";
 
 
 /**
@@ -66,7 +67,7 @@ import { Legend } from "./Legend";
 //      };
 //      axios
 //        .post(
-//          "https://ggia-dev.ulno.net/api/v1/calculate/buildings",
+//          urlPrefix + "/api/v1/calculate/buildings",
 //          raw,
 //          headers
 //        )

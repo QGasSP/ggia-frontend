@@ -12,6 +12,8 @@ import {
   VerticalBarSeries,
 } from "react-vis";
 
+import urlPrefix from "../Config";
+
 import { LineLegendConsumption } from "./LineLegendConsumption";
 import { hseHoldEmissions } from "../reducers/Consumption";
 import axios from "axios";
@@ -58,7 +60,7 @@ export const ConsumptionBaselineResults = ({
     };
     axios
       .post(
-        "https://ggia-dev.ulno.net/api/v1/calculate/consumption",
+        urlPrefix + "/api/v1/calculate/consumption",
         rawData,
         headers
       )

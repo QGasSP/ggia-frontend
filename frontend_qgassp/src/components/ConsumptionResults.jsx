@@ -5,6 +5,7 @@ import Chip from "@mui/material/Chip";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { ConsumptionSummary } from "./ConsumptionSummary";
+import urlPrefix from "../Config";
 
 /**
  * Consumption Results
@@ -28,7 +29,7 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
 
     axios
       .post(
-        "https://ggia-dev.ulno.net/api/v1/calculate/consumption",
+        urlPrefix + "/api/v1/calculate/consumption",
         consumptionRequest,
         headers
       )

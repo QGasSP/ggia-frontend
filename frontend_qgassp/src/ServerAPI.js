@@ -1,4 +1,6 @@
-const SERVER_ADDRESS = "https://ggia-dev.ulno.net/";
+import urlPrefix from "../Config";
+
+const SERVER_ADDRESS = urlPrefix + "/";
 
 const parse = async (fetchPromise) => {
   const response = await fetchPromise;

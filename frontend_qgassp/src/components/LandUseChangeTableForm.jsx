@@ -6,6 +6,7 @@ import axios from "axios";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import { CircularProgress } from '@mui/material';
+import urlPrefix from "../Config";
 
 /**
  * LUC inputs table from to
@@ -439,7 +440,7 @@ export const LandUseChangeTableForm = () => {
     });
     axios
       .post(
-        "https://ggia-dev.ulno.net/api/v1/calculate/land-use-change",
+        urlPrefix + "/api/v1/calculate/land-use-change",
         rawData,
         headers
       )

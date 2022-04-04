@@ -18,6 +18,7 @@ import { NewResidents } from "./NewResidents";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import { Legend } from "./Legend";
+import urlPrefix from "../Config";
 
 /**
  * U1 Planner baseline user input form
@@ -60,7 +61,7 @@ export const U1planner = ({
     };
     axios
       .post(
-        "https://ggia-dev.ulno.net/api/v1/calculate/transport/baseline",
+        urlPrefix + "/api/v1/calculate/transport/baseline",
         raw,
         headers
       )

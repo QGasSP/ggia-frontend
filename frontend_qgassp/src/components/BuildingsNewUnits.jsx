@@ -7,6 +7,7 @@ import { BuldingsNewUnitsCharts } from "./BuldingsNewUnitsCharts";
 import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 import axios from "axios";
+import urlPrefix from "../Config";
 
 
 /**
@@ -370,7 +371,7 @@ import axios from "axios";
       };
       // axios
       // .post(
-      //   "https://ggia-dev.ulno.net/api/v1/calculate/buildings",
+      //   urlPrefix + "/api/v1/calculate/buildings",
       //   newSettlement,
       //   headers
       // )
@@ -1122,7 +1123,7 @@ import axios from "axios";
     year: PropTypes.number.isRequired,
     country: PropTypes.string.isRequired,
     baseline: PropTypes.object.isRequired,
-    // emissionCommercial: PropTypes.object.isRequired,
-    // emissionResidential: PropTypes.object.isRequired
+    emissionCommercial: PropTypes.object.isRequired,
+    emissionResidential: PropTypes.object.isRequired
   };
   
