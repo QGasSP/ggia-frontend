@@ -26,18 +26,16 @@ import { Legend } from "./Legend";
  */
  const BarSeries = VerticalBarSeries;
  export const BuldingsNewUnitsCharts = ({
-   baseline,
-   newSettlementCommercial,
-   newSettlementResidential,
+  newSettlementBuildingsResponse,
+  //  newSettlementCommercial,
+  //  newSettlementResidential,
    country,
    year
  }) => {
-   year = 2022;
    const [errorBBC, setErrorBBC] = useState("");
    const [emissionResidential, setEmissionResidential] = useState("");
    const [emissionCommercial, setEmissionCommercial] = useState("");
    const [emissionsByEndUse, setEmissionsByEndUse] = useState("");
-//    const [baseline, setBaseline] = useState({});
    const [nextNewUnitsView, setNextNewUnitsView] = useState(false);
  
    useEffect(() => {
@@ -89,7 +87,12 @@ import { Legend } from "./Legend";
     if (nextNewUnitsView === false){
      return (
        <article>
-         <br />
+         <div className="headerSettlement">
+            <Divider textAlign="left" flexItem>
+              {" "}
+              <Chip label="NEW SETTLEMENT / DENSIFICATION RESULTS" />
+            </Divider>
+          </div>
          <Divider textAlign="left" flexItem>
            <b>Baseline - CO2e emissions from the energy use in residential buildings by unit type and source of heating energy</b>
          </Divider>
@@ -563,16 +566,14 @@ import { Legend } from "./Legend";
    } else if (nextNewUnitsView === true) {
      return (
        <BuildingsPolicies
-         baseline={baseline}
-         emissionResidential={emissionResidential}
-         emissionCommercial={emissionCommercial}
+        //  baseline={baseline}
+        //  emissionResidential={emissionResidential}
+        //  emissionCommercial={emissionCommercial}
+         country={country}
          year={year}
        />
      );
-   } 
-  //  else {
-  //    return <></>;
-  //  };
+   }
  };
  
  BuldingsNewUnitsCharts.propTypes = {

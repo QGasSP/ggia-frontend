@@ -13,7 +13,7 @@ import Divider from "@mui/material/Divider";
  */
 
  export const BuildingsPolicies = ({
-    baseline,
+   country,
     year,
   }) => {
       year = 2022;
@@ -193,7 +193,7 @@ import Divider from "@mui/material/Divider";
     };
     // #endregion
 
-    const updateU2Planner = () => {
+    const setPoliciesResults = () => {
       
       setU2charts(true);
     };
@@ -218,14 +218,16 @@ import Divider from "@mui/material/Divider";
                   <form>
                   <table className="buildings-policy-tbl buildings-tbl">
                         <thead>
-                          <th className="row-title">Select residential unit</th>
-                          <th>Total floor area</th>
-                          <th colSpan={2}>
-                            Indicative energy use
-                          <th>before</th>
-                          <th>after</th>
-                          </th>
-                          <th>% of energy from renewables</th>
+                          <tr>
+                            <th className="row-title">Select residential unit</th>
+                            <th>Total floor area</th>
+                            <th colSpan={2}>
+                              Indicative energy use
+                            <th>before</th>
+                            <th>after</th>
+                            </th>
+                            <th>% of energy from renewables</th>
+                          </tr>
                         </thead>
                         <tbody>
                           <tr>
@@ -729,18 +731,20 @@ import Divider from "@mui/material/Divider";
                   <form>
                   <table className="buildings-policy-tbl buildings-tbl">
                         <thead>
-                          <th className="row-title">Select building type</th>
-                          <th>Total floor area</th>
-                          <th colSpan={2}>
-                            Indicative energy use kWh/(m<sup>2</sup>a)
-                            <th>before</th>
-                            <th>after</th>
-                          </th>
-                          <th>% of electricty from renewables</th>
-                          <th colSpan={2}>Number of retrofit buildings suppling Space and Water Heating through low carbon heat and electricity
-                            <th>Low Carbon Heat</th>
-                            <th>Electricity</th>
-                          </th>
+                          <tr>
+                            <th className="row-title">Select building type</th>
+                            <th>Total floor area</th>
+                            <th colSpan={2}>
+                              Indicative energy use kWh/(m<sup>2</sup>a)
+                              <th>before</th>
+                              <th>after</th>
+                            </th>
+                            <th>% of electricty from renewables</th>
+                            <th colSpan={2}>Number of retrofit buildings suppling Space and Water Heating through low carbon heat and electricity
+                              <th>Low Carbon Heat</th>
+                              <th>Electricity</th>
+                            </th>
+                          </tr>
                         </thead>
                         <tbody>
                           <tr>
@@ -1324,7 +1328,7 @@ import Divider from "@mui/material/Divider";
                     <Button
                     size="small"
                     value="charts"
-                    // onClick={setBuildingTypes}
+                    onClick={setPoliciesResults}
                     label="Next &raquo;"
                     primary
                     />
@@ -1336,6 +1340,8 @@ import Divider from "@mui/material/Divider";
     } else {
       return (
         <BuildingsPoliciesCharts
+          year={year}
+          country={country}
           // baseline={baseline.baseline}
           // newDevelopment={newDevelopment}
           // settlementDistribution={settlementDistribution}

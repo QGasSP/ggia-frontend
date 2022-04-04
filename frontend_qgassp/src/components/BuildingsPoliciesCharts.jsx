@@ -27,10 +27,7 @@ import { Legend } from "./Legend";
  const BarSeries = VerticalBarSeries;
  export const BuildingsPoliciesCharts = ({
    country,
-   year,
-   residential,
-   commercial,
-   baseline,
+   year
  }) => {
    const [errorBBC, setErrorBBC] = useState("");
    const [emissionResidential, setEmissionResidential] = useState("");
@@ -84,15 +81,21 @@ import { Legend } from "./Legend";
 //        });
 //    }, []);
  
-   if (nextNewUnitsView === false && Object.keys(emissionsByEndUse).length !== 0) {
+  //  if (nextNewUnitsView === false && Object.keys(emissionsByEndUse).length !== 0) {
+    if (nextNewUnitsView === false){
      return (
        <article>
-         <br />
+         <div className="headerSettlement">
+            <Divider textAlign="left" flexItem>
+              {" "}
+              <Chip label="POLICY QUANTIFICATION RESULTS" />
+            </Divider>
+          </div>
          <Divider textAlign="left" flexItem>
            <b>Baseline - CO2e emissions from the energy use in residential buildings by unit type and source of heating energy</b>
          </Divider>
  
-         <div className="barchart_container">
+         {/* <div className="barchart_container">
            <XYPlot xType="ordinal" width={1000} height={300} xDistance={200}>
              <HorizontalGridLines />
              <VerticalGridLines />
@@ -149,14 +152,14 @@ import { Legend } from "./Legend";
              <XAxis />
              <YAxis />
            </XYPlot>
-         </div>
+         </div> */}
 
          <Divider textAlign="left" flexItem>
            {" "}
            <b>Baseline - CO2e emissions from the energy use in residential buildings by the end use</b>
          </Divider>
  
-         <div className="piechart_container">
+         {/* <div className="piechart_container">
            <div className="piechart_diagram">
              <div>
                <RadialChart
@@ -249,7 +252,7 @@ import { Legend } from "./Legend";
              <Legend />
            </div>
            <div></div>
-         </div>
+         </div> */}
  
          <div className="headerSettlement">
            <Divider textAlign="left" flexItem>
@@ -264,7 +267,7 @@ import { Legend } from "./Legend";
            <b>CO2e emissions from the energy use in commercial buildings by building type and source of heating energy</b>
          </Divider>
  
-         <div>
+         {/* <div>
            <XYPlot width={1000} height={500} stackBy="y" xType="ordinal">
              <HorizontalGridLines />
              <VerticalGridLines />
@@ -545,32 +548,21 @@ import { Legend } from "./Legend";
              />
            </XYPlot>
            <LineLegend />
-         </div>
- 
-         <div className="nextU2Button">
-           <Button
-             size="small"
-             value="u2next_inputs"
-             onClick={() => setNextNewUnitsView(true)}
-             label="Next &raquo;"
-             primary
-           />
-         </div>
+         </div> */}
        </article>
      );
-   } else if (nextNewUnitsView === true) {
-     return (
-       <BuildingsNewUnits
-         baseline={baseline}
-        //  settlementDistribution={settlementDistribution}
-         emissionResidential={emissionResidential}
-         emissionCommercial={emissionCommercial}
-         year={year}
-       />
-     );
-   } else {
-     return <></>;
-   };
+   } 
+  //  else if (nextNewUnitsView === true) {
+  //    return (
+  //      <BuildingsNewUnits
+  //        baseline={baseline}
+  //       //  settlementDistribution={settlementDistribution}
+  //        emissionResidential={emissionResidential}
+  //        emissionCommercial={emissionCommercial}
+  //        year={year}
+  //      />
+  //    );
+  //  }
  };
  
  BuildingsPoliciesCharts.propTypes = {

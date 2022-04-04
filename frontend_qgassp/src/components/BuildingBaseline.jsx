@@ -183,7 +183,7 @@ export const BuildingBaseline = () => {
           <div className="headerSettlement">
             <Divider textAlign="left" flexItem>
               {" "}
-              <Chip label="BUILDINGS BASELINE" />
+              <Chip label="U6 BUILDINGS BASELINE" />
             </Divider>
           </div>
 
@@ -191,7 +191,7 @@ export const BuildingBaseline = () => {
             <section>
                 <Divider textAlign="left" flexItem>
                     {" "}
-                    <b>Number of residential units in the area</b>
+                    <b>U6.1 Number of residential units in the area</b>
                 </Divider>
             </section>
             <div className="settlementDiv">
@@ -328,7 +328,7 @@ export const BuildingBaseline = () => {
             <section>
                 <Divider textAlign="left" flexItem>
                     {" "}
-                    <b>Number of commercial buildings in the area</b>
+                    <b>U6.2 Number of commercial buildings in the area</b>
                 </Divider>
             </section>
             <div className="settlementDiv">

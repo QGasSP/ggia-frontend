@@ -88,7 +88,7 @@ import Chip from "@mui/material/Chip";
      return (
        <article>
           <Divider textAlign="left" flexItem>
-            <Chip label="Buildings Baseline Results" />
+            <Chip label="BUILDINGS BASELINE RESULTS" />
           </Divider>
          <section>
            <Divider textAlign="left" flexItem>
@@ -274,7 +274,7 @@ import Chip from "@mui/material/Chip";
          <div className="headerSettlement">
            <section>
              <Divider textAlign="left" flexItem>
-               <Chip label="BASELINE EMISSIONS - ENERGY USE IN BUILDINGS (tCO2e" />
+               <Chip label="BASELINE EMISSIONS - ENERGY USE IN BUILDINGS (tCO2e)" />
              </Divider>
            </section>
          </div>

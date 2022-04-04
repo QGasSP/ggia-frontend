@@ -408,7 +408,7 @@ import axios from "axios";
           <div className="headerSettlement">
             <Divider textAlign="left" flexItem>
               {" "}
-              <Chip label="NEW SETTLEMENT / DENSIFICATION" />
+              <Chip label="U7 NEW SETTLEMENT / DENSIFICATION" />
             </Divider>
           </div>
   
@@ -416,7 +416,7 @@ import axios from "axios";
                 <section>
                   <Divider textAlign="left" flexItem>
                       {" "}
-                      <b>New residential units</b>
+                      <b>U7.1 New residential units</b>
                   </Divider>
                 </section>
                 <div className="newResidentDiv">
@@ -690,7 +690,7 @@ import axios from "axios";
                 <section>
                   <Divider textAlign="left" flexItem>
                       {" "}
-                      <b>New commercial buildings</b>
+                      <b>U7.2 New commercial buildings</b>
                   </Divider>
                 </section>
                 <div className="newResidentDiv">
