@@ -156,21 +156,21 @@ export const LUCBarChart = ({landUseChangeResponse, year }) => {
           <FlexibleXYPlot
                     width={1200}
                     height={500}
-                    xType="linear"
+                    xType="ordinal"
                     yDomain={[-1500, 1500]}
                     stackBy="y"
                   >
                     <HorizontalGridLines />
                     <VerticalGridLines />
                     <VerticalBarSeries className="LucStackedBarchart" />
-                    <XAxis
+                    <XAxis title="Year"
                       style={{
                         line: { stroke: "#ADDDE1" },
                         ticks: { stroke: "#ADDDE1" },
                         text: { stroke: "none", fill: "#6b6b76", fontWeight: 600 },
                       }}
                     />
-                    <YAxis/>
+                    <YAxis title="Land-use tC02/a" />
                     {/* 1 */}
                     <BarSeries
                       color="#ffdf43"
