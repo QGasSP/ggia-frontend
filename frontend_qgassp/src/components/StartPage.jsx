@@ -163,13 +163,12 @@ export const StartPage = () => {
                   primary="true"
                 />
               </div>
-              <br/>
-              <br/>
-              <div >
+         
+              <div className="reset_button" >
                 <Button
                   size="small"
                   onClick={clearLocalStorage}
-                  label="Reset"
+                  label="Reset baseline"
                   primary="true"
                 />
               </div>
