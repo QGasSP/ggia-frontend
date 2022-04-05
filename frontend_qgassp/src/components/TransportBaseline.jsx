@@ -16,7 +16,12 @@ const settlementLabels = [
   { title: "rural", color: "#D9D9D9" },
   { title: "Metropolitan center", color: "#730E16" },
 ];
-export const TransportBaseline = ({ country, year, population }) => {
+/* export const TransportBaseline = ({ country, year, population }) => { */
+
+export const TransportBaseline = () => {
+  const country = localStorage.getItem("country");
+  const year = parseInt(localStorage.getItem("year"));
+  const population = parseInt(localStorage.getItem("population"));
   const [metropolitanCenter, setMetropolitan] = useState(parseFloat(0));
   const [urban, setUrban] = useState(parseFloat(0));
   const [suburban, setSubUrban] = useState(parseFloat(0));
@@ -392,8 +397,9 @@ export const TransportBaseline = ({ country, year, population }) => {
   }
 };
 
-TransportBaseline.propTypes = {
+/* TransportBaseline.propTypes = {
   population: PropTypes.number.isRequired,
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
 };
+ */

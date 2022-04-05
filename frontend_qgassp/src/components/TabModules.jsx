@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import "../css/tabs.css";
 import { ModuleHeader } from "./ModuleHeader";
 import { StartPage } from "./StartPage";
@@ -11,18 +11,98 @@ import { TransportBaseline } from "./TransportBaseline";
  */
 export const TabModules = () => {
   const [toggleState, setToggleState] = useState(1);
- 
-
   const ggiaGuideUrl = "https://github.com/QGasSP/ggia/wiki";
+  const country = localStorage.getItem("country");
+  const year = parseInt(localStorage.getItem("year"));
+  const population = parseInt(localStorage.getItem("population"));
 
   const toggleTab = (index) => {
     setToggleState(index);
   };
 
+  useEffect(() => {
+    localStorage.setItem("toggleState", JSON.stringify(toggleState));
+  }, [toggleState]);
+
   const openGuide = () => {
     // toggleTab(7);
     window.open(ggiaGuideUrl, "_blank");
   };
+  if (population === 0 && year === 0 && country === "") {
+    return (
+      <>
+        <ModuleHeader />
+        <div className="container">
+          <div id="territorial_category"></div>
+
+          <div className="bloc-tabs">
+            <button
+              className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
+              onClick={() => toggleTab(1)}
+            >
+              Start{" "}
+            </button>
+
+            <button
+              className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
+            /*   onClick={() => toggleTab(2)} */
+              id="transport"
+            >
+              Transport
+            </button>
+            <button
+              className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
+           /*    onClick={() => toggleTab(3)} */
+              id="luc"
+            >
+              Land-use change
+            </button>
+            <button
+              className={toggleState === 4 ? "tabs active-tabs" : "tabs"}
+              onClick={() => toggleTab(4)}
+              id="buildings"
+            >
+              Buildings
+            </button>
+            <button
+              className={toggleState === 5 ? "tabs active-tabs" : "tabs"}
+            /*   onClick={() => toggleTab(5)} */
+              id="consumption"
+            >
+              Consumption-based
+              <br />
+              quantification
+            </button>
+            <button
+              className={toggleState === 6 ? "tabs active-tabs" : "tabs"}
+              onClick={() => toggleTab(6)}
+              id="local_data"
+            >
+              Create local data-set
+            </button>
+            <button
+              className={toggleState === 7 ? "tabs active-tabs" : "tabs"}
+              /*  onClick={() => toggleTab(7)} */
+              onClick={openGuide}
+              id="user_guide"
+            >
+              User-guide
+            </button>
+          </div>
+        </div>
+        <div className="content-tabs">
+          <>
+            {toggleState == 1 && <Welcome />}
+            {toggleState == 2 && <StartPage />}
+            {toggleState == 3 && <StartPage />}
+            {toggleState == 4 && <BuildingBaseline />}
+            {toggleState == 5 && <StartPage />}
+            {toggleState == 6 && <StartPage />}
+          </>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
