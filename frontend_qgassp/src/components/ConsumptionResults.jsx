@@ -21,8 +21,9 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
   const [p1TotalAreaEmissions, setP1totalAreaEmissions] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-  const [ p1TotalAreaEmissionsMax, setYMax] = useState(false);
-  // P1TotalAreaEmissionsMax
+  const [p1TotalAreaEmissionsMax, setYMax] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [consumptionStatus, setConsumptionStatus] = useState("");
 
   const fetchConsumptionData = () => {
     const headers = { "Content-type": "application/json" };
@@ -35,7 +36,8 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
       )
       .then((response) => {
         // eslint-disable-next-line no-console
-        console.log();
+        console.log(response);
+        setConsumptionStatus(response.data.status);
         setBlTransport(response.data.data.consumption.BL);
         setBlTotalEmissions(response.data.data.consumption.BLTotalEmissions);
         setP1totalAreaEmissions(
@@ -54,6 +56,7 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
         setIsError(true);
         // eslint-disable-next-line no-console
         console.error("There was an error!", error);
+        setErrorMessage(error.message);
       });
   };
 
@@ -81,6 +84,10 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
     return <div>Loading...</div>;
   }
 
+  if (isError) {
+    return <div>Error fetching data: {errorMessage}</div>;
+  }
+
   return (
     <article>
       <section>
@@ -89,17 +96,18 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
           <Chip label="Results" />
         </Divider>
         <>
-          <ConsumptionSummary
-           p1TotalAreaEmissionsMax={ p1TotalAreaEmissionsMax}
-            p1TotalEmissions={p1TotalEmissions}
-            blTotalEmmissions={blTotalEmmissions}
-            bLTotalAreaEmissions={bLTotalAreaEmissions}
-            p1TotalAreaEmissions={p1TotalAreaEmissions}
-            blTransport={blTransport}
-            p1={p1}
-          />
+          {consumptionStatus === "sucess" && (
+            <ConsumptionSummary
+              p1TotalAreaEmissionsMax={p1TotalAreaEmissionsMax}
+              p1TotalEmissions={p1TotalEmissions}
+              blTotalEmmissions={blTotalEmmissions}
+              bLTotalAreaEmissions={bLTotalAreaEmissions}
+              p1TotalAreaEmissions={p1TotalAreaEmissions}
+              blTransport={blTransport}
+              p1={p1}
+            />
+          )}
         </>
-        {isError && <div>Error fetching data.</div>}
       </section>
     </article>
   );

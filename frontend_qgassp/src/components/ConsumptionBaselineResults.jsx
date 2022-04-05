@@ -42,6 +42,8 @@ export const ConsumptionBaselineResults = ({
   const [districtValue, setDistrictValue] = useState(0);
   const [isBaselineLoading, setIsLoadingBaseline] = useState(true);
   const [isResponseError, setIsResponseError] = useState(false);
+  const [consumptionBlStatus, setConsumptionBlStatus] = useState("");
+  const [errorBlConsumption, setBlConsumptionError] = useState("");
 
   const [nextCBQuantification, setCbq] = useState(false);
   const fetchConsumptionBaseline = () => {
@@ -59,12 +61,9 @@ export const ConsumptionBaselineResults = ({
       "Content-type": "application/json",
     };
     axios
-      .post(
-        urlPrefix + "/api/v1/calculate/consumption",
-        rawData,
-        headers
-      )
+      .post(urlPrefix + "/api/v1/calculate/consumption", rawData, headers)
       .then((response) => {
+        setConsumptionBlStatus(response.data.status);
         setBL(response.data.data.consumption.BL);
         setBLTotalEmissions(response.data.data.consumption.BLTotalEmissions);
         setDistrictProp(response.data.data.consumption.districtProp);
@@ -77,6 +76,7 @@ export const ConsumptionBaselineResults = ({
       .catch((error) => {
         setIsLoadingBaseline(false);
         setIsResponseError(true);
+        setBlConsumptionError(error.message);
         // eslint-disable-next-line no-console
         console.error("There was an error!", error.message);
       });
@@ -96,11 +96,12 @@ export const ConsumptionBaselineResults = ({
 
   if (isBaselineLoading) {
     return <div>Loading...</div>;
-  }
+  } 
 
   if (nextCBQuantification === false) {
     return (
       <>
+      {consumptionBlStatus !== "success"&& <div>{errorBlConsumption}</div>}
         <br />
         <Divider textAlign="left" flexItem>
           {" "}
@@ -450,7 +451,6 @@ export const ConsumptionBaselineResults = ({
             primary
           />
         </div>
-        {isResponseError && <div>Error fetching data.</div>}
       </>
     );
   } else {

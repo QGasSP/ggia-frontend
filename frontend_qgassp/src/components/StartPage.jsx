@@ -96,12 +96,12 @@ export const StartPage = () => {
 
             <form onSubmit={startBaseline}>
               <div className="form-group">
-                <label htmlFor="year_selection" className="intro_label">
+                <label htmlFor="year" className="intro_label">
                   Year
                 </label>
                 <select
-                  id="year_selection"
-                  name="year_selection"
+                  id="year"
+                  name="year"
                   className="baseline_select"
                   onChange={handleSelectedYear}
                   value={year}
@@ -119,13 +119,13 @@ export const StartPage = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="eu_countries" className="intro_label">
+                <label htmlFor="country" className="intro_label">
                   Country
                 </label>
                 <select
                   className="baseline_select"
-                  id="eu_countries"
-                  name="eu_countries"
+                  id="country"
+                  name="country"
                   onChange={handleSelected}
                   value={country}
                   defaultValue="Select country"
