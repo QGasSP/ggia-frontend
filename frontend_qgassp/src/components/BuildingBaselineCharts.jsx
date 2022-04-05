@@ -31,10 +31,10 @@ import urlPrefix from "../Config";
    commercial,
    baseline
  }) => {
-   const [errorBBC, setErrorBBC] = useState("");
-   const [emissionResidential, setEmissionResidential] = useState("");
-   const [emissionCommercial, setEmissionCommercial] = useState("");
-   const [emissionsByEndUse, setEmissionsByEndUse] = useState("");
+  //  const [errorBBC, setErrorBBC] = useState("");
+  //  const [emissionResidential, setEmissionResidential] = useState("");
+  //  const [emissionCommercial, setEmissionCommercial] = useState("");
+  //  const [emissionsByEndUse, setEmissionsByEndUse] = useState("");
 //    const [baseline, setBaseline] = useState({});
    const [nextNewUnitsView, setNextNewUnitsView] = useState(false);
  
@@ -50,41 +50,435 @@ import urlPrefix from "../Config";
   //   localStorage.setItem("emissionsByEndUse", JSON.stringify(emissionsByEndUse));
   // }, [emissionsByEndUse]);
  
-//    useEffect(async () => {
-//     //  const baseline = {
-//     //    country,
-//     //    year,
-//     //    population,
-//     //    emissionResidential,
-//     //  };
-//      setBaseline({ baseline });
-//      const raw = { baseline };
- 
-//      const headers = {
-//        "Content-type": "application/json",
-//        // "Access-Control-Allow-Origin": "*",
-//      };
-//      axios
-//        .post(
-//          urlPrefix + "/api/v1/calculate/buildings",
-//          raw,
-//          headers
-//        )
-//        .then((response) => {
-//          setResponse(response.data.data.baseline);
-//          setEmissionResidential(response.data.data.baseline.emissions);
-//          emissionCommercial(response.data.data.baseline.emissions);
-//          emissionsByEndUse(response.data.data.baseline.emissionCommercial);
-//        })
-//        .catch((error) => {
-//          setErrorBBC({ errorMessage: error.message });
-//          // eslint-disable-next-line no-console
-//          console.error("There was an error!", errorBBC);
-//        });
-//    }, []);
- 
-  //  if (nextNewUnitsView === false && Object.keys(emissionsByEndUse).length !== 0) 
-  if(nextNewUnitsView === false)
+  
+  const response = {
+    "status": "success",
+    "data": {
+        "2022": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2023": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2024": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2025": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2026": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2027": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2028": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2029": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2030": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2031": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2032": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2033": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2034": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2035": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2036": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2037": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2038": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2039": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2040": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2041": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2042": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2043": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2044": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2045": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2046": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2047": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2048": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2049": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        },
+        "2050": {
+            "apartments": 1000,
+            "terraced": 1000,
+            "semidetached": 1000,
+            "detached": 1000,
+            "retail": 1000,
+            "health": 1000,
+            "hospitality": 1000,
+            "offices": 1000,
+            "industrial": 1000,
+            "warehouses": 1000,
+            "other": 1
+        }
+    }
+  }
+
+  baseline = response.data;
+   // #region data distribution
+   const apartmentsData = [];
+   for (let i = year; i < 2051; i++){
+    apartmentsData.push({ x: i,  y: baseline[i].apartments });
+   };
+   const terracedData = [];
+   for (let i = year; i < 2051; i++){
+    terracedData.push({ x: i,  y: baseline[i].terraced });
+   };
+   const semidetachedData = [];
+   for (let i = year; i < 2051; i++){
+    semidetachedData.push({ x: i,  y: baseline[i].semidetached });
+   };
+   const detachedData = [];
+   for (let i = year; i < 2051; i++){
+    detachedData.push({ x: i,  y: baseline[i].detached });
+   };
+   const retailData = [];
+   for (let i = year; i < 2051; i++){
+    retailData.push({ x: i,  y: baseline[i].retail });
+   };
+   const healthData = [];
+   for (let i = year; i < 2051; i++){
+    healthData.push({ x: i,  y: baseline[i].health });
+   };
+   const hospitalityData = [];
+   for (let i = year; i < 2051; i++){
+    hospitalityData.push({ x: i,  y: baseline[i].hospitality });
+   };
+   const officesData = [];
+   for (let i = year; i < 2051; i++){
+    officesData.push({ x: i,  y: baseline[i].offices });
+   };
+   const industrialData = [];
+   for (let i = year; i < 2051; i++){
+    industrialData.push({ x: i,  y: baseline[i].industrial });
+   };
+   const warehousesData = [];
+   for (let i = year; i < 2051; i++){
+    warehousesData.push({ x: i,  y: baseline[i].warehouses });
+   };
+   // #endregion
+
+   if (nextNewUnitsView === false && Object.keys(baseline).length !== 0)
    {
      return (
        <article>
@@ -282,372 +676,72 @@ import urlPrefix from "../Config";
 
          <div className="buildings-baseline">
            <XYPlot
-              width={1200}
+              width={1000}
               height={500}
-              xType="linear"
+              xType="ordinal"
               yDomain={[0, 45000]}
               stackBy="y"
             >
               <HorizontalGridLines style={{ stroke: "#B7E9ED" }} />
               <VerticalGridLines style={{ stroke: "#B7E9ED" }} />
               <VerticalBarSeries className="LucStackedBarchart" />
-              <XAxis
+              <XAxis title="Year"
                 style={{
                   line: { stroke: "#ADDDE1" },
                   ticks: { stroke: "#ADDDE1" },
                   text: { stroke: "none", fill: "#6b6b76", fontWeight: 600 },
                 }}
               />
-              <YAxis />
+              <YAxis title="Energy use  tC02e" />
               {/* 1 */}
               <BarSeries
                 color="#ffdf43"
-                data={[
-                  { x: 2022, y: 3000 },
-                  { x: 2023, y: 2800 },
-                  { x: 2024, y: 2800 },
-                  { x: 2025, y: 2800 },
-                  { x: 2026, y: 2800 },
-                  { x: 2027, y: 2800 },
-                  { x: 2028, y: 2800 },
-                  { x: 2029, y: 2800 },
-                  { x: 2030, y: 2800 },
-                  { x: 2031, y: 3600 },
-                  { x: 2032, y: 3600 },
-                  { x: 2033, y: 3600 },
-                  { x: 2034, y: 3600 },
-                  { x: 2035, y: 3600 },
-                  { x: 2036, y: 3000 },
-                  { x: 2037, y: 3000 },
-                  { x: 2038, y: 3000 },
-                  { x: 2039, y: 3000 },
-                  { x: 2040, y: 3000 },
-                  { x: 2041, y: 3000 },
-                  { x: 2042, y: 2600 },
-                  { x: 2043, y: 2600 },
-                  { x: 2044, y: 2600 },
-                  { x: 2045, y: 2000 },
-                  { x: 2046, y: 2000 },
-                  { x: 2047, y: 2000 },
-                  { x: 2048, y: 2000 },
-                  { x: 2049, y: 2000 },
-                  { x: 2050, y: 2000 },
-                ]}
+                data={apartmentsData}
               />
               {/* 2 */}
               <BarSeries
                 color="#76918e"
-                data={[
-                  { x: 2022, y: 2000 },
-                  { x: 2023, y: 2000 },
-                  { x: 2024, y: 2000 },
-                  { x: 2025, y: 2000 },
-                  { x: 2026, y: 2000 },
-                  { x: 2027, y: 2000 },
-                  { x: 2028, y: 2000 },
-                  { x: 2029, y: 2000 },
-                  { x: 2030, y: 2000 },
-                  { x: 2031, y: 2000 },
-                  { x: 2032, y: 2000 },
-                  { x: 2033, y: 2000 },
-                  { x: 2034, y: 2000 },
-                  { x: 2035, y: 2000 },
-                  { x: 2036, y: 2000 },
-                  { x: 2037, y: 2000 },
-                  { x: 2038, y: 2000 },
-                  { x: 2039, y: 2000 },
-                  { x: 2040, y: 2000 },
-                  { x: 2041, y: 2000 },
-                  { x: 2042, y: 2000 },
-                  { x: 2043, y: 2000 },
-                  { x: 2044, y: 2000 },
-                  { x: 2045, y: 2000 },
-                  { x: 2046, y: 2000 },
-                  { x: 2047, y: 2000 },
-                  { x: 2048, y: 2000 },
-                  { x: 2049, y: 2000 },
-                  { x: 2050, y: 2000 },
-                ]}
+                data={terracedData}
               />
               {/* 3 */}
               <BarSeries
                 color="#ce143d"
-                data={[
-                  { x: 2022, y: 2000 },
-                  { x: 2023, y: 2000 },
-                  { x: 2024, y: 2000 },
-                  { x: 2025, y: 2000 },
-                  { x: 2026, y: 2000 },
-                  { x: 2027, y: 2000 },
-                  { x: 2028, y: 2000 },
-                  { x: 2029, y: 2000 },
-                  { x: 2030, y: 2000 },
-                  { x: 2031, y: 2000 },
-                  { x: 2032, y: 2000 },
-                  { x: 2033, y: 2000 },
-                  { x: 2034, y: 2000 },
-                  { x: 2035, y: 2000 },
-                  { x: 2036, y: 2000 },
-                  { x: 2037, y: 2000 },
-                  { x: 2038, y: 2000 },
-                  { x: 2039, y: 2000 },
-                  { x: 2040, y: 2000 },
-                  { x: 2041, y: 2000 },
-                  { x: 2042, y: 2000 },
-                  { x: 2043, y: 2000 },
-                  { x: 2044, y: 2000 },
-                  { x: 2045, y: 2000 },
-                  { x: 2046, y: 2000 },
-                  { x: 2047, y: 2000 },
-                  { x: 2048, y: 2000 },
-                  { x: 2049, y: 2000 },
-                  { x: 2050, y: 2000 },
-                ]}
+                data={semidetachedData}
               />
               {/* 4 */}
               <BarSeries
                 color="#d6e7d9"
-                data={[
-                  { x: 2022, y: 2000 },
-                  { x: 2023, y: 2000 },
-                  { x: 2024, y: 2000 },
-                  { x: 2025, y: 2000 },
-                  { x: 2026, y: 2000 },
-                  { x: 2027, y: 2000 },
-                  { x: 2028, y: 2000 },
-                  { x: 2029, y: 2000 },
-                  { x: 2030, y: 2000 },
-                  { x: 2031, y: 2000 },
-                  { x: 2032, y: 2000 },
-                  { x: 2033, y: 2000 },
-                  { x: 2034, y: 2000 },
-                  { x: 2035, y: 2000 },
-                  { x: 2036, y: 2000 },
-                  { x: 2037, y: 2000 },
-                  { x: 2038, y: 2000 },
-                  { x: 2039, y: 2000 },
-                  { x: 2040, y: 2000 },
-                  { x: 2041, y: 2000 },
-                  { x: 2042, y: 2000 },
-                  { x: 2043, y: 2000 },
-                  { x: 2044, y: 2000 },
-                  { x: 2045, y: 2000 },
-                  { x: 2046, y: 2000 },
-                  { x: 2047, y: 2000 },
-                  { x: 2048, y: 2000 },
-                  { x: 2049, y: 2000 },
-                  { x: 2050, y: 2000 },
-                ]}
+                data={detachedData}
               />
               {/* 5 */}
               <BarSeries
                 color="#002117"
-                data={[
-                  { x: 2022, y: 2000 },
-                  { x: 2023, y: 2000 },
-                  { x: 2024, y: 2000 },
-                  { x: 2025, y: 2000 },
-                  { x: 2026, y: 2000 },
-                  { x: 2027, y: 2000 },
-                  { x: 2028, y: 2000 },
-                  { x: 2029, y: 2000 },
-                  { x: 2030, y: 2000 },
-                  { x: 2031, y: 2000 },
-                  { x: 2032, y: 2000 },
-                  { x: 2033, y: 2000 },
-                  { x: 2034, y: 2000 },
-                  { x: 2035, y: 2000 },
-                  { x: 2036, y: 2000 },
-                  { x: 2037, y: 2000 },
-                  { x: 2038, y: 2000 },
-                  { x: 2039, y: 2000 },
-                  { x: 2040, y: 2000 },
-                  { x: 2041, y: 2000 },
-                  { x: 2042, y: 2000 },
-                  { x: 2043, y: 2000 },
-                  { x: 2044, y: 2000 },
-                  { x: 2045, y: 2000 },
-                  { x: 2046, y: 2000 },
-                  { x: 2047, y: 2000 },
-                  { x: 2048, y: 2000 },
-                  { x: 2049, y: 2000 },
-                  { x: 2050, y: 2000 },
-                ]}
+                data={retailData}
               />
               {/* 6 */}
               <BarSeries
                 color="#ef7d00"
-                data={[
-                  { x: 2022, y: 2000 },
-                  { x: 2023, y: 2000 },
-                  { x: 2024, y: 2000 },
-                  { x: 2025, y: 2000 },
-                  { x: 2026, y: 2000 },
-                  { x: 2027, y: 2000 },
-                  { x: 2028, y: 2000 },
-                  { x: 2029, y: 2000 },
-                  { x: 2030, y: 2000 },
-                  { x: 2031, y: 2000 },
-                  { x: 2032, y: 2000 },
-                  { x: 2033, y: 2000 },
-                  { x: 2034, y: 2000 },
-                  { x: 2035, y: 2000 },
-                  { x: 2036, y: 2000 },
-                  { x: 2037, y: 2000 },
-                  { x: 2038, y: 2000 },
-                  { x: 2039, y: 2000 },
-                  { x: 2040, y: 2000 },
-                  { x: 2041, y: 2000 },
-                  { x: 2042, y: 2000 },
-                  { x: 2043, y: 2000 },
-                  { x: 2044, y: 2000 },
-                  { x: 2045, y: 2000 },
-                  { x: 2046, y: 2000 },
-                  { x: 2047, y: 2000 },
-                  { x: 2048, y: 2000 },
-                  { x: 2049, y: 2000 },
-                  { x: 2050, y: 2000 },
-                ]}
+                data={healthData}
               />
               {/* 7 */}
               <BarSeries
                 color="#6c3b00"
-                data={[
-                  { x: 2022, y: 2000 },
-                  { x: 2023, y: 2000 },
-                  { x: 2024, y: 2000 },
-                  { x: 2025, y: 2000 },
-                  { x: 2026, y: 2000 },
-                  { x: 2027, y: 2000 },
-                  { x: 2028, y: 2000 },
-                  { x: 2029, y: 2000 },
-                  { x: 2030, y: 2000 },
-                  { x: 2031, y: 2000 },
-                  { x: 2032, y: 2000 },
-                  { x: 2033, y: 2000 },
-                  { x: 2034, y: 2000 },
-                  { x: 2035, y: 2000 },
-                  { x: 2036, y: 2000 },
-                  { x: 2037, y: 2000 },
-                  { x: 2038, y: 2000 },
-                  { x: 2039, y: 2000 },
-                  { x: 2040, y: 2000 },
-                  { x: 2041, y: 2000 },
-                  { x: 2042, y: 2000 },
-                  { x: 2043, y: 2000 },
-                  { x: 2044, y: 2000 },
-                  { x: 2045, y: 2000 },
-                  { x: 2046, y: 2000 },
-                  { x: 2047, y: 2000 },
-                  { x: 2048, y: 2000 },
-                  { x: 2049, y: 2000 },
-                  { x: 2050, y: 2000 },
-                ]}
+                data={hospitalityData}
               />
               {/* 8 */}
               <BarSeries
                 color="#00aed5"
-                data={[
-                  { x: 2022, y: 2000 },
-                  { x: 2023, y: 2000 },
-                  { x: 2024, y: 2000 },
-                  { x: 2025, y: 2000 },
-                  { x: 2026, y: 2000 },
-                  { x: 2027, y: 2000 },
-                  { x: 2028, y: 2000 },
-                  { x: 2029, y: 2000 },
-                  { x: 2030, y: 2000 },
-                  { x: 2031, y: 2000 },
-                  { x: 2032, y: 2000 },
-                  { x: 2033, y: 2000 },
-                  { x: 2034, y: 2000 },
-                  { x: 2035, y: 2000 },
-                  { x: 2036, y: 2000 },
-                  { x: 2037, y: 2000 },
-                  { x: 2038, y: 2000 },
-                  { x: 2039, y: 2000 },
-                  { x: 2040, y: 2000 },
-                  { x: 2041, y: 2000 },
-                  { x: 2042, y: 2000 },
-                  { x: 2043, y: 2000 },
-                  { x: 2044, y: 2000 },
-                  { x: 2045, y: 2000 },
-                  { x: 2046, y: 2000 },
-                  { x: 2047, y: 2000 },
-                  { x: 2048, y: 2000 },
-                  { x: 2049, y: 2000 },
-                  { x: 2050, y: 2000 },
-                ]}
+                data={officesData}
               />
               {/* 9 */}
               <BarSeries
                 color="#8C0303"
-                data={[
-                  { x: 2022, y: 2000 },
-                  { x: 2023, y: 2000 },
-                  { x: 2024, y: 2000 },
-                  { x: 2025, y: 2000 },
-                  { x: 2026, y: 2000 },
-                  { x: 2027, y: 2000 },
-                  { x: 2028, y: 2000 },
-                  { x: 2029, y: 2000 },
-                  { x: 2030, y: 2000 },
-                  { x: 2031, y: 2000 },
-                  { x: 2032, y: 2000 },
-                  { x: 2033, y: 2000 },
-                  { x: 2034, y: 2000 },
-                  { x: 2035, y: 2000 },
-                  { x: 2036, y: 2000 },
-                  { x: 2037, y: 2000 },
-                  { x: 2038, y: 2000 },
-                  { x: 2039, y: 2000 },
-                  { x: 2040, y: 2000 },
-                  { x: 2041, y: 2000 },
-                  { x: 2042, y: 2000 },
-                  { x: 2043, y: 2000 },
-                  { x: 2044, y: 2000 },
-                  { x: 2045, y: 2000 },
-                  { x: 2046, y: 2000 },
-                  { x: 2047, y: 2000 },
-                  { x: 2048, y: 2000 },
-                  { x: 2049, y: 2000 },
-                  { x: 2050, y: 2000 },
-                ]}
+                data={industrialData}
               />
               {/* 10 */}
               <BarSeries
                 color="#A6036D"
-                data={[
-                  { x: 2022, y: 2000 },
-                  { x: 2023, y: 2000 },
-                  { x: 2024, y: 2000 },
-                  { x: 2025, y: 2000 },
-                  { x: 2026, y: 2000 },
-                  { x: 2027, y: 2000 },
-                  { x: 2028, y: 2000 },
-                  { x: 2029, y: 2000 },
-                  { x: 2030, y: 2000 },
-                  { x: 2031, y: 2000 },
-                  { x: 2032, y: 2000 },
-                  { x: 2033, y: 2000 },
-                  { x: 2034, y: 2000 },
-                  { x: 2035, y: 2000 },
-                  { x: 2036, y: 2000 },
-                  { x: 2037, y: 2000 },
-                  { x: 2038, y: 2000 },
-                  { x: 2039, y: 2000 },
-                  { x: 2040, y: 2000 },
-                  { x: 2041, y: 2000 },
-                  { x: 2042, y: 2000 },
-                  { x: 2043, y: 2000 },
-                  { x: 2044, y: 2000 },
-                  { x: 2045, y: 2000 },
-                  { x: 2046, y: 2000 },
-                  { x: 2047, y: 2000 },
-                  { x: 2048, y: 2000 },
-                  { x: 2049, y: 2000 },
-                  { x: 2050, y: 2000 },
-                ]}
+                data={warehousesData}
               />
             </XYPlot>
          </div>
@@ -756,64 +850,6 @@ import urlPrefix from "../Config";
              <Legend />
            </div>
            <div></div>
-         </div>
-         <div className="barchart_container">
-           <XYPlot xType="ordinal" width={1000} height={300} xDistance={200}>
-             <HorizontalGridLines />
-             <VerticalGridLines />
-             <VerticalBarSeries
-               className="BaselineBarchart"
-               data={[
-                 {
-                   y: Math.round((emissionResidential.bus + Number.EPSILON) * 2000) / 2000,
-                   x: "Bus",
-                 },
-                 {
-                   y: Math.round((emissionResidential.metro + Number.EPSILON) * 2000) / 2000,
-                   x: "Metro",
-                 },
-                 {
-                   y: Math.round((emissionResidential.train + Number.EPSILON) * 2000) / 2000,
-                   x: "Train",
-                 },
-                 {
-                   y:
-                     Math.round(
-                       (emissionResidential.road_transport + Number.EPSILON) * 2000
-                     ) / 2000,
-                   x: "Road transport",
-                 },
-                 {
-                   y: Math.round((emissionResidential.car + Number.EPSILON) * 2000) / 2000,
-                   x: "Car",
-                 },
-                 {
-                   y: Math.round((emissionResidential.tram + Number.EPSILON) * 2000) / 2000,
-                   x: "Tram",
-                 },
-                 {
-                   y:
-                     Math.round(
-                       (emissionResidential.rail_transport + Number.EPSILON) * 2000
-                     ) / 2000,
-                   x: "Rail transport",
-                 },
-                 {
-                   y:
-                     Math.round(
-                       (emissionResidential.waterways_transport + Number.EPSILON) * 2000
-                     ) / 2000,
-                   x: "Waterway transport",
-                 },
-                 {
-                   y: Math.round((emissionResidential.total + Number.EPSILON) * 2000) / 2000,
-                   x: "total emissions",
-                 },
-               ]}
-             />
-             <XAxis />
-             <YAxis />
-           </XYPlot>
          </div>
          */}
 

@@ -21,7 +21,6 @@ import Divider from "@mui/material/Divider";
   // firstSelector
   // #region 
     const [firstSelectorUnits, setFirstSelectorUnits] = useState(parseInt(0));
-    const [firstSelectorArea, setFirstSelectorArea] = useState(parseInt(0));
     const [firstSelectorStartYear, setFirstSelectorStartYear] = useState(Number(year));
     const [firstSelectorEndYear, setFirstSelectorEndYear] = useState(Number(year));
     const [firstSelectorEnergy, setFirstSelectorEnergy] = useState(parseInt(0));
@@ -30,7 +29,6 @@ import Divider from "@mui/material/Divider";
   // secondSelector
   // #region 
     const [secondSelectorUnits, setSecondSelectorUnits] = useState(parseInt(0));
-    const [secondSelectorArea, setSecondSelectorArea] = useState(parseInt(0));
     const [secondSelectorStartYear, setSecondSelectorStartYear] = useState(Number(year));
     const [secondSelectorEndYear, setSecondSelectorEndYear] = useState(Number(year));
     const [secondSelectorEnergy, setSecondSelectorEnergy] = useState(parseInt(0));
@@ -39,7 +37,6 @@ import Divider from "@mui/material/Divider";
   // thirdSelector
   // #region 
     const [thirdSelectorUnits, setThirdSelectorUnits] = useState(parseInt(0));
-    const [thirdSelectorArea, setThirdSelectorArea] = useState(parseInt(0));
     const [thirdSelectorStartYear, setThirdSelectorStartYear] = useState(Number(year));
     const [thirdSelectorEndYear, setThirdSelectorEndYear] = useState(Number(year));
     const [thirdSelectorEnergy, setThirdSelectorEnergy] = useState(parseInt(0));
@@ -48,7 +45,6 @@ import Divider from "@mui/material/Divider";
   // forthSelector
   // #region 
     const [forthSelectorUnits, setForthSelectorUnits] = useState(parseInt(0));
-    const [forthSelectorArea, setForthSelectorArea] = useState(parseInt(0));
     const [forthSelectorStartYear, setForthSelectorStartYear] = useState(Number(year));
     const [forthSelectorEndYear, setForthSelectorEndYear] = useState(Number(year));
     const [forthSelectorEnergy, setForthSelectorEnergy] = useState(parseInt(0));
@@ -57,7 +53,6 @@ import Divider from "@mui/material/Divider";
   // fifthSelector
   // #region 
     const [fifthSelectorUnits, setFifthSelectorUnits] = useState(parseInt(0));
-    const [fifthSelectorArea, setFifthSelectorArea] = useState(parseInt(0));
     const [fifthSelectorStartYear, setFifthSelectorStartYear] = useState(Number(year));
     const [fifthSelectorEndYear, setFifthSelectorEndYear] = useState(Number(year));
     const [fifthSelectorEnergy, setFifthSelectorEnergy] = useState(parseInt(0));
@@ -66,7 +61,6 @@ import Divider from "@mui/material/Divider";
   // sixthSelector
   // #region 
     const [sixthSelectorUnits, setSixthSelectorUnits] = useState(parseInt(0));
-    const [sixthSelectorArea, setSixthSelectorArea] = useState(parseInt(0));
     const [sixthSelectorStartYear, setSixthSelectorStartYear] = useState(Number(year));
     const [sixthSelectorEndYear, setSixthSelectorEndYear] = useState(Number(year));
     const [sixthSelectorEnergy, setSixthSelectorEnergy] = useState(parseInt(0));
@@ -84,9 +78,6 @@ import Divider from "@mui/material/Divider";
     const handleFirstSelectorUnits = (e) => {
       setFirstSelectorUnits(parseInt(e.target.value));
     };
-    const handleFirstSelectorArea = (e) => {
-      setFirstSelectorArea(parseInt(e.target.value));
-    };
     const handleFirstSelectorStartYear = (e) => {
       setFirstSelectorStartYear(parseInt(e.target.value));
     };
@@ -102,9 +93,6 @@ import Divider from "@mui/material/Divider";
     // #region 
     const handleSecondSelectorUnits = (e) => {
       setSecondSelectorUnits(parseInt(e.target.value));
-    };
-    const handleSecondSelectorArea = (e) => {
-      setSecondSelectorArea(parseInt(e.target.value));
     };
     const handleSecondSelectorStartYear = (e) => {
       setSecondSelectorStartYear(parseInt(e.target.value));
@@ -122,9 +110,6 @@ import Divider from "@mui/material/Divider";
     const handleThirdSelectorUnits = (e) => {
       setThirdSelectorUnits(parseInt(e.target.value));
     };
-    const handleThirdSelectorArea = (e) => {
-      setThirdSelectorArea(parseInt(e.target.value));
-    };
     const handleThirdSelectorStartYear = (e) => {
       setThirdSelectorStartYear(parseInt(e.target.value));
     };
@@ -140,9 +125,6 @@ import Divider from "@mui/material/Divider";
     // #region 
     const handleForthSelectorUnits = (e) => {
       setForthSelectorUnits(parseInt(e.target.value));
-    };
-    const handleForthSelectorArea = (e) => {
-      setForthSelectorArea(parseInt(e.target.value));
     };
     const handleForthSelectorStartYear = (e) => {
       setForthSelectorStartYear(parseInt(e.target.value));
@@ -160,9 +142,6 @@ import Divider from "@mui/material/Divider";
     const handleFifthSelectorUnits = (e) => {
       setFifthSelectorUnits(parseInt(e.target.value));
     };
-    const handleFifthSelectorArea = (e) => {
-      setFifthSelectorArea(parseInt(e.target.value));
-    };
     const handleFifthSelectorStartYear = (e) => {
       setFifthSelectorStartYear(parseInt(e.target.value));
     };
@@ -178,9 +157,6 @@ import Divider from "@mui/material/Divider";
     // #region 
     const handleSixthSelectorUnits = (e) => {
       setSixthSelectorUnits(parseInt(e.target.value));
-    };
-    const handleSixthSelectorArea = (e) => {
-      setSixthSelectorArea(parseInt(e.target.value));
     };
     const handleSixthSelectorStartYear = (e) => {
       setSixthSelectorStartYear(parseInt(e.target.value));
@@ -236,7 +212,7 @@ import Divider from "@mui/material/Divider";
                               className="table-cell first-cell"
                               id=""
                               name=""
-                              // onChange={handleForestToCropYear}
+                              onChange={handleFirstSelectorUnits}
                               // value={forestToCropYear}
                               defaultValue="Select unit type"
                               required
