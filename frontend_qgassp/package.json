@@ -6,7 +6,6 @@
   "repository": "https://github.com/QGasSP",
   "license": "MIT",
   "author": "qgassp-ggia",
-  "homepage": "http://127.0.0.1:5000",
   "scripts": {
     "build-storybook": "build-storybook",
     "eject": "react-scripts eject",
