@@ -148,7 +148,7 @@ export const StartPage = () => {
                   pattern="[0-9]*"
                   id="population_assessment"
                   className="population"
-                  value={population}
+                  placeholder={population}
                   min="0"
                   onChange={handlePopulation}
                   required
