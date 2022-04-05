@@ -73,9 +73,18 @@ export const ConsumptionBaselineResults = ({
         setDistrictValue(response.data.data.consumption.districtValue);
         setIsLoadingBaseline(false);
       })
-      .catch((error) => {
+      .catch(error => {
         setIsLoadingBaseline(false);
         setIsResponseError(true);
+        if (error.response) {
+          setBlConsumptionError("network error");
+           // eslint-disable-next-line no-console
+          console.error(error, error.data);
+        } else {
+          setBLTotalEmissions(error.message);
+          // eslint-disable-next-line no-console
+          console.error(error);
+        }
         setBlConsumptionError(error.message);
         // eslint-disable-next-line no-console
         console.error("There was an error!", error.message);
@@ -96,6 +105,9 @@ export const ConsumptionBaselineResults = ({
 
   if (isBaselineLoading) {
     return <div>Loading...</div>;
+  } 
+  if (isResponseError) {
+    return <div>{errorBlConsumption}</div>;
   } 
 
   if (nextCBQuantification === false) {

@@ -27,7 +27,7 @@ export const ConsumptionSummary = ({
   p1TotalEmissions,
   bLTotalAreaEmissions,
   p1TotalAreaEmissions,
-  p1TotalAreaEmissionsMax,
+  yAxisValue,
 }) => {
   const country = localStorage.getItem("country");
   const resultsLegend = [
@@ -766,7 +766,7 @@ export const ConsumptionSummary = ({
         width={1000}
         height={500}
         margin={{ left: 100 }}
-        yDomain={[0, p1TotalAreaEmissionsMax]}
+        yDomain={[0, yAxisValue]}
       >
         <VerticalGridLines />
         <HorizontalGridLines />
@@ -869,5 +869,5 @@ ConsumptionSummary.propTypes = {
   p1TotalEmissions: PropTypes.object.isRequired,
   bLTotalAreaEmissions: PropTypes.object.isRequired,
   p1TotalAreaEmissions: PropTypes.object.isRequired,
-  p1TotalAreaEmissionsMax: PropTypes.number.isRequired,
+  yAxisValue:PropTypes.number.isRequired,
 };

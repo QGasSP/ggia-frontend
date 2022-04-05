@@ -21,7 +21,8 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
   const [p1TotalAreaEmissions, setP1totalAreaEmissions] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-  const [p1TotalAreaEmissionsMax, setYMax] = useState(false);
+  const [bLMax, setBlYMax] = useState(false);
+  const [p1TotalAreaEmissionsMax, setP1YMax] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [consumptionStatus, setConsumptionStatus] = useState("");
 
@@ -48,12 +49,22 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
         setBlTotalAreaEmissions(
           response.data.data.consumption.BLTotalAreaEmissions
         );
-        setYMax(response.data.data.consumption.P1TotalAreaEmissionsMax);
+        setP1YMax(response.data.data.consumption.P1TotalAreaEmissionsMax);
+        setBlYMax(response.data.data.consumption.BLMax);
         setIsLoading(false);
       })
       .catch((error) => {
         setIsLoading(false);
         setIsError(true);
+        if (error.response) {
+          setErrorMessage("network error");
+           // eslint-disable-next-line no-console
+          console.error(error, error.data);
+        } else {
+          setErrorMessage(error.message);
+          // eslint-disable-next-line no-console
+          console.error(error);
+        }
         // eslint-disable-next-line no-console
         console.error("There was an error!", error);
         setErrorMessage(error.message);
@@ -84,9 +95,7 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
     return <div>Loading...</div>;
   }
 
-  if (isError) {
-    return <div>Error fetching data: {errorMessage}</div>;
-  }
+ 
 
   return (
     <article>
@@ -98,7 +107,7 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
         <>
           {consumptionStatus === "sucess" && (
             <ConsumptionSummary
-              p1TotalAreaEmissionsMax={p1TotalAreaEmissionsMax}
+             yAxisValue={Math.max(p1TotalAreaEmissionsMax, bLMax)}
               p1TotalEmissions={p1TotalEmissions}
               blTotalEmmissions={blTotalEmmissions}
               bLTotalAreaEmissions={bLTotalAreaEmissions}
