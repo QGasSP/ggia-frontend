@@ -36,6 +36,8 @@ export const U1planner = ({
   const [projections, setProjections] = useState("");
   const [baseline, setBaseline] = useState({});
   const [nextNewResidentview, setNewResidentView] = useState(false);
+  const [isLoadingTransport, setIsLoadingTransport] = useState(true);
+  const [isErrorTransport, setIsErrorTransport] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("projections", JSON.stringify(projections));
@@ -69,15 +71,21 @@ export const U1planner = ({
         // setResponse(response.data.data.baseline);
         setEmissionData(response.data.data.baseline.emissions);
         setProjections(response.data.data.baseline.projections);
+        setIsLoadingTransport(false);
       })
       .catch((error) => {
+        setIsLoadingTransport(false);
+        setIsErrorTransport(true);
         setU1PlannerError({ errorMessage: error.message });
         // eslint-disable-next-line no-console
         console.error("There was an error!", errorU1planner);
       });
   }, []);
 
-  
+  if (isLoadingTransport) {
+    return <div>Loading ...</div>;
+  }
+
 
   if (nextNewResidentview === false && Object.keys(projections).length !== 0) {
     return (

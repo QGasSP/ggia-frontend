@@ -96,12 +96,12 @@ export const StartPage = () => {
 
             <form onSubmit={startBaseline}>
               <div className="form-group">
-                <label htmlFor="year_selection" className="intro_label">
+                <label htmlFor="year" className="intro_label">
                   Year
                 </label>
                 <select
-                  id="year_selection"
-                  name="year_selection"
+                  id="year"
+                  name="year"
                   className="baseline_select"
                   onChange={handleSelectedYear}
                   value={year}
@@ -119,13 +119,13 @@ export const StartPage = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="eu_countries" className="intro_label">
+                <label htmlFor="country" className="intro_label">
                   Country
                 </label>
                 <select
                   className="baseline_select"
-                  id="eu_countries"
-                  name="eu_countries"
+                  id="country"
+                  name="country"
                   onChange={handleSelected}
                   value={country}
                   defaultValue="Select country"
@@ -148,7 +148,7 @@ export const StartPage = () => {
                   pattern="[0-9]*"
                   id="population_assessment"
                   className="population"
-                  value={population}
+                  placeholder={population}
                   min="0"
                   onChange={handlePopulation}
                   required
@@ -164,12 +164,11 @@ export const StartPage = () => {
                 />
               </div>
               <br/>
-              <br/>
-              <div >
+              <div className="reset_button" >
                 <Button
                   size="small"
                   onClick={clearLocalStorage}
-                  label="Reset"
+                  label="Reset baseline"
                   primary="true"
                 />
               </div>
