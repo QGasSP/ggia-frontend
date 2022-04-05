@@ -1,4 +1,4 @@
-import urlPrefix from "../Config";
+import urlPrefix from "./Config";
 
 const SERVER_ADDRESS = urlPrefix + "/";
 
