@@ -1,0 +1,27 @@
+#!/bin/bash
+# default prefix
+PREFIX="https://ggia-dev.ulno.net"
+
+CONFIG_FILE="src/Config.js"
+
+MY_PATH=`dirname "$0"`
+cd "$MY_PATH"
+MY_PATH=`pwd`
+
+if [[ "$1" ]]; then
+  PREFIX="$1"
+fi
+
+shift 1 # make sure to have paramters to forward
+
+mv "$CONFIG_FILE" "$CONFIG_FILE.backup"
+cat << EOF > "$CONFIG_FILE"
+const urlPrefix = "$PREFIX"
+// // const urlPrefix = "https://ggia.ulno.net"
+// const urlPrefix = "https://ggia-dev.ulno.net"
+// const urlPrefix = "http://127.0.0.1:5000"
+// const urlPrefix = "http://127.0.0.1:8000"
+export default urlPrefix;
+EOF
+yarn start "$@"
+mv "$CONFIG_FILE.backup" "$CONFIG_FILE"
