@@ -163,7 +163,7 @@ export const StartPage = () => {
                   primary="true"
                 />
               </div>
-         
+              <br/>
               <div className="reset_button" >
                 <Button
                   size="small"

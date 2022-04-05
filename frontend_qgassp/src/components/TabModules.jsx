@@ -45,14 +45,12 @@ export const TabModules = () => {
 
             <button
               className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
-            /*   onClick={() => toggleTab(2)} */
               id="transport"
             >
               Transport
             </button>
             <button
               className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
-           /*    onClick={() => toggleTab(3)} */
               id="luc"
             >
               Land-use change
@@ -66,7 +64,6 @@ export const TabModules = () => {
             </button>
             <button
               className={toggleState === 5 ? "tabs active-tabs" : "tabs"}
-            /*   onClick={() => toggleTab(5)} */
               id="consumption"
             >
               Consumption-based
