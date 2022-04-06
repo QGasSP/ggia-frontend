@@ -1,8 +1,12 @@
 #!/bin/bash
+
+set -m  # enable job control
+
 # default prefix
 PREFIX="https://ggia-dev.ulno.net"
 
 CONFIG_FILE="src/Config.js"
+BACKUP_CONFIG_FILE="$CONFIG_FILE.backup"
 
 MY_PATH=`dirname "$0"`
 cd "$MY_PATH"
@@ -14,7 +18,7 @@ fi
 
 shift 1 # make sure to have paramters to forward
 
-mv "$CONFIG_FILE" "$CONFIG_FILE.backup"
+mv "$CONFIG_FILE" "$BACKUP_CONFIG_FILE"
 cat << EOF > "$CONFIG_FILE"
 const urlPrefix = "$PREFIX"
 // // const urlPrefix = "https://ggia.ulno.net"
@@ -23,5 +27,18 @@ const urlPrefix = "$PREFIX"
 // const urlPrefix = "http://127.0.0.1:8000"
 export default urlPrefix;
 EOF
-yarn start "$@"
-mv "$CONFIG_FILE.backup" "$CONFIG_FILE"
+
+YARNID=""
+
+function cleanup() {
+  kill "$YARNID"
+  pkill -f node_modules/react-scripts/scripts/start.js
+}
+
+trap "cleanup" SIGINT
+
+yarn start "$@" &
+YARNID=$!
+fg
+
+mv "$BACKUP_CONFIG_FILE" "$CONFIG_FILE"
