@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# default prefix
+PREFIX="https://ggia-dev.ulno.net"
+
+CONFIG_FILE="src/Config.js"
+BACKUP_CONFIG_FILE="$CONFIG_FILE.backup"
+PREFIX_FILE="env_url_prefix"
+
+MY_PATH=`dirname "$0"`
+cd "$MY_PATH"
+MY_PATH=`pwd`
+
+if [[ "$1" ]]; then
+  PREFIX="$1"
+else  # could also be in file
+  if [[ -e "$PREFIX_FILE" ]]; then
+      PREFIX=$(cat "$PREFIX_FILE")
+  fi
+fi
+echo "URL Prefix selected: $PREFIX"
+
+shift 1 # make sure to have paramters to forward
+
+mv "$CONFIG_FILE" "$BACKUP_CONFIG_FILE"
+cat << EOF > "$CONFIG_FILE"
+const urlPrefix = "$PREFIX"
+// // const urlPrefix = "https://ggia.ulno.net"
+// const urlPrefix = "https://ggia-dev.ulno.net"
+// const urlPrefix = "http://127.0.0.1:5000"
+// const urlPrefix = "http://127.0.0.1:8000"
+export default urlPrefix;
+EOF
+
+SERVICE_ID=""
+
+cleanup() {
+  kill "$SERVICE_ID" 2>/dev/null
+  pkill -f node_modules/react-scripts/scripts/start.js
+  mv "$BACKUP_CONFIG_FILE" "$CONFIG_FILE" 2>/dev/null
+}
+
+trap "cleanup" SIGINT SIGTERM
+
+#yarn start "$@" &
+yarn build "$@" &
+SERVICE_ID=$!
+wait $SERVICE_ID
+
+mv "$BACKUP_CONFIG_FILE" "$CONFIG_FILE" 2>/dev/null
