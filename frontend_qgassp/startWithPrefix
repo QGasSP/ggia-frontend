@@ -1,9 +1,8 @@
 #!/bin/bash
 
-set -m  # enable job control
-
 # default prefix
 PREFIX="https://ggia-dev.ulno.net"
+PORT=3000
 
 CONFIG_FILE="src/Config.js"
 BACKUP_CONFIG_FILE="$CONFIG_FILE.backup"
@@ -28,17 +27,25 @@ const urlPrefix = "$PREFIX"
 export default urlPrefix;
 EOF
 
-YARNID=""
+SERVICE_ID=""
 
-function cleanup() {
-  kill "$YARNID"
+cleanup() {
+  kill "$SERVICE_ID" 2>/dev/null
   pkill -f node_modules/react-scripts/scripts/start.js
+  pkill -f node_modules/serve/bin/serve.js
+  mv "$BACKUP_CONFIG_FILE" "$CONFIG_FILE" 2>/dev/null
 }
 
-trap "cleanup" SIGINT
+trap "cleanup" SIGINT SIGTERM
 
-yarn start "$@" &
-YARNID=$!
-fg
+#yarn start "$@" &
+yarn build "$@" &
+SERVICE_ID=$!
+wait $SERVICE_ID
+SERVICE_ID=""
 
-mv "$BACKUP_CONFIG_FILE" "$CONFIG_FILE"
+node_modules/serve/bin/serve.js -p "$PORT" -s build &
+SERVICE_ID=$!
+wait $SERVICE_ID
+
+mv "$BACKUP_CONFIG_FILE" "$CONFIG_FILE" 2>/dev/null
