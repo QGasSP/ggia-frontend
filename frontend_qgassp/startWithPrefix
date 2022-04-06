@@ -44,7 +44,7 @@ SERVICE_ID=$!
 wait $SERVICE_ID
 SERVICE_ID=""
 
-node_modules/serve/bin/serve.js -p "$PORT" -s build &
+node_modules/serve/bin/serve.js -p "$PORT" -n -c -s build &
 SERVICE_ID=$!
 wait $SERVICE_ID
 
