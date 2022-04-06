@@ -24,7 +24,8 @@
     "react-router-dom": "6",
     "react-scripts": "^5.0.0",
     "reactstrap": "^9.0.1",
-    "web-vitals": "^2.1.2"
+    "web-vitals": "^2.1.2",
+    "serve": "^13.0.2"
   },
   "devDependencies": {
     "@babel/core": "^ 7.16.5",
