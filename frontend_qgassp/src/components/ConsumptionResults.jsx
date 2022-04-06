@@ -105,7 +105,7 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
           <Chip label="Results" />
         </Divider>
         <>
-          {consumptionStatus === "sucess" && (
+       {/*    {consumptionStatus === "sucess" && ( )} */}
             <ConsumptionSummary
              yAxisValue={Math.max(p1TotalAreaEmissionsMax, bLMax)}
               p1TotalEmissions={p1TotalEmissions}
@@ -115,7 +115,7 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
               blTransport={blTransport}
               p1={p1}
             />
-          )}
+         
         </>
       </section>
     </article>
