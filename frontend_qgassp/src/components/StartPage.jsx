@@ -90,7 +90,7 @@ export const StartPage = () => {
           <div className="column_start">
             <header className="intro_header">
               <h1 id="title" className="header_start">
-                Fill in the basic information
+                Please fill in the required basic information
               </h1>
             </header>
             {nextModule && (
