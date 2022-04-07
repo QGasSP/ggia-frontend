@@ -276,11 +276,9 @@ export const BuildingBaseline = () => {
                     <label htmlFor="detached" className="settle_label">
                         Total
                     </label>
-                    <input
-                      type="number"
-                      value={residentialTotal}
-                      disabled
-                    />
+                    <label className="bb-lbl">
+                    {residentialTotal}
+                    </label>
                   </div>
                 </div>
 
@@ -445,11 +443,9 @@ export const BuildingBaseline = () => {
                     <label htmlFor="offices" className="settle_label">
                         Total
                     </label>
-                    <input
-                        type="number"
-                        value={commTotal}
-                        disabled
-                    />
+                    <label className="bb-lbl">
+                    {commTotal}
+                    </label>
                     </div>
                 </div>
 
