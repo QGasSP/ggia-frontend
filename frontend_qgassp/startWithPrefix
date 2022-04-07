@@ -1,8 +1,4 @@
 #!/bin/bash
-# default prefix
-PREFIX="https://ggia-dev.ulno.net"
-
-CONFIG_FILE="src/Config.js"
 
 MY_PATH=`dirname "$0"`
 cd "$MY_PATH"
@@ -11,17 +7,27 @@ MY_PATH=`pwd`
 if [[ "$1" ]]; then
   PREFIX="$1"
 fi
+shift 1 # make sure to have parameters to forward
 
-shift 1 # make sure to have paramters to forward
+SERVICE_ID=""
 
-mv "$CONFIG_FILE" "$CONFIG_FILE.backup"
-cat << EOF > "$CONFIG_FILE"
-const urlPrefix = "$PREFIX"
-// // const urlPrefix = "https://ggia.ulno.net"
-// const urlPrefix = "https://ggia-dev.ulno.net"
-// const urlPrefix = "http://127.0.0.1:5000"
-// const urlPrefix = "http://127.0.0.1:8000"
-export default urlPrefix;
-EOF
-yarn start "$@"
-mv "$CONFIG_FILE.backup" "$CONFIG_FILE"
+cleanup() {
+  kill "$SERVICE_ID" 2>/dev/null
+  pkill -f node_modules/react-scripts/scripts/start.js
+  pkill -f node_modules/serve/bin/serve.js
+}
+
+trap "cleanup" SIGINT SIGTERM
+
+#yarn start "$@" &
+./buildWithPrefix "$PREFIX" "$@" &
+SERVICE_ID=$!
+wait $SERVICE_ID
+SERVICE_ID=""
+
+# -C basically disables Cors: TODO: consider removing?
+./serveBuild &
+SERVICE_ID=$!
+wait $SERVICE_ID
+
+mv "$BACKUP_CONFIG_FILE" "$CONFIG_FILE" 2>/dev/null

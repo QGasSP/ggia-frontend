@@ -1,0 +1,9 @@
+#!/bin/bash
+
+PORT=3000
+
+MY_PATH=`dirname "$0"`
+cd "$MY_PATH"
+MY_PATH=`pwd`
+
+node_modules/serve/bin/serve.js -p "$PORT" -n -C -s build

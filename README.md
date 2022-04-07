@@ -8,14 +8,24 @@ The initial environment setup guide can be found [here](https://github.com/QGasS
 
 ## Docker
 
-To build and run docker in the background and view in [browser](http://localhost:3000/)
+This will build and run docker in the background and view in 
+[browser](http://localhost:3000/) on port 3000
+It will connect to the backend with prefix https://ggia.ulno.net
 
 ```
-docker-compose up -d 
-or
-docker compose up -d 
+docker-compose up -d --build
+```
+
+## Docker Development
+
+This will build and run the development docker in the background and view in
+[browser](http://localhost:3001/) on port 3001
+It will connect to the backend with prefix https://ggia-dev.ulno.net
 
 ```
+docker-compose up -d --build
+```
+
 
 
 ## Scripts
@@ -50,4 +60,10 @@ Upgrade storybook
 npx sb upgrade`
 ```
 
+Start a local version with the prefix given as parameter (in this case http://localhost:8000).
+If no prefix is specified, the script also looks for a file named env_url_prefix that can include
+the prefix url.
+```
+./startWithPrefix http://localhost:8000
+```
 
