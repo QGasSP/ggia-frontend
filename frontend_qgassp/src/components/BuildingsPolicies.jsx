@@ -429,6 +429,176 @@ import Divider from "@mui/material/Divider";
       };
     // #endregion
 
+      // Change of building use
+    // firstSelector
+    // #region 
+    const [firstSelectorBuildingTypeFrom, setFirstSelectorBuildingTypeFrom] = useState('');
+    const [firstSelectorBuildingTypeTo, setFirstSelectorBuildingTypeTo] = useState('');
+    const [firstSelectorArea, setFirstSelectorArea] = useState(parseInt(0));
+    const [firstSelectorStartYear, setFirstSelectorStartYear] = useState(Number(year));
+    const [firstSelectorEndYear, setFirstSelectorEndYear] = useState(Number(year));
+    // #endregion
+
+    // secondSelector
+    // #region 
+      const [secondSelectorBuildingTypeFrom, setSecondSelectorBuildingTypeFrom] = useState('');
+      const [secondSelectorBuildingTypeTo, setSecondSelectorBuildingTypeTo] = useState('');
+      const [secondSelectorArea, setSecondSelectorArea] = useState(parseInt(0));
+      const [secondSelectorStartYear, setSecondSelectorStartYear] = useState(Number(year));
+      const [secondSelectorEndYear, setSecondSelectorEndYear] = useState(Number(year));
+    // #endregion
+
+    // thirdSelector
+    // #region 
+      const [thirdSelectorBuildingTypeFrom, setThirdSelectorBuildingTypeFrom] = useState('');
+      const [thirdSelectorBuildingTypeTo, setThirdSelectorBuildingTypeTo] = useState('');
+      const [thirdSelectorArea, setThirdSelectorArea] = useState(parseInt(0));
+      const [thirdSelectorStartYear, setThirdSelectorStartYear] = useState(Number(year));
+      const [thirdSelectorEndYear, setThirdSelectorEndYear] = useState(Number(year));
+    // #endregion
+
+    // fourthSelector
+    // #region 
+      const [fourthSelectorBuildingTypeFrom, setFourthSelectorBuildingTypeFrom] = useState('');
+      const [fourthSelectorBuildingTypeTo, setFourthSelectorBuildingTypeTo] = useState('');
+      const [fourthSelectorArea, setFourthSelectorArea] = useState(parseInt(0));
+      const [fourthSelectorStartYear, setFourthSelectorStartYear] = useState(Number(year));
+      const [fourthSelectorEndYear, setFourthSelectorEndYear] = useState(Number(year));
+    // #endregion
+
+    // fifthSelector
+    // #region 
+      const [fifthSelectorBuildingTypeFrom, setFifthSelectorBuildingTypeFrom] = useState('');
+      const [fifthSelectorBuildingTypeTo, setFifthSelectorBuildingTypeTo] = useState('');
+      const [fifthSelectorArea, setFifthSelectorArea] = useState(parseInt(0));
+      const [fifthSelectorStartYear, setFifthSelectorStartYear] = useState(Number(year));
+      const [fifthSelectorEndYear, setFifthSelectorEndYear] = useState(Number(year));
+    // #endregion
+
+    // sixthSelector
+    // #region 
+      const [sixthSelectorBuildingTypeFrom, setSixthSelectorBuildingTypeFrom] = useState('');
+      const [sixthSelectorBuildingTypeTo, setSixthSelectorBuildingTypeTo] = useState('');
+      const [sixthSelectorArea, setSixthSelectorArea] = useState(parseInt(0));
+      const [sixthSelectorStartYear, setSixthSelectorStartYear] = useState(Number(year));
+      const [sixthSelectorEndYear, setSixthSelectorEndYear] = useState(Number(year));
+    // #endregion
+
+      // FirstSelector handlers
+      // #region 
+      const handleFirstSelectorBuildingTypeFrom = (e) => {
+        setFirstSelectorBuildingTypeFrom(e.target.value);
+      };
+      const handleFirstSelectorBuildingTypeTo= (e) => {
+        setFirstSelectorBuildingTypeTo(e.target.value);
+      };
+      const handleFirstSelectorArea = (e) => {
+        setFirstSelectorArea(parseInt(e.target.value));
+      };
+      const handleFirstSelectorStartYear = (e) => {
+        setFirstSelectorStartYear(Number(e.target.value));
+      };
+      const handleFirstSelectorEndYear = (e) => {
+        setFirstSelectorEndYear(Number(e.target.value));
+      };
+      // #endregion
+      
+      // SecondSelector handlers
+      // #region 
+      const handleSecondSelectorBuildingTypeFrom = (e) => {
+        setSecondSelectorBuildingTypeFrom(e.target.value);
+      };
+      const handleSecondSelectorBuildingTypeTo= (e) => {
+        setSecondSelectorBuildingTypeTo(e.target.value);
+      };
+      const handleSecondSelectorArea = (e) => {
+        setSecondSelectorArea(parseInt(e.target.value));
+      };
+      const handleSecondSelectorStartYear = (e) => {
+        setSecondSelectorStartYear(Number(e.target.value));
+      };
+      const handleSecondSelectorEndYear = (e) => {
+        setSecondSelectorEndYear(Number(e.target.value));
+      };
+      // #endregion
+
+      // ThirdSelector handlers
+      // #region 
+      const handleThirdSelectorBuildingTypeFrom = (e) => {
+        setThirdSelectorBuildingTypeFrom(e.target.value);
+      };
+      const handleThirdSelectorBuildingTypeTo = (e) => {
+        setThirdSelectorBuildingTypeTo(e.target.value);
+      };
+      const handleThirdSelectorArea = (e) => {
+        setThirdSelectorArea(parseInt(e.target.value));
+      };
+      const handleThirdSelectorStartYear = (e) => {
+        setThirdSelectorStartYear(Number(e.target.value));
+      };
+      const handleThirdSelectorEndYear = (e) => {
+        setThirdSelectorEndYear(Number(e.target.value));
+      };
+      // #endregion
+
+      // FourthSelector handlers
+      // #region 
+      const handleFourthSelectorBuildingTypeFrom = (e) => {
+        setFourthSelectorBuildingTypeFrom(e.target.value);
+      };
+      const handleFourthSelectorBuildingTypeTo = (e) => {
+        setFourthSelectorBuildingTypeTo(e.target.value);
+      };
+      const handleFourthSelectorArea = (e) => {
+        setFourthSelectorArea(parseInt(e.target.value));
+      };
+      const handleFourthSelectorStartYear = (e) => {
+        setFourthSelectorStartYear(Number(e.target.value));
+      };
+      const handleFourthSelectorEndYear = (e) => {
+        setFourthSelectorEndYear(Number(e.target.value));
+      };
+      // #endregion
+
+      // FifthSelector handlers
+      // #region 
+      const handleFifthSelectorBuildingTypeFrom = (e) => {
+        setFifthSelectorBuildingTypeFrom(e.target.value);
+      };
+      const handleFifthSelectorBuildingTypeTo = (e) => {
+        setFifthSelectorBuildingTypeTo(e.target.value);
+      };
+      const handleFifthSelectorArea = (e) => {
+        setFifthSelectorArea(parseInt(e.target.value));
+      };
+      const handleFifthSelectorStartYear = (e) => {
+        setFifthSelectorStartYear(Number(e.target.value));
+      };
+      const handleFifthSelectorEndYear = (e) => {
+        setFifthSelectorEndYear(Number(e.target.value));
+      };
+      // #endregion
+
+      // SixthSelector handlers
+      // #region 
+      const handleSixthSelectorBuildingTypeFrom = (e) => {
+        setSixthSelectorBuildingTypeFrom(e.target.value);
+      };
+      const handleSixthSelectorBuildingTypeTo = (e) => {
+        setSixthSelectorBuildingTypeTo(e.target.value);
+      };
+      const handleSixthSelectorArea = (e) => {
+        setSixthSelectorArea(parseInt(e.target.value));
+      };
+      const handleSixthSelectorStartYear = (e) => {
+        setSixthSelectorStartYear(Number(e.target.value));
+      };
+      const handleSixthSelectorEndYear = (e) => {
+        setSixthSelectorEndYear(Number(e.target.value));
+      };
+    // #endregion
+
+
     const [updateU2charts, setU2charts] = useState(false);
   
     const optionsIndicators = ['A', 'B','C','D','E','F','G'];
@@ -436,7 +606,8 @@ import Divider from "@mui/material/Divider";
     for (let i = year; i < 2051; i++) optionsYear.push(i);
   
     const optionsResidents = ['Apartment', 'Terraced', 'Semi-detached', 'Detached'];
-    const optionsBuildings = ['Retail', 'Health', 'Hospitality', 'Offices', 'Industrail', 'Warehouses'];
+    const optionsCommercials = ['Retail', 'Health', 'Hospitality', 'Offices', 'Industrail', 'Warehouses'];
+    const optionsBuildings = optionsResidents.concat(optionsCommercials);
 
     const setPoliciesResults = () => {
       
@@ -1165,7 +1336,7 @@ import Divider from "@mui/material/Divider";
                                   defaultValue="Select building type"
                                   required
                                   >
-                                  {optionsBuildings.map((option) => (
+                                  {optionsCommercials.map((option) => (
                                   <option key={option} value={option}>
                                       {option}{" "}
                                   </option>
@@ -1255,7 +1426,7 @@ import Divider from "@mui/material/Divider";
                                   defaultValue="Select building type"
                                   required
                                   >
-                                  {optionsBuildings.map((option) => (
+                                  {optionsCommercials.map((option) => (
                                   <option key={option} value={option}>
                                       {option}{" "}
                                   </option>
@@ -1345,7 +1516,7 @@ import Divider from "@mui/material/Divider";
                                   defaultValue="Select building type"
                                   required
                                   >
-                                  {optionsBuildings.map((option) => (
+                                  {optionsCommercials.map((option) => (
                                   <option key={option} value={option}>
                                       {option}{" "}
                                   </option>
@@ -1435,7 +1606,7 @@ import Divider from "@mui/material/Divider";
                                   defaultValue="Select building type"
                                   required
                                   >
-                                  {optionsBuildings.map((option) => (
+                                  {optionsCommercials.map((option) => (
                                   <option key={option} value={option}>
                                       {option}{" "}
                                   </option>
@@ -1525,7 +1696,7 @@ import Divider from "@mui/material/Divider";
                                   defaultValue="Select building type"
                                   required
                                   >
-                                  {optionsBuildings.map((option) => (
+                                  {optionsCommercials.map((option) => (
                                   <option key={option} value={option}>
                                       {option}{" "}
                                   </option>
@@ -1615,7 +1786,7 @@ import Divider from "@mui/material/Divider";
                                   defaultValue="Select building type"
                                   required
                                   >
-                                  {optionsBuildings.map((option) => (
+                                  {optionsCommercials.map((option) => (
                                   <option key={option} value={option}>
                                       {option}{" "}
                                   </option>
@@ -1699,6 +1870,507 @@ import Divider from "@mui/material/Divider";
                     </table>
                   </form>
                 </div>
+            </section>
+            <section>
+              <section>
+                <Divider textAlign="left" flexItem>
+                    {" "}
+                    <b>U8.3 Change of building use</b>
+                </Divider>
+              </section>
+              <div className="newResidentDiv">
+                  <form>
+                    <table className="buildings-policy-tbl buildings-tbl">
+                        <thead>
+                          <tr>
+                            {/* <th className="row-title">Select building type</th> */}
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Floor Area</th>
+                            <th colSpan={2}>
+                              Conversions implemented between
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <select
+                                  className="table-cell"
+                                  id="firstSelectorBuildingTypeFrom"
+                                  name="firstSelectorBuildingTypeFrom"
+                                  onChange={handleFirstSelectorBuildingTypeFrom}
+                                  defaultValue="Select building type"
+                                  required
+                                  >
+                                  {optionsBuildings.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                            </td>
+                            <td>
+                              <select
+                                  className="table-cell"
+                                  id="firstSelectorBuildingTypeTo"
+                                  name="firstSelectorBuildingTypeTo"
+                                  onChange={handleFirstSelectorBuildingTypeTo}
+                                  defaultValue="Select building type"
+                                  required
+                                  >
+                                  {optionsBuildings.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                            </td>
+                            <td>
+                              <input
+                                className="table-cell"
+                                type="number"
+                                step="1"
+                                id="firstSelectorArea"
+                                name="firstSelectorArea"
+                                min="0"
+                                value={firstSelectorArea}
+                                onChange={handleFirstSelectorArea}
+                                required
+                              />
+                            </td>
+                            <td>
+                              <select
+                                className="table-cell"
+                                id="firstSelectorStartYear"
+                                name="firstSelectorStartYear"
+                                onChange={handleFirstSelectorStartYear}
+                                defaultValue="Select indicator"
+                                required
+                              >
+                                {optionsYear.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                            </td>
+                            <td>
+                                <select
+                                  className="table-cell"
+                                  id="firstSelectorEndYear"
+                                  name="firstSelectorEndYear"
+                                  onChange={handleFirstSelectorEndYear}
+                                  defaultValue="Select indicator"
+                                  required
+                                >
+                                  {optionsYear.map((option) => (
+                                    <option key={option} value={option}>
+                                        {option}{" "}
+                                    </option>
+                                    ))}
+                                </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <select
+                                  className="table-cell"
+                                  id="secondSelectorBuildingTypeFrom"
+                                  name="secondSelectorBuildingTypeFrom"
+                                  onChange={handleSecondSelectorBuildingTypeFrom}
+                                  defaultValue="Select building type"
+                                  required
+                                  >
+                                  {optionsBuildings.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                            </td>
+                            <td>
+                              <select
+                                  className="table-cell"
+                                  id="secondSelectorBuildingTypeTo"
+                                  name="secondSelectorBuildingTypeTo"
+                                  onChange={handleSecondSelectorBuildingTypeTo}
+                                  defaultValue="Select building type"
+                                  required
+                                  >
+                                  {optionsBuildings.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                            </td>
+                            <td>
+                              <input
+                                className="table-cell"
+                                type="number"
+                                step="1"
+                                id="secondSelectorArea"
+                                name="secondSelectorArea"
+                                min="0"
+                                value={secondSelectorArea}
+                                onChange={handleSecondSelectorArea}
+                                required
+                              />
+                            </td>
+                            <td>
+                              <select
+                                className="table-cell"
+                                id="secondSelectorStartYear"
+                                name="secondSelectorStartYear"
+                                onChange={handleSecondSelectorStartYear}
+                                defaultValue="Select indicator"
+                                required
+                              >
+                                {optionsYear.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                            </td>
+                            <td>
+                                <select
+                                  className="table-cell"
+                                  id="secondSelectorEndYear"
+                                  name="secondSelectorEndYear"
+                                  onChange={handleSecondSelectorEndYear}
+                                  defaultValue="Select indicator"
+                                  required
+                                >
+                                  {optionsYear.map((option) => (
+                                    <option key={option} value={option}>
+                                        {option}{" "}
+                                    </option>
+                                    ))}
+                                </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <select
+                                  className="table-cell"
+                                  id="thirdSelectorBuildingTypeFrom"
+                                  name="thirdSelectorBuildingTypeFrom"
+                                  onChange={handleThirdSelectorBuildingTypeFrom}
+                                  defaultValue="Select building type"
+                                  required
+                                  >
+                                  {optionsBuildings.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                            </td>
+                            <td>
+                              <select
+                                  className="table-cell"
+                                  id="thirdSelectorBuildingTypeTo"
+                                  name="thirdSelectorBuildingTypeTo"
+                                  onChange={handleThirdSelectorBuildingTypeTo}
+                                  defaultValue="Select building type"
+                                  required
+                                  >
+                                  {optionsBuildings.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                            </td>
+                            <td>
+                              <input
+                                className="table-cell"
+                                type="number"
+                                step="1"
+                                id="thirdSelectorArea"
+                                name="thirdSelectorArea"
+                                min="0"
+                                value={thirdSelectorArea}
+                                onChange={handleThirdSelectorArea}
+                                required
+                              />
+                            </td>
+                            <td>
+                              <select
+                                className="table-cell"
+                                id="thirdSelectorStartYear"
+                                name="thirdSelectorStartYear"
+                                onChange={handleThirdSelectorStartYear}
+                                defaultValue="Select indicator"
+                                required
+                              >
+                                {optionsYear.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                            </td>
+                            <td>
+                                <select
+                                  className="table-cell"
+                                  id="thirdSelectorEndYear"
+                                  name="thirdSelectorEndYear"
+                                  onChange={handleThirdSelectorEndYear}
+                                  defaultValue="Select indicator"
+                                  required
+                                >
+                                  {optionsYear.map((option) => (
+                                    <option key={option} value={option}>
+                                        {option}{" "}
+                                    </option>
+                                    ))}
+                                </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <select
+                                  className="table-cell"
+                                  id="fourthSelectorBuildingTypeFrom"
+                                  name="fourthSelectorBuildingTypeFrom"
+                                  onChange={handleFourthSelectorBuildingTypeFrom}
+                                  defaultValue="Select building type"
+                                  required
+                                  >
+                                  {optionsBuildings.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                            </td>
+                            <td>
+                              <select
+                                  className="table-cell"
+                                  id="fourthSelectorBuildingTypeTo"
+                                  name="fourthSelectorBuildingTypeTo"
+                                  onChange={handleFourthSelectorBuildingTypeTo}
+                                  defaultValue="Select building type"
+                                  required
+                                  >
+                                  {optionsBuildings.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                            </td>
+                            <td>
+                              <input
+                                className="table-cell"
+                                type="number"
+                                step="1"
+                                id="fourthSelectorArea"
+                                name="fourthSelectorArea"
+                                min="0"
+                                value={fourthSelectorArea}
+                                onChange={handleFourthSelectorArea}
+                                required
+                              />
+                            </td>
+                            <td>
+                              <select
+                                className="table-cell"
+                                id="fourthSelectorStartYear"
+                                name="fourthSelectorStartYear"
+                                onChange={handleFourthSelectorStartYear}
+                                defaultValue="Select indicator"
+                                required
+                              >
+                                {optionsYear.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                            </td>
+                            <td>
+                                <select
+                                  className="table-cell"
+                                  id="fourthSelectorEndYear"
+                                  name="fourthSelectorEndYear"
+                                  onChange={handleFourthSelectorEndYear}
+                                  defaultValue="Select indicator"
+                                  required
+                                >
+                                  {optionsYear.map((option) => (
+                                    <option key={option} value={option}>
+                                        {option}{" "}
+                                    </option>
+                                    ))}
+                                </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <select
+                                  className="table-cell"
+                                  id="fifthSelectorBuildingTypeFrom"
+                                  name="fifthSelectorBuildingTypeFrom"
+                                  onChange={handleFifthSelectorBuildingTypeFrom}
+                                  defaultValue="Select building type"
+                                  required
+                                  >
+                                  {optionsBuildings.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                            </td>
+                            <td>
+                              <select
+                                  className="table-cell"
+                                  id="fifthSelectorBuildingTypeTo"
+                                  name="fifthSelectorBuildingTypeTo"
+                                  onChange={handleFifthSelectorBuildingTypeTo}
+                                  defaultValue="Select building type"
+                                  required
+                                  >
+                                  {optionsBuildings.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                            </td>
+                            <td>
+                              <input
+                                className="table-cell"
+                                type="number"
+                                step="1"
+                                id="fifthSelectorArea"
+                                name="fifthSelectorArea"
+                                min="0"
+                                value={fifthSelectorArea}
+                                onChange={handleFifthSelectorArea}
+                                required
+                              />
+                            </td>
+                            <td>
+                              <select
+                                className="table-cell"
+                                id="fifthSelectorStartYear"
+                                name="fifthSelectorStartYear"
+                                onChange={handleFifthSelectorStartYear}
+                                defaultValue="Select indicator"
+                                required
+                              >
+                                {optionsYear.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                            </td>
+                            <td>
+                                <select
+                                  className="table-cell"
+                                  id="fifthSelectorEndYear"
+                                  name="fifthSelectorEndYear"
+                                  onChange={handleFifthSelectorEndYear}
+                                  defaultValue="Select indicator"
+                                  required
+                                >
+                                  {optionsYear.map((option) => (
+                                    <option key={option} value={option}>
+                                        {option}{" "}
+                                    </option>
+                                    ))}
+                                </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <select
+                                  className="table-cell"
+                                  id="sixthSelectorBuildingTypeFrom"
+                                  name="sixthSelectorBuildingTypeFrom"
+                                  onChange={handleSixthSelectorBuildingTypeFrom}
+                                  defaultValue="Select building type"
+                                  required
+                                  >
+                                  {optionsBuildings.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                            </td>
+                            <td>
+                              <select
+                                  className="table-cell"
+                                  id="sixthSelectorBuildingTypeTo"
+                                  name="sixthSelectorBuildingTypeTo"
+                                  onChange={handleSixthSelectorBuildingTypeTo}
+                                  defaultValue="Select building type"
+                                  required
+                                  >
+                                  {optionsBuildings.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                            </td>
+                            <td>
+                              <input
+                                className="table-cell"
+                                type="number"
+                                step="1"
+                                id="sixthSelectorArea"
+                                name="sixthSelectorArea"
+                                min="0"
+                                value={sixthSelectorArea}
+                                onChange={handleSixthSelectorArea}
+                                required
+                              />
+                            </td>
+                            <td>
+                              <select
+                                className="table-cell"
+                                id="sixthSelectorStartYear"
+                                name="sixthSelectorStartYear"
+                                onChange={handleSixthSelectorStartYear}
+                                defaultValue="Select indicator"
+                                required
+                              >
+                                {optionsYear.map((option) => (
+                                  <option key={option} value={option}>
+                                      {option}{" "}
+                                  </option>
+                                  ))}
+                              </select>
+                            </td>
+                            <td>
+                                <select
+                                  className="table-cell"
+                                  id="sixthSelectorEndYear"
+                                  name="sixthSelectorEndYear"
+                                  onChange={handleSixthSelectorEndYear}
+                                  defaultValue="Select indicator"
+                                  required
+                                >
+                                  {optionsYear.map((option) => (
+                                    <option key={option} value={option}>
+                                        {option}{" "}
+                                    </option>
+                                    ))}
+                                </select>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                  </form>
+              </div>
             </section>
           <section>
                 {(
