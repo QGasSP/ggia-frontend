@@ -3,6 +3,7 @@ import { Button } from "./Button";
 import "../css/startpage.css";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
+import Alert from "@mui/material/Alert";
 import axios from "axios";
 import { useStorageInt, useStorageString } from "../reducers/useStorage";
 import urlPrefix from "../Config";
@@ -11,7 +12,7 @@ import { LandUseChangeTableForm } from "./LandUseChangeTableForm";
 import { ConsumptionBaseline } from "./ConsumptionBaseline"; */
 // new Date().getFullYear()
 export const StartPage = () => {
- /*  const toggleState = localStorage.getItem("toggleState"); */
+  /*  const toggleState = localStorage.getItem("toggleState"); */
   const [country, setCountry] = useStorageString("country", "");
   const [year, setYear] = useStorageInt("year", 0);
   const [population, setPopulation] = useStorageInt("population", 0);
@@ -43,7 +44,8 @@ export const StartPage = () => {
   };
   const clearLocalStorage = (e) => {
     e.preventDefault();
-    window.localStorage.clear(); 
+    setNextModule(false);
+    window.localStorage.clear();
     setCountry("");
     setPopulation(0);
     setYear(0);
@@ -51,13 +53,6 @@ export const StartPage = () => {
 
   const startBaseline = () => {
     setNextModule(true);
-    /* if (nextModule && toggleState == 2) {
-      return <TransportBaseline />;
-    } else if (nextModule && toggleState == 3) {
-      return <LandUseChangeTableForm />;
-    } else if (nextModule && toggleState == 5) {
-      return <ConsumptionBaseline />;
-    } */
   };
 
   useEffect(async () => {
@@ -93,88 +88,96 @@ export const StartPage = () => {
                 Fill in the basic information
               </h1>
             </header>
+            {nextModule && (
+              <Alert severity="info">
+                You can proceed to either Transport, Land-use change or
+                Consumption-based module
+              </Alert>
+            )}
 
-            <form onSubmit={startBaseline}>
-              <div className="form-group">
-                <label htmlFor="year" className="intro_label">
-                  Year
-                </label>
-                <select
-                  id="year"
-                  name="year"
-                  className="baseline_select"
-                  onChange={handleSelectedYear}
-                  value={year}
-                  defaultValue="Select year"
-                  required
-                >
-                  <option value="DefaultOption">Select year</option>
+            {/*  <form onSubmit={startBaseline}> */}
+            <div className="form-group">
+              <label htmlFor="year" className="intro_label">
+                Year
+              </label>
+              <select
+                id="year"
+                name="year"
+                className="baseline_select"
+                onChange={handleSelectedYear}
+                value={year}
+                defaultValue="Select year"
+                required
+              >
+                <option value="DefaultOption">Select year</option>
 
-                  {options.map((option) => (
-                    <option key={option} value={option}>
-                      {option}{" "}
-                    </option>
-                  ))}
-                </select>
-              </div>
+                {options.map((option) => (
+                  <option key={option} value={option}>
+                    {option}{" "}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-              <div className="form-group">
-                <label htmlFor="country" className="intro_label">
-                  Country
-                </label>
-                <select
-                  className="baseline_select"
-                  id="country"
-                  name="country"
-                  onChange={handleSelected}
-                  value={country}
-                  defaultValue="Select country"
-                  required
-                >
-                  <option value="DefaultOption">Select country</option>
-                  {euCountries.map((country) => (
-                    <option key={country} value={country}>
-                      {country}{" "}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="form-group">
-                <label htmlFor="population_assessment" className="intro_label">
-                  Assessment area population
-                </label>
-                <input
-                  type="number"
-                  pattern="[0-9]*"
-                  id="population_assessment"
-                  className="population"
-                  placeholder={population}
-                  min="0"
-                  onChange={handlePopulation}
-                  required
-                />
-              </div>
-              <div className="next_u1">
-                <Button
-                  size="small"
-                  type="submit"
-                  value="Submit"
-                  label="Set baseline"
-                  primary="true"
-                />
-              </div>
-              <br/>
-              <div className="reset_button" >
-                <Button
-                  size="small"
-                  onClick={clearLocalStorage}
-                  label="Reset baseline"
-                  primary="true"
-                />
-              </div>
-            </form>
+            <div className="form-group">
+              <label htmlFor="country" className="intro_label">
+                Country
+              </label>
+              <select
+                className="baseline_select"
+                id="country"
+                name="country"
+                onChange={handleSelected}
+                value={country}
+                defaultValue="Select country"
+                required
+              >
+                <option value="DefaultOption">Select country</option>
+                {euCountries.map((country) => (
+                  <option key={country} value={country}>
+                    {country}{" "}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="form-group">
+              <label htmlFor="population_assessment" className="intro_label">
+                Assessment area population
+              </label>
+              <input
+                type="number"
+                pattern="[0-9]*"
+                id="population_assessment"
+                className="population"
+                placeholder={population}
+                min="0"
+                onChange={handlePopulation}
+                required
+              />
+            </div>
+            <div className="next_u1">
+              <Button
+                size="small"
+                /* type="submit"
+                  value="Submit" */
+                label="Save"
+                onClick={startBaseline}
+                primary="true"
+              />
+            </div>
+
+            {/*  </form> */}
+
+            <br />
+            <div className="reset_button">
+              <Button
+                size="small"
+                onClick={clearLocalStorage}
+                label="Reset"
+                primary="true"
+              />
+            </div>
           </div>
-         
 
           <Divider orientation="vertical" flexItem></Divider>
 
