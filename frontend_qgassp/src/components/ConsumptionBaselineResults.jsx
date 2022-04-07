@@ -106,10 +106,10 @@ export const ConsumptionBaselineResults = ({
   if (isBaselineLoading) {
     return <div>Loading...</div>;
   } 
-  if (isResponseError) {
+ /*  if (isResponseError) {
     return <div>{errorBlConsumption}</div>;
   } 
-
+ */
   if (nextCBQuantification === false) {
     return (
       <>
