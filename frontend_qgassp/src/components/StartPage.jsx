@@ -94,15 +94,15 @@ export const StartPage = () => {
               </h1>
             </header>
             {nextModule && (
-              <Alert severity="info">
+              <Alert severity="success">
                 You can proceed to either Transport, Land-use change or
                 Consumption-based module
               </Alert>
             )}
 
-            {allFields &&(
-              <Alert severity="info">
-                Please fill in the required basic information and save
+            {allFields && nextModule===false&& (
+              <Alert severity="warning">
+                Please fill the year, population and country and save
               </Alert>
             )}
 
