@@ -16,8 +16,8 @@ export const StartPage = () => {
   const [country, setCountry] = useStorageString("country", "");
   const [year, setYear] = useStorageInt("year", 0);
   const [population, setPopulation] = useStorageInt("population", 0);
-  const currentPop = population;
   const [nextModule, setNextModule] = useState(false);
+  const [allFields, setFillFields] = useState(false);
   const [euCountries, setEuCountries] = useState([]);
   const [errorStartPage, setCountriesError] = useState("");
 
@@ -45,6 +45,7 @@ export const StartPage = () => {
   const clearLocalStorage = (e) => {
     e.preventDefault();
     setNextModule(false);
+    setFillFields(false);
     window.localStorage.clear();
     setCountry("");
     setPopulation(0);
@@ -52,7 +53,11 @@ export const StartPage = () => {
   };
 
   const startBaseline = () => {
-    setNextModule(true);
+    if (population > 0 && country !== "" && year > 0) {
+      setNextModule(true);
+    } else {
+      setFillFields(true);
+    }
   };
 
   useEffect(async () => {
@@ -92,6 +97,12 @@ export const StartPage = () => {
               <Alert severity="info">
                 You can proceed to either Transport, Land-use change or
                 Consumption-based module
+              </Alert>
+            )}
+
+            {allFields &&(
+              <Alert severity="info">
+                Please fill in the required basic information and save
               </Alert>
             )}
 
