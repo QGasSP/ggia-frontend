@@ -63,7 +63,6 @@ button {
 }
 .content-tabs {
   flex-grow: 1;
-
 }
 .content {
   background: white;
@@ -93,8 +92,11 @@ button {
   width: 50%;
 }
 
-#territorial {
+#start {
   background: #ffeac1;
+}
+#territorial {
+  background: #d5eaea;
 }
 
 #consumption {

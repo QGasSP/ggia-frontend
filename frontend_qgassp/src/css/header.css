@@ -106,11 +106,13 @@ button + button {
   width: 42.5%;
   float: left;
   text-align: center;
-  background-color:#ffeac1;
-  border:0.2rem solid #ffeac1;
+  background-color:#d5eaea;
+  border:0.2rem solid #d5eaea;
 }
 
 .right {
   width: 43%;
   float: left;
 }
+
+

@@ -1,4 +1,4 @@
-import { useState ,useEffect} from "react";
+import { useState, useEffect } from "react";
 import "../css/tabs.css";
 import { ModuleHeader } from "./ModuleHeader";
 import { StartPage } from "./StartPage";
@@ -39,6 +39,7 @@ export const TabModules = () => {
             <button
               className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
               onClick={() => toggleTab(1)}
+              id="start"
             >
               Start{" "}
             </button>
@@ -111,6 +112,7 @@ export const TabModules = () => {
           <button
             className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
             onClick={() => toggleTab(1)}
+            id="start"
           >
             Start{" "}
           </button>
