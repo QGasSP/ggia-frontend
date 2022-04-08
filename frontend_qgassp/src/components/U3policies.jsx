@@ -643,6 +643,7 @@ export const U3policies = ({
             </div>
             <div id="divspace">
               <RadialChart
+              
                 type="piechart"
                 data={[
                   {
@@ -712,6 +713,7 @@ export const U3policies = ({
             <br />
             <div>
               <XYPlot
+                margin={{ left: 100 }}
                 width={900}
                 height={500}
                 xType="ordinal"

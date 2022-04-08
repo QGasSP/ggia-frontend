@@ -395,469 +395,475 @@ export const ConsumptionSummary = ({
           ]}
         />
       </XYPlot>
-      <br />
-      <Divider textAlign="left" flexItem>
-        {" "}
-        <b> {country}: Policy vs annual household emissions</b>
-      </Divider>
-      <XYPlot
-        xType="ordinal"
-        margin={{ left: 80 }}
-        width={1000}
-        height={500}
-        stackBy="y"
-      >
-        <VerticalGridLines />
-        <HorizontalGridLines />
-        <XAxis title="Year" />
-        <YAxis title="Emissions/ kG C02 eq" />
-        <BarSeries
-          color="#3d58a3"
-          opacity={0.45}
-          data={[
-            { x: 2020, y: p1.housingEnergy["2020"] },
-            { x: 2021, y: p1.housingEnergy["2021"] },
-            { x: 2022, y: p1.housingEnergy["2022"] },
-            { x: 2023, y: p1.housingEnergy["2023"] },
-            { x: 2024, y: p1.housingEnergy["2024"] },
-            { x: 2025, y: p1.housingEnergy["2025"] },
-            { x: 2026, y: p1.housingEnergy["2026"] },
-            { x: 2027, y: p1.housingEnergy["2027"] },
-            { x: 2028, y: p1.housingEnergy["2028"] },
-            { x: 2029, y: p1.housingEnergy["2029"] },
-            { x: 2030, y: p1.housingEnergy["2030"] },
-            { x: 2031, y: p1.housingEnergy["2031"] },
-            { x: 2032, y: p1.housingEnergy["2032"] },
-            { x: 2033, y: p1.housingEnergy["2033"] },
-            { x: 2034, y: p1.housingEnergy["2034"] },
-            { x: 2035, y: p1.housingEnergy["2035"] },
-            { x: 2036, y: p1.housingEnergy["2036"] },
-            { x: 2037, y: p1.housingEnergy["2037"] },
-            { x: 2038, y: p1.housingEnergy["2038"] },
-            { x: 2039, y: p1.housingEnergy["2039"] },
-            { x: 2040, y: p1.housingEnergy["2040"] },
-            { x: 2041, y: p1.housingEnergy["2041"] },
-            { x: 2042, y: p1.housingEnergy["2042"] },
-            { x: 2043, y: p1.housingEnergy["2043"] },
-            { x: 2044, y: p1.housingEnergy["2044"] },
-            { x: 2045, y: p1.housingEnergy["2045"] },
-            { x: 2046, y: p1.housingEnergy["2046"] },
-            { x: 2047, y: p1.housingEnergy["2047"] },
-            { x: 2048, y: p1.housingEnergy["2048"] },
-            { x: 2049, y: p1.housingEnergy["2049"] },
-            { x: 2050, y: p1.housingEnergy["2050"] },
-          ]}
-          stack
-        />
-        <BarSeries
-          color="#ef7d00"
-          opacity={0.45}
-          data={[
-            { x: 2020, y: p1.housingOther["2020"] },
-            { x: 2021, y: p1.housingOther["2021"] },
-            { x: 2022, y: p1.housingOther["2022"] },
-            { x: 2023, y: p1.housingOther["2023"] },
-            { x: 2024, y: p1.housingOther["2024"] },
-            { x: 2025, y: p1.housingOther["2025"] },
-            { x: 2026, y: p1.housingOther["2026"] },
-            { x: 2027, y: p1.housingOther["2027"] },
-            { x: 2028, y: p1.housingOther["2028"] },
-            { x: 2029, y: p1.housingOther["2029"] },
-            { x: 2030, y: p1.housingOther["2030"] },
-            { x: 2031, y: p1.housingOther["2031"] },
-            { x: 2032, y: p1.housingOther["2032"] },
-            { x: 2033, y: p1.housingOther["2033"] },
-            { x: 2034, y: p1.housingOther["2034"] },
-            { x: 2035, y: p1.housingOther["2035"] },
-            { x: 2036, y: p1.housingOther["2036"] },
-            { x: 2037, y: p1.housingOther["2037"] },
-            { x: 2038, y: p1.housingOther["2038"] },
-            { x: 2039, y: p1.housingOther["2039"] },
-            { x: 2040, y: p1.housingOther["2040"] },
-            { x: 2041, y: p1.housingOther["2041"] },
-            { x: 2042, y: p1.housingOther["2042"] },
-            { x: 2043, y: p1.housingOther["2043"] },
-            { x: 2044, y: p1.housingOther["2044"] },
-            { x: 2045, y: p1.housingOther["2045"] },
-            { x: 2046, y: p1.housingOther["2046"] },
-            { x: 2047, y: p1.housingOther["2047"] },
-            { x: 2048, y: p1.housingOther["2048"] },
-            { x: 2049, y: p1.housingOther["2049"] },
-            { x: 2050, y: p1.housingOther["2050"] },
-          ]}
-          stack
-        />
-        <BarSeries
-          color="#95c11f"
-          opacity={0.45}
-          data={[
-            { x: 2020, y: p1.transportFuels["2020"] },
-            { x: 2021, y: p1.transportFuels["2021"] },
-            { x: 2022, y: p1.transportFuels["2022"] },
-            { x: 2023, y: p1.transportFuels["2023"] },
-            { x: 2024, y: p1.transportFuels["2024"] },
-            { x: 2025, y: p1.transportFuels["2025"] },
-            { x: 2026, y: p1.transportFuels["2026"] },
-            { x: 2027, y: p1.transportFuels["2027"] },
-            { x: 2028, y: p1.transportFuels["2028"] },
-            { x: 2029, y: p1.transportFuels["2029"] },
-            { x: 2030, y: p1.transportFuels["2030"] },
-            { x: 2031, y: p1.transportFuels["2031"] },
-            { x: 2032, y: p1.transportFuels["2032"] },
-            { x: 2033, y: p1.transportFuels["2033"] },
-            { x: 2034, y: p1.transportFuels["2034"] },
-            { x: 2035, y: p1.transportFuels["2035"] },
-            { x: 2036, y: p1.transportFuels["2036"] },
-            { x: 2037, y: p1.transportFuels["2037"] },
-            { x: 2038, y: p1.transportFuels["2038"] },
-            { x: 2039, y: p1.transportFuels["2039"] },
-            { x: 2040, y: p1.transportFuels["2040"] },
-            { x: 2041, y: p1.transportFuels["2041"] },
-            { x: 2042, y: p1.transportFuels["2042"] },
-            { x: 2043, y: p1.transportFuels["2043"] },
-            { x: 2044, y: p1.transportFuels["2044"] },
-            { x: 2045, y: p1.transportFuels["2045"] },
-            { x: 2046, y: p1.transportFuels["2046"] },
-            { x: 2047, y: p1.transportFuels["2047"] },
-            { x: 2048, y: p1.transportFuels["2048"] },
-            { x: 2049, y: p1.transportFuels["2049"] },
-            { x: 2050, y: p1.transportFuels["2050"] },
-          ]}
-          stack
-        />
-        <BarSeries
-          color="#ce143d"
-          opacity={0.45}
-          data={[
-            { x: 2020, y: p1.transportOther["2020"] },
-            { x: 2021, y: p1.transportOther["2021"] },
-            { x: 2022, y: p1.transportOther["2022"] },
-            { x: 2023, y: p1.transportOther["2023"] },
-            { x: 2024, y: p1.transportOther["2024"] },
-            { x: 2025, y: p1.transportOther["2025"] },
-            { x: 2026, y: p1.transportOther["2026"] },
-            { x: 2027, y: p1.transportOther["2027"] },
-            { x: 2028, y: p1.transportOther["2028"] },
-            { x: 2029, y: p1.transportOther["2029"] },
-            { x: 2030, y: p1.transportOther["2030"] },
-            { x: 2031, y: p1.transportOther["2031"] },
-            { x: 2032, y: p1.transportOther["2032"] },
-            { x: 2033, y: p1.transportOther["2033"] },
-            { x: 2034, y: p1.transportOther["2034"] },
-            { x: 2035, y: p1.transportOther["2035"] },
-            { x: 2036, y: p1.transportOther["2036"] },
-            { x: 2037, y: p1.transportOther["2037"] },
-            { x: 2038, y: p1.transportOther["2038"] },
-            { x: 2039, y: p1.transportOther["2039"] },
-            { x: 2040, y: p1.transportOther["2040"] },
-            { x: 2041, y: p1.transportOther["2041"] },
-            { x: 2042, y: p1.transportOther["2042"] },
-            { x: 2043, y: p1.transportOther["2043"] },
-            { x: 2044, y: p1.transportOther["2044"] },
-            { x: 2045, y: p1.transportOther["2045"] },
-            { x: 2046, y: p1.transportOther["2046"] },
-            { x: 2047, y: p1.transportOther["2047"] },
-            { x: 2048, y: p1.transportOther["2048"] },
-            { x: 2049, y: p1.transportOther["2049"] },
-            { x: 2050, y: p1.transportOther["2050"] },
-          ]}
-          stack
-        />
-        <BarSeries
-          color="#845f9e"
-          opacity={0.45}
-          data={[
-            { x: 2020, y: p1.airTravel["2020"] },
-            { x: 2021, y: p1.airTravel["2021"] },
-            { x: 2022, y: p1.airTravel["2022"] },
-            { x: 2023, y: p1.airTravel["2023"] },
-            { x: 2024, y: p1.airTravel["2024"] },
-            { x: 2025, y: p1.airTravel["2025"] },
-            { x: 2026, y: p1.airTravel["2026"] },
-            { x: 2027, y: p1.airTravel["2027"] },
-            { x: 2028, y: p1.airTravel["2028"] },
-            { x: 2029, y: p1.airTravel["2029"] },
-            { x: 2030, y: p1.airTravel["2030"] },
-            { x: 2031, y: p1.airTravel["2031"] },
-            { x: 2032, y: p1.airTravel["2032"] },
-            { x: 2033, y: p1.airTravel["2033"] },
-            { x: 2034, y: p1.airTravel["2034"] },
-            { x: 2035, y: p1.airTravel["2035"] },
-            { x: 2036, y: p1.airTravel["2036"] },
-            { x: 2037, y: p1.airTravel["2037"] },
-            { x: 2038, y: p1.airTravel["2038"] },
-            { x: 2039, y: p1.airTravel["2039"] },
-            { x: 2040, y: p1.airTravel["2040"] },
-            { x: 2041, y: p1.airTravel["2041"] },
-            { x: 2042, y: p1.airTravel["2042"] },
-            { x: 2043, y: p1.airTravel["2043"] },
-            { x: 2044, y: p1.airTravel["2044"] },
-            { x: 2045, y: p1.airTravel["2045"] },
-            { x: 2046, y: p1.airTravel["2046"] },
-            { x: 2047, y: p1.airTravel["2047"] },
-            { x: 2048, y: p1.airTravel["2048"] },
-            { x: 2049, y: p1.airTravel["2049"] },
-            { x: 2050, y: p1.airTravel["2050"] },
-          ]}
-          stack
-        />
-        <BarSeries
-          color="#996e35"
-          opacity={0.45}
-          data={[
-            { x: 2020, y: p1.food["2020"] },
-            { x: 2021, y: p1.food["2021"] },
-            { x: 2022, y: p1.food["2022"] },
-            { x: 2023, y: p1.food["2023"] },
-            { x: 2024, y: p1.food["2024"] },
-            { x: 2025, y: p1.food["2025"] },
-            { x: 2026, y: p1.food["2026"] },
-            { x: 2027, y: p1.food["2027"] },
-            { x: 2028, y: p1.food["2028"] },
-            { x: 2029, y: p1.food["2029"] },
-            { x: 2030, y: p1.food["2030"] },
-            { x: 2031, y: p1.food["2031"] },
-            { x: 2032, y: p1.food["2032"] },
-            { x: 2033, y: p1.food["2033"] },
-            { x: 2034, y: p1.food["2034"] },
-            { x: 2035, y: p1.food["2035"] },
-            { x: 2036, y: p1.food["2036"] },
-            { x: 2037, y: p1.food["2037"] },
-            { x: 2038, y: p1.food["2038"] },
-            { x: 2039, y: p1.food["2039"] },
-            { x: 2040, y: p1.food["2040"] },
-            { x: 2041, y: p1.food["2041"] },
-            { x: 2042, y: p1.food["2042"] },
-            { x: 2043, y: p1.food["2043"] },
-            { x: 2044, y: p1.food["2044"] },
-            { x: 2045, y: p1.food["2045"] },
-            { x: 2046, y: p1.food["2046"] },
-            { x: 2047, y: p1.food["2047"] },
-            { x: 2048, y: p1.food["2048"] },
-            { x: 2049, y: p1.food["2049"] },
-            { x: 2050, y: p1.food["2050"] },
-          ]}
-          stack
-        />
-        <BarSeries
-          color="#e1719a"
-          opacity={0.45}
-          data={[
-            { x: 2020, y: p1.tangibleGoods["2020"] },
-            { x: 2021, y: p1.tangibleGoods["2021"] },
-            { x: 2022, y: p1.tangibleGoods["2022"] },
-            { x: 2023, y: p1.tangibleGoods["2023"] },
-            { x: 2024, y: p1.tangibleGoods["2024"] },
-            { x: 2025, y: p1.tangibleGoods["2025"] },
-            { x: 2026, y: p1.tangibleGoods["2026"] },
-            { x: 2027, y: p1.tangibleGoods["2027"] },
-            { x: 2028, y: p1.tangibleGoods["2028"] },
-            { x: 2029, y: p1.tangibleGoods["2029"] },
-            { x: 2030, y: p1.tangibleGoods["2030"] },
-            { x: 2031, y: p1.tangibleGoods["2031"] },
-            { x: 2032, y: p1.tangibleGoods["2032"] },
-            { x: 2033, y: p1.tangibleGoods["2033"] },
-            { x: 2034, y: p1.tangibleGoods["2034"] },
-            { x: 2035, y: p1.tangibleGoods["2035"] },
-            { x: 2036, y: p1.tangibleGoods["2036"] },
-            { x: 2037, y: p1.tangibleGoods["2037"] },
-            { x: 2038, y: p1.tangibleGoods["2038"] },
-            { x: 2039, y: p1.tangibleGoods["2039"] },
-            { x: 2040, y: p1.tangibleGoods["2040"] },
-            { x: 2041, y: p1.tangibleGoods["2041"] },
-            { x: 2042, y: p1.tangibleGoods["2042"] },
-            { x: 2043, y: p1.tangibleGoods["2043"] },
-            { x: 2044, y: p1.tangibleGoods["2044"] },
-            { x: 2045, y: p1.tangibleGoods["2045"] },
-            { x: 2046, y: p1.tangibleGoods["2046"] },
-            { x: 2047, y: p1.tangibleGoods["2047"] },
-            { x: 2048, y: p1.tangibleGoods["2048"] },
-            { x: 2049, y: p1.tangibleGoods["2049"] },
-            { x: 2050, y: p1.tangibleGoods["2050"] },
-          ]}
-          stack
-        />
-        <BarSeries
-          color="#76918e"
-          opacity={0.45}
-          data={[
-            { x: 2020, y: p1.services["2020"] },
-            { x: 2021, y: p1.services["2021"] },
-            { x: 2022, y: p1.services["2022"] },
-            { x: 2023, y: p1.services["2023"] },
-            { x: 2024, y: p1.services["2024"] },
-            { x: 2025, y: p1.services["2025"] },
-            { x: 2026, y: p1.services["2026"] },
-            { x: 2027, y: p1.services["2027"] },
-            { x: 2028, y: p1.services["2028"] },
-            { x: 2029, y: p1.services["2029"] },
-            { x: 2030, y: p1.services["2030"] },
-            { x: 2031, y: p1.services["2031"] },
-            { x: 2032, y: p1.services["2032"] },
-            { x: 2033, y: p1.services["2033"] },
-            { x: 2034, y: p1.services["2034"] },
-            { x: 2035, y: p1.services["2035"] },
-            { x: 2036, y: p1.services["2036"] },
-            { x: 2037, y: p1.services["2037"] },
-            { x: 2038, y: p1.services["2038"] },
-            { x: 2039, y: p1.services["2039"] },
-            { x: 2040, y: p1.services["2040"] },
-            { x: 2041, y: p1.services["2041"] },
-            { x: 2042, y: p1.services["2042"] },
-            { x: 2043, y: p1.services["2043"] },
-            { x: 2044, y: p1.services["2044"] },
-            { x: 2045, y: p1.services["2045"] },
-            { x: 2046, y: p1.services["2046"] },
-            { x: 2047, y: p1.services["2047"] },
-            { x: 2048, y: p1.services["2048"] },
-            { x: 2049, y: p1.services["2049"] },
-            { x: 2050, y: p1.services["2050"] },
-          ]}
-          stack
-        />
-        <LineSeries
-          className="fourth-series"
-          color="#000000"
-          strokeWidth="1"
-          data={[
-            { x: 2020, y: p1TotalEmissions["2020"] },
-            { x: 2021, y: p1TotalEmissions["2021"] },
-            { x: 2022, y: p1TotalEmissions["2022"] },
-            { x: 2023, y: p1TotalEmissions["2023"] },
-            { x: 2024, y: p1TotalEmissions["2024"] },
-            { x: 2025, y: p1TotalEmissions["2025"] },
-            { x: 2026, y: p1TotalEmissions["2026"] },
-            { x: 2027, y: p1TotalEmissions["2027"] },
-            { x: 2028, y: p1TotalEmissions["2028"] },
-            { x: 2029, y: p1TotalEmissions["2029"] },
-            { x: 2030, y: p1TotalEmissions["2030"] },
-            { x: 2031, y: p1TotalEmissions["2031"] },
-            { x: 2032, y: p1TotalEmissions["2032"] },
-            { x: 2033, y: p1TotalEmissions["2033"] },
-            { x: 2034, y: p1TotalEmissions["2034"] },
-            { x: 2035, y: p1TotalEmissions["2035"] },
-            { x: 2036, y: p1TotalEmissions["2036"] },
-            { x: 2037, y: p1TotalEmissions["2037"] },
-            { x: 2038, y: p1TotalEmissions["2038"] },
-            { x: 2039, y: p1TotalEmissions["2039"] },
-            { x: 2040, y: p1TotalEmissions["2040"] },
-            { x: 2041, y: p1TotalEmissions["2041"] },
-            { x: 2042, y: p1TotalEmissions["2042"] },
-            { x: 2043, y: p1TotalEmissions["2043"] },
-            { x: 2044, y: p1TotalEmissions["2044"] },
-            { x: 2045, y: p1TotalEmissions["2045"] },
-            { x: 2046, y: p1TotalEmissions["2046"] },
-            { x: 2047, y: p1TotalEmissions["2047"] },
-            { x: 2048, y: p1TotalEmissions["2048"] },
-            { x: 2049, y: p1TotalEmissions["2049"] },
-            { x: 2050, y: ["2050"] },
-          ]}
-        />
-      </XYPlot>
-      <br />
 
-      <Divider textAlign="left" flexItem>
-        {" "}
-        <b> {country}: Baseline total emissions vs Policy total emissions</b>
-      </Divider>
-      <br />
-      <XYPlot
-        xType="ordinal"
-        width={1000}
-        height={500}
-        margin={{ left: 100 }}
-        yDomain={[0, yAxisValue]}
-      >
-        <VerticalGridLines />
-        <HorizontalGridLines />
-        <XAxis title="Year" />
-        <YAxis />
-        <LineSeries
-          className="linemark-series-example-2"
-          curve={null}
-          color="#3d58a3"
-          strokeStyle="solid"
-          style={{}}
-          strokeWidth="2"
-          data={[
-            { x: 2020, y: bLTotalAreaEmissions["2020"] },
-            { x: 2021, y: bLTotalAreaEmissions["2021"] },
-            { x: 2022, y: bLTotalAreaEmissions["2022"] },
-            { x: 2023, y: bLTotalAreaEmissions["2023"] },
-            { x: 2024, y: bLTotalAreaEmissions["2024"] },
-            { x: 2025, y: bLTotalAreaEmissions["2025"] },
-            { x: 2026, y: bLTotalAreaEmissions["2026"] },
-            { x: 2027, y: bLTotalAreaEmissions["2027"] },
-            { x: 2028, y: bLTotalAreaEmissions["2028"] },
-            { x: 2029, y: bLTotalAreaEmissions["2029"] },
-            { x: 2030, y: bLTotalAreaEmissions["2030"] },
-            { x: 2031, y: bLTotalAreaEmissions["2031"] },
-            { x: 2032, y: bLTotalAreaEmissions["2032"] },
-            { x: 2033, y: bLTotalAreaEmissions["2033"] },
-            { x: 2034, y: bLTotalAreaEmissions["2034"] },
-            { x: 2035, y: bLTotalAreaEmissions["2035"] },
-            { x: 2036, y: bLTotalAreaEmissions["2036"] },
-            { x: 2037, y: bLTotalAreaEmissions["2037"] },
-            { x: 2038, y: bLTotalAreaEmissions["2038"] },
-            { x: 2039, y: bLTotalAreaEmissions["2039"] },
-            { x: 2040, y: bLTotalAreaEmissions["2040"] },
-            { x: 2041, y: bLTotalAreaEmissions["2041"] },
-            { x: 2042, y: bLTotalAreaEmissions["2042"] },
-            { x: 2043, y: bLTotalAreaEmissions["2043"] },
-            { x: 2044, y: bLTotalAreaEmissions["2044"] },
-            { x: 2045, y: bLTotalAreaEmissions["2045"] },
-            { x: 2046, y: bLTotalAreaEmissions["2046"] },
-            { x: 2047, y: bLTotalAreaEmissions["2047"] },
-            { x: 2048, y: bLTotalAreaEmissions["2048"] },
-            { x: 2049, y: bLTotalAreaEmissions["2049"] },
-            { x: 2050, y: bLTotalAreaEmissions["2050"] },
-          ]}
-        />
-        <LineSeries
-          color="#ef7d00"
-          curve={null}
-          strokeWidth="2"
-          data={[
-            { x: 2020, y: p1TotalAreaEmissions["2020"] },
-            { x: 2021, y: p1TotalAreaEmissions["2021"] },
-            { x: 2022, y: p1TotalAreaEmissions["2022"] },
-            { x: 2023, y: p1TotalAreaEmissions["2023"] },
-            { x: 2024, y: p1TotalAreaEmissions["2024"] },
-            { x: 2025, y: p1TotalAreaEmissions["2025"] },
-            { x: 2026, y: p1TotalAreaEmissions["2026"] },
-            { x: 2027, y: p1TotalAreaEmissions["2027"] },
-            { x: 2028, y: p1TotalAreaEmissions["2028"] },
-            { x: 2029, y: p1TotalAreaEmissions["2029"] },
-            { x: 2030, y: p1TotalAreaEmissions["2030"] },
-            { x: 2031, y: p1TotalAreaEmissions["2031"] },
-            { x: 2032, y: p1TotalAreaEmissions["2032"] },
-            { x: 2033, y: p1TotalAreaEmissions["2033"] },
-            { x: 2034, y: p1TotalAreaEmissions["2034"] },
-            { x: 2035, y: p1TotalAreaEmissions["2035"] },
-            { x: 2036, y: p1TotalAreaEmissions["2036"] },
-            { x: 2037, y: p1TotalAreaEmissions["2037"] },
-            { x: 2038, y: p1TotalAreaEmissions["2038"] },
-            { x: 2039, y: p1TotalAreaEmissions["2039"] },
-            { x: 2040, y: p1TotalAreaEmissions["2040"] },
-            { x: 2041, y: p1TotalAreaEmissions["2041"] },
-            { x: 2042, y: p1TotalAreaEmissions["2042"] },
-            { x: 2043, y: p1TotalAreaEmissions["2043"] },
-            { x: 2044, y: p1TotalAreaEmissions["2044"] },
-            { x: 2045, y: p1TotalAreaEmissions["2045"] },
-            { x: 2046, y: p1TotalAreaEmissions["2046"] },
-            { x: 2047, y: p1TotalAreaEmissions["2047"] },
-            { x: 2048, y: p1TotalAreaEmissions["2048"] },
-            { x: 2049, y: p1TotalAreaEmissions["2049"] },
-            { x: 2050, y: p1TotalAreaEmissions["2050"] },
-          ]}
-        />
-      </XYPlot>
-      <div className="settlementDiv">
-        <LineLegendConsumption
-          colorItems={resultsLegend}
-          orientation="horizontal"
-        />
-      </div>
+      {Object.keys(p1).length !== 0 && (
+        <>
+          <Divider textAlign="left" flexItem>
+            {" "}
+            <b> {country}: Policy vs annual household emissions</b>
+          </Divider>
+          <XYPlot
+            xType="ordinal"
+            margin={{ left: 80 }}
+            width={1000}
+            height={500}
+            stackBy="y"
+          >
+            <VerticalGridLines />
+            <HorizontalGridLines />
+            <XAxis title="Year" />
+            <YAxis title="Emissions/ kG C02 eq" />
+            <BarSeries
+              color="#3d58a3"
+              opacity={0.45}
+              data={[
+                { x: 2020, y: p1.housingEnergy["2020"] },
+                { x: 2021, y: p1.housingEnergy["2021"] },
+                { x: 2022, y: p1.housingEnergy["2022"] },
+                { x: 2023, y: p1.housingEnergy["2023"] },
+                { x: 2024, y: p1.housingEnergy["2024"] },
+                { x: 2025, y: p1.housingEnergy["2025"] },
+                { x: 2026, y: p1.housingEnergy["2026"] },
+                { x: 2027, y: p1.housingEnergy["2027"] },
+                { x: 2028, y: p1.housingEnergy["2028"] },
+                { x: 2029, y: p1.housingEnergy["2029"] },
+                { x: 2030, y: p1.housingEnergy["2030"] },
+                { x: 2031, y: p1.housingEnergy["2031"] },
+                { x: 2032, y: p1.housingEnergy["2032"] },
+                { x: 2033, y: p1.housingEnergy["2033"] },
+                { x: 2034, y: p1.housingEnergy["2034"] },
+                { x: 2035, y: p1.housingEnergy["2035"] },
+                { x: 2036, y: p1.housingEnergy["2036"] },
+                { x: 2037, y: p1.housingEnergy["2037"] },
+                { x: 2038, y: p1.housingEnergy["2038"] },
+                { x: 2039, y: p1.housingEnergy["2039"] },
+                { x: 2040, y: p1.housingEnergy["2040"] },
+                { x: 2041, y: p1.housingEnergy["2041"] },
+                { x: 2042, y: p1.housingEnergy["2042"] },
+                { x: 2043, y: p1.housingEnergy["2043"] },
+                { x: 2044, y: p1.housingEnergy["2044"] },
+                { x: 2045, y: p1.housingEnergy["2045"] },
+                { x: 2046, y: p1.housingEnergy["2046"] },
+                { x: 2047, y: p1.housingEnergy["2047"] },
+                { x: 2048, y: p1.housingEnergy["2048"] },
+                { x: 2049, y: p1.housingEnergy["2049"] },
+                { x: 2050, y: p1.housingEnergy["2050"] },
+              ]}
+              stack
+            />
+            <BarSeries
+              color="#ef7d00"
+              opacity={0.45}
+              data={[
+                { x: 2020, y: p1.housingOther["2020"] },
+                { x: 2021, y: p1.housingOther["2021"] },
+                { x: 2022, y: p1.housingOther["2022"] },
+                { x: 2023, y: p1.housingOther["2023"] },
+                { x: 2024, y: p1.housingOther["2024"] },
+                { x: 2025, y: p1.housingOther["2025"] },
+                { x: 2026, y: p1.housingOther["2026"] },
+                { x: 2027, y: p1.housingOther["2027"] },
+                { x: 2028, y: p1.housingOther["2028"] },
+                { x: 2029, y: p1.housingOther["2029"] },
+                { x: 2030, y: p1.housingOther["2030"] },
+                { x: 2031, y: p1.housingOther["2031"] },
+                { x: 2032, y: p1.housingOther["2032"] },
+                { x: 2033, y: p1.housingOther["2033"] },
+                { x: 2034, y: p1.housingOther["2034"] },
+                { x: 2035, y: p1.housingOther["2035"] },
+                { x: 2036, y: p1.housingOther["2036"] },
+                { x: 2037, y: p1.housingOther["2037"] },
+                { x: 2038, y: p1.housingOther["2038"] },
+                { x: 2039, y: p1.housingOther["2039"] },
+                { x: 2040, y: p1.housingOther["2040"] },
+                { x: 2041, y: p1.housingOther["2041"] },
+                { x: 2042, y: p1.housingOther["2042"] },
+                { x: 2043, y: p1.housingOther["2043"] },
+                { x: 2044, y: p1.housingOther["2044"] },
+                { x: 2045, y: p1.housingOther["2045"] },
+                { x: 2046, y: p1.housingOther["2046"] },
+                { x: 2047, y: p1.housingOther["2047"] },
+                { x: 2048, y: p1.housingOther["2048"] },
+                { x: 2049, y: p1.housingOther["2049"] },
+                { x: 2050, y: p1.housingOther["2050"] },
+              ]}
+              stack
+            />
+            <BarSeries
+              color="#95c11f"
+              opacity={0.45}
+              data={[
+                { x: 2020, y: p1.transportFuels["2020"] },
+                { x: 2021, y: p1.transportFuels["2021"] },
+                { x: 2022, y: p1.transportFuels["2022"] },
+                { x: 2023, y: p1.transportFuels["2023"] },
+                { x: 2024, y: p1.transportFuels["2024"] },
+                { x: 2025, y: p1.transportFuels["2025"] },
+                { x: 2026, y: p1.transportFuels["2026"] },
+                { x: 2027, y: p1.transportFuels["2027"] },
+                { x: 2028, y: p1.transportFuels["2028"] },
+                { x: 2029, y: p1.transportFuels["2029"] },
+                { x: 2030, y: p1.transportFuels["2030"] },
+                { x: 2031, y: p1.transportFuels["2031"] },
+                { x: 2032, y: p1.transportFuels["2032"] },
+                { x: 2033, y: p1.transportFuels["2033"] },
+                { x: 2034, y: p1.transportFuels["2034"] },
+                { x: 2035, y: p1.transportFuels["2035"] },
+                { x: 2036, y: p1.transportFuels["2036"] },
+                { x: 2037, y: p1.transportFuels["2037"] },
+                { x: 2038, y: p1.transportFuels["2038"] },
+                { x: 2039, y: p1.transportFuels["2039"] },
+                { x: 2040, y: p1.transportFuels["2040"] },
+                { x: 2041, y: p1.transportFuels["2041"] },
+                { x: 2042, y: p1.transportFuels["2042"] },
+                { x: 2043, y: p1.transportFuels["2043"] },
+                { x: 2044, y: p1.transportFuels["2044"] },
+                { x: 2045, y: p1.transportFuels["2045"] },
+                { x: 2046, y: p1.transportFuels["2046"] },
+                { x: 2047, y: p1.transportFuels["2047"] },
+                { x: 2048, y: p1.transportFuels["2048"] },
+                { x: 2049, y: p1.transportFuels["2049"] },
+                { x: 2050, y: p1.transportFuels["2050"] },
+              ]}
+              stack
+            />
+            <BarSeries
+              color="#ce143d"
+              opacity={0.45}
+              data={[
+                { x: 2020, y: p1.transportOther["2020"] },
+                { x: 2021, y: p1.transportOther["2021"] },
+                { x: 2022, y: p1.transportOther["2022"] },
+                { x: 2023, y: p1.transportOther["2023"] },
+                { x: 2024, y: p1.transportOther["2024"] },
+                { x: 2025, y: p1.transportOther["2025"] },
+                { x: 2026, y: p1.transportOther["2026"] },
+                { x: 2027, y: p1.transportOther["2027"] },
+                { x: 2028, y: p1.transportOther["2028"] },
+                { x: 2029, y: p1.transportOther["2029"] },
+                { x: 2030, y: p1.transportOther["2030"] },
+                { x: 2031, y: p1.transportOther["2031"] },
+                { x: 2032, y: p1.transportOther["2032"] },
+                { x: 2033, y: p1.transportOther["2033"] },
+                { x: 2034, y: p1.transportOther["2034"] },
+                { x: 2035, y: p1.transportOther["2035"] },
+                { x: 2036, y: p1.transportOther["2036"] },
+                { x: 2037, y: p1.transportOther["2037"] },
+                { x: 2038, y: p1.transportOther["2038"] },
+                { x: 2039, y: p1.transportOther["2039"] },
+                { x: 2040, y: p1.transportOther["2040"] },
+                { x: 2041, y: p1.transportOther["2041"] },
+                { x: 2042, y: p1.transportOther["2042"] },
+                { x: 2043, y: p1.transportOther["2043"] },
+                { x: 2044, y: p1.transportOther["2044"] },
+                { x: 2045, y: p1.transportOther["2045"] },
+                { x: 2046, y: p1.transportOther["2046"] },
+                { x: 2047, y: p1.transportOther["2047"] },
+                { x: 2048, y: p1.transportOther["2048"] },
+                { x: 2049, y: p1.transportOther["2049"] },
+                { x: 2050, y: p1.transportOther["2050"] },
+              ]}
+              stack
+            />
+            <BarSeries
+              color="#845f9e"
+              opacity={0.45}
+              data={[
+                { x: 2020, y: p1.airTravel["2020"] },
+                { x: 2021, y: p1.airTravel["2021"] },
+                { x: 2022, y: p1.airTravel["2022"] },
+                { x: 2023, y: p1.airTravel["2023"] },
+                { x: 2024, y: p1.airTravel["2024"] },
+                { x: 2025, y: p1.airTravel["2025"] },
+                { x: 2026, y: p1.airTravel["2026"] },
+                { x: 2027, y: p1.airTravel["2027"] },
+                { x: 2028, y: p1.airTravel["2028"] },
+                { x: 2029, y: p1.airTravel["2029"] },
+                { x: 2030, y: p1.airTravel["2030"] },
+                { x: 2031, y: p1.airTravel["2031"] },
+                { x: 2032, y: p1.airTravel["2032"] },
+                { x: 2033, y: p1.airTravel["2033"] },
+                { x: 2034, y: p1.airTravel["2034"] },
+                { x: 2035, y: p1.airTravel["2035"] },
+                { x: 2036, y: p1.airTravel["2036"] },
+                { x: 2037, y: p1.airTravel["2037"] },
+                { x: 2038, y: p1.airTravel["2038"] },
+                { x: 2039, y: p1.airTravel["2039"] },
+                { x: 2040, y: p1.airTravel["2040"] },
+                { x: 2041, y: p1.airTravel["2041"] },
+                { x: 2042, y: p1.airTravel["2042"] },
+                { x: 2043, y: p1.airTravel["2043"] },
+                { x: 2044, y: p1.airTravel["2044"] },
+                { x: 2045, y: p1.airTravel["2045"] },
+                { x: 2046, y: p1.airTravel["2046"] },
+                { x: 2047, y: p1.airTravel["2047"] },
+                { x: 2048, y: p1.airTravel["2048"] },
+                { x: 2049, y: p1.airTravel["2049"] },
+                { x: 2050, y: p1.airTravel["2050"] },
+              ]}
+              stack
+            />
+            <BarSeries
+              color="#996e35"
+              opacity={0.45}
+              data={[
+                { x: 2020, y: p1.food["2020"] },
+                { x: 2021, y: p1.food["2021"] },
+                { x: 2022, y: p1.food["2022"] },
+                { x: 2023, y: p1.food["2023"] },
+                { x: 2024, y: p1.food["2024"] },
+                { x: 2025, y: p1.food["2025"] },
+                { x: 2026, y: p1.food["2026"] },
+                { x: 2027, y: p1.food["2027"] },
+                { x: 2028, y: p1.food["2028"] },
+                { x: 2029, y: p1.food["2029"] },
+                { x: 2030, y: p1.food["2030"] },
+                { x: 2031, y: p1.food["2031"] },
+                { x: 2032, y: p1.food["2032"] },
+                { x: 2033, y: p1.food["2033"] },
+                { x: 2034, y: p1.food["2034"] },
+                { x: 2035, y: p1.food["2035"] },
+                { x: 2036, y: p1.food["2036"] },
+                { x: 2037, y: p1.food["2037"] },
+                { x: 2038, y: p1.food["2038"] },
+                { x: 2039, y: p1.food["2039"] },
+                { x: 2040, y: p1.food["2040"] },
+                { x: 2041, y: p1.food["2041"] },
+                { x: 2042, y: p1.food["2042"] },
+                { x: 2043, y: p1.food["2043"] },
+                { x: 2044, y: p1.food["2044"] },
+                { x: 2045, y: p1.food["2045"] },
+                { x: 2046, y: p1.food["2046"] },
+                { x: 2047, y: p1.food["2047"] },
+                { x: 2048, y: p1.food["2048"] },
+                { x: 2049, y: p1.food["2049"] },
+                { x: 2050, y: p1.food["2050"] },
+              ]}
+              stack
+            />
+            <BarSeries
+              color="#e1719a"
+              opacity={0.45}
+              data={[
+                { x: 2020, y: p1.tangibleGoods["2020"] },
+                { x: 2021, y: p1.tangibleGoods["2021"] },
+                { x: 2022, y: p1.tangibleGoods["2022"] },
+                { x: 2023, y: p1.tangibleGoods["2023"] },
+                { x: 2024, y: p1.tangibleGoods["2024"] },
+                { x: 2025, y: p1.tangibleGoods["2025"] },
+                { x: 2026, y: p1.tangibleGoods["2026"] },
+                { x: 2027, y: p1.tangibleGoods["2027"] },
+                { x: 2028, y: p1.tangibleGoods["2028"] },
+                { x: 2029, y: p1.tangibleGoods["2029"] },
+                { x: 2030, y: p1.tangibleGoods["2030"] },
+                { x: 2031, y: p1.tangibleGoods["2031"] },
+                { x: 2032, y: p1.tangibleGoods["2032"] },
+                { x: 2033, y: p1.tangibleGoods["2033"] },
+                { x: 2034, y: p1.tangibleGoods["2034"] },
+                { x: 2035, y: p1.tangibleGoods["2035"] },
+                { x: 2036, y: p1.tangibleGoods["2036"] },
+                { x: 2037, y: p1.tangibleGoods["2037"] },
+                { x: 2038, y: p1.tangibleGoods["2038"] },
+                { x: 2039, y: p1.tangibleGoods["2039"] },
+                { x: 2040, y: p1.tangibleGoods["2040"] },
+                { x: 2041, y: p1.tangibleGoods["2041"] },
+                { x: 2042, y: p1.tangibleGoods["2042"] },
+                { x: 2043, y: p1.tangibleGoods["2043"] },
+                { x: 2044, y: p1.tangibleGoods["2044"] },
+                { x: 2045, y: p1.tangibleGoods["2045"] },
+                { x: 2046, y: p1.tangibleGoods["2046"] },
+                { x: 2047, y: p1.tangibleGoods["2047"] },
+                { x: 2048, y: p1.tangibleGoods["2048"] },
+                { x: 2049, y: p1.tangibleGoods["2049"] },
+                { x: 2050, y: p1.tangibleGoods["2050"] },
+              ]}
+              stack
+            />
+            <BarSeries
+              color="#76918e"
+              opacity={0.45}
+              data={[
+                { x: 2020, y: p1.services["2020"] },
+                { x: 2021, y: p1.services["2021"] },
+                { x: 2022, y: p1.services["2022"] },
+                { x: 2023, y: p1.services["2023"] },
+                { x: 2024, y: p1.services["2024"] },
+                { x: 2025, y: p1.services["2025"] },
+                { x: 2026, y: p1.services["2026"] },
+                { x: 2027, y: p1.services["2027"] },
+                { x: 2028, y: p1.services["2028"] },
+                { x: 2029, y: p1.services["2029"] },
+                { x: 2030, y: p1.services["2030"] },
+                { x: 2031, y: p1.services["2031"] },
+                { x: 2032, y: p1.services["2032"] },
+                { x: 2033, y: p1.services["2033"] },
+                { x: 2034, y: p1.services["2034"] },
+                { x: 2035, y: p1.services["2035"] },
+                { x: 2036, y: p1.services["2036"] },
+                { x: 2037, y: p1.services["2037"] },
+                { x: 2038, y: p1.services["2038"] },
+                { x: 2039, y: p1.services["2039"] },
+                { x: 2040, y: p1.services["2040"] },
+                { x: 2041, y: p1.services["2041"] },
+                { x: 2042, y: p1.services["2042"] },
+                { x: 2043, y: p1.services["2043"] },
+                { x: 2044, y: p1.services["2044"] },
+                { x: 2045, y: p1.services["2045"] },
+                { x: 2046, y: p1.services["2046"] },
+                { x: 2047, y: p1.services["2047"] },
+                { x: 2048, y: p1.services["2048"] },
+                { x: 2049, y: p1.services["2049"] },
+                { x: 2050, y: p1.services["2050"] },
+              ]}
+              stack
+            />
+            <LineSeries
+              className="fourth-series"
+              color="#000000"
+              strokeWidth="1"
+              data={[
+                { x: 2020, y: p1TotalEmissions["2020"] },
+                { x: 2021, y: p1TotalEmissions["2021"] },
+                { x: 2022, y: p1TotalEmissions["2022"] },
+                { x: 2023, y: p1TotalEmissions["2023"] },
+                { x: 2024, y: p1TotalEmissions["2024"] },
+                { x: 2025, y: p1TotalEmissions["2025"] },
+                { x: 2026, y: p1TotalEmissions["2026"] },
+                { x: 2027, y: p1TotalEmissions["2027"] },
+                { x: 2028, y: p1TotalEmissions["2028"] },
+                { x: 2029, y: p1TotalEmissions["2029"] },
+                { x: 2030, y: p1TotalEmissions["2030"] },
+                { x: 2031, y: p1TotalEmissions["2031"] },
+                { x: 2032, y: p1TotalEmissions["2032"] },
+                { x: 2033, y: p1TotalEmissions["2033"] },
+                { x: 2034, y: p1TotalEmissions["2034"] },
+                { x: 2035, y: p1TotalEmissions["2035"] },
+                { x: 2036, y: p1TotalEmissions["2036"] },
+                { x: 2037, y: p1TotalEmissions["2037"] },
+                { x: 2038, y: p1TotalEmissions["2038"] },
+                { x: 2039, y: p1TotalEmissions["2039"] },
+                { x: 2040, y: p1TotalEmissions["2040"] },
+                { x: 2041, y: p1TotalEmissions["2041"] },
+                { x: 2042, y: p1TotalEmissions["2042"] },
+                { x: 2043, y: p1TotalEmissions["2043"] },
+                { x: 2044, y: p1TotalEmissions["2044"] },
+                { x: 2045, y: p1TotalEmissions["2045"] },
+                { x: 2046, y: p1TotalEmissions["2046"] },
+                { x: 2047, y: p1TotalEmissions["2047"] },
+                { x: 2048, y: p1TotalEmissions["2048"] },
+                { x: 2049, y: p1TotalEmissions["2049"] },
+                { x: 2050, y: ["2050"] },
+              ]}
+            />
+          </XYPlot>
+          <br />
+
+          <Divider textAlign="left" flexItem>
+            {" "}
+            <b>
+              {" "}
+              {country}: Baseline total emissions vs Policy total emissions
+            </b>
+          </Divider>
+          <br />
+          <XYPlot
+            xType="ordinal"
+            width={1000}
+            height={500}
+            margin={{ left: 100 }}
+          >
+            <VerticalGridLines />
+            <HorizontalGridLines />
+            <XAxis title="Year" />
+            <YAxis />
+            <LineSeries
+              className="linemark-series-example-2"
+              curve={null}
+              color="#3d58a3"
+              strokeStyle="solid"
+              style={{}}
+              strokeWidth="2"
+              data={[
+                { x: 2020, y: bLTotalAreaEmissions["2020"] },
+                { x: 2021, y: bLTotalAreaEmissions["2021"] },
+                { x: 2022, y: bLTotalAreaEmissions["2022"] },
+                { x: 2023, y: bLTotalAreaEmissions["2023"] },
+                { x: 2024, y: bLTotalAreaEmissions["2024"] },
+                { x: 2025, y: bLTotalAreaEmissions["2025"] },
+                { x: 2026, y: bLTotalAreaEmissions["2026"] },
+                { x: 2027, y: bLTotalAreaEmissions["2027"] },
+                { x: 2028, y: bLTotalAreaEmissions["2028"] },
+                { x: 2029, y: bLTotalAreaEmissions["2029"] },
+                { x: 2030, y: bLTotalAreaEmissions["2030"] },
+                { x: 2031, y: bLTotalAreaEmissions["2031"] },
+                { x: 2032, y: bLTotalAreaEmissions["2032"] },
+                { x: 2033, y: bLTotalAreaEmissions["2033"] },
+                { x: 2034, y: bLTotalAreaEmissions["2034"] },
+                { x: 2035, y: bLTotalAreaEmissions["2035"] },
+                { x: 2036, y: bLTotalAreaEmissions["2036"] },
+                { x: 2037, y: bLTotalAreaEmissions["2037"] },
+                { x: 2038, y: bLTotalAreaEmissions["2038"] },
+                { x: 2039, y: bLTotalAreaEmissions["2039"] },
+                { x: 2040, y: bLTotalAreaEmissions["2040"] },
+                { x: 2041, y: bLTotalAreaEmissions["2041"] },
+                { x: 2042, y: bLTotalAreaEmissions["2042"] },
+                { x: 2043, y: bLTotalAreaEmissions["2043"] },
+                { x: 2044, y: bLTotalAreaEmissions["2044"] },
+                { x: 2045, y: bLTotalAreaEmissions["2045"] },
+                { x: 2046, y: bLTotalAreaEmissions["2046"] },
+                { x: 2047, y: bLTotalAreaEmissions["2047"] },
+                { x: 2048, y: bLTotalAreaEmissions["2048"] },
+                { x: 2049, y: bLTotalAreaEmissions["2049"] },
+                { x: 2050, y: bLTotalAreaEmissions["2050"] },
+              ]}
+            />
+            <LineSeries
+              color="#ef7d00"
+              curve={null}
+              strokeWidth="2"
+              data={[
+                { x: 2020, y: p1TotalAreaEmissions["2020"] },
+                { x: 2021, y: p1TotalAreaEmissions["2021"] },
+                { x: 2022, y: p1TotalAreaEmissions["2022"] },
+                { x: 2023, y: p1TotalAreaEmissions["2023"] },
+                { x: 2024, y: p1TotalAreaEmissions["2024"] },
+                { x: 2025, y: p1TotalAreaEmissions["2025"] },
+                { x: 2026, y: p1TotalAreaEmissions["2026"] },
+                { x: 2027, y: p1TotalAreaEmissions["2027"] },
+                { x: 2028, y: p1TotalAreaEmissions["2028"] },
+                { x: 2029, y: p1TotalAreaEmissions["2029"] },
+                { x: 2030, y: p1TotalAreaEmissions["2030"] },
+                { x: 2031, y: p1TotalAreaEmissions["2031"] },
+                { x: 2032, y: p1TotalAreaEmissions["2032"] },
+                { x: 2033, y: p1TotalAreaEmissions["2033"] },
+                { x: 2034, y: p1TotalAreaEmissions["2034"] },
+                { x: 2035, y: p1TotalAreaEmissions["2035"] },
+                { x: 2036, y: p1TotalAreaEmissions["2036"] },
+                { x: 2037, y: p1TotalAreaEmissions["2037"] },
+                { x: 2038, y: p1TotalAreaEmissions["2038"] },
+                { x: 2039, y: p1TotalAreaEmissions["2039"] },
+                { x: 2040, y: p1TotalAreaEmissions["2040"] },
+                { x: 2041, y: p1TotalAreaEmissions["2041"] },
+                { x: 2042, y: p1TotalAreaEmissions["2042"] },
+                { x: 2043, y: p1TotalAreaEmissions["2043"] },
+                { x: 2044, y: p1TotalAreaEmissions["2044"] },
+                { x: 2045, y: p1TotalAreaEmissions["2045"] },
+                { x: 2046, y: p1TotalAreaEmissions["2046"] },
+                { x: 2047, y: p1TotalAreaEmissions["2047"] },
+                { x: 2048, y: p1TotalAreaEmissions["2048"] },
+                { x: 2049, y: p1TotalAreaEmissions["2049"] },
+                { x: 2050, y: p1TotalAreaEmissions["2050"] },
+              ]}
+            />
+          </XYPlot>
+          <div className="settlementDiv">
+            <LineLegendConsumption
+              colorItems={resultsLegend}
+              orientation="horizontal"
+            />
+          </div>
+        </>
+      )}
     </>
   );
 };
@@ -869,5 +875,5 @@ ConsumptionSummary.propTypes = {
   p1TotalEmissions: PropTypes.object.isRequired,
   bLTotalAreaEmissions: PropTypes.object.isRequired,
   p1TotalAreaEmissions: PropTypes.object.isRequired,
-  yAxisValue:PropTypes.number.isRequired,
+  yAxisValue: PropTypes.number.isRequired,
 };

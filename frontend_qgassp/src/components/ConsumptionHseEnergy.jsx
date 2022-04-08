@@ -20,6 +20,12 @@ export const ConsumptionHseEnergy = ({
   districtValue,
 }) => {
   const [nextCBTransport, setCbTransport] = useState(false);
+  const [districtHeating, setDistrictHeating] = useState(0.0);
+  const [liquidHeating, setLiquidHeating] = useState(0.0);
+  const [solidsHeating, setSolidHeating] = useState(0.0);
+  const [gasesHeating, setGasesHeating] = useState(0.0);
+  const [valueDistrict, setValueDistrict] = useState(0.0);
+
 
   const [policyYear, setPolicyYear] = useState(0);
   const [newFloorArea, setNewFloorArea] = useState(0);
@@ -67,6 +73,31 @@ export const ConsumptionHseEnergy = ({
     setElectricityScaler(Number(e.target.value));
   };
 
+  const handleDistrictProp = (e) => {
+    e.preventDefault();
+    setDistrictHeating(Number(e.target.value));
+  };
+
+  const handleLiquidsProp = (e) => {
+    e.preventDefault();
+    setLiquidHeating(Number(e.target.value));
+  };
+
+  const  handleSolidProp = (e) => {
+    e.preventDefault();
+    setSolidHeating(Number(e.target.value));
+  };
+
+  const handleGasesProp = (e) => {
+    e.preventDefault();
+    setGasesHeating(Number(e.target.value));
+  };
+
+  const  handleDistrictValue = (e) => {
+    e.preventDefault();
+    setValueDistrict(Number(e.target.value));
+  };
+
   if (nextCBTransport === false) {
     return (
       <article>
@@ -106,7 +137,6 @@ export const ConsumptionHseEnergy = ({
                 className="input_occupancy"
                 type="number"
                 id="population_size"
-                min="0"
                 onChange={handlePopSizePolicy}
                 defaultValue={popSizePolicy}
                 required
@@ -130,7 +160,6 @@ export const ConsumptionHseEnergy = ({
                 name="new_floor_area"
                 onChange={handleNewFloorArea}
                 defaultValue={newFloorArea}
-                min="0"
                 required
               />
             </div>
@@ -270,13 +299,14 @@ export const ConsumptionHseEnergy = ({
             </div>
 
             <br />
-
+            {sHeating==="true" &&
+            <>
             <Divider textAlign="left" flexItem>
               {" "}
               <b>Sustainable heating </b>
             </Divider>
             <br />
-            <div className="div_transport">
+            <div className="div_breakdown">
               <label htmlFor="source_breakdown">
                 <b>Select to view breakdown of heating sources in the area</b>
               </label>
@@ -288,36 +318,100 @@ export const ConsumptionHseEnergy = ({
                 onChange={handleBreakdownChange}
               />
             </div>
+            
+            </>
+            }
 
-            {checked && (
-              <div className="div_transport">
-                <label>District heating</label>
-                <label>{districtProp}</label>
-                <br />
-                <label>Liquid heating</label>
-                <label>{liquidsProp}</label>
-                <br />
-                <label>Solid heating</label>
-                <label>{solidsProp}</label>
-                <br />
-                <label>Gas heating</label>
-                <label>{gasesProp}</label>
-                <br />
-                <label> District value</label>
-                <label>{districtValue}</label>
-              </div>
+            
+
+            {checked && sHeating==="true"&&(
+              <>
+                <div className="div_heating">
+                  <label htmlFor="district_heating" className="settle_label">
+                    District heating
+                  </label>
+                  <input
+                    className="input_occupancy"
+                    type="number"
+                    id="district_heating"
+                    onChange={handleDistrictProp} 
+                    defaultValue={
+                      Math.round((districtProp + Number.EPSILON) * 100) / 100
+                    }
+                  />
+                </div>
+
+                <div className="div_heating">
+                  <label htmlFor="liquid_heating" className="settle_label">
+                    Liquid heating
+                  </label>
+                  <input
+                    className="input_occupancy"
+                    type="number"
+                    id="liquid_heating"
+                    onChange={handleLiquidsProp} 
+                    defaultValue={
+                      Math.round((liquidsProp + Number.EPSILON) * 100) / 100
+                    }
+                  />
+                </div>
+                <div className="div_heating">
+                  <label htmlFor="solid_heating" className="settle_label">
+                    Solid heating
+                  </label>
+                  <input
+                    className="input_occupancy"
+                    type="number"
+                    id="solid_heating"
+                    onChange={handleSolidProp} 
+                    defaultValue={
+                      Math.round((solidsProp + Number.EPSILON) * 100) / 100
+                    }
+                  />
+                </div>
+
+                <div className="div_heating">
+                  <label htmlFor="gas_heating" className="settle_label">
+                    Liquid heating
+                  </label>
+                  <input
+                    className="input_occupancy"
+                    type="number"
+                    id="gas_heating"
+                     onChange={handleGasesProp}
+                    defaultValue={
+                      Math.round((gasesProp + Number.EPSILON) * 100) / 100
+                    }
+                  />
+                </div>
+                <div className="div_heating">
+                  <label htmlFor="district_value" className="settle_label">
+                    District value
+                  </label>
+                  <input
+                    className="input_occupancy"
+                    type="number"
+                    id="district_value"
+                     onChange={handleDistrictValue}
+                    defaultValue={
+                      Math.round((districtValue + Number.EPSILON) * 100) / 100
+                    }
+                  />
+                </div>
+              </>
             )}
           </div>
-
-          <div className="nextCBQ">
-            <Button
-              size="small"
-              value="charts"
-              onClick={() => setCbTransport(true)}
-              label="Next &raquo;"
-              primary
-            />
-          </div>
+          {policyYear > 0 && popSizePolicy>0 && newFloorArea>0 && (
+            <div className="nextCBQ">
+              <Button
+                size="small"
+                value="charts"
+                onClick={() => setCbTransport(true)}
+                label="Next &raquo;"
+                primary
+              />
+            </div>
+          )}
         </section>
       </article>
     );
@@ -333,11 +427,11 @@ export const ConsumptionHseEnergy = ({
         elType={elType}
         elScaler={elScaler}
         sHeating={sHeating}
-        districtProp={districtProp}
-        liquidsProp={liquidsProp}
-        solidsProp={liquidsProp}
-        gasesProp={liquidsProp}
-        districtValue={liquidsProp}
+        districtProp={districtHeating}
+        liquidsProp={liquidHeating}
+        solidsProp={solidsHeating}
+        gasesProp={gasesHeating}
+        districtValue={valueDistrict}
       />
     );
   }

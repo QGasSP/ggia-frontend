@@ -27,6 +27,10 @@ export const ConsumptionBaseline = () => {
     e.preventDefault();
     setIncomeChoice(Number(e.target.value));
   };
+  const handleAreaType = (e) => {
+    e.preventDefault();
+    setAreaType(e.target.value);
+  };
 
   const showConsumptionBaseline = () => {
     setNextShow(true);
@@ -64,7 +68,7 @@ export const ConsumptionBaseline = () => {
                   <select
                     className="select_planned_area"
                     id="select_planned_area"
-                    onChange={(e) => setAreaType(e.target.value)}
+                    onChange={handleAreaType}
                     defaultValue={areaType}
                   >
                     <option value="DefaultOption">Select area type</option>
@@ -104,6 +108,7 @@ export const ConsumptionBaseline = () => {
                     name="income_choice"
                     onChange={handleIncomeChoice}
                     defaultValue={incomeChoice}
+                    required
                   >
                     <option value="DefaultOption">Select Income </option>
                     <optgroup label="Household income levels">
@@ -131,6 +136,7 @@ export const ConsumptionBaseline = () => {
                     name="decarbonization_percent"
                     onChange={(e) => setEffScalerInitial(e.target.value)}
                     defaultValue={effScalerInitial}
+                    required
                   >
                     <option value="DefaultOption">Select rate %</option>
                     <optgroup label="Global decarbonisation %">
@@ -167,4 +173,4 @@ export const ConsumptionBaseline = () => {
     );
   }
 };
-// parseInt(string: string, radix?: number)
+

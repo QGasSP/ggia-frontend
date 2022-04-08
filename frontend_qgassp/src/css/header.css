@@ -111,8 +111,11 @@ button + button {
 }
 
 .right {
-  width: 43%;
+  width: 13.3%;
   float: left;
+  background-color:#8dc4ae;
+  border:0.71rem solid #8dc4ae;
+  margin-left: 0.5rem;
 }
 
 

@@ -6,6 +6,7 @@ import "../css/u2planner.css";
 import { Button } from "./Button";
 import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
+import CircularProgress from "@mui/material/CircularProgress";
 import {
   XYPlot,
   XAxis,
@@ -32,38 +33,51 @@ export const U2planner = ({
   const [errorU2, setU2Error] = useState("");
   const [newPopulation, setNewPopulation] = useState("");
   const [nextU3planer, setU3planner] = useState(false);
+  const [isU2Loading, setIsU2Loading] = useState(true);
 
   useEffect(() => {
     localStorage.setItem("projections", JSON.stringify(projections));
   }, [projections]);
 
-  useEffect(async () => {
+  const fetchU2PlannerData = () => {
     const rawData = { baseline, newDevelopment };
     const headers = {
       "Content-type": "application/json",
-      "Access-Control-Allow-Origin": "*",
     };
-    await axios
+    axios
       .post(
         urlPrefix + "/api/v1/calculate/transport/new-development",
         rawData,
         headers
       )
-      .then((response) => setU2Response(response.data))
+      .then((response) => {
+        // setU2Response(response.data);
+        setNewPopulation(response.data.data.new_development.impact.population);
+        setIsU2Loading(false);
+      })
       .catch((error) => {
+        setIsU2Loading(false);
         setU2Error({ errorMessage: error.message });
         // eslint-disable-next-line no-console
         console.error("U2 Response data error---", errorU2);
       });
-  }, []);
-
-  const setU2Response = (response) => {
-    setNewPopulation(response.data.new_development.impact.population);
   };
+
+  useEffect(async () => {
+    fetchU2PlannerData();
+  }, []);
 
   const gotoU3planner = () => {
     setU3planner(true);
   };
+
+  useEffect(() => {
+    localStorage.setItem("newPopulation", JSON.stringify(newPopulation));
+  }, [newPopulation]);
+
+  if (isU2Loading) {
+    return <CircularProgress color="success" />;
+  }
 
   if (nextU3planer === false) {
     return (
@@ -135,23 +149,26 @@ export const U2planner = ({
               <label>{settlementDistribution.rural}</label>
               <label>{newDevelopment.newSettlementDistribution.rural}</label>
             </div>
-
+{/* 
+            <p>{JSON.stringify(newPopulation)}</p>
+            <br/>
+            <p>{JSON.stringify(projections.population)}</p>
+ */}
             <XYPlot
               xType="ordinal"
               width={1000}
               height={500}
               margin={{ left: 100 }}
+
             >
               <VerticalGridLines />
               <HorizontalGridLines />
               <XAxis title="Year" />
               <YAxis />
               <LineSeries
+                className="linemark-series-example-2"
                 curve={null}
-                color="#3d58a3"
-                strokeStyle="solid"
-                opacity={1}
-                style={{}}
+               
                 data={[
                   { x: 2022, y: newPopulation[2022] },
                   {
@@ -267,9 +284,14 @@ export const U2planner = ({
                     y: newPopulation[2050],
                   },
                 ]}
+                color="#3d58a3"
+                strokeStyle="solid"
+                strokeWidth="2"
+                style={{}}
               />
               <LineSeries
-                curve={null}
+                
+          
                 data={[
                   { x: 2022, y: projections.population[2022] },
                   {
@@ -385,12 +407,11 @@ export const U2planner = ({
                     y: projections.population[2050],
                   },
                 ]}
-                opacity={1}
-                style={{}}
-                stroke="rgba(102,116,155,1)"
-                strokeDasharray=""
-                strokeStyle="dashed"
-                strokeWidth="1.5"
+                color="#ef7d00"
+                curve={null}
+                strokeWidth="2"
+              
+              
               />
             </XYPlot>
             <U2legend />

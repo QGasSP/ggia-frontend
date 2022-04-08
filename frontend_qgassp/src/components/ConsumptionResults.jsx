@@ -5,6 +5,7 @@ import Chip from "@mui/material/Chip";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { ConsumptionSummary } from "./ConsumptionSummary";
+import CircularProgress from "@mui/material/CircularProgress";
 import urlPrefix from "../Config";
 
 /**
@@ -20,11 +21,10 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
   const [p1TotalEmissions, setP1totalEmissions] = useState({});
   const [p1TotalAreaEmissions, setP1totalAreaEmissions] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
   const [bLMax, setBlYMax] = useState(false);
   const [p1TotalAreaEmissionsMax, setP1YMax] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [consumptionStatus, setConsumptionStatus] = useState("");
+  
+ 
 
   const fetchConsumptionData = () => {
     const headers = { "Content-type": "application/json" };
@@ -38,7 +38,6 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
       .then((response) => {
         // eslint-disable-next-line no-console
         console.log(response);
-        setConsumptionStatus(response.data.status);
         setBlTransport(response.data.data.consumption.BL);
         setBlTotalEmissions(response.data.data.consumption.BLTotalEmissions);
         setP1totalAreaEmissions(
@@ -55,19 +54,9 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
       })
       .catch((error) => {
         setIsLoading(false);
-        setIsError(true);
-        if (error.response) {
-          setErrorMessage("network error");
-           // eslint-disable-next-line no-console
-          console.error(error, error.data);
-        } else {
-          setErrorMessage(error.message);
-          // eslint-disable-next-line no-console
-          console.error(error);
-        }
         // eslint-disable-next-line no-console
-        console.error("There was an error!", error);
-        setErrorMessage(error.message);
+        console.error("There was an error!", error.message);
+       
       });
   };
 
@@ -78,9 +67,11 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
   useEffect(() => {
     localStorage.setItem("p1", JSON.stringify(p1));
   }, [p1]);
+
   useEffect(() => {
     localStorage.setItem("blTransport", JSON.stringify(blTransport));
   }, [blTransport]);
+  
   useEffect(() => {
     localStorage.setItem("p1TotalEmissions", JSON.stringify(p1TotalEmissions));
   }, [p1TotalEmissions]);
@@ -92,10 +83,8 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
   }, [blTotalEmmissions]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <CircularProgress color="success" />;
   }
-
- 
 
   return (
     <article>
@@ -105,17 +94,16 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
           <Chip label="Results" />
         </Divider>
         <>
-       {/*    {consumptionStatus === "sucess" && ( )} */}
-            <ConsumptionSummary
-             yAxisValue={Math.max(p1TotalAreaEmissionsMax, bLMax)}
-              p1TotalEmissions={p1TotalEmissions}
-              blTotalEmmissions={blTotalEmmissions}
-              bLTotalAreaEmissions={bLTotalAreaEmissions}
-              p1TotalAreaEmissions={p1TotalAreaEmissions}
-              blTransport={blTransport}
-              p1={p1}
-            />
-         
+          {/*    {consumptionStatus === "sucess" && ( )} */}
+          <ConsumptionSummary
+            yAxisValue={Math.max(p1TotalAreaEmissionsMax, bLMax)}
+            p1TotalEmissions={p1TotalEmissions}
+            blTotalEmmissions={blTotalEmmissions}
+            bLTotalAreaEmissions={bLTotalAreaEmissions}
+            p1TotalAreaEmissions={p1TotalAreaEmissions}
+            blTransport={blTransport}
+            p1={p1}
+          />
         </>
       </section>
     </article>

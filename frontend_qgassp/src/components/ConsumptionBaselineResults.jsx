@@ -13,7 +13,7 @@ import {
 } from "react-vis";
 
 import urlPrefix from "../Config";
-
+import CircularProgress from "@mui/material/CircularProgress";
 import { LineLegendConsumption } from "./LineLegendConsumption";
 import { hseHoldEmissions } from "../reducers/Consumption";
 import axios from "axios";
@@ -73,12 +73,12 @@ export const ConsumptionBaselineResults = ({
         setDistrictValue(response.data.data.consumption.districtValue);
         setIsLoadingBaseline(false);
       })
-      .catch(error => {
+      .catch((error) => {
         setIsLoadingBaseline(false);
         setIsResponseError(true);
         if (error.response) {
           setBlConsumptionError("network error");
-           // eslint-disable-next-line no-console
+          // eslint-disable-next-line no-console
           console.error(error, error.data);
         } else {
           setBLTotalEmissions(error.message);
@@ -104,20 +104,17 @@ export const ConsumptionBaselineResults = ({
   }, [bLTotalEmissions]);
 
   if (isBaselineLoading) {
-    return <div>Loading...</div>;
-  } 
- /*  if (isResponseError) {
-    return <div>{errorBlConsumption}</div>;
-  } 
- */
+    return <CircularProgress color="success" />;
+  }
+
   if (nextCBQuantification === false) {
     return (
       <>
-      {consumptionBlStatus !== "success"&& <div>{errorBlConsumption}</div>}
+        {consumptionBlStatus !== "success" && <div>{errorBlConsumption}</div>}
         <br />
         <Divider textAlign="left" flexItem>
           {" "}
-          <b>Annual household emissions {country}</b>
+          <b>{country}: Annual household emissions </b>
         </Divider>
         <div>
           <div className="settlementDiv">
@@ -427,13 +424,13 @@ export const ConsumptionBaselineResults = ({
         </div>
         <Divider textAlign="left" flexItem>
           {" "}
-          <b>Total emissions of area based on year for {country}</b>
+          <b> {country}: Total emissions of area based on year</b>
         </Divider>
 
         <br />
-        <div className="settlementDiv">
+        <div className="consumptionTableDiv">
           <table>
-            <thead>
+            <thead className="tableHeader">
               <tr>
                 <th className="tableTotalEmissions">Year</th>
                 <th className="tableTotalEmissions">Total emissions</th>

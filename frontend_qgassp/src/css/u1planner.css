@@ -192,6 +192,11 @@ input[type="number"] {
 .settlementDiv {
   margin-left: 16px;
 }
+.consumptionTableDiv{
+  margin-left: 16px;
+  width:100%;
+
+}
  
 
 .hide {
@@ -212,6 +217,10 @@ input[type="number"] {
 .tableTotalEmissions{
   border: 1px solid black;
   text-align: left;
-  padding: 0.5rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
   font-size: 1vw;
+}
+.tableHeader{
+  color:#3d58a3 ;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import Divider from "@mui/material/Divider";
 import "../css/u1planner.css";
 import Chip from "@mui/material/Chip";
@@ -77,6 +77,11 @@ export const ConsumptionTransport = ({
     e.preventDefault();
     setMsPtScaler(Number(e.target.value));
   };
+
+  useEffect(() => {
+    localStorage.setItem("districtProp", districtProp);
+  }, [districtProp]);
+
 
   const handleRequestObject = (e) => {
     e.preventDefault();
@@ -297,12 +302,12 @@ ConsumptionTransport.propTypes = {
   policyYear: PropTypes.number.isRequired,
   newFloorArea: PropTypes.number.isRequired,
   popSizePolicy: PropTypes.number.isRequired,
-  effGain: PropTypes.string.isRequired,
+  effGain: PropTypes.bool.isRequired,
   effScaler: PropTypes.number.isRequired,
-  localElectricity: PropTypes.string.isRequired,
+  localElectricity: PropTypes.bool.isRequired,
   elType: PropTypes.string.isRequired,
   elScaler: PropTypes.number.isRequired,
-  sHeating: PropTypes.string.isRequired,
+  sHeating: PropTypes.bool.isRequired,
   districtProp: PropTypes.number.isRequired,
   liquidsProp: PropTypes.number.isRequired,
   solidsProp: PropTypes.number.isRequired,
