@@ -775,7 +775,7 @@ export const ConsumptionSummary = ({
             <VerticalGridLines />
             <HorizontalGridLines />
             <XAxis title="Year" />
-            <YAxis />
+            <YAxis title="Emissions/ kG C02 eq" />
             <LineSeries
               className="linemark-series-example-2"
               curve={null}

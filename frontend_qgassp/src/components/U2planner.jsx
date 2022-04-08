@@ -34,10 +34,8 @@ export const U2planner = ({
   const [newPopulation, setNewPopulation] = useState("");
   const [nextU3planer, setU3planner] = useState(false);
   const [isU2Loading, setIsU2Loading] = useState(true);
-
-  useEffect(() => {
-    localStorage.setItem("projections", JSON.stringify(projections));
-  }, [projections]);
+  const dataNewPopulation = [];
+  const dataProjectionPopulation = [];
 
   const fetchU2PlannerData = () => {
     const rawData = { baseline, newDevelopment };
@@ -53,6 +51,8 @@ export const U2planner = ({
       .then((response) => {
         // setU2Response(response.data);
         setNewPopulation(response.data.data.new_development.impact.population);
+
+
         setIsU2Loading(false);
       })
       .catch((error) => {
@@ -66,6 +66,12 @@ export const U2planner = ({
   useEffect(async () => {
     fetchU2PlannerData();
   }, []);
+
+  
+  for (let i = baseline.year; i < 2051; i++) {
+    dataProjectionPopulation.push({ x: i, y: projections.population[i] });
+    dataNewPopulation.push({ x: i, y: newPopulation[i] });
+  }
 
   const gotoU3planner = () => {
     setU3planner(true);
@@ -149,266 +155,39 @@ export const U2planner = ({
               <label>{settlementDistribution.rural}</label>
               <label>{newDevelopment.newSettlementDistribution.rural}</label>
             </div>
-            
-            <p>{JSON.stringify(newPopulation)}</p>
-            <br/>
-            <p>{JSON.stringify(projections.population)}</p>
+            <Divider textAlign="left" flexItem>
+            {" "}
+            <b>
+              {" "}
+              {baseline.country} :  Projections vs New development total yearly emissions 
+            </b>
+          </Divider>
 
             <XYPlot
               xType="ordinal"
               width={1000}
               height={500}
               margin={{ left: 100 }}
-              yDomain={[
-                -1,
-                baseline.population
-              ]}
             >
               <VerticalGridLines />
               <HorizontalGridLines />
               <XAxis title="Year" />
-              <YAxis />
+              <YAxis title="Emissions/ kG C02 eq" />
               <LineSeries
+                className="linemark-series-example-2"
                 curve={null}
-                data={[
-                  { x: 2022, 
-                    y: newPopulation[2022] },
-                  {
-                    x: 2023,
-                    y: newPopulation[2023],
-                  },
-                  {
-                    x: 2024,
-                    y: newPopulation[2024],
-                  },
-                  {
-                    x: 2025,
-                    y: newPopulation[2025],
-                  },
-                  {
-                    x: 2026,
-                    y: newPopulation[2026],
-                  },
-                  {
-                    x: 2027,
-                    y: newPopulation[2027],
-                  },
-                  {
-                    x: 2028,
-                    y: newPopulation[2028],
-                  },
-                  {
-                    x: 2029,
-                    y: newPopulation[2029],
-                  },
-                  {
-                    x: 2030,
-                    y: newPopulation[2030],
-                  },
-                  {
-                    x: 2031,
-                    y: newPopulation[2031],
-                  },
-                  {
-                    x: 2032,
-                    y: newPopulation[2032],
-                  },
-                  {
-                    x: 2033,
-                    y: newPopulation[2033],
-                  },
-                  {
-                    x: 2034,
-                    y: newPopulation[2034],
-                  },
-                  {
-                    x: 2035,
-                    y: newPopulation[2035],
-                  },
-                  {
-                    x: 2036,
-                    y: newPopulation[2036],
-                  },
-                  {
-                    x: 2037,
-                    y: newPopulation[2037],
-                  },
-                  {
-                    x: 2038,
-                    y: newPopulation[2038],
-                  },
-                  {
-                    x: 2039,
-                    y: newPopulation[2039],
-                  },
-                  {
-                    x: 2040,
-                    y: newPopulation[2040],
-                  },
-                  {
-                    x: 2041,
-                    y: newPopulation[2041],
-                  },
-                  {
-                    x: 2042,
-                    y: newPopulation[2042],
-                  },
-                  {
-                    x: 2043,
-                    y: newPopulation[2043],
-                  },
-                  {
-                    x: 2044,
-                    y: newPopulation[2044],
-                  },
-                  {
-                    x: 2045,
-                    y: newPopulation[2045],
-                  },
-                  {
-                    x: 2046,
-                    y: newPopulation[2046],
-                  },
-                  {
-                    x: 2047,
-                    y: newPopulation[2047],
-                  },
-                  {
-                    x: 2048,
-                    y: newPopulation[2048],
-                  },
-                  {
-                    x: 2049,
-                    y: newPopulation[2049],
-                  },
-                  {
-                    x: 2050,
-                    y: newPopulation[2050],
-                  },
-                ]}
-                opacity={1}
+                color="#ef7d00"
                 strokeStyle="solid"
                 style={{}}
+                strokeWidth="2"
+                data={dataNewPopulation}
               />
               <LineSeries
-                data={[
-                  { x: 2022, y: projections.population[2022] },
-                  {
-                    x: 2023,
-                    y: projections.population[2023],
-                  },
-                  {
-                    x: 2024,
-                    y: projections.population[2024],
-                  },
-                  {
-                    x: 2025,
-                    y: projections.population[2025],
-                  },
-                  {
-                    x: 2026,
-                    y: projections.population[2026],
-                  },
-                  {
-                    x: 2027,
-                    y: projections.population[2027],
-                  },
-                  {
-                    x: 2028,
-                    y: projections.population[2028],
-                  },
-                  {
-                    x: 2029,
-                    y: projections.population[2029],
-                  },
-                  {
-                    x: 2030,
-                    y: projections.population[2030],
-                  },
-                  {
-                    x: 2031,
-                    y: projections.population[2031],
-                  },
-                  {
-                    x: 2032,
-                    y: projections.population[2032],
-                  },
-                  {
-                    x: 2033,
-                    y: projections.population[2033],
-                  },
-                  {
-                    x: 2034,
-                    y: projections.population[2034],
-                  },
-                  {
-                    x: 2035,
-                    y: projections.population[2035],
-                  },
-                  {
-                    x: 2036,
-                    y: projections.population[2036],
-                  },
-                  {
-                    x: 2037,
-                    y: projections.population[2037],
-                  },
-                  {
-                    x: 2038,
-                    y: projections.population[2038],
-                  },
-                  {
-                    x: 2039,
-                    y: projections.population[2039],
-                  },
-                  {
-                    x: 2040,
-                    y: projections.population[2040],
-                  },
-                  {
-                    x: 2041,
-                    y: projections.population[2041],
-                  },
-                  {
-                    x: 2042,
-                    y: projections.population[2042],
-                  },
-                  {
-                    x: 2043,
-                    y: projections.population[2043],
-                  },
-                  {
-                    x: 2044,
-                    y: projections.population[2044],
-                  },
-                  {
-                    x: 2045,
-                    y: projections.population[2045],
-                  },
-                  {
-                    x: 2046,
-                    y: projections.population[2046],
-                  },
-                  {
-                    x: 2047,
-                    y: projections.population[2047],
-                  },
-                  {
-                    x: 2048,
-                    y: projections.population[2048],
-                  },
-                  {
-                    x: 2049,
-                    y: projections.population[2049],
-                  },
-                  {
-                    x: 2050,
-                    y: projections.population[2050],
-                  },
-                ]}
-                opacity={1}
-                strokeStyle="solid"
-                style={{}}
+                color="#3d58a3"
+                curve={null}
+                strokeWidth="2"
+                strokeStyle="dashed"
+                data={dataProjectionPopulation}
               />
             </XYPlot>
             <U2legend />

@@ -5,10 +5,10 @@ import "../css/u2legend.css";
 const ITEMS = [
   {
     title: "Population baseline",
-    color: "rgba(102,116,155,1)",
+    color: "rgb(61, 88, 163)",
     strokeStyle: "dashed",
   },
-  { title: "Population with new resident", color: "rgba(21,75,230,1)" },
+  { title: "Population with new resident", color: "rgb(239, 125, 0)" },
 ];
 
 export const U2legend = () => {
