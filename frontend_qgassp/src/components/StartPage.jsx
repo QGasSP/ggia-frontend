@@ -181,9 +181,10 @@ export const StartPage = () => {
               />
             </div>
           </div>
-
           <Divider orientation="vertical" flexItem></Divider>
+          <div className="column_start"></div>
 
+         {/*  <Divider orientation="vertical" flexItem></Divider>
           <div className="column_start">
             <header className="intro_header">
               <h1 id="title" className="header_start">
@@ -216,7 +217,8 @@ export const StartPage = () => {
                 </div>
               </form>
             </div>
-          </div>
+          </div> */}
+
         </div>
       </article>
     </>

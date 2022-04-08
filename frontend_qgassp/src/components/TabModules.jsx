@@ -7,6 +7,7 @@ import { Welcome } from "./Welcome";
 import { BuildingBaseline } from "./BuildingBaseline";
 import { ConsumptionBaseline } from "./ConsumptionBaseline";
 import { TransportBaseline } from "./TransportBaseline";
+import { GenerateReport } from "./GenerateReport";
 /* import { TransportBaseline } from "./TransportBaseline";
  */
 export const TabModules = () => {
@@ -73,18 +74,18 @@ export const TabModules = () => {
             </button>
             <button
               className={toggleState === 6 ? "tabs active-tabs" : "tabs"}
-              onClick={() => toggleTab(6)}
-              id="local_data"
-            >
-              Create local data-set
-            </button>
-            <button
-              className={toggleState === 7 ? "tabs active-tabs" : "tabs"}
-              /*  onClick={() => toggleTab(7)} */
+              /* onClick={() => toggleTab(6)} */
               onClick={openGuide}
               id="user_guide"
             >
               User-guide
+            </button>
+            <button
+              className={toggleState === 7 ? "tabs active-tabs" : "tabs"}
+              onClick={() => toggleTab(7)}
+              id="generate_report"
+            >
+              Generate report
             </button>
           </div>
         </div>
@@ -95,7 +96,8 @@ export const TabModules = () => {
             {toggleState == 3 && <StartPage />}
             {toggleState == 4 && <BuildingBaseline />}
             {toggleState == 5 && <StartPage />}
-            {toggleState == 6 && <StartPage />}
+            {/*   {toggleState == 6 && <Report />} */}
+            {toggleState == 7 && <GenerateReport />}
           </>
         </div>
       </>
@@ -149,18 +151,18 @@ export const TabModules = () => {
           </button>
           <button
             className={toggleState === 6 ? "tabs active-tabs" : "tabs"}
-            onClick={() => toggleTab(6)}
-            id="local_data"
-          >
-            Create local data-set
-          </button>
-          <button
-            className={toggleState === 7 ? "tabs active-tabs" : "tabs"}
-            /*  onClick={() => toggleTab(7)} */
+            /*  onClick={() => toggleTab(6)} */
             onClick={openGuide}
             id="user_guide"
           >
             User-guide
+          </button>
+          <button
+            className={toggleState === 7 ? "tabs active-tabs" : "tabs"}
+            onClick={() => toggleTab(7)}
+            id="generate_report"
+          >
+            Generate report
           </button>
         </div>
       </div>
@@ -171,7 +173,8 @@ export const TabModules = () => {
           {toggleState == 3 && <LandUseChangeTableForm />}
           {toggleState == 4 && <BuildingBaseline />}
           {toggleState == 5 && <ConsumptionBaseline />}
-          {toggleState == 6 && <StartPage />}
+          {/*  {toggleState == 6 && <StartPage />} */}
+          {toggleState == 7 && <GenerateReport />}
         </>
       </div>
     </>

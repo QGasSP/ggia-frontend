@@ -149,28 +149,30 @@ export const U2planner = ({
               <label>{settlementDistribution.rural}</label>
               <label>{newDevelopment.newSettlementDistribution.rural}</label>
             </div>
-{/* 
+            
             <p>{JSON.stringify(newPopulation)}</p>
             <br/>
             <p>{JSON.stringify(projections.population)}</p>
- */}
+
             <XYPlot
               xType="ordinal"
               width={1000}
               height={500}
               margin={{ left: 100 }}
-
+              yDomain={[
+                -1,
+                baseline.population
+              ]}
             >
               <VerticalGridLines />
               <HorizontalGridLines />
               <XAxis title="Year" />
               <YAxis />
               <LineSeries
-                className="linemark-series-example-2"
                 curve={null}
-               
                 data={[
-                  { x: 2022, y: newPopulation[2022] },
+                  { x: 2022, 
+                    y: newPopulation[2022] },
                   {
                     x: 2023,
                     y: newPopulation[2023],
@@ -284,14 +286,11 @@ export const U2planner = ({
                     y: newPopulation[2050],
                   },
                 ]}
-                color="#3d58a3"
+                opacity={1}
                 strokeStyle="solid"
-                strokeWidth="2"
                 style={{}}
               />
               <LineSeries
-                
-          
                 data={[
                   { x: 2022, y: projections.population[2022] },
                   {
@@ -407,11 +406,9 @@ export const U2planner = ({
                     y: projections.population[2050],
                   },
                 ]}
-                color="#ef7d00"
-                curve={null}
-                strokeWidth="2"
-              
-              
+                opacity={1}
+                strokeStyle="solid"
+                style={{}}
               />
             </XYPlot>
             <U2legend />
