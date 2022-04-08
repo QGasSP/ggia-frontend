@@ -5,6 +5,7 @@ import "../css/u2planner.css";
 import { U2planner } from "./U2planner";
 import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
+import Alert from "@mui/material/Alert";
 
 /**
  * U1 Planner user input form for baseline
@@ -101,6 +102,9 @@ export const NewResidents = ({
               <label>
                 <b>New residents</b>
               </label>
+              <Alert severity="info">
+                0 number of new residents = no new developments to be quantified
+              </Alert>
               <div>
                 <label htmlFor="new_residents">
                   Number of new residents moving in
@@ -113,7 +117,7 @@ export const NewResidents = ({
                   required
                 />
                 <label>
-                  &nbsp;&nbsp;&nbsp; 0 = no new developments to be quantified
+                  &nbsp;&nbsp;&nbsp; 
                 </label>
               </div>
               <div>

@@ -59,14 +59,9 @@ export const U1planner = ({
 
     const headers = {
       "Content-type": "application/json",
-      // "Access-Control-Allow-Origin": "*",
     };
     axios
-      .post(
-        urlPrefix + "/api/v1/calculate/transport/baseline",
-        raw,
-        headers
-      )
+      .post(urlPrefix + "/api/v1/calculate/transport/baseline", raw, headers)
       .then((response) => {
         // setResponse(response.data.data.baseline);
         setEmissionData(response.data.data.baseline.emissions);
@@ -85,7 +80,6 @@ export const U1planner = ({
   if (isLoadingTransport) {
     return <div>Loading ...</div>;
   }
-
 
   if (nextNewResidentview === false && Object.keys(projections).length !== 0) {
     return (
@@ -259,13 +253,13 @@ export const U1planner = ({
             <Chip label="Projections" />
           </Divider>
         </div>
-        <br/>
+        <br />
 
         <Divider textAlign="left" flexItem>
           {" "}
           <b>CO2e emissions per capita 2023-2050</b>
         </Divider>
-     {/*  
+        {/*  
         [{
        Object.keys(projections.bus).map((key, i) => (
         <p key={i}>
@@ -580,7 +574,7 @@ export const U1planner = ({
     );
   } else {
     return <></>;
-  };
+  }
 };
 
 U1planner.propTypes = {

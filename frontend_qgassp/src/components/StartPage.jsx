@@ -7,10 +7,7 @@ import Alert from "@mui/material/Alert";
 import axios from "axios";
 import { useStorageInt, useStorageString } from "../reducers/useStorage";
 import urlPrefix from "../Config";
-/* import { TransportBaseline } from "./TransportBaseline";
-import { LandUseChangeTableForm } from "./LandUseChangeTableForm";
-import { ConsumptionBaseline } from "./ConsumptionBaseline"; */
-// new Date().getFullYear()
+
 export const StartPage = () => {
   /*  const toggleState = localStorage.getItem("toggleState"); */
   const [country, setCountry] = useStorageString("country", "");
@@ -74,7 +71,6 @@ export const StartPage = () => {
       });
   }, []);
 
-  /*  if (nextModule === false) { */
   return (
     <>
       <article>
@@ -100,13 +96,12 @@ export const StartPage = () => {
               </Alert>
             )}
 
-            {allFields && nextModule===false&& (
+            {allFields && nextModule === false && (
               <Alert severity="warning">
                 Please fill the year, population and country and save
               </Alert>
             )}
 
-            {/*  <form onSubmit={startBaseline}> */}
             <div className="form-group">
               <label htmlFor="year" className="intro_label">
                 Year
@@ -169,15 +164,12 @@ export const StartPage = () => {
             <div className="next_u1">
               <Button
                 size="small"
-                /* type="submit"
-                  value="Submit" */
+                id="baseline_save"
                 label="Save"
                 onClick={startBaseline}
                 primary="true"
               />
             </div>
-
-            {/*  </form> */}
 
             <br />
             <div className="reset_button">
@@ -229,13 +221,4 @@ export const StartPage = () => {
       </article>
     </>
   );
-  /* } else {
-    return (
-      <TransportBaseline
-        country={country}
-        year={year}
-        population={population}
-      />
-    );
-  } */
 };
