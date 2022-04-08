@@ -338,7 +338,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
   if (nextU3policies === false) {
     return (
       <article>
-        <div className="headerSettlement">
+        <div >
           <Divider textAlign="left" flexItem>
             {" "}
             <Chip label="POLICY QUANTIFICATION" />

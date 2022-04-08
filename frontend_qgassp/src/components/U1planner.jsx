@@ -39,6 +39,15 @@ export const U1planner = ({
   const [isLoadingTransport, setIsLoadingTransport] = useState(true);
   const [isErrorTransport, setIsErrorTransport] = useState(false);
 
+  const dataProjectionsBus = [];
+  const dataProjectionsCar = [];
+  const dataProjectionsMetro = [];
+  const dataProjectionsTram = [];
+  const dataProjectionsTrain = [];
+  const dataProjectionsRailTransport = [];
+  const dataProjectionsRoadTransport = [];
+  const dataProjectionsWaterwaysTransport = [];
+
   useEffect(() => {
     localStorage.setItem("projections", JSON.stringify(projections));
   }, [projections]);
@@ -81,13 +90,33 @@ export const U1planner = ({
     return <div>Loading ...</div>;
   }
 
+  for (let i = year; i < 2051; i++) {
+    dataProjectionsBus.push({ x: i, y: projections.bus[i] });
+    dataProjectionsCar.push({ x: i, y: projections.car[i] });
+    dataProjectionsMetro.push({ x: i, y: projections.metro[i] });
+    dataProjectionsTram.push({ x: i, y: projections.tram[i] });
+    dataProjectionsTrain.push({ x: i, y: projections.train[i] });
+    dataProjectionsRailTransport.push({
+      x: i,
+      y: projections.rail_transport[i],
+    });
+    dataProjectionsRoadTransport.push({
+      x: i,
+      y: projections.road_transport[i],
+    });
+    dataProjectionsWaterwaysTransport.push({
+      x: i,
+      y: projections.waterways_transport[i],
+    });
+  }
+
   if (nextNewResidentview === false && Object.keys(projections).length !== 0) {
     return (
       <article>
         <br />
         <Divider textAlign="left" flexItem>
           {" "}
-          <b>Baseline - Transport CO2e emission</b>
+          <b>{country}: Baseline - Transport CO2e emission</b>
         </Divider>
 
         <div className="piechart_container">
@@ -185,7 +214,7 @@ export const U1planner = ({
           <div></div>
         </div>
         <Divider textAlign="left" flexItem>
-          <b>Baseline - Transport CO2e emission/resident</b>
+          <b>{country}: Baseline - Transport CO2e emission/resident</b>
         </Divider>
 
         <div className="barchart_container">
@@ -257,7 +286,7 @@ export const U1planner = ({
 
         <Divider textAlign="left" flexItem>
           {" "}
-          <b>CO2e emissions per capita 2023-2050</b>
+          <b>{country}: CO2e emissions per capita {year}-2050</b>
         </Divider>
         {/*  
         [{
@@ -269,286 +298,61 @@ export const U1planner = ({
        }] */}
 
         <div>
-          <XYPlot width={1000} height={500} stackBy="y" xType="ordinal">
+          <XYPlot
+            width={1000}
+            height={500}
+            stackBy="y"
+            xType="ordinal"
+            margin={{ left: 80 }}
+          >
             <HorizontalGridLines />
             <VerticalGridLines />
             <VerticalBarSeries className="StackedBarchart" />
-            <XAxis />
-            <YAxis />
+            <XAxis title="Year" />
+            <YAxis title="Emissions/ kG C02 eq" />
             <BarSeries
               color="#8C0303"
-              data={[
-                { x: 2022, y: projections.bus[2022] },
-                { x: 2023, y: projections.bus[2023] },
-                { x: 2024, y: projections.bus[2024] },
-                { x: 2025, y: projections.bus[2025] },
-                { x: 2026, y: projections.bus[2026] },
-                { x: 2027, y: projections.bus[2027] },
-                { x: 2028, y: projections.bus[2028] },
-                { x: 2029, y: projections.bus[2029] },
-                { x: 2030, y: projections.bus[2030] },
-                { x: 2031, y: projections.bus[2031] },
-                { x: 2032, y: projections.bus[2032] },
-                { x: 2033, y: projections.bus[2033] },
-                { x: 2034, y: projections.bus[2034] },
-                { x: 2035, y: projections.bus[2035] },
-                { x: 2036, y: projections.bus[2036] },
-                { x: 2037, y: projections.bus[2037] },
-                { x: 2038, y: projections.bus[2038] },
-                { x: 2039, y: projections.bus[2039] },
-                { x: 2040, y: projections.bus[2040] },
-                { x: 2041, y: projections.bus[2041] },
-                { x: 2042, y: projections.bus[2042] },
-                { x: 2043, y: projections.bus[2043] },
-                { x: 2044, y: projections.bus[2044] },
-                { x: 2045, y: projections.bus[2045] },
-                { x: 2046, y: projections.bus[2046] },
-                { x: 2047, y: projections.bus[2047] },
-                { x: 2048, y: projections.bus[2048] },
-                { x: 2049, y: projections.bus[2049] },
-                { x: 2050, y: projections.bus[2050] },
-              ]}
+              data={dataProjectionsBus}
+              opacity={0.5}
             />
             <BarSeries
               color="#A6036D"
-              data={[
-                { x: 2022, y: projections.car[2022] },
-                { x: 2023, y: projections.car[2023] },
-                { x: 2024, y: projections.car[2024] },
-                { x: 2025, y: projections.car[2025] },
-                { x: 2026, y: projections.car[2026] },
-                { x: 2027, y: projections.car[2027] },
-                { x: 2028, y: projections.car[2028] },
-                { x: 2029, y: projections.car[2029] },
-                { x: 2030, y: projections.car[2030] },
-                { x: 2031, y: projections.car[2031] },
-                { x: 2032, y: projections.car[2032] },
-                { x: 2033, y: projections.car[2033] },
-                { x: 2034, y: projections.car[2034] },
-                { x: 2035, y: projections.car[2035] },
-                { x: 2036, y: projections.car[2036] },
-                { x: 2037, y: projections.car[2037] },
-                { x: 2038, y: projections.car[2038] },
-                { x: 2039, y: projections.car[2039] },
-                { x: 2040, y: projections.car[2040] },
-                { x: 2041, y: projections.car[2041] },
-                { x: 2042, y: projections.car[2042] },
-                { x: 2043, y: projections.car[2043] },
-                { x: 2044, y: projections.car[2044] },
-                { x: 2045, y: projections.car[2045] },
-                { x: 2046, y: projections.car[2046] },
-                { x: 2047, y: projections.car[2047] },
-                { x: 2048, y: projections.car[2048] },
-                { x: 2049, y: projections.car[2049] },
-                { x: 2050, y: projections.car[2050] },
-              ]}
+              data={dataProjectionsCar}
+              opacity={0.5}
             />
             <BarSeries
               color="#400D01"
-              data={[
-                { x: 2022, y: projections.metro[2022] },
-                { x: 2023, y: projections.metro[2023] },
-                { x: 2024, y: projections.metro[2024] },
-                { x: 2025, y: projections.metro[2025] },
-                { x: 2026, y: projections.metro[2026] },
-                { x: 2027, y: projections.metro[2027] },
-                { x: 2028, y: projections.metro[2028] },
-                { x: 2029, y: projections.metro[2029] },
-                { x: 2030, y: projections.metro[2030] },
-                { x: 2031, y: projections.metro[2031] },
-                { x: 2032, y: projections.metro[2032] },
-                { x: 2033, y: projections.metro[2033] },
-                { x: 2034, y: projections.metro[2034] },
-                { x: 2035, y: projections.metro[2035] },
-                { x: 2036, y: projections.metro[2036] },
-                { x: 2037, y: projections.metro[2037] },
-                { x: 2038, y: projections.metro[2038] },
-                { x: 2039, y: projections.metro[2039] },
-                { x: 2040, y: projections.metro[2040] },
-                { x: 2041, y: projections.metro[2041] },
-                { x: 2042, y: projections.metro[2042] },
-                { x: 2043, y: projections.metro[2043] },
-                { x: 2044, y: projections.metro[2044] },
-                { x: 2045, y: projections.metro[2045] },
-                { x: 2046, y: projections.metro[2046] },
-                { x: 2047, y: projections.metro[2047] },
-                { x: 2048, y: projections.metro[2048] },
-                { x: 2049, y: projections.metro[2049] },
-                { x: 2050, y: projections.metro[2050] },
-              ]}
+              data={dataProjectionsMetro}
+              opacity={0.5}
             />
             <BarSeries
               color=" #C4D4F2"
-              data={[
-                { x: 2022, y: projections.tram[2022] },
-                { x: 2023, y: projections.tram[2023] },
-                { x: 2024, y: projections.tram[2024] },
-                { x: 2025, y: projections.tram[2025] },
-                { x: 2026, y: projections.tram[2026] },
-                { x: 2027, y: projections.tram[2027] },
-                { x: 2028, y: projections.tram[2028] },
-                { x: 2029, y: projections.tram[2029] },
-                { x: 2030, y: projections.tram[2030] },
-                { x: 2031, y: projections.tram[2031] },
-                { x: 2032, y: projections.tram[2032] },
-                { x: 2033, y: projections.tram[2033] },
-                { x: 2034, y: projections.tram[2034] },
-                { x: 2035, y: projections.tram[2035] },
-                { x: 2036, y: projections.tram[2036] },
-                { x: 2037, y: projections.tram[2037] },
-                { x: 2038, y: projections.tram[2038] },
-                { x: 2039, y: projections.tram[2039] },
-                { x: 2040, y: projections.tram[2040] },
-                { x: 2041, y: projections.tram[2041] },
-                { x: 2042, y: projections.tram[2042] },
-                { x: 2043, y: projections.tram[2043] },
-                { x: 2044, y: projections.tram[2044] },
-                { x: 2045, y: projections.tram[2045] },
-                { x: 2046, y: projections.tram[2046] },
-                { x: 2047, y: projections.tram[2047] },
-                { x: 2048, y: projections.tram[2048] },
-                { x: 2049, y: projections.tram[2049] },
-                { x: 2050, y: projections.tram[2050] },
-              ]}
+              data={dataProjectionsTram}
+              opacity={0.5}
             />
             <BarSeries
               color="#D90404"
-              data={[
-                { x: 2022, y: projections.train[2022] },
-                { x: 2023, y: projections.train[2023] },
-                { x: 2024, y: projections.train[2024] },
-                { x: 2025, y: projections.train[2025] },
-                { x: 2026, y: projections.train[2026] },
-                { x: 2027, y: projections.train[2027] },
-                { x: 2028, y: projections.train[2028] },
-                { x: 2029, y: projections.train[2029] },
-                { x: 2030, y: projections.train[2030] },
-                { x: 2031, y: projections.train[2031] },
-                { x: 2032, y: projections.train[2032] },
-                { x: 2033, y: projections.train[2033] },
-                { x: 2034, y: projections.train[2034] },
-                { x: 2035, y: projections.train[2035] },
-                { x: 2036, y: projections.train[2036] },
-                { x: 2037, y: projections.train[2037] },
-                { x: 2038, y: projections.train[2038] },
-                { x: 2039, y: projections.train[2039] },
-                { x: 2040, y: projections.train[2040] },
-                { x: 2041, y: projections.train[2041] },
-                { x: 2042, y: projections.train[2042] },
-                { x: 2043, y: projections.train[2043] },
-                { x: 2044, y: projections.train[2044] },
-                { x: 2045, y: projections.train[2045] },
-                { x: 2046, y: projections.train[2046] },
-                { x: 2047, y: projections.train[2047] },
-                { x: 2048, y: projections.train[2048] },
-                { x: 2049, y: projections.train[2049] },
-                { x: 2050, y: projections.train[2050] },
-              ]}
+              data={dataProjectionsTrain}
+              opacity={0.5}
             />
             <BarSeries
               color="#80D941"
-              data={[
-                { x: 2022, y: projections.rail_transport[2022] },
-                { x: 2023, y: projections.rail_transport[2023] },
-                { x: 2024, y: projections.rail_transport[2024] },
-                { x: 2025, y: projections.rail_transport[2025] },
-                { x: 2026, y: projections.rail_transport[2026] },
-                { x: 2027, y: projections.rail_transport[2027] },
-                { x: 2028, y: projections.rail_transport[2028] },
-                { x: 2029, y: projections.rail_transport[2029] },
-                { x: 2030, y: projections.rail_transport[2030] },
-                { x: 2031, y: projections.rail_transport[2031] },
-                { x: 2032, y: projections.rail_transport[2032] },
-                { x: 2033, y: projections.rail_transport[2033] },
-                { x: 2034, y: projections.rail_transport[2034] },
-                { x: 2035, y: projections.rail_transport[2035] },
-                { x: 2036, y: projections.rail_transport[2036] },
-                { x: 2037, y: projections.rail_transport[2037] },
-                { x: 2038, y: projections.rail_transport[2038] },
-                { x: 2039, y: projections.rail_transport[2039] },
-                { x: 2040, y: projections.rail_transport[2040] },
-                { x: 2041, y: projections.rail_transport[2041] },
-                { x: 2042, y: projections.rail_transport[2042] },
-                { x: 2043, y: projections.rail_transport[2043] },
-                { x: 2044, y: projections.rail_transport[2044] },
-                { x: 2045, y: projections.rail_transport[2045] },
-                { x: 2046, y: projections.rail_transport[2046] },
-                { x: 2047, y: projections.rail_transport[2047] },
-                { x: 2048, y: projections.rail_transport[2048] },
-                { x: 2049, y: projections.rail_transport[2049] },
-                { x: 2050, y: projections.rail_transport[2050] },
-              ]}
+              data={dataProjectionsRailTransport}
+              opacity={0.5}
             />
             <BarSeries
               color="#595959"
-              data={[
-                { x: 2022, y: projections.road_transport[2022] },
-                { x: 2023, y: projections.road_transport[2023] },
-                { x: 2024, y: projections.road_transport[2024] },
-                { x: 2025, y: projections.road_transport[2025] },
-                { x: 2026, y: projections.road_transport[2026] },
-                { x: 2027, y: projections.road_transport[2027] },
-                { x: 2028, y: projections.road_transport[2028] },
-                { x: 2029, y: projections.road_transport[2029] },
-                { x: 2030, y: projections.road_transport[2030] },
-                { x: 2031, y: projections.road_transport[2031] },
-                { x: 2032, y: projections.road_transport[2032] },
-                { x: 2033, y: projections.road_transport[2033] },
-                { x: 2034, y: projections.road_transport[2034] },
-                { x: 2035, y: projections.road_transport[2035] },
-                { x: 2036, y: projections.road_transport[2036] },
-                { x: 2037, y: projections.road_transport[2037] },
-                { x: 2038, y: projections.road_transport[2038] },
-                { x: 2039, y: projections.road_transport[2039] },
-                { x: 2040, y: projections.road_transport[2040] },
-                { x: 2041, y: projections.road_transport[2041] },
-                { x: 2042, y: projections.road_transport[2042] },
-                { x: 2043, y: projections.road_transport[2043] },
-                { x: 2044, y: projections.road_transport[2044] },
-                { x: 2045, y: projections.road_transport[2045] },
-                { x: 2046, y: projections.road_transport[2046] },
-                { x: 2047, y: projections.road_transport[2047] },
-                { x: 2048, y: projections.road_transport[2048] },
-                { x: 2049, y: projections.road_transport[2049] },
-                { x: 2050, y: projections.road_transport[2050] },
-              ]}
+              data={dataProjectionsRoadTransport}
+              opacity={0.5}
             />
             <BarSeries
               color="#F2CE1B"
-              data={[
-                { x: 2022, y: projections.waterways_transport[2022] },
-                { x: 2023, y: projections.waterways_transport[2023] },
-                { x: 2024, y: projections.waterways_transport[2024] },
-                { x: 2025, y: projections.waterways_transport[2025] },
-                { x: 2026, y: projections.waterways_transport[2026] },
-                { x: 2027, y: projections.waterways_transport[2027] },
-                { x: 2028, y: projections.waterways_transport[2028] },
-                { x: 2029, y: projections.waterways_transport[2029] },
-                { x: 2030, y: projections.waterways_transport[2030] },
-                { x: 2031, y: projections.waterways_transport[2031] },
-                { x: 2032, y: projections.waterways_transport[2032] },
-                { x: 2033, y: projections.waterways_transport[2033] },
-                { x: 2034, y: projections.waterways_transport[2034] },
-                { x: 2035, y: projections.waterways_transport[2035] },
-                { x: 2036, y: projections.waterways_transport[2036] },
-                { x: 2037, y: projections.waterways_transport[2037] },
-                { x: 2038, y: projections.waterways_transport[2038] },
-                { x: 2039, y: projections.waterways_transport[2039] },
-                { x: 2040, y: projections.waterways_transport[2040] },
-                { x: 2041, y: projections.waterways_transport[2041] },
-                { x: 2042, y: projections.waterways_transport[2042] },
-                { x: 2043, y: projections.waterways_transport[2043] },
-                { x: 2044, y: projections.waterways_transport[2044] },
-                { x: 2045, y: projections.waterways_transport[2045] },
-                { x: 2046, y: projections.waterways_transport[2046] },
-                { x: 2047, y: projections.waterways_transport[2047] },
-                { x: 2048, y: projections.waterways_transport[2048] },
-                { x: 2049, y: projections.waterways_transport[2049] },
-                { x: 2050, y: projections.waterways_transport[2050] },
-              ]}
+              data={dataProjectionsWaterwaysTransport}
             />
           </XYPlot>
-          <LineLegend />
+          <div>
+            <LineLegend />
+          </div>
         </div>
 
         <div className="nextU2Button">

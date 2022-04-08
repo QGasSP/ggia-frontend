@@ -93,10 +93,7 @@ export const NewResidents = ({
           </Divider>
         </div>
 
-        <section>
-          {/*    <div>
-            <h2>U2 NEW DEVELOPMENT</h2>
-          </div> */}
+        <section className="sectionNewDev">
           <div className="newResidentDiv">
             <form onSubmit={updateU2Planner}>
               <label>
