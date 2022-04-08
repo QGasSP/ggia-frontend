@@ -4,6 +4,7 @@ import { Button } from "./Button";
 import { LineLegend } from "./LineLegend";
 import "../css/u1planner.css";
 import axios from "axios";
+import CircularProgress from "@mui/material/CircularProgress";
 import {
   XYPlot,
   XAxis,
@@ -87,7 +88,7 @@ export const U1planner = ({
   }, []);
 
   if (isLoadingTransport) {
-    return <div>Loading ...</div>;
+    return <CircularProgress color="success" />;
   }
 
   for (let i = year; i < 2051; i++) {
