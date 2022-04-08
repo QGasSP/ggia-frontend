@@ -3282,7 +3282,7 @@ export const LandUseChangeTableForm = () => {
                             id="btn"
                             value="Submit"
                             onClick={setLandUseChangeChart}
-                            primary="true"
+                            primary
                           />
                         </td>
                         <td>
@@ -3292,7 +3292,7 @@ export const LandUseChangeTableForm = () => {
                             id="btn-reset"
                             value="Reset"
                             onClick={handleResetValues}
-                            secondary="true"
+                            secondary
                           />
                         </td>
                       </tr>

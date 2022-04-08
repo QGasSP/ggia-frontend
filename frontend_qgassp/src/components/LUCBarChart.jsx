@@ -23,124 +23,68 @@ const BarSeries = VerticalBarSeries;
 export const LUCBarChart = ({landUseChangeResponse, year }) => {
   // #region data distribution
   const dataCroplandToForestland = [];
+  const dataGrasslandToForestland = [];
+  const dataWetlandToForestland = [];
+  const dataSettlementToForestland = [];
+  const dataOtherlandToForestland = [];
+  const dataForestlandToCropland = [];
+  const dataGrasslandToCropland = [];
+  const dataWetlandToCropland = [];
+  const dataSettlementToCropland = [];
+  const dataOtherlandToCropland = [];
+  const dataCroplandToGrassland = [];
+  const dataForestlandToGrassland = [];
+  const dataWetlandToGrassland = [];
+  const dataSettlementToGrassland = [];
+  const dataOtherlandToGrassland = [];
+  const dataForestlandToWetland = [];
+  const dataCroplandToWetland = [];
+  const dataGrasslandToWetland = [];
+  const dataLandToPeatExtraction = [];
+  const dataPeatlandRestoration = [];
+  const dataForestlandToSettlement = [];
+  const dataCroplandToSettlement = [];
+  const dataGrasslandToSettlement = [];
+  const dataWetlandToSettlement = [];
+  const dataOtherlandToSettlement = [];
+  const dataForestlandToOtherland = [];
+  const dataCroplandToOtherland = [];
+  const dataGrasslandToOtherland = [];
+  const dataWetlandToOtherland = [];
+  const dataSettlementToOtherland = [];
+
   for (let i = year; i < 2051; i++){
     dataCroplandToForestland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].croplandToForestland });
-  };
-  const dataGrasslandToForestland = [];
-  for (let i = year; i < 2051; i++){
     dataGrasslandToForestland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].grasslandToForestland });
-  };
-  const dataWetlandToForestland = [];
-  for (let i = year; i < 2051; i++){
     dataWetlandToForestland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].wetlandToForestland });
-  };
-  const dataSettlementToForestland = [];
-  for (let i = year; i < 2051; i++){
     dataSettlementToForestland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].settlementToForestland });
-  };
-  const dataOtherlandToForestland = [];
-  for (let i = year; i < 2051; i++){
     dataOtherlandToForestland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].otherlandToForestland });
-  };
-  const dataForestlandToCropland = [];
-  for (let i = year; i < 2051; i++){
     dataForestlandToCropland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].forestlandToCropland });
-  };
-  const dataGrasslandToCropland = [];
-  for (let i = year; i < 2051; i++){
     dataGrasslandToCropland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].grasslandToCropland });
-  };
-  const dataWetlandToCropland = [];
-  for (let i = year; i < 2051; i++){
     dataWetlandToCropland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].wetlandToCropland });
-  };
-  const dataSettlementToCropland = [];
-  for (let i = year; i < 2051; i++){
     dataSettlementToCropland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].settlementToCropland });
-  };
-  const dataOtherlandToCropland = [];
-  for (let i = year; i < 2051; i++){
     dataOtherlandToCropland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].otherlandToCropland });
-  };
-  const dataForestlandToGrassland = [];
-  for (let i = year; i < 2051; i++){
     dataForestlandToGrassland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].forestlandToGrassland });
-  };
-  const dataCroplandToGrassland = [];
-  for (let i = year; i < 2051; i++){
     dataCroplandToGrassland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].croplandToGrassland });
-  };
-  const dataWetlandToGrassland = [];
-  for (let i = year; i < 2051; i++){
     dataWetlandToGrassland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].wetlandToGrassland });
-  };
-  const dataSettlementToGrassland = [];
-  for (let i = year; i < 2051; i++){
     dataSettlementToGrassland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].settlementToGrassland });
-  };
-  const dataOtherlandToGrassland = [];
-  for (let i = year; i < 2051; i++){
     dataOtherlandToGrassland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].otherlandToGrassland });
-  };
-  const dataForestlandToWetland = [];
-  for (let i = year; i < 2051; i++){
     dataForestlandToWetland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].forestlandToWetland });
-  };
-  const dataCroplandToWetland = [];
-  for (let i = year; i < 2051; i++){
     dataCroplandToWetland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].croplandToWetland });
-  };
-  const dataGrasslandToWetland = [];
-  for (let i = year; i < 2051; i++){
     dataGrasslandToWetland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].grasslandToWetland });
-  };
-  const dataLandToPeatExtraction = [];
-  for (let i = year; i < 2051; i++){
-    dataLandToPeatExtraction.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].LandToPeatExtraction });
-  };
-  const dataPeatlandRestoration = [];
-  for (let i = year; i < 2051; i++){
-    dataPeatlandRestoration.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].PeatlandRestoration });
-  };
-  const dataForestlandToSettlement = [];
-  for (let i = year; i < 2051; i++){
+    dataLandToPeatExtraction.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].landToPeatExtraction });
+    dataPeatlandRestoration.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].peatlandRestoration });
     dataForestlandToSettlement.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].forestlandToSettlement });
-  };
-  const dataCroplandToSettlement = [];
-  for (let i = year; i < 2051; i++){
     dataCroplandToSettlement.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].croplandToSettlement });
-  };
-  const dataGrasslandToSettlement = [];
-  for (let i = year; i < 2051; i++){
-    dataGrasslandToSettlement.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].grasslandToSettlement });
-  };
-  const dataWetlandToSettlement = [];
-  for (let i = year; i < 2051; i++){
+    dataGrasslandToSettlement.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].wetlandToSettlement });
     dataWetlandToSettlement.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].wetlandToSettlement });
-  };
-  const dataOtherlandToSettlement = [];
-  for (let i = year; i < 2051; i++){
     dataOtherlandToSettlement.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].otherlandToSettlement });
-  };
-  const dataForestlandToOtherland = [];
-  for (let i = year; i < 2051; i++){
     dataForestlandToOtherland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].forestlandToOtherland });
-  };
-  const dataCroplandToOtherland = [];
-  for (let i = year; i < 2051; i++){
     dataCroplandToOtherland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].croplandToOtherland });
-  };
-  const dataGrasslandToOtherland = [];
-  for (let i = year; i < 2051; i++){
     dataGrasslandToOtherland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].grasslandToOtherland });
-  };
-  const dataWetlandToOtherland = [];
-  for (let i = year; i < 2051; i++){
     dataWetlandToOtherland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].wetlandToOtherland });
-  };
-  const dataSettlementToOtherland = [];
-  for (let i = year; i < 2051; i++){
     dataSettlementToOtherland.push({ x: i, y0: 0, y: landUseChangeResponse.landUseChange[i].settlementToOtherland });
+
   };
   // #endregion
 
