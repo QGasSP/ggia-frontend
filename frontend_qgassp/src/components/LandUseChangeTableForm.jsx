@@ -3250,7 +3250,7 @@ export const LandUseChangeTableForm = () => {
                         <td className="row-title">Total area (ha)</td>
                         <td>
                           <input
-                            className="table-cell"
+                            className="table-cell total-cell"
                             type="number"
                             id="totalArea"
                             value={totalArea_}
@@ -3259,7 +3259,7 @@ export const LandUseChangeTableForm = () => {
                         </td>
                         <td>
                           <input
-                            className="table-cell"
+                            className="table-cell total-cell"
                             type="number"
                             id="totalMineral"
                             value={totalMineral}
@@ -3268,7 +3268,7 @@ export const LandUseChangeTableForm = () => {
                         </td>
                         <td>
                           <input
-                            className="table-cell"
+                            className="table-cell total-cell"
                             type="number"
                             id="totalOrganic"
                             value={totalOrganic}
@@ -3299,16 +3299,6 @@ export const LandUseChangeTableForm = () => {
                     </tbody>
                   </table>
                 </div>
-
-               {/*  <div className="backStart">
-                  <Button
-                    size="small"
-                    value="backStartPage"
-                    onClick={() => navigate("/startPage", { replace: true })}
-                    label="&laquo; Previous"
-                    secondary="true"
-                  />
-                </div> */}
 
                 <div className="nextU1Button">
                   <Button

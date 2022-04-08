@@ -241,3 +241,7 @@ section div {
 .btn-luc-reset:hover{
   background-color: #606c85b0;
 }
+.total-cell{
+  border: none;
+  background: transparent;
+}
