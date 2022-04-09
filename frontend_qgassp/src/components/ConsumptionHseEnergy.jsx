@@ -14,6 +14,8 @@ const ceYes = true;
 const ceNo = false;
 export const ConsumptionHseEnergy = ({
   districtProp,
+  electricityHeatProp,
+  combustableFuelsProp,
   liquidsProp,
   solidsProp,
   gasesProp,
@@ -21,6 +23,8 @@ export const ConsumptionHseEnergy = ({
 }) => {
   const [nextCBTransport, setCbTransport] = useState(false);
   const [districtHeating, setDistrictHeating] = useState(0.0);
+  const [electricityHeating, setElectricityHeating] = useState(0.0);
+  const [combustableFuels, setCombustableFuels] = useState(0.0);
   const [liquidHeating, setLiquidHeating] = useState(0.0);
   const [solidsHeating, setSolidHeating] = useState(0.0);
   const [gasesHeating, setGasesHeating] = useState(0.0);
@@ -36,12 +40,11 @@ export const ConsumptionHseEnergy = ({
     "Electricity by solar photovoltaic"
   );
   const [elScaler, setElectricityScaler] = useState(0);
-  const [sHeating, setShareHeating] = useState(false);
 
-  const [checked, setChecked] = useState(false);
-  const handleBreakdownChange = (e) => {
+  const [sHeating, setHeatingShare] = useState(false);
+  const handleHeatingShare = (e) => {
     e.target.checked;
-    setChecked(!checked);
+    setHeatingShare(!sHeating);
   };
 
   const optionsCb = [];
@@ -75,6 +78,16 @@ export const ConsumptionHseEnergy = ({
   const handleDistrictProp = (e) => {
     e.preventDefault();
     setDistrictHeating(Number(e.target.value));
+  };
+
+  const handleElectricityHeatProp = (e) => {
+    e.preventDefault();
+    setElectricityHeating(Number(e.target.value));
+  };
+
+  const handleCombustableFuelsProp = (e) => {
+    e.preventDefault();
+    setCombustableFuels(Number(e.target.value));
   };
 
   const handleLiquidsProp = (e) => {
@@ -282,47 +295,33 @@ export const ConsumptionHseEnergy = ({
             </div>
 
             <div className="div_transport">
-              <label htmlFor="s_heating">
-                Consider changes in the heating share?
+              <label>
+                <b>Sustainable Heating</b>
               </label>
-              <select
-                className="heat_share_options"
-                id="s_heating"
-                onChange={(e) => setShareHeating(e.target.value)}
-                defaultValue={sHeating}
-              >
-                <option value="DefaultOption">Select an option</option>
-                <option value={ceYes}>Yes</option>
-                <option value={ceNo}>No</option>
-              </select>
+              <label></label>
             </div>
 
-            <br />
-            {sHeating === "true" && (
+            {(
               <>
-                <Divider textAlign="left" flexItem>
-                  {" "}
-                  <b>Sustainable heating </b>
-                </Divider>
-                <br />
                 <div className="div_breakdown">
-                  <label htmlFor="source_breakdown">
+                  <label htmlFor="s_heating">
                     <b>
-                      Select to view breakdown of heating sources in the area
+                      Consider changes in the heating share:
                     </b>
                   </label>
                   <input
                     className="checkbox_cb"
                     type="checkbox"
-                    id="source_breakdown"
-                    checked={checked}
-                    onChange={handleBreakdownChange}
+                    id="s_heating"
+                    checked={sHeating}
+                    onChange={handleHeatingShare}
                   />
                 </div>
               </>
             )}
 
-            {checked && sHeating === "true" && (
+
+            {sHeating && (
               <>
                 <div className="div_heating">
                   <label htmlFor="district_heating" className="settle_label">
@@ -340,8 +339,38 @@ export const ConsumptionHseEnergy = ({
                 </div>
 
                 <div className="div_heating">
+                  <label htmlFor="electric_heating" className="settle_label">
+                    Electricity heating
+                  </label>
+                  <input
+                    className="input_occupancy"
+                    type="number"
+                    id="electric_heating"
+                    onChange={handleElectricityHeatProp}
+                    defaultValue={
+                      Math.round((electricityHeatProp + Number.EPSILON) * 100) / 100
+                    }
+                  />
+                </div>
+
+                <div className="div_heating">
+                  <label htmlFor="combustable_fuels" className="settle_label">
+                    Combustable fuels
+                  </label>
+                  <input
+                    className="input_occupancy"
+                    type="number"
+                    id="electric_heating"
+                    onChange={handleCombustableFuelsProp}
+                    defaultValue={
+                      Math.round((combustableFuelsProp + Number.EPSILON) * 100) / 100
+                    }
+                  />
+                </div>
+
+                <div className="div_heating">
                   <label htmlFor="liquid_heating" className="settle_label">
-                    Liquid heating
+                    - Liquid heating (combustable fuel)
                   </label>
                   <input
                     className="input_occupancy"
@@ -355,7 +384,7 @@ export const ConsumptionHseEnergy = ({
                 </div>
                 <div className="div_heating">
                   <label htmlFor="solid_heating" className="settle_label">
-                    Solid heating
+                    - Solid heating (combustable fuel)
                   </label>
                   <input
                     className="input_occupancy"
@@ -370,7 +399,7 @@ export const ConsumptionHseEnergy = ({
 
                 <div className="div_heating">
                   <label htmlFor="gas_heating" className="settle_label">
-                    Liquid heating
+                    - Gasses heating (combustable fuel)
                   </label>
                   <input
                     className="input_occupancy"
@@ -384,7 +413,7 @@ export const ConsumptionHseEnergy = ({
                 </div>
                 <div className="div_heating">
                   <label htmlFor="district_value" className="settle_label">
-                    District value
+                    District heating direct emission factor
                   </label>
                   <input
                     className="input_occupancy"
@@ -426,6 +455,8 @@ export const ConsumptionHseEnergy = ({
         elScaler={elScaler}
         sHeating={sHeating}
         districtProp={districtHeating}
+        electricityHeatProp={electricityHeating}
+        combustableFuelsProp={combustableFuels}
         liquidsProp={liquidHeating}
         solidsProp={solidsHeating}
         gasesProp={gasesHeating}
@@ -437,6 +468,8 @@ export const ConsumptionHseEnergy = ({
 
 ConsumptionHseEnergy.propTypes = {
   districtProp: PropTypes.number.isRequired,
+  electricityHeatProp: PropTypes.number.isRequired,
+  combustableFuelsProp: PropTypes.number.isRequired,
   liquidsProp: PropTypes.number.isRequired,
   solidsProp: PropTypes.number.isRequired,
   gasesProp: PropTypes.number.isRequired,
