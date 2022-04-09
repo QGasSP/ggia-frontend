@@ -9,8 +9,8 @@ export default {
 
 const Template = (args) => <BuildingsNewUnits {...args} />;
 
-export const BaselineInput = Template.bind({});
-BaselineInput.args = {
+export const NewUnitsInput = Template.bind({});
+NewUnitsInput.args = {
   primary: true,
   label: "BuildingsNewUnits",
 };
