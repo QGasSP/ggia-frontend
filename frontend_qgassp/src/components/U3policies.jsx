@@ -39,14 +39,12 @@ export const U3policies = ({
   fuelSharesCarTypes,
   fuelSharesCar,
   electricityTransTypes,
-  electricityTrans
+  electricityTrans,
 }) => {
-
-
   // if (updateU2charts === false && totalNewResidents !== 100) {
   return (
     <article>
-        <br/>
+      <br />
       <div className="headerU3policies">
         <Divider textAlign="left" flexItem>
           {" "}
@@ -55,7 +53,6 @@ export const U3policies = ({
       </div>
 
       <section>
-      
         <div>{policyQuantification}</div>
         <div>
           <form>
@@ -89,9 +86,7 @@ export const U3policies = ({
               <label>% of the area affected</label> */}
               <div>
                 <label>change in mobility %</label>
-                <label>
-                  {freightTrans.expectedChange}
-                </label>
+                <label>{freightTrans.expectedChange}</label>
                 {/* <label empty for spacing></label>
                 <label>% of the area affected goes here</label> */}
               </div>
@@ -113,10 +108,7 @@ export const U3policies = ({
                 <label>Share for bus</label>
                 <label>{emission.bus}</label>
                 <label> {modalPassShares.bus}</label>
-                <label>
-                  {" "}
-                  {modalSplitPass.affectedPopulation}
-                </label>
+                <label> {modalSplitPass.affectedPopulation}</label>
               </div>
               <div>
                 <label>Share for metro</label>
@@ -238,26 +230,17 @@ export const U3policies = ({
               <div>
                 <label>Share for rail</label>
                 <label>{emission.rail_transport}</label>
-                <label>
-                  {" "}
-                  {modalFreShares.railTransport}
-                </label>
+                <label> {modalFreShares.railTransport}</label>
               </div>
               <div>
                 <label>Share for inland waterways</label>
                 <label>{emission.waterways_transport}</label>
-                <label>
-                  {" "}
-                  {modalFreShares.waterwaysTransport}
-                </label>
+                <label> {modalFreShares.waterwaysTransport}</label>
               </div>
               <div>
                 <label>Share for road freight</label>
                 <label>{emission.road_transport}</label>
-                <label>
-                  {" "}
-                  {modalFreShares.roadTransport}
-                </label>
+                <label> {modalFreShares.roadTransport}</label>
               </div>
               <div>
                 <label>
@@ -643,7 +626,6 @@ export const U3policies = ({
             </div>
             <div id="divspace">
               <RadialChart
-              
                 type="piechart"
                 data={[
                   {
@@ -1291,8 +1273,7 @@ export const U3policies = ({
               </XYPlot>
             </div>
             <br />
-            <div>
-            </div>
+            <div></div>
           </form>
         </div>
       </section>

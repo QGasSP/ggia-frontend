@@ -1,5 +1,5 @@
 import React from "react";
-import {TransportBaseline} from "../components/TransportBaseline";
+import { TransportBaseline } from "../components/TransportBaseline";
 
 export default {
   title: '"QgasSP/TransportBaseline',

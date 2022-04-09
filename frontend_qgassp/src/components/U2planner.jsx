@@ -52,7 +52,6 @@ export const U2planner = ({
         // setU2Response(response.data);
         setNewPopulation(response.data.data.new_development.impact.population);
 
-
         setIsU2Loading(false);
       })
       .catch((error) => {
@@ -67,7 +66,6 @@ export const U2planner = ({
     fetchU2PlannerData();
   }, []);
 
-  
   for (let i = baseline.year; i < 2051; i++) {
     dataProjectionPopulation.push({ x: i, y: projections.population[i] });
     dataNewPopulation.push({ x: i, y: newPopulation[i] });
@@ -156,12 +154,13 @@ export const U2planner = ({
               <label>{newDevelopment.newSettlementDistribution.rural}</label>
             </div>
             <Divider textAlign="left" flexItem>
-            {" "}
-            <b>
               {" "}
-              {baseline.country} :  Projections vs New development total yearly emissions 
-            </b>
-          </Divider>
+              <b>
+                {" "}
+                {baseline.country} : Projections vs New development total yearly
+                emissions
+              </b>
+            </Divider>
 
             <XYPlot
               xType="ordinal"

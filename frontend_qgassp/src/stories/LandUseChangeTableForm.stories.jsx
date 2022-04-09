@@ -2,7 +2,6 @@ import React from "react";
 
 import { LandUseChangeTableForm } from "../components/LandUseChangeTableForm";
 
-
 export default {
   title: '"QgasSP/LandUseChangeTableForm',
   component: LandUseChangeTableForm,

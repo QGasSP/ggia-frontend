@@ -1,5 +1,5 @@
 import React from "react";
-import {BuildingsNewUnits} from "../components/BuildingsNewUnits";
+import { BuildingsNewUnits } from "../components/BuildingsNewUnits";
 
 export default {
   title: '"QgasSP/BuildingsNewUnits',

@@ -20,83 +20,91 @@ import Chip from "@mui/material/Chip";
 import { Legend } from "./Legend";
 import urlPrefix from "../Config";
 
-
 /**
- * BuildingsPoliciesCharts baseline 
+ * BuildingsPoliciesCharts baseline
  * @return {}
  */
- const BarSeries = VerticalBarSeries;
- export const BuildingsPoliciesCharts = ({
-   country,
-   year
- }) => {
-   const [errorBBC, setErrorBBC] = useState("");
-   const [emissionResidential, setEmissionResidential] = useState("");
-   const [emissionCommercial, setEmissionCommercial] = useState("");
-   const [emissionsByEndUse, setEmissionsByEndUse] = useState("");
-//    const [baseline, setBaseline] = useState({});
-   const [nextNewUnitsView, setNextNewUnitsView] = useState(false);
- 
-   useEffect(() => {
-     localStorage.setItem("emissionResidential", JSON.stringify(emissionResidential));
-   }, [emissionResidential]);
- 
-   useEffect(() => {
-     localStorage.setItem("emissionCommercial", JSON.stringify(emissionCommercial));
-   }, [emissionCommercial]);
+const BarSeries = VerticalBarSeries;
+export const BuildingsPoliciesCharts = ({ country, year }) => {
+  const [errorBBC, setErrorBBC] = useState("");
+  const [emissionResidential, setEmissionResidential] = useState("");
+  const [emissionCommercial, setEmissionCommercial] = useState("");
+  const [emissionsByEndUse, setEmissionsByEndUse] = useState("");
+  //    const [baseline, setBaseline] = useState({});
+  const [nextNewUnitsView, setNextNewUnitsView] = useState(false);
 
-   useEffect(() => {
-    localStorage.setItem("emissionsByEndUse", JSON.stringify(emissionsByEndUse));
+  useEffect(() => {
+    localStorage.setItem(
+      "emissionResidential",
+      JSON.stringify(emissionResidential)
+    );
+  }, [emissionResidential]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "emissionCommercial",
+      JSON.stringify(emissionCommercial)
+    );
+  }, [emissionCommercial]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "emissionsByEndUse",
+      JSON.stringify(emissionsByEndUse)
+    );
   }, [emissionsByEndUse]);
- 
-//    useEffect(async () => {
-//     //  const baseline = {
-//     //    country,
-//     //    year,
-//     //    population,
-//     //    emissionResidential,
-//     //  };
-//      setBaseline({ baseline });
-//      const raw = { baseline };
- 
-//      const headers = {
-//        "Content-type": "application/json",
-//        // "Access-Control-Allow-Origin": "*",
-//      };
-//      axios
-//        .post(
-//          urlPrefix + "/api/v1/calculate/buildings",
-//          raw,
-//          headers
-//        )
-//        .then((response) => {
-//          setResponse(response.data.data.baseline);
-//          setEmissionResidential(response.data.data.baseline.emissions);
-//          emissionCommercial(response.data.data.baseline.emissions);
-//          emissionsByEndUse(response.data.data.baseline.emissionCommercial);
-//        })
-//        .catch((error) => {
-//          setErrorBBC({ errorMessage: error.message });
-//          // eslint-disable-next-line no-console
-//          console.error("There was an error!", errorBBC);
-//        });
-//    }, []);
- 
+
+  //    useEffect(async () => {
+  //     //  const baseline = {
+  //     //    country,
+  //     //    year,
+  //     //    population,
+  //     //    emissionResidential,
+  //     //  };
+  //      setBaseline({ baseline });
+  //      const raw = { baseline };
+
+  //      const headers = {
+  //        "Content-type": "application/json",
+  //        // "Access-Control-Allow-Origin": "*",
+  //      };
+  //      axios
+  //        .post(
+  //          urlPrefix + "/api/v1/calculate/buildings",
+  //          raw,
+  //          headers
+  //        )
+  //        .then((response) => {
+  //          setResponse(response.data.data.baseline);
+  //          setEmissionResidential(response.data.data.baseline.emissions);
+  //          emissionCommercial(response.data.data.baseline.emissions);
+  //          emissionsByEndUse(response.data.data.baseline.emissionCommercial);
+  //        })
+  //        .catch((error) => {
+  //          setErrorBBC({ errorMessage: error.message });
+  //          // eslint-disable-next-line no-console
+  //          console.error("There was an error!", errorBBC);
+  //        });
+  //    }, []);
+
   //  if (nextNewUnitsView === false && Object.keys(emissionsByEndUse).length !== 0) {
-    if (nextNewUnitsView === false){
-     return (
-       <article>
-         <div className="headerSettlement">
-            <Divider textAlign="left" flexItem>
-              {" "}
-              <Chip label="POLICY QUANTIFICATION RESULTS" />
-            </Divider>
-          </div>
-         <Divider textAlign="left" flexItem>
-           <b>Baseline - CO2e emissions from the energy use in residential buildings by unit type and source of heating energy</b>
-         </Divider>
- 
-         {/* <div className="barchart_container">
+  if (nextNewUnitsView === false) {
+    return (
+      <article>
+        <div className="headerSettlement">
+          <Divider textAlign="left" flexItem>
+            {" "}
+            <Chip label="POLICY QUANTIFICATION RESULTS" />
+          </Divider>
+        </div>
+        <Divider textAlign="left" flexItem>
+          <b>
+            Baseline - CO2e emissions from the energy use in residential
+            buildings by unit type and source of heating energy
+          </b>
+        </Divider>
+
+        {/* <div className="barchart_container">
            <XYPlot xType="ordinal" width={1000} height={300} xDistance={200}>
              <HorizontalGridLines />
              <VerticalGridLines />
@@ -155,12 +163,15 @@ import urlPrefix from "../Config";
            </XYPlot>
          </div> */}
 
-         <Divider textAlign="left" flexItem>
-           {" "}
-           <b>Baseline - CO2e emissions from the energy use in residential buildings by the end use</b>
-         </Divider>
- 
-         {/* <div className="piechart_container">
+        <Divider textAlign="left" flexItem>
+          {" "}
+          <b>
+            Baseline - CO2e emissions from the energy use in residential
+            buildings by the end use
+          </b>
+        </Divider>
+
+        {/* <div className="piechart_container">
            <div className="piechart_diagram">
              <div>
                <RadialChart
@@ -254,21 +265,24 @@ import urlPrefix from "../Config";
            </div>
            <div></div>
          </div> */}
- 
-         <div className="headerSettlement">
-           <Divider textAlign="left" flexItem>
-             {" "}
-             <Chip label="Projections" />
-           </Divider>
-         </div>
-         <br/>
- 
-         <Divider textAlign="left" flexItem>
-           {" "}
-           <b>CO2e emissions from the energy use in commercial buildings by building type and source of heating energy</b>
-         </Divider>
- 
-         {/* <div>
+
+        <div className="headerSettlement">
+          <Divider textAlign="left" flexItem>
+            {" "}
+            <Chip label="Projections" />
+          </Divider>
+        </div>
+        <br />
+
+        <Divider textAlign="left" flexItem>
+          {" "}
+          <b>
+            CO2e emissions from the energy use in commercial buildings by
+            building type and source of heating energy
+          </b>
+        </Divider>
+
+        {/* <div>
            <XYPlot width={1000} height={500} stackBy="y" xType="ordinal">
              <HorizontalGridLines />
              <VerticalGridLines />
@@ -550,9 +564,9 @@ import urlPrefix from "../Config";
            </XYPlot>
            <LineLegend />
          </div> */}
-       </article>
-     );
-   } 
+      </article>
+    );
+  }
   //  else if (nextNewUnitsView === true) {
   //    return (
   //      <BuildingsNewUnits
@@ -564,14 +578,13 @@ import urlPrefix from "../Config";
   //      />
   //    );
   //  }
- };
- 
- BuildingsPoliciesCharts.propTypes = {
+};
+
+BuildingsPoliciesCharts.propTypes = {
   //  residential: PropTypes.object.isRequired,
   //  commercial: PropTypes.object.isRequired,
   //  baseline: PropTypes.object.isRequired,
   //  population: PropTypes.number.isRequired,
-   year: PropTypes.number.isRequired,
-   country: PropTypes.string.isRequired,
- };
- 
+  year: PropTypes.number.isRequired,
+  country: PropTypes.string.isRequired,
+};

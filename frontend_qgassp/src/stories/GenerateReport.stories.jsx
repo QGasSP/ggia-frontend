@@ -7,7 +7,6 @@ export default {
   args: {},
 };
 
-
 const Template = (args) => <GenerateReport {...args} />;
 
 export const ReportGen = Template.bind({});

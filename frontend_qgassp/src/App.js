@@ -5,9 +5,7 @@ import "../node_modules/react-vis/dist/style.css";
 import { Header } from "./components/Header";
 import PropTypes from "prop-types";
 
-
 function App({ user, onLogin, onLogout, onCreateAccount }) {
- 
   return (
     <>
       {
@@ -18,9 +16,8 @@ function App({ user, onLogin, onLogout, onCreateAccount }) {
           onCreateAccount={onCreateAccount}
         />
       }
- 
 
-     {/*  <Router>
+      {/*  <Router>
         <AppRoutes />
       </Router> */}
     </>

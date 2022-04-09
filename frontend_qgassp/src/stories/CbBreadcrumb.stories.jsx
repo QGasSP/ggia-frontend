@@ -9,10 +9,8 @@ export default {
 
 const Template = (args) => <CbBreadcrumb {...args} />;
 
-export const CbBreadcrumbNav= Template.bind({});
+export const CbBreadcrumbNav = Template.bind({});
 CbBreadcrumbNav.args = {
   primary: true,
   label: "CbBreadcrumb",
 };
-
-

@@ -11,7 +11,7 @@ const parse = async (fetchPromise) => {
   }
 };
 
-const getTransportBaseline= ({ baseline }) => {
+const getTransportBaseline = ({ baseline }) => {
   return parse(
     fetch(SERVER_ADDRESS + "/api/v1/calculate/transport/baseline", {
       method: "POST",
@@ -23,13 +23,11 @@ const getTransportBaseline= ({ baseline }) => {
   );
 };
 
-
 /**
  * @return {Object} Server API - {getTransport, baseline}
  */
 export const createServer = () => {
   return {
     getTransportBaseline: (params) => getTransportBaseline(params),
-   
   };
 };

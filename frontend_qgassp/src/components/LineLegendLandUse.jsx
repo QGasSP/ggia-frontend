@@ -43,6 +43,5 @@ export const LineLegendLandUse = () => {
         <DiscreteColorLegend orientation="horizontal" items={ITEMS} />
       </section>
     </div>
-    
   );
 };

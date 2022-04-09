@@ -26,7 +26,6 @@ export const ConsumptionHseEnergy = ({
   const [gasesHeating, setGasesHeating] = useState(0.0);
   const [valueDistrict, setValueDistrict] = useState(0.0);
 
-
   const [policyYear, setPolicyYear] = useState(0);
   const [newFloorArea, setNewFloorArea] = useState(0);
   const [popSizePolicy, setPopulationSizePolicy] = useState(0);
@@ -83,7 +82,7 @@ export const ConsumptionHseEnergy = ({
     setLiquidHeating(Number(e.target.value));
   };
 
-  const  handleSolidProp = (e) => {
+  const handleSolidProp = (e) => {
     e.preventDefault();
     setSolidHeating(Number(e.target.value));
   };
@@ -93,7 +92,7 @@ export const ConsumptionHseEnergy = ({
     setGasesHeating(Number(e.target.value));
   };
 
-  const  handleDistrictValue = (e) => {
+  const handleDistrictValue = (e) => {
     e.preventDefault();
     setValueDistrict(Number(e.target.value));
   };
@@ -299,32 +298,31 @@ export const ConsumptionHseEnergy = ({
             </div>
 
             <br />
-            {sHeating==="true" &&
-            <>
-            <Divider textAlign="left" flexItem>
-              {" "}
-              <b>Sustainable heating </b>
-            </Divider>
-            <br />
-            <div className="div_breakdown">
-              <label htmlFor="source_breakdown">
-                <b>Select to view breakdown of heating sources in the area</b>
-              </label>
-              <input
-                className="checkbox_cb"
-                type="checkbox"
-                id="source_breakdown"
-                checked={checked}
-                onChange={handleBreakdownChange}
-              />
-            </div>
-            
-            </>
-            }
+            {sHeating === "true" && (
+              <>
+                <Divider textAlign="left" flexItem>
+                  {" "}
+                  <b>Sustainable heating </b>
+                </Divider>
+                <br />
+                <div className="div_breakdown">
+                  <label htmlFor="source_breakdown">
+                    <b>
+                      Select to view breakdown of heating sources in the area
+                    </b>
+                  </label>
+                  <input
+                    className="checkbox_cb"
+                    type="checkbox"
+                    id="source_breakdown"
+                    checked={checked}
+                    onChange={handleBreakdownChange}
+                  />
+                </div>
+              </>
+            )}
 
-            
-
-            {checked && sHeating==="true"&&(
+            {checked && sHeating === "true" && (
               <>
                 <div className="div_heating">
                   <label htmlFor="district_heating" className="settle_label">
@@ -334,7 +332,7 @@ export const ConsumptionHseEnergy = ({
                     className="input_occupancy"
                     type="number"
                     id="district_heating"
-                    onChange={handleDistrictProp} 
+                    onChange={handleDistrictProp}
                     defaultValue={
                       Math.round((districtProp + Number.EPSILON) * 100) / 100
                     }
@@ -349,7 +347,7 @@ export const ConsumptionHseEnergy = ({
                     className="input_occupancy"
                     type="number"
                     id="liquid_heating"
-                    onChange={handleLiquidsProp} 
+                    onChange={handleLiquidsProp}
                     defaultValue={
                       Math.round((liquidsProp + Number.EPSILON) * 100) / 100
                     }
@@ -363,7 +361,7 @@ export const ConsumptionHseEnergy = ({
                     className="input_occupancy"
                     type="number"
                     id="solid_heating"
-                    onChange={handleSolidProp} 
+                    onChange={handleSolidProp}
                     defaultValue={
                       Math.round((solidsProp + Number.EPSILON) * 100) / 100
                     }
@@ -378,7 +376,7 @@ export const ConsumptionHseEnergy = ({
                     className="input_occupancy"
                     type="number"
                     id="gas_heating"
-                     onChange={handleGasesProp}
+                    onChange={handleGasesProp}
                     defaultValue={
                       Math.round((gasesProp + Number.EPSILON) * 100) / 100
                     }
@@ -392,7 +390,7 @@ export const ConsumptionHseEnergy = ({
                     className="input_occupancy"
                     type="number"
                     id="district_value"
-                     onChange={handleDistrictValue}
+                    onChange={handleDistrictValue}
                     defaultValue={
                       Math.round((districtValue + Number.EPSILON) * 100) / 100
                     }
@@ -401,7 +399,7 @@ export const ConsumptionHseEnergy = ({
               </>
             )}
           </div>
-          {policyYear > 0 && popSizePolicy>0 && newFloorArea>0 && (
+          {policyYear > 0 && popSizePolicy > 0 && newFloorArea > 0 && (
             <div className="nextCBQ">
               <Button
                 size="small"

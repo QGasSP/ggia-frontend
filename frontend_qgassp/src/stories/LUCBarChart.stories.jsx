@@ -1,7 +1,6 @@
 import React from "react";
 import { LUCBarChart } from "../components/LUCBarChart";
 
-
 export default {
   title: '"QgasSP/LUCBarChart',
   component: LUCBarChart,

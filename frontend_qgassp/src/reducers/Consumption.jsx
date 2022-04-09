@@ -1,5 +1,3 @@
-
-
 export const hseHoldEmissions = [
   { title: "HE", color: "#3d58a3", strokeWidth: 13 },
   { title: "HO", color: "#ef7d00", strokeWidth: 13 },
@@ -70,9 +68,7 @@ export const NaData = [
 
 }; */
 
-
-
-export const bLHe=[
+export const bLHe = [
   { x: 2020, y: 1000 },
   { x: 2021, y: 1000 },
   { x: 2022, y: 1000 },
@@ -104,7 +100,7 @@ export const bLHe=[
   { x: 2048, y: 480 },
   { x: 2049, y: 460 },
   { x: 2050, y: 440 },
-]
+];
 /* const labelData = RfData.map((d, idx) => ({
   x: d.x,
   y: Math.max(RfData[idx].y, BlData[idx].y),

@@ -25,12 +25,12 @@ select {
   padding: 5px 10px;
   box-sizing: border-box;
 }
-.ns_input{
+.ns_input {
   padding: 5px 10px;
   box-sizing: border-box;
 }
 
-.ns_select{
+.ns_select {
   padding: 5px 10px;
   box-sizing: border-box;
   display: inline-block;
@@ -38,8 +38,6 @@ select {
   width: 187px;
   box-sizing: border-box;
 }
-
-
 
 .section_u2planner select {
   display: inline-block;
@@ -50,6 +48,11 @@ select {
 
 .section_u2planner div {
   margin-bottom: 10px;
+}
+
+.div2 {
+  margin-bottom: 10px;
+  width: 50%;
 }
 
 .backButtonNew {
@@ -65,9 +68,7 @@ select {
 .newResidentDiv {
   margin-left: 30px;
 }
-.nextU3planner{
+.nextU3planner {
   position: absolute;
   right: 13%;
-
 }
-

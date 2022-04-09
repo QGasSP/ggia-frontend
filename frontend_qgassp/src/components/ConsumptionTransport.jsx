@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Divider from "@mui/material/Divider";
 import "../css/u1planner.css";
 import Chip from "@mui/material/Chip";
@@ -26,8 +26,6 @@ export const ConsumptionTransport = ({
   gasesProp,
   districtValue,
 }) => {
-  
-  
   const [nextCBResults, setCbResults] = useState(false);
 
   const [biofuelTakeup, setBioFuelTakeup] = useState(false);
@@ -81,7 +79,6 @@ export const ConsumptionTransport = ({
   useEffect(() => {
     localStorage.setItem("districtProp", districtProp);
   }, [districtProp]);
-
 
   const handleRequestObject = (e) => {
     e.preventDefault();

@@ -3,7 +3,7 @@ import { DiscreteColorLegend } from "react-vis";
 import PropTypes from "prop-types";
 import "../css/linelegend.css";
 
-export const LineLegendConsumption = ({colorItems ,orientation}) => {
+export const LineLegendConsumption = ({ colorItems, orientation }) => {
   return (
     <div>
       <svg height={0} width={0}></svg>
@@ -18,5 +18,5 @@ export const LineLegendConsumption = ({colorItems ,orientation}) => {
 
 LineLegendConsumption.propTypes = {
   colorItems: PropTypes.array.isRequired,
-  orientation:PropTypes.string.isRequired,
+  orientation: PropTypes.string.isRequired,
 };

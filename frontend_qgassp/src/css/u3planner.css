@@ -1,4 +1,4 @@
-.section_u3{
+.section_u3 {
   font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
   line-height: 24px;
@@ -9,26 +9,25 @@
 
 #inputspace {
   margin-right: 5rem;
-  width:60% !important;
+  width: 60% !important;
 }
 
-#fre_policy_target{
+#fre_policy_target {
   width: 15% !important;
 }
 
 .input_u3_planner {
   margin-right: 5rem;
-  width:60% !important;
+  width: 60% !important;
 }
-.input_fuel_shares{
+.input_fuel_shares {
   width: 15% !important;
 }
 
-.input_freight_change{
+.input_freight_change {
   margin-right: 5rem;
-  width:60% !important;
+  width: 60% !important;
 }
-
 
 .expectedchange {
   display: flex;
@@ -38,25 +37,23 @@
   width: 50%;
 }
 
-
 .nextU3Button {
   position: absolute;
   left: 70%;
 }
-.label_u3{
-  width:25%;
+.label_u3 {
+  width: 25%;
 }
 
-
-#electricity_trans_affected_area{
-  width:60%;
+#electricity_trans_affected_area {
+  width: 60%;
 }
 
-#pass_policy_target{
-  width:25%;
+#pass_policy_target {
+  width: 25%;
 }
 .select_u3 {
-  width:60%;
+  width: 60%;
 }
 
 .input_affected_area {
@@ -67,11 +64,10 @@
 .input_freight_change{
 } */
 
-
 .column_u3 {
   float: left;
   width: 25%;
- /*  height: 9rem;  */
+  /*  height: 9rem;  */
 }
 
 /* Clear floats after the columns */
@@ -81,3 +77,6 @@
   clear: both;
 }
 
+.div2 {
+  width: 50%;
+}

@@ -7,12 +7,10 @@ export default {
   args: {},
 };
 
-const Template = (args) => <ConsumptionSummary{...args} />;
+const Template = (args) => <ConsumptionSummary {...args} />;
 
 export const ConsumptionFinalResults = Template.bind({});
 ConsumptionFinalResults.args = {
   primary: true,
   label: "ConsumptionSummary",
 };
-
-

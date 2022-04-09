@@ -7,6 +7,8 @@ import Chip from "@mui/material/Chip";
 import axios from "axios";
 import { U3policies } from "./U3policies";
 import urlPrefix from "../Config";
+import Alert from "@mui/material/Alert";
+import Tooltip from "@mui/material/Tooltip";
 
 /**
  * U3 planner component for user inputs for policy quantification
@@ -315,11 +317,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
       "Access-Control-Allow-Origin": "*",
     };
     axios
-      .post(
-        urlPrefix + "/api/v1/calculate/transport",
-        raw,
-        headers
-      )
+      .post(urlPrefix + "/api/v1/calculate/transport", raw, headers)
       .then((response) => setU3Response(response.data.json))
       .catch((error) => {
         setU3Error({ errorMessage: error.message });
@@ -338,137 +336,60 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
   if (nextU3policies === false) {
     return (
       <article>
-        <div >
+        <div>
           <Divider textAlign="left" flexItem>
             {" "}
             <Chip label="POLICY QUANTIFICATION" />
           </Divider>
+          <Alert severity="info">
+            This section estimates the impact of a planning policy on the
+            transport-related greenhouse gas emissions.
+          </Alert>
         </div>
 
         <section className="section-u3">
           <form onSubmit={createPolicyQuantification}>
             <div className="row_u3">
+              <div className="div2">
+                <Alert severity="info">
+                  Does the planning policy reduce the need for motorized
+                  passenger transport within the assessment area? Estimate the
+                  change and the population affected below.
+                </Alert>
+              </div>
               {/*  passenger mobility section start */}
               <div className="column_u3">
                 <div>
                   {" "}
                   <label>
-                    <b>Passenger mobility (Residential and Non)</b>
+                    <b>Passenger mobility</b>
                   </label>
                 </div>
                 <div>
                   {" "}
-                  <label>Change in mobility %</label>
+                  <label>Change in passenger mobility %</label>
                 </div>
-                <div>
-                  <label>Policy period</label>
-                  <div className="divspace">
-                    <select
-                      className="select_u3"
-                      name="start_year"
-                      onChange={handleStartYear}
-                      defaultValue="2022"
-                      required
-                    >
-                      <option value="DefaultOption">Select start year</option>
-                      {optionsNew.map((option) => (
-                        <option key={option} value={option}>
-                          {option}{" "}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <select
-                    className="select_u3"
-                    name="finish_year"
-                    onChange={handleYearFinish}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select end year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-              <div className="column_u3">
-                <div>
-                  {" "}
-                  <label>Expected change %</label>
-                </div>
-                <div>
-                  {" "}
-                  <input
-                    id="inputspace"
-                    type="number"
-                    step="0.1"
-                    // id="pass_expected_change"
-                    placeholder="0"
-                    onChange={handleExpectedPassChange}
-                    required
-                  />
-                </div>
-              </div>
-              <div className="column_u3">
-                {/* <label className="space_holder"></label> */}
-                <label>% of the area affected</label>
-                <input
-                  className="input_affected_area"
-                  type="number"
-                  step="0.1"
-                  placeholder="0"
-                  min="0"
-                  max="100"
-                  onChange={handleAffectedPassArea}
-                  required
-                />
-              </div>
-              <div className="column_u3"></div>
-            </div>
-            {/*  passenger mobility section end*/}
-
-            {/*  freight transport section */}
-            <div className="row_u3">
-              <div className="column_u3">
-                <div>
-                  <label>
-                    <b>Freight transport</b>
-                  </label>
-                </div>
-                <div>
-                  {" "}
-                  <label>Change in freight transport %</label>
-                </div>
-                <div>
+                <Tooltip title="Start year is the first year during which the policy changes the need for motorized passenger transport within the area. The change is assumed permanent after the last year of implementation.">
                   <div>
-                    {" "}
                     <label>Policy period</label>
-                  </div>
-
-                  <div className="divspace">
+                    <div className="divspace">
+                      <select
+                        className="select_u3"
+                        name="start_year"
+                        onChange={handleStartYear}
+                        defaultValue="2022"
+                        required
+                      >
+                        <option value="DefaultOption">Select start year</option>
+                        {optionsNew.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                     <select
                       className="select_u3"
-                      id="start_year"
-                      name="start_year"
-                      onChange={handleStartYear}
-                      defaultValue="2022"
-                      required
-                    >
-                      <option value="DefaultOption">Select start year</option>
-                      {optionsNew.map((option) => (
-                        <option key={option} value={option}>
-                          {option}{" "}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="divspace">
-                    <select
-                      className="select_u3"
-                      id="finish_year"
                       name="finish_year"
                       onChange={handleYearFinish}
                       defaultValue="2022"
@@ -482,19 +403,123 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                       ))}
                     </select>
                   </div>
+                </Tooltip>
+              </div>
+              <Tooltip title="A reduction is inserted as a positive percentage.">
+                <div className="column_u3">
+                  <div>
+                    {" "}
+                    <label>Decrease in mobility</label>
+                  </div>
+                  <div>
+                    {" "}
+                    <input
+                      id="inputspace"
+                      type="number"
+                      step="0.1"
+                      // id="pass_expected_change"
+                      placeholder="0"
+                      onChange={handleExpectedPassChange}
+                      required
+                    />
+                  </div>
                 </div>
+              </Tooltip>
+              <Tooltip title="Estimate the percentage of the population that is affected by the policy.">
+                <div className="column_u3">
+                  {/* <label className="space_holder"></label> */}
+                  <label>Population affected</label>
+                  <input
+                    className="input_affected_area"
+                    type="number"
+                    step="0.1"
+                    placeholder="0"
+                    min="0"
+                    max="100"
+                    onChange={handleAffectedPassArea}
+                    required
+                  />
+                </div>
+              </Tooltip>
+              <div className="column_u3"></div>
+            </div>
+            {/*  passenger mobility section end*/}
+
+            {/*  freight transport section */}
+            <div className="row_u3">
+              <div className="div2">
+                <Alert severity="info">
+                  Does the planning policy reduce the freight transport within
+                  the assessment area? Estimate the total change in the
+                  assessment area below.
+                </Alert>
               </div>
               <div className="column_u3">
-                <label>Expected change %</label>
-                <input
-                  className="input_freight_change"
-                  type="number"
-                  step="0.1"
-                  placeholder="0"
-                  onChange={handleExpectedFreChange}
-                  required
-                />
+                <div>
+                  <label>
+                    <b>Freight transport</b>
+                  </label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Change in freight transport %</label>
+                </div>
+                <Tooltip title="Start year is the first year during which the policy changes the volume of freight transport within the area. The change is assumed permanent after the last year of implementation.">
+                  <div>
+                    <div>
+                      {" "}
+                      <label>Policy period</label>
+                    </div>
+                    <div className="divspace">
+                      <select
+                        className="select_u3"
+                        id="start_year"
+                        name="start_year"
+                        onChange={handleStartYear}
+                        defaultValue="2022"
+                        required
+                      >
+                        <option value="DefaultOption">Select start year</option>
+                        {optionsNew.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="divspace">
+                      <select
+                        className="select_u3"
+                        id="finish_year"
+                        name="finish_year"
+                        onChange={handleYearFinish}
+                        defaultValue="2022"
+                        required
+                      >
+                        <option value="DefaultOption">Select end year</option>
+                        {optionsNew.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                </Tooltip>
               </div>
+              <Tooltip title="A reduction is inserted as a positive percentage.">
+                <div className="column_u3">
+                  <label>Decrease in mobility</label>
+                  <input
+                    className="input_freight_change"
+                    type="number"
+                    step="0.1"
+                    placeholder="0"
+                    onChange={handleExpectedFreChange}
+                    required
+                  />
+                </div>
+              </Tooltip>
               <div className="column_u3"></div>
               <div className="column_u3"></div>
             </div>
@@ -504,10 +529,18 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
 
             {/* modal split-passenger transport section start */}
             <div className="row_u3">
+              <div className="div2">
+                <Alert severity="info">
+                  Does the planning policy change the modal split of the
+                  passenger transport within the area? Select the policy
+                  implementation period and insert the target percentages to be
+                  achieved by the end of the last year of policy implementation.
+                </Alert>
+              </div>
               <div className="column_u3">
                 <div>
                   <label>
-                    <b>Modal split/Passenger transport</b>
+                    <b>Modal split, passenger transport</b>
                   </label>
                 </div>
                 <div>
@@ -523,85 +556,137 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                   <label>Share for train</label>
                 </div>
                 <div>
-                  <label>CarPassenger</label>
+                  <label>Share for car</label>
                 </div>
-                <div>
-                  <label>Policy period</label>
-                  <div className="divspace">
-                    <select
-                      className="select_u3"
-                      name="start_year"
-                      onChange={handleStartYear}
-                      defaultValue="2022"
-                      required
-                    >
-                      <option value="DefaultOption">Select start year</option>
-                      {optionsNew.map((option) => (
-                        <option key={option} value={option}>
-                          {option}{" "}
-                        </option>
-                      ))}
-                    </select>
+                <Tooltip title="Start year is the first year during which the policy changes the modal share. The change is assumed permanent after the last year of implementation period.">
+                  <div>
+                    <label>Policy period</label>
+                    <div className="divspace">
+                      <select
+                        className="select_u3"
+                        name="start_year"
+                        onChange={handleStartYear}
+                        defaultValue="2022"
+                        required
+                      >
+                        <option value="DefaultOption">Select start year</option>
+                        {optionsNew.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="divspace">
+                      <select
+                        className="select_u3"
+                        name="finish_year"
+                        onChange={handleYearFinish}
+                        defaultValue="2022"
+                        required
+                      >
+                        <option value="DefaultOption">Select end year</option>
+                        {optionsNew.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
-                  <div className="divspace">
-                    <select
-                      className="select_u3"
-                      name="finish_year"
-                      onChange={handleYearFinish}
-                      defaultValue="2022"
-                      required
-                    >
-                      <option value="DefaultOption">Select end year</option>
-                      {optionsNew.map((option) => (
-                        <option key={option} value={option}>
-                          {option}{" "}
-                        </option>
-                      ))}
-                    </select>
+                </Tooltip>
+              </div>
+              <Tooltip title="This column shows You the modal shares according to the baseline scenario.">
+                <div className="column_u3">
+                  <div>
+                    {" "}
+                    <label>Without policy</label>
+                  </div>
+                  <div>
+                    <label>{emission.bus}</label>
+                  </div>
+                  <div>
+                    <label>{emission.metro}</label>
+                  </div>
+                  <div>
+                    <label>{emission.tram}</label>
+                  </div>
+                  <div>
+                    <label>{emission.train}</label>
+                  </div>
+                  <div>
+                    <label>{emission.car}</label>
                   </div>
                 </div>
-              </div>
+              </Tooltip>
+              <Tooltip title="Insert the target percentages for public transportation. The remaining share is allocated to passenger car transport.">
+                <div className="column_u3">
+                  <label>Policy target %</label>
+                  {/*  bus */}
+                  <input
+                    className="input_u3_planner"
+                    type="number"
+                    step="0.1"
+                    // id="pass_policy_target"
+                    placeholder="0"
+                    min="0"
+                    max="100"
+                    // onChange={handlePassTransPolicyTarget}
+                    onChange={handleBus}
+                    required
+                  />
+                  {/*  metro */}
+                  <div>
+                    {" "}
+                    <input
+                      type="number"
+                      step="0.1"
+                      className="input_u3_planner"
+                      placeholder="0"
+                      min="0"
+                      max="100"
+                      onChange={handleMetro}
+                      required
+                    />
+                  </div>
 
-              <div className="column_u3">
-                <div>
-                  {" "}
-                  <label>Without policy</label>
-                </div>
-                <div>
-                  <label>{emission.bus}</label>
-                </div>
-                <div>
-                  <label>{emission.metro}</label>
-                </div>
-                <div>
-                  <label>{emission.tram}</label>
-                </div>
-                <div>
-                  <label>{emission.train}</label>
-                </div>
-                <div>
-                  <label>{emission.car}</label>
-                </div>
-              </div>
+                  {/*   tram */}
+                  <div>
+                    {" "}
+                    <input
+                      type="number"
+                      step="0.1"
+                      id="inputspace"
+                      placeholder="0"
+                      min="0"
+                      max="100"
+                      onChange={handleTram}
+                      required
+                    />
+                  </div>
 
-              <div className="column_u3">
-                <label>Policy target %</label>
-                {/*  bus */}
-                <input
-                  className="input_u3_planner"
-                  type="number"
-                  step="0.1"
-                  // id="pass_policy_target"
-                  placeholder="0"
-                  min="0"
-                  max="100"
-                  // onChange={handlePassTransPolicyTarget}
-                  onChange={handleBus}
-                  required
-                />
-                {/*  metro */}
-                <div>
-                  {" "}
+                  {/*  train */}
+                  <div>
+                    {" "}
+                    <input
+                      type="number"
+                      step="0.1"
+                      className="input_u3_planner"
+                      placeholder="0"
+                      min="0"
+                      max="100"
+                      onChange={handleTrain}
+                      required
+                    />
+                  </div>
+
+                  {/*    car */}
+                  <div>This is calculated automatically</div>
+                </div>
+              </Tooltip>
+              <Tooltip title="Insert a percentage of population expected to change the modal share due to the planning policy. This share applies to the passenger transport of both residents and non-residents within the assessment area.">
+                <div className="column_u3">
+                  <label>Population affected</label>
                   <input
                     type="number"
                     step="0.1"
@@ -609,155 +694,151 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                     placeholder="0"
                     min="0"
                     max="100"
-                    onChange={handleMetro}
+                    onChange={handleAffectedPassArea}
                     required
                   />
                 </div>
-
-                {/*   tram */}
-                <div>
-                  {" "}
-                  <input
-                    type="number"
-                    step="0.1"
-                    id="inputspace"
-                    placeholder="0"
-                    min="0"
-                    max="100"
-                    onChange={handleTram}
-                    required
-                  />
-                </div>
-
-                {/*  train */}
-                <div>
-                  {" "}
-                  <input
-                    type="number"
-                    step="0.1"
-                    className="input_u3_planner"
-                    placeholder="0"
-                    min="0"
-                    max="100"
-                    onChange={handleTrain}
-                    required
-                  />
-                </div>
-
-                {/*    car */}
-                <div>This is calculated automatically</div>
-              </div>
-              <div className="column_u3">
-                <label>% of the area affeccted</label>
-                <input
-                  type="number"
-                  step="0.1"
-                  className="input_u3_planner"
-                  placeholder="0"
-                  min="0"
-                  max="100"
-                  onChange={handleAffectedPassArea}
-                  required
-                />
-              </div>
+              </Tooltip>
             </div>
             {/* modal split-passenger transport section end */}
-
             <br />
-            <div>
-              <label>
-                <b>Modal split/Freight transport</b>
-              </label>
-              <label>without policy</label>
-              <label>policy target %</label>
-              {/* <label>% of the area affeccted</label> */}
-              <div>
-                <label>Share for rail</label>
-                <label>{emission.rail_transport}</label>
-                <input
-                  type="number"
-                  step="0.1"
-                  id="fre_policy_target"
-                  placeholder="0"
-                  min="0"
-                  max="100"
-                  onChange={handleFreTransPolicyTarget}
-                  required
-                />
+            {/* modal split-freight transport section start */}
+            <div className="row_u3">
+              <div className="div2">
+                <Alert severity="info">
+                  Does the planning policy change the modal split of the freight
+                  transport within the area? Select the policy implementation
+                  period and insert the target percentages to be achieved by the
+                  end of the last year of policy implementation.
+                </Alert>
               </div>
-              <div>
-                <label>Share for inland waterways</label>
-                <label>{emission.waterways_transport}</label>
-                <input
-                  type="number"
-                  step="0.1"
-                  id="fre_policy_target"
-                  placeholder="0"
-                  min="0"
-                  max="100"
-                  onChange={handleFreTransPolicyTarget}
-                  required
-                />
-              </div>
-              <div>
-                <label>Share for road freight</label>
-                <label>{emission.road_transport}</label>
-                <label>This is calculated automatically</label>
-              </div>
-              {/* <div>
-              <label>
-                <b>Total</b>
-              </label>
-              <label></label>
-              <label></label>
-            </div> */}
-              <div>
-                <label>Policy period</label>
-                <div className="divspace">
-                  <select
-                     className="select_freight"
-                    id="start_year"
-                    name="start_year"
-                    onChange={handleStartYear}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select start year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
+              <div className="column_u3">
+                <div>
+                  <label>
+                    <b>Modal split, passenger transport</b>
+                  </label>
                 </div>
-                <div className="divspace">
-                  <select
-                     className="select_freight"
-                    id="finish_year"
-                    name="finish_year"
-                    onChange={handleYearFinish}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select end year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
+                <div>
+                  <label>Share for rail</label>
                 </div>
+                <div>
+                  <label>Share for inland waterways</label>
+                </div>
+                <div>
+                  <label>Share for road freight</label>
+                </div>
+                <Tooltip title="Start year is the first year during which the policy changes the modal share. The change is assumed permanent after the last year of implementation period.">
+                  <div>
+                    <label>Policy period</label>
+                    <div className="divspace">
+                      <select
+                        className="select_u3"
+                        name="start_year"
+                        onChange={handleStartYear}
+                        defaultValue="2022"
+                        required
+                      >
+                        <option value="DefaultOption">Select start year</option>
+                        {optionsNew.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="divspace">
+                      <select
+                        className="select_u3"
+                        name="finish_year"
+                        onChange={handleYearFinish}
+                        defaultValue="2022"
+                        required
+                      >
+                        <option value="DefaultOption">Select end year</option>
+                        {optionsNew.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                </Tooltip>
               </div>
+              <Tooltip title="This column shows You the modal shares according to the baseline scenario.">
+                <div className="column_u3">
+                  <div>
+                    {" "}
+                    <label>Without policy</label>
+                  </div>
+                  <div>
+                    <label>{emission.rail_transport}</label>
+                  </div>
+                  <div>
+                    <label>{emission.waterways_transport}</label>
+                  </div>
+                  <div>
+                    <label>{emission.road_transport}</label>
+                  </div>
+                </div>
+              </Tooltip>
+              <Tooltip title="Insert the target percentages for the freight transport on rails and on waterways. The remaining share is allocated to road freight.">
+                <div className="column_u3">
+                  <label>Policy target %</label>
+                  {/*  rail */}
+                  <input
+                    className="input_u3_planner"
+                    type="number"
+                    step="0.1"
+                    // id="pass_policy_target"
+                    placeholder="0"
+                    min="0"
+                    max="100"
+                    // onChange={handlePassTransPolicyTarget}
+                    onChange={handleFreTransPolicyTarget}
+                    required
+                  />
+                  {/*  water */}
+                  <div>
+                    {" "}
+                    <input
+                      type="number"
+                      step="0.1"
+                      className="input_u3_planner"
+                      placeholder="0"
+                      min="0"
+                      max="100"
+                      onChange={handleFreTransPolicyTarget}
+                      required
+                    />
+                  </div>
+
+                  {/*   road */}
+                  <div>
+                    {" "}
+                    <label>This is calculated automatically</label>
+                  </div>
+                </div>
+              </Tooltip>
             </div>
+            {/* modal split-freight transport section end */}
             <br />
-
             {/* fuel-bus transport section start*/}
             <div className="row_u3">
+              <div className="div2">
+                <Alert severity="info">
+                  Does the planning policy increase the use of low-carbon fuels
+                  in the bus fleet that operates in the assessment area? Select
+                  the policy implementation period and insert the target
+                  percentages to be achieved by the end of the last year of
+                  policy implementation.
+                </Alert>
+              </div>
               <div className="column_u3">
                 <div>
                   {" "}
                   <label>
-                    <b>Shares of fuel types/Bus transport</b>{" "}
+                    <b>Shares of fuel types in bus transport</b>{" "}
                   </label>
                 </div>
                 <div>
@@ -779,486 +860,610 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
                   {" "}
                   <label>Diesel</label>
                 </div>
-                <div>
-                  <label>Policy period</label>
-                  <div className="divspace">
-                    <select
-                      className="select_u3"
-                      name="start_year"
-                      onChange={handleStartYear}
-                      defaultValue="2022"
-                      required
-                    >
-                      <option value="DefaultOption">Select start year</option>
-                      {optionsNew.map((option) => (
-                        <option key={option} value={option}>
-                          {option}{" "}
-                        </option>
-                      ))}
-                    </select>
+                <Tooltip title="Start year is the first year during which the policy starts to change the fuel shares. The change is assumed permanent after the last year of implementation period.">
+                  <div>
+                    <label>Policy period</label>
+                    <div className="divspace">
+                      <select
+                        className="select_u3"
+                        name="start_year"
+                        onChange={handleStartYear}
+                        defaultValue="2022"
+                        required
+                      >
+                        <option value="DefaultOption">Select start year</option>
+                        {optionsNew.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="divspace">
+                      <select
+                        className="select_u3"
+                        name="finish_year"
+                        onChange={handleYearFinish}
+                        defaultValue="2022"
+                        required
+                      >
+                        <option value="DefaultOption">Select end year</option>
+                        {optionsNew.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
-                  <div className="divspace">
-                    <select
-                      className="select_u3"
-                      name="finish_year"
-                      onChange={handleYearFinish}
-                      defaultValue="2022"
-                      required
-                    >
-                      <option value="DefaultOption">Select end year</option>
-                      {optionsNew.map((option) => (
-                        <option key={option} value={option}>
-                          {option}{" "}
-                        </option>
-                      ))}
-                    </select>
+                </Tooltip>
+              </div>
+              <Tooltip title="This column shows You the fuel shares in the bus fleet as in the baseline scenario.">
+                <div className="column_u3">
+                  <div>
+                    {" "}
+                    <label>Without policy</label>
+                  </div>
+                  <div>
+                    {" "}
+                    <label></label>
+                  </div>
+                  <div>
+                    {" "}
+                    <label></label>
+                  </div>
+                  <div>
+                    {" "}
+                    <label></label>
+                  </div>
+                  <div>
+                    {" "}
+                    <label></label>
+                  </div>
+                  <div>
+                    {" "}
+                    <label></label>
                   </div>
                 </div>
-              </div>
-
-              <div className="column_u3">
-                <div> <label>Without policy</label></div>
-                <div> <label></label></div>
-                <div> <label></label></div>
-                <div> <label></label></div>
-                <div> <label></label></div>
-                <div> <label></label></div>
-              </div>
-
-              <div className="column_u3">
-                <div>
-                  <label>Policy target %</label>
+              </Tooltip>
+              <Tooltip title="Insert the target percentages for the fuel types used in the bus fleet by the end of the policy implementation period. The remaining share is allocated to diesel engines.">
+                <div className="column_u3">
+                  <div>
+                    <label>Policy target %</label>
+                  </div>
+                  <div>
+                    {" "}
+                    <input
+                      className="input_u3_planner "
+                      /*   id="inputspace" */
+                      type="number"
+                      step="0.1"
+                      // id="fre_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handlePetrol}
+                      required
+                    />
+                  </div>
+                  <div>
+                    {" "}
+                    <input
+                      // id="inputspace"
+                      type="number"
+                      step="0.1"
+                      className="input_u3_planner "
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleLpg}
+                      required
+                    />
+                  </div>
+                  <div>
+                    {" "}
+                    <input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleCng}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleElectricity}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleDiesel}
+                      required
+                    />
+                  </div>
                 </div>
-                <div>
-                  {" "}
+              </Tooltip>
+              <Tooltip title="Insert a percentage of bus transport in the area affected by the planning policy.">
+                <div className="column_u3">
+                  <label>% of the area affeccted</label>
                   <input
-                  className="input_u3_planner "
-                  /*   id="inputspace" */
+                    className="input_u3_planner "
                     type="number"
                     step="0.1"
-                    // id="fre_policy_target"
-                    placeholder="0.0"
-                    min="0"
-                    max="100"
-                    onChange={handlePetrol}
+                    placeholder="0"
+                    // onChange={}
                     required
                   />
                 </div>
+              </Tooltip>
+            </div>
+            {/* fuel-bus transport section end */}
+            {/* fuel-car transport section start*/}
+            <div className="row_u3">
+              <div className="div2">
+                <Alert severity="info">
+                  Does the planning policy increase the use of low-carbon fuels
+                  in the passenger cars in the assessment area? Select the
+                  policy implementation period and insert the target percentages
+                  to be achieved by the end of the last year of policy
+                  implementation.
+                </Alert>
+              </div>
+              <div className="column_u3">
                 <div>
                   {" "}
+                  <label>
+                    <b>Shares of fuel types in car transport</b>{" "}
+                  </label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Liquified Petroleum Gas (LPG)</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Natural Gas (CNG)</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Alternative Energy/biomethane NGV</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Hybrid electric-petrol</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Plug-in hybrid petrol-electric PHEV</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Hydrogen and fuel cells</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Bioethanol</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Bio-diesel</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Bi-fuel</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Other (unknown)</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Electricity BEV</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Petrol, according to country selection</label>
+                </div>
+                <div>
+                  {" "}
+                  <label>Diesel, according to country selection</label>
+                </div>
+                <Tooltip title="Insert the target percentages for the fuel types of the passenger car fleet by the end of the policy implementation period. The remaining share is allocated to petrol and diesel engines.">
+                  <div>
+                    <label>Policy period</label>
+                    <div className="divspace">
+                      <select
+                        className="select_u3"
+                        name="start_year"
+                        onChange={handleStartYear}
+                        defaultValue="2022"
+                        required
+                      >
+                        <option value="DefaultOption">Select start year</option>
+                        {optionsNew.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="divspace">
+                      <select
+                        className="select_u3"
+                        name="finish_year"
+                        onChange={handleYearFinish}
+                        defaultValue="2022"
+                        required
+                      >
+                        <option value="DefaultOption">Select end year</option>
+                        {optionsNew.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                </Tooltip>
+              </div>
+              <Tooltip title="This column shows You the fuel shares in the passenger car fleet as in the baseline scenario.">
+                <div className="column_u3">
+                  <div>
+                    {" "}
+                    <label>Without policy</label>
+                  </div>
+                  <div>
+                    {" "}
+                    <label></label>
+                  </div>
+                  <div>
+                    {" "}
+                    <label></label>
+                  </div>
+                  <div>
+                    {" "}
+                    <label></label>
+                  </div>
+                  <div>
+                    {" "}
+                    <label></label>
+                  </div>
+                  <div>
+                    {" "}
+                    <label></label>
+                  </div>
+                  <div>
+                    {" "}
+                    <label></label>
+                  </div>
+                  <div>
+                    {" "}
+                    <label></label>
+                  </div>
+                  <div>
+                    {" "}
+                    <label></label>
+                  </div>
+                  <div>
+                    {" "}
+                    <label></label>
+                  </div>
+                  <div>
+                    {" "}
+                    <label></label>
+                  </div>
+                  <div>
+                    {" "}
+                    <label></label>
+                  </div>
+                  <div>
+                    {" "}
+                    <label></label>
+                  </div>
+                  <div>
+                    {" "}
+                    <label></label>
+                  </div>
+                </div>
+              </Tooltip>
+              <Tooltip title="Insert the target percentages for the fuel types of the passenger car fleet by the end of the policy implementation period. The remaining share is allocated to petrol and diesel engines.">
+                <div className="column_u3">
+                  <div>
+                    <label>Policy target %</label>
+                  </div>
+                  <div>
+                    {" "}
+                    <input
+                      className="input_u3_planner "
+                      /*   id="inputspace" */
+                      type="number"
+                      step="0.1"
+                      // id="fre_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleLpg}
+                      required
+                    />
+                  </div>
+                  <div>
+                    {" "}
+                    <input
+                      // id="inputspace"
+                      type="number"
+                      step="0.1"
+                      className="input_u3_planner "
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleCng}
+                      required
+                    />
+                  </div>
+                  <div>
+                    {" "}
+                    <input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleNgv}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleHep}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handlePhev}
+                      required
+                    />
+                  </div>
+                  <div>
+                    {" "}
+                    <input
+                      className="input_u3_planner "
+                      /*   id="inputspace" */
+                      type="number"
+                      step="0.1"
+                      // id="fre_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleHydrogenfuel}
+                      required
+                    />
+                  </div>
+                  <div>
+                    {" "}
+                    <input
+                      // id="inputspace"
+                      type="number"
+                      step="0.1"
+                      className="input_u3_planner "
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleBioethanol}
+                      required
+                    />
+                  </div>
+                  <div>
+                    {" "}
+                    <input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleBiodiesel}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleBifuel}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleOther}
+                      required
+                    />
+                  </div>
+                  <div>
+                    {" "}
+                    <input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleElectricity}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label>This is calculated automatically</label>
+                  </div>
+                  <div>
+                    <label>This is calculated automatically</label>
+                  </div>
+                </div>
+              </Tooltip>
+              <Tooltip title="Insert a percentage of passenger car transport in the area affected by the planning policy.">
+                <div className="column_u3">
+                  <label>% of the area affeccted</label>
+                  <input
+                    className="input_u3_planner "
+                    type="number"
+                    step="0.1"
+                    placeholder="0"
+                    // onChange={}
+                    required
+                  />
+                </div>
+              </Tooltip>
+            </div>
+            {/* fuel-car transport section end */}
+            <br />
+            {/*  electricity for transport start */}
+            <div className="row_u3">
+              <div className="div2">
+                <Alert severity="info">
+                  Does the planning policy increase the share of renewable
+                  energies in the electricity that is used in transport? Insert
+                  a percentage that shows the additional share of renewable
+                  electricity in comparison to the average grid electricity.
+                </Alert>
+              </div>
+              <div className="column_u3">
+                <div>
+                  <label>
+                    <b>Electricity for transport</b>
+                  </label>
+                </div>
+                <div>
+                  <label>Increase in the share of renewables</label>
+                </div>
+                <Tooltip title="Start year is the first year during which the share of renewables in transport electricity starts to increase. The change is assumed permanent after the last year of implementation period.">
+                  <div>
+                    <label>Policy period</label>
+                    <div className="divspace">
+                      <select
+                        className="select_u3"
+                        id="start_year"
+                        name="start_year"
+                        onChange={handleStartYear}
+                        defaultValue="2022"
+                        required
+                      >
+                        <option value="DefaultOption">Select start year</option>
+                        {optionsNew.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="divspace">
+                      <select
+                        className="select_u3"
+                        id="finish_year"
+                        name="finish_year"
+                        onChange={handleYearFinish}
+                        defaultValue="2022"
+                        required
+                      >
+                        <option value="DefaultOption">Select end year</option>
+                        {optionsNew.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                </Tooltip>
+              </div>
+              <div className="column_u3">
+                <label>gCO2e/kWh without policy</label>
+              </div>
+              <Tooltip title="Insert the percentage of renewable energies that is produced locally for the transport electricity. Positive percentage improves the electricity mix and reduces the greenhouse gas emissions.">
+                <div className="column_u3">
+                  <label>Reduction</label>
+                  <input
+                    className="input_u3_planner"
+                    type="number"
+                    step="0.1"
+                    // id="car_fuel_policy_target"
+                    placeholder="0"
+                    onChange={handleRenewables}
+                    required
+                  />
+                </div>
+              </Tooltip>
+              <Tooltip title="Insert a percentage of transport in the area affected by the policy.">
+                <div className="column_u3">
+                  <label>% of the area affected</label>
                   <input
                     // id="inputspace"
                     type="number"
                     step="0.1"
-                    className="input_u3_planner "
-                    id="bus_fuel_policy_target"
-                    placeholder="0.0"
+                    id="electricity_trans_affected_area"
+                    placeholder="0"
                     min="0"
                     max="100"
-                    onChange={handleLpg}
+                    onChange={handleAffectedArea}
                     required
                   />
                 </div>
-                <div>
-                  {" "}
-                  <input
-                   className="input_u3_planner "
-                    type="number"
-                    step="0.1"
-                    id="bus_fuel_policy_target"
-                    placeholder="0.0"
-                    min="0"
-                    max="100"
-                    onChange={handleCng}
-                    required
-                  />
-                </div>
-                <div>
-                  <input
-                   className="input_u3_planner "
-                    type="number"
-                    step="0.1"
-                    id="bus_fuel_policy_target"
-                    placeholder="0.0"
-                    min="0"
-                    max="100"
-                    onChange={handleElectricity}
-                    required
-                  />
-                </div>
-                <div>
-                  <input
-                   className="input_u3_planner "
-                    type="number"
-                    step="0.1"
-                    id="bus_fuel_policy_target"
-                    placeholder="0.0"
-                    min="0"
-                    max="100"
-                    onChange={handleDiesel}
-                    required
-                  />
-                </div>
-              </div>
-              <div className="column_u3">
-                <label>% of the area affeccted</label>
-                <input
-                 className="input_u3_planner "
-                  type="number"
-                  step="0.1"
-                  placeholder="0"
-                  // onChange={}
-                  required
-                />
-              </div>
+              </Tooltip>
             </div>
-            {/* fuel-bus transport section end */}
+            {/*  electricity for transport end */}
 
-         
-            <br />
-            <div>
-              <label>
-                <b>Shares of fuel types/Cars</b>
-              </label>
-              <label>without policy</label>
-              <label>policy target %</label>
-              <label>% of the area affeccted</label>
-              <div>
-                <label>Liquified Petroleum Gas (LPG)</label>
-                <label></label>
-                <input
-                 className="input_fuel_shares"
-                  type="number"
-                  step="0.1"
-                  // id="bus_fuel_policy_target"
-                  placeholder="0.0"
-                  min="0"
-                  max="100"
-                  onChange={handleLpg}
-                  required
-                />
-                <input  className="input_fuel_shares"/>
-              </div>
-              <div>
-                <label>Natural Gas (CNG)</label>
-                <label></label>
-                <input
-                 className="input_fuel_shares"
-                  type="number"
-                  step="0.1"
-                  id="car_fuel_policy_target"
-                  placeholder="0.0"
-                  min="0"
-                  max="100"
-                  onChange={handleCng}
-                  required
-                />
-              </div>
-              <div>
-                <label>Alternative Energy/biomethane NGV</label>
-                <label></label>
-                <input
-                  className="input_fuel_shares"
-                  type="number"
-                  step="0.1"
-                  id="car_fuel_policy_target"
-                  placeholder="0.0"
-                  min="0"
-                  max="100"
-                  onChange={handleNgv}
-                  required
-                />
-              </div>
-              <div>
-                <label>Hybrid electric-petrol</label>
-                <label></label>
-                <input
-                  className="input_fuel_shares"
-                  type="number"
-                  step="0.1"
-                  id="car_fuel_policy_target"
-                  placeholder="0.0"
-                  min="0"
-                  max="100"
-                  onChange={handleHep}
-                  required
-                />
-              </div>
-              <div>
-                <label>Plug-in hybrid petrol-electric PHEV</label>
-                <label></label>
-                <input
-                  className="input_fuel_shares"
-                  type="number"
-                  step="0.1"
-                  id="car_fuel_policy_target"
-                  placeholder="0.0"
-                  min="0"
-                  max="100"
-                  onChange={handlePhev}
-                  required
-                />
-              </div>
-              {/* <div>
-              <label>Hybrid diesel-electric</label>
-              <label></label>
-              <input />
-            </div>
-            <div>
-              <label>Plug-in hybrid diesel-electric PHEV</label>
-              <label></label>
-              <input />
-            </div> */}
-              <div>
-                <label>Hydrogen and fuel cells</label>
-                <label></label>
-                <input
-                  className="input_fuel_shares"
-                  type="number"
-                  step="0.1"
-                  id="car_fuel_policy_target"
-                  placeholder="0.0"
-                  min="0"
-                  max="100"
-                  onChange={handleHydrogenfuel}
-                  required
-                />
-              </div>
-              <div>
-                <label>Bioethanol</label>
-                <label></label>
-                <input
-                  className="input_fuel_shares"
-                  type="number"
-                  step="0.1"
-                  id="car_fuel_policy_target"
-                  placeholder="0.0"
-                  min="0"
-                  max="100"
-                  onChange={handleBioethanol}
-                  required
-                />
-              </div>
-              <div>
-                <label>Bio-diesel</label>
-                <label></label>
-                <input
-                  className="input_fuel_shares"
-                  type="number"
-                  step="0.1"
-                  id="car_fuel_policy_target"
-                  placeholder="0.0"
-                  min="0"
-                  max="100"
-                  onChange={handleBiodiesel}
-                  required
-                />
-              </div>
-              <div>
-                <label>Bi-fuel</label>
-                <label></label>
-                <input
-                 className="input_fuel_shares"
-                  type="number"
-                  step="0.1"
-                  id="car_fuel_policy_target"
-                  placeholder="0.0"
-                  min="0"
-                  max="100"
-                  onChange={handleBifuel}
-                  required
-                />
-              </div>
-              <div>
-                <label>Other (unknown)</label>
-                <label></label>
-                <input
-                  className="input_fuel_shares"
-                  type="number"
-                  step="0.1"
-                  id="car_fuel_policy_target"
-                  placeholder="0.0"
-                  min="0"
-                  max="100"
-                  onChange={handleOther}
-                  required
-                />
-              </div>
-              <div>
-                <label>Electricity BEV</label>
-                <label></label>
-                <input
-                  className="input_fuel_shares"
-                  type="number"
-                  step="0.1"
-                  id="car_fuel_policy_target"
-                  placeholder="0.0"
-                  min="0"
-                  max="100"
-                  onChange={handleElectricity}
-                  required
-                />
-              </div>
-              <div>
-                <label>Petrol, according to country selection</label>
-                <label></label>
-                <input
-                  className="input_fuel_shares"
-                  type="number"
-                  step="0.1"
-                  id="car_fuel_policy_target"
-                  placeholder="0.0"
-                  min="0"
-                  max="100"
-                  onChange={handlePetrol}
-                  required
-                />
-              </div>
-              <div>
-                <label>Diesel, according to country selection</label>
-                <label></label>
-                <input
-                  className="input_fuel_shares"
-                  type="number"
-                  step="0.1"
-                  id="car_fuel_policy_target"
-                  placeholder="0.0"
-                  min="0"
-                  max="100"
-                  onChange={handleDiesel}
-                  required
-                />
-              </div>
-              {/* <div>
-              <label>
-                <b>Total</b>
-              </label>
-              <label></label>
-              <label></label>
-            </div> */}
-              <div>
-                <label>Policy period</label>
-                <div className="divspace">
-                  <select
-                    className="start_year"
-                    id="start_year"
-                    name="start_year"
-                    onChange={handleStartYear}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select start year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="divspace">
-                  <select
-                    className="finish_year"
-                    id="finish_year"
-                    name="finish_year"
-                    onChange={handleYearFinish}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select end year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <br />
-           {/*  electricity for transport start */}
-           <div className="row_u3">
-              <div className="column_u3" >
-              <div><label>
-                <b>Electricity for transport</b>
-              </label></div>
-              <div><label>Increase in the share of renewables</label></div>
-            
-              <div>
-                <label>Policy period</label>
-                <div className="divspace">
-                  <select
-                    className="select_u3"
-                    id="start_year"
-                    name="start_year"
-                    onChange={handleStartYear}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select start year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="divspace">
-                  <select
-                    className="select_u3"
-                    id="finish_year"
-                    name="finish_year"
-                    onChange={handleYearFinish}
-                    defaultValue="2022"
-                    required
-                  >
-                    <option value="DefaultOption">Select end year</option>
-                    {optionsNew.map((option) => (
-                      <option key={option} value={option}>
-                        {option}{" "}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-              
-              </div>
-              <div className="column_u3" >
-                <label>gCO2e/kWh without policy</label>
-           
-              </div>
-              <div className="column_u3">
-                
-                <label>Policy target %</label>
-                <input
-                 className="input_u3_planner"
-                  type="number"
-                  step="0.1"
-                  // id="car_fuel_policy_target"
-                  placeholder="0"
-                  onChange={handleRenewables}
-                  required
-                />
-              
-              </div>
-              <div className="column_u3">
-                <label>% of the area affected</label>
-                <input
-                  // id="inputspace"
-                  type="number"
-                  step="0.1"
-                  id="electricity_trans_affected_area"
-                  placeholder="0"
-                  min="0"
-                  max="100"
-                  onChange={handleAffectedArea}
-                  required
-                />
-              </div>
-            </div>
-          {/*  electricity for transport end */}
-
-    
             <br />
             <div className="nextU3Button">
               <Button

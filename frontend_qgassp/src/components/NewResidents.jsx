@@ -6,6 +6,7 @@ import { U2planner } from "./U2planner";
 import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 import Alert from "@mui/material/Alert";
+import Tooltip from "@mui/material/Tooltip";
 
 /**
  * U1 Planner user input form for baseline
@@ -91,6 +92,10 @@ export const NewResidents = ({
             {" "}
             <Chip label="U2 NEW DEVELOPMENT INPUT" />
           </Divider>
+          <Alert severity="info">
+            This section estimates new residents’ impact on the
+            transport-related greenhouse gas emissions.
+          </Alert>
         </div>
 
         <section className="sectionNewDev">
@@ -99,136 +104,167 @@ export const NewResidents = ({
               <label>
                 <b>New residents</b>
               </label>
-              <Alert severity="info">
-                0 number of new residents = no new developments to be quantified
-              </Alert>
-              <div>
-                <label htmlFor="new_residents">
-                  Number of new residents moving in
-                </label>
-                <input
-                  type="text"
-                  pattern="[0-9]*"
-                  id="new_residents"
-                  onChange={handleNewResident}
-                  required
-                />
-                <label>
-                  &nbsp;&nbsp;&nbsp; 
-                </label>
+              <div className="div2">
+                <Alert severity="info">
+                  Insert the total number of new residents moving in as a
+                  consequence of the plan/policy that is assessed.
+                </Alert>
               </div>
-              <div>
-                <label htmlFor="start_year"> Start</label>
-                <select
-                  className="ns_select"
-                  id="start_year"
-                  name="start_year"
-                  onChange={handleStartYear}
-                  defaultValue={yearStart}
-                  required
-                >
-                  <option value="DefaultOption">Select start year</option>
-                  {optionsNewStart.map((option) => (
-                    <option key={option} value={option}>
-                      {option}{" "}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              <Tooltip title="If the plan/policy will not increase the number of residents within the area, insert zero.">
+                <div>
+                  <label htmlFor="new_residents">Number of new residents</label>
+                  <input
+                    type="text"
+                    pattern="[0-9]*"
+                    id="new_residents"
+                    onChange={handleNewResident}
+                    required
+                  />
+                  <label>&nbsp;&nbsp;&nbsp;</label>
+                </div>
+              </Tooltip>
 
-              <div>
-                <label htmlFor="finish_year"> End</label>
-                <select
-                  className="ns_select"
-                  id="finish_year"
-                  name="finish_year"
-                  onChange={handleYearFinish}
-                  defaultValue={yearFinish}
-                  required
-                >
-                  <option value="DefaultOption">Select end year</option>
-                  {optionsNew.map((option) => (
-                    <option key={option} value={option}>
-                      {option}{" "}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              <Tooltip
+                title="Start year is the first year during which new residents are moving in."
+                placement="bottom"
+              >
+                <div>
+                  <label htmlFor="start_year"> Start</label>
+                  <select
+                    className="ns_select"
+                    id="start_year"
+                    name="start_year"
+                    onChange={handleStartYear}
+                    defaultValue={yearStart}
+                    required
+                  >
+                    <option value="DefaultOption">Select start year</option>
+                    {optionsNewStart.map((option) => (
+                      <option key={option} value={option}>
+                        {option}{" "}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </Tooltip>
+              <Tooltip
+                title="End year is the last year during which  new residents are moving in."
+                placement="bottom"
+              >
+                <div>
+                  <label htmlFor="finish_year"> End</label>
+                  <select
+                    className="ns_select"
+                    id="finish_year"
+                    name="finish_year"
+                    onChange={handleYearFinish}
+                    defaultValue={yearFinish}
+                    required
+                  >
+                    <option value="DefaultOption">Select end year</option>
+                    {optionsNew.map((option) => (
+                      <option key={option} value={option}>
+                        {option}{" "}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </Tooltip>
               <br />
-              <label>
-                <b>Settlement type</b>
-              </label>
+              <Tooltip title="These inputs are applied to scale down the statistical transport data from the national level to the assessment area.">
+                <label>
+                  <b>Settlement type</b>
+                </label>
+              </Tooltip>
               <label>
                 <b>Existing environment</b>
               </label>
               <label>
                 <b>New development (%)</b>
               </label>
-              <div>
-                <label htmlFor="nsMetropolitan">Metropolitan Area</label>
-                <label>{settlementDistribution.metropolitanCenter}</label>
-                <input
-                  type="number"
-                  step="0.1"
-                  id="nsMetropolitan"
-                  min="0"
-                  max="100"
-                  onChange={handleNsMetropolitanCenter}
-                  required
-                />
+              <div className="div2">
+                <Alert severity="info">
+                  Describe below the new settlements. Allocate approximate
+                  percentages of new population to various types of new
+                  settlements to indicate where the new residents will reside.
+                  The percentages shall total 100.
+                </Alert>
               </div>
-              <div>
-                <label htmlFor="nsUrban">Urban</label>
-                <label>{settlementDistribution.urban}</label>
-                <input
-                  type="number"
-                  step="0.1"
-                  id="nsUrban"
-                  min="0"
-                  max="100"
-                  onChange={handleNsUrban}
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="nsSuburban"> Suburban</label>
-                <label>{settlementDistribution.suburban}</label>
-                <input
-                  type="number"
-                  id="nsSuburban"
-                  step="any"
-                  min="0.0"
-                  max="100.0"
-                  onChange={handleNsSuburban}
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="nsTown">Town</label>
-                <label>{settlementDistribution.town}</label>
-                <input
-                  type="number"
-                  id="nsTown"
-                  step="0.1"
-                  min="0.0"
-                  max="100.0"
-                  onChange={handleNsTown}
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="nsRural">Rural</label>
-                <label>{settlementDistribution.rural}</label>
-                <input
-                  type="number"
-                  id="nsRural"
-                  step="0.1"
-                  min="0"
-                  max="100"
-                  onChange={handleNsRural}
-                  required
-                />
-              </div>
+              <Tooltip title="Urban settlement characterized by superb provision of public transportation including metro and/or tram, large pedestrian zones and high density of population.">
+                <div>
+                  <label htmlFor="nsMetropolitan">Metropolitan area</label>
+                  <label>{settlementDistribution.metropolitanCenter}</label>
+                  <input
+                    type="number"
+                    step="0.1"
+                    id="nsMetropolitan"
+                    min="0"
+                    max="100"
+                    onChange={handleNsMetropolitanCenter}
+                    required
+                  />
+                </div>
+              </Tooltip>
+              <Tooltip title="Urban settlement characterized by excellent provision of public tranportation and high density of population.">
+                <div>
+                  <label htmlFor="nsUrban">Urban area</label>
+                  <label>{settlementDistribution.urban}</label>
+                  <input
+                    type="number"
+                    step="0.1"
+                    id="nsUrban"
+                    min="0"
+                    max="100"
+                    onChange={handleNsUrban}
+                    required
+                  />
+                </div>
+              </Tooltip>
+              <Tooltip title="Settlement dominated by private car transport and residential buildings; bus and train transportation available.">
+                <div>
+                  <label htmlFor="nsSuburban"> Suburban area</label>
+                  <label>{settlementDistribution.suburban}</label>
+                  <input
+                    type="number"
+                    id="nsSuburban"
+                    step="any"
+                    min="0.0"
+                    max="100.0"
+                    onChange={handleNsSuburban}
+                    required
+                  />
+                </div>
+              </Tooltip>
+              <Tooltip title="A local center that is smaller than a city, providing commercial services to a largera area as well as public transportation (bus, train).">
+                <div>
+                  <label htmlFor="nsTown">Town</label>
+                  <label>{settlementDistribution.town}</label>
+                  <input
+                    type="number"
+                    id="nsTown"
+                    step="0.1"
+                    min="0.0"
+                    max="100.0"
+                    onChange={handleNsTown}
+                    required
+                  />
+                </div>
+              </Tooltip>
+              <Tooltip title="Sparsely populated area with limited provision of public transportation (some bus connections only).">
+                <div>
+                  <label htmlFor="nsRural">Rural</label>
+                  <label>{settlementDistribution.rural}</label>
+                  <input
+                    type="number"
+                    id="nsRural"
+                    step="0.1"
+                    min="0"
+                    max="100"
+                    onChange={handleNsRural}
+                    required
+                  />
+                </div>
+              </Tooltip>
               <div className="nextButtonNew">
                 <Button
                   size="small"
