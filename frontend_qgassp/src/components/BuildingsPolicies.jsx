@@ -13,6 +13,7 @@ import Divider from "@mui/material/Divider";
  */
 
  export const BuildingsPolicies = ({
+   baseline,
    country,
     year,
   }) => {
@@ -2405,6 +2406,7 @@ import Divider from "@mui/material/Divider";
   BuildingsPolicies.propTypes = {
     year: PropTypes.number.isRequired,
     country: PropTypes.string.isRequired,
+    baseline: PropTypes.object.isRequired,
     // settlementDistribution: PropTypes.object.isRequired,
     // emission: PropTypes.object.isRequired,
     // projections: PropTypes.object.isRequired

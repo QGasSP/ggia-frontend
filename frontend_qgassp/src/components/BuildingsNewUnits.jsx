@@ -2357,6 +2357,7 @@ import urlPrefix from "../Config";
           newSettlementBuildingsResponse={newSettlementBuildingsResponse}
           // newSettlementCommercial={newSettlementCommercial}
           // newSettlementResidental={newSettlementResidental}
+          baseline={baseline}
           country={country}
           year={year}
         />
