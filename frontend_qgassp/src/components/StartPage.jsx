@@ -169,24 +169,24 @@ export const StartPage = () => {
                 />
               </div>
             </Tooltip>
-            <div className="next_u1">
-              <Button
-                size="small"
-                id="baseline_save"
-                label="Save"
-                onClick={startBaseline}
-                primary="true"
-              />
-            </div>
-
-            <br />
-            <div className="reset_button">
-              <Button
-                size="small"
-                onClick={clearLocalStorage}
-                label="Reset"
-                primary="true"
-              />
+            <div className="btns-sections">
+              <div className="next_u1 btn-start">
+                <Button
+                  size="small"
+                  id="baseline_save"
+                  label="Save"
+                  onClick={startBaseline}
+                  primary="true"
+                />
+              </div>
+              <div className="reset_button btn-start">
+                <Button
+                  size="small"
+                  onClick={clearLocalStorage}
+                  label="Reset"
+                  primary="true"
+                />
+              </div>
             </div>
           </div>
           <Divider orientation="vertical" flexItem></Divider>
