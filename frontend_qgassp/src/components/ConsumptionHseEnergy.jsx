@@ -22,20 +22,23 @@ export const ConsumptionHseEnergy = ({
   districtValue,
 }) => {
   const [nextCBTransport, setCbTransport] = useState(false);
-  const [districtHeating, setDistrictHeating] = useState(0.0);
-  const [electricityHeating, setElectricityHeating] = useState(0.0);
-  const [combustableFuels, setCombustableFuels] = useState(0.0);
-  const [liquidHeating, setLiquidHeating] = useState(0.0);
-  const [solidsHeating, setSolidHeating] = useState(0.0);
-  const [gasesHeating, setGasesHeating] = useState(0.0);
-  const [valueDistrict, setValueDistrict] = useState(0.0);
 
   const [policyYear, setPolicyYear] = useState(0);
   const [newFloorArea, setNewFloorArea] = useState(0);
   const [popSizePolicy, setPopulationSizePolicy] = useState(0);
+  
   const [effGain, setEffGain] = useState(false);
+  const handleEffGain = (e) => {
+    e.target.checked;
+    setEffGain(!effGain);
+  };
   const [effScaler, setEffScaler] = useState(0);
+
   const [localElectricity, setLocalElectricity] = useState(false);
+  const handleLocalElectricity = (e) => {
+    e.target.checked;
+    setLocalElectricity(!localElectricity);
+  };
   const [elType, setElectricityType] = useState(
     "Electricity by solar photovoltaic"
   );
@@ -46,6 +49,13 @@ export const ConsumptionHseEnergy = ({
     e.target.checked;
     setHeatingShare(!sHeating);
   };
+  const [districtHeating, setDistrictHeating] = useState(0.0);
+  const [electricityHeating, setElectricityHeating] = useState(0.0);
+  const [combustableFuels, setCombustableFuels] = useState(0.0);
+  const [liquidHeating, setLiquidHeating] = useState(0.0);
+  const [solidsHeating, setSolidHeating] = useState(0.0);
+  const [gasesHeating, setGasesHeating] = useState(0.0);
+  const [valueDistrict, setValueDistrict] = useState(0.0);
 
   const optionsCb = [];
   for (let i = 2022; i < 2051; i++) optionsCb.push(i);
@@ -182,7 +192,7 @@ export const ConsumptionHseEnergy = ({
               </label>
               <label></label>
             </div>
-            <div className="div_transport">
+            {/* <div className="div_transport">
               <label htmlFor="eff_gain">
                 Do you want “Household energy efficiency”?
               </label>
@@ -196,103 +206,127 @@ export const ConsumptionHseEnergy = ({
                 <option value={ceYes}>Yes</option>
                 <option value={ceNo}>No</option>
               </select>
-            </div>
-            <div className="div_transport">
-              <label htmlFor="eff_scaler" className="settle_label">
-                <b>% </b>energy reduction of household heating &#38; cooling
-              </label>
-              <input
-                className="input_occupancy"
-                type="number"
-                id="eff_scaler"
-                onChange={handleEffScaler}
-                defaultValue={effScaler}
-                min="0"
-                max="100"
-                required
-              />
-            </div>
-            <div className="div_transport">
-              <label>
-                <b>Energy production</b>
-              </label>
-              <label></label>
-            </div>
+            </div> */}
 
-            <div className="div_transport">
+            <div className="div_breakdown">
               <label htmlFor="local_electricity">
-                Consider local electricity production?
-              </label>
-              <select
-                className="prod_energy_options"
-                id="local_electricity"
-                onChange={(e) => setLocalElectricity(e.target.value)}
-                defaultValue={localElectricity}
-              >
-                <option value="DefaultOption">Select an option</option>
-                <option value={ceYes}>Yes</option>
-                <option value={ceNo}>No</option>
-              </select>
-            </div>
-
-            <div className="div_transport">
-              <label htmlFor="el_type">
-                What is the source of local electricity production?
-              </label>
-              <select
-                className="local_energy_elec"
-                id="el_type"
-                onChange={(e) => setElectricityType(e.target.value)}
-                defaultValue={elType}
-              >
-                <option value="DefaultOption">Select source</option>
-                <option value="Electricity by coal">Electricity by coal</option>
-                <option value="Electricity by gas">Electricity by gas</option>
-                <option value="Electricity by nuclear">
-                  Electricity by nuclear
-                </option>
-                <option value="Electricity by hydro">
-                  Electricity by hydro
-                </option>
-                <option value="Electricity by wind">Electricity by wind</option>
-                <option value="Electricity by petroleum and other oil derivatives">
-                  Electricity by petroleum and other oil derivatives
-                </option>
-                <option value="Electricity by biomass and waste">
-                  Electricity by biomass and waste
-                </option>
-                <option value="Electricity by solar photovoltaic">
-                  Electricity by solar photovoltaic
-                </option>
-                <option value="Electricity by solar thermal">
-                  Electricity by solar thermal
-                </option>
-                <option value="Electricity by tide, wave, ocean">
-                  Electricity by tide, wave, ocean
-                </option>
-                <option value="Electricity by Geothermal">
-                  Electricity by Geothermal
-                </option>
-                <option value="Electricity nec">No Electricity</option>
-              </select>
-            </div>
-
-            <div className="div_transport">
-              <label htmlFor="electricity_scaler" className="settle_label">
-                What % of demand is covered by this new source?
+                  Consider “Household energy efficiency”:
               </label>
               <input
-                className="input_occupancy"
-                type="number"
-                id="electricity_scaler"
-                onChange={handleElScaler}
-                defaultValue={elScaler}
-                min="0"
-                max="100"
-                placeholder="0-100 %"
-                required
+                className="checkbox_cb"
+                type="checkbox"
+                id="eff_gain"
+                checked={effGain}
+                defaultValue={effGain}
+                onChange={handleEffGain}
               />
             </div>
+
+
+            {effGain && (
+              <>
+              <div className="div_transport">
+                <label htmlFor="eff_scaler" className="settle_label">
+                  <b>% </b>energy reduction of household heating &#38; cooling
+                </label>
+                <input
+                  className="input_occupancy"
+                  type="number"
+                  id="eff_scaler"
+                  onChange={handleEffScaler}
+                  defaultValue={effScaler}
+                  min="0"
+                  max="100"
+                  required
+                />
+              </div>
+              <div className="div_transport">
+                <label>
+                  <b>Energy production</b>
+                </label>
+                <label></label>
+              </div>
+              </>
+            )}
+
+            <div className="div_breakdown">
+              <label htmlFor="local_electricity">
+                  Consider local electricity production:
+              </label>
+              <input
+                className="checkbox_cb"
+                type="checkbox"
+                id="local_electricity"
+                checked={localElectricity}
+                defaultValue={localElectricity}
+                onChange={handleLocalElectricity}
+              />
+            </div>
+
+
+            {localElectricity && (
+              <>
+              <div className="div_transport">
+                <label htmlFor="el_type">
+                  What is the source of local electricity production?
+                </label>
+                <select
+                  className="local_energy_elec"
+                  id="el_type"
+                  onChange={(e) => setElectricityType(e.target.value)}
+                  defaultValue={elType}
+                >
+                  <option value="DefaultOption">Select source</option>
+                  <option value="Electricity by coal">Electricity by coal</option>
+                  <option value="Electricity by gas">Electricity by gas</option>
+                  <option value="Electricity by nuclear">
+                    Electricity by nuclear
+                  </option>
+                  <option value="Electricity by hydro">
+                    Electricity by hydro
+                  </option>
+                  <option value="Electricity by wind">Electricity by wind</option>
+                  <option value="Electricity by petroleum and other oil derivatives">
+                    Electricity by petroleum and other oil derivatives
+                  </option>
+                  <option value="Electricity by biomass and waste">
+                    Electricity by biomass and waste
+                  </option>
+                  <option value="Electricity by solar photovoltaic">
+                    Electricity by solar photovoltaic
+                  </option>
+                  <option value="Electricity by solar thermal">
+                    Electricity by solar thermal
+                  </option>
+                  <option value="Electricity by tide, wave, ocean">
+                    Electricity by tide, wave, ocean
+                  </option>
+                  <option value="Electricity by Geothermal">
+                    Electricity by Geothermal
+                  </option>
+                  <option value="Electricity nec">No Electricity</option>
+                </select>
+              </div>
+
+              <div className="div_transport">
+                <label htmlFor="electricity_scaler" className="settle_label">
+                  What % of demand is covered by this new source?
+                </label>
+                <input
+                  className="input_occupancy"
+                  type="number"
+                  id="electricity_scaler"
+                  onChange={handleElScaler}
+                  defaultValue={elScaler}
+                  min="0"
+                  max="100"
+                  placeholder="0-100 %"
+                  required
+                />
+              </div>
+
+            </>
+            )}
 
             <div className="div_transport">
               <label>
@@ -301,24 +335,19 @@ export const ConsumptionHseEnergy = ({
               <label></label>
             </div>
 
-            {(
-              <>
-                <div className="div_breakdown">
-                  <label htmlFor="s_heating">
-                    <b>
-                      Consider changes in the heating share:
-                    </b>
-                  </label>
-                  <input
-                    className="checkbox_cb"
-                    type="checkbox"
-                    id="s_heating"
-                    checked={sHeating}
-                    onChange={handleHeatingShare}
-                  />
-                </div>
-              </>
-            )}
+            <div className="div_breakdown">
+              <label htmlFor="s_heating">
+                Consider changes in the heating share:
+              </label>
+              <input
+                className="checkbox_cb"
+                type="checkbox"
+                id="s_heating"
+                checked={sHeating}
+                defaultValue={sHeating}
+                onChange={handleHeatingShare}
+              />
+            </div>
 
 
             {sHeating && (
@@ -428,6 +457,7 @@ export const ConsumptionHseEnergy = ({
               </>
             )}
           </div>
+
           {policyYear > 0 && popSizePolicy > 0 && newFloorArea > 0 && (
             <div className="nextCBQ">
               <Button
