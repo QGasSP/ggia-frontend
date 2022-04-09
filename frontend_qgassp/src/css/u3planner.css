@@ -6,7 +6,9 @@
   margin: 0.5rem;
   color: #333;
 }
-
+.section-u3 input, .section-u3 select{
+  width: 90px;
+}
 #inputspace {
   margin-right: 5rem;
   width: 60% !important;
