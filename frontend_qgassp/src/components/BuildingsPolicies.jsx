@@ -12,13 +12,7 @@ import Divider from "@mui/material/Divider";
  * @return {}
  */
 
- export const BuildingsPolicies = ({
-   baseline,
-   country,
-    year,
-  }) => {
-     
-
+export const BuildingsPolicies = ({ baseline, country, year }) => {
   // RESIDENTIAL units
 
   // firstResidentSelector
@@ -1504,45 +1498,1108 @@ import Divider from "@mui/material/Divider";
         </section>
         <section>
           <section>
-                {(
-                <div className="nextU2Button">
-                    <Button
-                    size="small"
-                    value="charts"
-                    onClick={setPoliciesResults}
-                    label="Next &raquo;"
-                    primary
-                    />
-                </div>
-                )}
-            </section>
-        </article>
-      );
-    } else {
-      return (
-        <BuildingsPoliciesCharts
-          year={year}
-          country={country}
-          // baseline={baseline.baseline}
-          // newDevelopment={newDevelopment}
-          // settlementDistribution={settlementDistribution}
-          // emission={emission}
-          // projections={projections}
-        />
-      );
-    }
-  };
-  
-  BuildingsPolicies.propTypes = {
-    year: PropTypes.number.isRequired,
-    country: PropTypes.string.isRequired,
-    baseline: PropTypes.object.isRequired,
-    // settlementDistribution: PropTypes.object.isRequired,
-    // emission: PropTypes.object.isRequired,
-    // projections: PropTypes.object.isRequired
-  };
-  
-  BuildingsPolicies.defaultProps = {
-    year: 2030,
-    country: "Estonia",
-  };
+            <Divider textAlign="left" flexItem>
+              {" "}
+              <b>U8.2 Retrofits of commercial buildings</b>
+            </Divider>
+          </section>
+          <div className="newResidentDiv">
+            <form>
+              <table className="buildings-policy-tbl buildings-tbl">
+                <thead>
+                  <tr>
+                    <th className="row-title">Select building type</th>
+                    <th>Total floor area</th>
+                    <th>Expected reduction in energy demand (%)</th>
+                    <th>% of electricty from renewables</th>
+                    <th colSpan={2}>Retrofits completed between</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <select
+                        className="table-cell first-cell"
+                        id="firstCommercialSelectorBuildingType"
+                        name="firstCommercialSelectorBuildingType"
+                        onChange={handleFirstCommercialSelectorBuildingType}
+                        defaultValue="Select building type"
+                        required
+                      >
+                        {optionsCommercials.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <input
+                        className="table-cell"
+                        type="number"
+                        step="1"
+                        id="firstCommercialSelectorArea"
+                        name="firstCommercialSelectorArea"
+                        min="0"
+                        value={firstCommercialSelectorArea}
+                        onChange={handleFirstCommercialSelectorArea}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="table-cell"
+                        type="number"
+                        step="1"
+                        id="firstCommercialSelectorReduction"
+                        name="firstCommercialSelectorReduction"
+                        min="0"
+                        max="100"
+                        value={firstCommercialSelectorReduction}
+                        onChange={handleFirstCommercialSelectorReduction}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="table-cell"
+                        type="number"
+                        step="1"
+                        id="firstCommercialSelectorEnergy"
+                        name="firstCommercialSelectorEnergy"
+                        min="0"
+                        value={firstCommercialSelectorEnergy}
+                        onChange={handleFirstCommercialSelectorEnergy}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="firstCommercialSelectorStartYear"
+                        name="firstCommercialSelectorStartYear"
+                        onChange={handleFirstCommercialSelectorStartYear}
+                        defaultValue="Select indicator"
+                        required
+                      >
+                        {optionsYear.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="firstCommercialSelectorEndYear"
+                        name="firstCommercialSelectorEndYear"
+                        onChange={handleFirstCommercialSelectorEndYear}
+                        defaultValue="Select indicator"
+                        required
+                      >
+                        {optionsYear.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <select
+                        className="table-cell first-cell"
+                        id="secondCommercialSelectorBuildingType"
+                        name="secondCommercialSelectorBuildingType"
+                        onChange={handleSecondCommercialSelectorBuildingType}
+                        defaultValue="Select building type"
+                        required
+                      >
+                        {optionsCommercials.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <input
+                        className="table-cell"
+                        type="number"
+                        step="1"
+                        id="secondCommercialSelectorArea"
+                        name="secondCommercialSelectorArea"
+                        min="0"
+                        value={secondCommercialSelectorArea}
+                        onChange={handleSecondCommercialSelectorArea}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="table-cell"
+                        type="number"
+                        step="1"
+                        id="secondCommercialSelectorReduction"
+                        name="secondCommercialSelectorReduction"
+                        min="0"
+                        max="100"
+                        value={secondCommercialSelectorReduction}
+                        onChange={handleSecondCommercialSelectorReduction}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="table-cell"
+                        type="number"
+                        step="1"
+                        id="secondCommercialSelectorEnergy"
+                        name="secondCommercialSelectorEnergy"
+                        min="0"
+                        value={secondCommercialSelectorEnergy}
+                        onChange={handleSecondCommercialSelectorEnergy}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="secondCommercialSelectorStartYear"
+                        name="secondCommercialSelectorStartYear"
+                        onChange={handleSecondCommercialSelectorStartYear}
+                        defaultValue="Select indicator"
+                        required
+                      >
+                        {optionsYear.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="secondCommercialSelectorEndYear"
+                        name="secondCommercialSelectorEndYear"
+                        onChange={handleSecondCommercialSelectorEndYear}
+                        defaultValue="Select indicator"
+                        required
+                      >
+                        {optionsYear.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <select
+                        className="table-cell first-cell"
+                        id="thirdCommercialSelectorBuildingType"
+                        name="thirdCommercialSelectorBuildingType"
+                        onChange={handleThirdCommercialSelectorBuildingType}
+                        defaultValue="Select building type"
+                        required
+                      >
+                        {optionsCommercials.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <input
+                        className="table-cell"
+                        type="number"
+                        step="1"
+                        id="thirdCommercialSelectorArea"
+                        name="thirdCommercialSelectorArea"
+                        min="0"
+                        value={thirdCommercialSelectorArea}
+                        onChange={handleThirdCommercialSelectorArea}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="table-cell"
+                        type="number"
+                        step="1"
+                        id="thirdCommercialSelectorReduction"
+                        name="thirdCommercialSelectorReduction"
+                        min="0"
+                        max="100"
+                        value={thirdCommercialSelectorReduction}
+                        onChange={handleThirdCommercialSelectorReduction}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="table-cell"
+                        type="number"
+                        step="1"
+                        id="thirdCommercialSelectorEnergy"
+                        name="thirdCommercialSelectorEnergy"
+                        min="0"
+                        value={thirdCommercialSelectorEnergy}
+                        onChange={handleThirdCommercialSelectorEnergy}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="thirdCommercialSelectorStartYear"
+                        name="thirdCommercialSelectorStartYear"
+                        onChange={handleThirdCommercialSelectorStartYear}
+                        defaultValue="Select indicator"
+                        required
+                      >
+                        {optionsYear.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="thirdCommercialSelectorEndYear"
+                        name="thirdCommercialSelectorEndYear"
+                        onChange={handleThirdCommercialSelectorEndYear}
+                        defaultValue="Select indicator"
+                        required
+                      >
+                        {optionsYear.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <select
+                        className="table-cell first-cell"
+                        id="fourthCommercialSelectorBuildingType"
+                        name="fourthCommercialSelectorBuildingType"
+                        onChange={handleFourthCommercialSelectorBuildingType}
+                        defaultValue="Select building type"
+                        required
+                      >
+                        {optionsCommercials.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <input
+                        className="table-cell"
+                        type="number"
+                        step="1"
+                        id="fourthCommercialSelectorArea"
+                        name="fourthCommercialSelectorArea"
+                        min="0"
+                        value={fourthCommercialSelectorArea}
+                        onChange={handleFourthCommercialSelectorArea}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="table-cell"
+                        type="number"
+                        step="1"
+                        id="fourthCommercialSelectorReduction"
+                        name="fourthCommercialSelectorReduction"
+                        min="0"
+                        max="100"
+                        value={fourthCommercialSelectorReduction}
+                        onChange={handleFourthCommercialSelectorReduction}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="table-cell"
+                        type="number"
+                        step="1"
+                        id="fourthCommercialSelectorEnergy"
+                        name="fourthCommercialSelectorEnergy"
+                        min="0"
+                        value={fourthCommercialSelectorEnergy}
+                        onChange={handleFourthCommercialSelectorEnergy}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="fourthCommercialSelectorStartYear"
+                        name="fourthCommercialSelectorStartYear"
+                        onChange={handleFourthCommercialSelectorStartYear}
+                        defaultValue="Select indicator"
+                        required
+                      >
+                        {optionsYear.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="fourthCommercialSelectorEndYear"
+                        name="fourthCommercialSelectorEndYear"
+                        onChange={handleFourthCommercialSelectorEndYear}
+                        defaultValue="Select indicator"
+                        required
+                      >
+                        {optionsYear.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <select
+                        className="table-cell first-cell"
+                        id="fifthCommercialSelectorBuildingType"
+                        name="fifthCommercialSelectorBuildingType"
+                        onChange={handleFifthCommercialSelectorBuildingType}
+                        defaultValue="Select building type"
+                        required
+                      >
+                        {optionsCommercials.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <input
+                        className="table-cell"
+                        type="number"
+                        step="1"
+                        id="fifthCommercialSelectorArea"
+                        name="fifthCommercialSelectorArea"
+                        min="0"
+                        value={fifthCommercialSelectorArea}
+                        onChange={handleFifthCommercialSelectorArea}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="table-cell"
+                        type="number"
+                        step="1"
+                        id="fifthCommercialSelectorReduction"
+                        name="fifthCommercialSelectorReduction"
+                        min="0"
+                        max="100"
+                        value={fifthCommercialSelectorReduction}
+                        onChange={handleFifthCommercialSelectorReduction}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="table-cell"
+                        type="number"
+                        step="1"
+                        id="fifthCommercialSelectorEnergy"
+                        name="fifthCommercialSelectorEnergy"
+                        min="0"
+                        value={fifthCommercialSelectorEnergy}
+                        onChange={handleFifthCommercialSelectorEnergy}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="fifthCommercialSelectorStartYear"
+                        name="fifthCommercialSelectorStartYear"
+                        onChange={handleFifthCommercialSelectorStartYear}
+                        defaultValue="Select indicator"
+                        required
+                      >
+                        {optionsYear.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="fifthCommercialSelectorEndYear"
+                        name="fifthCommercialSelectorEndYear"
+                        onChange={handleFifthCommercialSelectorEndYear}
+                        defaultValue="Select indicator"
+                        required
+                      >
+                        {optionsYear.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <select
+                        className="table-cell first-cell"
+                        id="sixthCommercialSelectorBuildingType"
+                        name="sixthCommercialSelectorBuildingType"
+                        onChange={handleSixthCommercialSelectorBuildingType}
+                        defaultValue="Select building type"
+                        required
+                      >
+                        {optionsCommercials.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <input
+                        className="table-cell"
+                        type="number"
+                        step="1"
+                        id="sixthCommercialSelectorArea"
+                        name="sixthCommercialSelectorArea"
+                        min="0"
+                        value={sixthCommercialSelectorArea}
+                        onChange={handleSixthCommercialSelectorArea}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="table-cell"
+                        type="number"
+                        step="1"
+                        id="sixthCommercialSelectorReduction"
+                        name="sixthCommercialSelectorReduction"
+                        min="0"
+                        max="100"
+                        value={sixthCommercialSelectorReduction}
+                        onChange={handleSixthCommercialSelectorReduction}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="table-cell"
+                        type="number"
+                        step="1"
+                        id="sixthCommercialSelectorEnergy"
+                        name="sixthCommercialSelectorEnergy"
+                        min="0"
+                        value={sixthCommercialSelectorEnergy}
+                        onChange={handleSixthCommercialSelectorEnergy}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="sixthCommercialSelectorStartYear"
+                        name="sixthCommercialSelectorStartYear"
+                        onChange={handleSixthCommercialSelectorStartYear}
+                        defaultValue="Select indicator"
+                        required
+                      >
+                        {optionsYear.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="sixthCommercialSelectorEndYear"
+                        name="sixthCommercialSelectorEndYear"
+                        onChange={handleSixthCommercialSelectorEndYear}
+                        defaultValue="Select indicator"
+                        required
+                      >
+                        {optionsYear.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+          </div>
+        </section>
+        <section>
+          <section>
+            <Divider textAlign="left" flexItem>
+              {" "}
+              <b>U8.3 Change of building use</b>
+            </Divider>
+          </section>
+          <div className="newResidentDiv">
+            <form>
+              <table className="buildings-policy-tbl buildings-tbl">
+                <thead>
+                  <tr>
+                    {/* <th className="row-title">Select building type</th> */}
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Floor Area</th>
+                    <th colSpan={2}>Conversions implemented between</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="firstSelectorBuildingTypeFrom"
+                        name="firstSelectorBuildingTypeFrom"
+                        onChange={handleFirstSelectorBuildingTypeFrom}
+                        defaultValue="Select building type"
+                        required
+                      >
+                        {optionsBuildings.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="firstSelectorBuildingTypeTo"
+                        name="firstSelectorBuildingTypeTo"
+                        onChange={handleFirstSelectorBuildingTypeTo}
+                        defaultValue="Select building type"
+                        required
+                      >
+                        {optionsBuildings.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <input
+                        className="table-cell"
+                        type="number"
+                        step="1"
+                        id="firstSelectorArea"
+                        name="firstSelectorArea"
+                        min="0"
+                        value={firstSelectorArea}
+                        onChange={handleFirstSelectorArea}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="firstSelectorStartYear"
+                        name="firstSelectorStartYear"
+                        onChange={handleFirstSelectorStartYear}
+                        defaultValue="Select indicator"
+                        required
+                      >
+                        {optionsYear.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="firstSelectorEndYear"
+                        name="firstSelectorEndYear"
+                        onChange={handleFirstSelectorEndYear}
+                        defaultValue="Select indicator"
+                        required
+                      >
+                        {optionsYear.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="secondSelectorBuildingTypeFrom"
+                        name="secondSelectorBuildingTypeFrom"
+                        onChange={handleSecondSelectorBuildingTypeFrom}
+                        defaultValue="Select building type"
+                        required
+                      >
+                        {optionsBuildings.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="secondSelectorBuildingTypeTo"
+                        name="secondSelectorBuildingTypeTo"
+                        onChange={handleSecondSelectorBuildingTypeTo}
+                        defaultValue="Select building type"
+                        required
+                      >
+                        {optionsBuildings.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <input
+                        className="table-cell"
+                        type="number"
+                        step="1"
+                        id="secondSelectorArea"
+                        name="secondSelectorArea"
+                        min="0"
+                        value={secondSelectorArea}
+                        onChange={handleSecondSelectorArea}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="secondSelectorStartYear"
+                        name="secondSelectorStartYear"
+                        onChange={handleSecondSelectorStartYear}
+                        defaultValue="Select indicator"
+                        required
+                      >
+                        {optionsYear.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="secondSelectorEndYear"
+                        name="secondSelectorEndYear"
+                        onChange={handleSecondSelectorEndYear}
+                        defaultValue="Select indicator"
+                        required
+                      >
+                        {optionsYear.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="thirdSelectorBuildingTypeFrom"
+                        name="thirdSelectorBuildingTypeFrom"
+                        onChange={handleThirdSelectorBuildingTypeFrom}
+                        defaultValue="Select building type"
+                        required
+                      >
+                        {optionsBuildings.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="thirdSelectorBuildingTypeTo"
+                        name="thirdSelectorBuildingTypeTo"
+                        onChange={handleThirdSelectorBuildingTypeTo}
+                        defaultValue="Select building type"
+                        required
+                      >
+                        {optionsBuildings.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <input
+                        className="table-cell"
+                        type="number"
+                        step="1"
+                        id="thirdSelectorArea"
+                        name="thirdSelectorArea"
+                        min="0"
+                        value={thirdSelectorArea}
+                        onChange={handleThirdSelectorArea}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="thirdSelectorStartYear"
+                        name="thirdSelectorStartYear"
+                        onChange={handleThirdSelectorStartYear}
+                        defaultValue="Select indicator"
+                        required
+                      >
+                        {optionsYear.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="thirdSelectorEndYear"
+                        name="thirdSelectorEndYear"
+                        onChange={handleThirdSelectorEndYear}
+                        defaultValue="Select indicator"
+                        required
+                      >
+                        {optionsYear.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="fourthSelectorBuildingTypeFrom"
+                        name="fourthSelectorBuildingTypeFrom"
+                        onChange={handleFourthSelectorBuildingTypeFrom}
+                        defaultValue="Select building type"
+                        required
+                      >
+                        {optionsBuildings.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="fourthSelectorBuildingTypeTo"
+                        name="fourthSelectorBuildingTypeTo"
+                        onChange={handleFourthSelectorBuildingTypeTo}
+                        defaultValue="Select building type"
+                        required
+                      >
+                        {optionsBuildings.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <input
+                        className="table-cell"
+                        type="number"
+                        step="1"
+                        id="fourthSelectorArea"
+                        name="fourthSelectorArea"
+                        min="0"
+                        value={fourthSelectorArea}
+                        onChange={handleFourthSelectorArea}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="fourthSelectorStartYear"
+                        name="fourthSelectorStartYear"
+                        onChange={handleFourthSelectorStartYear}
+                        defaultValue="Select indicator"
+                        required
+                      >
+                        {optionsYear.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="fourthSelectorEndYear"
+                        name="fourthSelectorEndYear"
+                        onChange={handleFourthSelectorEndYear}
+                        defaultValue="Select indicator"
+                        required
+                      >
+                        {optionsYear.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="fifthSelectorBuildingTypeFrom"
+                        name="fifthSelectorBuildingTypeFrom"
+                        onChange={handleFifthSelectorBuildingTypeFrom}
+                        defaultValue="Select building type"
+                        required
+                      >
+                        {optionsBuildings.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="fifthSelectorBuildingTypeTo"
+                        name="fifthSelectorBuildingTypeTo"
+                        onChange={handleFifthSelectorBuildingTypeTo}
+                        defaultValue="Select building type"
+                        required
+                      >
+                        {optionsBuildings.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <input
+                        className="table-cell"
+                        type="number"
+                        step="1"
+                        id="fifthSelectorArea"
+                        name="fifthSelectorArea"
+                        min="0"
+                        value={fifthSelectorArea}
+                        onChange={handleFifthSelectorArea}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="fifthSelectorStartYear"
+                        name="fifthSelectorStartYear"
+                        onChange={handleFifthSelectorStartYear}
+                        defaultValue="Select indicator"
+                        required
+                      >
+                        {optionsYear.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="fifthSelectorEndYear"
+                        name="fifthSelectorEndYear"
+                        onChange={handleFifthSelectorEndYear}
+                        defaultValue="Select indicator"
+                        required
+                      >
+                        {optionsYear.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="sixthSelectorBuildingTypeFrom"
+                        name="sixthSelectorBuildingTypeFrom"
+                        onChange={handleSixthSelectorBuildingTypeFrom}
+                        defaultValue="Select building type"
+                        required
+                      >
+                        {optionsBuildings.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="sixthSelectorBuildingTypeTo"
+                        name="sixthSelectorBuildingTypeTo"
+                        onChange={handleSixthSelectorBuildingTypeTo}
+                        defaultValue="Select building type"
+                        required
+                      >
+                        {optionsBuildings.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <input
+                        className="table-cell"
+                        type="number"
+                        step="1"
+                        id="sixthSelectorArea"
+                        name="sixthSelectorArea"
+                        min="0"
+                        value={sixthSelectorArea}
+                        onChange={handleSixthSelectorArea}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="sixthSelectorStartYear"
+                        name="sixthSelectorStartYear"
+                        onChange={handleSixthSelectorStartYear}
+                        defaultValue="Select indicator"
+                        required
+                      >
+                        {optionsYear.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <select
+                        className="table-cell"
+                        id="sixthSelectorEndYear"
+                        name="sixthSelectorEndYear"
+                        onChange={handleSixthSelectorEndYear}
+                        defaultValue="Select indicator"
+                        required
+                      >
+                        {optionsYear.map((option) => (
+                          <option key={option} value={option}>
+                            {option}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+          </div>
+        </section>
+        <section>
+          {
+            <div className="nextU2Button">
+              <Button
+                size="small"
+                value="charts"
+                onClick={setPoliciesResults}
+                label="Next &raquo;"
+                primary
+              />
+            </div>
+          }
+        </section>
+      </article>
+    );
+  } else {
+    return (
+      <BuildingsPoliciesCharts
+        year={year}
+        country={country}
+        // baseline={baseline.baseline}
+        // newDevelopment={newDevelopment}
+        // settlementDistribution={settlementDistribution}
+        // emission={emission}
+        // projections={projections}
+      />
+    );
+  }
+};
+
+BuildingsPolicies.propTypes = {
+  year: PropTypes.number.isRequired,
+  country: PropTypes.string.isRequired,
+  baseline: PropTypes.object.isRequired,
+  // settlementDistribution: PropTypes.object.isRequired,
+  // emission: PropTypes.object.isRequired,
+  // projections: PropTypes.object.isRequired
+};
+
+BuildingsPolicies.defaultProps = {
+  year: 2030,
+  country: "Estonia",
+};

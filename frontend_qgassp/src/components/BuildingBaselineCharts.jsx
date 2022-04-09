@@ -435,31 +435,31 @@ export const BuildingBaselineCharts = ({
 
   baseline = response.data;
 
-   // #region data distribution
-   const apartmentsData = [];
-   const terracedData = [];
-   const semidetachedData = [];
-   const detachedData = [];
-   const retailData = [];
-   const healthData = [];
-   const hospitalityData = [];
-   const officesData = [];
-   const industrialData = [];
-   const warehousesData = [];
+  // #region data distribution
+  const apartmentsData = [];
+  const terracedData = [];
+  const semidetachedData = [];
+  const detachedData = [];
+  const retailData = [];
+  const healthData = [];
+  const hospitalityData = [];
+  const officesData = [];
+  const industrialData = [];
+  const warehousesData = [];
 
-   for (let i = year; i < 2051; i++){
-    apartmentsData.push({ x: i,  y: baseline[i].apartments });
-    terracedData.push({ x: i,  y: baseline[i].terraced });
-    semidetachedData.push({ x: i,  y: baseline[i].semidetached });
-    detachedData.push({ x: i,  y: baseline[i].detached });
-    retailData.push({ x: i,  y: baseline[i].retail });
-    healthData.push({ x: i,  y: baseline[i].health });
-    hospitalityData.push({ x: i,  y: baseline[i].hospitality });
-    officesData.push({ x: i,  y: baseline[i].offices });
-    industrialData.push({ x: i,  y: baseline[i].industrial });
-    warehousesData.push({ x: i,  y: baseline[i].warehouses });
-   };
-   // #endregion
+  for (let i = year; i < 2051; i++) {
+    apartmentsData.push({ x: i, y: baseline[i].apartments });
+    terracedData.push({ x: i, y: baseline[i].terraced });
+    semidetachedData.push({ x: i, y: baseline[i].semidetached });
+    detachedData.push({ x: i, y: baseline[i].detached });
+    retailData.push({ x: i, y: baseline[i].retail });
+    healthData.push({ x: i, y: baseline[i].health });
+    hospitalityData.push({ x: i, y: baseline[i].hospitality });
+    officesData.push({ x: i, y: baseline[i].offices });
+    industrialData.push({ x: i, y: baseline[i].industrial });
+    warehousesData.push({ x: i, y: baseline[i].warehouses });
+  }
+  // #endregion
 
   if (nextNewUnitsView === false && Object.keys(baseline).length !== 0) {
     return (
