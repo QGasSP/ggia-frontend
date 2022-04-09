@@ -1,5 +1,5 @@
 import React from "react";
-import {BuildingsPoliciesCharts} from "../components/BuildingsPoliciesCharts";
+import { BuildingsPoliciesCharts } from "../components/BuildingsPoliciesCharts";
 
 export default {
   title: '"QgasSP/BuildingsPoliciesCharts',

@@ -64,7 +64,7 @@
 
 .next_u1 {
   padding-top: 0.5rem;
- /*  position: absolute; */
+  /*  position: absolute; */
   left: 1.5rem;
 }
 
@@ -89,12 +89,11 @@
   margin-left: 1.5rem;
   align-content: flex-start;
 }
-.population{
-  padding-left:1rem ;
+.population {
+  padding-left: 1rem;
 }
 
-.reset_button{
+.reset_button {
   padding-top: 0.5rem;
   right: 3rem;
-
 }

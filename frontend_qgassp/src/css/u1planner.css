@@ -61,7 +61,6 @@
   margin-left: 0.5rem;
 }
 
-
 @media screen and (max-width: 600px) {
   .column {
     width: 50%;
@@ -83,7 +82,7 @@ input[type="number"] {
   width: 30%;
 }
 
-.input_occupancy{
+.input_occupancy {
   width: 12% !important;
 }
 
@@ -110,6 +109,10 @@ input[type="number"] {
 
 .section-transport .div_transport {
   margin-bottom: 10px;
+}
+.section-transport .div_transport2 {
+  margin-bottom: 10px;
+  width: 50%;
 }
 
 .barchart_container {
@@ -140,8 +143,7 @@ input[type="number"] {
   position: absolute;
   right: 36%;
 }
-.share_label:hover + 
-.share_label_info{
+.share_label:hover + .share_label_info {
   display: block;
   color: red;
 }
@@ -158,7 +160,7 @@ input[type="number"] {
 
 .save_piechart {
   position: absolute;
-  left:31%;
+  left: 31%;
 }
 
 .settlement_main {
@@ -192,12 +194,10 @@ input[type="number"] {
 .settlementDiv {
   margin-left: 16px;
 }
-.consumptionTableDiv{
+.consumptionTableDiv {
   margin-left: 16px;
-  width:100%;
-
+  width: 100%;
 }
- 
 
 .hide {
   display: none;
@@ -208,13 +208,13 @@ input[type="number"] {
   color: red;
 }
 
-.checkbox_cb{
+.checkbox_cb {
   height: 1.5rem;
   width: 1.5rem;
   color: blue !important;
 }
 
-.tableTotalEmissions{
+.tableTotalEmissions {
   border: 1px solid black;
   text-align: left;
   padding-left: 5rem;
@@ -223,6 +223,6 @@ input[type="number"] {
   padding-bottom: 0.5rem;
   font-size: 1vw;
 }
-.tableHeader{
-  color:#3d58a3 ;
+.tableHeader {
+  color: #3d58a3;
 }

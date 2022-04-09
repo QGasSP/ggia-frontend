@@ -1,14 +1,13 @@
 import React from "react";
 import "../css/header.css";
-import {TabModules} from "./TabModules" ;
+import { TabModules } from "./TabModules";
 /* import { SuperHeader } from "./SuperHeader"; */
 
 export const Header = () => {
-  
   return (
     <>
       <header>
-      {/*   <SuperHeader /> */}
+        {/*   <SuperHeader /> */}
         <div className="wrapper_branding">
           <div className="row_header">
             <svg
@@ -71,7 +70,7 @@ export const Header = () => {
           </div>
         </div>
       </header>
-      <TabModules/>
+      <TabModules />
     </>
   );
 };

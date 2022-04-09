@@ -23,8 +23,6 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [bLMax, setBlYMax] = useState(false);
   const [p1TotalAreaEmissionsMax, setP1YMax] = useState(false);
-  
- 
 
   const fetchConsumptionData = () => {
     const headers = { "Content-type": "application/json" };
@@ -56,7 +54,6 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
         setIsLoading(false);
         // eslint-disable-next-line no-console
         console.error("There was an error!", error.message);
-       
       });
   };
 
@@ -71,7 +68,7 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
   useEffect(() => {
     localStorage.setItem("blTransport", JSON.stringify(blTransport));
   }, [blTransport]);
-  
+
   useEffect(() => {
     localStorage.setItem("p1TotalEmissions", JSON.stringify(p1TotalEmissions));
   }, [p1TotalEmissions]);

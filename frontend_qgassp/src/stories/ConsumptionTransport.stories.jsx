@@ -14,5 +14,3 @@ ConsumptionBasedTransport.args = {
   primary: true,
   label: "ConsumptionTransport",
 };
-
-

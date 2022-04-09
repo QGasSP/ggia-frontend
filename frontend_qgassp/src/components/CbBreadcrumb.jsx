@@ -32,29 +32,28 @@ export const CbBreadcrumb = () => {
       Household energy
     </Link>,
     <Link
-    underline="hover"
-    key="3"
-    color="inherit"
-    sx={{ fontSize: 14 }}
-    // href="/getting-started/installation/"
-    onClick={handleClick}
-  >
-    Transportation
-  </Link>,
-    <Typography key="4" color="#003399"  sx={{ fontSize: 14 }}>
+      underline="hover"
+      key="3"
+      color="inherit"
+      sx={{ fontSize: 14 }}
+      // href="/getting-started/installation/"
+      onClick={handleClick}
+    >
+      Transportation
+    </Link>,
+    <Typography key="4" color="#003399" sx={{ fontSize: 14 }}>
       Result
     </Typography>,
   ];
 
   return (
     <Stack spacing={2}>
-     <Breadcrumbs
+      <Breadcrumbs
         separator={<NavigateNextIcon fontSize="small" />}
         aria-label="breadcrumb"
       >
         {breadcrumbs}
       </Breadcrumbs>
-      
     </Stack>
   );
 };

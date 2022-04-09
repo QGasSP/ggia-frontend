@@ -20,16 +20,16 @@ import Chip from "@mui/material/Chip";
 import { Legend } from "./Legend";
 import urlPrefix from "../Config";
 
-
 /**
- * BuldingsNewUnitsCharts baseline 
+ * BuldingsNewUnitsCharts baseline
  * @return {}
  */
- const BarSeries = VerticalBarSeries;
- export const BuldingsNewUnitsCharts = ({
+const BarSeries = VerticalBarSeries;
+export const BuldingsNewUnitsCharts = ({
   newSettlementBuildingsResponse,
   //  newSettlementCommercial,
   //  newSettlementResidential,
+
    baseline,
    country,
    year
@@ -48,9 +48,20 @@ import urlPrefix from "../Config";
      localStorage.setItem("emissionCommercial", JSON.stringify(emissionCommercial));
    }, [emissionCommercial]);
 
-   useEffect(() => {
-    localStorage.setItem("emissionsByEndUse", JSON.stringify(emissionsByEndUse));
+  useEffect(() => {
+    localStorage.setItem(
+      "emissionCommercial",
+      JSON.stringify(emissionCommercial)
+    );
+  }, [emissionCommercial]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "emissionsByEndUse",
+      JSON.stringify(emissionsByEndUse)
+    );
   }, [emissionsByEndUse]);
+
 
   const response = {
     "status": "success",

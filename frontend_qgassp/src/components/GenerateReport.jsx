@@ -5,6 +5,5 @@ export const GenerateReport = () => {
     <>
       <p>generate report page</p>
     </>
-  
   );
 };

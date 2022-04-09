@@ -12,10 +12,10 @@
   font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 0.9rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding:0.2rem;
+  padding: 0.2rem;
   display: flex;
   align-items: center;
-  position: relative; 
+  position: relative;
 }
 
 .wrapper_branding {
@@ -95,27 +95,24 @@ button + button {
   justify-content: center;
 }
 
-
 .left {
   width: 14.5%;
   float: left;
-  background-color: #BfBfBf;
+  background-color: #bfbfbf;
 }
 
 .mid {
   width: 42.5%;
   float: left;
   text-align: center;
-  background-color:#d5eaea;
-  border:0.2rem solid #d5eaea;
+  background-color: #d5eaea;
+  border: 0.2rem solid #d5eaea;
 }
 
 .right {
   width: 13.3%;
   float: left;
-  background-color:#8dc4ae;
-  border:0.71rem solid #8dc4ae;
+  background-color: #8dc4ae;
+  border: 0.71rem solid #8dc4ae;
   margin-left: 0.5rem;
 }
-
-

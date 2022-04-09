@@ -17,7 +17,7 @@ export const AppRoutes = () => {
     { path: "u1planner", element: <U1planner /> },
     { path: "newResidents", element: <NewResidents /> },
     { path: "u2planner", element: <U2planner /> },
-   /*  { path: "u3planner", element: <U3planner /> }, */
+    /*  { path: "u3planner", element: <U3planner /> }, */
   ]);
   return routes;
 };

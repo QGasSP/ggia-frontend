@@ -287,7 +287,9 @@ export const U1planner = ({
 
         <Divider textAlign="left" flexItem>
           {" "}
-          <b>{country}: CO2e emissions per capita {year}-2050</b>
+          <b>
+            {country}: CO2e emissions per capita {year}-2050
+          </b>
         </Divider>
         {/*  
         [{

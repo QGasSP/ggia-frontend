@@ -1,21 +1,23 @@
-.buildings-table{
-    border-collapse: collapse;
-    width: 100%;
+.buildings-table {
+  border-collapse: collapse;
+  width: 100%;
 }
 
-.buildings-table td, .buildings-table th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-  
-.buildings-table tr:nth-child(even), .buildings-table th {
-    background-color: #dddddd;
+.buildings-table td,
+.buildings-table th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
 }
-.buildings-baseline{
-    padding: 0 20px;
+
+.buildings-table tr:nth-child(even),
+.buildings-table th {
+  background-color: #dddddd;
+}
+.buildings-baseline {
+  padding: 0 20px;
 }
 
 label.bb-lbl {
-    width: 140.6px;
+  width: 140.6px;
 }

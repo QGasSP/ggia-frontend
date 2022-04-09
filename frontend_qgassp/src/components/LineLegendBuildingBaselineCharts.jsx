@@ -23,6 +23,5 @@ export const LineLegendBuildingBaselineCharts = () => {
         <DiscreteColorLegend orientation="horizontal" items={ITEMS} />
       </section>
     </div>
-    
   );
 };

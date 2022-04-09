@@ -1,5 +1,5 @@
 import React from "react";
-import {BuildingBaseline} from "../components/BuildingBaseline";
+import { BuildingBaseline } from "../components/BuildingBaseline";
 
 export default {
   title: '"QgasSP/BuildingBaseline',

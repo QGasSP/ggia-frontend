@@ -7,6 +7,7 @@ import Alert from "@mui/material/Alert";
 import axios from "axios";
 import { useStorageInt, useStorageString } from "../reducers/useStorage";
 import urlPrefix from "../Config";
+import Tooltip from "@mui/material/Tooltip";
 
 export const StartPage = () => {
   /*  const toggleState = localStorage.getItem("toggleState"); */
@@ -89,6 +90,9 @@ export const StartPage = () => {
                 Please fill in the required basic information
               </h1>
             </header>
+            <Alert severity="info">
+              Provide the basic information on the assessment area.
+            </Alert>
             {nextModule && (
               <Alert severity="success">
                 You can proceed to either Transport, Land-use change or
@@ -101,66 +105,70 @@ export const StartPage = () => {
                 Please fill the year, population and country and save
               </Alert>
             )}
+            <Tooltip title="Select the first year of the assessment period.">
+              <div className="form-group">
+                <label htmlFor="year" className="intro_label">
+                  Year
+                </label>
+                <select
+                  id="year"
+                  name="year"
+                  className="baseline_select"
+                  onChange={handleSelectedYear}
+                  value={year}
+                  defaultValue="Select year"
+                  required
+                >
+                  <option value="DefaultOption">Select year</option>
 
-            <div className="form-group">
-              <label htmlFor="year" className="intro_label">
-                Year
-              </label>
-              <select
-                id="year"
-                name="year"
-                className="baseline_select"
-                onChange={handleSelectedYear}
-                value={year}
-                defaultValue="Select year"
-                required
-              >
-                <option value="DefaultOption">Select year</option>
-
-                {options.map((option) => (
-                  <option key={option} value={option}>
-                    {option}{" "}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="country" className="intro_label">
-                Country
-              </label>
-              <select
-                className="baseline_select"
-                id="country"
-                name="country"
-                onChange={handleSelected}
-                value={country}
-                defaultValue="Select country"
-                required
-              >
-                <option value="DefaultOption">Select country</option>
-                {euCountries.map((country) => (
-                  <option key={country} value={country}>
-                    {country}{" "}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="form-group">
-              <label htmlFor="population_assessment" className="intro_label">
-                Assessment area population
-              </label>
-              <input
-                type="number"
-                pattern="[0-9]*"
-                id="population_assessment"
-                className="population"
-                placeholder={population}
-                min="0"
-                onChange={handlePopulation}
-                required
-              />
-            </div>
+                  {options.map((option) => (
+                    <option key={option} value={option}>
+                      {option}{" "}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </Tooltip>
+            <Tooltip title="Select the location of the assessment area.">
+              <div className="form-group">
+                <label htmlFor="country" className="intro_label">
+                  Country
+                </label>
+                <select
+                  className="baseline_select"
+                  id="country"
+                  name="country"
+                  onChange={handleSelected}
+                  value={country}
+                  defaultValue="Select country"
+                  required
+                >
+                  <option value="DefaultOption">Select country</option>
+                  {euCountries.map((country) => (
+                    <option key={country} value={country}>
+                      {country}{" "}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </Tooltip>
+            <Tooltip title="Insert the total population of the assessment area in the end of the year that You selected above.">
+              <div className="form-group">
+                <label htmlFor="population_assessment" className="intro_label">
+                  Population
+                </label>
+                <input
+                  type="number"
+                  pattern="[0-9]*"
+                  id="population_assessment"
+                  className="population"
+                  placeholder={population}
+                  min="0"
+                  onChange={handlePopulation}
+                  required
+                />
+              </div>
+            </Tooltip>
             <div className="next_u1">
               <Button
                 size="small"
@@ -184,7 +192,7 @@ export const StartPage = () => {
           <Divider orientation="vertical" flexItem></Divider>
           <div className="column_start"></div>
 
-         {/*  <Divider orientation="vertical" flexItem></Divider>
+          {/*  <Divider orientation="vertical" flexItem></Divider>
           <div className="column_start">
             <header className="intro_header">
               <h1 id="title" className="header_start">
@@ -218,7 +226,6 @@ export const StartPage = () => {
               </form>
             </div>
           </div> */}
-
         </div>
       </article>
     </>

@@ -1,5 +1,5 @@
 import React from "react";
-import {BuldingsNewUnitsCharts} from "../components/BuldingsNewUnitsCharts";
+import { BuldingsNewUnitsCharts } from "../components/BuldingsNewUnitsCharts";
 
 export default {
   title: '"QgasSP/BuldingsNewUnitsCharts',

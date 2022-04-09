@@ -20,9 +20,8 @@ import Chip from "@mui/material/Chip";
 import { Legend } from "./Legend";
 import urlPrefix from "../Config";
 
-
 /**
- * BuildingsPoliciesCharts baseline 
+ * BuildingsPoliciesCharts baseline
  * @return {}
  */
  const BarSeries = VerticalBarSeries;
