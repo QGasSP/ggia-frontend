@@ -35,21 +35,8 @@ import urlPrefix from "../Config";
   //  const [emissionResidential, setEmissionResidential] = useState("");
   //  const [emissionCommercial, setEmissionCommercial] = useState("");
   //  const [emissionsByEndUse, setEmissionsByEndUse] = useState("");
-//    const [baseline, setBaseline] = useState({});
+  //  const [baseline, setBaseline] = useState({});
    const [nextNewUnitsView, setNextNewUnitsView] = useState(false);
- 
-  //  useEffect(() => {
-  //    localStorage.setItem("emissionResidential", JSON.stringify(emissionResidential));
-  //  }, [emissionResidential]);
- 
-  //  useEffect(() => {
-  //    localStorage.setItem("emissionCommercial", JSON.stringify(emissionCommercial));
-  //  }, [emissionCommercial]);
-
-  //  useEffect(() => {
-  //   localStorage.setItem("emissionsByEndUse", JSON.stringify(emissionsByEndUse));
-  // }, [emissionsByEndUse]);
- 
   
   const response = {
     "status": "success",
@@ -437,43 +424,26 @@ import urlPrefix from "../Config";
   baseline = response.data;
    // #region data distribution
    const apartmentsData = [];
+   const terracedData = [];
+   const semidetachedData = [];
+   const detachedData = [];
+   const retailData = [];
+   const healthData = [];
+   const hospitalityData = [];
+   const officesData = [];
+   const industrialData = [];
+   const warehousesData = [];
+
    for (let i = year; i < 2051; i++){
     apartmentsData.push({ x: i,  y: baseline[i].apartments });
-   };
-   const terracedData = [];
-   for (let i = year; i < 2051; i++){
     terracedData.push({ x: i,  y: baseline[i].terraced });
-   };
-   const semidetachedData = [];
-   for (let i = year; i < 2051; i++){
     semidetachedData.push({ x: i,  y: baseline[i].semidetached });
-   };
-   const detachedData = [];
-   for (let i = year; i < 2051; i++){
     detachedData.push({ x: i,  y: baseline[i].detached });
-   };
-   const retailData = [];
-   for (let i = year; i < 2051; i++){
     retailData.push({ x: i,  y: baseline[i].retail });
-   };
-   const healthData = [];
-   for (let i = year; i < 2051; i++){
     healthData.push({ x: i,  y: baseline[i].health });
-   };
-   const hospitalityData = [];
-   for (let i = year; i < 2051; i++){
     hospitalityData.push({ x: i,  y: baseline[i].hospitality });
-   };
-   const officesData = [];
-   for (let i = year; i < 2051; i++){
     officesData.push({ x: i,  y: baseline[i].offices });
-   };
-   const industrialData = [];
-   for (let i = year; i < 2051; i++){
     industrialData.push({ x: i,  y: baseline[i].industrial });
-   };
-   const warehousesData = [];
-   for (let i = year; i < 2051; i++){
     warehousesData.push({ x: i,  y: baseline[i].warehouses });
    };
    // #endregion
