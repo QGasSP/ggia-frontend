@@ -114,6 +114,7 @@ export const NewResidents = ({
                 <div>
                   <label htmlFor="new_residents">Number of new residents</label>
                   <input
+                    className="input_transport"
                     type="text"
                     pattern="[0-9]*"
                     id="new_residents"
@@ -195,6 +196,7 @@ export const NewResidents = ({
                   <label htmlFor="nsMetropolitan">Metropolitan area</label>
                   <label>{settlementDistribution.metropolitanCenter}</label>
                   <input
+                    className="input_transport"
                     type="number"
                     step="0.1"
                     id="nsMetropolitan"
@@ -210,6 +212,7 @@ export const NewResidents = ({
                   <label htmlFor="nsUrban">Urban area</label>
                   <label>{settlementDistribution.urban}</label>
                   <input
+                    className="input_transport"
                     type="number"
                     step="0.1"
                     id="nsUrban"
@@ -225,6 +228,7 @@ export const NewResidents = ({
                   <label htmlFor="nsSuburban"> Suburban area</label>
                   <label>{settlementDistribution.suburban}</label>
                   <input
+                    className="input_transport"
                     type="number"
                     id="nsSuburban"
                     step="any"
@@ -240,6 +244,7 @@ export const NewResidents = ({
                   <label htmlFor="nsTown">Town</label>
                   <label>{settlementDistribution.town}</label>
                   <input
+                    className="input_transport"
                     type="number"
                     id="nsTown"
                     step="0.1"
@@ -255,6 +260,7 @@ export const NewResidents = ({
                   <label htmlFor="nsRural">Rural</label>
                   <label>{settlementDistribution.rural}</label>
                   <input
+                    className="input_transport"
                     type="number"
                     id="nsRural"
                     step="0.1"

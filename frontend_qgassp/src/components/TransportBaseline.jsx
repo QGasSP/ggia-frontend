@@ -290,6 +290,7 @@ export const TransportBaseline = () => {
                   <div className="div_transport">
                     <label htmlFor="ns_measure">N-S Measurement (km)</label>
                     <input
+                      className="input_transport"
                       type="text"
                       id="ns_measure"
                       min="0"
@@ -304,6 +305,7 @@ export const TransportBaseline = () => {
                   <div className="div_transport">
                     <label htmlFor="ew_measure">E-W Measurement (km)</label>
                     <input
+                      className="input_transport"
                       type="text"
                       id="ew_measure"
                       min="0"

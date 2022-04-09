@@ -39,6 +39,7 @@
 }
 .section-transport .input_transport,
 .select_transport {
+  width: 90px;
   padding: 0.375rem 0.75rem;
   font-family: sans-serif;
   box-sizing: border-box;
