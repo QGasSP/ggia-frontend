@@ -65,6 +65,9 @@ select {
   justify-content: space-between;
   flex-wrap: wrap;
 }
+.table-totals{
+  width: 85%;
+}
 
 @media screen and (max-width: 600px) {
   .column {
@@ -114,7 +117,7 @@ input {
 }
 input.table-cell,
 select.table-cell {
-  width: 100px !important;
+  width: 100px ;
 }
 .piechart_container {
   display: flex;
@@ -215,6 +218,7 @@ section div {
 }
 
 .btn-luc-submit {
+  width: 200px !important;
   background-color: #003399;
   border: 1px #003399 solid;
   color: #fff;
