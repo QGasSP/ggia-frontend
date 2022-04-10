@@ -22,7 +22,7 @@ export const Welcome = () => {
         <section className="section_welcome">
           <div className="row_welcome">
             <div className="column_welcome">
-              <h2>Welcome to GGIA tool</h2>
+              <h2>Welcome to the GGIA tool</h2>
               <br />
               The ESPON GGIA tool is designed to quantify the greenhouse gas
               emissions in spatial planning. It has two calculation modes: The
@@ -45,9 +45,21 @@ export const Welcome = () => {
               the authenticity of the results and cannot be held responsible for
               any decisions taken based on the results from the GGIA tool. GGIA
               is an open-source application. The source code is available in
-              GitHub and ESPON EGTC welcomes all proposals on additional
-              quantification modules and the proposals to improve the current
-              calculation methods.
+              <a
+                href="https://github.com/QGasSP/ggia"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {" "}
+                GitHub{" "}
+              </a>
+              and{" "}
+              <a href="https://www.espon.eu/" target="_blank" rel="noreferrer">
+                {" "}
+                ESPON EGTC{" "}
+              </a>
+              welcomes all proposals on additional quantification modules and
+              the proposals to improve the current calculation methods.
               <br />
               <div className="start_button">
                 <Button

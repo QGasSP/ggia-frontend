@@ -20,8 +20,10 @@
   display: inline-block;
   width: 300px;
 }
-.section_u2planner input, .section_u2planner
-select, .sectionNewDev input, .sectionNewDev select {
+.section_u2planner input,
+.section_u2planner select,
+.sectionNewDev input,
+.sectionNewDev select {
   width: 90px !important;
   padding: 5px 10px;
   box-sizing: border-box;

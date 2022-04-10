@@ -12,12 +12,15 @@ import Tooltip from "@mui/material/Tooltip";
 export const StartPage = () => {
   /*  const toggleState = localStorage.getItem("toggleState"); */
   const [country, setCountry] = useStorageString("country", "");
+  const [localDataset, setLocalDataset] = useStorageString("localDataset", "");
   const [year, setYear] = useStorageInt("year", 0);
   const [population, setPopulation] = useStorageInt("population", 0);
   const [nextModule, setNextModule] = useState(false);
   const [allFields, setFillFields] = useState(false);
   const [euCountries, setEuCountries] = useState([]);
+  const [localDatasets, setLocalDatasets] = useState([]);
   const [errorStartPage, setCountriesError] = useState("");
+  const [errorLocalDatasets, setLocalDatasetsError] = useState("");
 
   const options = [];
   for (let i = 2022; i < 2051; i++) options.push(i);
@@ -29,6 +32,11 @@ export const StartPage = () => {
   const handleSelected = (e) => {
     e.preventDefault();
     setCountry(e.target.value);
+  };
+
+  const handleSelectedLocalDataset = (e) => {
+    e.preventDefault();
+    setLocalDataset(e.target.value);
   };
 
   const handlePopulation = (e) => {
@@ -46,6 +54,7 @@ export const StartPage = () => {
     setFillFields(false);
     window.localStorage.clear();
     setCountry("");
+    setLocalDataset("");
     setPopulation(0);
     setYear(0);
   };
@@ -68,6 +77,20 @@ export const StartPage = () => {
         console.error(
           "Eu countries Response data error - url " + urlPrefix + "---",
           errorStartPage
+        );
+      });
+  }, []);
+
+  useEffect(async () => {
+    axios
+      .get(urlPrefix + "/api/v1/calculate/consumption/datasets")
+      .then((response) => setLocalDatasets(response.data.data.datasets))
+      .catch((error) => {
+        setLocalDatasetsError({ errorMessage: error.message });
+        // eslint-disable-next-line no-console
+        console.error(
+          "Local Datasets Response data error - url " + urlPrefix + "---",
+          errorLocalDatasets
         );
       });
   }, []);
@@ -102,7 +125,8 @@ export const StartPage = () => {
 
             {allFields && nextModule === false && (
               <Alert severity="warning">
-                Please fill the year, population and country and save
+                Please fill the year, population and country and save. Selecting
+                a local dataset is optional and only needed for advanced users.
               </Alert>
             )}
             <Tooltip title="Select the first year of the assessment period.">
@@ -152,7 +176,29 @@ export const StartPage = () => {
                 </select>
               </div>
             </Tooltip>
-            <Tooltip title="Insert the total population of the assessment area in the end of the year that You selected above.">
+            <Tooltip title="After creating and uploading a local dataset, select it here.">
+              <div className="form-group">
+                <label htmlFor="localDataset" className="intro_label">
+                  Local Dataset
+                </label>
+                <select
+                  className="baseline_select"
+                  id="localDataset"
+                  name="localDataset"
+                  onChange={handleSelectedLocalDataset}
+                  value={localDataset}
+                  defaultValue="None"
+                >
+                  <option value="DefaultOption">None</option>
+                  {localDatasets.map((localDataset) => (
+                    <option key={localDataset} value={localDataset}>
+                      {localDataset}{" "}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </Tooltip>
+            <Tooltip title="Insert the total population of the assessment area in the end of the year that you selected above.">
               <div className="form-group">
                 <label htmlFor="population_assessment" className="intro_label">
                   Population

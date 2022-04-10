@@ -98,11 +98,11 @@
   right: 3rem;
 }
 
-.btns-sections{
+.btns-sections {
   display: flex;
   justify-content: flex-start;
 }
 
-.btns-sections .btn-start{
-    margin-right: 10px;
+.btns-sections .btn-start {
+  margin-right: 10px;
 }

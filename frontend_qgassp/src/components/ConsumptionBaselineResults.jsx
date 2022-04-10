@@ -19,6 +19,7 @@ import { hseHoldEmissions } from "../reducers/Consumption";
 import axios from "axios";
 import { Button } from "./Button";
 import { ConsumptionHseEnergy } from "./ConsumptionHseEnergy";
+import Alert from "@mui/material/Alert";
 
 const BarSeries = VerticalBarSeries;
 
@@ -29,6 +30,7 @@ export const ConsumptionBaselineResults = ({
   effScalerInitial,
 }) => {
   const country = localStorage.getItem("country");
+  const localDataset = localStorage.getItem("localDataset");
   const year = parseInt(localStorage.getItem("year"));
   const region = localStorage.getItem("country");
   const popSize = parseInt(localStorage.getItem("population"));
@@ -36,6 +38,8 @@ export const ConsumptionBaselineResults = ({
   const [bLTotalEmissions, setBLTotalEmissions] = useState({});
 
   const [districtProp, setDistrictProp] = useState(0);
+  const [electricityHeatProp, setElectricityHeatProp] = useState(0);
+  const [combustableFuelsProp, setCombustableFuelsProp] = useState(0);
   const [liquidsProp, setLiquidProp] = useState(0);
   const [solidsProp, setSolidsProp] = useState(0);
   const [gasesProp, setGasesProp] = useState(0);
@@ -59,6 +63,7 @@ export const ConsumptionBaselineResults = ({
   const fetchConsumptionBaseline = () => {
     const rawData = {
       country,
+      localDataset,
       year,
       popSize,
       region,
@@ -77,6 +82,12 @@ export const ConsumptionBaselineResults = ({
         setBL(response.data.data.consumption.BL);
         setBLTotalEmissions(response.data.data.consumption.BLTotalEmissions);
         setDistrictProp(response.data.data.consumption.districtProp);
+        setElectricityHeatProp(
+          response.data.data.consumption.electricityHeatProp
+        );
+        setCombustableFuelsProp(
+          response.data.data.consumption.combustableFuelsProp
+        );
         setLiquidProp(response.data.data.consumption.liquidsProp);
         setSolidsProp(response.data.data.consumption.solidsProp);
         setGasesProp(response.data.data.consumption.gasesProp);
@@ -138,6 +149,11 @@ export const ConsumptionBaselineResults = ({
           <b>{country}: Annual household emissions </b>
         </Divider>
         <div>
+          <Alert severity="info">
+            The first graph shows a projection of annual emissions under the
+            baseline scenario for each resident for every year until 2050. Each
+            bar is subdivided into emissions from each sector.
+          </Alert>
           <div className="settlementDiv">
             <LineLegendConsumption
               colorItems={hseHoldEmissions}
@@ -190,6 +206,10 @@ export const ConsumptionBaselineResults = ({
 
         <br />
         <div className="consumptionTableDiv">
+          <Alert severity="info">
+            The second graph is a bar chart showing the breakdown of per capita
+            emissions by sector for the baseline year.
+          </Alert>
           <table>
             <thead className="tableHeader">
               <tr>
@@ -227,6 +247,8 @@ export const ConsumptionBaselineResults = ({
     return (
       <ConsumptionHseEnergy
         districtProp={districtProp}
+        electricityHeatProp={electricityHeatProp}
+        combustableFuelsProp={combustableFuelsProp}
         liquidsProp={liquidsProp}
         solidsProp={solidsProp}
         gasesProp={gasesProp}

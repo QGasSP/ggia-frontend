@@ -5,6 +5,8 @@ import Chip from "@mui/material/Chip";
 import { Button } from "./Button";
 import { ConsumptionResults } from "./ConsumptionResults";
 import PropTypes from "prop-types";
+import Tooltip from "@mui/material/Tooltip";
+import Alert from "@mui/material/Alert";
 /**
  * Consumption transport UI
  * @return {}
@@ -20,6 +22,8 @@ export const ConsumptionTransport = ({
   elType,
   elScaler,
   sHeating,
+  electricityHeatProp,
+  combustableFuelsProp,
   districtProp,
   liquidsProp,
   solidsProp,
@@ -28,14 +32,25 @@ export const ConsumptionTransport = ({
 }) => {
   const [nextCBResults, setCbResults] = useState(false);
 
-  const [biofuelTakeup, setBioFuelTakeup] = useState(false);
+  const [biofuelTakeup, setBiofuelTakeup] = useState(false);
+  const handleBiofuelTakeup = (e) => {
+    e.target.checked;
+    setBiofuelTakeup(!biofuelTakeup);
+  };
   const [bioScaler, setBioScaler] = useState(0);
 
   const [evTakeup, setEvTakeup] = useState(false);
+  const handleEvTakeup = (e) => {
+    e.target.checked;
+    setEvTakeup(!evTakeup);
+  };
   const [evScaler, setEvScaler] = useState(0);
 
   const [modalShift, setModalShift] = useState(false);
-
+  const handleModalShift = (e) => {
+    e.target.checked;
+    setModalShift(!modalShift);
+  };
   const [msFuelScaler, setMsFuelScaler] = useState(0);
   const [msVehScaler, setMsVehScaler] = useState(0);
   const [msPtScaler, setMsPtScaler] = useState(0);
@@ -103,6 +118,8 @@ export const ConsumptionTransport = ({
       elScaler,
       sHeating,
       districtProp,
+      electricityHeatProp,
+      combustableFuelsProp,
       solidsProp,
       liquidsProp,
       gasesProp,
@@ -126,6 +143,10 @@ export const ConsumptionTransport = ({
             {" "}
             <Chip label="Transportation" />
           </Divider>
+          <Alert severity="info">
+            This section looks at policies affecting transport related emissions
+            by residents.
+          </Alert>
           <div className="settlementDiv">
             <div className="div_transport">
               <label>
@@ -133,7 +154,7 @@ export const ConsumptionTransport = ({
               </label>
               <label></label>
             </div>
-            <div className="div_transport">
+            {/* <div className="div_transport">
               <label htmlFor="biofuelTakeup">
                 Consider biofuel in transport?
               </label>
@@ -147,23 +168,41 @@ export const ConsumptionTransport = ({
                 <option value={true}>Yes</option>
                 <option value={false}>No</option>
               </select>
-            </div>
-
-            <div className="div_transport">
-              <label htmlFor="bioScaler" className="settle_label">
-                what percentage of transport fuels are covered by biofuels?
-              </label>
-              <input
-                className="input_occupancy"
-                type="number"
-                id="bioScaler"
-                min="0"
-                max="100"
-                defaultValue={bioScaler}
-                onChange={handleBioScaler}
-                required
-              />
-            </div>
+            </div> */}
+            <Tooltip title="If you would like to consider the use of biofuels in personal transport, please enter the percentage of fuel use that will be covered by biofuels.">
+              <div className="div_breakdown">
+                <label htmlFor="local_electricity">
+                  Consider biofuel in transport:
+                </label>
+                <input
+                  className="checkbox_cb"
+                  type="checkbox"
+                  id="eff_gain"
+                  checked={biofuelTakeup}
+                  defaultValue={biofuelTakeup}
+                  onChange={handleBiofuelTakeup}
+                />
+              </div>
+            </Tooltip>
+            {biofuelTakeup && (
+              <>
+                <div className="div_transport">
+                  <label htmlFor="bioScaler" className="settle_label">
+                    What percentage of transport fuels are covered by biofuels?
+                  </label>
+                  <input
+                    className="input_occupancy"
+                    type="number"
+                    id="bioScaler"
+                    min="0"
+                    max="100"
+                    defaultValue={bioScaler}
+                    onChange={handleBioScaler}
+                    required
+                  />
+                </div>
+              </>
+            )}
 
             <br />
             <div className="div_transport">
@@ -172,7 +211,7 @@ export const ConsumptionTransport = ({
               </label>
               <label></label>
             </div>
-            <div className="div_transport">
+            {/* <div className="div_transport">
               <label htmlFor="evTakeUp">
                 {" "}
                 Consider introduction of electric vehicles?
@@ -187,23 +226,41 @@ export const ConsumptionTransport = ({
                 <option value={true}>Yes</option>
                 <option value={false}>No</option>
               </select>
-            </div>
-
-            <div className="div_transport">
-              <label htmlFor="evScaler" className="settle_label">
-                what percentage of private vehicles are electric?
-              </label>
-              <input
-                className="input_occupancy"
-                type="number"
-                id="evScaler"
-                onChange={handleEvScaler}
-                min="0"
-                max="100"
-                defaultValue={evScaler}
-                required
-              />
-            </div>
+            </div> */}
+            <Tooltip title="If you would like to consider the use of electric vehicles, please enter what percentage of private vehicles will be electric.">
+              <div className="div_breakdown">
+                <label htmlFor="evTakeUp">
+                  Consider introduction of electric vehicles:
+                </label>
+                <input
+                  className="checkbox_cb"
+                  type="checkbox"
+                  id="evTakeup"
+                  checked={evTakeup}
+                  defaultValue={evTakeup}
+                  onChange={handleEvTakeup}
+                />
+              </div>
+            </Tooltip>
+            {evTakeup && (
+              <>
+                <div className="div_transport">
+                  <label htmlFor="evScaler" className="settle_label">
+                    What percentage of private vehicles are electric?
+                  </label>
+                  <input
+                    className="input_occupancy"
+                    type="number"
+                    id="evScaler"
+                    onChange={handleEvScaler}
+                    min="0"
+                    max="100"
+                    defaultValue={evScaler}
+                    required
+                  />
+                </div>
+              </>
+            )}
 
             {/*  ------------------------------------------------- */}
 
@@ -214,7 +271,7 @@ export const ConsumptionTransport = ({
               <label></label>
             </div>
 
-            <div className="div_transport">
+            {/* <div className="div_transport">
               <label htmlFor="modalShift">
                 Consider transport modal shift?
               </label>
@@ -228,53 +285,71 @@ export const ConsumptionTransport = ({
                 <option value={true}>Yes</option>
                 <option value={false}>No</option>
               </select>
-            </div>
-
-            <div className="div_transport">
-              <label htmlFor="msFuelScaler" className="settle_label">
-                what percentage of private vehicle use is reduced?
-              </label>
-              <input
-                className="input_occupancy"
-                type="number"
-                id="msFuelScaler"
-                onChange={handleMsFuelScaler}
-                defaultValue={msFuelScaler}
-                min="0"
-                max="100"
-                required
-              />
-            </div>
-            <div className="div_transport">
-              <label htmlFor="msVehScaler" className="settle_label">
-                what percentage of private vehicle ownership is reduced?
-              </label>
-              <input
-                className="input_occupancy"
-                type="number"
-                id="msVehScaler"
-                onChange={handleMsVehScaler}
-                defaultValue={msVehScaler}
-                min="0"
-                max="100"
-                required
-              />
-            </div>
-            <div className="div_transport">
-              <label htmlFor="msPtScaler" className="settle_label">
-                what percentage is public transport use increased?
-              </label>
-              <input
-                className="input_occupancy"
-                type="number"
-                id="msPtScaler"
-                onChange={handleMsPtScaler}
-                defaultValue={msPtScaler}
-                min="0"
-                max="100"
-                required
-              />
-            </div>
+            </div> */}
+            <Tooltip title="If you would like to consider changes in modal shift, please select the percentage by which expenditure on fuels for transport is reduced, the percentage that private vehicle ownership is reduced, and the percentage that public transport use is increased.">
+              <div className="div_breakdown">
+                <label htmlFor="modalShift">
+                  Consider transport modal shift:
+                </label>
+                <input
+                  className="checkbox_cb"
+                  type="checkbox"
+                  id="modalShift"
+                  checked={modalShift}
+                  defaultValue={modalShift}
+                  onChange={handleModalShift}
+                />
+              </div>
+            </Tooltip>
+            {modalShift && (
+              <>
+                <div className="div_transport">
+                  <label htmlFor="msFuelScaler" className="settle_label">
+                    what percentage of private vehicle use is reduced?
+                  </label>
+                  <input
+                    className="input_occupancy"
+                    type="number"
+                    id="msFuelScaler"
+                    onChange={handleMsFuelScaler}
+                    defaultValue={msFuelScaler}
+                    min="0"
+                    max="100"
+                    required
+                  />
+                </div>
+                <div className="div_transport">
+                  <label htmlFor="msVehScaler" className="settle_label">
+                    what percentage of private vehicle ownership is reduced?
+                  </label>
+                  <input
+                    className="input_occupancy"
+                    type="number"
+                    id="msVehScaler"
+                    onChange={handleMsVehScaler}
+                    defaultValue={msVehScaler}
+                    min="0"
+                    max="100"
+                    required
+                  />
+                </div>
+                <div className="div_transport">
+                  <label htmlFor="msPtScaler" className="settle_label">
+                    what percentage is public transport use increased?
+                  </label>
+                  <input
+                    className="input_occupancy"
+                    type="number"
+                    id="msPtScaler"
+                    onChange={handleMsPtScaler}
+                    defaultValue={msPtScaler}
+                    min="0"
+                    max="100"
+                    required
+                  />
+                </div>
+              </>
+            )}
           </div>
           <div className="nextCBQ">
             <Button
@@ -305,6 +380,8 @@ ConsumptionTransport.propTypes = {
   elType: PropTypes.string.isRequired,
   elScaler: PropTypes.number.isRequired,
   sHeating: PropTypes.bool.isRequired,
+  electricityHeatProp: PropTypes.number.isRequired,
+  combustableFuelsProp: PropTypes.number.isRequired,
   districtProp: PropTypes.number.isRequired,
   liquidsProp: PropTypes.number.isRequired,
   solidsProp: PropTypes.number.isRequired,
