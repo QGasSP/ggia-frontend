@@ -231,7 +231,7 @@ export const ConsumptionBaselineResults = ({
     );
   } else {
     return (
-      <ConsumptionHseEnergy
+      <ConsumptionHseEnergy        
         districtProp={districtProp}
         electricityHeatProp={electricityHeatProp}
         combustableFuelsProp={combustableFuelsProp}

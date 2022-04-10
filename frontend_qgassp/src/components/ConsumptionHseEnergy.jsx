@@ -12,7 +12,8 @@ import PropTypes from "prop-types";
  */
 const ceYes = true;
 const ceNo = false;
-export const ConsumptionHseEnergy = ({
+export const ConsumptionHseEnergy = (
+  {
   districtProp,
   electricityHeatProp,
   combustableFuelsProp,
@@ -20,7 +21,8 @@ export const ConsumptionHseEnergy = ({
   solidsProp,
   gasesProp,
   districtValue,
-}) => {
+  }
+  ) => {
   const [nextCBTransport, setCbTransport] = useState(false);
 
   const [policyYear, setPolicyYear] = useState(0);
@@ -49,13 +51,20 @@ export const ConsumptionHseEnergy = ({
     e.target.checked;
     setHeatingShare(!sHeating);
   };
-  const [districtHeating, setDistrictHeating] = useState(0.0);
-  const [electricityHeating, setElectricityHeating] = useState(0.0);
-  const [combustableFuels, setCombustableFuels] = useState(0.0);
-  const [liquidHeating, setLiquidHeating] = useState(0.0);
-  const [solidsHeating, setSolidHeating] = useState(0.0);
-  const [gasesHeating, setGasesHeating] = useState(0.0);
-  const [valueDistrict, setValueDistrict] = useState(0.0);
+  const [districtPropLocal, setDistrictProp] =
+    useState(Math.round((districtProp + Number.EPSILON) * 100) / 100);
+  const [electricityHeatPropLocal, setElectricityHeatProp] =
+    useState(Math.round((electricityHeatProp + Number.EPSILON) * 100) / 100);
+  const [combustableFuelsPropLocal, setCombustableFuelsProp] =
+    useState(Math.round((combustableFuelsProp + Number.EPSILON) * 100) / 100);
+  const [liquidsPropLocal, setLiquidsProp] =
+    useState(Math.round((liquidsProp + Number.EPSILON) * 100) / 100);
+  const [solidsPropLocal, setSolidsProp] =
+    useState(Math.round((solidsProp + Number.EPSILON) * 100) / 100);
+  const [gasesPropLocal, setGasesProp] =
+    useState(Math.round((gasesProp + Number.EPSILON) * 100) / 100);
+  const [districtValueLocal, setDistrictValue] =
+    useState(Math.round((districtValue + Number.EPSILON) * 100) / 100);
 
   const optionsCb = [];
   for (let i = 2022; i < 2051; i++) optionsCb.push(i);
@@ -87,37 +96,44 @@ export const ConsumptionHseEnergy = ({
 
   const handleDistrictProp = (e) => {
     e.preventDefault();
-    setDistrictHeating(Number(e.target.value));
+    districtProp = Number(e.target.value);
+    setDistrictProp(Number(e.target.value));
   };
 
   const handleElectricityHeatProp = (e) => {
     e.preventDefault();
-    setElectricityHeating(Number(e.target.value));
+    electricityHeatProp = Number(e.target.value);
+    setElectricityHeatProp(Number(e.target.value));
   };
 
   const handleCombustableFuelsProp = (e) => {
     e.preventDefault();
-    setCombustableFuels(Number(e.target.value));
+    combustableFuelsProp = Number(e.target.value);
+    setCombustableFuelsProp(Number(e.target.value));
   };
 
   const handleLiquidsProp = (e) => {
     e.preventDefault();
-    setLiquidHeating(Number(e.target.value));
+    // liquidsProp = Number(e.target.value);
+    setLiquidsProp(Number(e.target.value));
   };
 
   const handleSolidProp = (e) => {
     e.preventDefault();
-    setSolidHeating(Number(e.target.value));
+    // solidsProp = Number(e.target.value);
+    setSolidsProp(Number(e.target.value));
   };
 
   const handleGasesProp = (e) => {
     e.preventDefault();
-    setGasesHeating(Number(e.target.value));
+    // gasesProp = Number(e.target.value);
+    setGasesProp(Number(e.target.value));
   };
 
   const handleDistrictValue = (e) => {
     e.preventDefault();
-    setValueDistrict(Number(e.target.value));
+    // districtValue = Number(e.target.value);
+    setDistrictValue(Number(e.target.value));
   };
 
   if (nextCBTransport === false) {
@@ -361,9 +377,7 @@ export const ConsumptionHseEnergy = ({
                     type="number"
                     id="district_heating"
                     onChange={handleDistrictProp}
-                    defaultValue={
-                      Math.round((districtProp + Number.EPSILON) * 100) / 100
-                    }
+                    defaultValue={districtPropLocal}
                   />
                 </div>
 
@@ -376,9 +390,7 @@ export const ConsumptionHseEnergy = ({
                     type="number"
                     id="electric_heating"
                     onChange={handleElectricityHeatProp}
-                    defaultValue={
-                      Math.round((electricityHeatProp + Number.EPSILON) * 100) / 100
-                    }
+                    defaultValue={electricityHeatPropLocal}
                   />
                 </div>
 
@@ -391,9 +403,7 @@ export const ConsumptionHseEnergy = ({
                     type="number"
                     id="electric_heating"
                     onChange={handleCombustableFuelsProp}
-                    defaultValue={
-                      Math.round((combustableFuelsProp + Number.EPSILON) * 100) / 100
-                    }
+                    defaultValue={combustableFuelsPropLocal}
                   />
                 </div>
 
@@ -406,9 +416,7 @@ export const ConsumptionHseEnergy = ({
                     type="number"
                     id="liquid_heating"
                     onChange={handleLiquidsProp}
-                    defaultValue={
-                      Math.round((liquidsProp + Number.EPSILON) * 100) / 100
-                    }
+                    defaultValue={liquidsPropLocal}
                   />
                 </div>
                 <div className="div_heating">
@@ -420,9 +428,7 @@ export const ConsumptionHseEnergy = ({
                     type="number"
                     id="solid_heating"
                     onChange={handleSolidProp}
-                    defaultValue={
-                      Math.round((solidsProp + Number.EPSILON) * 100) / 100
-                    }
+                    defaultValue={solidsPropLocal}
                   />
                 </div>
 
@@ -435,9 +441,7 @@ export const ConsumptionHseEnergy = ({
                     type="number"
                     id="gas_heating"
                     onChange={handleGasesProp}
-                    defaultValue={
-                      Math.round((gasesProp + Number.EPSILON) * 100) / 100
-                    }
+                    defaultValue={gasesPropLocal}
                   />
                 </div>
                 <div className="div_heating">
@@ -449,9 +453,7 @@ export const ConsumptionHseEnergy = ({
                     type="number"
                     id="district_value"
                     onChange={handleDistrictValue}
-                    defaultValue={
-                      Math.round((districtValue + Number.EPSILON) * 100) / 100
-                    }
+                    defaultValue={districtValueLocal}
                   />
                 </div>
               </>
@@ -484,13 +486,13 @@ export const ConsumptionHseEnergy = ({
         elType={elType}
         elScaler={elScaler}
         sHeating={sHeating}
-        districtProp={districtHeating}
-        electricityHeatProp={electricityHeating}
-        combustableFuelsProp={combustableFuels}
-        liquidsProp={liquidHeating}
-        solidsProp={solidsHeating}
-        gasesProp={gasesHeating}
-        districtValue={valueDistrict}
+        districtProp={districtPropLocal}
+        electricityHeatProp={electricityHeatPropLocal}
+        combustableFuelsProp={combustableFuelsPropLocal}
+        liquidsProp={liquidsPropLocal}
+        solidsProp={solidsPropLocal}
+        gasesProp={gasesPropLocal}
+        districtValue={districtValueLocal}
       />
     );
   }
