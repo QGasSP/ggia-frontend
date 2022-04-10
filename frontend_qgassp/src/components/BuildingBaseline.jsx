@@ -8,7 +8,8 @@ import urlPrefix from "../Config";
 
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
-
+import Tooltip from "@mui/material/Tooltip";
+import Alert from "@mui/material/Alert";
 import { RadialChart, DiscreteColorLegend } from "react-vis";
 
 /**
@@ -186,93 +187,107 @@ export const BuildingBaseline = () => {
           <div className="headerSettlement">
             <Divider textAlign="left" flexItem>
               {" "}
-              <Chip label="U6 BUILDINGS BASELINE" />
+              <Chip label="BUILDINGS BASELINE" />
             </Divider>
           </div>
 
           <section className="section-transport">
+            <Alert severity="info">
+              This section creates a baseline scenario until 2050 for the
+              greenhouse gas emissions caused by the energy use in buildings in
+              the assessment area.
+            </Alert>
             <section>
               <Divider textAlign="left" flexItem>
                 {" "}
-                <b>U6.1 Number of residential units in the area</b>
+                <b>U6.1 Number of residential units</b>
               </Divider>
             </section>
             <div className="settlementDiv">
               <div className="row">
                 <div className="column">
+                  <Alert severity="info">
+                    Specify the total number of the existing residential units
+                    within the assessment area.
+                  </Alert>
                   <div className="settlement_headers">
                     <label className="shareInfo">
                       <b>Residential Units </b>
                     </label>
                   </div>
-                  <div className="div_transport">
-                    <label htmlFor="apartment" className="settle_label">
-                      Apartment
-                    </label>
-                    <input
-                      className="input_transport"
-                      type="number"
-                      step="1"
-                      id="apartment"
-                      min="0"
-                      /*  defaultValue={apartment} */
-                      onChange={handleApartment}
-                      onMouseLeave={getCurrentResidentTotal}
-                      required
-                    />
-                  </div>
-
-                  <div className="div_transport">
-                    <label htmlFor="terraced" className="settle_label">
-                      Terraced
-                    </label>
-                    <input
-                      className="input_transport"
-                      type="number"
-                      step="1"
-                      id="terraced"
-                      min="0"
-                      /*   value={terraced} */
-                      onChange={handleTerraced}
-                      onMouseLeave={getCurrentResidentTotal}
-                      required
-                    />
-                  </div>
-
-                  <div className="div_transport">
-                    <label htmlFor="semiDetached" className="settle_label">
-                      {" "}
-                      Semi-detached
-                    </label>
-                    <input
-                      className="input_transport"
-                      type="number"
-                      id="semiDetached"
-                      step="any"
-                      min="1"
-                      /*   defaultValue={semiDetached} */
-                      onChange={handleSemiDetached}
-                      onMouseLeave={getCurrentResidentTotal}
-                      required
-                    />
-                  </div>
-
-                  <div className="div_transport">
-                    <label htmlFor="detached" className="settle_label">
-                      Detached
-                    </label>
-                    <input
-                      className="input_transport"
-                      type="number"
-                      id="detached"
-                      step="1"
-                      min="0.0"
-                      /*   value={detached} */
-                      onChange={handleDetached}
-                      onMouseLeave={getCurrentResidentTotal}
-                      required
-                    />
-                  </div>
+                  <Tooltip title="One apartment in a residential multi-storey building is one unit.">
+                    <div className="div_transport">
+                      <label htmlFor="apartment" className="settle_label">
+                        Apartment
+                      </label>
+                      <input
+                        className="input_transport"
+                        type="number"
+                        step="1"
+                        id="apartment"
+                        min="0"
+                        /*  defaultValue={apartment} */
+                        onChange={handleApartment}
+                        onMouseLeave={getCurrentResidentTotal}
+                        required
+                      />
+                    </div>
+                  </Tooltip>
+                  <Tooltip title="One apartment in a residential terraced building is one unit.">
+                    <div className="div_transport">
+                      <label htmlFor="terraced" className="settle_label">
+                        Terraced
+                      </label>
+                      <input
+                        className="input_transport"
+                        type="number"
+                        step="1"
+                        id="terraced"
+                        min="0"
+                        /*   value={terraced} */
+                        onChange={handleTerraced}
+                        onMouseLeave={getCurrentResidentTotal}
+                        required
+                      />
+                    </div>
+                  </Tooltip>
+                  <Tooltip title="One apartment in a semi-detached house is one unit.">
+                    <div className="div_transport">
+                      <label htmlFor="semiDetached" className="settle_label">
+                        {" "}
+                        Semi-detached
+                      </label>
+                      <input
+                        className="input_transport"
+                        type="number"
+                        id="semiDetached"
+                        step="any"
+                        min="1"
+                        /*   defaultValue={semiDetached} */
+                        onChange={handleSemiDetached}
+                        onMouseLeave={getCurrentResidentTotal}
+                        required
+                      />
+                    </div>
+                  </Tooltip>
+                  <Tooltip title="One detached house is one unit.">
+                    <div className="div_transport">
+                      <label htmlFor="detached" className="settle_label">
+                        Detached
+                      </label>
+                      <input
+                        className="input_transport"
+                        type="number"
+                        id="detached"
+                        step="1"
+                        min="0.0"
+                        /*   value={detached} */
+                        onChange={handleDetached}
+                        onMouseLeave={getCurrentResidentTotal}
+                        required
+                      />
+                    </div>
+                  </Tooltip>
                   <div className="div_transport">
                     <label htmlFor="detached" className="settle_label">
                       Total
@@ -327,12 +342,16 @@ export const BuildingBaseline = () => {
             <section>
               <Divider textAlign="left" flexItem>
                 {" "}
-                <b>U6.2 Number of commercial buildings in the area</b>
+                <b>U6.2 Floor area of commercial buildings</b>
               </Divider>
             </section>
             <div className="settlementDiv">
               <div className="row">
                 <div className="column">
+                  <Alert severity="info">
+                    Specify the total gross floor area of the existing
+                    commercial buildings within the assessment area.
+                  </Alert>
                   <div className="settlement_headers">
                     <label className="shareInfo">
                       <b>

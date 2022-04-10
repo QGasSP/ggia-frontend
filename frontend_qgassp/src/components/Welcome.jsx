@@ -44,12 +44,22 @@ export const Welcome = () => {
               results depend on the input values, ESPON EGTC cannot quarantee
               the authenticity of the results and cannot be held responsible for
               any decisions taken based on the results from the GGIA tool. GGIA
-              is an open-source application. The source code is available in 
-              <a href="https://github.com/QGasSP/ggia" target="_blank" rel="noreferrer"> GitHub </a>
-              and <a href="https://www.espon.eu/" target="_blank" rel="noreferrer"> ESPON EGTC </a>
-              welcomes all proposals on additional
-              quantification modules and the proposals to improve the current
-              calculation methods.
+              is an open-source application. The source code is available in
+              <a
+                href="https://github.com/QGasSP/ggia"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {" "}
+                GitHub{" "}
+              </a>
+              and{" "}
+              <a href="https://www.espon.eu/" target="_blank" rel="noreferrer">
+                {" "}
+                ESPON EGTC{" "}
+              </a>
+              welcomes all proposals on additional quantification modules and
+              the proposals to improve the current calculation methods.
               <br />
               <div className="start_button">
                 <Button

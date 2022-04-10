@@ -6,6 +6,8 @@ import "../css/newbuildings.css";
 import { BuildingsPoliciesCharts } from "./BuildingsPoliciesCharts";
 import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
+import Tooltip from "@mui/material/Tooltip";
+import Alert from "@mui/material/Alert";
 
 /**
  * BuildingsPolicies user input form
@@ -818,6 +820,10 @@ export const BuildingsPolicies = ({ baseline, country, year }) => {
             {" "}
             <Chip label="U8 POLICY QUANTIFICATION" />
           </Divider>
+          <Alert severity="info">
+            This section quantifies the impact of retrofit and renovation
+            policies on the greenhouse gas emissions.
+          </Alert>
         </div>
         <section>
           <section>
@@ -827,19 +833,33 @@ export const BuildingsPolicies = ({ baseline, country, year }) => {
             </Divider>
           </section>
           <div className="newResidentDiv">
+            <Alert severity="info">
+              This section quantifies the greenhouse gas impact of residential
+              building retrofits/renovations.
+            </Alert>
             <form>
               <table className="buildings-policy-tbl buildings-tbl">
                 <thead>
                   <tr>
                     <th className="row-title">Select residential unit</th>
-                    <th>Number of units</th>
+                    <Tooltip title="Insert the number of residential units that are retrofitted/renovated according to the plan/policy in assessment.">
+                      <th>Number of units</th>
+                    </Tooltip>
                     <th colSpan={2}>
                       Indicative energy use
-                      <th>before</th>
-                      <th>after</th>
+                      <Tooltip title="Estimate the energy consumption of existing residential buildings before retrofitting using the national energy certificate rating.">
+                        <th>before</th>
+                      </Tooltip>
+                      <Tooltip title="Estimate the energy consumption of existing residential buildings after retrofitting using the national energy certificate rating.">
+                        <th>after</th>
+                      </Tooltip>
                     </th>
-                    <th>% of energy from renewables</th>
-                    <th colSpan={2}>Retrofits completed between</th>
+                    <Tooltip title="Estimate the percentage of delivered energy that will be covered by local production of renewable energies. Renewable energy production for grid electricity is excluded.">
+                      <th>% of energy from renewables</th>
+                    </Tooltip>
+                    <Tooltip title="Insert the first and the last year of retrofitting.">
+                      <th colSpan={2}>Retrofits completed between</th>
+                    </Tooltip>
                   </tr>
                 </thead>
                 <tbody>
@@ -1504,15 +1524,27 @@ export const BuildingsPolicies = ({ baseline, country, year }) => {
             </Divider>
           </section>
           <div className="newResidentDiv">
+            <Alert severity="info">
+              This section quantifies the greenhouse gas impact of commercial
+              building retrofits/renovations.
+            </Alert>
             <form>
               <table className="buildings-policy-tbl buildings-tbl">
                 <thead>
                   <tr>
                     <th className="row-title">Select building type</th>
-                    <th>Total floor area</th>
-                    <th>Expected reduction in energy demand (%)</th>
-                    <th>% of electricty from renewables</th>
-                    <th colSpan={2}>Retrofits completed between</th>
+                    <Tooltip title="Insert the total floor area of the commercial buildings that are retrofitted/renovated according to the plan/policy in assessment.">
+                      <th>Total floor area</th>
+                    </Tooltip>
+                    <Tooltip title="Estimate the reduction in energy demand as a percentage. Positive percentage means an improvement of energy efficiency through retrofitting/renovation.">
+                      <th>Expected reduction in energy demand (%)</th>
+                    </Tooltip>
+                    <Tooltip title="Estimate the percentage of delivered energy that will be covered by local production of renewable energies. Renewable energy production for grid electricity is excluded.">
+                      <th>% of electricty from renewables</th>
+                    </Tooltip>
+                    <Tooltip title="Insert the first and the last year of these retrofits.">
+                      <th colSpan={2}>Retrofits completed between</th>
+                    </Tooltip>
                   </tr>
                 </thead>
                 <tbody>
@@ -2069,6 +2101,10 @@ export const BuildingsPolicies = ({ baseline, country, year }) => {
             </Divider>
           </section>
           <div className="newResidentDiv">
+            <Alert severity="info">
+              This section quantifies the greenhouse gas impact caused by the
+              changes of building use.
+            </Alert>
             <form>
               <table className="buildings-policy-tbl buildings-tbl">
                 <thead>
@@ -2076,8 +2112,12 @@ export const BuildingsPolicies = ({ baseline, country, year }) => {
                     {/* <th className="row-title">Select building type</th> */}
                     <th>From</th>
                     <th>To</th>
-                    <th>Floor Area</th>
-                    <th colSpan={2}>Conversions implemented between</th>
+                    <Tooltip title="Insert the total gross floor area for conversions.">
+                      <th>Floor Area</th>
+                    </Tooltip>
+                    <Tooltip title="Insert the first and the last year when these changes in building use are carried out.">
+                      <th colSpan={2}>Conversions implemented between</th>
+                    </Tooltip>
                   </tr>
                 </thead>
                 <tbody>
