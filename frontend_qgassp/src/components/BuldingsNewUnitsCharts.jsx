@@ -500,7 +500,6 @@ export const BuldingsNewUnitsCharts = ({
             width={1000}
             height={500}
             xType="ordinal"
-            yDomain={[0, 45000]}
             stackBy="y"
           >
             <HorizontalGridLines style={{ stroke: "#B7E9ED" }} />
@@ -551,65 +550,6 @@ export const BuldingsNewUnitsCharts = ({
             width={1000}
             height={500}
             xType="ordinal"
-            yDomain={[0, 45000]}
-            stackBy="y"
-          >
-            <HorizontalGridLines style={{ stroke: "#B7E9ED" }} />
-            <VerticalGridLines style={{ stroke: "#B7E9ED" }} />
-            <VerticalBarSeries className="LucStackedBarchart" />
-            <XAxis
-              title="Year"
-              style={{
-                line: { stroke: "#ADDDE1" },
-                ticks: { stroke: "#ADDDE1" },
-                text: { stroke: "none", fill: "#6b6b76", fontWeight: 600 },
-              }}
-            />
-            <YAxis title="Energy use  tC02e" />
-            {/* 1 */}
-            <BarSeries color="#ffdf43" data={apartmentsData} />
-            {/* 2 */}
-            <BarSeries color="#76918e" data={terracedData} />
-            {/* 3 */}
-            <BarSeries color="#ce143d" data={semidetachedData} />
-            {/* 4 */}
-            <BarSeries color="#d6e7d9" data={detachedData} />
-            {/* 5 */}
-            <BarSeries color="#002117" data={retailData} />
-            {/* 6 */}
-            <BarSeries color="#ef7d00" data={healthData} />
-            {/* 7 */}
-            <BarSeries color="#6c3b00" data={hospitalityData} />
-            {/* 8 */}
-            <BarSeries color="#00aed5" data={officesData} />
-            {/* 9 */}
-            <BarSeries color="#8C0303" data={industrialData} />
-            {/* 10 */}
-            <BarSeries color="#A6036D" data={warehousesData} />
-          </XYPlot>
-        </div>
-
-        {/* <div className="headerSettlement">
-           <Divider textAlign="left" flexItem>
-             {" "}
-             <Chip label="Projections" />
-           </Divider>
-         </div> */}
-
-        <Divider textAlign="left" flexItem>
-          {" "}
-          <b>
-            CO2e emissions from the energy use in commercial buildings by
-            building type and source of heating energy
-          </b>
-        </Divider>
-
-        <div className="buildings-baseline">
-          <XYPlot
-            width={1000}
-            height={500}
-            xType="ordinal"
-            yDomain={[0, 45000]}
             stackBy="y"
           >
             <HorizontalGridLines style={{ stroke: "#B7E9ED" }} />
