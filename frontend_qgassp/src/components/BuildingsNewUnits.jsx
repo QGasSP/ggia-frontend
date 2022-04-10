@@ -608,7 +608,7 @@ import urlPrefix from "../Config";
     }
   
     const updateU2Planner = () => {
-
+      // #region residentials
       const apartment = {
         "numberOfUnits": apartmentUnits,
         "startYear": apartmentStartYear,
@@ -633,6 +633,8 @@ import urlPrefix from "../Config";
         "endYear": detachedEndYear,
         "renewableEnergyPercent": detachedEnergy
       };
+      // #endregion
+      // #region commercials
       const retail = {
         "floorArea": retailArea,
         "renewableEnergyPercent": retailEnergy,
@@ -669,8 +671,9 @@ import urlPrefix from "../Config";
         "startYear": warehousesStartYear,
         "endYear": warehousesEndYear
       };
-
-      const newSettlement = {
+      // #endregion
+      
+      const newConstruction = {
         "residential":{
           "apartment": apartment,
           "terraced": terraced,
@@ -686,6 +689,87 @@ import urlPrefix from "../Config";
             warehouses
         }
       }
+      const densification = {
+        "residential": {
+            "apartment": {
+                "numberOfExistingUnits": apartmentUnitsDensificated,
+                "densificationRate": apartmentDensRate,
+                "startYear": apartmentStartYearDensificated,
+                "endYear": apartmentEndYearDensificated,
+                "renewableEnergyPercent": apartmentEnergyDensificated
+            },
+            "terraced": {
+                "numberOfExistingUnits": terracedUnitsDensificated,
+                "densificationRate": terracedDensRate,
+                "startYear": terracedStartYearDensificated,
+                "endYear": terracedEndYearDensificated,
+                "renewableEnergyPercent": terracedEnergyDensificated
+            },
+            "semidetached": {
+                "numberOfExistingUnits": semiDetachedUnitsDensificated,
+                "densificationRate": semiDetachedDensRate,
+                "startYear": semiDetachedStartYearDensificated,
+                "endYear": semiDetachedEndYearDensificated,
+                "renewableEnergyPercent": semiDetachedEnergyDensificated
+            },
+            "detached": {
+                "numberOfExistingUnits": detachedUnitsDensificated,
+                "densificationRate": detachedDensRate,
+                "startYear": detachedStartYearDensificated,
+                "endYear": detachedEndYearDensificated,
+                "renewableEnergyPercent": detachedEnergyDensificated
+            }
+        },
+        "commercial": {
+            "retail": {
+                "floorArea": retailAreaDensificated,
+                "densificationRate": retailDensRate,
+                "startYear": retailStartYearDensificated,
+                "endYear": retailEndYearDensificated,
+                "renewableEnergyPercent": retailEnergyDensificated
+            },
+            "health": {
+                "floorArea": healthAreaDensificated,
+                "densificationRate": healthDensRate,
+                "startYear": healthStartYearDensificated,
+                "endYear": healthEndYearDensificated,
+                "renewableEnergyPercent": healthEnergyDensificated
+            },
+            "hospitality": {
+              "floorArea": hospitalityAreaDensificated,
+              "densificationRate": hospitalityDensRate,
+              "startYear": hospitalityStartYearDensificated,
+              "endYear": hospitalityEndYearDensificated,
+              "renewableEnergyPercent": hospitalityEnergyDensificated
+            },
+            "offices": {
+              "floorArea": officesAreaDensificated,
+              "densificationRate": officesDensRate,
+              "startYear": officesStartYearDensificated,
+              "endYear": officesEndYearDensificated,
+              "renewableEnergyPercent": officesEnergyDensificated
+            },
+            "industrial": {
+              "floorArea": industrialAreaDensificated,
+              "densificationRate": industrialDensRate,
+              "startYear": industrialStartYearDensificated,
+              "endYear": industrialEndYearDensificated,
+              "renewableEnergyPercent": industrialEnergyDensificated
+            },
+            "warehouses": {
+              "floorArea": warehousesAreaDensificated,
+              "densificationRate": warehousesDensRate,
+              "startYear": warehousesStartYearDensificated,
+              "endYear": warehousesEndYearDensificated,
+              "renewableEnergyPercent": warehousesEnergyDensificated
+            }
+        }
+      };
+      const rawData = {
+        baseline,
+        newConstruction,
+        densification
+      }
       const headers = {
         "Access-Control-Allow-Origin": "*",
         "Content-type": "application/json",
@@ -693,7 +777,7 @@ import urlPrefix from "../Config";
       // axios
       // .post(
       //   urlPrefix + "/api/v1/calculate/buildings",
-      //   newSettlement,
+      //   rawData,
       //   headers
       // )
       // .then((response) => setBuildingsNewUnitsResponse(response.data))    
@@ -703,13 +787,13 @@ import urlPrefix from "../Config";
       //   console.error("There was an error!", errorBuildNewUnits);
       // });
 
-      // const newSettlementResidentals = {
+      // const nnewConstructionResidentals = {
       //   "apartment":apartment,
       //   "terraced":terraced,
       //   "semi_detached":semiDetached,
       //   "detached":detached
       // };
-      // const newSettlementCommercials = {
+      // const newConstructionCommercials = {
       //   "retail":retail,
       //   "health":health,
       //   "hospitality":hospitality,
