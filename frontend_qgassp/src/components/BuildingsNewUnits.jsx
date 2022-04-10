@@ -877,6 +877,7 @@ export const BuildingsNewUnits = ({
     //   "industrial":industrial,
     //   "warehouses":warehouses,
     // };
+    setU2charts(true);
   };
   
   if (updateU2charts === false) {
