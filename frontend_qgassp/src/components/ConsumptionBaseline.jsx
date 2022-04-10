@@ -6,6 +6,8 @@ import "../css/u1planner.css";
 import { Button } from "./Button";
 import { ConsumptionBaselineResults } from "./ConsumptionBaselineResults";
 import { useStorageInt, useStorageString } from "../reducers/useStorage";
+import Tooltip from "@mui/material/Tooltip";
+import Alert from "@mui/material/Alert";
 
 export const ConsumptionBaseline = () => {
   const [nextShowCharts, setNextShow] = useState(false);
@@ -50,6 +52,14 @@ export const ConsumptionBaseline = () => {
               {" "}
               <Chip label="Area and type population" />
             </Divider>
+            <Alert severity="info">
+              This section is used to create a baseline for the
+              consumption-based quantification. The consumption calculation
+              accounts for the emissions caused by the residents of the area, no
+              matter where those emissions occur. The tool allocates emissions
+              using data on the annual expenditure of households across a wide
+              range of products.
+            </Alert>
           </div>
           <section>
             <form onSubmit={showConsumptionBaseline}>
@@ -60,68 +70,72 @@ export const ConsumptionBaseline = () => {
                   </label>
                   <label></label>
                 </div>
-                <div className="div_transport">
-                  <label htmlFor="select_planned_area">
-                    {" "}
-                    Planned area type
-                  </label>
-                  <select
-                    className="select_planned_area"
-                    id="select_planned_area"
-                    onChange={handleAreaType}
-                    defaultValue={areaType}
-                  >
-                    <option value="DefaultOption">Select area type</option>
-                    <optgroup label="Planned area types">
-                      <option value="average">average/mix</option>
-                      <option value="city">city</option>
-                      <option value="town">town</option>
-                      <option value="rural">rural</option>
-                    </optgroup>
-                  </select>
-                </div>
-
-                <div className="div_transport">
-                  <label htmlFor="house_size" className="settle_label">
-                    Average house occupancy level
-                  </label>
-                  <input
-                    className="input_occupancy"
-                    type="number"
-                    pattern="[0-9]*"
-                    min="0"
-                    id="house_size"
-                    onChange={handleHouseSize}
-                    defaultValue={houseSize}
-                    placeholder={houseSize}
-                    required
-                  />
-                </div>
-
-                <div className="div_transport">
-                  <label htmlFor="income_choice">
-                    Average income level of households
-                  </label>
-                  <select
-                    className="select_transport"
-                    id="income_choice"
-                    name="income_choice"
-                    onChange={handleIncomeChoice}
-                    defaultValue={incomeChoice}
-                    required
-                  >
-                    <option value="DefaultOption">Select Income </option>
-                    <optgroup label="Household income levels">
-                      <option value="0">3rd_household</option>
-                      <option value="1">Bottom 20%</option>
-                      <option value="5">Top 20 %</option>
-                      <option value="2">20-40 %</option>
-                      <option value="3">40-60%</option>
-                      <option value="4">60-80 %</option>
-                      <option value="3">average/unknown</option>
-                    </optgroup>
-                  </select>
-                </div>
+                <Tooltip title="Please provide a basic description of the area. There are four options for the type of urban area.">
+                  <div className="div_transport">
+                    <label htmlFor="select_planned_area">
+                      {" "}
+                      Planned area type
+                    </label>
+                    <select
+                      className="select_planned_area"
+                      id="select_planned_area"
+                      onChange={handleAreaType}
+                      defaultValue={areaType}
+                    >
+                      <option value="DefaultOption">Select area type</option>
+                      <optgroup label="Planned area types">
+                        <option value="average">average/mix</option>
+                        <option value="city">city</option>
+                        <option value="town">town</option>
+                        <option value="rural">rural</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                </Tooltip>
+                <Tooltip title="The household occupancy level refers to the average number of people per household, including dependants.">
+                  <div className="div_transport">
+                    <label htmlFor="house_size" className="settle_label">
+                      Average house occupancy level
+                    </label>
+                    <input
+                      className="input_occupancy"
+                      type="number"
+                      pattern="[0-9]*"
+                      min="0"
+                      id="house_size"
+                      onChange={handleHouseSize}
+                      defaultValue={houseSize}
+                      placeholder={houseSize}
+                      required
+                    />
+                  </div>
+                </Tooltip>
+                <Tooltip title="If the average income level of the residents is not known, please choose average/unknown.">
+                  <div className="div_transport">
+                    <label htmlFor="income_choice">
+                      Average income level of households
+                    </label>
+                    <select
+                      className="select_transport"
+                      id="income_choice"
+                      name="income_choice"
+                      onChange={handleIncomeChoice}
+                      defaultValue={incomeChoice}
+                      required
+                    >
+                      <option value="DefaultOption">Select Income </option>
+                      <optgroup label="Household income levels">
+                        <option value="0">3rd_household</option>
+                        <option value="1">Bottom 20%</option>
+                        <option value="5">Top 20 %</option>
+                        <option value="2">20-40 %</option>
+                        <option value="3">40-60%</option>
+                        <option value="4">60-80 %</option>
+                        <option value="3">average/unknown</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                </Tooltip>
 
                 <div className="div_transport">
                   <label

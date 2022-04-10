@@ -7,6 +7,8 @@ import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import { CircularProgress } from "@mui/material";
 import urlPrefix from "../Config";
+import Tooltip from "@mui/material/Tooltip";
+import Alert from "@mui/material/Alert";
 
 /**
  * LUC inputs table from to
@@ -1361,10 +1363,32 @@ export const LandUseChangeTableForm = () => {
           <div className="headerSettlement">
             <Divider textAlign="left" flexItem>
               {" "}
-              <Chip label="U5 LAND-USE CHANGE" />
+              <Chip label="LAND-USE CHANGE" />
             </Divider>
           </div>
           <div className="luc_main">
+            <Alert severity="info">
+              This section estimates the greenhouse gas emissions from the
+              land-use changes of a plan or a planning policy. The
+              quantification is based on the six IPCC land use categories.
+              <br />
+              <br />
+              First You need to specify the land use types of the areas that
+              will change when the plan or the policy in concern is implemented.
+              GIS tools and databases such as Corine Land Cover and European
+              soil database can be applied to define the land use categories and
+              their surface areas.
+              <br />
+              <br />
+              Find the relevant land-use changes in the tables below. Then
+              insert three values per each change to calculate the impact: total
+              land area converted from one category to another in hectares, and
+              the shares of mineral and organic soils within this land area.
+              Other rows and tables can be left empty.
+              <br />
+              <br />
+              All built environment belongs to the category settlement.
+            </Alert>
             <section>
               <form id="from_landusechange_type">
                 <div className="luc_row">
@@ -1375,7 +1399,9 @@ export const LandUseChangeTableForm = () => {
                         <th>Total area, ha</th>
                         <th>Soil area (mineral), ha</th>
                         <th>Soil area (organic), ha</th>
-                        <th>Year of implementation</th>
+                        <Tooltip title="Select the year when the land-use change is expected to happen.">
+                          <th>Year of implementation</th>
+                        </Tooltip>
                       </tr>
                     </thead>
                     <tbody>
@@ -1686,7 +1712,9 @@ export const LandUseChangeTableForm = () => {
                         <th>Total area, ha</th>
                         <th>Soil area (mineral), ha</th>
                         <th>Soil area (organic), ha</th>
-                        <th>Year of implementation</th>
+                        <Tooltip title="Select the year when the land-use change is expected to happen.">
+                          <th>Year of implementation</th>
+                        </Tooltip>
                       </tr>
                     </thead>
                     <tbody>
@@ -1993,7 +2021,9 @@ export const LandUseChangeTableForm = () => {
                         <th>Total area, ha</th>
                         <th>Soil area (mineral), ha</th>
                         <th>Soil area (organic), ha</th>
-                        <th>Year of implementation</th>
+                        <Tooltip title="Select the year when the land-use change is expected to happen.">
+                          <th>Year of implementation</th>
+                        </Tooltip>
                       </tr>
                     </thead>
                     <tbody>
@@ -2297,7 +2327,9 @@ export const LandUseChangeTableForm = () => {
                         <th>Total area, ha</th>
                         <th>Soil area (mineral), ha</th>
                         <th>Soil area (organic), ha</th>
-                        <th>Year of implementation</th>
+                        <Tooltip title="Select the year when the land-use change is expected to happen.">
+                          <th>Year of implementation</th>
+                        </Tooltip>
                       </tr>
                     </thead>
                     <tbody>
@@ -2614,7 +2646,9 @@ export const LandUseChangeTableForm = () => {
                         <th>Total area, ha</th>
                         <th>Soil area (mineral), ha</th>
                         <th>Soil area (organic), ha</th>
-                        <th>Year of implementation</th>
+                        <Tooltip title="Select the year when the land-use change is expected to happen.">
+                          <th>Year of implementation</th>
+                        </Tooltip>
                       </tr>
                     </thead>
                     <tbody>
@@ -2925,7 +2959,9 @@ export const LandUseChangeTableForm = () => {
                         <th>Total area, ha</th>
                         <th>Soil area (mineral), ha</th>
                         <th>Soil area (organic), ha</th>
-                        <th>Year of implementation</th>
+                        <Tooltip title="Select the year when the land-use change is expected to happen.">
+                          <th>Year of implementation</th>
+                        </Tooltip>
                       </tr>
                     </thead>
                     <tbody>
@@ -3234,7 +3270,9 @@ export const LandUseChangeTableForm = () => {
                   <table>
                     <thead>
                       <tr>
-                        <th className="row-title">Land-Use Change</th>
+                        <Tooltip title="Definitions of the national land-use categories can be found in National Inventory Reports (NIR) created for the annual greenhouse gas inventories.">
+                          <th className="row-title">Land-Use Change</th>
+                        </Tooltip>
                         <th>Total area, ha</th>
                         <th>Soil area (mineral), ha</th>
                         <th>Soil area (organic), ha</th>
@@ -3275,7 +3313,7 @@ export const LandUseChangeTableForm = () => {
                             className="table-cell btn-luc-submit"
                             type="button"
                             id="btn"
-                            value="Submit"
+                            value="Calculate and save emissions"
                             onClick={setLandUseChangeChart}
                             primary
                           />

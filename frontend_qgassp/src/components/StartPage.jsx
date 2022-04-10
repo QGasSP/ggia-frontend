@@ -125,8 +125,8 @@ export const StartPage = () => {
 
             {allFields && nextModule === false && (
               <Alert severity="warning">
-                Please fill the year, population and country and save.
-                Selecting a local dataset is optional and only needed for advanced users.
+                Please fill the year, population and country and save. Selecting
+                a local dataset is optional and only needed for advanced users.
               </Alert>
             )}
             <Tooltip title="Select the first year of the assessment period.">

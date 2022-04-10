@@ -19,6 +19,7 @@ import { hseHoldEmissions } from "../reducers/Consumption";
 import axios from "axios";
 import { Button } from "./Button";
 import { ConsumptionHseEnergy } from "./ConsumptionHseEnergy";
+import Alert from "@mui/material/Alert";
 
 const BarSeries = VerticalBarSeries;
 
@@ -81,8 +82,12 @@ export const ConsumptionBaselineResults = ({
         setBL(response.data.data.consumption.BL);
         setBLTotalEmissions(response.data.data.consumption.BLTotalEmissions);
         setDistrictProp(response.data.data.consumption.districtProp);
-        setElectricityHeatProp(response.data.data.consumption.electricityHeatProp);
-        setCombustableFuelsProp(response.data.data.consumption.combustableFuelsProp);
+        setElectricityHeatProp(
+          response.data.data.consumption.electricityHeatProp
+        );
+        setCombustableFuelsProp(
+          response.data.data.consumption.combustableFuelsProp
+        );
         setLiquidProp(response.data.data.consumption.liquidsProp);
         setSolidsProp(response.data.data.consumption.solidsProp);
         setGasesProp(response.data.data.consumption.gasesProp);
@@ -144,6 +149,11 @@ export const ConsumptionBaselineResults = ({
           <b>{country}: Annual household emissions </b>
         </Divider>
         <div>
+          <Alert severity="info">
+            The first graph shows a projection of annual emissions under the
+            baseline scenario for each resident for every year until 2050. Each
+            bar is subdivided into emissions from each sector.
+          </Alert>
           <div className="settlementDiv">
             <LineLegendConsumption
               colorItems={hseHoldEmissions}
@@ -196,6 +206,10 @@ export const ConsumptionBaselineResults = ({
 
         <br />
         <div className="consumptionTableDiv">
+          <Alert severity="info">
+            The second graph is a bar chart showing the breakdown of per capita
+            emissions by sector for the baseline year.
+          </Alert>
           <table>
             <thead className="tableHeader">
               <tr>
@@ -231,7 +245,7 @@ export const ConsumptionBaselineResults = ({
     );
   } else {
     return (
-      <ConsumptionHseEnergy        
+      <ConsumptionHseEnergy
         districtProp={districtProp}
         electricityHeatProp={electricityHeatProp}
         combustableFuelsProp={combustableFuelsProp}
