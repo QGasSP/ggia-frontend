@@ -168,24 +168,31 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
   // FirstResidentSelector handlers
   // #region
   const handleFirstResidentSelectorResidentialUnit = (e) => {
+ e.preventDefault();
     setFirstResidentSelectorResidentialUnit(e.target.value);
   };
   const handleFirstResidentSelectorUnits = (e) => {
+ e.preventDefault();
     setFirstResidentSelectorUnits(parseInt(e.target.value));
   };
   const handleFirstResidentSelectorIndicativeBefore = (e) => {
+ e.preventDefault();
     setFirstResidentSelectorIndicativeBefore(e.target.value);
   };
   const handleFirstResidentSelectorIndicativeAfter = (e) => {
+ e.preventDefault();
     setFirstResidentSelectorIndicativeAfter(e.target.value);
   };
   const handleFirstResidentSelectorStartYear = (e) => {
+ e.preventDefault();
     setFirstResidentSelectorStartYear(Number(e.target.value));
   };
   const handleFirstResidentSelectorEndYear = (e) => {
+ e.preventDefault();
     setFirstResidentSelectorEndYear(Number(e.target.value));
   };
   const handleFirstResidentSelectorEnergy = (e) => {
+ e.preventDefault();
     setFirstResidentSelectorEnergy(parseInt(e.target.value));
   };
   // #endregion
@@ -193,24 +200,31 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
   // SecondResidentSelector handlers
   // #region
   const handleSecondResidentSelectorResidentialUnit = (e) => {
+ e.preventDefault();
     setSecondResidentSelectorResidentialUnit(e.target.value);
   };
   const handleSecondResidentSelectorUnits = (e) => {
+ e.preventDefault();
     setSecondResidentSelectorUnits(parseInt(e.target.value));
   };
   const handleSecondResidentSelectorIndicativeBefore = (e) => {
+ e.preventDefault();
     setSecondResidentSelectorIndicativeBefore(e.target.value);
   };
   const handleSecondResidentSelectorIndicativeAfter = (e) => {
+ e.preventDefault();
     setSecondResidentSelectorIndicativeAfter(e.target.value);
   };
   const handleSecondResidentSelectorStartYear = (e) => {
+ e.preventDefault();
     setSecondResidentSelectorStartYear(Number(e.target.value));
   };
   const handleSecondResidentSelectorEndYear = (e) => {
+ e.preventDefault();
     setSecondResidentSelectorEndYear(Number(e.target.value));
   };
   const handleSecondResidentSelectorEnergy = (e) => {
+ e.preventDefault();
     setSecondResidentSelectorEnergy(parseInt(e.target.value));
   };
   // #endregion
@@ -218,24 +232,31 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
   // ThirdResidentSelector handlers
   // #region
   const handleThirdResidentSelectorResidentialUnit = (e) => {
+ e.preventDefault();
     setThirdResidentSelectorResidentialUnit(e.target.value);
   };
   const handleThirdResidentSelectorUnits = (e) => {
+ e.preventDefault();
     setThirdResidentSelectorUnits(parseInt(e.target.value));
   };
   const handleThirdResidentSelectorIndicativeBefore = (e) => {
+ e.preventDefault();
     setThirdResidentSelectorIndicativeBefore(e.target.value);
   };
   const handleThirdResidentSelectorIndicativeAfter = (e) => {
+ e.preventDefault();
     setThirdResidentSelectorIndicativeAfter(e.target.value);
   };
   const handleThirdResidentSelectorStartYear = (e) => {
+ e.preventDefault();
     setThirdResidentSelectorStartYear(Number(e.target.value));
   };
   const handleThirdResidentSelectorEndYear = (e) => {
+ e.preventDefault();
     setThirdResidentSelectorEndYear(Number(e.target.value));
   };
   const handleThirdResidentSelectorEnergy = (e) => {
+ e.preventDefault();
     setThirdResidentSelectorEnergy(parseInt(e.target.value));
   };
   // #endregion
@@ -243,24 +264,31 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
   // FourthResidentSelector handlers
   // #region
   const handleFourthResidentSelectorResidentialUnit = (e) => {
+ e.preventDefault();
     setFourthResidentSelectorResidentialUnit(e.target.value);
   };
   const handleFourthResidentSelectorUnits = (e) => {
+ e.preventDefault();
     setFourthResidentSelectorUnits(parseInt(e.target.value));
   };
   const handleFourthResidentSelectorIndicativeBefore = (e) => {
+ e.preventDefault();
     setFourthResidentSelectorIndicativeBefore(e.target.value);
   };
   const handleFourthResidentSelectorIndicativeAfter = (e) => {
+ e.preventDefault();
     setFourthResidentSelectorIndicativeAfter(e.target.value);
   };
   const handleFourthResidentSelectorStartYear = (e) => {
+ e.preventDefault();
     setFourthResidentSelectorStartYear(Number(e.target.value));
   };
   const handleFourthResidentSelectorEndYear = (e) => {
+ e.preventDefault();
     setFourthResidentSelectorEndYear(Number(e.target.value));
   };
   const handleFourthResidentSelectorEnergy = (e) => {
+ e.preventDefault();
     setFourthResidentSelectorEnergy(parseInt(e.target.value));
   };
   // #endregion
@@ -268,24 +296,31 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
   // FifthResidentSelector handlers
   // #region
   const handleFifthResidentSelectorResidentialUnit = (e) => {
+ e.preventDefault();
     setFifthResidentSelectorResidentialUnit(e.target.value);
   };
   const handleFifthResidentSelectorUnits = (e) => {
+ e.preventDefault();
     setFifthResidentSelectorUnits(parseInt(e.target.value));
   };
   const handleFifthResidentSelectorIndicativeBefore = (e) => {
+ e.preventDefault();
     setFifthResidentSelectorIndicativeBefore(e.target.value);
   };
   const handleFifthResidentSelectorIndicativeAfter = (e) => {
+ e.preventDefault();
     setFifthResidentSelectorIndicativeAfter(e.target.value);
   };
   const handleFifthResidentSelectorStartYear = (e) => {
+ e.preventDefault();
     setFifthResidentSelectorStartYear(Number(e.target.value));
   };
   const handleFifthResidentSelectorEndYear = (e) => {
+ e.preventDefault();
     setFifthResidentSelectorEndYear(Number(e.target.value));
   };
   const handleFifthResidentSelectorEnergy = (e) => {
+ e.preventDefault();
     setFifthResidentSelectorEnergy(parseInt(e.target.value));
   };
   // #endregion
@@ -293,24 +328,31 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
   // SixthResidentSelector handlers
   // #region
   const handleSixthResidentSelectorResidentialUnit = (e) => {
+ e.preventDefault();
     setSixthResidentSelectorResidentialUnit(e.target.value);
   };
   const handleSixthResidentSelectorUnits = (e) => {
+ e.preventDefault();
     setSixthResidentSelectorUnits(parseInt(e.target.value));
   };
   const handleSixthResidentSelectorIndicativeBefore = (e) => {
+ e.preventDefault();
     setSixthResidentSelectorIndicativeBefore(e.target.value);
   };
   const handleSixthResidentSelectorIndicativeAfter = (e) => {
+ e.preventDefault();
     setSixthResidentSelectorIndicativeAfter(e.target.value);
   };
   const handleSixthResidentSelectorStartYear = (e) => {
+ e.preventDefault();
     setSixthResidentSelectorStartYear(Number(e.target.value));
   };
   const handleSixthResidentSelectorEndYear = (e) => {
+ e.preventDefault();
     setSixthResidentSelectorEndYear(Number(e.target.value));
   };
   const handleSixthResidentSelectorEnergy = (e) => {
+ e.preventDefault();
     setSixthResidentSelectorEnergy(parseInt(e.target.value));
   };
   // #endregion
@@ -452,21 +494,27 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
   // FirstCommercialSelector handlers
   // #region
   const handleFirstCommercialSelectorBuildingType = (e) => {
+ e.preventDefault();
     setFirstCommercialSelectorBuildingType(e.target.value);
   };
   const handleFirstCommercialSelectorArea = (e) => {
+ e.preventDefault();
     setFirstCommercialSelectorArea(parseInt(e.target.value));
   };
   const handleFirstCommercialSelectorReduction = (e) => {
+ e.preventDefault();
     setFirstCommercialSelectorReduction(parseInt(e.target.value));
   };
   const handleFirstCommercialSelectorStartYear = (e) => {
+ e.preventDefault();
     setFirstCommercialSelectorStartYear(Number(e.target.value));
   };
   const handleFirstCommercialSelectorEndYear = (e) => {
+ e.preventDefault();
     setFirstCommercialSelectorEndYear(Number(e.target.value));
   };
   const handleFirstCommercialSelectorEnergy = (e) => {
+ e.preventDefault();
     setFirstCommercialSelectorEnergy(parseInt(e.target.value));
   };
   // #endregion
@@ -474,21 +522,27 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
   // SecondCommercialSelector handlers
   // #region
   const handleSecondCommercialSelectorBuildingType = (e) => {
+ e.preventDefault();
     setSecondCommercialSelectorBuildingType(e.target.value);
   };
   const handleSecondCommercialSelectorArea = (e) => {
+ e.preventDefault();
     setSecondCommercialSelectorArea(parseInt(e.target.value));
   };
   const handleSecondCommercialSelectorReduction = (e) => {
+ e.preventDefault();
     setSecondCommercialSelectorReduction(parseInt(e.target.value));
   };
   const handleSecondCommercialSelectorStartYear = (e) => {
+ e.preventDefault();
     setSecondCommercialSelectorStartYear(Number(e.target.value));
   };
   const handleSecondCommercialSelectorEndYear = (e) => {
+ e.preventDefault();
     setSecondCommercialSelectorEndYear(Number(e.target.value));
   };
   const handleSecondCommercialSelectorEnergy = (e) => {
+ e.preventDefault();
     setSecondCommercialSelectorEnergy(parseInt(e.target.value));
   };
   // #endregion
@@ -496,21 +550,27 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
   // ThirdCommercialSelector handlers
   // #region
   const handleThirdCommercialSelectorBuildingType = (e) => {
+ e.preventDefault();
     setThirdCommercialSelectorBuildingType(e.target.value);
   };
   const handleThirdCommercialSelectorArea = (e) => {
+ e.preventDefault();
     setThirdCommercialSelectorArea(parseInt(e.target.value));
   };
   const handleThirdCommercialSelectorReduction = (e) => {
+ e.preventDefault();
     setThirdCommercialSelectorReduction(parseInt(e.target.value));
   };
   const handleThirdCommercialSelectorStartYear = (e) => {
+ e.preventDefault();
     setThirdCommercialSelectorStartYear(Number(e.target.value));
   };
   const handleThirdCommercialSelectorEndYear = (e) => {
+ e.preventDefault();
     setThirdCommercialSelectorEndYear(Number(e.target.value));
   };
   const handleThirdCommercialSelectorEnergy = (e) => {
+ e.preventDefault();
     setThirdCommercialSelectorEnergy(parseInt(e.target.value));
   };
   // #endregion
@@ -518,21 +578,27 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
   // FourthCommercialSelector handlers
   // #region
   const handleFourthCommercialSelectorBuildingType = (e) => {
+ e.preventDefault();
     setFourthCommercialSelectorBuildingType(e.target.value);
   };
   const handleFourthCommercialSelectorArea = (e) => {
+ e.preventDefault();
     setFourthCommercialSelectorArea(parseInt(e.target.value));
   };
   const handleFourthCommercialSelectorReduction = (e) => {
+ e.preventDefault();
     setFourthCommercialSelectorReduction(parseInt(e.target.value));
   };
   const handleFourthCommercialSelectorStartYear = (e) => {
+ e.preventDefault();
     setFourthCommercialSelectorStartYear(Number(e.target.value));
   };
   const handleFourthCommercialSelectorEndYear = (e) => {
+ e.preventDefault();
     setFourthCommercialSelectorEndYear(Number(e.target.value));
   };
   const handleFourthCommercialSelectorEnergy = (e) => {
+ e.preventDefault();
     setFourthCommercialSelectorEnergy(parseInt(e.target.value));
   };
   // #endregion
@@ -540,21 +606,27 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
   // FifthCommercialSelector handlers
   // #region
   const handleFifthCommercialSelectorBuildingType = (e) => {
+ e.preventDefault();
     setFifthCommercialSelectorBuildingType(e.target.value);
   };
   const handleFifthCommercialSelectorArea = (e) => {
+ e.preventDefault();
     setFifthCommercialSelectorArea(parseInt(e.target.value));
   };
   const handleFifthCommercialSelectorReduction = (e) => {
+ e.preventDefault();
     setFifthCommercialSelectorReduction(parseInt(e.target.value));
   };
   const handleFifthCommercialSelectorStartYear = (e) => {
+ e.preventDefault();
     setFifthCommercialSelectorStartYear(Number(e.target.value));
   };
   const handleFifthCommercialSelectorEndYear = (e) => {
+ e.preventDefault();
     setFifthCommercialSelectorEndYear(Number(e.target.value));
   };
   const handleFifthCommercialSelectorEnergy = (e) => {
+ e.preventDefault();
     setFifthCommercialSelectorEnergy(parseInt(e.target.value));
   };
   // #endregion
@@ -562,21 +634,27 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
   // SixthCommercialSelector handlers
   // #region
   const handleSixthCommercialSelectorBuildingType = (e) => {
+ e.preventDefault();
     setSixthCommercialSelectorBuildingType(e.target.value);
   };
   const handleSixthCommercialSelectorArea = (e) => {
+ e.preventDefault();
     setSixthCommercialSelectorArea(parseInt(e.target.value));
   };
   const handleSixthCommercialSelectorReduction = (e) => {
+ e.preventDefault();
     setSixthCommercialSelectorReduction(parseInt(e.target.value));
   };
   const handleSixthCommercialSelectorStartYear = (e) => {
+ e.preventDefault();
     setSixthCommercialSelectorStartYear(Number(e.target.value));
   };
   const handleSixthCommercialSelectorEndYear = (e) => {
+ e.preventDefault();
     setSixthCommercialSelectorEndYear(Number(e.target.value));
   };
   const handleSixthCommercialSelectorEnergy = (e) => {
+ e.preventDefault();
     setSixthCommercialSelectorEnergy(parseInt(e.target.value));
   };
   // #endregion
@@ -675,18 +753,23 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
   // FirstSelector handlers
   // #region
   const handleFirstSelectorBuildingTypeFrom = (e) => {
+ e.preventDefault();
     setFirstSelectorBuildingTypeFrom(e.target.value);
   };
   const handleFirstSelectorBuildingTypeTo = (e) => {
+ e.preventDefault();
     setFirstSelectorBuildingTypeTo(e.target.value);
   };
   const handleFirstSelectorArea = (e) => {
+ e.preventDefault();
     setFirstSelectorArea(parseInt(e.target.value));
   };
   const handleFirstSelectorStartYear = (e) => {
+ e.preventDefault();
     setFirstSelectorStartYear(Number(e.target.value));
   };
   const handleFirstSelectorEndYear = (e) => {
+ e.preventDefault();
     setFirstSelectorEndYear(Number(e.target.value));
   };
   // #endregion
@@ -694,18 +777,23 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
   // SecondSelector handlers
   // #region
   const handleSecondSelectorBuildingTypeFrom = (e) => {
+ e.preventDefault();
     setSecondSelectorBuildingTypeFrom(e.target.value);
   };
   const handleSecondSelectorBuildingTypeTo = (e) => {
+ e.preventDefault();
     setSecondSelectorBuildingTypeTo(e.target.value);
   };
   const handleSecondSelectorArea = (e) => {
+ e.preventDefault();
     setSecondSelectorArea(parseInt(e.target.value));
   };
   const handleSecondSelectorStartYear = (e) => {
+ e.preventDefault();
     setSecondSelectorStartYear(Number(e.target.value));
   };
   const handleSecondSelectorEndYear = (e) => {
+ e.preventDefault();
     setSecondSelectorEndYear(Number(e.target.value));
   };
   // #endregion
@@ -713,18 +801,23 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
   // ThirdSelector handlers
   // #region
   const handleThirdSelectorBuildingTypeFrom = (e) => {
+ e.preventDefault();
     setThirdSelectorBuildingTypeFrom(e.target.value);
   };
   const handleThirdSelectorBuildingTypeTo = (e) => {
+ e.preventDefault();
     setThirdSelectorBuildingTypeTo(e.target.value);
   };
   const handleThirdSelectorArea = (e) => {
+ e.preventDefault();
     setThirdSelectorArea(parseInt(e.target.value));
   };
   const handleThirdSelectorStartYear = (e) => {
+ e.preventDefault();
     setThirdSelectorStartYear(Number(e.target.value));
   };
   const handleThirdSelectorEndYear = (e) => {
+ e.preventDefault();
     setThirdSelectorEndYear(Number(e.target.value));
   };
   // #endregion
@@ -732,18 +825,23 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
   // FourthSelector handlers
   // #region
   const handleFourthSelectorBuildingTypeFrom = (e) => {
+ e.preventDefault();
     setFourthSelectorBuildingTypeFrom(e.target.value);
   };
   const handleFourthSelectorBuildingTypeTo = (e) => {
+ e.preventDefault();
     setFourthSelectorBuildingTypeTo(e.target.value);
   };
   const handleFourthSelectorArea = (e) => {
+ e.preventDefault();
     setFourthSelectorArea(parseInt(e.target.value));
   };
   const handleFourthSelectorStartYear = (e) => {
+ e.preventDefault();
     setFourthSelectorStartYear(Number(e.target.value));
   };
   const handleFourthSelectorEndYear = (e) => {
+ e.preventDefault();
     setFourthSelectorEndYear(Number(e.target.value));
   };
   // #endregion
@@ -751,18 +849,23 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
   // FifthSelector handlers
   // #region
   const handleFifthSelectorBuildingTypeFrom = (e) => {
+ e.preventDefault();
     setFifthSelectorBuildingTypeFrom(e.target.value);
   };
   const handleFifthSelectorBuildingTypeTo = (e) => {
+ e.preventDefault();
     setFifthSelectorBuildingTypeTo(e.target.value);
   };
   const handleFifthSelectorArea = (e) => {
+ e.preventDefault();
     setFifthSelectorArea(parseInt(e.target.value));
   };
   const handleFifthSelectorStartYear = (e) => {
+ e.preventDefault();
     setFifthSelectorStartYear(Number(e.target.value));
   };
   const handleFifthSelectorEndYear = (e) => {
+ e.preventDefault();
     setFifthSelectorEndYear(Number(e.target.value));
   };
   // #endregion
@@ -770,23 +873,28 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
   // SixthSelector handlers
   // #region
   const handleSixthSelectorBuildingTypeFrom = (e) => {
+ e.preventDefault();
     setSixthSelectorBuildingTypeFrom(e.target.value);
   };
   const handleSixthSelectorBuildingTypeTo = (e) => {
+ e.preventDefault();
     setSixthSelectorBuildingTypeTo(e.target.value);
   };
   const handleSixthSelectorArea = (e) => {
+ e.preventDefault();
     setSixthSelectorArea(parseInt(e.target.value));
   };
   const handleSixthSelectorStartYear = (e) => {
+ e.preventDefault();
     setSixthSelectorStartYear(Number(e.target.value));
   };
   const handleSixthSelectorEndYear = (e) => {
+ e.preventDefault();
     setSixthSelectorEndYear(Number(e.target.value));
   };
   // #endregion
 
-  const [updateU2charts, setU2charts] = useState(false);
+  const [policiesCharts, setPoliciesCharts] = useState(false);
   const [policyQuantificationResponse, setPolicyQuantificationResponse] = useState({});
   setPolicyQuantificationResponse({
     2022: {
@@ -1158,7 +1266,7 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
   ];
   const optionsBuildings = optionsResidents.concat(optionsCommercials);
 
-  const setPoliciesResults = () => {
+  const moveToPoliciesResults = () => {
     // #region residentials
     const retrofit1 = {
         "unitType": firstResidentSelectorResidentialUnit,
@@ -1295,10 +1403,10 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
     //   // eslint-disable-next-line no-console
     //   console.error("There was an error!", errorBuildBaseline);
     // });
-    // setU2charts(true);
+    setPoliciesCharts(true);
   };
 
-  if (updateU2charts === false) {
+  if (policiesCharts === false) {
     return (
       <article>
         <div className="headerSettlement">
@@ -3092,7 +3200,7 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
               <Button
                 size="small"
                 value="charts"
-                onClick={setPoliciesResults}
+                onClick={moveToPoliciesResults}
                 label="Next &raquo;"
                 primary
               />

@@ -21,7 +21,6 @@ export const BuildingsNewUnits = ({
   year,
   country,
 }) => {
-  year = 2022;
   // resiedntial
   // apartment
   // #region
@@ -60,15 +59,19 @@ export const BuildingsNewUnits = ({
   // apartment handlers
   // #region
   const handleApartmentUnits = (e) => {
+    e.preventDefault();
     setApartmentUnits(parseInt(e.target.value));
   };
   const handleApartmentStartYear = (e) => {
+    e.preventDefault();
     setApartmentStartYear(parseInt(e.target.value));
   };
   const handleApartmentEndYear = (e) => {
+    e.preventDefault();
     setApartmentEndYear(parseInt(e.target.value));
   };
   const handleApartmentEnergy = (e) => {
+    e.preventDefault();
     setApartmentEnergy(parseInt(e.target.value));
   };
   // #endregion
@@ -76,15 +79,19 @@ export const BuildingsNewUnits = ({
   // terraced handlers
   // #region
   const handleTerracedUnits = (e) => {
+    e.preventDefault();
     setTerracedUnits(parseInt(e.target.value));
   };
   const handleTerracedStartYear = (e) => {
+    e.preventDefault();
     setTerracedStartYear(parseInt(e.target.value));
   };
   const handleTerracedEndYear = (e) => {
+    e.preventDefault();
     setTerracedEndYear(parseInt(e.target.value));
   };
   const handleTerracedEnergy = (e) => {
+    e.preventDefault();
     setTerracedEnergy(parseInt(e.target.value));
   };
   // #endregion
@@ -92,15 +99,19 @@ export const BuildingsNewUnits = ({
   // semi-detached handlers
   // #region
   const handleSemiDetachedUnits = (e) => {
+    e.preventDefault();
     setSemiDetachedUnits(parseInt(e.target.value));
   };
   const handleSemiDetachedStartYear = (e) => {
+    e.preventDefault();
     setSemiDetachedStartYear(parseInt(e.target.value));
   };
   const handleSemiDetachedEndYear = (e) => {
+    e.preventDefault();
     setSemiDetachedEndYear(parseInt(e.target.value));
   };
   const handleSemiDetachedEnergy = (e) => {
+    e.preventDefault();
     setSemiDetachedEnergy(parseInt(e.target.value));
   };
   // #endregion
@@ -108,15 +119,19 @@ export const BuildingsNewUnits = ({
   // apartment handlers
   // #region
   const handleDetachedUnits = (e) => {
+    e.preventDefault();
     setDetachedUnits(parseInt(e.target.value));
   };
   const handleDetachedStartYear = (e) => {
+    e.preventDefault();
     setDetachedStartYear(parseInt(e.target.value));
   };
   const handleDetachedEndYear = (e) => {
+    e.preventDefault();
     setDetachedEndYear(parseInt(e.target.value));
   };
   const handleDetachedEnergy = (e) => {
+    e.preventDefault();
     setDetachedEnergy(parseInt(e.target.value));
   };
   // #endregion
@@ -175,15 +190,19 @@ export const BuildingsNewUnits = ({
   // retail handlers
   // #region
   const handleRetailArea = (e) => {
+    e.preventDefault();
     setRetailArea(parseInt(e.target.value));
   };
   const handleRetailStartYear = (e) => {
+    e.preventDefault();
     setRetailStartYear(parseInt(e.target.value));
   };
   const handleRetailEndYear = (e) => {
+    e.preventDefault();
     setRetailEndYear(parseInt(e.target.value));
   };
   const handleRetailEnergy = (e) => {
+    e.preventDefault();
     setRetailEnergy(parseInt(e.target.value));
   };
   // #endregion
@@ -191,15 +210,19 @@ export const BuildingsNewUnits = ({
   // health handlers
   // #region
   const handleHealthArea = (e) => {
+    e.preventDefault();
     setHealthArea(parseInt(e.target.value));
   };
   const handleHealthStartYear = (e) => {
+    e.preventDefault();
     setHealthStartYear(parseInt(e.target.value));
   };
   const handleHealthEndYear = (e) => {
+    e.preventDefault();
     setHealthEndYear(parseInt(e.target.value));
   };
   const handleHealthEnergy = (e) => {
+    e.preventDefault();
     setHealthEnergy(parseInt(e.target.value));
   };
   // #endregion
@@ -207,15 +230,19 @@ export const BuildingsNewUnits = ({
   // hospitality handlers
   // #region
   const handleHospitalityArea = (e) => {
+    e.preventDefault();
     setHospitalityArea(parseInt(e.target.value));
   };
   const handleHospitalityStartYear = (e) => {
+    e.preventDefault();
     setHospitalityStartYear(parseInt(e.target.value));
   };
   const handleHospitalityEndYear = (e) => {
+    e.preventDefault();
     setHospitalityEndYear(parseInt(e.target.value));
   };
   const handleHospitalityEnergy = (e) => {
+    e.preventDefault();
     setHospitalityEnergy(parseInt(e.target.value));
   };
   // #endregion
@@ -223,15 +250,19 @@ export const BuildingsNewUnits = ({
   // offices handlers
   // #region
   const handleOfficesArea = (e) => {
+    e.preventDefault();
     setOfficesArea(parseInt(e.target.value));
   };
   const handleOfficesStartYear = (e) => {
+    e.preventDefault();
     setOfficesStartYear(parseInt(e.target.value));
   };
   const handleOfficesEndYear = (e) => {
+    e.preventDefault();
     setOfficesEndYear(parseInt(e.target.value));
   };
   const handleOfficesEnergy = (e) => {
+    e.preventDefault();
     setOfficesEnergy(parseInt(e.target.value));
   };
   // #endregion
@@ -239,15 +270,19 @@ export const BuildingsNewUnits = ({
   // industrial handlers
   // #region
   const handleIndustrialArea = (e) => {
+    e.preventDefault();
     setIndustrialArea(parseInt(e.target.value));
   };
   const handleIndustrialStartYear = (e) => {
+    e.preventDefault();
     setIndustrialStartYear(parseInt(e.target.value));
   };
   const handleIndustrialEndYear = (e) => {
+    e.preventDefault();
     setIndustrialEndYear(parseInt(e.target.value));
   };
   const handleIndustrialEnergy = (e) => {
+    e.preventDefault();
     setIndustrialEnergy(parseInt(e.target.value));
   };
   // #endregion
@@ -255,15 +290,19 @@ export const BuildingsNewUnits = ({
   // warehouses handlers
   // #region
   const handleWarehousesArea = (e) => {
+    e.preventDefault();
     setWarehousesArea(parseInt(e.target.value));
   };
   const handleWarehousesStartYear = (e) => {
+    e.preventDefault();
     setWarehousesStartYear(parseInt(e.target.value));
   };
   const handleWarehousesEndYear = (e) => {
+    e.preventDefault();
     setWarehousesEndYear(parseInt(e.target.value));
   };
   const handleWarehousesEnergy = (e) => {
+    e.preventDefault();
     setWarehousesEnergy(parseInt(e.target.value));
   };
   // #endregion
@@ -343,21 +382,27 @@ export const BuildingsNewUnits = ({
   // apartment handlers
   // #region densification
   const handleApartmentUnitsDensificated = (e) => {
+    e.preventDefault();
     setApartmentUnitsDensificated(parseInt(e.target.value));
   };
   const handleApartmentStartYearDensificated = (e) => {
+    e.preventDefault();
     setApartmentStartYearDensificated(parseInt(e.target.value));
   };
   const handleApartmentEndYearDensificated = (e) => {
+    e.preventDefault();
     setApartmentEndYearDensificated(parseInt(e.target.value));
   };
   const handleApartmentEnergyDensificated = (e) => {
+    e.preventDefault();
     setApartmentEnergyDensificated(parseInt(e.target.value));
   };
   const handleApartmentDensRate = (e) => {
+    e.preventDefault();
     setApartmentDensRate(parseInt(e.target.value));
   };
   const handleApartmentDensUnitsAfter = (e) => {
+    e.preventDefault();
     setApartmentDensUnitsAfter(parseInt(e.target.value));
   };
   // #endregion densification
@@ -365,21 +410,27 @@ export const BuildingsNewUnits = ({
   // terraced handlers
   // #region densification
   const handleTerracedUnitsDensificated = (e) => {
+    e.preventDefault();
     setTerracedUnitsDensificated(parseInt(e.target.value));
   };
   const handleTerracedStartYearDensificated = (e) => {
+    e.preventDefault();
     setTerracedStartYearDensificated(parseInt(e.target.value));
   };
   const handleTerracedEndYearDensificated = (e) => {
+    e.preventDefault();
     setTerracedEndYearDensificated(parseInt(e.target.value));
   };
   const handleTerracedEnergyDensificated = (e) => {
+    e.preventDefault();
     setTerracedEnergyDensificated(parseInt(e.target.value));
   };
   const handleTerracedDensRate = (e) => {
+    e.preventDefault();
     setTerracedDensRate(parseInt(e.target.value));
   };
   const handleTerracedDensUnitsAfter = (e) => {
+    e.preventDefault();
     setTerracedDensUnitsAfter(parseInt(e.target.value));
   };
   // #endregion densification
@@ -387,21 +438,27 @@ export const BuildingsNewUnits = ({
   // semi-detached handlers
   // #region densification
   const handleSemiDetachedUnitsDensificated = (e) => {
+    e.preventDefault();
     setSemiDetachedUnitsDensificated(parseInt(e.target.value));
   };
   const handleSemiDetachedStartYearDensificated = (e) => {
+    e.preventDefault();
     setSemiDetachedStartYearDensificated(parseInt(e.target.value));
   };
   const handleSemiDetachedEndYearDensificated = (e) => {
+    e.preventDefault();
     setSemiDetachedEndYearDensificated(parseInt(e.target.value));
   };
   const handleSemiDetachedEnergyDensificated = (e) => {
+    e.preventDefault();
     setSemiDetachedEnergyDensificated(parseInt(e.target.value));
   };
   const handleSemiDetachedDensRate = (e) => {
+    e.preventDefault();
     setSemiDetachedDensRate(parseInt(e.target.value));
   };
   const handleSemiDetachedDensUnitsAfter = (e) => {
+    e.preventDefault();
     setSemiDetachedDensUnitsAfter(parseInt(e.target.value));
   };
   // #endregion densification
@@ -409,21 +466,27 @@ export const BuildingsNewUnits = ({
   // detached handlers
   // #region densification
   const handleDetachedUnitsDensificated = (e) => {
+    e.preventDefault();
     setDetachedUnitsDensificated(parseInt(e.target.value));
   };
   const handleDetachedStartYearDensificated = (e) => {
+    e.preventDefault();
     setDetachedStartYearDensificated(parseInt(e.target.value));
   };
   const handleDetachedEndYearDensificated = (e) => {
+    e.preventDefault();
     setDetachedEndYearDensificated(parseInt(e.target.value));
   };
   const handleDetachedEnergyDensificated = (e) => {
+    e.preventDefault();
     setDetachedEnergyDensificated(parseInt(e.target.value));
   };
   const handleDetachedDensRate = (e) => {
+    e.preventDefault();
     setDetachedDensRate(parseInt(e.target.value));
   };
   const handleDetachedDensUnitsAfter = (e) => {
+    e.preventDefault();
     setDetachedDensUnitsAfter(parseInt(e.target.value));
   };
   // #endregion densification
@@ -535,21 +598,27 @@ export const BuildingsNewUnits = ({
   // retail handlers
   // #region
   const handleRetailAreaDensificated = (e) => {
+    e.preventDefault();
     setRetailAreaDensificated(parseInt(e.target.value));
   };
   const handleRetailStartYearDensificated = (e) => {
+    e.preventDefault();
     setRetailStartYearDensificated(parseInt(e.target.value));
   };
   const handleRetailEndYearDensificated = (e) => {
+    e.preventDefault();
     setRetailEndYearDensificated(parseInt(e.target.value));
   };
   const handleRetailEnergyDensificated = (e) => {
+    e.preventDefault();
     setRetailEnergyDensificated(parseInt(e.target.value));
   };
   const handleRetailDensRate = (e) => {
+    e.preventDefault();
     setRetailDensRate(parseInt(e.target.value));
   };
   const handleRetailDensAreaAfter = (e) => {
+    e.preventDefault();
     setRetailDensAreaAfter(parseInt(e.target.value));
   };
   // #endregion
@@ -557,21 +626,27 @@ export const BuildingsNewUnits = ({
   // health handlers
   // #region
   const handleHealthAreaDensificated = (e) => {
+    e.preventDefault();
     setHealthAreaDensificated(parseInt(e.target.value));
   };
   const handleHealthStartYearDensificated = (e) => {
+    e.preventDefault();
     setHealthStartYearDensificated(parseInt(e.target.value));
   };
   const handleHealthEndYearDensificated = (e) => {
+    e.preventDefault();
     setHealthEndYearDensificated(parseInt(e.target.value));
   };
   const handleHealthEnergyDensificated = (e) => {
+    e.preventDefault();
     setHealthEnergyDensificated(parseInt(e.target.value));
   };
   const handleHealthDensRate = (e) => {
+    e.preventDefault();
     setHealthDensRate(parseInt(e.target.value));
   };
   const handleHealthDensAreaAfter = (e) => {
+    e.preventDefault();
     setHealthDensAreaAfter(parseInt(e.target.value));
   };
   // #endregion
@@ -579,21 +654,27 @@ export const BuildingsNewUnits = ({
   // hospitality handlers
   // #region
   const handleHospitalityAreaDensificated = (e) => {
+    e.preventDefault();
     setHospitalityAreaDensificated(parseInt(e.target.value));
   };
   const handleHospitalityStartYearDensificated = (e) => {
+    e.preventDefault();
     setHospitalityStartYearDensificated(parseInt(e.target.value));
   };
   const handleHospitalityEndYearDensificated = (e) => {
+    e.preventDefault();
     setHospitalityEndYearDensificated(parseInt(e.target.value));
   };
   const handleHospitalityEnergyDensificated = (e) => {
+    e.preventDefault();
     setHospitalityEnergyDensificated(parseInt(e.target.value));
   };
   const handleHospitalityDensRate = (e) => {
+    e.preventDefault();
     setHospitalityDensRate(parseInt(e.target.value));
   };
   const handleHospitalityDensAreaAfter = (e) => {
+    e.preventDefault();
     setHospitalityDensAreaAfter(parseInt(e.target.value));
   };
   // #endregion
@@ -601,21 +682,27 @@ export const BuildingsNewUnits = ({
   // offices handlers
   // #region
   const handleOfficesAreaDensificated = (e) => {
+    e.preventDefault();
     setOfficesAreaDensificated(parseInt(e.target.value));
   };
   const handleOfficesStartYearDensificated = (e) => {
+    e.preventDefault();
     setOfficesStartYearDensificated(parseInt(e.target.value));
   };
   const handleOfficesEndYearDensificated = (e) => {
+    e.preventDefault();
     setOfficesEndYearDensificated(parseInt(e.target.value));
   };
   const handleOfficesEnergyDensificated = (e) => {
+    e.preventDefault();
     setOfficesEnergyDensificated(parseInt(e.target.value));
   };
   const handleOfficesDensRate = (e) => {
+    e.preventDefault();
     setOfficesDensRate(parseInt(e.target.value));
   };
   const handleOfficesDensAreaAfter = (e) => {
+    e.preventDefault();
     setOfficesDensAreaAfter(parseInt(e.target.value));
   };
   // #endregion
@@ -623,21 +710,27 @@ export const BuildingsNewUnits = ({
   // industrial handlers
   // #region
   const handleIndustrialAreaDensificated = (e) => {
+    e.preventDefault();
     setIndustrialAreaDensificated(parseInt(e.target.value));
   };
   const handleIndustrialStartYearDensificated = (e) => {
+    e.preventDefault();
     setIndustrialStartYearDensificated(parseInt(e.target.value));
   };
   const handleIndustrialEndYearDensificated = (e) => {
+    e.preventDefault();
     setIndustrialEndYearDensificated(parseInt(e.target.value));
   };
   const handleIndustrialEnergyDensificated = (e) => {
+    e.preventDefault();
     setIndustrialEnergyDensificated(parseInt(e.target.value));
   };
   const handleIndustrialDensRate = (e) => {
+    e.preventDefault();
     setIndustrialDensRate(parseInt(e.target.value));
   };
   const handleIndustrialDensAreaAfter = (e) => {
+    e.preventDefault();
     setIndustrialDensAreaAfter(parseInt(e.target.value));
   };
   // #endregion
@@ -645,28 +738,34 @@ export const BuildingsNewUnits = ({
   // warehouses handlers
   // #region
   const handleWarehousesAreaDensificated = (e) => {
+    e.preventDefault();
     setWarehousesAreaDensificated(parseInt(e.target.value));
   };
   const handleWarehousesStartYearDensificated = (e) => {
+    e.preventDefault();
     setWarehousesStartYearDensificated(parseInt(e.target.value));
   };
   const handleWarehousesEndYearDensificated = (e) => {
+    e.preventDefault();
     setWarehousesEndYearDensificated(parseInt(e.target.value));
   };
   const handleWarehousesEnergyDensificated = (e) => {
+    e.preventDefault();
     setWarehousesEnergyDensificated(parseInt(e.target.value));
   };
   const handleWarehousesDensRate = (e) => {
+    e.preventDefault();
     setWarehousesDensRate(parseInt(e.target.value));
   };
   const handleWarehousesDensAreaAfter = (e) => {
+    e.preventDefault();
     setWarehousesDensAreaAfter(parseInt(e.target.value));
   };
   // #endregion
 
-  const [updateU2charts, setU2charts] = useState(false);
   const [errorBuildNewUnits, setErrorBuildNewUnits] = useState("");
   const [newConstructionResponse, setNewConstructionResponse] = useState({});
+  const [moveToPolicies, setMoveToPolicies] = useState(false);
 
   const setBuildingsNewUnitsResponse = (response) => {
     setNewConstructionResponse(response.data);
@@ -679,7 +778,7 @@ export const BuildingsNewUnits = ({
     optionsNew.push(i)
   }
   
-  const updateU2Planner = () => {
+  const moveToBuildingsPolicies = () => {
     // #region residentials
     const apartment = {
       "numberOfUnits": apartmentUnits,
@@ -873,10 +972,10 @@ export const BuildingsNewUnits = ({
     //   "industrial":industrial,
     //   "warehouses":warehouses,
     // };
-    setU2charts(true);
+    setMoveToPolicies(true);
   };
   
-  if (updateU2charts === false) {
+  if (moveToPolicies === false) {
     return (
       <article>
         <div className="headerSettlement">
@@ -2500,7 +2599,7 @@ export const BuildingsNewUnits = ({
               <Button
                 size="small"
                 value="charts"
-                onClick={updateU2Planner}
+                onClick={moveToBuildingsPolicies}
                 label="Next &raquo;"
                 primary
               />
