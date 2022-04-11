@@ -21,8 +21,8 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
   const [p1TotalEmissions, setP1totalEmissions] = useState({});
   const [p1TotalAreaEmissions, setP1totalAreaEmissions] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [bLMax, setBlYMax] = useState(false);
-  const [p1TotalAreaEmissionsMax, setP1YMax] = useState(false);
+  /* const [bLMax, setBlYMax] = useState(false);
+  const [p1TotalAreaEmissionsMax, setP1YMax] = useState(false); */
 
   const fetchConsumptionData = () => {
     const headers = { "Content-type": "application/json" };
@@ -46,8 +46,8 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
         setBlTotalAreaEmissions(
           response.data.data.consumption.BLTotalAreaEmissions
         );
-        setP1YMax(response.data.data.consumption.P1TotalAreaEmissionsMax);
-        setBlYMax(response.data.data.consumption.BLMax);
+        /*   setP1YMax(response.data.data.consumption.P1TotalAreaEmissionsMax);
+        setBlYMax(response.data.data.consumption.BLMax); */
         setIsLoading(false);
       })
       .catch((error) => {
@@ -64,6 +64,20 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
   useEffect(() => {
     localStorage.setItem("p1", JSON.stringify(p1));
   }, [p1]);
+  
+  useEffect(() => {
+    localStorage.setItem(
+      "bLTotalAreaEmissions",
+      JSON.stringify(bLTotalAreaEmissions)
+    );
+  }, [bLTotalAreaEmissions]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "p1TotalAreaEmissions",
+      JSON.stringify(p1TotalAreaEmissions)
+    );
+  }, [p1TotalAreaEmissions]);
 
   useEffect(() => {
     localStorage.setItem("blTransport", JSON.stringify(blTransport));
@@ -91,9 +105,7 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
           <Chip label="Results" />
         </Divider>
         <>
-          {/*    {consumptionStatus === "sucess" && ( )} */}
           <ConsumptionSummary
-            yAxisValue={Math.max(p1TotalAreaEmissionsMax, bLMax)}
             p1TotalEmissions={p1TotalEmissions}
             blTotalEmmissions={blTotalEmmissions}
             bLTotalAreaEmissions={bLTotalAreaEmissions}

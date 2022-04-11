@@ -31,7 +31,12 @@ export const U2planner = ({
   projections,
 }) => {
   const [errorU2, setU2Error] = useState("");
-  const [newPopulation, setNewPopulation] = useState("");
+  
+  const [newPopulation, setNewPopulation] = useState(() => {
+    const savedPop = localStorage.getItem("newPopulation");
+    const initialValue = JSON.parse(savedPop);
+    return initialValue || {};
+  });
   const [nextU3planer, setU3planner] = useState(false);
   const [isU2Loading, setIsU2Loading] = useState(true);
   const dataNewPopulation = [];
@@ -62,6 +67,7 @@ export const U2planner = ({
       });
   };
 
+
   useEffect(async () => {
     fetchU2PlannerData();
   }, []);
@@ -78,6 +84,11 @@ export const U2planner = ({
   useEffect(() => {
     localStorage.setItem("newPopulation", JSON.stringify(newPopulation));
   }, [newPopulation]);
+
+  
+  useEffect(() => {
+    localStorage.setItem("newDevelopment", JSON.stringify(newDevelopment));
+  }, [newDevelopment]);
 
   if (isU2Loading) {
     return <CircularProgress color="success" />;

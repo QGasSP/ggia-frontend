@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import PropTypes from "prop-types";
 import { Button } from "./Button";
 import "../css/u2planner.css";
@@ -7,6 +7,11 @@ import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 import Alert from "@mui/material/Alert";
 import Tooltip from "@mui/material/Tooltip";
+import {
+  useStorageBool,
+  useStorageFloat,
+  useStorageInt,
+} from "../reducers/useStorage";
 
 /**
  * U1 Planner user input form for baseline
@@ -20,17 +25,23 @@ export const NewResidents = ({
   projections,
   year,
 }) => {
-  const [nsMetropolitanCenter, setNsMetropolitan] = useState(parseFloat(0));
-  const [nsUrban, setNsUrban] = useState(parseFloat(0));
-  const [nsSuburban, setNsSubUrban] = useState(parseFloat(0));
-  const [nsTown, setNsTown] = useState(parseFloat(0));
-  const [nsRural, setNsRural] = useState(parseFloat(0));
-  const [newResidents, setNewResidents] = useState("");
-  const [yearStart, setYearStart] = useState(year);
-  const [yearFinish, setYearFinish] = useState(2050);
-  const [newDevelopment, setNewDevelopment] = useState({});
-  const [updateU2charts, setU2charts] = useState(false);
-  const [totalNewResidents, setTotalNewResidents] = useState(0.0);
+  const [nsMetropolitanCenter, setNsMetropolitan] = useStorageFloat("nsMetropolitanCenter",parseFloat(0));
+  const [nsUrban, setNsUrban] = useStorageFloat("nsUrban",parseFloat(0));
+  const [nsSuburban, setNsSubUrban] = useStorageFloat("nsSuburban",parseFloat(0));
+  const [nsTown, setNsTown] = useStorageFloat("nsTown",parseFloat(0));
+  const [nsRural, setNsRural] = useStorageFloat("nsRural",parseFloat(0));
+  const  [totalNewResidents, setTotalNewResidents]  = useStorageFloat("totalNewResidents", nsMetropolitanCenter + nsUrban + nsSuburban + nsTown + nsRural);
+
+  const [newResidents, setNewResidents] = useStorageInt("newResidents",0);
+  const [yearStart, setYearStart] = useStorageInt("yearStart",year);
+  const [yearFinish, setYearFinish] = useStorageInt("yearFinish",2050);
+  const [updateU2charts, setU2charts] = useStorageBool("updateU2charts",false);
+
+  const [newDevelopment, setNewDevelopment] = useState(() => {
+    const savedNewDev = localStorage.getItem("newDevelopment");
+    const initialValue = JSON.parse(savedNewDev);
+    return initialValue || {};
+  });
 
   const optionsNewStart = [];
   for (let i = year; i < 2051; i++) optionsNewStart.push(i);
@@ -39,18 +50,23 @@ export const NewResidents = ({
   for (let i = 2022; i < 2051; i++) optionsNew.push(i);
 
   const handleNsMetropolitanCenter = (e) => {
+    e.preventDefault();
     setNsMetropolitan(parseFloat(e.target.value));
   };
   const handleNsUrban = (e) => {
+    e.preventDefault();
     setNsUrban(parseFloat(e.target.value));
   };
   const handleNsSuburban = (e) => {
+    e.preventDefault();
     setNsSubUrban(parseFloat(e.target.value));
   };
   const handleNsTown = (e) => {
+    e.preventDefault();
     setNsTown(parseFloat(e.target.value));
   };
   const handleNsRural = (e) => {
+    e.preventDefault();
     setNsRural(parseFloat(e.target.value));
   };
   const handleStartYear = (e) => {
@@ -71,6 +87,7 @@ export const NewResidents = ({
       town: nsTown,
       rural: nsRural,
     };
+
     const newDevelopmentU2 = {
       newResidents,
       yearStart,
@@ -83,6 +100,11 @@ export const NewResidents = ({
     );
     setU2charts(true);
   };
+
+  useEffect(() => {
+    localStorage.setItem("newDevelopment", JSON.stringify(newDevelopment));
+  }, [newDevelopment]);
+
 
   if (updateU2charts === false && totalNewResidents !== 100) {
     return (
@@ -117,7 +139,9 @@ export const NewResidents = ({
                     className="input_transport"
                     type="text"
                     pattern="[0-9]*"
+                    min="0"
                     id="new_residents"
+                    placeholder={newResidents}
                     onChange={handleNewResident}
                     required
                   />
@@ -198,11 +222,14 @@ export const NewResidents = ({
                   <input
                     className="input_transport"
                     type="number"
+                    pattern="[0-9]*"
                     step="0.1"
                     id="nsMetropolitan"
                     min="0"
                     max="100"
+                    placeholder={nsMetropolitanCenter}
                     onChange={handleNsMetropolitanCenter}
+              
                     required
                   />
                 </div>
@@ -214,11 +241,14 @@ export const NewResidents = ({
                   <input
                     className="input_transport"
                     type="number"
+                    pattern="[0-9]*"
                     step="0.1"
                     id="nsUrban"
                     min="0"
                     max="100"
+                    placeholder={nsUrban}
                     onChange={handleNsUrban}
+             
                     required
                   />
                 </div>
@@ -230,11 +260,14 @@ export const NewResidents = ({
                   <input
                     className="input_transport"
                     type="number"
+                    pattern="[0-9]*"
                     id="nsSuburban"
                     step="0.1"
                     min="0.0"
                     max="100.0"
+                    placeholder={nsSuburban}
                     onChange={handleNsSuburban}
+                   
                     required
                   />
                 </div>
@@ -246,11 +279,14 @@ export const NewResidents = ({
                   <input
                     className="input_transport"
                     type="number"
+                    pattern="[0-9]*"
                     id="nsTown"
                     step="0.1"
                     min="0.0"
                     max="100.0"
+                    placeholder={nsTown}
                     onChange={handleNsTown}
+                   
                     required
                   />
                 </div>
@@ -262,10 +298,12 @@ export const NewResidents = ({
                   <input
                     className="input_transport"
                     type="number"
+                    pattern="[0-9]*"
                     id="nsRural"
                     step="0.1"
                     min="0"
                     max="100"
+                    placeholder={nsRural}
                     onChange={handleNsRural}
                     required
                   />

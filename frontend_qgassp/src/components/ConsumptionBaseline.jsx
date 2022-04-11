@@ -84,10 +84,10 @@ export const ConsumptionBaseline = () => {
                     >
                       <option value="DefaultOption">Select area type</option>
                       <optgroup label="Planned area types">
-                        <option value="average">average/mix</option>
-                        <option value="city">city</option>
-                        <option value="town">town</option>
-                        <option value="rural">rural</option>
+                        <option value="average">Average/mix</option>
+                        <option value="city">City</option>
+                        <option value="town">Town</option>
+                        <option value="rural">Rural</option>
                       </optgroup>
                     </select>
                   </div>
@@ -131,7 +131,7 @@ export const ConsumptionBaseline = () => {
                         <option value="2">20-40 %</option>
                         <option value="3">40-60%</option>
                         <option value="4">60-80 %</option>
-                        <option value="3">average/unknown</option>
+                        <option value="3">Average/unknown</option>
                       </optgroup>
                     </select>
                   </div>
@@ -155,8 +155,8 @@ export const ConsumptionBaseline = () => {
                     <option value="DefaultOption">Select rate %</option>
                     <optgroup label="Global decarbonisation %">
                       <option value="normal">Normal</option>
-                      <option value="fast">fast</option>
-                      <option value="slow">slow</option>
+                      <option value="fast">Fast</option>
+                      <option value="slow">Slow</option>
                     </optgroup>
                   </select>
                 </div>

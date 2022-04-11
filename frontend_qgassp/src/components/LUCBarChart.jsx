@@ -211,6 +211,7 @@ export const LUCBarChart = ({ landUseChangeResponse, year }) => {
 
   return (
     <div>
+      <br/>
       <Divider textAlign="left" flexItem>
         <b>Land-use Change Bar Chart</b>
       </Divider>

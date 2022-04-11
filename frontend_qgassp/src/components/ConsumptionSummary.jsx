@@ -27,7 +27,6 @@ export const ConsumptionSummary = ({
   p1TotalEmissions,
   bLTotalAreaEmissions,
   p1TotalAreaEmissions,
-  yAxisValue,
 }) => {
   const country = localStorage.getItem("country");
   const resultsLegend = [
@@ -875,5 +874,4 @@ ConsumptionSummary.propTypes = {
   p1TotalEmissions: PropTypes.object.isRequired,
   bLTotalAreaEmissions: PropTypes.object.isRequired,
   p1TotalAreaEmissions: PropTypes.object.isRequired,
-  yAxisValue: PropTypes.number.isRequired,
 };

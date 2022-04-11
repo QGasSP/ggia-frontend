@@ -4,6 +4,7 @@ import "../css/u1planner.css";
 import Chip from "@mui/material/Chip";
 import { Button } from "./Button";
 import { ConsumptionTransport } from "./ConsumptionTransport";
+import { useStorageBool, useStorageFloat, useStorageInt, useStorageString } from "../reducers/useStorage";
 import PropTypes from "prop-types";
 import Tooltip from "@mui/material/Tooltip";
 import Alert from "@mui/material/Alert";
@@ -23,53 +24,53 @@ export const ConsumptionHseEnergy = ({
   gasesProp,
   districtValue,
 }) => {
-  const [nextCBTransport, setCbTransport] = useState(false);
+  const [nextCBTransport, setCbTransport] = useStorageBool(false);
 
-  const [policyYear, setPolicyYear] = useState(0);
-  const [newFloorArea, setNewFloorArea] = useState(0);
-  const [popSizePolicy, setPopulationSizePolicy] = useState(0);
+  const [policyYear, setPolicyYear] = useStorageInt(0);
+  const [newFloorArea, setNewFloorArea] = useStorageInt(0);
+  const [popSizePolicy, setPopulationSizePolicy] = useStorageInt(0);
 
-  const [effGain, setEffGain] = useState(false);
+  const [effGain, setEffGain] = useStorageBool(false);
   const handleEffGain = (e) => {
     e.target.checked;
     setEffGain(!effGain);
   };
-  const [effScaler, setEffScaler] = useState(0);
+  const [effScaler, setEffScaler] = useStorageInt(0);
 
-  const [localElectricity, setLocalElectricity] = useState(false);
+  const [localElectricity, setLocalElectricity] = useStorageBool(false);
   const handleLocalElectricity = (e) => {
     e.target.checked;
     setLocalElectricity(!localElectricity);
   };
-  const [elType, setElectricityType] = useState(
+  const [elType, setElectricityType] = useStorageString(
     "Electricity by solar photovoltaic"
   );
-  const [elScaler, setElectricityScaler] = useState(0);
+  const [elScaler, setElectricityScaler] = useStorageInt(0);
 
-  const [sHeating, setHeatingShare] = useState(false);
+  const [sHeating, setHeatingShare] = useStorageBool(false);
   const handleHeatingShare = (e) => {
     e.target.checked;
     setHeatingShare(!sHeating);
   };
-  const [districtPropLocal, setDistrictProp] = useState(
+  const [districtPropLocal, setDistrictProp] = useStorageFloat(
     Math.round((districtProp + Number.EPSILON) * 100) / 100
   );
-  const [electricityHeatPropLocal, setElectricityHeatProp] = useState(
+  const [electricityHeatPropLocal, setElectricityHeatProp] = useStorageFloat(
     Math.round((electricityHeatProp + Number.EPSILON) * 100) / 100
   );
-  const [combustableFuelsPropLocal, setCombustableFuelsProp] = useState(
+  const [combustableFuelsPropLocal, setCombustableFuelsProp] = useStorageFloat(
     Math.round((combustableFuelsProp + Number.EPSILON) * 100) / 100
   );
-  const [liquidsPropLocal, setLiquidsProp] = useState(
+  const [liquidsPropLocal, setLiquidsProp] = useStorageFloat(
     Math.round((liquidsProp + Number.EPSILON) * 100) / 100
   );
-  const [solidsPropLocal, setSolidsProp] = useState(
+  const [solidsPropLocal, setSolidsProp] = useStorageFloat(
     Math.round((solidsProp + Number.EPSILON) * 100) / 100
   );
-  const [gasesPropLocal, setGasesProp] = useState(
+  const [gasesPropLocal, setGasesProp] = useStorageFloat(
     Math.round((gasesProp + Number.EPSILON) * 100) / 100
   );
-  const [districtValueLocal, setDistrictValue] = useState(
+  const [districtValueLocal, setDistrictValue] = useStorageFloat(
     Math.round((districtValue + Number.EPSILON) * 100) / 100
   );
 

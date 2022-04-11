@@ -1,7 +1,7 @@
 import "./App.css";
 import "../node_modules/react-vis/dist/style.css";
-// import { AppRoutes } from "./routes/AppRoutes";
-// import { BrowserRouter as Router } from "react-router-dom";
+import { AppRoutes } from "./routes/AppRoutes";
+import { BrowserRouter as Router } from "react-router-dom";
 import { Header } from "./components/Header";
 import PropTypes from "prop-types";
 
@@ -17,9 +17,9 @@ function App({ user, onLogin, onLogout, onCreateAccount }) {
         />
       }
 
-      {/*  <Router>
+      <Router>
         <AppRoutes />
-      </Router> */}
+      </Router>
     </>
   );
 }

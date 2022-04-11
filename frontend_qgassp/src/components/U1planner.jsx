@@ -26,16 +26,32 @@ import urlPrefix from "../Config";
  * @return {}
  */
 const BarSeries = VerticalBarSeries;
+
 export const U1planner = ({
   country,
   year,
   population,
   settlementDistribution,
 }) => {
+  const [emission, setEmissionData] = useState(() => {
+    const savedEm = localStorage.getItem("emission");
+    const initialValue = JSON.parse(savedEm);
+    return initialValue || {};
+  });
+
+  const [projections, setProjections] = useState(() => {
+    const savedProj = localStorage.getItem("projections");
+    const initialValue = JSON.parse(savedProj);
+    return initialValue || {};
+  });
+
+  const [baseline, setBaseline] = useState(() => {
+    const savedBase = localStorage.getItem("baseline");
+    const initialValue = JSON.parse(savedBase);
+    return initialValue || {};
+  });
+
   const [errorU1planner, setU1PlannerError] = useState("");
-  const [emission, setEmissionData] = useState("");
-  const [projections, setProjections] = useState("");
-  const [baseline, setBaseline] = useState({});
   const [nextNewResidentview, setNewResidentView] = useState(false);
   const [isLoadingTransport, setIsLoadingTransport] = useState(true);
   const [isErrorTransport, setIsErrorTransport] = useState(false);
@@ -48,14 +64,6 @@ export const U1planner = ({
   const dataProjectionsRailTransport = [];
   const dataProjectionsRoadTransport = [];
   const dataProjectionsWaterwaysTransport = [];
-
-  useEffect(() => {
-    localStorage.setItem("projections", JSON.stringify(projections));
-  }, [projections]);
-
-  useEffect(() => {
-    localStorage.setItem("emission", JSON.stringify(emission));
-  }, [emission]);
 
   useEffect(async () => {
     const baseline = {
@@ -87,6 +95,25 @@ export const U1planner = ({
       });
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem("projections", JSON.stringify(projections));
+  }, [projections]);
+
+  useEffect(() => {
+    localStorage.setItem("emission", JSON.stringify(emission));
+  }, [emission]);
+
+  useEffect(() => {
+    localStorage.setItem("baseline", JSON.stringify(baseline));
+  }, [baseline]);
+
+  /* useEffect(() => {
+    localStorage.setItem(
+      "settlementDistribution",
+      JSON.stringify(settlementDistribution)
+    );
+  }, [settlementDistribution]);
+ */
   if (isLoadingTransport) {
     return <CircularProgress color="success" />;
   }
@@ -291,14 +318,6 @@ export const U1planner = ({
             {country}: CO2e emissions per capita {year}-2050
           </b>
         </Divider>
-        {/*  
-        [{
-       Object.keys(projections.bus).map((key, i) => (
-        <p key={i}>
-          &#123;x: {key},y: {projections.bus[key]}&#125;,
-        </p>
-      ))
-       }] */}
 
         <div>
           <XYPlot
@@ -385,8 +404,9 @@ export const U1planner = ({
 };
 
 U1planner.propTypes = {
+  /*  baseline: PropTypes.object.isRequired, */
   settlementDistribution: PropTypes.object.isRequired,
-  population: PropTypes.number.isRequired,
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
+  population: PropTypes.number.isRequired,
 };
