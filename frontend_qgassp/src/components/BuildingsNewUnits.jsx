@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Button } from "./Button";
 import "../css/u2planner.css";
 import "../css/newbuildings.css";
-import { BuldingsNewUnitsCharts } from "./BuldingsNewUnitsCharts";
+import { BuildingsPolicies } from "./BuildingsPolicies";
 import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 import axios from "axios";
@@ -18,9 +18,6 @@ import Alert from "@mui/material/Alert";
 
 export const BuildingsNewUnits = ({
   baseline,
-  emissionResidential,
-  emissionCommercial,
-  newConstruction,
   year,
   country,
 }) => {
@@ -667,14 +664,12 @@ export const BuildingsNewUnits = ({
   };
   // #endregion
 
-  // const [newSettlementCommercial, setNewSettlementCommercial] = useState({});
-  // const [newSettlementResidental, setNewSettlementResidental] = useState({});
   const [updateU2charts, setU2charts] = useState(false);
   const [errorBuildNewUnits, setErrorBuildNewUnits] = useState("");
-  const [newSettlementBuildingsResponse, setNewSettlementBuildingsResponse] =
-    useState({});
+  const [newConstructionResponse, setNewConstructionResponse] = useState({});
+
   const setBuildingsNewUnitsResponse = (response) => {
-    setNewSettlementBuildingsResponse(response.data);
+    setNewConstructionResponse(response.data);
   };
 
   const optionsNewStart = [];
@@ -2516,11 +2511,8 @@ export const BuildingsNewUnits = ({
     );
   } else {
     return (
-      <BuldingsNewUnitsCharts
-        newSettlementBuildingsResponse={newSettlementBuildingsResponse}
-        // newSettlementCommercial={newSettlementCommercial}
-        // newSettlementResidental={newSettlementResidental}
-        newConstruction={newConstruction}
+      <BuildingsPolicies
+        newConstructionResponse={newConstructionResponse}
         baseline={baseline}
         country={country}
         year={year}
@@ -2533,7 +2525,5 @@ BuildingsNewUnits.propTypes = {
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
   baseline: PropTypes.object.isRequired,
-  emissionCommercial: PropTypes.object.isRequired,
-  emissionResidential: PropTypes.object.isRequired,
   newConstruction: PropTypes.object.isRequired
 };
