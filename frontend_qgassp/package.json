@@ -79,6 +79,7 @@
     "postcss-import": "^14.0.0",
     "prettier": "^2.5.1",
     "prop-types": "^15.7.2",
+    "react-to-print": "^2.14.6",
     "react-vis": "^1.11.7",
     "rollup": "^2.62.0 ",
     "rollup-plugin-livereload": "^2.0.5",

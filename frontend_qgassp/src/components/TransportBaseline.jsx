@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { Button } from "./Button";
 import "../css/u1planner.css";
 import Alert from "@mui/material/Alert";
@@ -10,6 +9,11 @@ import Chip from "@mui/material/Chip";
 
 import { RadialChart, DiscreteColorLegend } from "react-vis";
 import { U1planner } from "./U1planner";
+import {
+  useStorageFloat,
+  useStorageInt,
+  useStorageString,
+} from "../reducers/useStorage";
 
 const settlementLabels = [
   { title: "urban", color: "#164059" },
@@ -18,30 +22,55 @@ const settlementLabels = [
   { title: "rural", color: "#D9D9D9" },
   { title: "Metropolitan center", color: "#730E16" },
 ];
-/* export const TransportBaseline = ({ country, year, population }) => { */
 
 export const TransportBaseline = () => {
   const country = localStorage.getItem("country");
   const year = parseInt(localStorage.getItem("year"));
   const population = parseInt(localStorage.getItem("population"));
-  const [metropolitanCenter, setMetropolitan] = useState(parseFloat(0));
-  const [urban, setUrban] = useState(parseFloat(0));
-  const [suburban, setSubUrban] = useState(parseFloat(0));
-  const [town, setTown] = useState(parseFloat(0));
-  const [rural, setRural] = useState(parseFloat(0));
-  const [total, setTotal] = useState(parseFloat(0));
 
-  // const [nextEmissions, setNextEmissions] = useState(false);
-  const [settlementDistribution, setSettlementDistribution] = useState({});
+  const [metropolitanCenter, setMetropolitan] = useStorageFloat(
+    "metropolitanCenter",
+    parseFloat(0)
+  );
+  const [urban, setUrban] = useStorageFloat("urban", parseFloat(0));
+  const [suburban, setSubUrban] = useStorageFloat("suburban", parseFloat(0));
+  const [town, setTown] = useStorageFloat("town", parseFloat(0));
+  const [rural, setRural] = useStorageFloat("rural", parseFloat(0));
+  const [total, setTotal] = useStorageFloat(
+    "total",
+    metropolitanCenter + urban + suburban + town + rural
+  );
+
+  // const [settlementDistribution, setSettlementDistribution] = useState({});
+  const [settlementDistribution, setSettlementDistribution] = useState(() => {
+    const savedSettlement = localStorage.getItem("settlementDistribution");
+    const initialValue = JSON.parse(savedSettlement);
+    return initialValue || {};
+  });
+
   const [nextU1Charts, setU1Charts] = useState(false);
 
-  const [nsArea, setNsArea] = useState(0);
-  const [ewArea, setEwArea] = useState(0);
-  const [nonResidentialRoad, setNonResidentialRoad] = useState("");
-  const [freightRoad, setFreightRoad] = useState("");
-  const [freightRail, setFreightRail] = useState("");
-  const [freightInlandWaterway, setFreightInlandWaterway] = useState("");
-  const [baseline, setBaseline] = useState({});
+  const [nsArea, setNsArea] = useStorageInt("nsArea", 0);
+  const [ewArea, setEwArea] = useStorageInt("ewArea", 0);
+  const [nonResidentialRoad, setNonResidentialRoad] = useStorageString(
+    "nonResidentialRoad",
+    ""
+  );
+  const [freightRoad, setFreightRoad] = useStorageString("freightRoad", "");
+  const [freightRail, setFreightRail] = useStorageString("freightRail", "");
+  const [freightInlandWaterway, setFreightInlandWaterway] = useStorageString(
+    "freightInlandWaterway",
+    ""
+  );
+
+  const handleNsArea = (e) => {
+    e.preventDefault();
+    setNsArea(Number(e.target.value));
+  };
+  const handleEwArea = (e) => {
+    e.preventDefault();
+    setEwArea(Number(e.target.value));
+  };
 
   const handleMetropolitanCenter = (e) => {
     e.preventDefault();
@@ -73,20 +102,16 @@ export const TransportBaseline = () => {
       rural,
     };
     setSettlementDistribution(settlementDist);
-    const baseline = {
-      country,
-      year,
-      population,
-      settlementDistribution,
-    };
-    setBaseline({ baseline });
-    // setNextEmissions(true);
     setU1Charts(true);
   };
 
   const getCurrentTotal = () => {
     setTotal(metropolitanCenter + urban + suburban + town + rural);
   };
+
+  useEffect(() => {
+    localStorage.setItem("nextU1Charts", nextU1Charts);
+  }, [nextU1Charts]);
 
   useEffect(() => {
     localStorage.setItem(
@@ -134,10 +159,12 @@ export const TransportBaseline = () => {
                       <input
                         className="input_transport"
                         type="number"
+                        pattern="[0-9]*"
                         step="0.01"
                         id="metropolitan"
                         min="0"
                         max="100"
+                        placeholder={metropolitanCenter}
                         /*  defaultValue={metropolitanCenter} */
                         onChange={handleMetropolitanCenter}
                         onMouseLeave={getCurrentTotal}
@@ -154,10 +181,12 @@ export const TransportBaseline = () => {
                       <input
                         className="input_transport"
                         type="number"
+                        pattern="[0-9]*"
                         step="0.01"
                         id="urban"
                         min="0"
                         max="100"
+                        placeholder={urban}
                         /*   value={urban} */
                         onChange={handleUrban}
                         onMouseLeave={getCurrentTotal}
@@ -175,10 +204,12 @@ export const TransportBaseline = () => {
                       <input
                         className="input_transport"
                         type="number"
+                        pattern="[0-9]*"
                         id="suburban"
                         step="any"
                         min="0.01"
                         max="100.0"
+                        placeholder={suburban}
                         /*   defaultValue={suburban} */
                         onChange={handleSuburban}
                         onMouseLeave={getCurrentTotal}
@@ -195,11 +226,13 @@ export const TransportBaseline = () => {
                       <input
                         className="input_transport"
                         type="number"
+                        pattern="[0-9]*"
                         id="town"
                         step="0.01"
                         min="0.0"
                         max="100.0"
                         /*   value={town} */
+                        placeholder={town}
                         onChange={handleTown}
                         onMouseLeave={getCurrentTotal}
                         required
@@ -215,10 +248,12 @@ export const TransportBaseline = () => {
                       <input
                         className="input_transport"
                         type="number"
+                        pattern="[0-9]*"
                         id="rural"
                         step="0.01"
                         min="0"
                         max="100"
+                        placeholder={rural}
                         /*   value={rural} */
                         onChange={handleRural}
                         onMouseLeave={getCurrentTotal}
@@ -229,7 +264,6 @@ export const TransportBaseline = () => {
                 </div>
 
                 <div className="column">
-                  {/*  <label className="hide">Total shares should be 100%</label> */}
                   <div className="div_transport">
                     {total > 0 && total < 101 && (
                       <RadialChart
@@ -294,7 +328,7 @@ export const TransportBaseline = () => {
                       type="text"
                       id="ns_measure"
                       min="0"
-                      onChange={(e) => setNsArea(e.target.value)}
+                      onChange={handleNsArea}
                       placeholder={nsArea}
                       required
                     />
@@ -309,7 +343,7 @@ export const TransportBaseline = () => {
                       type="text"
                       id="ew_measure"
                       min="0"
-                      onChange={(e) => setEwArea(e.target.value)}
+                      onChange={handleEwArea}
                       placeholder={ewArea}
                       required
                     />
@@ -342,14 +376,10 @@ export const TransportBaseline = () => {
                   >
                     <option value="DefaultOption">Select intensity</option>
                     <optgroup label="Select transport intensity">
-                      <option value="non-existent">non-existent: 0</option>
+                      <option value="non">non-existent: 0</option>
                       <option value="low">low: 0.3</option>
-                      <option value="medium_intensity">
-                        medium-intensity: 2.0
-                      </option>
-                      <option value="high_intensity">
-                        high-intensity: 2.50
-                      </option>
+                      <option value="medium">medium-intensity: 2.0</option>
+                      <option value="high">high-intensity: 2.50</option>
                     </optgroup>
                   </select>
                 </div>
@@ -369,14 +399,10 @@ export const TransportBaseline = () => {
                   >
                     <option value="DefaultOption">Select intensity</option>
                     <optgroup label="Select road transport intensity">
-                      <option value="non-existent">non-existent: 0</option>
+                      <option value="non">non-existent: 0</option>
                       <option value="low">low: 0.3</option>
-                      <option value="medium_intensity">
-                        medium-intensity: 2.0
-                      </option>
-                      <option value="high_intensity">
-                        high-intensity: 2.50
-                      </option>
+                      <option value="medium">medium-intensity: 2.0</option>
+                      <option value="high">high-intensity: 2.50</option>
                     </optgroup>
                   </select>
                 </div>
@@ -396,14 +422,10 @@ export const TransportBaseline = () => {
                   >
                     <option value="DefaultOption">Select intensity</option>
                     <optgroup label="Select road transport intensity">
-                      <option value="non-existent">non-existent: 0</option>
+                      <option value="non">non-existent: 0</option>
                       <option value="low">low: 0.3</option>
-                      <option value="medium_intensity">
-                        medium-intensity: 2.0
-                      </option>
-                      <option value="high_intensity">
-                        high-intensity: 2.50
-                      </option>
+                      <option value="medium">medium-intensity: 2.0</option>
+                      <option value="high">high-intensity: 2.50</option>
                     </optgroup>
                   </select>
                 </div>
@@ -423,14 +445,10 @@ export const TransportBaseline = () => {
                   >
                     <option value="DefaultOption">Select intensity</option>
                     <optgroup label="Select road transport intensity">
-                      <option value="non-existent">non-existent: 0</option>
+                      <option value="non">non-existent: 0</option>
                       <option value="low">low: 0.3</option>
-                      <option value="medium_intensity">
-                        medium-intensity: 2.0
-                      </option>
-                      <option value="high_intensity">
-                        high-intensity: 2.50
-                      </option>
+                      <option value="medium">medium-intensity: 2.0</option>
+                      <option value="high">high-intensity: 2.50</option>
                     </optgroup>
                   </select>
                 </div>
@@ -459,15 +477,7 @@ export const TransportBaseline = () => {
         year={year}
         population={population}
         settlementDistribution={settlementDistribution}
-        baseline={baseline}
       />
     );
   }
 };
-
-/* TransportBaseline.propTypes = {
-  population: PropTypes.number.isRequired,
-  year: PropTypes.number.isRequired,
-  country: PropTypes.string.isRequired,
-};
- */

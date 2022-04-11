@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import "../css/tabs.css";
 import { ModuleHeader } from "./ModuleHeader";
-import { StartPage } from "./StartPage";
 import { LandUseChangeTableForm } from "./LandUseChangeTableForm";
 import { Welcome } from "./Welcome";
 import { BuildingBaseline } from "./BuildingBaseline";
@@ -29,7 +28,7 @@ export const TabModules = () => {
     // toggleTab(7);
     window.open(ggiaGuideUrl, "_blank");
   };
-  if (population === 0 && year === 0 && country === "") {
+  if (population === 0 && year === 0 && country === "" ) {
     return (
       <>
         <ModuleHeader />
@@ -74,7 +73,6 @@ export const TabModules = () => {
             </button>
             <button
               className={toggleState === 6 ? "tabs active-tabs" : "tabs"}
-              /* onClick={() => toggleTab(6)} */
               onClick={openGuide}
               id="user_guide"
             >
@@ -82,7 +80,6 @@ export const TabModules = () => {
             </button>
             <button
               className={toggleState === 7 ? "tabs active-tabs" : "tabs"}
-              onClick={() => toggleTab(7)}
               id="generate_report"
             >
               Generate report
@@ -92,12 +89,7 @@ export const TabModules = () => {
         <div className="content-tabs">
           <>
             {toggleState == 1 && <Welcome />}
-            {toggleState == 2 && <StartPage />}
-            {toggleState == 3 && <StartPage />}
             {toggleState == 4 && <BuildingBaseline />}
-            {toggleState == 5 && <StartPage />}
-            {/*   {toggleState == 6 && <Report />} */}
-            {toggleState == 7 && <GenerateReport />}
           </>
         </div>
       </>

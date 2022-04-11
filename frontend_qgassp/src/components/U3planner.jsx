@@ -3,12 +3,14 @@ import PropTypes from "prop-types";
 import { Button } from "./Button";
 import "../css/u3planner.css";
 import Divider from "@mui/material/Divider";
+import CircularProgress from "@mui/material/CircularProgress";
 import Chip from "@mui/material/Chip";
 import axios from "axios";
 import { U3policies } from "./U3policies";
 import urlPrefix from "../Config";
 import Alert from "@mui/material/Alert";
 import Tooltip from "@mui/material/Tooltip";
+import { useStorageBool, useStorageInt, useStorageString } from "../reducers/useStorage";
 
 /**
  * U3 planner component for user inputs for policy quantification
@@ -16,56 +18,120 @@ import Tooltip from "@mui/material/Tooltip";
  */
 
 export const U3planner = ({ emission, baseline, newDevelopment }) => {
-  const [policyQuantification, setPolicyQuantification] = useState("");
-  const [yearStart, setYearStart] = useState(0);
-  const [yearFinish, setYearFinish] = useState(0);
-  const [nextU3policies, setU3policies] = useState(false);
-  const [errorU3, setU3Error] = useState("");
-  const [modalPassShares, setModalPassShares] = useState("");
-  const [shares, setShares] = useState("");
-  const [expectedPassChange, setExpectedPassChange] = useState(0);
-  const [affectedPassArea, setAffectedPassArea] = useState(0);
-  const [expectedFreChange, setExpectedFreChange] = useState(0);
-  const [passTransPolicyTarget, setPassTransPolicyTarget] = useState(0);
-  const [freTransPolicyTarget, setFreTransPolicyTarget] = useState(0);
-  const [expectedChange, setExpectedChange] = useState(0);
-  const [affectedArea, setAffectedArea] = useState(0);
-  const [passengerMob, setPassengerMobility] = useState("");
-  const [freightTrans, setFreightTransport] = useState("");
-  const [modalSplitPass, setModalSplitPass] = useState("");
+  const  [policyQuantification, setPolicyQuantification] = useState(() => {
+    const savedPolicyQuant= localStorage.getItem("policyQuantification");
+    const policyQuant= JSON.parse(savedPolicyQuant);
+    return policyQuant || {};
+  });
+
+  const [yearStart, setYearStart] = useStorageInt("yearStart", 0);
+  const [yearFinish, setYearFinish] = useStorageInt("yearFinish", 0);
+  const [nextU3policies, setU3policies] = useStorageBool("nextU3policies",false);
+  const [errorU3, setU3Error] = useStorageString("errorU3","");
+
+  const [modalPassShares, setModalPassShares] = useState(() => {
+    const savedPassShares = localStorage.getItem("modalPassShares");
+    const passShares = JSON.parse(savedPassShares);
+    return passShares || {};
+  });
+
+  const [shares, setShares] = useStorageString("shares","");
+  const [expectedPassChange, setExpectedPassChange] = useStorageInt("expectedPassChange",0);
+  const [affectedPassArea, setAffectedPassArea] = useStorageInt("affectedPassArea",0);
+  const [expectedFreChange, setExpectedFreChange] = useStorageInt("expectedFreChange",0);
+  const [passTransPolicyTarget, setPassTransPolicyTarget] = useStorageInt("passTransPolicyTarget",0);
+  const [freTransPolicyTarget, setFreTransPolicyTarget] = useStorageInt("freTransPolicyTarget",0);
+  const [expectedChange, setExpectedChange] = useStorageInt("expectedChange",0);
+  const [affectedArea, setAffectedArea] = useStorageInt("affectedAre",0);
+  
+  const [passengerMob, setPassengerMobility] = useState(() => {
+    const savedPassMob = localStorage.getItem("passengerMob");
+    const passMob = JSON.parse(savedPassMob);
+    return passMob || {};
+  });
+
+  const [freightTrans, setFreightTransport] = useState(() => {
+    const savedFreightTrans = localStorage.getItem("freightTrans");
+    const freTrans = JSON.parse(savedFreightTrans);
+    return freTrans || {};
+  });
+  
+  const [modalSplitPass, setModalSplitPass] = useState(() => {
+    const savedModalPass = localStorage.getItem("modalSplitPass");
+    const modPass = JSON.parse(savedModalPass);
+    return modPass || {};
+  });
+
+
   // const [modalPassShares, setModalPassShares] = useState("");
-  const [modalFreShares, setModalFreightShares] = useState("");
-  const [modalSplitFre, setModalSplitFre] = useState("");
-  const [buses, setBus] = useState(0);
-  const [metros, setMetro] = useState(0);
-  const [trams, setTram] = useState(0);
-  const [trains, setTrain] = useState(0);
-  const [cars, setCar] = useState(0);
-  const [affectedPopulation, setAffectedPopulation] = useState(0);
-  const [railTransport, setRailTransport] = useState(0);
-  const [waterwaysTransport, setWaterwaysTransport] = useState(0);
-  const [roadTransport, setRoadTransport] = useState(0);
-  const [lpg, setLpg] = useState(0);
-  const [cng, setCng] = useState(0);
-  const [electricity, setElectricity] = useState(0);
-  const [petrol, setPetrol] = useState(0);
-  const [diesel, setDiesel] = useState(0);
-  const [fuelSharesBusTypes, setFuelSharesBusTypes] = useState("");
-  const [fuelSharesBus, setFuelSharesBus] = useState("");
-  const [types, setTypes] = useState("");
-  const [ngv, setNgv] = useState(0);
-  const [hep, setHep] = useState(0);
-  const [phev, setPhev] = useState(0);
-  const [hydrogenfuel, setHydrogenfuel] = useState(0);
-  const [bioethanol, setBioethanol] = useState(0);
-  const [biodiesel, setBiodiesel] = useState(0);
-  const [bifuel, setBifuel] = useState(0);
-  const [other, setOther] = useState(0);
-  const [fuelSharesCarTypes, setFuelSharesCarTypes] = useState("");
-  const [fuelSharesCar, setFuelSharesCar] = useState("");
-  const [renewables, setRenewables] = useState(0);
-  const [electricityTransTypes, setElectricityTransTypes] = useState("");
-  const [electricityTrans, setElectricityTrans] = useState("");
+  const [modalFreShares, setModalFreightShares] = useState(() => {
+    const savedFs = localStorage.getItem("modalFreShares");
+    const freShares = JSON.parse(savedFs);
+    return freShares || {};
+  });
+
+  const [modalSplitFre, setModalSplitFre]  = useState(() => {
+    const savedMfs = localStorage.getItem("modalSplitFre");
+    const splitFre = JSON.parse(savedMfs);
+    return splitFre || {};
+  });
+
+  const [buses, setBus] = useStorageInt("buses",0);
+  const [metros, setMetro] = useStorageInt("metros",0);
+  const [trams, setTram] = useStorageInt("trams",0);
+  const [trains, setTrain] = useStorageInt("trains",0);
+  const [cars, setCar] = useStorageInt("car",0);
+  const [affectedPopulation, setAffectedPopulation] = useStorageInt("affectedPopulation",0);
+  const [railTransport, setRailTransport] = useStorageInt("railTransport",0);
+  const [waterwaysTransport, setWaterwaysTransport] = useStorageInt("waterwaysTransport",0);
+  const [roadTransport, setRoadTransport] = useStorageInt("roadTransport",0);
+  const [lpg, setLpg] = useStorageInt("lpg",0);
+  const [cng, setCng] = useStorageInt("cng",0);
+  const [electricity, setElectricity] = useStorageInt("electricity",0);
+  const [petrol, setPetrol] = useStorageInt("petrol",0);
+  const [diesel, setDiesel] = useStorageInt("diesel",0);
+
+  const [fuelSharesBusTypes, setFuelSharesBusTypes]  = useState(() => {
+    const savedFsbt = localStorage.getItem("fuelSharesBusTypes");
+    const shareBus= JSON.parse(savedFsbt);
+    return shareBus || {};
+  });
+
+  const [fuelSharesBus, setFuelSharesBus] = useState(() => {
+    const savedFs= localStorage.getItem("fuelSharesBus");
+    const shareBusFuel= JSON.parse(savedFs);
+    return shareBusFuel || {};
+  });
+
+  const [types, setTypes] = useStorageString("types","");
+  const [ngv, setNgv] = useStorageInt("ngv",0);
+  const [hep, setHep] = useStorageInt("hep",0);
+  const [phev, setPhev] = useStorageInt("phev",0);
+  const [hydrogenfuel, setHydrogenfuel] = useStorageInt("hydrogenfuel",0);
+  const [bioethanol, setBioethanol] = useStorageInt("bioethanol",0);
+  const [biodiesel, setBiodiesel] = useStorageInt("biodiesel",0);
+  const [bifuel, setBifuel] = useStorageInt("bifuel",0);
+  const [other, setOther] = useStorageInt("other",0);
+
+  // const [fuelSharesCarTypes, setFuelSharesCarTypes] = useState({});
+  const[fuelSharesCarTypes, setFuelSharesCarTypes] = useState(() => {
+    const savedFsct= localStorage.getItem("fuelSharesCarTypes");
+    const shareCarType= JSON.parse(savedFsct);
+    return shareCarType || {};
+  });
+
+  // const [fuelSharesCar, setFuelSharesCar] = useState({});
+  const[fuelSharesCar, setFuelSharesCar] = useState(() => {
+    const savedFc= localStorage.getItem("fuelSharesCar");
+    const shareCar= JSON.parse(savedFc);
+    return shareCar|| {};
+  });
+
+  const [renewables, setRenewables] = useStorageInt("renewables",0);
+  const [electricityTransTypes, setElectricityTransTypes] = useState({});
+  const [electricityTrans, setElectricityTrans] = useState({});
+
+  const [isPolicyLoading, setIsLoading] = useState(true);
 
   // const [policyQuant, setPolicyQuantification] = useState("");
 
@@ -310,21 +376,29 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
     };
     setPolicyQuantification(policyQuant);
   };
-  useEffect(async () => {
+
+  const  fetchPolicyQuantData = () => {
     const raw = { baseline, newDevelopment, policyQuantification };
-    const headers = {
-      "Content-type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-    };
+    const headers = {"Content-type": "application/json", "Access-Control-Allow-Origin": "*",};
     axios
       .post(urlPrefix + "/api/v1/calculate/transport", raw, headers)
-      .then((response) => setU3Response(response.data.json))
+      .then((response) => {
+        setU3Response(response.data.json());
+        setIsLoading(false);
+      })
       .catch((error) => {
-        setU3Error({ errorMessage: error.message });
+        setIsLoading(false);
+        setU3Error(error.message );
         // eslint-disable-next-line no-console
         console.error("There was an error!", errorU3);
       });
+
+  };
+
+  useEffect(async () => {
+    fetchPolicyQuantData();
   }, []);
+
   const setU3Response = (response) => {
     setPolicyQuantification(response.data.policy_quantification);
   };
@@ -332,6 +406,54 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
   const gotoU3policies = () => {
     setU3policies(true);
   };
+
+  useEffect(() => {
+    localStorage.setItem("policyQuantification", JSON.stringify(policyQuantification));
+  }, [policyQuantification]);
+
+  useEffect(() => {
+    localStorage.setItem("modalPassShares", JSON.stringify(modalPassShares));
+  }, [modalPassShares]);
+
+  useEffect(() => {
+    localStorage.setItem("passengerMob", JSON.stringify(passengerMob));
+  }, [passengerMob]);
+
+  useEffect(() => {
+    localStorage.setItem("freightTrans", JSON.stringify(freightTrans));
+  }, [freightTrans]);
+
+  useEffect(() => {
+    localStorage.setItem("modalSplitPass", JSON.stringify( modalSplitPass));
+  }, [modalSplitPass]);
+
+  useEffect(() => {
+    localStorage.setItem(" modalFreShares", JSON.stringify( modalFreShares));
+  }, [ modalFreShares]);
+
+  useEffect(() => {
+    localStorage.setItem("modalSplitFre", JSON.stringify( modalSplitFre));
+  }, [ modalSplitFre]);
+
+  useEffect(() => {
+    localStorage.setItem("fuelSharesBusTypes", JSON.stringify(fuelSharesBusTypes));
+  }, [fuelSharesBusTypes]);
+
+  useEffect(() => {
+    localStorage.setItem("fuelSharesBus", JSON.stringify(fuelSharesBus));
+  }, [fuelSharesBus]);
+
+  useEffect(() => {
+    localStorage.setItem("fuelSharesCarTypes", JSON.stringify(fuelSharesCarTypes));
+  }, [fuelSharesCarTypes]);
+ 
+  useEffect(() => {
+    localStorage.setItem(" fuelSharesCar", JSON.stringify( fuelSharesCar));
+  }, [ fuelSharesCar]);
+ 
+  if (isPolicyLoading) {
+    return <CircularProgress color="success" />;
+  }
 
   if (nextU3policies === false) {
     return (

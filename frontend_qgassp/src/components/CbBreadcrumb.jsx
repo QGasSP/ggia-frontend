@@ -1,12 +1,28 @@
 import * as React from "react";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Typography from "@mui/material/Typography";
+import Alert from "@mui/material/Alert";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 export const CbBreadcrumb = () => {
-  const handleClick = (e) => {
+  const handleAreaTypePop = (e) => {
+    e.preventDefault();
+    <Alert severity="info">
+    clicked area type population
+  </Alert>
+  };
+
+  const handleHouseholdEnergy = (e) => {
+    e.preventDefault();
+  };
+
+  const handleTransportation = (e) => {
+    e.preventDefault();
+  };
+
+  const handleResults = (e) => {
     e.preventDefault();
   };
 
@@ -17,7 +33,7 @@ export const CbBreadcrumb = () => {
       color="inherit"
       sx={{ fontSize: 14 }}
       // href="/"
-      onClick={handleClick}
+      onClick={handleAreaTypePop}
     >
       Area type and population
     </Link>,
@@ -27,7 +43,7 @@ export const CbBreadcrumb = () => {
       color="inherit"
       sx={{ fontSize: 14 }}
       // href="/getting-started/installation/"
-      onClick={handleClick}
+      onClick={handleHouseholdEnergy}
     >
       Household energy
     </Link>,
@@ -37,13 +53,23 @@ export const CbBreadcrumb = () => {
       color="inherit"
       sx={{ fontSize: 14 }}
       // href="/getting-started/installation/"
-      onClick={handleClick}
+      onClick={handleTransportation}
     >
       Transportation
     </Link>,
-    <Typography key="4" color="#003399" sx={{ fontSize: 14 }}>
+    <Link
+      underline="hover"
+      key="3"
+      color="inherit"
+      sx={{ fontSize: 14 }}
+      // href="/getting-started/installation/"
+      onClick={handleResults}
+    >
       Result
-    </Typography>,
+    </Link>,
+   /*  <Typography key="4" color="#003399" sx={{ fontSize: 14 }}>
+      Result
+    </Typography>, */
   ];
 
   return (
