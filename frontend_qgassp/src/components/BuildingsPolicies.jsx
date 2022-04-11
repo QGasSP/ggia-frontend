@@ -895,8 +895,7 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
   // #endregion
 
   const [policiesCharts, setPoliciesCharts] = useState(false);
-  const [policyQuantificationResponse, setPolicyQuantificationResponse] = useState({});
-  setPolicyQuantificationResponse({
+  const policyQuantificationResponse = {
     2022: {
       apartments: 2000,
       terraced: 2000,
@@ -1245,7 +1244,7 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
       industrial: 800,
       warehouses: 800,
     }
-  });
+  };
   const optionsIndicators = ["A", "B", "C", "D", "E", "F", "G"];
   const optionsYear = [];
   for (let i = year; i < 2051; i++) optionsYear.push(i);
