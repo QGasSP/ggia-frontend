@@ -20,6 +20,7 @@ export const BuildingsNewUnits = ({
   baseline,
   emissionResidential,
   emissionCommercial,
+  newConstruction,
   year,
   country,
 }) => {
