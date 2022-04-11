@@ -553,5 +553,6 @@ export const BuildingsPoliciesCharts = ({ baseline, newConstruction, country, ye
 BuildingsPoliciesCharts.propTypes = {
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
-  baseline: PropTypes.object.isRequired
+  baseline: PropTypes.object.isRequired,
+  newConstruction: PropTypes.object.isRequired
 };
