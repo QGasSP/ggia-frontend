@@ -404,7 +404,9 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
   };
 
   const gotoU3policies = () => {
-    setU3policies(true);
+    if( Object.keys(policyQuantification).length>0){
+      setU3policies(true);
+    }
   };
 
   useEffect(() => {

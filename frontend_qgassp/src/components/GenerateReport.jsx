@@ -97,8 +97,8 @@ export const GenerateReport = () => {
              {/*  {landUseChangeResponse !== null &&
                 Object.keys(landUseChangeResponse).length !== 0 && (
                   <LUCBarChart lucResultsToPrint={lucResultsToPrint} />
-                )}
- */}
+                )} */}
+ 
               {bL !== null &&
                 Object.keys(bL).length !== 0 &&
                 bLTotalEmissions !== null &&
@@ -107,7 +107,7 @@ export const GenerateReport = () => {
                     consumptionBaselineToPrint={consumptionBaselineToPrint}
                   />
                 )}
-              {bL !== null &&
+             {/*  {bL !== null &&
                 p1 !== null &&
                 bLTransport !== null &&
                 Object.keys(bL).length !== 0 &&
@@ -120,7 +120,7 @@ export const GenerateReport = () => {
                   <ConsumptionResults
                     consumptionResultsToPrint={consumptionResultsToPrint}
                   />
-                )}
+                )} */}
             </>
           </div>
         )}
