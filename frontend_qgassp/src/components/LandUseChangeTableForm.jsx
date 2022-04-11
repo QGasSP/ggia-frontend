@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { LUCBarChart } from "./LUCBarChart";
 import { Button } from "./Button";
 import "../css/landusechange.css";
@@ -1355,7 +1355,12 @@ export const LandUseChangeTableForm = () => {
   const setResponse = (response) => {
     setLandUseChangeResponse(response.data);
   };
-
+  useEffect(() => {
+    localStorage.setItem(
+      "landUseChangeResponse",
+      JSON.stringify(landUseChangeResponse)
+    );
+  }, [landUseChangeResponse]);
   if (lucBarChart === false) {
     return (
       <div>
