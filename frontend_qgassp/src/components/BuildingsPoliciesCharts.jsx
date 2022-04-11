@@ -499,7 +499,7 @@ export const BuildingsPoliciesCharts = ({ baseline, newConstruction, country, ye
         <Divider textAlign="left" flexItem>
           {" "}
           <b>
-          Policy Qunatification
+          Policy Quantification
           </b>
         </Divider>
 
