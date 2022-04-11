@@ -2535,4 +2535,5 @@ BuildingsNewUnits.propTypes = {
   baseline: PropTypes.object.isRequired,
   emissionCommercial: PropTypes.object.isRequired,
   emissionResidential: PropTypes.object.isRequired,
+  newConstruction: PropTypes.object.isRequired
 };
