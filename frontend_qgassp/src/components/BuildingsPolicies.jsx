@@ -14,7 +14,7 @@ import Alert from "@mui/material/Alert";
  * @return {}
  */
 
-export const BuildingsPolicies = ({ baseline, country, year }) => {
+export const BuildingsPolicies = ({ baseline, newConstruction, country, year }) => {
   // RESIDENTIAL units
 
   // firstResidentSelector
@@ -809,6 +809,142 @@ export const BuildingsPolicies = ({ baseline, country, year }) => {
   const optionsBuildings = optionsResidents.concat(optionsCommercials);
 
   const setPoliciesResults = () => {
+    // #region residentials
+    const retrofit1 = {
+        "unitType": firstResidentSelectorResidentialUnit,
+        "numberOfUnits": firstResidentSelectorUnits,
+        "energyUseBefore": firstResidentSelectorIndicativeBefore,
+        "energyUseAfter": firstResidentSelectorIndicativeAfter,
+        "renewableEnergyPercent": firstResidentSelectorEnergy,
+        "startYear": firstResidentSelectorStartYear,
+        "endYear": firstResidentSelectorEndYear
+    };
+    const retrofit2 = {
+      "unitType": secondResidentSelectorResidentialUnit,
+      "numberOfUnits": secondResidentSelectorUnits,
+      "energyUseBefore": secondResidentSelectorIndicativeBefore,
+      "energyUseAfter": secondResidentSelectorIndicativeAfter,
+      "renewableEnergyPercent": secondResidentSelectorEnergy,
+      "startYear": secondResidentSelectorStartYear,
+      "endYear": secondResidentSelectorEndYear
+    };
+    const retrofit3 = {
+      "unitType": thirdResidentSelectorResidentialUnit,
+      "numberOfUnits": thirdResidentSelectorUnits,
+      "energyUseBefore": thirdResidentSelectorIndicativeBefore,
+      "energyUseAfter": thirdResidentSelectorIndicativeAfter,
+      "renewableEnergyPercent": thirdResidentSelectorEnergy,
+      "startYear": thirdResidentSelectorStartYear,
+      "endYear": thirdResidentSelectorEndYear
+    };
+    const retrofit4 = {
+      "unitType": fourthResidentSelectorResidentialUnit,
+      "numberOfUnits": fourthResidentSelectorUnits,
+      "energyUseBefore": fourthResidentSelectorIndicativeBefore,
+      "energyUseAfter": fourthResidentSelectorIndicativeAfter,
+      "renewableEnergyPercent": fourthResidentSelectorEnergy,
+      "startYear": fourthResidentSelectorStartYear,
+      "endYear": fourthResidentSelectorEndYear
+    };
+    const retrofit5 = {
+      "unitType": fifthResidentSelectorResidentialUnit,
+      "numberOfUnits": fifthResidentSelectorUnits,
+      "energyUseBefore": fifthResidentSelectorIndicativeBefore,
+      "energyUseAfter": fifthResidentSelectorIndicativeAfter,
+      "renewableEnergyPercent": fifthResidentSelectorEnergy,
+      "startYear": fifthResidentSelectorStartYear,
+      "endYear": fifthResidentSelectorEndYear
+    };
+    const retrofit6 = {
+      "unitType": sixthResidentSelectorResidentialUnit,
+      "numberOfUnits": sixthResidentSelectorUnits,
+      "energyUseBefore": sixthResidentSelectorIndicativeBefore,
+      "energyUseAfter": sixthResidentSelectorIndicativeAfter,
+      "renewableEnergyPercent": sixthResidentSelectorEnergy,
+      "startYear": sixthResidentSelectorStartYear,
+      "endYear": sixthResidentSelectorEndYear
+    };
+    // #endregion
+    const policyQuantification = {
+      "residentialRetrofit": {
+          retrofit1,
+          retrofit2,
+          retrofit3,
+          retrofit4,
+          retrofit5,
+          retrofit6
+      },
+      "commercialRetrofit": {
+          "retrofit1": {
+              "buildingType": firstCommercialSelectorBuildingType,
+              "totalFloorArea": firstCommercialSelectorArea,
+              "energyDemandReductionPercent": firstCommercialSelectorReduction,
+              "renewableEnergyPercent": firstCommercialSelectorEnergy,
+              "startYear": firstCommercialSelectorStartYear,
+              "endYear": firstCommercialSelectorEndYear
+          },
+          "retrofit2": {
+            "buildingType": secondCommercialSelectorBuildingType,
+            "totalFloorArea": secondCommercialSelectorArea,
+            "energyDemandReductionPercent": secondCommercialSelectorReduction,
+            "renewableEnergyPercent": secondCommercialSelectorEnergy,
+            "startYear": secondCommercialSelectorStartYear,
+            "endYear": secondCommercialSelectorEndYear
+          },
+          "retrofit3": {
+            "buildingType": thirdCommercialSelectorBuildingType,
+            "totalFloorArea": thirdCommercialSelectorArea,
+            "energyDemandReductionPercent": thirdCommercialSelectorReduction,
+            "renewableEnergyPercent": thirdCommercialSelectorEnergy,
+            "startYear": thirdCommercialSelectorStartYear,
+            "endYear": thirdCommercialSelectorEndYear
+          },
+          "retrofit4": {
+            "buildingType": fourthCommercialSelectorBuildingType,
+            "totalFloorArea": fourthCommercialSelectorArea,
+            "energyDemandReductionPercent": fourthCommercialSelectorReduction,
+            "renewableEnergyPercent": fourthCommercialSelectorEnergy,
+            "startYear": fourthCommercialSelectorStartYear,
+            "endYear": fourthCommercialSelectorEndYear
+          },
+          "retrofit5": {
+            "buildingType": fifthCommercialSelectorBuildingType,
+            "totalFloorArea": fifthCommercialSelectorArea,
+            "energyDemandReductionPercent": fifthCommercialSelectorReduction,
+            "renewableEnergyPercent": fifthCommercialSelectorEnergy,
+            "startYear": fifthCommercialSelectorStartYear,
+            "endYear": fifthCommercialSelectorEndYear
+          },
+          "retrofit6": {
+            "buildingType": sixthCommercialSelectorBuildingType,
+            "totalFloorArea": sixthCommercialSelectorArea,
+            "energyDemandReductionPercent": sixthCommercialSelectorReduction,
+            "renewableEnergyPercent": sixthCommercialSelectorEnergy,
+            "startYear": sixthCommercialSelectorStartYear,
+            "endYear": sixthCommercialSelectorEndYear
+          }
+      }
+    };
+    const rawData = {
+      baseline,
+      policyQuantification
+    };
+    const headers = {
+      "Access-Control-Allow-Origin": "*",
+      "Content-type": "application/json",
+    };
+    // axios
+    // .post(
+    //   urlPrefix + "/api/v1/calculate/buildings",
+    //   rawData,
+    //   headers
+    // )
+    // .then((response) => setBuildingsResponse(response.data))
+    // .catch((error) => {
+    //   setErrorBuildBaseline({ errorMessage: error.message });
+    //   // eslint-disable-next-line no-console
+    //   console.error("There was an error!", errorBuildBaseline);
+    // });
     setU2charts(true);
   };
 
@@ -2620,11 +2756,8 @@ export const BuildingsPolicies = ({ baseline, country, year }) => {
       <BuildingsPoliciesCharts
         year={year}
         country={country}
-        // baseline={baseline.baseline}
-        // newDevelopment={newDevelopment}
-        // settlementDistribution={settlementDistribution}
-        // emission={emission}
-        // projections={projections}
+        baseline={baseline}
+        newConstruction={newConstruction}
       />
     );
   }
@@ -2634,9 +2767,7 @@ BuildingsPolicies.propTypes = {
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
   baseline: PropTypes.object.isRequired,
-  // settlementDistribution: PropTypes.object.isRequired,
-  // emission: PropTypes.object.isRequired,
-  // projections: PropTypes.object.isRequired
+  newConstruction: PropTypes.object.isRequired
 };
 
 BuildingsPolicies.defaultProps = {

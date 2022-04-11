@@ -361,7 +361,7 @@ export const BuildingBaseline = () => {
                   </div>
                   <div className="div_transport">
                     <label htmlFor="retail" className="settle_label">
-                      Apartment
+                      Retail
                     </label>
                     <input
                       className="input_transport"
@@ -378,7 +378,7 @@ export const BuildingBaseline = () => {
 
                   <div className="div_transport">
                     <label htmlFor="health" className="settle_label">
-                      Terraced
+                      Health
                     </label>
                     <input
                       className="input_transport"
@@ -396,7 +396,7 @@ export const BuildingBaseline = () => {
                   <div className="div_transport">
                     <label htmlFor="hospitality" className="settle_label">
                       {" "}
-                      Semi-offices
+                      Hospitality
                     </label>
                     <input
                       className="input_transport"
@@ -413,7 +413,7 @@ export const BuildingBaseline = () => {
 
                   <div className="div_transport">
                     <label htmlFor="offices" className="settle_label">
-                      Detached
+                      Offices
                     </label>
                     <input
                       className="input_transport"

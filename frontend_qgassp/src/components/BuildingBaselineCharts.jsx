@@ -64,7 +64,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2023: {
         apartments: 1000,
@@ -77,7 +76,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2024: {
         apartments: 1000,
@@ -90,7 +88,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2025: {
         apartments: 1000,
@@ -103,7 +100,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2026: {
         apartments: 1000,
@@ -116,7 +112,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2027: {
         apartments: 1000,
@@ -129,7 +124,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2028: {
         apartments: 1000,
@@ -142,7 +136,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2029: {
         apartments: 1000,
@@ -155,7 +148,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2030: {
         apartments: 1000,
@@ -168,7 +160,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2031: {
         apartments: 1000,
@@ -181,7 +172,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2032: {
         apartments: 1000,
@@ -194,7 +184,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2033: {
         apartments: 1000,
@@ -207,7 +196,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2034: {
         apartments: 1000,
@@ -220,7 +208,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2035: {
         apartments: 1000,
@@ -233,7 +220,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2036: {
         apartments: 1000,
@@ -246,7 +232,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2037: {
         apartments: 1000,
@@ -259,7 +244,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2038: {
         apartments: 1000,
@@ -272,7 +256,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2039: {
         apartments: 1000,
@@ -285,7 +268,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2040: {
         apartments: 1000,
@@ -298,7 +280,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2041: {
         apartments: 1000,
@@ -311,7 +292,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2042: {
         apartments: 1000,
@@ -324,7 +304,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2043: {
         apartments: 1000,
@@ -337,7 +316,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2044: {
         apartments: 1000,
@@ -350,7 +328,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2045: {
         apartments: 1000,
@@ -363,7 +340,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2046: {
         apartments: 1000,
@@ -376,7 +352,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2047: {
         apartments: 1000,
@@ -389,7 +364,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2048: {
         apartments: 1000,
@@ -402,7 +376,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2049: {
         apartments: 1000,
@@ -415,7 +388,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
       2050: {
         apartments: 1000,
@@ -428,7 +400,6 @@ export const BuildingBaselineCharts = ({
         offices: 1000,
         industrial: 1000,
         warehouses: 1000,
-        other: 1,
       },
     },
   };
@@ -667,7 +638,6 @@ export const BuildingBaselineCharts = ({
             width={1000}
             height={500}
             xType="ordinal"
-            yDomain={[0, 45000]}
             stackBy="y"
           >
             <HorizontalGridLines style={{ stroke: "#B7E9ED" }} />

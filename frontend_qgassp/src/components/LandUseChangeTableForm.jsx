@@ -3267,7 +3267,7 @@ export const LandUseChangeTableForm = () => {
                 </div>
 
                 <div className="luc_row">
-                  <table>
+                  <table className="table-totals">
                     <thead>
                       <tr>
                         <Tooltip title="Definitions of the national land-use categories can be found in National Inventory Reports (NIR) created for the annual greenhouse gas inventories.">
