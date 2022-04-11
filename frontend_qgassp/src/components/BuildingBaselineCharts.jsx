@@ -638,7 +638,6 @@ export const BuildingBaselineCharts = ({
             width={1000}
             height={500}
             xType="ordinal"
-            yDomain={[0, 45000]}
             stackBy="y"
           >
             <HorizontalGridLines style={{ stroke: "#B7E9ED" }} />
