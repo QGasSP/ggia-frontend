@@ -93,20 +93,30 @@ button {
 }
 
 #start {
-  background: #ffeac1;
+  /* background: #ffeac1; */
+  background: #8dc4ae;
 }
 #territorial {
-  background: #d5eaea;
+  /* background: #d5eaea; */
+  background: #adb7d5;
 }
 
 #consumption {
-  background: #8dc4ae;
+  /* background: #8dc4ae; */
+  background: #ea8b6f;
 }
 
 #local_data {
-  background: #f2c9cc;
+  /* background: #f2c9cc; */
+  background: #bed56b;
+}
+
+#generate_report {
+  /* background: #f2c9cc; */
+  background: #bed56b;
 }
 
 #user_guide {
-  background: #bed56b;
+  /* background: #bed56b; */
+  background: #f9b142;
 }
