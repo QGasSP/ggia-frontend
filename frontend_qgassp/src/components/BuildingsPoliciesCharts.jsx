@@ -25,7 +25,7 @@ import urlPrefix from "../Config";
  * @return {}
  */
 const BarSeries = VerticalBarSeries;
-export const BuildingsPoliciesCharts = ({ baseline, country, year }) => {
+export const BuildingsPoliciesCharts = ({ baseline, newConstruction, country, year }) => {
   const [errorBBC, setErrorBBC] = useState("");
   const [emissionResidential, setEmissionResidential] = useState("");
   const [emissionCommercial, setEmissionCommercial] = useState("");
@@ -545,22 +545,13 @@ export const BuildingsPoliciesCharts = ({ baseline, country, year }) => {
           </XYPlot>
         </div>
 
-        {/* <div className="headerSettlement">
-           <Divider textAlign="left" flexItem>
-             {" "}
-             <Chip label="Projections" />
-           </Divider>
-         </div> */}
       </article>
     );
   }
 };
 
 BuildingsPoliciesCharts.propTypes = {
-  //  residential: PropTypes.object.isRequired,
-  //  commercial: PropTypes.object.isRequired,
-  //  population: PropTypes.number.isRequired,
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
-  baseline: PropTypes.object.isRequired,
+  baseline: PropTypes.object.isRequired
 };

@@ -2519,6 +2519,7 @@ export const BuildingsNewUnits = ({
         newSettlementBuildingsResponse={newSettlementBuildingsResponse}
         // newSettlementCommercial={newSettlementCommercial}
         // newSettlementResidental={newSettlementResidental}
+        newConstruction={newConstruction}
         baseline={baseline}
         country={country}
         year={year}

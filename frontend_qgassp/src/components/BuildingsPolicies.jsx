@@ -14,7 +14,7 @@ import Alert from "@mui/material/Alert";
  * @return {}
  */
 
-export const BuildingsPolicies = ({ baseline, country, year }) => {
+export const BuildingsPolicies = ({ baseline, newConstruction, country, year }) => {
   // RESIDENTIAL units
 
   // firstResidentSelector
@@ -2756,11 +2756,8 @@ export const BuildingsPolicies = ({ baseline, country, year }) => {
       <BuildingsPoliciesCharts
         year={year}
         country={country}
-        // baseline={baseline.baseline}
-        // newDevelopment={newDevelopment}
-        // settlementDistribution={settlementDistribution}
-        // emission={emission}
-        // projections={projections}
+        baseline={baseline}
+        newConstruction={newConstruction}
       />
     );
   }
@@ -2770,9 +2767,7 @@ BuildingsPolicies.propTypes = {
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
   baseline: PropTypes.object.isRequired,
-  // settlementDistribution: PropTypes.object.isRequired,
-  // emission: PropTypes.object.isRequired,
-  // projections: PropTypes.object.isRequired
+  newConstruction: PropTypes.object.isRequired
 };
 
 BuildingsPolicies.defaultProps = {

@@ -27,9 +27,7 @@ import urlPrefix from "../Config";
 const BarSeries = VerticalBarSeries;
 export const BuldingsNewUnitsCharts = ({
   newSettlementBuildingsResponse,
-  //  newSettlementCommercial,
-  //  newSettlementResidential,
-
+  newConstruction,
   baseline,
   country,
   year,
@@ -60,13 +58,6 @@ export const BuldingsNewUnitsCharts = ({
       JSON.stringify(emissionCommercial)
     );
   }, [emissionCommercial]);
-
-  useEffect(() => {
-    localStorage.setItem(
-      "emissionsByEndUse",
-      JSON.stringify(emissionsByEndUse)
-    );
-  }, [emissionsByEndUse]);
 
   const response = {
     status: "success",
@@ -601,9 +592,7 @@ export const BuldingsNewUnitsCharts = ({
   } else if (nextNewUnitsView === true) {
     return (
       <BuildingsPolicies
-        //  baseline={baseline}
-        //  emissionResidential={emissionResidential}
-        //  emissionCommercial={emissionCommercial}
+        newConstruction={newConstruction}
         baseline={baseline}
         country={country}
         year={year}
@@ -613,10 +602,9 @@ export const BuldingsNewUnitsCharts = ({
 };
 
 BuldingsNewUnitsCharts.propTypes = {
-  //  newSettlementResidential: PropTypes.object.isRequired,
-  //  newSettlementCommercial: PropTypes.object.isRequired,
   newSettlementBuildingsResponse: PropTypes.object.isRequired,
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
   baseline: PropTypes.object.isRequired,
+  newConstruction: PropTypes.object.isRequired
 };
