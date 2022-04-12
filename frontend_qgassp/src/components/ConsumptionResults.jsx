@@ -91,9 +91,14 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
     fetchConsumptionData();
   }, []);
 
+
+
   useEffect(() => {
-    localStorage.setItem("p1", JSON.stringify(p1));
-  }, [p1]);
+    localStorage.setItem(
+      "blTotalEmmissions",
+      JSON.stringify(blTotalEmmissions)
+    );
+  }, [blTotalEmmissions]);
   
   useEffect(() => {
     localStorage.setItem(
@@ -103,26 +108,27 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
   }, [bLTotalAreaEmissions]);
 
   useEffect(() => {
+    localStorage.setItem("blTransport", JSON.stringify(blTransport));
+  }, [blTransport]);
+
+
+  useEffect(() => {
+    localStorage.setItem("p1", JSON.stringify(p1));
+  }, [p1]);
+
+  useEffect(() => {
     localStorage.setItem(
       "p1TotalAreaEmissions",
       JSON.stringify(p1TotalAreaEmissions)
     );
   }, [p1TotalAreaEmissions]);
 
-  useEffect(() => {
-    localStorage.setItem("blTransport", JSON.stringify(blTransport));
-  }, [blTransport]);
-
+ 
   useEffect(() => {
     localStorage.setItem("p1TotalEmissions", JSON.stringify(p1TotalEmissions));
   }, [p1TotalEmissions]);
 
-  useEffect(() => {
-    localStorage.setItem(
-      "blTotalEmmissions",
-      JSON.stringify(blTotalEmmissions)
-    );
-  }, [blTotalEmmissions]);
+ 
 
   if (isLoading) {
     return <CircularProgress color="success" />;

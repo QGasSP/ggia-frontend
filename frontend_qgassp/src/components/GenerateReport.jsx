@@ -26,11 +26,11 @@ export const GenerateReport = () => {
   const population = parseInt(localStorage.getItem("population"));
   const p1 = JSON.parse(localStorage.getItem("p1"));
   const bL = JSON.parse(localStorage.getItem("bL"));
-  const bLTotalEmissions = JSON.parse(localStorage.getItem("bLTotalEmissions"));
+  const blTransport = JSON.parse(localStorage.getItem("blTransport"));
+  const blTotalEmmissions = JSON.parse(localStorage.getItem("blTotalEmmissions"));
   const bLTotalAreaEmissions = JSON.parse(
     localStorage.getItem("bLTotalAreaEmissions")
   );
-  const bLTransport = JSON.parse(localStorage.getItem("bLTransport"));
   const p1TotalEmissions = JSON.parse(localStorage.getItem("p1TotalEmissions"));
   const p1TotalAreaEmissions = JSON.parse(
     localStorage.getItem("p1TotalAreaEmissions")
@@ -112,34 +112,40 @@ export const GenerateReport = () => {
                   <LUCBarChart lucResultsToPrint={lucResultsToPrint} />
                 )} */}
 
-              {bL !== null &&
+            {bL !== null &&
                 Object.keys(bL).length !== 0 &&
-                bLTotalEmissions !== null &&
-                Object.keys(bLTotalEmissions).length !== 0 && (
+                blTotalEmmissions !== null &&
+                Object.keys(blTotalEmmissions).length !== 0 && (
                   <ConsumptionBaselineResults
                     consumptionBaselineToPrint={consumptionBaselineToPrint}
                   />
                 )}
-             {bL !== null &&
+ 
+           
+              {bL !== null &&
                 p1 !== null &&
-                bLTransport !== null &&
+                blTransport !== null &&
+                bLTotalAreaEmissions !== null &&
+                p1TotalEmissions !== null &&
+                bLTotalAreaEmissions !== null &&
+                p1TotalEmissions !== null &&
                 Object.keys(bL).length !== 0 &&
                 Object.keys(p1).length !== 0 &&
-                Object.keys(bLTransport).length !== 0 &&
-                bLTotalEmissions !== null &&
-                p1TotalEmissions !== null &&
+                Object.keys(blTransport).length !== 0 &&
+                Object.keys(p1TotalAreaEmissions).length !== 0 &&
+                Object.keys(bLTotalAreaEmissions).length !== 0 &&
                 Object.keys(p1TotalEmissions).length !== 0 &&
-                Object.keys(bLTotalEmissions).length !== 0 && (
+                Object.keys(blTotalEmmissions).length !== 0 && (
                   <ConsumptionSummary
                     consumptionResultsToPrint={consumptionResultsToPrint}
                     p1TotalEmissions={p1TotalEmissions}
-                    bLTotalEmmissions={bLTotalEmissions}
+                    blTotalEmmissions={blTotalEmmissions}
                     bLTotalAreaEmissions={bLTotalAreaEmissions}
                     p1TotalAreaEmissions={p1TotalAreaEmissions}
-                    blTransport={bLTransport}
+                    blTransport={blTransport}
                     p1={p1}
                   />
-                )} 
+                )}
             </>
           </div>
         )}
