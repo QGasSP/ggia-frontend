@@ -24,20 +24,20 @@ export const ConsumptionHseEnergy = ({
   gasesProp,
   districtValue,
 }) => {
-  const [nextCBTransport, setCbTransport] = useStorageBool(false);
+  const [nextCBTransport, setCbTransport] = useStorageBool("nextCBTransport",false);
 
-  const [policyYear, setPolicyYear] = useStorageInt(0);
-  const [newFloorArea, setNewFloorArea] = useStorageInt(0);
-  const [popSizePolicy, setPopulationSizePolicy] = useStorageInt(0);
+  const [policyYear, setPolicyYear] = useStorageInt("policyYear",0);
+  const [newFloorArea, setNewFloorArea] = useStorageInt("newFloorArea", 0);
+  const [popSizePolicy, setPopulationSizePolicy] = useStorageInt("popSizePolicy",0);
 
-  const [effGain, setEffGain] = useStorageBool(false);
+  const [effGain, setEffGain] = useStorageBool("effGain",false);
   const handleEffGain = (e) => {
     e.target.checked;
     setEffGain(!effGain);
   };
-  const [effScaler, setEffScaler] = useStorageInt(0);
+  const [effScaler, setEffScaler] = useStorageInt("effScaler",0);
 
-  const [localElectricity, setLocalElectricity] = useStorageBool(false);
+  const [localElectricity, setLocalElectricity] = useStorageBool("localElectricity",false);
   const handleLocalElectricity = (e) => {
     e.target.checked;
     setLocalElectricity(!localElectricity);
@@ -45,32 +45,32 @@ export const ConsumptionHseEnergy = ({
   const [elType, setElectricityType] = useStorageString(
     "Electricity by solar photovoltaic"
   );
-  const [elScaler, setElectricityScaler] = useStorageInt(0);
+  const [elScaler, setElectricityScaler] = useStorageInt("elScaler",0);
 
-  const [sHeating, setHeatingShare] = useStorageBool(false);
+  const [sHeating, setHeatingShare] = useStorageBool("sHeating",false);
   const handleHeatingShare = (e) => {
     e.target.checked;
     setHeatingShare(!sHeating);
   };
-  const [districtPropLocal, setDistrictProp] = useStorageFloat(
+  const [districtPropLocal, setDistrictProp] = useStorageFloat("districtPropLocal",
     Math.round((districtProp + Number.EPSILON) * 100) / 100
   );
-  const [electricityHeatPropLocal, setElectricityHeatProp] = useStorageFloat(
+  const [electricityHeatPropLocal, setElectricityHeatProp] = useStorageFloat("electricityHeatPropLocal",
     Math.round((electricityHeatProp + Number.EPSILON) * 100) / 100
   );
-  const [combustableFuelsPropLocal, setCombustableFuelsProp] = useStorageFloat(
+  const [combustableFuelsPropLocal, setCombustableFuelsProp] = useStorageFloat("combustableFuelsPropLocal",
     Math.round((combustableFuelsProp + Number.EPSILON) * 100) / 100
   );
-  const [liquidsPropLocal, setLiquidsProp] = useStorageFloat(
+  const [liquidsPropLocal, setLiquidsProp] = useStorageFloat("iquidsPropLocal",
     Math.round((liquidsProp + Number.EPSILON) * 100) / 100
   );
-  const [solidsPropLocal, setSolidsProp] = useStorageFloat(
+  const [solidsPropLocal, setSolidsProp] = useStorageFloat("solidsPropLocal",
     Math.round((solidsProp + Number.EPSILON) * 100) / 100
   );
-  const [gasesPropLocal, setGasesProp] = useStorageFloat(
+  const [gasesPropLocal, setGasesProp] = useStorageFloat("gasesPropLocal",
     Math.round((gasesProp + Number.EPSILON) * 100) / 100
   );
-  const [districtValueLocal, setDistrictValue] = useStorageFloat(
+  const [districtValueLocal, setDistrictValue] = useStorageFloat("districtValueLocal",
     Math.round((districtValue + Number.EPSILON) * 100) / 100
   );
 
