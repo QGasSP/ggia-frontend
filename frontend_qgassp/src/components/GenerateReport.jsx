@@ -1,5 +1,8 @@
 import React, { useRef } from "react";
-import ReactToPrint, { PrintContextConsumer ,useReactToPrint} from "react-to-print";
+import ReactToPrint, {
+  PrintContextConsumer,
+  useReactToPrint,
+} from "react-to-print";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import { any } from "prop-types";
@@ -8,6 +11,7 @@ import { U2planner } from "./U2planner";
 import { LUCBarChart } from "./LUCBarChart";
 import { ConsumptionBaselineResults } from "./ConsumptionBaselineResults";
 import { ConsumptionResults } from "./ConsumptionResults";
+import { ConsumptionSummary } from "./ConsumptionSummary";
 
 export const GenerateReport = () => {
   const u1PlannerToPrint = useRef(null);
@@ -20,17 +24,26 @@ export const GenerateReport = () => {
   const year = parseInt(localStorage.getItem("year"));
   const baseline = JSON.parse(localStorage.getItem("baseline"));
   const population = parseInt(localStorage.getItem("population"));
-  const p1 = localStorage.getItem("p1");
-  const bL = localStorage.getItem("bL");
-  const bLTotalEmissions = localStorage.getItem("bLTotalEmissions");
-  const bLTransport = localStorage.getItem("bLTransport");
-  const p1TotalEmissions = localStorage.getItem("p1TotalEmissions");
-  const settlementDistribution = JSON.parse(localStorage.getItem("settlementDistribution"));
-  const landUseChangeResponse =  JSON.parse(localStorage.getItem("landUseChangeResponse"));
-  const emission =  JSON.parse(localStorage.getItem("emission"));
-  const projections =  JSON.parse(localStorage.getItem("projections"));
+  const p1 = JSON.parse(localStorage.getItem("p1"));
+  const bL = JSON.parse(localStorage.getItem("bL"));
+  const bLTotalEmissions = JSON.parse(localStorage.getItem("bLTotalEmissions"));
+  const bLTotalAreaEmissions = JSON.parse(
+    localStorage.getItem("bLTotalAreaEmissions")
+  );
+  const bLTransport = JSON.parse(localStorage.getItem("bLTransport"));
+  const p1TotalEmissions = JSON.parse(localStorage.getItem("p1TotalEmissions"));
+  const p1TotalAreaEmissions = JSON.parse(
+    localStorage.getItem("p1TotalAreaEmissions")
+  );
+  const settlementDistribution = JSON.parse(
+    localStorage.getItem("settlementDistribution")
+  );
+  const landUseChangeResponse = JSON.parse(
+    localStorage.getItem("landUseChangeResponse")
+  );
+  const emission = JSON.parse(localStorage.getItem("emission"));
+  const projections = JSON.parse(localStorage.getItem("projections"));
   const newDevelopment = JSON.parse(localStorage.getItem("newDevelopment"));
-
 
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
@@ -94,11 +107,11 @@ export const GenerateReport = () => {
                   />
                 )} 
  */}
-             {/*  {landUseChangeResponse !== null &&
+              {/*  {landUseChangeResponse !== null &&
                 Object.keys(landUseChangeResponse).length !== 0 && (
                   <LUCBarChart lucResultsToPrint={lucResultsToPrint} />
                 )} */}
- 
+
               {bL !== null &&
                 Object.keys(bL).length !== 0 &&
                 bLTotalEmissions !== null &&
@@ -107,7 +120,7 @@ export const GenerateReport = () => {
                     consumptionBaselineToPrint={consumptionBaselineToPrint}
                   />
                 )}
-             {/*  {bL !== null &&
+            {/*   {bL !== null &&
                 p1 !== null &&
                 bLTransport !== null &&
                 Object.keys(bL).length !== 0 &&
@@ -117,8 +130,14 @@ export const GenerateReport = () => {
                 p1TotalEmissions !== null &&
                 Object.keys(p1TotalEmissions).length !== 0 &&
                 Object.keys(bLTotalEmissions).length !== 0 && (
-                  <ConsumptionResults
+                  <ConsumptionSummary
                     consumptionResultsToPrint={consumptionResultsToPrint}
+                    p1TotalEmissions={p1TotalEmissions}
+                    bLTotalEmmissions={bLTotalEmissions}
+                    bLTotalAreaEmissions={bLTotalAreaEmissions}
+                    p1TotalAreaEmissions={p1TotalAreaEmissions}
+                    blTransport={bLTransport}
+                    p1={p1}
                   />
                 )} */}
             </>

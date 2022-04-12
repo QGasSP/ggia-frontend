@@ -16,7 +16,6 @@ import { ConsumptionSummary } from "../components/ConsumptionSummary";
 import { BuildingBaseline } from "../components/BuildingBaseline";
 import { BuildingBaselineCharts } from "../components/BuildingBaselineCharts";
 import { BuildingsNewUnits } from "../components/BuildingsNewUnits";
-import { BuldingsNewUnitsCharts } from "../components/BuldingsNewUnitsCharts";
 import { BuildingsPolicies } from "../components/BuildingsPolicies";
 import { BuildingsPoliciesCharts } from "../components/BuildingsPoliciesCharts";
 
@@ -41,7 +40,6 @@ export const AppRoutes = () => {
     { path: "buildingBaseline", element: <BuildingBaseline /> },
     { path: "buildingBaselineCharts", element: <BuildingBaselineCharts /> },
     { path: "buildingsNewUnits", element: <BuildingsNewUnits /> },
-    { path: "buildingsNewUnitsCharts", element: <BuldingsNewUnitsCharts /> },
     { path: "buildingsPolicies", element: <BuildingsPolicies /> },
     { path: "buildingsPoliciesCharts", element: <BuildingsPoliciesCharts /> },
   ]);
