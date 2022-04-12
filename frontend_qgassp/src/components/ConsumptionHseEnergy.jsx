@@ -13,8 +13,7 @@ import Alert from "@mui/material/Alert";
  * Consumption house energy UI component
  * @return {}
  */
-const ceYes = true;
-const ceNo = false;
+
 export const ConsumptionHseEnergy = ({
   districtProp,
   electricityHeatProp,
@@ -26,51 +25,51 @@ export const ConsumptionHseEnergy = ({
 }) => {
   const [nextCBTransport, setCbTransport] = useState(false);
 
-  const [policyYear, setPolicyYear] = useState(0);
-  const [newFloorArea, setNewFloorArea] = useState(0);
-  const [popSizePolicy, setPopulationSizePolicy] = useState(0);
+  const [policyYear, setPolicyYear] = useStorageBool("policyYear",0);
+  const [newFloorArea, setNewFloorArea] = useStorageInt("newFloorArea",0);
+  const [popSizePolicy, setPopulationSizePolicy] = useStorageInt("popSizePolicy",0);
 
-  const [effGain, setEffGain] = useState(false);
+  const [effGain, setEffGain] = useStorageBool("effGain",false);
   const handleEffGain = (e) => {
     e.target.checked;
     setEffGain(!effGain);
   };
-  const [effScaler, setEffScaler] = useState(0);
+  const [effScaler, setEffScaler] = useStorageInt("effScaler",0);
 
-  const [localElectricity, setLocalElectricity] = useState(false);
+  const [localElectricity, setLocalElectricity] = useStorageBool("localElectricity",false);
   const handleLocalElectricity = (e) => {
     e.target.checked;
     setLocalElectricity(!localElectricity);
   };
-  const [elType, setElectricityType] = useState(
+  const [elType, setElectricityType] = useStorageString("elType",
     "Electricity by solar photovoltaic"
   );
-  const [elScaler, setElectricityScaler] = useState(0);
+  const [elScaler, setElectricityScaler] = useStorageInt("elScaler",0);
 
-  const [sHeating, setHeatingShare] = useState(false);
+  const [sHeating, setHeatingShare] = useStorageBool("sHeating",false);
   const handleHeatingShare = (e) => {
     e.target.checked;
     setHeatingShare(!sHeating);
   };
-  const [districtPropLocal, setDistrictProp] = useState(
+  const [districtPropLocal, setDistrictProp] = useStorageFloat("districtPropLocal",
     Math.round((districtProp + Number.EPSILON) * 100) / 100
   );
-  const [electricityHeatPropLocal, setElectricityHeatProp] = useState(
+  const [electricityHeatPropLocal, setElectricityHeatProp] = useStorageFloat("electricityHeatPropLocal",
     Math.round((electricityHeatProp + Number.EPSILON) * 100) / 100
   );
-  const [combustableFuelsPropLocal, setCombustableFuelsProp] = useState(
+  const [combustableFuelsPropLocal, setCombustableFuelsProp] = useStorageFloat("combustableFuelsPropLocal",
     Math.round((combustableFuelsProp + Number.EPSILON) * 100) / 100
   );
-  const [liquidsPropLocal, setLiquidsProp] = useState(
+  const [liquidsPropLocal, setLiquidsProp] = useStorageFloat("liquidsPropLocal",
     Math.round((liquidsProp + Number.EPSILON) * 100) / 100
   );
-  const [solidsPropLocal, setSolidsProp] = useState(
+  const [solidsPropLocal, setSolidsProp] = useStorageFloat("solidsPropLocal",
     Math.round((solidsProp + Number.EPSILON) * 100) / 100
   );
-  const [gasesPropLocal, setGasesProp] = useState(
+  const [gasesPropLocal, setGasesProp] = useStorageFloat("gasesPropLocal",
     Math.round((gasesProp + Number.EPSILON) * 100) / 100
   );
-  const [districtValueLocal, setDistrictValue] = useState(
+  const [districtValueLocal, setDistrictValue] = useStorageFloat("districtValueLocal",
     Math.round((districtValue + Number.EPSILON) * 100) / 100
   );
 
@@ -502,12 +501,12 @@ export const ConsumptionHseEnergy = ({
         policyYear={policyYear}
         newFloorArea={newFloorArea}
         popSizePolicy={popSizePolicy}
-        effGain={effGain}
+        effGain={Boolean(effGain)}
         effScaler={effScaler}
-        localElectricity={localElectricity}
+        localElectricity={Boolean(localElectricity)}
         elType={elType}
         elScaler={elScaler}
-        sHeating={sHeating}
+        sHeating={Boolean(sHeating)}
         districtProp={parseFloat(districtPropLocal)}
         electricityHeatProp={parseFloat(electricityHeatPropLocal)}
         combustableFuelsProp={parseFloat(combustableFuelsPropLocal)}

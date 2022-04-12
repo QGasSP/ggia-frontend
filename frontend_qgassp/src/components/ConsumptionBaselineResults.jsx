@@ -20,6 +20,7 @@ import axios from "axios";
 import { Button } from "./Button";
 import { ConsumptionHseEnergy } from "./ConsumptionHseEnergy";
 import Alert from "@mui/material/Alert";
+import { useStorageFloat } from "../reducers/useStorage";
 
 const BarSeries = VerticalBarSeries;
 
@@ -34,20 +35,32 @@ export const ConsumptionBaselineResults = ({
   const year = parseInt(localStorage.getItem("year"));
   const region = localStorage.getItem("country");
   const popSize = parseInt(localStorage.getItem("population"));
-  const [bL, setBL] = useState({});
-  const [bLTotalEmissions, setBLTotalEmissions] = useState({});
 
-  const [districtProp, setDistrictProp] = useState(0);
-  const [electricityHeatProp, setElectricityHeatProp] = useState(0);
-  const [combustableFuelsProp, setCombustableFuelsProp] = useState(0);
-  const [liquidsProp, setLiquidProp] = useState(0);
-  const [solidsProp, setSolidsProp] = useState(0);
-  const [gasesProp, setGasesProp] = useState(0);
-  const [districtValue, setDistrictValue] = useState(0);
+  const [districtProp, setDistrictProp] = useStorageFloat("districtProp",parseFloat(0));
+  const [electricityHeatProp, setElectricityHeatProp] = useStorageFloat("electricityHeatProp",parseFloat(0));
+  const [combustableFuelsProp, setCombustableFuelsProp] = useStorageFloat("combustableFuelsProp",parseFloat(0));
+  const [liquidsProp, setLiquidProp] = useStorageFloat("liquidsProp",0);
+  const [solidsProp, setSolidsProp] = useStorageFloat("solidsProp",parseFloat(0));
+  const [gasesProp, setGasesProp] = useStorageFloat("gasesProp",parseFloat(0));
+  const [districtValue, setDistrictValue] = useStorageFloat("districtValue",parseFloat(0));
   const [isBaselineLoading, setIsLoadingBaseline] = useState(true);
   const [isResponseError, setIsResponseError] = useState(false);
   const [consumptionBlStatus, setConsumptionBlStatus] = useState("");
   const [errorBlConsumption, setBlConsumptionError] = useState("");
+
+ 
+ const [bL, setBL] = useState(() => {
+    const savedBase = localStorage.getItem("bL");
+    const initialValue = JSON.parse(savedBase);
+    return initialValue || {};
+  });
+
+  const [bLTotalEmissions, setBLTotalEmissions]= useState(() => {
+    const savedBase = localStorage.getItem("bLTotalEmissions");
+    const initialValue = JSON.parse(savedBase);
+    return initialValue || {};
+  });
+
 
   const dataBlHousingEnergy = [];
 

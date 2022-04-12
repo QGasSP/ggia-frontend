@@ -14,15 +14,6 @@ import urlPrefix from "../Config";
  */
 
 export const ConsumptionResults = ({ consumptionRequest }) => {
-  /* const [blTransport, setBlTransport] = useState({});
-  const [blTotalEmmissions, setBlTotalEmissions] = useState({});
-  const [bLTotalAreaEmissions, setBlTotalAreaEmissions] = useState({});
-  const [p1, setP1] = useState({});
-   const [p1TotalEmissions, setP1totalEmissions] = useState({});
-   const [p1TotalAreaEmissions, setP1totalAreaEmissions] = useState({});
-  
-  */
-
   const [blTransport, setBlTransport]= useState(() => {
     const savedBase = localStorage.getItem("blTransport");
     const initialValue = JSON.parse(savedBase);
@@ -125,6 +116,7 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
   useEffect(() => {
     localStorage.setItem("p1TotalEmissions", JSON.stringify(p1TotalEmissions));
   }, [p1TotalEmissions]);
+
   useEffect(() => {
     localStorage.setItem(
       "blTotalEmmissions",

@@ -7,6 +7,7 @@ import { ConsumptionResults } from "./ConsumptionResults";
 import PropTypes from "prop-types";
 import Tooltip from "@mui/material/Tooltip";
 import Alert from "@mui/material/Alert";
+import { useStorageBool, useStorageInt } from "../reducers/useStorage";
 /**
  * Consumption transport UI
  * @return {}
@@ -32,28 +33,28 @@ export const ConsumptionTransport = ({
 }) => {
   const [nextCBResults, setCbResults] = useState(false);
 
-  const [biofuelTakeup, setBiofuelTakeup] = useState(false);
+  const [biofuelTakeup, setBiofuelTakeup] = useStorageBool("biofuelTakeup",false);
   const handleBiofuelTakeup = (e) => {
     e.target.checked;
     setBiofuelTakeup(!biofuelTakeup);
   };
-  const [bioScaler, setBioScaler] = useState(0);
+  const [bioScaler, setBioScaler] = useStorageInt("bioScaler",0);
 
-  const [evTakeup, setEvTakeup] = useState(false);
+  const [evTakeup, setEvTakeup] = useStorageBool("evTakeup",false);
   const handleEvTakeup = (e) => {
     e.target.checked;
     setEvTakeup(!evTakeup);
   };
-  const [evScaler, setEvScaler] = useState(0);
+  const [evScaler, setEvScaler] = useStorageInt("evScaler",0);
 
-  const [modalShift, setModalShift] = useState(false);
+  const [modalShift, setModalShift] = useStorageBool("modalShift",false);
   const handleModalShift = (e) => {
     e.target.checked;
     setModalShift(!modalShift);
   };
-  const [msFuelScaler, setMsFuelScaler] = useState(0);
-  const [msVehScaler, setMsVehScaler] = useState(0);
-  const [msPtScaler, setMsPtScaler] = useState(0);
+  const [msFuelScaler, setMsFuelScaler] = useStorageInt("msFuelScaler",0);
+  const [msVehScaler, setMsVehScaler] = useStorageInt("msVehScaler",0);
+  const [msPtScaler, setMsPtScaler] = useStorageInt("msPtScaler",0);
 
   const country = localStorage.getItem("country");
   const year = parseInt(localStorage.getItem("year"));
@@ -64,7 +65,11 @@ export const ConsumptionTransport = ({
   const incomeChoice = parseInt(localStorage.getItem("incomeChoice"));
   const effScalerInitial = localStorage.getItem("effScalerInitial");
 
-  const [consumptionRequest, setConsumptionRequest] = useState({});
+  const [consumptionRequest, setConsumptionRequest] = useState(() => {
+    const savedCrequest = localStorage.getItem("consumptionRequest");
+    const valueStart = JSON.parse(savedCrequest);
+    return valueStart || {};
+  });
 
   const handleBioScaler = (e) => {
     e.preventDefault();
@@ -91,9 +96,10 @@ export const ConsumptionTransport = ({
     setMsPtScaler(Number(e.target.value));
   };
 
+  
   useEffect(() => {
-    localStorage.setItem("districtProp", districtProp);
-  }, [districtProp]);
+    localStorage.setItem("consumptionRequest", JSON.stringify(consumptionRequest));
+  }, [consumptionRequest]);
 
   const handleRequestObject = (e) => {
     e.preventDefault();
