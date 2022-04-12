@@ -27,7 +27,9 @@ export const GenerateReport = () => {
   const p1 = JSON.parse(localStorage.getItem("p1"));
   const bL = JSON.parse(localStorage.getItem("bL"));
   const blTransport = JSON.parse(localStorage.getItem("blTransport"));
-  const blTotalEmmissions = JSON.parse(localStorage.getItem("blTotalEmmissions"));
+  const blTotalEmmissions = JSON.parse(
+    localStorage.getItem("blTotalEmmissions")
+  );
   const bLTotalAreaEmissions = JSON.parse(
     localStorage.getItem("bLTotalAreaEmissions")
   );
@@ -58,7 +60,32 @@ export const GenerateReport = () => {
           <Chip label="Generate summary report" />
         </Divider>
       </div>
-
+       <br/>
+      <Divider textAlign="left" flexItem>
+        <b>Baseline</b>
+      </Divider>
+      <div>
+        <div>
+          <b>Country: </b>
+          {country}
+        </div>
+        <br/>
+        <div>
+          <b>Year: </b>
+          {year}
+        </div>
+        <br/>
+        <div>
+          <b>Population size: </b>
+          {population}
+        </div>
+        <br/>
+      </div>
+       <br/>
+      <Divider textAlign="left" flexItem>
+        <b>Transport Module inputs</b>
+      </Divider>
+      
       {country !== "" &&
         year > 0 &&
         population > 0 &&
@@ -69,9 +96,7 @@ export const GenerateReport = () => {
             <>
               <ReactToPrint content={() => any}>
                 <PrintContextConsumer>
-                  {({ handlePrint }) => (
-                    <button onClick={handlePrint}>Print</button>
-                  )}
+                  {({ handlePrint }) => <button onClick={handlePrint}></button>}
                 </PrintContextConsumer>
               </ReactToPrint>
 
@@ -112,7 +137,7 @@ export const GenerateReport = () => {
                   <LUCBarChart lucResultsToPrint={lucResultsToPrint} />
                 )} */}
 
-            {bL !== null &&
+              {bL !== null &&
                 Object.keys(bL).length !== 0 &&
                 blTotalEmmissions !== null &&
                 Object.keys(blTotalEmmissions).length !== 0 && (
@@ -120,8 +145,7 @@ export const GenerateReport = () => {
                     consumptionBaselineToPrint={consumptionBaselineToPrint}
                   />
                 )}
- 
-           
+
               {bL !== null &&
                 p1 !== null &&
                 blTransport !== null &&
