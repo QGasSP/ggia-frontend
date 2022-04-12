@@ -12,6 +12,7 @@ import { LUCBarChart } from "./LUCBarChart";
 import { ConsumptionBaselineResults } from "./ConsumptionBaselineResults";
 import { ConsumptionResults } from "./ConsumptionResults";
 import { ConsumptionSummary } from "./ConsumptionSummary";
+import { Button } from "./Button";
 
 export const GenerateReport = () => {
   const u1PlannerToPrint = useRef(null);
@@ -60,62 +61,70 @@ export const GenerateReport = () => {
           <Chip label="Generate summary report" />
         </Divider>
       </div>
-       <br/>
-      <Divider textAlign="left" flexItem>
-        <b>Baseline</b>
-      </Divider>
-      <div>
-        <div>
-          <b>Country: </b>
-          {country}
-        </div>
-        <br/>
-        <div>
-          <b>Year: </b>
-          {year}
-        </div>
-        <br/>
-        <div>
-          <b>Population size: </b>
-          {population}
-        </div>
-        <br/>
-      </div>
-       <br/>
-      <Divider textAlign="left" flexItem>
-        <b>Transport Module inputs</b>
-      </Divider>
-      
-      {country !== "" &&
-        year > 0 &&
-        population > 0 &&
-        baseline !== null &&
-        baseline !== undefined &&
-        Object.keys(baseline).length !== 0 && (
+      <br />
+      <ReactToPrint
+        trigger={() => (
           <div>
-            <>
-              <ReactToPrint content={() => any}>
-                <PrintContextConsumer>
-                  {({ handlePrint }) => <button onClick={handlePrint}></button>}
-                </PrintContextConsumer>
-              </ReactToPrint>
+          <Button
+          size="small"
+          value="print"
+          label="Print summary report"
+          primary
+        />
+        </div>
+        )}
+        content={() => componentRef.current}
+      />
+      <div ref={componentRef}>
+        <Divider textAlign="left" flexItem>
+          <b>Baseline</b>
+        </Divider>
+        <div>
+          <div>
+            <b>Country: </b>
+            {country}
+          </div>
+          <br />
+          <div>
+            <b>Year: </b>
+            {year}
+          </div>
+          <br />
+          <div>
+            <b>Population size: </b>
+            {population}
+          </div>
+          <br />
+        </div>
+        <br />
+        <Divider textAlign="left" flexItem>
+          <b>Transport Module inputs</b>
+        </Divider>
 
-              {settlementDistribution !== null &&
-                settlementDistribution !== undefined &&
-                projections !== undefined &&
-                projections !== null &&
-                Object.keys(projections).length !== 0 &&
-                Object.keys(settlementDistribution).length !== 0 && (
-                  <U1planner
-                    u1PlannerToPrint={u1PlannerToPrint}
-                    population={population}
-                    settlementDistribution={settlementDistribution}
-                    country={country}
-                    year={year}
-                  />
-                )}
+        {country !== "" &&
+          year > 0 &&
+          population > 0 &&
+          baseline !== null &&
+          baseline !== undefined &&
+          Object.keys(baseline).length !== 0 && (
+            <div>
+              <>
+                {settlementDistribution !== null &&
+                  settlementDistribution !== undefined &&
+                  projections !== undefined &&
+                  projections !== null &&
+                  Object.keys(projections).length !== 0 &&
+                  Object.keys(settlementDistribution).length !== 0 && (
+                    <U1planner
+                      u1PlannerToPrint={u1PlannerToPrint}
+                      population={population}
+                      settlementDistribution={settlementDistribution}
+                      country={country}
+                      year={year}
+                    />
+                  )}
 
-              {/* {newDevelopment !== undefined &&
+                {/* {newDevelopment !== undefined &&
                 newDevelopment !== null &&
                 projections !== undefined &&
                 projections !== null &&
@@ -132,47 +141,48 @@ export const GenerateReport = () => {
                   />
                 )} 
  */}
-              {/*  {landUseChangeResponse !== null &&
+                {/*  {landUseChangeResponse !== null &&
                 Object.keys(landUseChangeResponse).length !== 0 && (
                   <LUCBarChart lucResultsToPrint={lucResultsToPrint} />
                 )} */}
 
-              {bL !== null &&
-                Object.keys(bL).length !== 0 &&
-                blTotalEmmissions !== null &&
-                Object.keys(blTotalEmmissions).length !== 0 && (
-                  <ConsumptionBaselineResults
-                    consumptionBaselineToPrint={consumptionBaselineToPrint}
-                  />
-                )}
+                {bL !== null &&
+                  Object.keys(bL).length !== 0 &&
+                  blTotalEmmissions !== null &&
+                  Object.keys(blTotalEmmissions).length !== 0 && (
+                    <ConsumptionBaselineResults
+                      consumptionBaselineToPrint={consumptionBaselineToPrint}
+                    />
+                  )}
 
-              {bL !== null &&
-                p1 !== null &&
-                blTransport !== null &&
-                bLTotalAreaEmissions !== null &&
-                p1TotalEmissions !== null &&
-                bLTotalAreaEmissions !== null &&
-                p1TotalEmissions !== null &&
-                Object.keys(bL).length !== 0 &&
-                Object.keys(p1).length !== 0 &&
-                Object.keys(blTransport).length !== 0 &&
-                Object.keys(p1TotalAreaEmissions).length !== 0 &&
-                Object.keys(bLTotalAreaEmissions).length !== 0 &&
-                Object.keys(p1TotalEmissions).length !== 0 &&
-                Object.keys(blTotalEmmissions).length !== 0 && (
-                  <ConsumptionSummary
-                    consumptionResultsToPrint={consumptionResultsToPrint}
-                    p1TotalEmissions={p1TotalEmissions}
-                    blTotalEmmissions={blTotalEmmissions}
-                    bLTotalAreaEmissions={bLTotalAreaEmissions}
-                    p1TotalAreaEmissions={p1TotalAreaEmissions}
-                    blTransport={blTransport}
-                    p1={p1}
-                  />
-                )}
-            </>
-          </div>
-        )}
+                {bL !== null &&
+                  p1 !== null &&
+                  blTransport !== null &&
+                  bLTotalAreaEmissions !== null &&
+                  p1TotalEmissions !== null &&
+                  bLTotalAreaEmissions !== null &&
+                  p1TotalEmissions !== null &&
+                  Object.keys(bL).length !== 0 &&
+                  Object.keys(p1).length !== 0 &&
+                  Object.keys(blTransport).length !== 0 &&
+                  Object.keys(p1TotalAreaEmissions).length !== 0 &&
+                  Object.keys(bLTotalAreaEmissions).length !== 0 &&
+                  Object.keys(p1TotalEmissions).length !== 0 &&
+                  Object.keys(blTotalEmmissions).length !== 0 && (
+                    <ConsumptionSummary
+                      consumptionResultsToPrint={consumptionResultsToPrint}
+                      p1TotalEmissions={p1TotalEmissions}
+                      blTotalEmmissions={blTotalEmmissions}
+                      bLTotalAreaEmissions={bLTotalAreaEmissions}
+                      p1TotalAreaEmissions={p1TotalAreaEmissions}
+                      blTransport={blTransport}
+                      p1={p1}
+                    />
+                  )}
+              </>
+            </div>
+          )}
+      </div>
     </article>
   );
 };
