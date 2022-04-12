@@ -24,53 +24,53 @@ export const ConsumptionHseEnergy = ({
   gasesProp,
   districtValue,
 }) => {
-  const [nextCBTransport, setCbTransport] = useStorageBool("nextCBTransport",false);
+  const [nextCBTransport, setCbTransport] = useState(false);
 
-  const [policyYear, setPolicyYear] = useStorageInt("policyYear",0);
-  const [newFloorArea, setNewFloorArea] = useStorageInt("newFloorArea", 0);
-  const [popSizePolicy, setPopulationSizePolicy] = useStorageInt("popSizePolicy",0);
+  const [policyYear, setPolicyYear] = useState(0);
+  const [newFloorArea, setNewFloorArea] = useState(0);
+  const [popSizePolicy, setPopulationSizePolicy] = useState(0);
 
-  const [effGain, setEffGain] = useStorageBool("effGain",false);
+  const [effGain, setEffGain] = useState(false);
   const handleEffGain = (e) => {
     e.target.checked;
     setEffGain(!effGain);
   };
-  const [effScaler, setEffScaler] = useStorageInt("effScaler",0);
+  const [effScaler, setEffScaler] = useState(0);
 
-  const [localElectricity, setLocalElectricity] = useStorageBool("localElectricity",false);
+  const [localElectricity, setLocalElectricity] = useState(false);
   const handleLocalElectricity = (e) => {
     e.target.checked;
     setLocalElectricity(!localElectricity);
   };
-  const [elType, setElectricityType] = useStorageString(
+  const [elType, setElectricityType] = useState(
     "Electricity by solar photovoltaic"
   );
-  const [elScaler, setElectricityScaler] = useStorageInt("elScaler",0);
+  const [elScaler, setElectricityScaler] = useState(0);
 
-  const [sHeating, setHeatingShare] = useStorageBool("sHeating",false);
+  const [sHeating, setHeatingShare] = useState(false);
   const handleHeatingShare = (e) => {
     e.target.checked;
     setHeatingShare(!sHeating);
   };
-  const [districtPropLocal, setDistrictProp] = useStorageFloat("districtPropLocal",
+  const [districtPropLocal, setDistrictProp] = useState(
     Math.round((districtProp + Number.EPSILON) * 100) / 100
   );
-  const [electricityHeatPropLocal, setElectricityHeatProp] = useStorageFloat("electricityHeatPropLocal",
+  const [electricityHeatPropLocal, setElectricityHeatProp] = useState(
     Math.round((electricityHeatProp + Number.EPSILON) * 100) / 100
   );
-  const [combustableFuelsPropLocal, setCombustableFuelsProp] = useStorageFloat("combustableFuelsPropLocal",
+  const [combustableFuelsPropLocal, setCombustableFuelsProp] = useState(
     Math.round((combustableFuelsProp + Number.EPSILON) * 100) / 100
   );
-  const [liquidsPropLocal, setLiquidsProp] = useStorageFloat("iquidsPropLocal",
+  const [liquidsPropLocal, setLiquidsProp] = useState(
     Math.round((liquidsProp + Number.EPSILON) * 100) / 100
   );
-  const [solidsPropLocal, setSolidsProp] = useStorageFloat("solidsPropLocal",
+  const [solidsPropLocal, setSolidsProp] = useState(
     Math.round((solidsProp + Number.EPSILON) * 100) / 100
   );
-  const [gasesPropLocal, setGasesProp] = useStorageFloat("gasesPropLocal",
+  const [gasesPropLocal, setGasesProp] = useState(
     Math.round((gasesProp + Number.EPSILON) * 100) / 100
   );
-  const [districtValueLocal, setDistrictValue] = useStorageFloat("districtValueLocal",
+  const [districtValueLocal, setDistrictValue] = useState(
     Math.round((districtValue + Number.EPSILON) * 100) / 100
   );
 
@@ -508,13 +508,13 @@ export const ConsumptionHseEnergy = ({
         elType={elType}
         elScaler={elScaler}
         sHeating={sHeating}
-        districtProp={districtPropLocal}
-        electricityHeatProp={electricityHeatPropLocal}
-        combustableFuelsProp={combustableFuelsPropLocal}
-        liquidsProp={liquidsPropLocal}
-        solidsProp={solidsPropLocal}
-        gasesProp={gasesPropLocal}
-        districtValue={districtValueLocal}
+        districtProp={parseFloat(districtPropLocal)}
+        electricityHeatProp={parseFloat(electricityHeatPropLocal)}
+        combustableFuelsProp={parseFloat(combustableFuelsPropLocal)}
+        liquidsProp={parseFloat(liquidsPropLocal)}
+        solidsProp={parseFloat(solidsPropLocal)}
+        gasesProp={parseFloat(gasesPropLocal)}
+        districtValue={parseFloat(districtValueLocal)}
       />
     );
   }

@@ -14,12 +14,51 @@ import urlPrefix from "../Config";
  */
 
 export const ConsumptionResults = ({ consumptionRequest }) => {
-  const [blTransport, setBlTransport] = useState({});
+  /* const [blTransport, setBlTransport] = useState({});
   const [blTotalEmmissions, setBlTotalEmissions] = useState({});
   const [bLTotalAreaEmissions, setBlTotalAreaEmissions] = useState({});
   const [p1, setP1] = useState({});
-  const [p1TotalEmissions, setP1totalEmissions] = useState({});
-  const [p1TotalAreaEmissions, setP1totalAreaEmissions] = useState({});
+   const [p1TotalEmissions, setP1totalEmissions] = useState({});
+   const [p1TotalAreaEmissions, setP1totalAreaEmissions] = useState({});
+  
+  */
+
+  const [blTransport, setBlTransport]= useState(() => {
+    const savedBase = localStorage.getItem("blTransport");
+    const initialValue = JSON.parse(savedBase);
+    return initialValue || {};
+  });
+
+  const [blTotalEmmissions, setBlTotalEmissions]= useState(() => {
+    const savedBase = localStorage.getItem("blTotalEmmissions");
+    const initialValue = JSON.parse(savedBase);
+    return initialValue || {};
+  });
+
+  const [bLTotalAreaEmissions, setBlTotalAreaEmissions]= useState(() => {
+    const savedBase = localStorage.getItem("bLTotalAreaEmissions");
+    const initialValue = JSON.parse(savedBase);
+    return initialValue || {};
+  });
+
+  const [p1, setP1] = useState(() => {
+    const savedBase = localStorage.getItem("p1");
+    const initialValue = JSON.parse(savedBase);
+    return initialValue || {};
+  });
+ 
+  const  [p1TotalEmissions, setP1totalEmissions] = useState(() => {
+    const savedBase = localStorage.getItem("p1TotalEmissions");
+    const initialValue = JSON.parse(savedBase);
+    return initialValue || {};
+  });
+
+  const   [p1TotalAreaEmissions, setP1totalAreaEmissions]  = useState(() => {
+    const savedBase = localStorage.getItem("p1TotalAreaEmissions");
+    const initialValue = JSON.parse(savedBase);
+    return initialValue || {};
+  });
+
   const [isLoading, setIsLoading] = useState(true);
   /* const [bLMax, setBlYMax] = useState(false);
   const [p1TotalAreaEmissionsMax, setP1YMax] = useState(false); */
