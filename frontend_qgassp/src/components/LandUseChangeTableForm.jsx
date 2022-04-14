@@ -16,8 +16,16 @@ import Alert from "@mui/material/Alert";
  */
 
 export const LandUseChangeTableForm = () => {
-  const year = parseInt(localStorage.getItem("year"));
-  const country = localStorage.getItem("country");
+  const [year, setYear] = useState(() => {
+    const savedYear = localStorage.getItem("year");
+    const initialValue = JSON.parse(savedYear);
+    return initialValue || {};
+  });
+  const [country, setCountry] = useState(() => {
+    const savedCountry = localStorage.getItem("country");
+    const initialValue = JSON.parse(savedCountry);
+    return initialValue || {};
+  });
   // to Forest vars
   // #region
   const [cropToForest, setCropToForest] = useState(0);
@@ -274,7 +282,16 @@ export const LandUseChangeTableForm = () => {
       settlementsToOtherOrganic
   );
   const [lucBarChart, setLUCBarChart] = useState(false);
-  const [landUseChangeResponse, setLandUseChangeResponse] = useState("");
+  const [landUseChangeResponse, setLandUseChangeResponse] = useState(() => {
+    const savedLuc = localStorage.getItem("landUseChangeResponse");
+    const initialValue = JSON.parse(savedLuc);
+    return initialValue || {};
+  });
+  const [landUseChangeRequest, setLandUseChangeRequest] = useState(() => {
+    const savedRequest = localStorage.getItem("landUseChangeRequest");
+    const initialValue = JSON.parse(savedRequest);
+    return initialValue || {};
+  });
   const [nextBtnStyles, setNextBtnStyle] = useState({
     display: "none",
   });
@@ -429,6 +446,8 @@ export const LandUseChangeTableForm = () => {
       landUseChange,
       policyStartYear,
     };
+
+    localStorage.setItem("landUseChangeRequest", JSON.stringify(rawData));
     const headers = {
       "Access-Control-Allow-Origin": "*",
       "Content-type": "application/json",
