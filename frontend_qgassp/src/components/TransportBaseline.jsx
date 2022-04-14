@@ -38,7 +38,7 @@ export const TransportBaseline = () => {
   const [rural, setRural] = useStorageFloat("rural", parseFloat(0));
   const [total, setTotal] = useStorageFloat(
     "total",
-    metropolitanCenter + urban + suburban + town + rural
+   parseFloat(metropolitanCenter) + parseFloat(urban) + parseFloat(suburban) + parseFloat(town) + parseFloat(rural)
   );
 
   // const [settlementDistribution, setSettlementDistribution] = useState({});
@@ -106,7 +106,7 @@ export const TransportBaseline = () => {
   };
 
   const getCurrentTotal = () => {
-    setTotal(metropolitanCenter + urban + suburban + town + rural);
+    setTotal(parseFloat(metropolitanCenter) + parseFloat(urban) + parseFloat(suburban) + parseFloat(town) + parseFloat(rural));
   };
 
   useEffect(() => {
