@@ -33,11 +33,21 @@ const buildingLabels = [
 ];
 export const BuildingBaseline = () => {
   // const year = parseInt(localStorage.getItem("year"));
-  const year = 2023;
-  const country = "Latvia";
-  const population = 15000;
-  // const country = localStorage.getItem("country");
-  // const population = localStorage.getItem("population");
+  const [year, setYear] = useState(() => {
+    const savedYear = localStorage.getItem("year");
+    const initialValue = JSON.parse(savedYear);
+    return initialValue || {};
+  });
+  const [country, setCountry] = useState(() => {
+    const savedCountry = localStorage.getItem("country");
+    const initialValue = JSON.parse(savedCountry);
+    return initialValue || {};
+  });
+  const [population, setPopulation] = useState(() => {
+    const savedPopulation = localStorage.getItem("population");
+    const initialValue = JSON.parse(savedPopulation);
+    return initialValue || {};
+  });
 
   // residential units
   // #region
@@ -73,9 +83,11 @@ export const BuildingBaseline = () => {
   const [commercial, setCommercial] = useState({});
   const [buildingsBaselineCharts, setBuildingsBaselineCharts] = useState(false);
   const [errorBuildBaseline, setErrorBuildBaseline] = useState("");
-  const [buildingsBaselineResponse, setBuildingsBaselineResponse] = useState(
-    {}
-  );
+  const [buildingsBaselineResponse, setBuildingsBaselineResponse] = useState(() => {
+    const savedBasline = localStorage.getItem("buildingsBaselineResponse");
+    const initialValue = JSON.parse(savedBasline);
+    return initialValue || {};
+  });
   const setBuildingsResponse = (response) => {
     setBuildingsBaselineResponse(response.data);
   };
@@ -153,6 +165,10 @@ export const BuildingBaseline = () => {
       residential,
       commercial,
     };
+    localStorage.setItem(
+      "buildingsBaselineRequest",
+      JSON.stringify(baseline)
+    );
     const headers = {
       "Access-Control-Allow-Origin": "*",
       "Content-type": "application/json",
@@ -542,8 +558,6 @@ export const BuildingBaseline = () => {
       <BuildingBaselineCharts
         country={country}
         year={year}
-        residential={residential}
-        commercial={commercial}
         buildingsBaselineResponse={buildingsBaselineResponse}
       />
     );

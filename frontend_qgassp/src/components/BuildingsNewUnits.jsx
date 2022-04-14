@@ -764,7 +764,11 @@ export const BuildingsNewUnits = ({
   // #endregion
 
   const [errorBuildNewUnits, setErrorBuildNewUnits] = useState("");
-  const [newConstructionResponse, setNewConstructionResponse] = useState({});
+  const [newConstructionResponse, setNewConstructionResponse] = useState(() => {
+    const savedNew = localStorage.getItem("newConstructionResponse");
+    const initialValue = JSON.parse(savedNew);
+    return initialValue || {};
+  });
   const [moveToPolicies, setMoveToPolicies] = useState(false);
 
   const setBuildingsNewUnitsResponse = (response) => {
@@ -941,6 +945,10 @@ export const BuildingsNewUnits = ({
       newConstruction,
       densification
     }
+    localStorage.setItem(
+      "NewConstructionRequest",
+      JSON.stringify(rawData)
+    );
     const headers = {
       "Access-Control-Allow-Origin": "*",
       "Content-type": "application/json",
@@ -974,7 +982,12 @@ export const BuildingsNewUnits = ({
     // };
     setMoveToPolicies(true);
   };
-  
+  useEffect(() => {
+    localStorage.setItem(
+      "newConstructionResponse",
+      JSON.stringify(newConstructionResponse)
+    );
+  }, [newConstructionResponse]);
   if (moveToPolicies === false) {
     return (
       <article>

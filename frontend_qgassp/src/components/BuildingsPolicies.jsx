@@ -895,7 +895,7 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
   // #endregion
 
   const [policiesCharts, setPoliciesCharts] = useState(false);
-  const policyQuantificationResponse = {
+  const policyQuantificationResponseDummy = {
     2022: {
       apartments: 2000,
       terraced: 2000,
@@ -1245,6 +1245,11 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
       warehouses: 800,
     }
   };
+  const [policyQuantificationResponse, setPolicyQuantificationResponse] = useState(() => {
+    const savedBasline = localStorage.getItem("policyQuantificationResponse");
+    const initialValue = JSON.parse(savedBasline);
+    return initialValue || {};
+  });
   const optionsIndicators = ["A", "B", "C", "D", "E", "F", "G"];
   const optionsYear = [];
   for (let i = year; i < 2051; i++) optionsYear.push(i);
@@ -1386,6 +1391,10 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
       baseline,
       policyQuantification
     };
+    localStorage.setItem(
+      "policyQuantificationRequest",
+      JSON.stringify(rawData)
+    );
     const headers = {
       "Access-Control-Allow-Origin": "*",
       "Content-type": "application/json",
@@ -1396,7 +1405,7 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
     //   rawData,
     //   headers
     // )
-    // .then((response) => setPolicyQuantificationResponse(response.data))
+    // .then((response) => setpolicyQuantificationResponseDummy(response.data))
     // .catch((error) => {
     //   setErrorBuildBaseline({ errorMessage: error.message });
     //   // eslint-disable-next-line no-console
@@ -1404,6 +1413,12 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
     // });
     setPoliciesCharts(true);
   };
+  useEffect(() => {
+    localStorage.setItem(
+      "policyQuantificationResponse",
+      JSON.stringify(policyQuantificationResponse)
+    );
+  }, [policyQuantificationResponse]);
 
   if (policiesCharts === false) {
     return (
@@ -3215,7 +3230,7 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
         country={country}
         baseline={baseline}
         newConstructionResponse={newConstructionResponse}
-        policyQuantificationResponse={policyQuantificationResponse}
+        policyQuantificationResponseDummy={policyQuantificationResponseDummy}
       />
     );
   }

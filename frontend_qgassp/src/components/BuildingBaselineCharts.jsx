@@ -26,30 +26,11 @@ const BarSeries = VerticalBarSeries;
 export const BuildingBaselineCharts = ({
   country,
   year,
-  residential,
-  commercial,
   baseline,
 }) => {
-  //  const [errorBBC, setErrorBBC] = useState("");
-  //  const [emissionResidential, setEmissionResidential] = useState("");
-  //  const [emissionCommercial, setEmissionCommercial] = useState("");
-  //  const [emissionsByEndUse, setEmissionsByEndUse] = useState("");
 
-  //    const [baseline, setBaseline] = useState({});
   const [nextNewUnitsView, setNextNewUnitsView] = useState(false);
-
-  //  useEffect(() => {
-  //    localStorage.setItem("emissionResidential", JSON.stringify(emissionResidential));
-  //  }, [emissionResidential]);
-
-  //  useEffect(() => {
-  //    localStorage.setItem("emissionCommercial", JSON.stringify(emissionCommercial));
-  //  }, [emissionCommercial]);
-
-  //  useEffect(() => {
-  //   localStorage.setItem("emissionsByEndUse", JSON.stringify(emissionsByEndUse));
-  // }, [emissionsByEndUse]);
-
+// dummy reponse object
   const response = {
     status: "success",
     data: {
@@ -403,7 +384,6 @@ export const BuildingBaselineCharts = ({
       },
     },
   };
-
   baseline = response.data;
 
   // #region data distribution
@@ -809,16 +789,12 @@ export const BuildingBaselineCharts = ({
 };
 
 BuildingBaselineCharts.propTypes = {
-  residential: PropTypes.object.isRequired,
-  commercial: PropTypes.object.isRequired,
   baseline: PropTypes.object.isRequired,
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
 };
 
 BuildingBaselineCharts.defaultProps = {
-  residential: {},
-  commercial: {},
   baseline: {},
   year: 2030,
   country: "Estonia",

@@ -287,11 +287,11 @@ export const LandUseChangeTableForm = () => {
     const initialValue = JSON.parse(savedLuc);
     return initialValue || {};
   });
-  const [landUseChangeRequest, setLandUseChangeRequest] = useState(() => {
-    const savedRequest = localStorage.getItem("landUseChangeRequest");
-    const initialValue = JSON.parse(savedRequest);
-    return initialValue || {};
-  });
+  // const [landUseChangeRequest, setLandUseChangeRequest] = useState(() => {
+  //   const savedRequest = localStorage.getItem("landUseChangeRequest");
+  //   const initialValue = JSON.parse(savedRequest);
+  //   return initialValue || {};
+  // });
   const [nextBtnStyles, setNextBtnStyle] = useState({
     display: "none",
   });
