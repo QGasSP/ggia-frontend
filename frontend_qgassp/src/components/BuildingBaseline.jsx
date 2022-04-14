@@ -32,21 +32,17 @@ const buildingLabels = [
   { title: "warehouses", color: "#008f75" },
 ];
 export const BuildingBaseline = () => {
-  // const year = parseInt(localStorage.getItem("year"));
   const [year, setYear] = useState(() => {
-    const savedYear = localStorage.getItem("year");
-    const initialValue = JSON.parse(savedYear);
-    return initialValue || {};
+    const savedYear = parseInt(localStorage.getItem("year"));
+    return savedYear || 2022 ;
   });
   const [country, setCountry] = useState(() => {
     const savedCountry = localStorage.getItem("country");
-    const initialValue = JSON.parse(savedCountry);
-    return initialValue || {};
+    return savedCountry || '';
   });
   const [population, setPopulation] = useState(() => {
-    const savedPopulation = localStorage.getItem("population");
-    const initialValue = JSON.parse(savedPopulation);
-    return initialValue || {};
+    const savedPopulation = parseInt(localStorage.getItem("population"));
+    return savedPopulation || 0;
   });
 
   // residential units

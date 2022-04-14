@@ -17,14 +17,12 @@ import Alert from "@mui/material/Alert";
 
 export const LandUseChangeTableForm = () => {
   const [year, setYear] = useState(() => {
-    const savedYear = localStorage.getItem("year");
-    const initialValue = JSON.parse(savedYear);
-    return initialValue || {};
+    const savedYear = parseInt(localStorage.getItem("year"));
+    return savedYear || 2022 ;
   });
   const [country, setCountry] = useState(() => {
     const savedCountry = localStorage.getItem("country");
-    const initialValue = JSON.parse(savedCountry);
-    return initialValue || {};
+    return savedCountry || '';
   });
   // to Forest vars
   // #region
