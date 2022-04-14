@@ -3,7 +3,7 @@ import * as HeaderStories from "./Header.stories";
 import React from "react";
 
 export default {
-  title: '"QgasSP/NewResidents',
+  title: '"QgasSP/Transport_module/NewResidents',
   component: NewResidents,
   args: {},
 };

@@ -2,7 +2,7 @@ import React from "react";
 import { U3planner } from "../components/U3planner";
 
 export default {
-  title: "QgasSP/U3 POLICY QUANTIFICATION",
+  title: "QgasSP/Transport_module/U3_POLICY_QUANTIFICATION",
   component: U3planner,
 };
 

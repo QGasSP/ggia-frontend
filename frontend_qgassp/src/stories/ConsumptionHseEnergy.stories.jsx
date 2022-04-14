@@ -2,7 +2,7 @@ import { ConsumptionHseEnergy } from "../components/ConsumptionHseEnergy";
 import React from "react";
 
 export default {
-  title: '"QgasSP/ConsumptionHseEnergy',
+  title: '"QgasSP/Consumption_Module/ConsumptionHseEnergy',
   component: ConsumptionHseEnergy,
   args: {},
 };

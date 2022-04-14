@@ -2,7 +2,7 @@ import { ConsumptionBaseline } from "../components/ConsumptionBaseline";
 import React from "react";
 
 export default {
-  title: '"QgasSP/ConsumptionBaseline',
+  title: '"QgasSP/Consumption_Module/ConsumptionBaseline',
   component: ConsumptionBaseline,
   args: {},
 };

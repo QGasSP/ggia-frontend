@@ -2,7 +2,7 @@ import React from "react";
 import { TransportBaseline } from "../components/TransportBaseline";
 
 export default {
-  title: '"QgasSP/TransportBaseline',
+  title: '"QgasSP/Transport_module/TransportBaseline',
   component: TransportBaseline,
   args: {},
 };

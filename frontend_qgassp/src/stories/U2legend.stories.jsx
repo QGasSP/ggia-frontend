@@ -2,7 +2,7 @@ import { U2legend } from "../components/U2legend";
 import React from "react";
 
 export default {
-  title: '"QgasSP/U2legend',
+  title: '"QgasSP/Transport_module/U2legend',
   component: U2legend,
   args: {},
 };

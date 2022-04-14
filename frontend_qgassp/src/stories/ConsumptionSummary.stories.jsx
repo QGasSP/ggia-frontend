@@ -2,7 +2,7 @@ import { ConsumptionSummary } from "../components/ConsumptionSummary";
 import React from "react";
 
 export default {
-  title: '"QgasSP/ConsumptionSummary',
+  title: '"QgasSP/Consumption_Module/ConsumptionSummary',
   component: ConsumptionSummary,
   args: {},
 };

@@ -4,7 +4,7 @@ import { U1planner } from "../components/U1planner";
 import * as HeaderStories from "./Header.stories";
 
 export default {
-  title: "QgasSP/U1 PLANNER",
+  title: "QgasSP/Transport_module/U1_PLANNER",
   component: U1planner,
 };
 

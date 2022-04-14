@@ -2,7 +2,7 @@ import { LineLegend } from "../components/LineLegend";
 import React from "react";
 
 export default {
-  title: '"QgasSP/LineLegend',
+  title: '"QgasSP/Consumption_Module/LineLegend',
   component: LineLegend,
   args: {},
 };

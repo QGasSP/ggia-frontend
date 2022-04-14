@@ -2,7 +2,7 @@ import { ConsumptionTransport } from "../components/ConsumptionTransport";
 import React from "react";
 
 export default {
-  title: '"QgasSP/ConsumptionTransport',
+  title: '"QgasSP/Consumption_Module/ConsumptionTransport',
   component: ConsumptionTransport,
   args: {},
 };
