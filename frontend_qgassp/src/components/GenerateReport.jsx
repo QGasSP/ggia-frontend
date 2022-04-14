@@ -10,9 +10,11 @@ import { U1planner } from "./U1planner";
 import { U2planner } from "./U2planner";
 import { LUCBarChart } from "./LUCBarChart";
 import { ConsumptionBaselineResults } from "./ConsumptionBaselineResults";
-import { ConsumptionResults } from "./ConsumptionResults";
 import { ConsumptionSummary } from "./ConsumptionSummary";
 import { Button } from "./Button";
+
+
+// https://github.com/gregnb/react-to-print/issues/184
 
 export const GenerateReport = () => {
   const u1PlannerToPrint = useRef(null);
@@ -65,16 +67,17 @@ export const GenerateReport = () => {
       <ReactToPrint
         trigger={() => (
           <div>
-          <Button
-          size="small"
-          value="print"
-          label="Print summary report"
-          primary
-        />
-        </div>
+            <Button
+              size="small"
+              value="print"
+              label="Print summary report"
+              primary
+            />
+          </div>
         )}
         content={() => componentRef.current}
       />
+
       <div ref={componentRef}>
         <Divider textAlign="left" flexItem>
           <b>Baseline</b>
