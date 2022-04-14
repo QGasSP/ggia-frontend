@@ -7,6 +7,7 @@ import { BuildingBaseline } from "./BuildingBaseline";
 import { ConsumptionBaseline } from "./ConsumptionBaseline";
 import { TransportBaseline } from "./TransportBaseline";
 import { GenerateReport } from "./GenerateReport";
+import { StartPage } from "./StartPage";
 /* import { TransportBaseline } from "./TransportBaseline";
  */
 export const TabModules = () => {
@@ -28,7 +29,7 @@ export const TabModules = () => {
     // toggleTab(7);
     window.open(ggiaGuideUrl, "_blank");
   };
-  if (population === 0 && year === 0 && country === "" ) {
+  if (population === 0 && year === 0 && country === "") {
     return (
       <>
         <ModuleHeader />
@@ -73,6 +74,7 @@ export const TabModules = () => {
             </button>
             <button
               className={toggleState === 6 ? "tabs active-tabs" : "tabs"}
+              /* onClick={() => toggleTab(6)} */
               onClick={openGuide}
               id="user_guide"
             >
@@ -80,6 +82,7 @@ export const TabModules = () => {
             </button>
             <button
               className={toggleState === 7 ? "tabs active-tabs" : "tabs"}
+              onClick={() => toggleTab(7)}
               id="generate_report"
             >
               Generate report
@@ -89,12 +92,18 @@ export const TabModules = () => {
         <div className="content-tabs">
           <>
             {toggleState == 1 && <Welcome />}
+            {toggleState == 2 && <StartPage />}
+            {toggleState == 3 && <StartPage />}
             {toggleState == 4 && <BuildingBaseline />}
+            {toggleState == 5 && <StartPage />}
+            {/*   {toggleState == 6 && <Report />} */}
+            {toggleState == 7 && <GenerateReport />}
           </>
         </div>
       </>
     );
   }
+
 
   return (
     <>

@@ -13,7 +13,6 @@ import { ConsumptionBaselineResults } from "./ConsumptionBaselineResults";
 import { ConsumptionSummary } from "./ConsumptionSummary";
 import { Button } from "./Button";
 
-
 // https://github.com/gregnb/react-to-print/issues/184
 
 export const GenerateReport = () => {
@@ -63,6 +62,7 @@ export const GenerateReport = () => {
           <Chip label="Generate summary report" />
         </Divider>
       </div>
+      {country !== "" && year > 0 && population > 0 && <></>}
       <br />
       <ReactToPrint
         trigger={() => (
@@ -82,26 +82,30 @@ export const GenerateReport = () => {
         <Divider textAlign="left" flexItem>
           <b>Baseline</b>
         </Divider>
-        <div>
-          <div>
-            <b>Country: </b>
-            {country}
-          </div>
-          <br />
-          <div>
-            <b>Year: </b>
-            {year}
-          </div>
-          <br />
-          <div>
-            <b>Population size: </b>
-            {population}
-          </div>
-          <br />
-        </div>
+        {country !== "" && year > 0 && population > 0 && (
+          <>
+            <div>
+              <div>
+                <b>Country: </b>
+                {country}
+              </div>
+              <br />
+              <div>
+                <b>Year: </b>
+                {year}
+              </div>
+              <br />
+              <div>
+                <b>Population size: </b>
+                {population}
+              </div>
+            </div>
+          </>
+        )}
+
         <br />
         <Divider textAlign="left" flexItem>
-          <b>Transport Module inputs</b>
+          <b>Transport Module</b>
         </Divider>
 
         {country !== "" &&
