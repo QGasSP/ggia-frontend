@@ -15,32 +15,32 @@ import urlPrefix from "../Config";
 
 export const ConsumptionResults = ({ consumptionRequest }) => {
   const [blTransport, setBlTransport]= useState(() => {
-    const savedBase = localStorage.getItem("blTransport");
-    const initialValue = JSON.parse(savedBase);
+    const savedBaselineTransport = localStorage.getItem("blTransport");
+    const initialValue = JSON.parse(savedBaselineTransport);
     return initialValue || {};
   });
 
   const [blTotalEmmissions, setBlTotalEmissions]= useState(() => {
-    const savedBase = localStorage.getItem("blTotalEmmissions");
-    const initialValue = JSON.parse(savedBase);
+    const savedTotalEm = localStorage.getItem("blTotalEmmissions");
+    const initialValue = JSON.parse(savedTotalEm);
     return initialValue || {};
   });
 
   const [bLTotalAreaEmissions, setBlTotalAreaEmissions]= useState(() => {
-    const savedBase = localStorage.getItem("bLTotalAreaEmissions");
-    const initialValue = JSON.parse(savedBase);
+    const savedBaselineTae = localStorage.getItem("bLTotalAreaEmissions");
+    const initialValue = JSON.parse(savedBaselineTae);
     return initialValue || {};
   });
 
   const [p1, setP1] = useState(() => {
-    const savedBase = localStorage.getItem("p1");
-    const initialValue = JSON.parse(savedBase);
+    const savedPolicy = localStorage.getItem("p1");
+    const initialValue = JSON.parse(savedPolicy);
     return initialValue || {};
   });
  
   const  [p1TotalEmissions, setP1totalEmissions] = useState(() => {
-    const savedBase = localStorage.getItem("p1TotalEmissions");
-    const initialValue = JSON.parse(savedBase);
+    const savedPolicyTotalEmissions = localStorage.getItem("p1TotalEmissions");
+    const initialValue = JSON.parse(savedPolicyTotalEmissions);
     return initialValue || {};
   });
 
