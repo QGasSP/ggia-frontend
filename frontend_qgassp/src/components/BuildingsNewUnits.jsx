@@ -1309,7 +1309,7 @@ export const BuildingsNewUnits = ({
                       <th colSpan={2}>New buildings completed between</th>
                     </Tooltip>
                     <Tooltip title="Estimate the percentage of delivered electricity that will be covered by local production of renewable energies. Renewable energy production for grid electricity is excluded.">
-                      <th>% of electricty from renewables</th>
+                      <th>% of energy from renewables</th>
                     </Tooltip>
                   </tr>
                 </thead>
@@ -2082,7 +2082,7 @@ export const BuildingsNewUnits = ({
                         <th colSpan={2}>New buildings completed between</th>
                       </Tooltip>
                       <Tooltip title="Estimate the percentage of delivered electricity that will be covered by local production of renewable energies. Renewable energy production for grid electricity is excluded.">
-                        <th>% electricty from renewables</th>
+                        <th>% energy from renewables</th>
                       </Tooltip>
                       <th className="row-title">
                         Floor area after densification

@@ -2148,7 +2148,7 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
                       <th>Expected reduction in energy demand (%)</th>
                     </Tooltip>
                     <Tooltip title="Estimate the percentage of delivered energy that will be covered by local production of renewable energies. Renewable energy production for grid electricity is excluded.">
-                      <th>% of electricty from renewables</th>
+                      <th>% of energy from renewables</th>
                     </Tooltip>
                     <Tooltip title="Insert the first and the last year of these retrofits.">
                       <th colSpan={2}>Retrofits completed between</th>

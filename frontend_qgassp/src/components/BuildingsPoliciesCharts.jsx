@@ -25,7 +25,7 @@ import urlPrefix from "../Config";
  * @return {}
  */
 const BarSeries = VerticalBarSeries;
-export const BuildingsPoliciesCharts = ({ baseline, newConstructionResponse, policyQuantificationResponse, country, year }) => {
+export const BuildingsPoliciesCharts = ({ baseline, newConstructionResponse, policyQuantificationResponseDummy, country, year }) => {
   const [errorBBC, setErrorBBC] = useState("");
 
   // #region data distribution
@@ -41,20 +41,20 @@ export const BuildingsPoliciesCharts = ({ baseline, newConstructionResponse, pol
   const warehousesData = [];
 
   for (let i = year; i < 2051; i++) {
-    apartmentsData.push({ x: i, y: policyQuantificationResponse[i].apartments });
-    terracedData.push({ x: i, y: policyQuantificationResponse[i].terraced });
-    semidetachedData.push({ x: i, y: policyQuantificationResponse[i].semidetached });
-    detachedData.push({ x: i, y: policyQuantificationResponse[i].detached });
-    retailData.push({ x: i, y: policyQuantificationResponse[i].retail });
-    healthData.push({ x: i, y: policyQuantificationResponse[i].health });
-    hospitalityData.push({ x: i, y: policyQuantificationResponse[i].hospitality });
-    officesData.push({ x: i, y: policyQuantificationResponse[i].offices });
-    industrialData.push({ x: i, y: policyQuantificationResponse[i].industrial });
-    warehousesData.push({ x: i, y: policyQuantificationResponse[i].warehouses });
+    apartmentsData.push({ x: i, y: policyQuantificationResponseDummy[i].apartments });
+    terracedData.push({ x: i, y: policyQuantificationResponseDummy[i].terraced });
+    semidetachedData.push({ x: i, y: policyQuantificationResponseDummy[i].semidetached });
+    detachedData.push({ x: i, y: policyQuantificationResponseDummy[i].detached });
+    retailData.push({ x: i, y: policyQuantificationResponseDummy[i].retail });
+    healthData.push({ x: i, y: policyQuantificationResponseDummy[i].health });
+    hospitalityData.push({ x: i, y: policyQuantificationResponseDummy[i].hospitality });
+    officesData.push({ x: i, y: policyQuantificationResponseDummy[i].offices });
+    industrialData.push({ x: i, y: policyQuantificationResponseDummy[i].industrial });
+    warehousesData.push({ x: i, y: policyQuantificationResponseDummy[i].warehouses });
   }
   // #endregion
 
-   if (Object.keys(policyQuantificationResponse).length !== 0) {
+   if (Object.keys(policyQuantificationResponseDummy).length !== 0) {
     return (
       <article>
         <div className="headerSettlement">
@@ -170,5 +170,5 @@ BuildingsPoliciesCharts.propTypes = {
   country: PropTypes.string.isRequired,
   baseline: PropTypes.object.isRequired,
   newConstructionResponse: PropTypes.object.isRequired,
-  policyQuantificationResponse: PropTypes.object.isRequired
+  policyQuantificationResponseDummy: PropTypes.object.isRequired
 };
