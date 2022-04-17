@@ -16,14 +16,8 @@ import Alert from "@mui/material/Alert";
  */
 
 export const LandUseChangeTableForm = () => {
-  const [year, setYear] = useState(() => {
-    const savedYear = parseInt(localStorage.getItem("year"));
-    return savedYear || 2022 ;
-  });
-  const [country, setCountry] = useState(() => {
-    const savedCountry = localStorage.getItem("country");
-    return savedCountry || '';
-  });
+  const country = localStorage.getItem("country");
+  const year = parseInt(localStorage.getItem("year"));
   // to Forest vars
   // #region
   const [cropToForest, setCropToForest] = useState(0);
