@@ -9,6 +9,8 @@ import { any } from "prop-types";
 import { U1planner } from "./U1planner";
 import { U2planner } from "./U2planner";
 import { LUCBarChart } from "./LUCBarChart";
+import { BuildingBaselineCharts } from "./BuildingBaselineCharts";
+import { BuildingsPoliciesCharts } from "./BuildingsPoliciesCharts";
 import { ConsumptionBaselineResults } from "./ConsumptionBaselineResults";
 import { ConsumptionSummary } from "./ConsumptionSummary";
 import { Button } from "./Button";
@@ -21,6 +23,8 @@ export const GenerateReport = () => {
   const lucResultsToPrint = useRef(null);
   const consumptionBaselineToPrint = useRef(null);
   const consumptionResultsToPrint = useRef(null);
+  const buildingsBaselineToPrint = useRef(null);
+  const buildingsPolicyToPrint = useRef(null);
 
   const country = localStorage.getItem("country");
   const year = parseInt(localStorage.getItem("year"));
@@ -48,6 +52,10 @@ export const GenerateReport = () => {
   const emission = JSON.parse(localStorage.getItem("emission"));
   const projections = JSON.parse(localStorage.getItem("projections"));
   const newDevelopment = JSON.parse(localStorage.getItem("newDevelopment"));
+
+  const buildingsBaselineResponse = JSON.parse(localStorage.getItem("buildingsBaselineResponse"));
+  const newConstructionResponse = JSON.parse(localStorage.getItem("newConstructionResponse"));
+  const policyQuantificationResponse = JSON.parse(localStorage.getItem("policyQuantificationResponse"));
 
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
@@ -148,10 +156,43 @@ export const GenerateReport = () => {
                   />
                 )} 
  */}
-                {/*  {landUseChangeResponse !== null &&
+                <Divider textAlign="left" flexItem>
+                  <b>Land-Use Change Module</b>
+                </Divider>
+
+                 {landUseChangeResponse !== null &&
                 Object.keys(landUseChangeResponse).length !== 0 && (
-                  <LUCBarChart lucResultsToPrint={lucResultsToPrint} />
-                )} */}
+                  <LUCBarChart lucResultsToPrint={lucResultsToPrint} landUseChangeResponse={landUseChangeResponse} year={year}/>
+                )}
+
+                <Divider textAlign="left" flexItem>
+                  <b>Buildings Module</b>
+                </Divider>
+
+                {buildingsBaselineResponse !== null &&
+                Object.keys(buildingsBaselineResponse).length !== 0 && (
+                  <BuildingBaselineCharts 
+                  buildingsBaselineToPrint={buildingsBaselineToPrint} 
+                  baseline={buildingsBaselineResponse} 
+                  country={country}
+                  year={year}/>
+                )}
+
+                {newConstructionResponse !== null && 
+                policyQuantificationResponse !== null && 
+                buildingsBaselineResponse !== null &&
+                Object.keys(buildingsBaselineResponse).length !== 0 &&
+                Object.keys(policyQuantificationResponse).length !== 0 && 
+                Object.keys(newConstructionResponse).length !== 0 &&(
+                  <BuildingsPoliciesCharts 
+                  buildingsPolicyToPrint={buildingsPolicyToPrint}
+                  newConstructionResponse={newConstructionResponse}
+                  policyQuantificationResponseDummy={policyQuantificationResponse}
+                  baseline={buildingsBaselineResponse} 
+                  country={country}
+                  year={year}/>
+                )}
+
 
                 {bL !== null &&
                   Object.keys(bL).length !== 0 &&
