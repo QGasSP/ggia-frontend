@@ -33,6 +33,7 @@ export const U1planner = ({
   population,
   settlementDistribution,
 }) => {
+  
   const [emission, setEmissionData] = useState(() => {
     const savedEm = localStorage.getItem("emission");
     const initialValue = JSON.parse(savedEm);

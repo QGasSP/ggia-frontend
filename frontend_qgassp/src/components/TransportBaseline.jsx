@@ -41,7 +41,7 @@ export const TransportBaseline = () => {
    parseFloat(metropolitanCenter) + parseFloat(urban) + parseFloat(suburban) + parseFloat(town) + parseFloat(rural)
   );
 
-  // const [settlementDistribution, setSettlementDistribution] = useState({});
+
   const [settlementDistribution, setSettlementDistribution] = useState(() => {
     const savedSettlement = localStorage.getItem("settlementDistribution");
     const initialValue = JSON.parse(savedSettlement);

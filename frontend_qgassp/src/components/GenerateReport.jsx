@@ -139,7 +139,7 @@ export const GenerateReport = () => {
                     />
                   )}
 
-                {/* {newDevelopment !== undefined &&
+              {newDevelopment !== undefined &&
                 newDevelopment !== null &&
                 projections !== undefined &&
                 projections !== null &&
@@ -155,7 +155,7 @@ export const GenerateReport = () => {
                     projections={projections}
                   />
                 )} 
- */}
+ 
                 <Divider textAlign="left" flexItem>
                   <b>Land-Use Change Module</b>
                 </Divider>

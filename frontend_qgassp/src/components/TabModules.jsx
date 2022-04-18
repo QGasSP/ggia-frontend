@@ -16,6 +16,7 @@ export const TabModules = () => {
   const country = localStorage.getItem("country");
   const year = parseInt(localStorage.getItem("year"));
   const population = parseInt(localStorage.getItem("population"));
+  const baseline = JSON.parse(localStorage.getItem("baseline"));
 
   const toggleTab = (index) => {
     setToggleState(index);
@@ -29,6 +30,8 @@ export const TabModules = () => {
     // toggleTab(7);
     window.open(ggiaGuideUrl, "_blank");
   };
+  // if (population === 0 && year === 0 && country === ""&& Object.keys(baseline).length === 0) {
+
   if (population === 0 && year === 0 && country === "") {
     return (
       <>
@@ -92,17 +95,17 @@ export const TabModules = () => {
         <div className="content-tabs">
           <>
             {toggleState == 1 && <Welcome />}
-            {toggleState == 2 && <StartPage />}
-            {toggleState == 3 && <StartPage />}
+          {/*   {toggleState == 2 && <StartPage />} */}
+          {/*   {toggleState == 3 && <StartPage />} */}
             {toggleState == 4 && <BuildingBaseline />}
-            {toggleState == 5 && <StartPage />}
+          {/*   {toggleState == 5 && <StartPage />} */}
             {/*   {toggleState == 6 && <Report />} */}
             {toggleState == 7 && <GenerateReport />}
           </>
         </div>
       </>
     );
-  }
+  };
 
 
   return (
@@ -181,3 +184,4 @@ export const TabModules = () => {
     </>
   );
 };
+
