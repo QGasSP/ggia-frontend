@@ -34,8 +34,8 @@ export const ConsumptionSummary = ({
   const policyYear = localStorage.getItem("policyYear");
 
   const resultsLegend = [
-    { title: "Baseline summed emissions", color: "#3d58a3", strokeWidth: 13 },
-    { title: "Policy summed emissions", color: "#ef7d00", strokeWidth: 13 },
+    { title: "Baseline emissions", color: "#3d58a3", strokeWidth: 13 },
+    { title: "Policy emissions", color: "#ef7d00", strokeWidth: 13 },
   ];
   
   // blTransport
