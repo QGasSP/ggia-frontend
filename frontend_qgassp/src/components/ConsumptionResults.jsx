@@ -32,6 +32,18 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
     return initialValue || {};
   });
 
+  const [blSummedEmissions, setBlSummedEmissions]= useState(() => {
+    const savedBlSummedEmissions = localStorage.getItem("blSummedEmissions");
+    const initialValue = JSON.parse(savedBlSummedEmissions);
+    return initialValue || {};
+  });
+
+  const [p1SummedEmissions, setP1SummedEmissions]= useState(() => {
+    const savedP1SummedEmissions = localStorage.getItem("p1SummedEmissions");
+    const initialValue = JSON.parse(savedP1SummedEmissions);
+    return initialValue || {};
+  });
+
   const [p1, setP1] = useState(() => {
     const savedPolicy = localStorage.getItem("p1");
     const initialValue = JSON.parse(savedPolicy);
@@ -78,6 +90,8 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
         );
         /*   setP1YMax(response.data.data.consumption.P1TotalAreaEmissionsMax);
         setBlYMax(response.data.data.consumption.BLMax); */
+        setBlSummedEmissions(response.data.data.consumption.BLSummedEmissions);
+        setP1SummedEmissions(response.data.data.consumption.P1SummedEmissions);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -108,6 +122,13 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
   }, [bLTotalAreaEmissions]);
 
   useEffect(() => {
+    localStorage.setItem(
+      "blSummedEmissions",
+      JSON.stringify(blSummedEmissions)
+    );
+  }, [blSummedEmissions]);
+
+  useEffect(() => {
     localStorage.setItem("blTransport", JSON.stringify(blTransport));
   }, [blTransport]);
 
@@ -122,6 +143,13 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
       JSON.stringify(p1TotalAreaEmissions)
     );
   }, [p1TotalAreaEmissions]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "p1SummedEmissions",
+      JSON.stringify(p1SummedEmissions)
+    );
+  }, [p1SummedEmissions]);
 
  
   useEffect(() => {
@@ -147,6 +175,8 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
             blTotalEmmissions={blTotalEmmissions}
             bLTotalAreaEmissions={bLTotalAreaEmissions}
             p1TotalAreaEmissions={p1TotalAreaEmissions}
+            blSummedEmissions={blSummedEmissions}
+            p1SummedEmissions={p1SummedEmissions}
             blTransport={blTransport}
             p1={p1}
           />
