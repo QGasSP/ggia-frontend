@@ -268,18 +268,18 @@ export const ConsumptionSummary = ({
               <HorizontalGridLines />
               <XAxis/>
               <YAxis title="Emissions/ kG C02 eq" />
-             <BarSeries
-                className="vertical-bar-series-example"
-               /*  opacity={0.55} */
-                data={policyDataPolicyYear}
-                color="#ef7d00" 
-              /> 
               <BarSeries
                 className="vertical-bar-series-example"
                /*  opacity={0.50} */
                 data={baselineDataPolicyYear}
                 color="#3d58a3"
               />
+              <BarSeries
+                className="vertical-bar-series-example"
+               /*  opacity={0.55} */
+                data={policyDataPolicyYear}
+                color="#ef7d00" 
+              /> 
     
             </XYPlot>
 
