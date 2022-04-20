@@ -27,13 +27,15 @@ export const ConsumptionSummary = ({
   p1TotalEmissions,
   bLTotalAreaEmissions,
   p1TotalAreaEmissions,
+  blSummedEmissions,
+  p1SummedEmissions,
 }) => {
   const country = localStorage.getItem("country");
   const policyYear = localStorage.getItem("policyYear");
 
   const resultsLegend = [
-    { title: "Baseline total emissions", color: "#3d58a3", strokeWidth: 13 },
-    { title: "Policy total emissions", color: "#ef7d00", strokeWidth: 13 },
+    { title: "Baseline summed emissions", color: "#3d58a3", strokeWidth: 13 },
+    { title: "Policy summed emissions", color: "#ef7d00", strokeWidth: 13 },
   ];
   
   // blTransport
@@ -48,6 +50,7 @@ export const ConsumptionSummary = ({
   const bLTransportServices = [];
   const dataBlTotalEmissions = [];
   const dataBlTotalAreaEmissions = [];
+  const dataBlSummedEmissions = [];
 
   // pl
 
@@ -61,6 +64,7 @@ export const ConsumptionSummary = ({
   const policyServices = [];
   const policyTotalEmissions = [];
   const policyTotalAreaEmissions = [];
+  const policySummedEmissions = [];
   
 
   for (let i = 2020; i < 2051; i++) {
@@ -74,6 +78,7 @@ export const ConsumptionSummary = ({
     bLTransportServices.push({ x: i, y: blTransport.services[i] });
     dataBlTotalEmissions.push({ x: i, y: blTotalEmmissions[i] });
     dataBlTotalAreaEmissions.push({ x: i, y: bLTotalAreaEmissions[i] });
+    dataBlSummedEmissions.push({ x: i, y: blSummedEmissions[i] });
 
     policyHousingEnergy.push({ x: i, y: p1.housingEnergy[i] });
     policyHousingOther.push({ x: i, y: p1.housingOther[i] });
@@ -85,6 +90,7 @@ export const ConsumptionSummary = ({
     policyServices.push({ x: i, y: p1.services[i] });
     policyTotalEmissions.push({ x: i, y: p1TotalEmissions[i] });
     policyTotalAreaEmissions.push({ x: i, y: p1TotalAreaEmissions[i] });
+    policySummedEmissions.push({ x: i, y: p1SummedEmissions[i] });
   };
 
   const baselineDataPolicyYear = [
@@ -281,7 +287,7 @@ export const ConsumptionSummary = ({
             {" "}
             <b>
               {" "}
-              {country}: Baseline total emissions vs Policy total emissions
+              {country}: Baseline total summed emissions vs Policy total summed emissions
             </b>
           </Divider>
           <br />
@@ -302,13 +308,13 @@ export const ConsumptionSummary = ({
               strokeStyle="solid"
               style={{}}
               strokeWidth="2"
-              data={dataBlTotalAreaEmissions}
+              data={dataBlSummedEmissions}
             />
             <LineSeries
               color="#ef7d00"
               curve={null}
               strokeWidth="2"
-              data={policyTotalAreaEmissions}
+              data={policySummedEmissions}
             />
           </XYPlot>
           <div className="settlementDiv">
@@ -330,4 +336,6 @@ ConsumptionSummary.propTypes = {
   p1TotalEmissions: PropTypes.object.isRequired,
   bLTotalAreaEmissions: PropTypes.object.isRequired,
   p1TotalAreaEmissions: PropTypes.object.isRequired,
+  blSummedEmissions: PropTypes.object.isRequired,
+  p1SummedEmissions: PropTypes.object.isRequired,
 };
