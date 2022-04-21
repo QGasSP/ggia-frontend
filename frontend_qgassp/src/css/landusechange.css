@@ -97,8 +97,17 @@ input[type="number"] {
   -webkit-appearance: textfield;
   appearance: textfield;
 }
+.luc_alert_container{
+  padding: 30px 0 10px 0;
+}
+.checkbox_luc{
+  margin-right: 10px;
+}
 table.tbl {
   margin-bottom: 20px;
+  width: 100%;
+}
+.tbl-container{
   width: 48%;
 }
 table td,
@@ -185,9 +194,11 @@ section div {
 }
 
 .tbl {
+  width: 100%;
   border: 1px solid #333;
   padding: 5px;
   border-radius: 0.25rem;
+  margin: 0;
 }
 
 .settle_label {
