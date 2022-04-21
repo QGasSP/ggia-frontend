@@ -14,9 +14,9 @@ import urlPrefix from "../Config";
  */
 
 export const ConsumptionResults = ({ consumptionRequest }) => {
-  const [blTransport, setBlTransport]= useState(() => {
-    const savedBaselineTransport = localStorage.getItem("blTransport");
-    const initialValue = JSON.parse(savedBaselineTransport);
+  const [bl, setBlConsumption]= useState(() => {
+    const savedBaselineConsumption = localStorage.getItem("bl");
+    const initialValue = JSON.parse(savedBaselineConsumption);
     return initialValue || {};
   });
 
@@ -78,7 +78,7 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
       .then((response) => {
         // eslint-disable-next-line no-console
         console.log(response);
-        setBlTransport(response.data.data.consumption.BL);
+        setBlConsumption(response.data.data.consumption.BL);
         setBlTotalEmissions(response.data.data.consumption.BLTotalEmissions);
         setP1totalAreaEmissions(
           response.data.data.consumption.P1TotalAreaEmissions
@@ -129,8 +129,8 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
   }, [blSummedEmissions]);
 
   useEffect(() => {
-    localStorage.setItem("blTransport", JSON.stringify(blTransport));
-  }, [blTransport]);
+    localStorage.setItem("bl", JSON.stringify(bl));
+  }, [bl]);
 
 
   useEffect(() => {
@@ -177,7 +177,7 @@ export const ConsumptionResults = ({ consumptionRequest }) => {
             p1TotalAreaEmissions={p1TotalAreaEmissions}
             blSummedEmissions={blSummedEmissions}
             p1SummedEmissions={p1SummedEmissions}
-            blTransport={blTransport}
+            bl={bl}
             p1={p1}
           />
         </>

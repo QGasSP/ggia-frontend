@@ -21,7 +21,7 @@ import PropTypes from "prop-types";
  */
 const BarSeries = VerticalBarSeries;
 export const ConsumptionSummary = ({
-  blTransport,
+  bl,
   blTotalEmmissions,
   p1,
   p1TotalEmissions,
@@ -40,14 +40,14 @@ export const ConsumptionSummary = ({
   
   // blTransport
 
-  const bLTransportHousingEnergy = [];
-  const bLTransportHousingOther = [];
+  const bLHousingEnergy = [];
+  const bLHousingOther = [];
   const bLTransportFuels = [];
   const bLTransportOther = [];
-  const bLTransportAirTravel = [];
-  const bLTransportFood = [];
-  const bLTransportTangiblegoods = [];
-  const bLTransportServices = [];
+  const bLAirTravel = [];
+  const bLFood = [];
+  const bLTangiblegoods = [];
+  const bLServices = [];
   const dataBlTotalEmissions = [];
   const dataBlTotalAreaEmissions = [];
   const dataBlSummedEmissions = [];
@@ -68,14 +68,14 @@ export const ConsumptionSummary = ({
   
 
   for (let i = 2020; i < 2051; i++) {
-    bLTransportHousingEnergy.push({ x: i, y: blTransport.housingEnergy[i] });
-    bLTransportHousingOther.push({ x: i, y: blTransport.housingOther[i] });
-    bLTransportFuels.push({ x: i, y: blTransport.transportFuels[i] });
-    bLTransportOther.push({ x: i, y: blTransport.transportOther[i] });
-    bLTransportAirTravel.push({ x: i, y: blTransport.airTravel[i] });
-    bLTransportFood.push({ x: i, y: blTransport.food[i] });
-    bLTransportTangiblegoods.push({ x: i, y: blTransport.tangibleGoods[i] });
-    bLTransportServices.push({ x: i, y: blTransport.services[i] });
+    bLHousingEnergy.push({ x: i, y: bl.housingEnergy[i] });
+    bLHousingOther.push({ x: i, y: bl.housingOther[i] });
+    bLTransportFuels.push({ x: i, y: bl.transportFuels[i] });
+    bLTransportOther.push({ x: i, y: bl.transportOther[i] });
+    bLAirTravel.push({ x: i, y: bl.airTravel[i] });
+    bLFood.push({ x: i, y: bl.food[i] });
+    bLTangiblegoods.push({ x: i, y: bl.tangibleGoods[i] });
+    bLServices.push({ x: i, y: bl.services[i] });
     dataBlTotalEmissions.push({ x: i, y: blTotalEmmissions[i] });
     dataBlTotalAreaEmissions.push({ x: i, y: bLTotalAreaEmissions[i] });
     dataBlSummedEmissions.push({ x: i, y: blSummedEmissions[i] });
@@ -94,14 +94,14 @@ export const ConsumptionSummary = ({
   };
 
   const baselineDataPolicyYear = [
-    { x: "Housing_energy", y: blTransport.housingEnergy[policyYear]},
-    { x: "Housing_other", y: blTransport.housingOther[policyYear] },
-    { x: "Transport_fuels", y: blTransport.transportFuels[policyYear] },
-    { x: "Transport_other", y: blTransport.transportOther[policyYear] },
-    { x: "Air_travel", y: blTransport.airTravel[policyYear] },
-    { x: "Food", y: blTransport.food[policyYear] },
-    { x: "Tangible_goods", y: blTransport.tangibleGoods[policyYear] },
-    { x: "Services", y:  blTransport.services[policyYear] },
+    { x: "Housing_energy", y: bl.housingEnergy[policyYear]},
+    { x: "Housing_other", y: bl.housingOther[policyYear] },
+    { x: "Transport_fuels", y: bl.transportFuels[policyYear] },
+    { x: "Transport_other", y: bl.transportOther[policyYear] },
+    { x: "Air_travel", y: bl.airTravel[policyYear] },
+    { x: "Food", y: bl.food[policyYear] },
+    { x: "Tabgible_goods", y: bl.tangibleGoods[policyYear] },
+    { x: "Services", y:  bl.services[policyYear] },
     { x: "Total_emissions", y: blTotalEmmissions[policyYear]},
   ];
   const policyDataPolicyYear = [
@@ -137,13 +137,13 @@ export const ConsumptionSummary = ({
         <BarSeries
           color="#3d58a3"
           opacity={0.5}
-          data={bLTransportHousingEnergy}
+          data={bLHousingEnergy}
           stack
         />
         <BarSeries
           color="#ef7d00"
           opacity={0.55}
-          data={bLTransportHousingOther}
+          data={bLHousingOther}
           stack
         />
         <BarSeries
@@ -161,25 +161,25 @@ export const ConsumptionSummary = ({
         <BarSeries
           color="#845f9e"
           opacity={0.55}
-          data={bLTransportAirTravel}
+          data={bLAirTravel}
           stack
         />
         <BarSeries
           color="#996e35"
           opacity={0.55}
-          data={bLTransportFood}
+          data={bLFood}
           stack
         />
         <BarSeries
           color="#e1719a"
           opacity={0.55}
-          data={bLTransportTangiblegoods}
+          data={bLTangiblegoods}
           stack
         />
         <BarSeries
           color="#76918e"
           opacity={0.55}
-          data={bLTransportServices}
+          data={bLServices}
           stack
         />
         <LineSeries
@@ -330,7 +330,7 @@ export const ConsumptionSummary = ({
 };
 
 ConsumptionSummary.propTypes = {
-  blTransport: PropTypes.object.isRequired,
+  bl: PropTypes.object.isRequired,
   blTotalEmmissions: PropTypes.object.isRequired,
   p1: PropTypes.object.isRequired,
   p1TotalEmissions: PropTypes.object.isRequired,

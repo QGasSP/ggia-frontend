@@ -32,7 +32,7 @@ export const GenerateReport = () => {
   const population = parseInt(localStorage.getItem("population"));
   const p1 = JSON.parse(localStorage.getItem("p1"));
   const bL = JSON.parse(localStorage.getItem("bL"));
-  const blTransport = JSON.parse(localStorage.getItem("blTransport"));
+  const bl = JSON.parse(localStorage.getItem("bl"));
   const blTotalEmmissions = JSON.parse(
     localStorage.getItem("blTotalEmmissions")
   );
@@ -43,6 +43,10 @@ export const GenerateReport = () => {
   const p1TotalAreaEmissions = JSON.parse(
     localStorage.getItem("p1TotalAreaEmissions")
   );
+  const blSummedEmissions = JSON.parse(localStorage.getItem("blSummedEmissions"));
+  const p1SummedEmissions= JSON.parse(localStorage.getItem("p1SummedEmissions"));
+
+ 
   const settlementDistribution = JSON.parse(
     localStorage.getItem("settlementDistribution")
   );
@@ -205,16 +209,22 @@ export const GenerateReport = () => {
 
                 {bL !== null &&
                   p1 !== null &&
-                  blTransport !== null &&
+                  bl !== null &&
                   bLTotalAreaEmissions !== null &&
                   p1TotalEmissions !== null &&
                   bLTotalAreaEmissions !== null &&
                   p1TotalEmissions !== null &&
+                  blSummedEmissions!== null &&
+                  p1SummedEmissions !== null &&
                   Object.keys(bL).length !== 0 &&
                   Object.keys(p1).length !== 0 &&
-                  Object.keys(blTransport).length !== 0 &&
+                  Object.keys(bl).length !== 0 &&
+                  Object.keys(p1SummedEmissions).length !== 0 &&
+                  Object.keys(blSummedEmissions).length !== 0 &&
                   Object.keys(p1TotalAreaEmissions).length !== 0 &&
                   Object.keys(bLTotalAreaEmissions).length !== 0 &&
+                  Object.keys(p1SummedEmissions).length !== 0 &&
+                  Object.keys(blSummedEmissions).length !== 0 &&
                   Object.keys(p1TotalEmissions).length !== 0 &&
                   Object.keys(blTotalEmmissions).length !== 0 && (
                     <ConsumptionSummary
@@ -223,7 +233,9 @@ export const GenerateReport = () => {
                       blTotalEmmissions={blTotalEmmissions}
                       bLTotalAreaEmissions={bLTotalAreaEmissions}
                       p1TotalAreaEmissions={p1TotalAreaEmissions}
-                      blTransport={blTransport}
+                      blSummedEmissions={blSummedEmissions}
+                      p1SummedEmissions={p1SummedEmissions}
+                      bl={bl}
                       p1={p1}
                     />
                   )}
