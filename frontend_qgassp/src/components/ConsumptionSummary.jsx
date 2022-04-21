@@ -100,7 +100,7 @@ export const ConsumptionSummary = ({
     { x: "Transport_other", y: bl.transportOther[policyYear] },
     { x: "Air_travel", y: bl.airTravel[policyYear] },
     { x: "Food", y: bl.food[policyYear] },
-    { x: "Tabgible_goods", y: bl.tangibleGoods[policyYear] },
+    { x: "Tangible_goods", y: bl.tangibleGoods[policyYear] },
     { x: "Services", y:  bl.services[policyYear] },
     { x: "Total_emissions", y: blTotalEmmissions[policyYear]},
   ];
