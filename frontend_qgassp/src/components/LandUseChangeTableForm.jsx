@@ -6,6 +6,7 @@ import axios from "axios";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import { CircularProgress } from "@mui/material";
+import { useStorageBool } from "../reducers/useStorage";
 import urlPrefix from "../Config";
 import Tooltip from "@mui/material/Tooltip";
 import Alert from "@mui/material/Alert";
@@ -1372,6 +1373,37 @@ export const LandUseChangeTableForm = () => {
       JSON.stringify(landUseChangeResponse)
     );
   }, [landUseChangeResponse]);
+
+    const [lucToForest, setLucToForest] = useStorageBool("lucToForest",false);
+    const handleLucToForest = (e) => {
+      setLucToForest(lucToForest ? false : true);
+  };
+
+  const [lucToCrop, setLucToCrop] = useStorageBool("lucToCrop",false);
+    const handleLucToCrop = (e) => {
+      setLucToCrop(lucToCrop ? false : true);
+  };
+
+  const [lucToGrass, setLucToGrass] = useStorageBool("lucToGrass",false);
+  const handleLucToGrass = (e) => {
+    setLucToGrass(lucToGrass ? false : true);
+  };
+
+  const [lucToWet, setLucToWet] = useStorageBool("lucToWet",false);
+  const handleLucToWet = (e) => {
+    setLucToWet(lucToWet ? false : true);
+  };
+
+  const [lucToSettlements, setLucToSettlements] = useStorageBool("lucToSettlements",false);
+  const handleLucToSettlements = (e) => {
+    setLucToSettlements(lucToSettlements ? false : true);
+  };
+
+  const [lucToOther, setLucToOther] = useStorageBool("lucToOther",false);
+  const handleLucToOther = (e) => {
+    setLucToOther(lucToOther ? false : true);
+  };
+
   if (lucBarChart === false) {
     return (
       <div>
@@ -1383,1903 +1415,2019 @@ export const LandUseChangeTableForm = () => {
             </Divider>
           </div>
           <div className="luc_main">
-            <Alert severity="info">
-              This section estimates the greenhouse gas emissions from the
-              land-use changes of a plan or a planning policy. The
-              quantification is based on the six IPCC land use categories.
-              <br />
-              <br />
-              First You need to specify the land use types of the areas that
-              will change when the plan or the policy in concern is implemented.
-              GIS tools and databases such as Corine Land Cover and European
-              soil database can be applied to define the land use categories and
-              their surface areas.
-              <br />
-              <br />
-              Find the relevant land-use changes in the tables below. Then
-              insert three values per each change to calculate the impact: total
-              land area converted from one category to another in hectares, and
-              the shares of mineral and organic soils within this land area.
-              Other rows and tables can be left empty.
-              <br />
-              <br />
-              All built environment belongs to the category settlement.
-            </Alert>
+            <div className="luc_alert_container">
+              <Alert severity="info">
+                This section estimates the greenhouse gas emissions from the
+                land-use changes of a plan or a planning policy. The
+                quantification is based on the six IPCC land use categories.
+                <br />
+                <br />
+                First You need to specify the land use types of the areas that
+                will change when the plan or the policy in concern is implemented.
+                GIS tools and databases such as Corine Land Cover and European
+                soil database can be applied to define the land use categories and
+                their surface areas.
+                <br />
+                <br />
+                Find the relevant land-use changes in the tables below. Then
+                insert three values per each change to calculate the impact: total
+                land area converted from one category to another in hectares, and
+                the shares of mineral and organic soils within this land area.
+                Other rows and tables can be left empty.
+                <br />
+                <br />
+                All built environment belongs to the category settlement.
+              </Alert>
+            </div>
             <section>
               <form id="from_landusechange_type">
                 <div className="luc_row">
-                  <table className="toForest tbl">
-                    <thead>
-                      <tr>
-                        <th className="row-title">Land-Use Change</th>
-                        <th>Total area, ha</th>
-                        <th>Soil area (mineral), ha</th>
-                        <th>Soil area (organic), ha</th>
-                        <Tooltip title="Select the year when the land-use change is expected to happen.">
-                          <th>Year of implementation</th>
-                        </Tooltip>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="row-title">Cropland to Forest Land</td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="cropToForest"
-                            min="0"
-                            value={cropToForest}
-                            onChange={handleCropToForest}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="cropToForestMineral"
-                            min="0"
-                            value={cropToForestMineral}
-                            onChange={handleCropToForestMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="cropToForestOrganic"
-                            min="0"
-                            value={cropToForestOrganic}
-                            onChange={handleCropToForestOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="cropToForestYear"
-                            name="cropToForestYear"
-                            onChange={handleCropToForestYear}
-                            value={cropToForestYear}
-                            required
-                          >
-                            <option value="DefaultOption">Select year</option>
+                <div className="tbl-container">
+                  <div className="">
+                  <input
+                      className="checkbox_luc"
+                      type="checkbox"
+                      id="luc_tf"
+                      checked={lucToForest}
+                      defaultValue={lucToForest}
+                      onChange={handleLucToForest}
+                    />
+                    <label htmlFor="local_electricity">
+                      Land-Use Change to Forest Land
+                    </label>
+                  </div>
+                  {lucToForest && (
+                    <>
+                    <table className="toForest tbl">
+                      <thead>
+                        <tr>
+                          <th className="row-title">Land-Use Change</th>
+                          <th>Total area, ha</th>
+                          <th>Soil area (mineral), ha</th>
+                          <th>Soil area (organic), ha</th>
+                          <Tooltip title="Select the year when the land-use change is expected to happen.">
+                            <th>Year of implementation</th>
+                          </Tooltip>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td className="row-title">Cropland to Forest Land</td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="cropToForest"
+                              min="0"
+                              value={cropToForest}
+                              onChange={handleCropToForest}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="cropToForestMineral"
+                              min="0"
+                              value={cropToForestMineral}
+                              onChange={handleCropToForestMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="cropToForestOrganic"
+                              min="0"
+                              value={cropToForestOrganic}
+                              onChange={handleCropToForestOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="cropToForestYear"
+                              name="cropToForestYear"
+                              onChange={handleCropToForestYear}
+                              value={cropToForestYear}
+                              required
+                            >
+                              <option value="DefaultOption">Select year</option>
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="row-title">Grassland to Forest Land</td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="grassToForest"
+                              min="0"
+                              value={grassToForest}
+                              onChange={handleGrassToForest}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="grassToForestMineral"
+                              min="0"
+                              value={grassToForestMineral}
+                              onChange={handleGrassToForestMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="grassToForestOrganic"
+                              min="0"
+                              value={grassToForestOrganic}
+                              onChange={handleGrassToForestOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="grassToForestYear"
+                              name="grassToForestYear"
+                              onChange={handleGrassToForestYear}
+                              value={grassToForestYear}
+                              required
+                            >
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="row-title">Wetlands to Forest Land</td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="wetToForest"
+                              min="0"
+                              value={wetToForest}
+                              onChange={handleWetToForest}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="wetToForestMineral"
+                              min="0"
+                              value={wetToForestMineral}
+                              onChange={handleWetToForestMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="wetToForestOrganic"
+                              min="0"
+                              value={wetToForestOrganic}
+                              onChange={handleWetToForestOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="wetToForestYear"
+                              name="wetToForestYear"
+                              onChange={handleWetToForestYear}
+                              value={wetToForestYear}
+                              onMouseLeave={setTotal}
+                              required
+                            >
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="row-title">
+                            Settlements to Forest Land
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="settlementsToForest"
+                              min="0"
+                              value={settlementsToForest}
+                              onChange={handleSettlementsToForest}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="settlementsToForestMineral"
+                              min="0"
+                              value={settlementsToForestMineral}
+                              onChange={handleSettlementsToForestMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="settlementsToForestOrganic"
+                              min="0"
+                              value={settlementsToForestOrganic}
+                              onChange={handleSettlementsToForestOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="settlementsToForestYear"
+                              name="settlementsToForestYear"
+                              onChange={handleSettlementsToForestYear}
+                              value={settlementsToForestYear}
+                              onMouseLeave={setTotal}
+                              required
+                            >
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="row-title">Other land to Forest Land</td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="otherToForest"
+                              min="0"
+                              value={otherToForest}
+                              onChange={handleOtherToForest}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="otherToForestMineral"
+                              min="0"
+                              value={otherToForestMineral}
+                              onChange={handleOtherToForestMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="otherToForestOrganic"
+                              min="0"
+                              value={otherToForestOrganic}
+                              onChange={handleOtherToForestOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="otherToForestYear"
+                              name="otherToForestYear"
+                              onChange={handleOtherToForestYear}
+                              value={otherToForestYear}
+                              onMouseLeave={setTotal}
+                              required
+                            >
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    </>
+                  )}
+                </div>
 
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="row-title">Grassland to Forest Land</td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="grassToForest"
-                            min="0"
-                            value={grassToForest}
-                            onChange={handleGrassToForest}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="grassToForestMineral"
-                            min="0"
-                            value={grassToForestMineral}
-                            onChange={handleGrassToForestMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="grassToForestOrganic"
-                            min="0"
-                            value={grassToForestOrganic}
-                            onChange={handleGrassToForestOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="grassToForestYear"
-                            name="grassToForestYear"
-                            onChange={handleGrassToForestYear}
-                            value={grassToForestYear}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="row-title">Wetlands to Forest Land</td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="wetToForest"
-                            min="0"
-                            value={wetToForest}
-                            onChange={handleWetToForest}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="wetToForestMineral"
-                            min="0"
-                            value={wetToForestMineral}
-                            onChange={handleWetToForestMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="wetToForestOrganic"
-                            min="0"
-                            value={wetToForestOrganic}
-                            onChange={handleWetToForestOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="wetToForestYear"
-                            name="wetToForestYear"
-                            onChange={handleWetToForestYear}
-                            value={wetToForestYear}
-                            onMouseLeave={setTotal}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="row-title">
-                          Settlements to Forest Land
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="settlementsToForest"
-                            min="0"
-                            value={settlementsToForest}
-                            onChange={handleSettlementsToForest}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="settlementsToForestMineral"
-                            min="0"
-                            value={settlementsToForestMineral}
-                            onChange={handleSettlementsToForestMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="settlementsToForestOrganic"
-                            min="0"
-                            value={settlementsToForestOrganic}
-                            onChange={handleSettlementsToForestOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="settlementsToForestYear"
-                            name="settlementsToForestYear"
-                            onChange={handleSettlementsToForestYear}
-                            value={settlementsToForestYear}
-                            onMouseLeave={setTotal}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="row-title">Other land to Forest Land</td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="otherToForest"
-                            min="0"
-                            value={otherToForest}
-                            onChange={handleOtherToForest}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="otherToForestMineral"
-                            min="0"
-                            value={otherToForestMineral}
-                            onChange={handleOtherToForestMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="otherToForestOrganic"
-                            min="0"
-                            value={otherToForestOrganic}
-                            onChange={handleOtherToForestOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="otherToForestYear"
-                            name="otherToForestYear"
-                            onChange={handleOtherToForestYear}
-                            value={otherToForestYear}
-                            onMouseLeave={setTotal}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
 
-                  <table className="toCrop tbl">
-                    <thead>
-                      <tr>
-                        <th className="row-title">Land-Use Change</th>
-                        <th>Total area, ha</th>
-                        <th>Soil area (mineral), ha</th>
-                        <th>Soil area (organic), ha</th>
-                        <Tooltip title="Select the year when the land-use change is expected to happen.">
-                          <th>Year of implementation</th>
-                        </Tooltip>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="row-title">Forest Land to Cropland</td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="forestToCrop"
-                            min="0"
-                            value={forestToCrop}
-                            onChange={handleForestToCrop}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="forestToCropMineral"
-                            min="0"
-                            value={forestToCropMineral}
-                            onChange={handleForestToCropMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="forestToCropOrganic"
-                            min="0"
-                            value={forestToCropOrganic}
-                            onChange={handleForestToCropOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="forestToCropYear"
-                            name="forestToCropYear"
-                            onChange={handleForestToCropYear}
-                            value={forestToCropYear}
-                            onMouseLeave={setTotal}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="row-title">Grassland to Cropland</td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="grassToCrop"
-                            min="0"
-                            value={grassToCrop}
-                            onChange={handleGrassToCrop}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="grassToCropMineral"
-                            min="0"
-                            value={grassToCropMineral}
-                            onChange={handleGrassToCropMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="grassToCropOrganic"
-                            min="0"
-                            value={grassToCropOrganic}
-                            onChange={handleGrassToCropOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="grassToCropYear"
-                            name="grassToCropYear"
-                            onChange={handleGrassToCropYear}
-                            value={grassToCropYear}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="row-title">Wetlands to Cropland</td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="wetToCrop"
-                            min="0"
-                            value={wetToCrop}
-                            onChange={handleWetToCrop}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="wetToCropMineral"
-                            min="0"
-                            value={wetToCropMineral}
-                            onChange={handleWetToCropMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="wetToCropOrganic"
-                            min="0"
-                            value={wetToCropOrganic}
-                            onChange={handleWetToCropOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="wetToCropYear"
-                            name="wetToCropYear"
-                            onChange={handleWetToCropYear}
-                            value={wetToCropYear}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="row-title">Settlements to Cropland</td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="settlementsToCrop"
-                            min="0"
-                            value={settlementsToCrop}
-                            onChange={handleSettlementsToCrop}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="settlementsToCropMineral"
-                            min="0"
-                            value={settlementsToCropMineral}
-                            onChange={handleSettlementsToCropMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="settlementsToCropOrganic"
-                            min="0"
-                            value={settlementsToCropOrganic}
-                            onChange={handleSettlementsToCropOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="settlementsToCropYear"
-                            name="settlementsToCropYear"
-                            onChange={handleSettlementsToCropYear}
-                            value={settlementsToCropYear}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="row-title">Other land to Cropland</td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="otherToCrop"
-                            min="0"
-                            value={otherToCrop}
-                            onChange={handleOtherToCrop}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="otherToCropMineral"
-                            min="0"
-                            value={otherToCropMineral}
-                            onChange={handleOtherToCropMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="otherToCropOrganic"
-                            min="0"
-                            value={otherToCropOrganic}
-                            onChange={handleOtherToCropOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="otherToCropYear"
-                            name="otherToCropYear"
-                            onChange={handleOtherToCropYear}
-                            value={otherToCropYear}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <div className="tbl-container">
+                    <div className="">
+                      <input
+                          className="checkbox_luc"
+                          type="checkbox"
+                          id="luc_tc"
+                          checked={lucToCrop}
+                          defaultValue={lucToCrop}
+                          onChange={handleLucToCrop}
+                      />
+                    <label htmlFor="local_electricity">
+                    Land-Use Change to Crop Land
+                    </label>
+                  </div>
+                    {lucToCrop && (
+                      <>
+                    <table className="toCrop tbl">
+                      <thead>
+                        <tr>
+                          <th className="row-title">Land-Use Change</th>
+                          <th>Total area, ha</th>
+                          <th>Soil area (mineral), ha</th>
+                          <th>Soil area (organic), ha</th>
+                          <Tooltip title="Select the year when the land-use change is expected to happen.">
+                            <th>Year of implementation</th>
+                          </Tooltip>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td className="row-title">Forest Land to Cropland</td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="forestToCrop"
+                              min="0"
+                              value={forestToCrop}
+                              onChange={handleForestToCrop}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="forestToCropMineral"
+                              min="0"
+                              value={forestToCropMineral}
+                              onChange={handleForestToCropMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="forestToCropOrganic"
+                              min="0"
+                              value={forestToCropOrganic}
+                              onChange={handleForestToCropOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="forestToCropYear"
+                              name="forestToCropYear"
+                              onChange={handleForestToCropYear}
+                              value={forestToCropYear}
+                              onMouseLeave={setTotal}
+                              required
+                            >
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="row-title">Grassland to Cropland</td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="grassToCrop"
+                              min="0"
+                              value={grassToCrop}
+                              onChange={handleGrassToCrop}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="grassToCropMineral"
+                              min="0"
+                              value={grassToCropMineral}
+                              onChange={handleGrassToCropMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="grassToCropOrganic"
+                              min="0"
+                              value={grassToCropOrganic}
+                              onChange={handleGrassToCropOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="grassToCropYear"
+                              name="grassToCropYear"
+                              onChange={handleGrassToCropYear}
+                              value={grassToCropYear}
+                              required
+                            >
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="row-title">Wetlands to Cropland</td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="wetToCrop"
+                              min="0"
+                              value={wetToCrop}
+                              onChange={handleWetToCrop}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="wetToCropMineral"
+                              min="0"
+                              value={wetToCropMineral}
+                              onChange={handleWetToCropMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="wetToCropOrganic"
+                              min="0"
+                              value={wetToCropOrganic}
+                              onChange={handleWetToCropOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="wetToCropYear"
+                              name="wetToCropYear"
+                              onChange={handleWetToCropYear}
+                              value={wetToCropYear}
+                              required
+                            >
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="row-title">Settlements to Cropland</td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="settlementsToCrop"
+                              min="0"
+                              value={settlementsToCrop}
+                              onChange={handleSettlementsToCrop}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="settlementsToCropMineral"
+                              min="0"
+                              value={settlementsToCropMineral}
+                              onChange={handleSettlementsToCropMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="settlementsToCropOrganic"
+                              min="0"
+                              value={settlementsToCropOrganic}
+                              onChange={handleSettlementsToCropOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="settlementsToCropYear"
+                              name="settlementsToCropYear"
+                              onChange={handleSettlementsToCropYear}
+                              value={settlementsToCropYear}
+                              required
+                            >
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="row-title">Other land to Cropland</td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="otherToCrop"
+                              min="0"
+                              value={otherToCrop}
+                              onChange={handleOtherToCrop}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="otherToCropMineral"
+                              min="0"
+                              value={otherToCropMineral}
+                              onChange={handleOtherToCropMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="otherToCropOrganic"
+                              min="0"
+                              value={otherToCropOrganic}
+                              onChange={handleOtherToCropOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="otherToCropYear"
+                              name="otherToCropYear"
+                              onChange={handleOtherToCropYear}
+                              value={otherToCropYear}
+                              required
+                            >
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    </>
+                    )}
+                  </div>
                 </div>
 
                 <div className="luc_row">
-                  <table className="toGrass tbl">
-                    <thead>
-                      <tr>
-                        <th className="row-title">Land-Use Change</th>
-                        <th>Total area, ha</th>
-                        <th>Soil area (mineral), ha</th>
-                        <th>Soil area (organic), ha</th>
-                        <Tooltip title="Select the year when the land-use change is expected to happen.">
-                          <th>Year of implementation</th>
-                        </Tooltip>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="row-title">Forest Land to GrassLand</td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="forestToGrass"
-                            min="0"
-                            value={forestToGrass}
-                            onChange={handleForestToGrass}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="forestToGrassMineral"
-                            min="0"
-                            value={forestToGrassMineral}
-                            onChange={handleForestToGrassMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="forestToGrassOrganic"
-                            min="0"
-                            value={forestToGrassOrganic}
-                            onChange={handleForestToGrassOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="forestToGrassYear"
-                            name="forestToGrassYear"
-                            onChange={handleForestToGrassYear}
-                            value={forestToGrassYear}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="row-title">Cropland to Grassland</td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="cropToGrass"
-                            min="0"
-                            value={cropToGrass}
-                            onChange={handleCropToGrass}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="cropToGrassMineral"
-                            min="0"
-                            value={cropToGrassMineral}
-                            onChange={handleCropToGrassMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="cropToGrassOrganic"
-                            min="0"
-                            value={cropToGrassOrganic}
-                            onChange={handleCropToGrassOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="cropToGrassYear"
-                            name="cropToGrassYear"
-                            onChange={handleCropToGrassYear}
-                            value={cropToGrassYear}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="row-title">Wetlands to Grassland</td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="wetToGrass"
-                            min="0"
-                            value={wetToGrass}
-                            onChange={handleWetToGrass}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="wetToGrassMineral"
-                            min="0"
-                            value={wetToGrassMineral}
-                            onChange={handleWetToGrassMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="wetToGrassOrganic"
-                            min="0"
-                            value={wetToGrassOrganic}
-                            onChange={handleWetToGrassOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="wetToGrassYear"
-                            name="wetToGrassYear"
-                            onChange={handleWetToGrassYear}
-                            value={wetToGrassYear}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="row-title">Settlements to Grassland</td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="settlementsToGrass"
-                            min="0"
-                            value={settlementsToGrass}
-                            onChange={handleSettlementsToGrass}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="settlementsToGrassMineral"
-                            min="0"
-                            value={settlementsToGrassMineral}
-                            onChange={handleSettlementsToGrassMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="settlementsToGrassOrganic"
-                            min="0"
-                            value={settlementsToGrassOrganic}
-                            onChange={handleSettlementsToGrassOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="settlementsToGrassYear"
-                            name="settlementsToGrassYear"
-                            onChange={handleSettlementsToGrassYear}
-                            value={settlementsToGrassYear}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="row-title">Other land to Grassland</td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="otherToGrass"
-                            min="0"
-                            value={otherToGrass}
-                            onChange={handleOtherToGrass}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="otherToCropMineral"
-                            min="0"
-                            value={otherToGrassMineral}
-                            onChange={handleOtherToGrassMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="otherToCropOrganic"
-                            min="0"
-                            value={otherToGrassOrganic}
-                            onChange={handleOtherToGrassOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="otherToGrassYear"
-                            name="otherToGrassYear"
-                            onChange={handleOtherToGrassYear}
-                            value={otherToGrassYear}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <div className="tbl-container">
+                    <div className="">
+                      <input
+                        className="checkbox_luc"
+                        type="checkbox"
+                        id="luc_"
+                        checked={lucToGrass}
+                        defaultValue={lucToGrass}
+                        onChange={handleLucToGrass}
+                        />
+                      <label htmlFor="local_electricity">
+                        Land-Use Change to Grassland
+                      </label>
+                    </div>
+                    {lucToGrass && (
+                      <>
+                    <table className="toGrass tbl">
+                      <thead>
+                        <tr>
+                          <th className="row-title">Land-Use Change</th>
+                          <th>Total area, ha</th>
+                          <th>Soil area (mineral), ha</th>
+                          <th>Soil area (organic), ha</th>
+                          <Tooltip title="Select the year when the land-use change is expected to happen.">
+                            <th>Year of implementation</th>
+                          </Tooltip>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td className="row-title">Forest Land to GrassLand</td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="forestToGrass"
+                              min="0"
+                              value={forestToGrass}
+                              onChange={handleForestToGrass}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="forestToGrassMineral"
+                              min="0"
+                              value={forestToGrassMineral}
+                              onChange={handleForestToGrassMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="forestToGrassOrganic"
+                              min="0"
+                              value={forestToGrassOrganic}
+                              onChange={handleForestToGrassOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="forestToGrassYear"
+                              name="forestToGrassYear"
+                              onChange={handleForestToGrassYear}
+                              value={forestToGrassYear}
+                              required
+                            >
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="row-title">Cropland to Grassland</td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="cropToGrass"
+                              min="0"
+                              value={cropToGrass}
+                              onChange={handleCropToGrass}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="cropToGrassMineral"
+                              min="0"
+                              value={cropToGrassMineral}
+                              onChange={handleCropToGrassMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="cropToGrassOrganic"
+                              min="0"
+                              value={cropToGrassOrganic}
+                              onChange={handleCropToGrassOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="cropToGrassYear"
+                              name="cropToGrassYear"
+                              onChange={handleCropToGrassYear}
+                              value={cropToGrassYear}
+                              required
+                            >
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="row-title">Wetlands to Grassland</td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="wetToGrass"
+                              min="0"
+                              value={wetToGrass}
+                              onChange={handleWetToGrass}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="wetToGrassMineral"
+                              min="0"
+                              value={wetToGrassMineral}
+                              onChange={handleWetToGrassMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="wetToGrassOrganic"
+                              min="0"
+                              value={wetToGrassOrganic}
+                              onChange={handleWetToGrassOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="wetToGrassYear"
+                              name="wetToGrassYear"
+                              onChange={handleWetToGrassYear}
+                              value={wetToGrassYear}
+                              required
+                            >
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="row-title">Settlements to Grassland</td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="settlementsToGrass"
+                              min="0"
+                              value={settlementsToGrass}
+                              onChange={handleSettlementsToGrass}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="settlementsToGrassMineral"
+                              min="0"
+                              value={settlementsToGrassMineral}
+                              onChange={handleSettlementsToGrassMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="settlementsToGrassOrganic"
+                              min="0"
+                              value={settlementsToGrassOrganic}
+                              onChange={handleSettlementsToGrassOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="settlementsToGrassYear"
+                              name="settlementsToGrassYear"
+                              onChange={handleSettlementsToGrassYear}
+                              value={settlementsToGrassYear}
+                              required
+                            >
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="row-title">Other land to Grassland</td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="otherToGrass"
+                              min="0"
+                              value={otherToGrass}
+                              onChange={handleOtherToGrass}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="otherToCropMineral"
+                              min="0"
+                              value={otherToGrassMineral}
+                              onChange={handleOtherToGrassMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="otherToCropOrganic"
+                              min="0"
+                              value={otherToGrassOrganic}
+                              onChange={handleOtherToGrassOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="otherToGrassYear"
+                              name="otherToGrassYear"
+                              onChange={handleOtherToGrassYear}
+                              value={otherToGrassYear}
+                              required
+                            >
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                      </>
+                    )}
+                  </div>
 
-                  <table className="toWet tbl">
-                    <thead>
-                      <tr>
-                        <th className="row-title">Land-Use Change</th>
-                        <th>Total area, ha</th>
-                        <th>Soil area (mineral), ha</th>
-                        <th>Soil area (organic), ha</th>
-                        <Tooltip title="Select the year when the land-use change is expected to happen.">
-                          <th>Year of implementation</th>
-                        </Tooltip>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="row-title">
-                          Land converted to peat extraction (combined)
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="landConvertedToPeat"
-                            min="0"
-                            value={landConvertedToPeat}
-                            onChange={handleLandConvertedToPeat}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="landConvertedToPeatMineral"
-                            min="0"
-                            value={landConvertedToPeatMineral}
-                            onChange={handleLandConvertedToPeatMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="landConvertedToPeatOrganic"
-                            min="0"
-                            value={landConvertedToPeatOrganic}
-                            onChange={handleLandConvertedToPeatOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="landConvertedToPeatYear"
-                            name="landConvertedToPeatYear"
-                            onChange={handleLandConvertedToPeatYear}
-                            value={landConvertedToPeatYear}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="row-title">
-                          Peatland restoration (rewetting)
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="peatLandRestore"
-                            min="0"
-                            value={peatLandRestore}
-                            onChange={handlePeatLandRestore}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="peatLandRestoreMineral"
-                            min="0"
-                            value={peatLandRestoreMineral}
-                            onChange={handlePeatLandRestoreMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="peatLandRestoreOrganic"
-                            min="0"
-                            value={peatLandRestoreOrganic}
-                            onChange={handlePeatLandRestoreOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="peatLandRestoreYear"
-                            name="peatLandRestoreYear"
-                            onChange={handlePeatLandRestoreYear}
-                            value={peatLandRestoreYear}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="row-title">
-                          Forest land to other wetlands/ flooded land
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="forestToWetland"
-                            min="0"
-                            value={forestToWetland}
-                            onChange={handleForestToWetland}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="forestToWetlandMineral"
-                            min="0"
-                            value={forestToWetlandMineral}
-                            onChange={handleForestToWetlandMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="wetToGrassOrganic"
-                            min="0"
-                            value={forestToWetlandOrganic}
-                            onChange={handleForestToWetlandOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="wetToGrassYear"
-                            name="forestToWetland"
-                            onChange={handleForestToWetlandYear}
-                            value={forestToWetlandYear}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="row-title">
-                          Cropland to other wetlands/ flooded land
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="cropToWet"
-                            min="0"
-                            value={cropToWet}
-                            onChange={handleCropToWet}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="cropToWetMineral"
-                            min="0"
-                            value={cropToWetMineral}
-                            onChange={handleCropToWetMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="cropToWetOrganic"
-                            min="0"
-                            value={cropToWetOrganic}
-                            onChange={handleCropToWetOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="cropToWetYear"
-                            name="cropToWetYear"
-                            onChange={handleCropToWetYear}
-                            value={cropToWetYear}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="row-title">
-                          Grassland to other wetlands/ flooded land
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="grassToWet"
-                            min="0"
-                            value={grassToWet}
-                            onChange={handleGrassToWet}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="grassToWetMineral"
-                            min="0"
-                            value={grassToWetMineral}
-                            onChange={handleGrassToWetMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="grassToWetOrganic"
-                            min="0"
-                            value={grassToWetOrganic}
-                            onChange={handleGrassToWetOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="grassToWetYear"
-                            name="grassToWetYear"
-                            onChange={handleGrassToWetYear}
-                            value={grassToWetYear}
-                            onMouseLeave={setTotal}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <div className="tbl-container">
+                    <div className="">
+                      <input
+                          className="checkbox_luc"
+                          type="checkbox"
+                          id="luc_"
+                          checked={lucToWet}
+                          defaultValue={lucToWet}
+                          onChange={handleLucToWet}
+                      />
+                      <label htmlFor="local_electricity">
+                        Land-Use Change to Wetland
+                      </label>
+                    </div>
+                    {lucToWet && (
+                      <>
+                    <table className="toWet tbl">
+                      <thead>
+                        <tr>
+                          <th className="row-title">Land-Use Change</th>
+                          <th>Total area, ha</th>
+                          <th>Soil area (mineral), ha</th>
+                          <th>Soil area (organic), ha</th>
+                          <Tooltip title="Select the year when the land-use change is expected to happen.">
+                            <th>Year of implementation</th>
+                          </Tooltip>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td className="row-title">
+                            Land converted to peat extraction (combined)
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="landConvertedToPeat"
+                              min="0"
+                              value={landConvertedToPeat}
+                              onChange={handleLandConvertedToPeat}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="landConvertedToPeatMineral"
+                              min="0"
+                              value={landConvertedToPeatMineral}
+                              onChange={handleLandConvertedToPeatMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="landConvertedToPeatOrganic"
+                              min="0"
+                              value={landConvertedToPeatOrganic}
+                              onChange={handleLandConvertedToPeatOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="landConvertedToPeatYear"
+                              name="landConvertedToPeatYear"
+                              onChange={handleLandConvertedToPeatYear}
+                              value={landConvertedToPeatYear}
+                              required
+                            >
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="row-title">
+                            Peatland restoration (rewetting)
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="peatLandRestore"
+                              min="0"
+                              value={peatLandRestore}
+                              onChange={handlePeatLandRestore}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="peatLandRestoreMineral"
+                              min="0"
+                              value={peatLandRestoreMineral}
+                              onChange={handlePeatLandRestoreMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="peatLandRestoreOrganic"
+                              min="0"
+                              value={peatLandRestoreOrganic}
+                              onChange={handlePeatLandRestoreOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="peatLandRestoreYear"
+                              name="peatLandRestoreYear"
+                              onChange={handlePeatLandRestoreYear}
+                              value={peatLandRestoreYear}
+                              required
+                            >
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="row-title">
+                            Forest land to other wetlands/ flooded land
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="forestToWetland"
+                              min="0"
+                              value={forestToWetland}
+                              onChange={handleForestToWetland}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="forestToWetlandMineral"
+                              min="0"
+                              value={forestToWetlandMineral}
+                              onChange={handleForestToWetlandMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="wetToGrassOrganic"
+                              min="0"
+                              value={forestToWetlandOrganic}
+                              onChange={handleForestToWetlandOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="wetToGrassYear"
+                              name="forestToWetland"
+                              onChange={handleForestToWetlandYear}
+                              value={forestToWetlandYear}
+                              required
+                            >
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="row-title">
+                            Cropland to other wetlands/ flooded land
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="cropToWet"
+                              min="0"
+                              value={cropToWet}
+                              onChange={handleCropToWet}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="cropToWetMineral"
+                              min="0"
+                              value={cropToWetMineral}
+                              onChange={handleCropToWetMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="cropToWetOrganic"
+                              min="0"
+                              value={cropToWetOrganic}
+                              onChange={handleCropToWetOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="cropToWetYear"
+                              name="cropToWetYear"
+                              onChange={handleCropToWetYear}
+                              value={cropToWetYear}
+                              required
+                            >
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="row-title">
+                            Grassland to other wetlands/ flooded land
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="grassToWet"
+                              min="0"
+                              value={grassToWet}
+                              onChange={handleGrassToWet}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="grassToWetMineral"
+                              min="0"
+                              value={grassToWetMineral}
+                              onChange={handleGrassToWetMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="grassToWetOrganic"
+                              min="0"
+                              value={grassToWetOrganic}
+                              onChange={handleGrassToWetOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="grassToWetYear"
+                              name="grassToWetYear"
+                              onChange={handleGrassToWetYear}
+                              value={grassToWetYear}
+                              onMouseLeave={setTotal}
+                              required
+                            >
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    </>
+                    )}
+                  </div>
                 </div>
 
                 <div className="luc_row">
-                  <table className="toSettlements tbl">
-                    <thead>
-                      <tr>
-                        <th className="row-title">Land-Use Change</th>
-                        <th>Total area, ha</th>
-                        <th>Soil area (mineral), ha</th>
-                        <th>Soil area (organic), ha</th>
-                        <Tooltip title="Select the year when the land-use change is expected to happen.">
-                          <th>Year of implementation</th>
-                        </Tooltip>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="row-title">
-                          Forest land to Settlements
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="forestToSettlements"
-                            min="0"
-                            value={forestToSettlements}
-                            onChange={handleForestToSettlements}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="forestToSettlementsMineral"
-                            min="0"
-                            value={forestToSettlementsMineral}
-                            onChange={handleForestToSettlementsMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="forestToSettlementsOrganic"
-                            min="0"
-                            value={forestToSettlementsOrganic}
-                            onChange={handleForestToSettlementsOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="forestToSettlementsYear"
-                            name="forestToSettlementsYear"
-                            onChange={handleForestToSettlementsYear}
-                            value={forestToSettlementsYear}
-                            onMouseLeave={setTotal}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="row-title">Cropland to Settlements</td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="cropToSettlements"
-                            min="0"
-                            value={cropToSettlements}
-                            onChange={handleCropToSettlements}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="cropToSettlementsMineral"
-                            min="0"
-                            value={cropToSettlementsMineral}
-                            onChange={handleCropToSettlementsMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="cropToSettlementsOrganic"
-                            min="0"
-                            value={cropToSettlementsOrganic}
-                            onChange={handleCropToSettlementsOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="cropToSettlementsYear"
-                            name="cropToSettlementsYear"
-                            onChange={handleCropToSettlementsYear}
-                            value={cropToSettlementsYear}
-                            onMouseLeave={setTotal}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="row-title">Grass to Settlements</td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="grassToSettlements"
-                            min="0"
-                            value={grassToSettlements}
-                            onChange={handleGrassToSettlements}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="grassToSettlementsMineral"
-                            min="0"
-                            value={grassToSettlementsMineral}
-                            onChange={handleGrassToSettlementsMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="grassToSettlementsOrganic"
-                            min="0"
-                            value={grassToSettlementsOrganic}
-                            onChange={handleGrassToSettlementsOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="wetToGrassYear"
-                            name="forestToWetland"
-                            onChange={handleGrassToSettlementsYear}
-                            value={grassToSettlementsYear}
-                            onMouseLeave={setTotal}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="row-title">Wetlands to Settlements</td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="wetToSettlements"
-                            min="0"
-                            value={wetToSettlements}
-                            onChange={handleWetToSettlements}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="wetToSettlementsMineral"
-                            min="0"
-                            value={wetToSettlementsMineral}
-                            onChange={handleWetToSettlementsMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="wetToSettlementsOrganic"
-                            min="0"
-                            value={wetToSettlementsOrganic}
-                            onChange={handleWetToSettlementsOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="wetToSettlementsYear"
-                            name="wetToSettlementsYear"
-                            onChange={handleWetToSettlementsYear}
-                            value={wetToSettlementsYear}
-                            onMouseLeave={setTotal}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="row-title">Other to Settlements</td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="otherToSettlements"
-                            min="0"
-                            value={otherToSettlements}
-                            onChange={handleOtherToSettlements}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="otherToSettlementsMineral"
-                            min="0"
-                            value={otherToSettlementsMineral}
-                            onChange={handleOtherToSettlementsMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="otherToSettlementsOrganic"
-                            min="0"
-                            value={otherToSettlementsOrganic}
-                            onChange={handleOtherToSettlementsOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="otherToSettlementsYear"
-                            name="otherToSettlementsYear"
-                            onChange={handleOtherToSettlementsYear}
-                            value={otherToSettlementsYear}
-                            onMouseLeave={setTotal}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <div className="tbl-container">
+                    <div className="">
+                      <input
+                        className="checkbox_luc"
+                        type="checkbox"
+                        id="luc_"
+                        checked={lucToSettlements}
+                        defaultValue={lucToSettlements}
+                        onChange={handleLucToSettlements}
+                      />
+                      <label htmlFor="local_electricity">
+                        Land-Use Change to 
+                      </label>
+                    </div>
+                  {lucToSettlements && (
+                      <>
+                    <table className="toSettlements tbl">
+                      <thead>
+                        <tr>
+                          <th className="row-title">Land-Use Change</th>
+                          <th>Total area, ha</th>
+                          <th>Soil area (mineral), ha</th>
+                          <th>Soil area (organic), ha</th>
+                          <Tooltip title="Select the year when the land-use change is expected to happen.">
+                            <th>Year of implementation</th>
+                          </Tooltip>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td className="row-title">
+                            Forest land to Settlements
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="forestToSettlements"
+                              min="0"
+                              value={forestToSettlements}
+                              onChange={handleForestToSettlements}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="forestToSettlementsMineral"
+                              min="0"
+                              value={forestToSettlementsMineral}
+                              onChange={handleForestToSettlementsMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="forestToSettlementsOrganic"
+                              min="0"
+                              value={forestToSettlementsOrganic}
+                              onChange={handleForestToSettlementsOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="forestToSettlementsYear"
+                              name="forestToSettlementsYear"
+                              onChange={handleForestToSettlementsYear}
+                              value={forestToSettlementsYear}
+                              onMouseLeave={setTotal}
+                              required
+                            >
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="row-title">Cropland to Settlements</td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="cropToSettlements"
+                              min="0"
+                              value={cropToSettlements}
+                              onChange={handleCropToSettlements}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="cropToSettlementsMineral"
+                              min="0"
+                              value={cropToSettlementsMineral}
+                              onChange={handleCropToSettlementsMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="cropToSettlementsOrganic"
+                              min="0"
+                              value={cropToSettlementsOrganic}
+                              onChange={handleCropToSettlementsOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="cropToSettlementsYear"
+                              name="cropToSettlementsYear"
+                              onChange={handleCropToSettlementsYear}
+                              value={cropToSettlementsYear}
+                              onMouseLeave={setTotal}
+                              required
+                            >
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="row-title">Grass to Settlements</td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="grassToSettlements"
+                              min="0"
+                              value={grassToSettlements}
+                              onChange={handleGrassToSettlements}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="grassToSettlementsMineral"
+                              min="0"
+                              value={grassToSettlementsMineral}
+                              onChange={handleGrassToSettlementsMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="grassToSettlementsOrganic"
+                              min="0"
+                              value={grassToSettlementsOrganic}
+                              onChange={handleGrassToSettlementsOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="wetToGrassYear"
+                              name="forestToWetland"
+                              onChange={handleGrassToSettlementsYear}
+                              value={grassToSettlementsYear}
+                              onMouseLeave={setTotal}
+                              required
+                            >
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="row-title">Wetlands to Settlements</td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="wetToSettlements"
+                              min="0"
+                              value={wetToSettlements}
+                              onChange={handleWetToSettlements}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="wetToSettlementsMineral"
+                              min="0"
+                              value={wetToSettlementsMineral}
+                              onChange={handleWetToSettlementsMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="wetToSettlementsOrganic"
+                              min="0"
+                              value={wetToSettlementsOrganic}
+                              onChange={handleWetToSettlementsOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="wetToSettlementsYear"
+                              name="wetToSettlementsYear"
+                              onChange={handleWetToSettlementsYear}
+                              value={wetToSettlementsYear}
+                              onMouseLeave={setTotal}
+                              required
+                            >
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="row-title">Other to Settlements</td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="otherToSettlements"
+                              min="0"
+                              value={otherToSettlements}
+                              onChange={handleOtherToSettlements}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="otherToSettlementsMineral"
+                              min="0"
+                              value={otherToSettlementsMineral}
+                              onChange={handleOtherToSettlementsMineral}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="table-cell"
+                              type="number"
+                              step="1"
+                              id="otherToSettlementsOrganic"
+                              min="0"
+                              value={otherToSettlementsOrganic}
+                              onChange={handleOtherToSettlementsOrganic}
+                              onMouseLeave={setTotal}
+                              required
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="table-cell"
+                              id="otherToSettlementsYear"
+                              name="otherToSettlementsYear"
+                              onChange={handleOtherToSettlementsYear}
+                              value={otherToSettlementsYear}
+                              onMouseLeave={setTotal}
+                              required
+                            >
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}{" "}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    </>
+                  )}
+                  </div>
 
-                  <table className="toOther tbl">
-                    <thead>
-                      <tr>
-                        <th className="row-title">Land-Use Change</th>
-                        <th>Total area, ha</th>
-                        <th>Soil area (mineral), ha</th>
-                        <th>Soil area (organic), ha</th>
-                        <Tooltip title="Select the year when the land-use change is expected to happen.">
-                          <th>Year of implementation</th>
-                        </Tooltip>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="row-title">Forest land to other land</td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="forestToOther"
-                            min="0"
-                            value={forestToOther}
-                            onChange={handleForestToOther}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="forestToOtherMineral"
-                            min="0"
-                            value={forestToOtherMineral}
-                            onChange={handleForestToOtherMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="forestToOtherOrganic"
-                            min="0"
-                            value={forestToOtherOrganic}
-                            onChange={handleForestToOtherOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="forestToOtherYear"
-                            name="forestToOtherYear"
-                            onChange={handleForestToOtherYear}
-                            value={forestToOtherYear}
-                            onMouseLeave={setTotal}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="row-title">
-                          Cropland land to other land
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="cropToOther"
-                            min="0"
-                            value={cropToOther}
-                            onChange={handleCropToOther}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="cropToOtherMineral"
-                            min="0"
-                            value={cropToOtherMineral}
-                            onChange={handleCropToOtherMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="cropToOtherOrganic"
-                            min="0"
-                            value={cropToOtherOrganic}
-                            onChange={handleCropToOtherOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="cropToOtherYear"
-                            name="cropToOtherYear"
-                            onChange={handleCropToOtherYear}
-                            value={cropToOtherYear}
-                            onMouseLeave={setTotal}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="row-title">Grassland to other land</td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="grassToOther"
-                            min="0"
-                            value={grassToOther}
-                            onChange={handleGrassToOther}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="cropToOtherMineral"
-                            min="0"
-                            value={grassToOtherMineral}
-                            onChange={handleGrassToOtherMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="cropToOtherOrganic"
-                            min="0"
-                            value={grassToOtherOrganic}
-                            onChange={handleGrassToOtherOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="cropToOtherYear"
-                            name="cropToOtherYear"
-                            onChange={handleGrassToOtherYear}
-                            value={grassToOtherYear}
-                            onMouseLeave={setTotal}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="row-title">Wetlands to other land</td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="wetToOther"
-                            min="0"
-                            value={wetToOther}
-                            onChange={handleWetToOther}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="wetToOtherMineral"
-                            min="0"
-                            value={wetToOtherMineral}
-                            onChange={handleWetToOtherMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="wetToOtherOrganic"
-                            min="0"
-                            value={wetToOtherOrganic}
-                            onChange={handleWetToOtherOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="wetToOtherYear"
-                            name="wetToOtherYear"
-                            onChange={handleWetToOtherYear}
-                            value={wetToOtherYear}
-                            onMouseLeave={setTotal}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="row-title">Settlements to other land</td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="settlementsToOther"
-                            min="0"
-                            value={settlementsToOther}
-                            onChange={handleSettlementsToOther}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="settlementsToOtherMineral"
-                            min="0"
-                            value={settlementsToOtherMineral}
-                            onChange={handleSettlementsToOtherMineral}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <input
-                            className="table-cell"
-                            type="number"
-                            step="1"
-                            id="settlementsToOtherOrganic"
-                            min="0"
-                            value={settlementsToOtherOrganic}
-                            onChange={handleSettlementsToOtherOrganic}
-                            onMouseLeave={setTotal}
-                            required
-                          />
-                        </td>
-                        <td>
-                          <select
-                            className="table-cell"
-                            id="settlementsToOtherYear"
-                            name="settlementsToOtherYear"
-                            onChange={handleSettlementsToOtherYear}
-                            value={settlementsToOtherYear}
-                            onMouseLeave={setTotal}
-                            required
-                          >
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}{" "}
-                              </option>
-                            ))}
-                          </select>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <div className="tbl-container">
+                    <div className="">
+                      <input
+                            className="checkbox_luc"
+                            type="checkbox"
+                            id="luc_"
+                            checked={lucToOther}
+                            defaultValue={lucToOther}
+                            onChange={handleLucToOther}
+                      />
+                      <label htmlFor="local_electricity">
+                        Land-Use Change to 
+                      </label>
+                    </div>
+                    {lucToOther && (
+                      <>
+                        <table className="toOther tbl">
+                          <thead>
+                            <tr>
+                              <th className="row-title">Land-Use Change</th>
+                              <th>Total area, ha</th>
+                              <th>Soil area (mineral), ha</th>
+                              <th>Soil area (organic), ha</th>
+                              <Tooltip title="Select the year when the land-use change is expected to happen.">
+                                <th>Year of implementation</th>
+                              </Tooltip>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td className="row-title">Forest land to other land</td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="forestToOther"
+                                  min="0"
+                                  value={forestToOther}
+                                  onChange={handleForestToOther}
+                                  onMouseLeave={setTotal}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="forestToOtherMineral"
+                                  min="0"
+                                  value={forestToOtherMineral}
+                                  onChange={handleForestToOtherMineral}
+                                  onMouseLeave={setTotal}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="forestToOtherOrganic"
+                                  min="0"
+                                  value={forestToOtherOrganic}
+                                  onChange={handleForestToOtherOrganic}
+                                  onMouseLeave={setTotal}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                <select
+                                  className="table-cell"
+                                  id="forestToOtherYear"
+                                  name="forestToOtherYear"
+                                  onChange={handleForestToOtherYear}
+                                  value={forestToOtherYear}
+                                  onMouseLeave={setTotal}
+                                  required
+                                >
+                                  {options.map((option) => (
+                                    <option key={option} value={option}>
+                                      {option}{" "}
+                                    </option>
+                                  ))}
+                                </select>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="row-title">
+                                Cropland land to other land
+                              </td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="cropToOther"
+                                  min="0"
+                                  value={cropToOther}
+                                  onChange={handleCropToOther}
+                                  onMouseLeave={setTotal}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="cropToOtherMineral"
+                                  min="0"
+                                  value={cropToOtherMineral}
+                                  onChange={handleCropToOtherMineral}
+                                  onMouseLeave={setTotal}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="cropToOtherOrganic"
+                                  min="0"
+                                  value={cropToOtherOrganic}
+                                  onChange={handleCropToOtherOrganic}
+                                  onMouseLeave={setTotal}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                <select
+                                  className="table-cell"
+                                  id="cropToOtherYear"
+                                  name="cropToOtherYear"
+                                  onChange={handleCropToOtherYear}
+                                  value={cropToOtherYear}
+                                  onMouseLeave={setTotal}
+                                  required
+                                >
+                                  {options.map((option) => (
+                                    <option key={option} value={option}>
+                                      {option}{" "}
+                                    </option>
+                                  ))}
+                                </select>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="row-title">Grassland to other land</td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="grassToOther"
+                                  min="0"
+                                  value={grassToOther}
+                                  onChange={handleGrassToOther}
+                                  onMouseLeave={setTotal}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="cropToOtherMineral"
+                                  min="0"
+                                  value={grassToOtherMineral}
+                                  onChange={handleGrassToOtherMineral}
+                                  onMouseLeave={setTotal}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="cropToOtherOrganic"
+                                  min="0"
+                                  value={grassToOtherOrganic}
+                                  onChange={handleGrassToOtherOrganic}
+                                  onMouseLeave={setTotal}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                <select
+                                  className="table-cell"
+                                  id="cropToOtherYear"
+                                  name="cropToOtherYear"
+                                  onChange={handleGrassToOtherYear}
+                                  value={grassToOtherYear}
+                                  onMouseLeave={setTotal}
+                                  required
+                                >
+                                  {options.map((option) => (
+                                    <option key={option} value={option}>
+                                      {option}{" "}
+                                    </option>
+                                  ))}
+                                </select>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="row-title">Wetlands to other land</td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="wetToOther"
+                                  min="0"
+                                  value={wetToOther}
+                                  onChange={handleWetToOther}
+                                  onMouseLeave={setTotal}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="wetToOtherMineral"
+                                  min="0"
+                                  value={wetToOtherMineral}
+                                  onChange={handleWetToOtherMineral}
+                                  onMouseLeave={setTotal}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="wetToOtherOrganic"
+                                  min="0"
+                                  value={wetToOtherOrganic}
+                                  onChange={handleWetToOtherOrganic}
+                                  onMouseLeave={setTotal}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                <select
+                                  className="table-cell"
+                                  id="wetToOtherYear"
+                                  name="wetToOtherYear"
+                                  onChange={handleWetToOtherYear}
+                                  value={wetToOtherYear}
+                                  onMouseLeave={setTotal}
+                                  required
+                                >
+                                  {options.map((option) => (
+                                    <option key={option} value={option}>
+                                      {option}{" "}
+                                    </option>
+                                  ))}
+                                </select>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="row-title">Settlements to other land</td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="settlementsToOther"
+                                  min="0"
+                                  value={settlementsToOther}
+                                  onChange={handleSettlementsToOther}
+                                  onMouseLeave={setTotal}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="settlementsToOtherMineral"
+                                  min="0"
+                                  value={settlementsToOtherMineral}
+                                  onChange={handleSettlementsToOtherMineral}
+                                  onMouseLeave={setTotal}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                <input
+                                  className="table-cell"
+                                  type="number"
+                                  step="1"
+                                  id="settlementsToOtherOrganic"
+                                  min="0"
+                                  value={settlementsToOtherOrganic}
+                                  onChange={handleSettlementsToOtherOrganic}
+                                  onMouseLeave={setTotal}
+                                  required
+                                />
+                              </td>
+                              <td>
+                                <select
+                                  className="table-cell"
+                                  id="settlementsToOtherYear"
+                                  name="settlementsToOtherYear"
+                                  onChange={handleSettlementsToOtherYear}
+                                  value={settlementsToOtherYear}
+                                  onMouseLeave={setTotal}
+                                  required
+                                >
+                                  {options.map((option) => (
+                                    <option key={option} value={option}>
+                                      {option}{" "}
+                                    </option>
+                                  ))}
+                                </select>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </>
+                    )}
+                  </div>
                 </div>
 
                 <div className="luc_row">
