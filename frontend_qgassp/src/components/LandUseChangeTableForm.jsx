@@ -1374,32 +1374,39 @@ export const LandUseChangeTableForm = () => {
     );
   }, [landUseChangeResponse]);
 
-    const [lucToForest, setLucToForest] = useStorageBool("lucToForest",false);
-    const handleLucToForest = (e) => {
+
+  // const [lucToForest, setLucToForest] = useStorageBool("lucToForest",false);
+  const [lucToForest, setLucToForest] = useState(false);
+  const handleLucToForest = (e) => {
       setLucToForest(lucToForest ? false : true);
   };
 
-  const [lucToCrop, setLucToCrop] = useStorageBool("lucToCrop",false);
-    const handleLucToCrop = (e) => {
+  // const [lucToCrop, setLucToCrop] = useStorageBool("lucToCrop",false);
+  const [lucToCrop, setLucToCrop] = useState(false);
+  const handleLucToCrop = (e) => {
       setLucToCrop(lucToCrop ? false : true);
   };
 
-  const [lucToGrass, setLucToGrass] = useStorageBool("lucToGrass",false);
+  // const [lucToGrass, setLucToGrass] = useStorageBool("lucToGrass",false);
+  const [lucToGrass, setLucToGrass] = useState(false);
   const handleLucToGrass = (e) => {
     setLucToGrass(lucToGrass ? false : true);
   };
 
-  const [lucToWet, setLucToWet] = useStorageBool("lucToWet",false);
+  // const [lucToWet, setLucToWet] = useStorageBool("lucToWet",false);
+  const [lucToWet, setLucToWet] = useState(false);
   const handleLucToWet = (e) => {
     setLucToWet(lucToWet ? false : true);
   };
 
-  const [lucToSettlements, setLucToSettlements] = useStorageBool("lucToSettlements",false);
+  // const [lucToSettlements, setLucToSettlements] = useStorageBool("lucToSettlements",false);
+  const [lucToSettlements, setLucToSettlements] = useState(false);
   const handleLucToSettlements = (e) => {
     setLucToSettlements(lucToSettlements ? false : true);
   };
 
-  const [lucToOther, setLucToOther] = useStorageBool("lucToOther",false);
+  // const [lucToOther, setLucToOther] = useStorageBool("lucToOther",false);
+  const [lucToOther, setLucToOther] = useState(false);
   const handleLucToOther = (e) => {
     setLucToOther(lucToOther ? false : true);
   };
@@ -2776,7 +2783,7 @@ export const LandUseChangeTableForm = () => {
                         onChange={handleLucToSettlements}
                       />
                       <label htmlFor="local_electricity">
-                        Land-Use Change to 
+                        Land-Use Change to Settlements
                       </label>
                     </div>
                   {lucToSettlements && (
@@ -3108,7 +3115,7 @@ export const LandUseChangeTableForm = () => {
                             onChange={handleLucToOther}
                       />
                       <label htmlFor="local_electricity">
-                        Land-Use Change to 
+                        Land-Use Change to Other Land
                       </label>
                     </div>
                     {lucToOther && (
