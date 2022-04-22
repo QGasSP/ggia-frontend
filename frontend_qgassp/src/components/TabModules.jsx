@@ -16,7 +16,6 @@ export const TabModules = () => {
   const country = localStorage.getItem("country");
   const year = parseInt(localStorage.getItem("year"));
   const population = parseInt(localStorage.getItem("population"));
-  const baseline = JSON.parse(localStorage.getItem("baseline"));
 
   const toggleTab = (index) => {
     setToggleState(index);
@@ -27,12 +26,10 @@ export const TabModules = () => {
   }, [toggleState]);
 
   const openGuide = () => {
-    // toggleTab(7);
     window.open(ggiaGuideUrl, "_blank");
   };
-  // if (population === 0 && year === 0 && country === ""&& Object.keys(baseline).length === 0) {
 
-  if (population === 0 && year === 0 && country === "") {
+  if (population === 0 && year === 0 && country === "" || window.localStorage === null) {
     return (
       <>
         <ModuleHeader />
