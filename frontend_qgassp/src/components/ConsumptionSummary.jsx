@@ -100,7 +100,7 @@ export const ConsumptionSummary = ({
     { x: "Transport_other", y: bl.transportOther[policyYear] },
     { x: "Air_travel", y: bl.airTravel[policyYear] },
     { x: "Food", y: bl.food[policyYear] },
-    { x: "Tabgible_goods", y: bl.tangibleGoods[policyYear] },
+    { x: "Tangible_goods", y: bl.tangibleGoods[policyYear] },
     { x: "Services", y:  bl.services[policyYear] },
     { x: "Total_emissions", y: blTotalEmmissions[policyYear]},
   ];
@@ -137,49 +137,49 @@ export const ConsumptionSummary = ({
         <BarSeries
           color="#3d58a3"
           opacity={0.5}
-          data={bLHousingEnergy}
+          data={policyHousingEnergy}
           stack
         />
         <BarSeries
           color="#ef7d00"
           opacity={0.55}
-          data={bLHousingOther}
+          data={policyHousingOther}
           stack
         />
         <BarSeries
           color="#95c11f"
           opacity={0.55}
-          data={bLTransportFuels}
+          data={policyTransportFuels}
           stack
         />
         <BarSeries
           color="#ce143d"
           opacity={0.55}
-          data={bLTransportOther}
+          data={policyTransportOther}
           stack
         />
         <BarSeries
           color="#845f9e"
           opacity={0.55}
-          data={bLAirTravel}
+          data={policyAirTravel}
           stack
         />
         <BarSeries
           color="#996e35"
           opacity={0.55}
-          data={bLFood}
+          data={policyFood}
           stack
         />
         <BarSeries
           color="#e1719a"
           opacity={0.55}
-          data={bLTangiblegoods}
+          data={policyTangiblegoods}
           stack
         />
         <BarSeries
           color="#76918e"
           opacity={0.55}
-          data={bLServices}
+          data={policyServices}
           stack
         />
         <LineSeries
