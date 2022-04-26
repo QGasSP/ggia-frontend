@@ -403,7 +403,7 @@ export const BuildingsNewUnits = ({
   };
   const handleApartmentDensUnitsAfter = (e) => {
     e.preventDefault();
-    setApartmentDensUnitsAfter(parseInt(e.target.value));
+    setApartmentDensUnitsAfter(parseInt(apartmentUnitsDensificated + (apartmentUnitsDensificated * apartmentDensRate / 100)));
   };
   // #endregion densification
 
@@ -431,7 +431,7 @@ export const BuildingsNewUnits = ({
   };
   const handleTerracedDensUnitsAfter = (e) => {
     e.preventDefault();
-    setTerracedDensUnitsAfter(parseInt(e.target.value));
+    setTerracedDensUnitsAfter(parseInt(terracedUnitsDensificated + (terracedUnitsDensificated * terracedDensRate / 100)));
   };
   // #endregion densification
 
@@ -459,7 +459,7 @@ export const BuildingsNewUnits = ({
   };
   const handleSemiDetachedDensUnitsAfter = (e) => {
     e.preventDefault();
-    setSemiDetachedDensUnitsAfter(parseInt(e.target.value));
+    setSemiDetachedDensUnitsAfter(parseInt(semiDetachedUnitsDensificated + (semiDetachedUnitsDensificated * semiDetachedDensRate / 100)));
   };
   // #endregion densification
 
@@ -487,7 +487,7 @@ export const BuildingsNewUnits = ({
   };
   const handleDetachedDensUnitsAfter = (e) => {
     e.preventDefault();
-    setDetachedDensUnitsAfter(parseInt(e.target.value));
+    setDetachedDensUnitsAfter(parseInt(detachedUnitsDensificated + (detachedUnitsDensificated * detachedDensRate / 100)));
   };
   // #endregion densification
 
@@ -619,7 +619,7 @@ export const BuildingsNewUnits = ({
   };
   const handleRetailDensAreaAfter = (e) => {
     e.preventDefault();
-    setRetailDensAreaAfter(parseInt(e.target.value));
+    setRetailDensAreaAfter(parseInt(retailAreaDensificated + (retailAreaDensificated * retailDensRate / 100)));
   };
   // #endregion
 
@@ -647,7 +647,7 @@ export const BuildingsNewUnits = ({
   };
   const handleHealthDensAreaAfter = (e) => {
     e.preventDefault();
-    setHealthDensAreaAfter(parseInt(e.target.value));
+    setHealthDensAreaAfter(parseInt(healthAreaDensificated + (healthAreaDensificated * healthDensRate / 100)));
   };
   // #endregion
 
@@ -675,7 +675,7 @@ export const BuildingsNewUnits = ({
   };
   const handleHospitalityDensAreaAfter = (e) => {
     e.preventDefault();
-    setHospitalityDensAreaAfter(parseInt(e.target.value));
+    setHospitalityDensAreaAfter(parseInt(hospitalityAreaDensificated + (hospitalityAreaDensificated * hospitalityDensRate / 100)));
   };
   // #endregion
 
@@ -703,7 +703,7 @@ export const BuildingsNewUnits = ({
   };
   const handleOfficesDensAreaAfter = (e) => {
     e.preventDefault();
-    setOfficesDensAreaAfter(parseInt(e.target.value));
+    setOfficesDensAreaAfter(parseInt(officesAreaDensificated + (officesAreaDensificated * officesDensRate / 100)));
   };
   // #endregion
 
@@ -731,7 +731,7 @@ export const BuildingsNewUnits = ({
   };
   const handleIndustrialDensAreaAfter = (e) => {
     e.preventDefault();
-    setIndustrialDensAreaAfter(parseInt(e.target.value));
+    setIndustrialDensAreaAfter(parseInt(industrialAreaDensificated + (industrialAreaDensificated * industrialDensRate / 100)));
   };
   // #endregion
 
@@ -759,7 +759,7 @@ export const BuildingsNewUnits = ({
   };
   const handleWarehousesDensAreaAfter = (e) => {
     e.preventDefault();
-    setWarehousesDensAreaAfter(parseInt(e.target.value));
+    setWarehousesDensAreaAfter(parseInt(warehousesAreaDensificated + (warehousesAreaDensificated * warehousesDensRate / 100)));
   };
   // #endregion
 
@@ -953,33 +953,18 @@ export const BuildingsNewUnits = ({
       "Access-Control-Allow-Origin": "*",
       "Content-type": "application/json",
     };
-    // axios
-    // .post(
-    //   urlPrefix + "/api/v1/calculate/buildings",
-    //   rawData,
-    //   headers
-    // )
-    // .then((response) => setBuildingsNewUnitsResponse(response.data))    
-    // .catch((error) => {
-    //   setErrorBuildNewUnits({ errorMessage: error.message });
-    //   // eslint-disable-next-line no-console
-    //   console.error("There was an error!", errorBuildNewUnits);
-    // });
-
-    // const nnewConstructionResidentals = {
-    //   "apartment":apartment,
-    //   "terraced":terraced,
-    //   "semi_detached":semiDetached,
-    //   "detached":detached
-    // };
-    // const newConstructionCommercials = {
-    //   "retail":retail,
-    //   "health":health,
-    //   "hospitality":hospitality,
-    //   "offices":offices,
-    //   "industrial":industrial,
-    //   "warehouses":warehouses,
-    // };
+    axios
+    .post(
+      urlPrefix + "/api/v1/calculate/buildings/settlements",
+      rawData,
+      headers
+    )
+    .then((response) => setBuildingsNewUnitsResponse(response.data))    
+    .catch((error) => {
+      setErrorBuildNewUnits({ errorMessage: error.message });
+      // eslint-disable-next-line no-console
+      console.error("There was an error!", errorBuildNewUnits);
+    });
     setMoveToPolicies(true);
   };
   useEffect(() => {
@@ -1750,6 +1735,7 @@ export const BuildingsNewUnits = ({
                           min="0"
                           value={apartmentDensRate}
                           onChange={handleApartmentDensRate}
+                          onMouseLeave={handleApartmentDensUnitsAfter}
                           required
                         />
                       </td>
@@ -1805,7 +1791,6 @@ export const BuildingsNewUnits = ({
                           id="apartment-units-after"
                           min="0"
                           value={apartmentDensUnitsAfter}
-                          onChange={handleApartmentDensUnitsAfter}
                           disabled
                         />
                       </td>
@@ -1835,6 +1820,7 @@ export const BuildingsNewUnits = ({
                           min="0"
                           value={terracedDensRate}
                           onChange={handleTerracedDensRate}
+                          onMouseLeave={handleTerracedDensUnitsAfter}
                           required
                         />
                       </td>
@@ -1890,7 +1876,6 @@ export const BuildingsNewUnits = ({
                           id="terraced-units-after"
                           min="0"
                           value={terracedDensUnitsAfter}
-                          onChange={handleTerracedDensUnitsAfter}
                           required
                         />
                       </td>
@@ -1920,6 +1905,7 @@ export const BuildingsNewUnits = ({
                           min="0"
                           value={semiDetachedDensRate}
                           onChange={handleSemiDetachedDensRate}
+                          onMouseLeave={handleSemiDetachedDensUnitsAfter}
                           required
                         />
                       </td>
@@ -1975,7 +1961,6 @@ export const BuildingsNewUnits = ({
                           id="semiDetached-units-after"
                           min="0"
                           value={semiDetachedDensUnitsAfter}
-                          onChange={handleSemiDetachedDensUnitsAfter}
                           required
                         />
                       </td>
@@ -2005,6 +1990,7 @@ export const BuildingsNewUnits = ({
                           min="0"
                           value={detachedDensRate}
                           onChange={handleDetachedDensRate}
+                          onMouseLeave={handleDetachedDensUnitsAfter}
                           required
                         />
                       </td>
@@ -2060,7 +2046,6 @@ export const BuildingsNewUnits = ({
                           id="detached-units-after"
                           min="0"
                           value={detachedDensUnitsAfter}
-                          onChange={handleDetachedDensUnitsAfter}
                           required
                         />
                       </td>
@@ -2115,6 +2100,7 @@ export const BuildingsNewUnits = ({
                             min="0"
                             value={retailDensRate}
                             onChange={handleRetailDensRate}
+                            onMouseLeave={handleRetailDensAreaAfter}
                             required
                           />
                         </td>
@@ -2170,7 +2156,6 @@ export const BuildingsNewUnits = ({
                             id="retail-area-after"
                             min="0"
                             value={retailDensAreaAfter}
-                            onChange={handleRetailDensAreaAfter}
                             required
                           />
                         </td>
@@ -2200,6 +2185,7 @@ export const BuildingsNewUnits = ({
                             min="0"
                             value={healthDensRate}
                             onChange={handleHealthDensRate}
+                            onMouseLeave={handleHealthDensAreaAfter}
                             required
                           />
                         </td>
@@ -2255,7 +2241,6 @@ export const BuildingsNewUnits = ({
                             id="health-area-after"
                             min="0"
                             value={healthDensAreaAfter}
-                            onChange={handleHealthDensAreaAfter}
                             required
                           />
                         </td>
@@ -2285,6 +2270,7 @@ export const BuildingsNewUnits = ({
                             min="0"
                             value={hospitalityDensRate}
                             onChange={handleHospitalityDensRate}
+                            onMouseLeave={handleHospitalityDensAreaAfter}
                             required
                           />
                         </td>
@@ -2340,7 +2326,6 @@ export const BuildingsNewUnits = ({
                             id="hospitality-area-after"
                             min="0"
                             value={hospitalityDensAreaAfter}
-                            onChange={handleHospitalityDensAreaAfter}
                             required
                           />
                         </td>
@@ -2370,6 +2355,7 @@ export const BuildingsNewUnits = ({
                             min="0"
                             value={officesDensRate}
                             onChange={handleOfficesDensRate}
+                            onMouseLeave={handleOfficesDensAreaAfter}
                             required
                           />
                         </td>
@@ -2425,7 +2411,6 @@ export const BuildingsNewUnits = ({
                             id="offices-area-after"
                             min="0"
                             value={officesDensAreaAfter}
-                            onChange={handleOfficesDensAreaAfter}
                             required
                           />
                         </td>
@@ -2455,6 +2440,7 @@ export const BuildingsNewUnits = ({
                             min="0"
                             value={industrialDensRate}
                             onChange={handleIndustrialDensRate}
+                            onMouseLeave={handleIndustrialDensAreaAfter}
                             required
                           />
                         </td>
@@ -2510,7 +2496,6 @@ export const BuildingsNewUnits = ({
                             id="industrial-area-after"
                             min="0"
                             value={industrialDensAreaAfter}
-                            onChange={handleIndustrialDensAreaAfter}
                             required
                           />
                         </td>
@@ -2540,6 +2525,7 @@ export const BuildingsNewUnits = ({
                             min="0"
                             value={warehousesDensRate}
                             onChange={handleWarehousesDensRate}
+                            onMouseLeave={handleWarehousesDensAreaAfter}
                             required
                           />
                         </td>
@@ -2595,7 +2581,6 @@ export const BuildingsNewUnits = ({
                             id="warehouses-area-after"
                             min="0"
                             value={warehousesDensAreaAfter}
-                            onChange={handleWarehousesDensAreaAfter}
                             required
                           />
                         </td>
