@@ -21,6 +21,7 @@ import { Button } from "./Button";
 import { ConsumptionHseEnergy } from "./ConsumptionHseEnergy";
 import Alert from "@mui/material/Alert";
 import { useStorageFloat } from "../reducers/useStorage";
+import { CbBreadcrumb } from "./CbBreadcrumb";
 
 const BarSeries = VerticalBarSeries;
 
@@ -155,6 +156,9 @@ export const ConsumptionBaselineResults = ({
   if (nextCBQuantification === false) {
     return (
       <>
+      {/*  <div className="settlementDiv">
+          <CbBreadcrumb/>
+        </div> */}
         {consumptionBlStatus !== "success" && <div>{errorBlConsumption}</div>}
         <br />
         <Divider textAlign="left" flexItem>
@@ -174,7 +178,7 @@ export const ConsumptionBaselineResults = ({
             />
           </div>
 
-          <XYPlot width={1000} height={500} stackBy="y" xType="ordinal">
+          <XYPlot width={1000} height={500} stackBy="y" xType="ordinal"  margin={{ left: 80 }}>
             <HorizontalGridLines />
             <VerticalGridLines />
             <VerticalBarSeries className="StackedBarchart" />

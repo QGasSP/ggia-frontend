@@ -263,7 +263,7 @@ export const ConsumptionSummary = ({
           {" "}
           <b>Baseline vs Policy {policyYear}</b>
         </Divider>
-        <XYPlot xType="ordinal" width={1000} height={400} xDistance={100}>
+        <XYPlot xType="ordinal" width={1000} height={400} xDistance={100}  margin={{ left: 80 }}>
               <VerticalGridLines />
               <HorizontalGridLines />
               <XAxis/>
