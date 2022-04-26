@@ -174,7 +174,7 @@ export const BuildingBaseline = () => {
       console.error("There was an error!", errorBuildBaseline);
     });
 
-    // setBuildingsBaselineCharts(true);
+    setBuildingsBaselineCharts(true);
   };
 
   useEffect(() => {
