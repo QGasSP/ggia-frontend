@@ -161,20 +161,20 @@ export const BuildingBaseline = () => {
       "Access-Control-Allow-Origin": "*",
       "Content-type": "application/json",
     };
-    // axios
-    // .post(
-    //   urlPrefix + "/api/v1/calculate/buildings",
-    //   rawData,
-    //   headers
-    // )
-    // .then((response) => setBuildingsResponse(response.data))
-    // .catch((error) => {
-    //   setErrorBuildBaseline({ errorMessage: error.message });
-    //   // eslint-disable-next-line no-console
-    //   console.error("There was an error!", errorBuildBaseline);
-    // });
+    axios
+    .post(
+      urlPrefix + "/api/v1/calculate/buildings/baseline",
+      rawData,
+      headers
+    )
+    .then((response) => setBuildingsResponse(response.data))
+    .catch((error) => {
+      setErrorBuildBaseline({ errorMessage: error.message });
+      // eslint-disable-next-line no-console
+      console.error("There was an error!", errorBuildBaseline);
+    });
 
-    setBuildingsBaselineCharts(true);
+    // setBuildingsBaselineCharts(true);
   };
 
   useEffect(() => {
