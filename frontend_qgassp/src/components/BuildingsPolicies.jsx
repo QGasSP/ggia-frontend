@@ -1422,7 +1422,7 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
 
   if (policiesCharts === false) {
     return (
-      <article>
+      <section>
         <div className="headerSettlement">
           <Divider textAlign="left" flexItem>
             {" "}
@@ -1434,17 +1434,17 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
           </Alert>
         </div>
         <section>
-          <section>
             <Divider textAlign="left" flexItem>
               {" "}
               <b>U8.1 Retrofits of residental buildings</b>
             </Divider>
-          </section>
           <div className="newResidentDiv">
-            <Alert severity="info">
-              This section quantifies the greenhouse gas impact of residential
-              building retrofits/renovations.
-            </Alert>
+            <div className="luc_alert_container">
+              <Alert severity="info">
+                This section quantifies the greenhouse gas impact of residential
+                building retrofits/renovations.
+              </Alert>
+            </div>
             <form>
               <table className="buildings-policy-tbl buildings-tbl">
                 <thead>
@@ -2125,17 +2125,17 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
           </div>
         </section>
         <section>
-          <section>
             <Divider textAlign="left" flexItem>
               {" "}
               <b>U8.2 Retrofits of commercial buildings</b>
             </Divider>
-          </section>
           <div className="newResidentDiv">
-            <Alert severity="info">
-              This section quantifies the greenhouse gas impact of commercial
-              building retrofits/renovations.
-            </Alert>
+            <div className="luc_alert_container">
+              <Alert severity="info">
+                This section quantifies the greenhouse gas impact of commercial
+                building retrofits/renovations.
+              </Alert>
+            </div>
             <form>
               <table className="buildings-policy-tbl buildings-tbl">
                 <thead>
@@ -2702,17 +2702,17 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
           </div>
         </section>
         <section>
-          <section>
             <Divider textAlign="left" flexItem>
               {" "}
               <b>U8.3 Change of building use</b>
             </Divider>
-          </section>
           <div className="newResidentDiv">
-            <Alert severity="info">
-              This section quantifies the greenhouse gas impact caused by the
-              changes of building use.
-            </Alert>
+            <div className="luc_alert_container">
+              <Alert severity="info">
+                This section quantifies the greenhouse gas impact caused by the
+                changes of building use.
+              </Alert>
+            </div>
             <form>
               <table className="buildings-policy-tbl buildings-tbl">
                 <thead>
@@ -3208,7 +3208,6 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
             </form>
           </div>
         </section>
-        <section>
           {
             <div className="nextU2Button">
               <Button
@@ -3220,8 +3219,7 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
               />
             </div>
           }
-        </section>
-      </article>
+      </section>
     );
   } else {
     return (

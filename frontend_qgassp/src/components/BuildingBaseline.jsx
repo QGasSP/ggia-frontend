@@ -152,6 +152,7 @@ export const BuildingBaseline = () => {
       residential,
       commercial,
     };
+    const rawData = { baseline };
     localStorage.setItem(
       "buildingsBaselineRequest",
       JSON.stringify(baseline)
@@ -163,7 +164,7 @@ export const BuildingBaseline = () => {
     // axios
     // .post(
     //   urlPrefix + "/api/v1/calculate/buildings",
-    //   baseline,
+    //   rawData,
     //   headers
     // )
     // .then((response) => setBuildingsResponse(response.data))

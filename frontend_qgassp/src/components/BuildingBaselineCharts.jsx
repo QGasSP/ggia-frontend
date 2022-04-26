@@ -414,10 +414,12 @@ export const BuildingBaselineCharts = ({
 
   if (nextNewUnitsView === false && Object.keys(baseline).length !== 0) {
     return (
-      <article>
-        <Divider textAlign="left" flexItem>
-          <Chip label="BUILDINGS BASELINE RESULTS" />
-        </Divider>
+      <section>
+        <div>
+          <Divider textAlign="left" flexItem>
+            <Chip label="BUILDINGS BASELINE RESULTS" />
+          </Divider>
+        </div>
         <section>
           <Divider textAlign="left" flexItem>
             <b>
@@ -606,11 +608,9 @@ export const BuildingBaselineCharts = ({
         </table>
 
         <div className="headerSettlement">
-          <section>
             <Divider textAlign="left" flexItem>
               <Chip label="BASELINE EMISSIONS - ENERGY USE IN BUILDINGS (tCO2e)" />
             </Divider>
-          </section>
         </div>
 
         <div className="buildings-baseline">
@@ -770,7 +770,7 @@ export const BuildingBaselineCharts = ({
             primary
           />
         </div>
-      </article>
+      </section>
     );
   } else if (nextNewUnitsView === true) {
     return (

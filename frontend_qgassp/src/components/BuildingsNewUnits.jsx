@@ -990,30 +990,32 @@ export const BuildingsNewUnits = ({
   }, [newConstructionResponse]);
   if (moveToPolicies === false) {
     return (
-      <article>
+      <section>
         <div className="headerSettlement">
           <Divider textAlign="left" flexItem>
             {" "}
             <Chip label="U7 NEW SETTLEMENT / DENSIFICATION" />
           </Divider>
-          <Alert severity="info">
-            This section estimates the greenhouse gas emissions from the energy
-            use in new buildings that are constructed according to the plan that
-            is assessed.
-          </Alert>
+          <div className="luc_alert_container">
+            <Alert severity="info">
+              This section estimates the greenhouse gas emissions from the energy
+              use in new buildings that are constructed according to the plan that
+              is assessed.
+            </Alert>
+          </div>
         </div>
 
         <section>
-          <section>
             <Divider textAlign="left" flexItem>
               {" "}
               <b>U7.1 New residential units</b>
             </Divider>
-            <Alert severity="info">
-              Insert the total number of new residential units according to the
-              plan or policy that is assessed.
-            </Alert>
-          </section>
+            <div className="luc_alert_container">
+              <Alert severity="info">
+                Insert the total number of new residential units according to the
+                plan or policy that is assessed.
+              </Alert>
+            </div>
           <div className="newResidentDiv">
             <form>
               <table className="buildings-tbl">
@@ -1288,16 +1290,16 @@ export const BuildingsNewUnits = ({
           </div>
         </section>
         <section>
-          <section>
             <Divider textAlign="left" flexItem>
               {" "}
               <b>U7.2 New commercial buildings</b>
             </Divider>
-            <Alert severity="info">
-              Insert the total gross floor area of the new commercial buildings
-              according to the plan or policy that is assessed.
-            </Alert>
-          </section>
+            <div className="luc_alert_container">
+              <Alert severity="info">
+                Insert the total gross floor area of the new commercial buildings
+                according to the plan or policy that is assessed.
+              </Alert>
+            </div>
           <div className="newResidentDiv">
             <form>
               <table className="buildings-tbl">
@@ -1686,20 +1688,19 @@ export const BuildingsNewUnits = ({
           </div>
         </section>
         <section>
-          <section>
             <Divider textAlign="left" flexItem>
               {" "}
               <b>U7.3 Densification</b>
             </Divider>
-            <Alert severity="info">
-              In this section, the impact of planned new construction can be
-              quantified through a densification rate of one specific part of
-              the assessment area.
-            </Alert>
-          </section>
+            <div className="luc_alert_container">
+              <Alert severity="info">
+                In this section, the impact of planned new construction can be
+                quantified through a densification rate of one specific part of
+                the assessment area.
+              </Alert>
+            </div>
           <div className="newResidentDiv">
             <form>
-              <section>
                 <table className="buildings-tbl">
                   <thead>
                     <tr>
@@ -2066,547 +2067,545 @@ export const BuildingsNewUnits = ({
                     </tr>
                   </tbody>
                 </table>
-              </section>
-              <section>
-                <table className="buildings-tbl">
-                  <thead>
-                    <tr>
-                      <th className="row-title">Commercial buildings</th>
-                      <Tooltip title="Insert the existing floor area of commercial buildings in the area that is densified.">
-                        <th>Existing floor area</th>
-                      </Tooltip>
-                      <Tooltip title="Insert the volume of new construction as a percentage of existing floor area.">
-                        <th>Densification rate (%)</th>
-                      </Tooltip>
-                      <Tooltip title="The first and the last year during which these new buildings are taken in use.">
-                        <th colSpan={2}>New buildings completed between</th>
-                      </Tooltip>
-                      <Tooltip title="Estimate the percentage of delivered electricity that will be covered by local production of renewable energies. Renewable energy production for grid electricity is excluded.">
-                        <th>% energy from renewables</th>
-                      </Tooltip>
-                      <th className="row-title">
-                        Floor area after densification
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="row-title">Retail</td>
-                      <td>
-                        <input
-                          className="table-cell"
-                          type="number"
-                          step="1"
-                          id="retail-area-dens"
-                          name="retail-area-dens"
-                          min="0"
-                          value={retailAreaDensificated}
-                          onChange={handleRetailAreaDensificated}
-                          required
-                        />
-                      </td>
-                      <td>
-                        <input
-                          className="table-cell"
-                          type="number"
-                          step="1"
-                          id="retail-rate-dens"
-                          name="retail-rate-dens"
-                          min="0"
-                          value={retailDensRate}
-                          onChange={handleRetailDensRate}
-                          required
-                        />
-                      </td>
-                      <td>
-                        <select
-                          className="table-cell"
-                          id="retail-start-year-dens"
-                          name="retail-start-year-dens"
-                          value={retailStartYearDensificated}
-                          onChange={handleRetailStartYearDensificated}
-                          required
-                        >
-                          {optionsNewStart.map((option) => (
-                            <option key={option} value={option}>
-                              {option}{" "}
-                            </option>
-                          ))}
-                        </select>
-                      </td>
-                      <td>
-                        <select
-                          className="table-cell"
-                          id="retail-end-year-dens"
-                          name="retail-end-year-dens"
-                          value={retailEndYearDensificated}
-                          onChange={handleRetailEndYearDensificated}
-                          required
-                        >
-                          {optionsNewStart.map((option) => (
-                            <option key={option} value={option}>
-                              {option}{" "}
-                            </option>
-                          ))}
-                        </select>
-                      </td>
-                      <td>
-                        <input
-                          className="table-cell"
-                          type="number"
-                          step="1"
-                          id="retail-energy-dens"
-                          min="0"
-                          value={retailEnergyDensificated}
-                          onChange={handleRetailEnergyDensificated}
-                          required
-                        />
-                      </td>
-                      <td>
-                        <input
-                          className="table-cell total-cell"
-                          type="number"
-                          step="1"
-                          id="retail-area-after"
-                          min="0"
-                          value={retailDensAreaAfter}
-                          onChange={handleRetailDensAreaAfter}
-                          required
-                        />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="row-title">Health</td>
-                      <td>
-                        <input
-                          className="table-cell"
-                          type="number"
-                          step="1"
-                          id="health-area-dens"
-                          name="health-area-dens"
-                          min="0"
-                          value={healthAreaDensificated}
-                          onChange={handleHealthAreaDensificated}
-                          required
-                        />
-                      </td>
-                      <td>
-                        <input
-                          className="table-cell"
-                          type="number"
-                          step="1"
-                          id="health-rate-dens"
-                          name="health-rate-dens"
-                          min="0"
-                          value={healthDensRate}
-                          onChange={handleHealthDensRate}
-                          required
-                        />
-                      </td>
-                      <td>
-                        <select
-                          className="table-cell"
-                          id="health-start-year-dens"
-                          name="health-start-year-dens"
-                          value={healthStartYearDensificated}
-                          onChange={handleHealthStartYearDensificated}
-                          required
-                        >
-                          {optionsNewStart.map((option) => (
-                            <option key={option} value={option}>
-                              {option}{" "}
-                            </option>
-                          ))}
-                        </select>
-                      </td>
-                      <td>
-                        <select
-                          className="table-cell"
-                          id="health-end-year-dens"
-                          name="health-end-year-dens"
-                          value={healthEndYearDensificated}
-                          onChange={handleHealthEndYearDensificated}
-                          required
-                        >
-                          {optionsNewStart.map((option) => (
-                            <option key={option} value={option}>
-                              {option}{" "}
-                            </option>
-                          ))}
-                        </select>
-                      </td>
-                      <td>
-                        <input
-                          className="table-cell"
-                          type="number"
-                          step="1"
-                          id="health-energy-dens"
-                          min="0"
-                          value={healthEnergyDensificated}
-                          onChange={handleHealthEnergyDensificated}
-                          required
-                        />
-                      </td>
-                      <td>
-                        <input
-                          className="table-cell total-cell"
-                          type="number"
-                          step="1"
-                          id="health-area-after"
-                          min="0"
-                          value={healthDensAreaAfter}
-                          onChange={handleHealthDensAreaAfter}
-                          required
-                        />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="row-title">Hospitality</td>
-                      <td>
-                        <input
-                          className="table-cell"
-                          type="number"
-                          step="1"
-                          id="hospitality-area-dens"
-                          name="hospitality-area-dens"
-                          min="0"
-                          value={hospitalityAreaDensificated}
-                          onChange={handleHospitalityAreaDensificated}
-                          required
-                        />
-                      </td>
-                      <td>
-                        <input
-                          className="table-cell"
-                          type="number"
-                          step="1"
-                          id="hospitality-rate-dens"
-                          name="hospitality-rate-dens"
-                          min="0"
-                          value={hospitalityDensRate}
-                          onChange={handleHospitalityDensRate}
-                          required
-                        />
-                      </td>
-                      <td>
-                        <select
-                          className="table-cell"
-                          id="hospitality-start-year-dens"
-                          name="hospitality-start-year-dens"
-                          value={hospitalityStartYearDensificated}
-                          onChange={handleHospitalityStartYearDensificated}
-                          required
-                        >
-                          {optionsNewStart.map((option) => (
-                            <option key={option} value={option}>
-                              {option}{" "}
-                            </option>
-                          ))}
-                        </select>
-                      </td>
-                      <td>
-                        <select
-                          className="table-cell"
-                          id="hospitality-end-year-dens"
-                          name="hospitality-end-year-dens"
-                          value={hospitalityEndYearDensificated}
-                          onChange={handleHospitalityEndYearDensificated}
-                          required
-                        >
-                          {optionsNewStart.map((option) => (
-                            <option key={option} value={option}>
-                              {option}{" "}
-                            </option>
-                          ))}
-                        </select>
-                      </td>
-                      <td>
-                        <input
-                          className="table-cell"
-                          type="number"
-                          step="1"
-                          id="hospitality-energy-dens"
-                          min="0"
-                          value={hospitalityEnergyDensificated}
-                          onChange={handleHospitalityEnergyDensificated}
-                          required
-                        />
-                      </td>
-                      <td>
-                        <input
-                          className="table-cell total-cell"
-                          type="number"
-                          step="1"
-                          id="hospitality-area-after"
-                          min="0"
-                          value={hospitalityDensAreaAfter}
-                          onChange={handleHospitalityDensAreaAfter}
-                          required
-                        />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="row-title">Offices</td>
-                      <td>
-                        <input
-                          className="table-cell"
-                          type="number"
-                          step="1"
-                          id="offices-area-dens"
-                          name="offices-area-dens"
-                          min="0"
-                          value={officesAreaDensificated}
-                          onChange={handleOfficesAreaDensificated}
-                          required
-                        />
-                      </td>
-                      <td>
-                        <input
-                          className="table-cell"
-                          type="number"
-                          step="1"
-                          id="offices-rate-dens"
-                          name="offices-rate-dens"
-                          min="0"
-                          value={officesDensRate}
-                          onChange={handleOfficesDensRate}
-                          required
-                        />
-                      </td>
-                      <td>
-                        <select
-                          className="table-cell"
-                          id="offices-start-year-dens"
-                          name="offices-start-year-dens"
-                          value={officesStartYearDensificated}
-                          onChange={handleOfficesStartYearDensificated}
-                          required
-                        >
-                          {optionsNewStart.map((option) => (
-                            <option key={option} value={option}>
-                              {option}{" "}
-                            </option>
-                          ))}
-                        </select>
-                      </td>
-                      <td>
-                        <select
-                          className="table-cell"
-                          id="offices-end-year-dens"
-                          name="offices-end-year-dens"
-                          value={officesEndYearDensificated}
-                          onChange={handleOfficesEndYearDensificated}
-                          required
-                        >
-                          {optionsNewStart.map((option) => (
-                            <option key={option} value={option}>
-                              {option}{" "}
-                            </option>
-                          ))}
-                        </select>
-                      </td>
-                      <td>
-                        <input
-                          className="table-cell"
-                          type="number"
-                          step="1"
-                          id="offices-energy-dens"
-                          min="0"
-                          value={officesEnergyDensificated}
-                          onChange={handleOfficesEnergyDensificated}
-                          required
-                        />
-                      </td>
-                      <td>
-                        <input
-                          className="table-cell total-cell"
-                          type="number"
-                          step="1"
-                          id="offices-area-after"
-                          min="0"
-                          value={officesDensAreaAfter}
-                          onChange={handleOfficesDensAreaAfter}
-                          required
-                        />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="row-title">Industrial</td>
-                      <td>
-                        <input
-                          className="table-cell"
-                          type="number"
-                          step="1"
-                          id="industrial-area-dens"
-                          name="industrial-area-dens"
-                          min="0"
-                          value={industrialAreaDensificated}
-                          onChange={handleIndustrialAreaDensificated}
-                          required
-                        />
-                      </td>
-                      <td>
-                        <input
-                          className="table-cell"
-                          type="number"
-                          step="1"
-                          id="industrial-rate-dens"
-                          name="industrial-rate-dens"
-                          min="0"
-                          value={industrialDensRate}
-                          onChange={handleIndustrialDensRate}
-                          required
-                        />
-                      </td>
-                      <td>
-                        <select
-                          className="table-cell"
-                          id="industrial-start-year-dens"
-                          name="industrial-start-year-dens"
-                          value={industrialStartYearDensificated}
-                          onChange={handleIndustrialStartYearDensificated}
-                          required
-                        >
-                          {optionsNewStart.map((option) => (
-                            <option key={option} value={option}>
-                              {option}{" "}
-                            </option>
-                          ))}
-                        </select>
-                      </td>
-                      <td>
-                        <select
-                          className="table-cell"
-                          id="industrial-end-year-dens"
-                          name="industrial-end-year-dens"
-                          value={industrialEndYearDensificated}
-                          onChange={handleIndustrialEndYearDensificated}
-                          required
-                        >
-                          {optionsNewStart.map((option) => (
-                            <option key={option} value={option}>
-                              {option}{" "}
-                            </option>
-                          ))}
-                        </select>
-                      </td>
-                      <td>
-                        <input
-                          className="table-cell"
-                          type="number"
-                          step="1"
-                          id="industrial-energy-dens"
-                          min="0"
-                          value={industrialEnergyDensificated}
-                          onChange={handleIndustrialEnergyDensificated}
-                          required
-                        />
-                      </td>
-                      <td>
-                        <input
-                          className="table-cell total-cell"
-                          type="number"
-                          step="1"
-                          id="industrial-area-after"
-                          min="0"
-                          value={industrialDensAreaAfter}
-                          onChange={handleIndustrialDensAreaAfter}
-                          required
-                        />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="row-title">Warehouses</td>
-                      <td>
-                        <input
-                          className="table-cell"
-                          type="number"
-                          step="1"
-                          id="warehouses-area-dens"
-                          name="warehouses-area-dens"
-                          min="0"
-                          value={warehousesAreaDensificated}
-                          onChange={handleWarehousesAreaDensificated}
-                          required
-                        />
-                      </td>
-                      <td>
-                        <input
-                          className="table-cell"
-                          type="number"
-                          step="1"
-                          id="warehouses-rate-dens"
-                          name="warehouses-rate-dens"
-                          min="0"
-                          value={warehousesDensRate}
-                          onChange={handleWarehousesDensRate}
-                          required
-                        />
-                      </td>
-                      <td>
-                        <select
-                          className="table-cell"
-                          id="warehouses-start-year-dens"
-                          name="warehouses-start-year-dens"
-                          value={warehousesStartYearDensificated}
-                          onChange={handleWarehousesStartYearDensificated}
-                          required
-                        >
-                          {optionsNewStart.map((option) => (
-                            <option key={option} value={option}>
-                              {option}{" "}
-                            </option>
-                          ))}
-                        </select>
-                      </td>
-                      <td>
-                        <select
-                          className="table-cell"
-                          id="warehouses-end-year-dens"
-                          name="warehouses-end-year-dens"
-                          value={warehousesEndYearDensificated}
-                          onChange={handleWarehousesEndYearDensificated}
-                          required
-                        >
-                          {optionsNewStart.map((option) => (
-                            <option key={option} value={option}>
-                              {option}{" "}
-                            </option>
-                          ))}
-                        </select>
-                      </td>
-                      <td>
-                        <input
-                          className="table-cell"
-                          type="number"
-                          step="1"
-                          id="warehouses-energy-dens"
-                          min="0"
-                          value={warehousesEnergyDensificated}
-                          onChange={handleWarehousesEnergyDensificated}
-                          required
-                        />
-                      </td>
-                      <td>
-                        <input
-                          className="table-cell total-cell"
-                          type="number"
-                          step="1"
-                          id="warehouses-area-after"
-                          min="0"
-                          value={warehousesDensAreaAfter}
-                          onChange={handleWarehousesDensAreaAfter}
-                          required
-                        />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </section>
+                <div className="luc_alert_container">
+                  <table className="buildings-tbl">
+                    <thead>
+                      <tr>
+                        <th className="row-title">Commercial buildings</th>
+                        <Tooltip title="Insert the existing floor area of commercial buildings in the area that is densified.">
+                          <th>Existing floor area</th>
+                        </Tooltip>
+                        <Tooltip title="Insert the volume of new construction as a percentage of existing floor area.">
+                          <th>Densification rate (%)</th>
+                        </Tooltip>
+                        <Tooltip title="The first and the last year during which these new buildings are taken in use.">
+                          <th colSpan={2}>New buildings completed between</th>
+                        </Tooltip>
+                        <Tooltip title="Estimate the percentage of delivered electricity that will be covered by local production of renewable energies. Renewable energy production for grid electricity is excluded.">
+                          <th>% energy from renewables</th>
+                        </Tooltip>
+                        <th className="row-title">
+                          Floor area after densification
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="row-title">Retail</td>
+                        <td>
+                          <input
+                            className="table-cell"
+                            type="number"
+                            step="1"
+                            id="retail-area-dens"
+                            name="retail-area-dens"
+                            min="0"
+                            value={retailAreaDensificated}
+                            onChange={handleRetailAreaDensificated}
+                            required
+                          />
+                        </td>
+                        <td>
+                          <input
+                            className="table-cell"
+                            type="number"
+                            step="1"
+                            id="retail-rate-dens"
+                            name="retail-rate-dens"
+                            min="0"
+                            value={retailDensRate}
+                            onChange={handleRetailDensRate}
+                            required
+                          />
+                        </td>
+                        <td>
+                          <select
+                            className="table-cell"
+                            id="retail-start-year-dens"
+                            name="retail-start-year-dens"
+                            value={retailStartYearDensificated}
+                            onChange={handleRetailStartYearDensificated}
+                            required
+                          >
+                            {optionsNewStart.map((option) => (
+                              <option key={option} value={option}>
+                                {option}{" "}
+                              </option>
+                            ))}
+                          </select>
+                        </td>
+                        <td>
+                          <select
+                            className="table-cell"
+                            id="retail-end-year-dens"
+                            name="retail-end-year-dens"
+                            value={retailEndYearDensificated}
+                            onChange={handleRetailEndYearDensificated}
+                            required
+                          >
+                            {optionsNewStart.map((option) => (
+                              <option key={option} value={option}>
+                                {option}{" "}
+                              </option>
+                            ))}
+                          </select>
+                        </td>
+                        <td>
+                          <input
+                            className="table-cell"
+                            type="number"
+                            step="1"
+                            id="retail-energy-dens"
+                            min="0"
+                            value={retailEnergyDensificated}
+                            onChange={handleRetailEnergyDensificated}
+                            required
+                          />
+                        </td>
+                        <td>
+                          <input
+                            className="table-cell total-cell"
+                            type="number"
+                            step="1"
+                            id="retail-area-after"
+                            min="0"
+                            value={retailDensAreaAfter}
+                            onChange={handleRetailDensAreaAfter}
+                            required
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="row-title">Health</td>
+                        <td>
+                          <input
+                            className="table-cell"
+                            type="number"
+                            step="1"
+                            id="health-area-dens"
+                            name="health-area-dens"
+                            min="0"
+                            value={healthAreaDensificated}
+                            onChange={handleHealthAreaDensificated}
+                            required
+                          />
+                        </td>
+                        <td>
+                          <input
+                            className="table-cell"
+                            type="number"
+                            step="1"
+                            id="health-rate-dens"
+                            name="health-rate-dens"
+                            min="0"
+                            value={healthDensRate}
+                            onChange={handleHealthDensRate}
+                            required
+                          />
+                        </td>
+                        <td>
+                          <select
+                            className="table-cell"
+                            id="health-start-year-dens"
+                            name="health-start-year-dens"
+                            value={healthStartYearDensificated}
+                            onChange={handleHealthStartYearDensificated}
+                            required
+                          >
+                            {optionsNewStart.map((option) => (
+                              <option key={option} value={option}>
+                                {option}{" "}
+                              </option>
+                            ))}
+                          </select>
+                        </td>
+                        <td>
+                          <select
+                            className="table-cell"
+                            id="health-end-year-dens"
+                            name="health-end-year-dens"
+                            value={healthEndYearDensificated}
+                            onChange={handleHealthEndYearDensificated}
+                            required
+                          >
+                            {optionsNewStart.map((option) => (
+                              <option key={option} value={option}>
+                                {option}{" "}
+                              </option>
+                            ))}
+                          </select>
+                        </td>
+                        <td>
+                          <input
+                            className="table-cell"
+                            type="number"
+                            step="1"
+                            id="health-energy-dens"
+                            min="0"
+                            value={healthEnergyDensificated}
+                            onChange={handleHealthEnergyDensificated}
+                            required
+                          />
+                        </td>
+                        <td>
+                          <input
+                            className="table-cell total-cell"
+                            type="number"
+                            step="1"
+                            id="health-area-after"
+                            min="0"
+                            value={healthDensAreaAfter}
+                            onChange={handleHealthDensAreaAfter}
+                            required
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="row-title">Hospitality</td>
+                        <td>
+                          <input
+                            className="table-cell"
+                            type="number"
+                            step="1"
+                            id="hospitality-area-dens"
+                            name="hospitality-area-dens"
+                            min="0"
+                            value={hospitalityAreaDensificated}
+                            onChange={handleHospitalityAreaDensificated}
+                            required
+                          />
+                        </td>
+                        <td>
+                          <input
+                            className="table-cell"
+                            type="number"
+                            step="1"
+                            id="hospitality-rate-dens"
+                            name="hospitality-rate-dens"
+                            min="0"
+                            value={hospitalityDensRate}
+                            onChange={handleHospitalityDensRate}
+                            required
+                          />
+                        </td>
+                        <td>
+                          <select
+                            className="table-cell"
+                            id="hospitality-start-year-dens"
+                            name="hospitality-start-year-dens"
+                            value={hospitalityStartYearDensificated}
+                            onChange={handleHospitalityStartYearDensificated}
+                            required
+                          >
+                            {optionsNewStart.map((option) => (
+                              <option key={option} value={option}>
+                                {option}{" "}
+                              </option>
+                            ))}
+                          </select>
+                        </td>
+                        <td>
+                          <select
+                            className="table-cell"
+                            id="hospitality-end-year-dens"
+                            name="hospitality-end-year-dens"
+                            value={hospitalityEndYearDensificated}
+                            onChange={handleHospitalityEndYearDensificated}
+                            required
+                          >
+                            {optionsNewStart.map((option) => (
+                              <option key={option} value={option}>
+                                {option}{" "}
+                              </option>
+                            ))}
+                          </select>
+                        </td>
+                        <td>
+                          <input
+                            className="table-cell"
+                            type="number"
+                            step="1"
+                            id="hospitality-energy-dens"
+                            min="0"
+                            value={hospitalityEnergyDensificated}
+                            onChange={handleHospitalityEnergyDensificated}
+                            required
+                          />
+                        </td>
+                        <td>
+                          <input
+                            className="table-cell total-cell"
+                            type="number"
+                            step="1"
+                            id="hospitality-area-after"
+                            min="0"
+                            value={hospitalityDensAreaAfter}
+                            onChange={handleHospitalityDensAreaAfter}
+                            required
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="row-title">Offices</td>
+                        <td>
+                          <input
+                            className="table-cell"
+                            type="number"
+                            step="1"
+                            id="offices-area-dens"
+                            name="offices-area-dens"
+                            min="0"
+                            value={officesAreaDensificated}
+                            onChange={handleOfficesAreaDensificated}
+                            required
+                          />
+                        </td>
+                        <td>
+                          <input
+                            className="table-cell"
+                            type="number"
+                            step="1"
+                            id="offices-rate-dens"
+                            name="offices-rate-dens"
+                            min="0"
+                            value={officesDensRate}
+                            onChange={handleOfficesDensRate}
+                            required
+                          />
+                        </td>
+                        <td>
+                          <select
+                            className="table-cell"
+                            id="offices-start-year-dens"
+                            name="offices-start-year-dens"
+                            value={officesStartYearDensificated}
+                            onChange={handleOfficesStartYearDensificated}
+                            required
+                          >
+                            {optionsNewStart.map((option) => (
+                              <option key={option} value={option}>
+                                {option}{" "}
+                              </option>
+                            ))}
+                          </select>
+                        </td>
+                        <td>
+                          <select
+                            className="table-cell"
+                            id="offices-end-year-dens"
+                            name="offices-end-year-dens"
+                            value={officesEndYearDensificated}
+                            onChange={handleOfficesEndYearDensificated}
+                            required
+                          >
+                            {optionsNewStart.map((option) => (
+                              <option key={option} value={option}>
+                                {option}{" "}
+                              </option>
+                            ))}
+                          </select>
+                        </td>
+                        <td>
+                          <input
+                            className="table-cell"
+                            type="number"
+                            step="1"
+                            id="offices-energy-dens"
+                            min="0"
+                            value={officesEnergyDensificated}
+                            onChange={handleOfficesEnergyDensificated}
+                            required
+                          />
+                        </td>
+                        <td>
+                          <input
+                            className="table-cell total-cell"
+                            type="number"
+                            step="1"
+                            id="offices-area-after"
+                            min="0"
+                            value={officesDensAreaAfter}
+                            onChange={handleOfficesDensAreaAfter}
+                            required
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="row-title">Industrial</td>
+                        <td>
+                          <input
+                            className="table-cell"
+                            type="number"
+                            step="1"
+                            id="industrial-area-dens"
+                            name="industrial-area-dens"
+                            min="0"
+                            value={industrialAreaDensificated}
+                            onChange={handleIndustrialAreaDensificated}
+                            required
+                          />
+                        </td>
+                        <td>
+                          <input
+                            className="table-cell"
+                            type="number"
+                            step="1"
+                            id="industrial-rate-dens"
+                            name="industrial-rate-dens"
+                            min="0"
+                            value={industrialDensRate}
+                            onChange={handleIndustrialDensRate}
+                            required
+                          />
+                        </td>
+                        <td>
+                          <select
+                            className="table-cell"
+                            id="industrial-start-year-dens"
+                            name="industrial-start-year-dens"
+                            value={industrialStartYearDensificated}
+                            onChange={handleIndustrialStartYearDensificated}
+                            required
+                          >
+                            {optionsNewStart.map((option) => (
+                              <option key={option} value={option}>
+                                {option}{" "}
+                              </option>
+                            ))}
+                          </select>
+                        </td>
+                        <td>
+                          <select
+                            className="table-cell"
+                            id="industrial-end-year-dens"
+                            name="industrial-end-year-dens"
+                            value={industrialEndYearDensificated}
+                            onChange={handleIndustrialEndYearDensificated}
+                            required
+                          >
+                            {optionsNewStart.map((option) => (
+                              <option key={option} value={option}>
+                                {option}{" "}
+                              </option>
+                            ))}
+                          </select>
+                        </td>
+                        <td>
+                          <input
+                            className="table-cell"
+                            type="number"
+                            step="1"
+                            id="industrial-energy-dens"
+                            min="0"
+                            value={industrialEnergyDensificated}
+                            onChange={handleIndustrialEnergyDensificated}
+                            required
+                          />
+                        </td>
+                        <td>
+                          <input
+                            className="table-cell total-cell"
+                            type="number"
+                            step="1"
+                            id="industrial-area-after"
+                            min="0"
+                            value={industrialDensAreaAfter}
+                            onChange={handleIndustrialDensAreaAfter}
+                            required
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="row-title">Warehouses</td>
+                        <td>
+                          <input
+                            className="table-cell"
+                            type="number"
+                            step="1"
+                            id="warehouses-area-dens"
+                            name="warehouses-area-dens"
+                            min="0"
+                            value={warehousesAreaDensificated}
+                            onChange={handleWarehousesAreaDensificated}
+                            required
+                          />
+                        </td>
+                        <td>
+                          <input
+                            className="table-cell"
+                            type="number"
+                            step="1"
+                            id="warehouses-rate-dens"
+                            name="warehouses-rate-dens"
+                            min="0"
+                            value={warehousesDensRate}
+                            onChange={handleWarehousesDensRate}
+                            required
+                          />
+                        </td>
+                        <td>
+                          <select
+                            className="table-cell"
+                            id="warehouses-start-year-dens"
+                            name="warehouses-start-year-dens"
+                            value={warehousesStartYearDensificated}
+                            onChange={handleWarehousesStartYearDensificated}
+                            required
+                          >
+                            {optionsNewStart.map((option) => (
+                              <option key={option} value={option}>
+                                {option}{" "}
+                              </option>
+                            ))}
+                          </select>
+                        </td>
+                        <td>
+                          <select
+                            className="table-cell"
+                            id="warehouses-end-year-dens"
+                            name="warehouses-end-year-dens"
+                            value={warehousesEndYearDensificated}
+                            onChange={handleWarehousesEndYearDensificated}
+                            required
+                          >
+                            {optionsNewStart.map((option) => (
+                              <option key={option} value={option}>
+                                {option}{" "}
+                              </option>
+                            ))}
+                          </select>
+                        </td>
+                        <td>
+                          <input
+                            className="table-cell"
+                            type="number"
+                            step="1"
+                            id="warehouses-energy-dens"
+                            min="0"
+                            value={warehousesEnergyDensificated}
+                            onChange={handleWarehousesEnergyDensificated}
+                            required
+                          />
+                        </td>
+                        <td>
+                          <input
+                            className="table-cell total-cell"
+                            type="number"
+                            step="1"
+                            id="warehouses-area-after"
+                            min="0"
+                            value={warehousesDensAreaAfter}
+                            onChange={handleWarehousesDensAreaAfter}
+                            required
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
             </form>
           </div>
         </section>
-        <section>
           {
             <div className="nextU2Button">
               <Button
@@ -2618,8 +2617,7 @@ export const BuildingsNewUnits = ({
               />
             </div>
           }
-        </section>
-      </article>
+      </section>
     );
   } else {
     return (

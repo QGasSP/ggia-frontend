@@ -63,11 +63,13 @@ export const BuildingsPoliciesCharts = ({ baseline, newConstructionResponse, pol
             <Chip label="POLICY QUANTIFICATION RESULTS" />
           </Divider>
         </div>
-        <Divider textAlign="left" flexItem>
-          <b>
-            New Construction
-          </b>
-        </Divider>
+        <div className="luc_alert_container">
+          <Divider textAlign="left" flexItem>
+            <b>
+              New Construction
+            </b>
+          </Divider>
+        </div>
 
         <div className="buildings-baseline">
           <XYPlot
@@ -111,12 +113,14 @@ export const BuildingsPoliciesCharts = ({ baseline, newConstructionResponse, pol
           </XYPlot>
         </div>
 
-        <Divider textAlign="left" flexItem>
-          {" "}
-          <b>
-          Policy Quantification
-          </b>
-        </Divider>
+        <div className="luc_alert_container">
+          <Divider textAlign="left" flexItem>
+            {" "}
+            <b>
+            Policy Quantification
+            </b>
+          </Divider>
+        </div>
 
         <div className="buildings-baseline">
           <XYPlot
