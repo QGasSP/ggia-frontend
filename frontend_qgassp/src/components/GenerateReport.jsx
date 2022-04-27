@@ -198,16 +198,16 @@ export const GenerateReport = () => {
                 )}
 
 
-                {bL !== null &&
+               {/*  {bL !== null &&
                   Object.keys(bL).length !== 0 &&
                   blTotalEmmissions !== null &&
                   Object.keys(blTotalEmmissions).length !== 0 && (
                     <ConsumptionBaselineResults
                       consumptionBaselineToPrint={consumptionBaselineToPrint}
                     />
-                  )}
+                  )} */}
 
-                {bL !== null &&
+               {/*  {bL !== null &&
                   p1 !== null &&
                   bl !== null &&
                   bLTotalAreaEmissions !== null &&
@@ -238,7 +238,7 @@ export const GenerateReport = () => {
                       bl={bl}
                       p1={p1}
                     />
-                  )}
+                  )} */}
               </>
             </div>
           )}

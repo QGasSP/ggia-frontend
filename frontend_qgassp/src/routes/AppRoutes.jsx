@@ -1,6 +1,5 @@
 import React from "react";
-/* import { Routes, Route , useRoutes} from "react-router-dom"; */
-import { useRoutes } from "react-router-dom";
+import { useRoutes, Navigate} from "react-router-dom"; 
 import { StartPage } from "../components/StartPage";
 import { NewResidents } from "../components/NewResidents";
 import { U2planner } from "../components/U2planner";
@@ -18,10 +17,13 @@ import { BuildingBaselineCharts } from "../components/BuildingBaselineCharts";
 import { BuildingsNewUnits } from "../components/BuildingsNewUnits";
 import { BuildingsPolicies } from "../components/BuildingsPolicies";
 import { BuildingsPoliciesCharts } from "../components/BuildingsPoliciesCharts";
+import { LandUseChangeTableForm } from "../components/LandUseChangeTableForm";
+import { GenerateReport } from "../components/GenerateReport";
+import { ConsumptionTransport } from "../components/ConsumptionTransport";
 
 export const AppRoutes = () => {
   const routes = useRoutes([
-    { path: "welcome", element: <Welcome /> },
+    { path: "/", element: <Welcome /> },
     { path: "startPage", element: <StartPage /> },
     { path: "transportBaseline", element: <TransportBaseline /> },
     { path: "u1planner", element: <U1planner /> },
@@ -29,9 +31,11 @@ export const AppRoutes = () => {
     { path: "u2planner", element: <U2planner /> },
     { path: "u3planner", element: <U3planner /> },
     { path: "u3policies", element: <U3policies /> },
+    { path: "landUseChangeTableForm", element: <LandUseChangeTableForm/> },
     { path: "consumptionBaseline", element: <ConsumptionBaseline /> },
     { path: "consumptionBaselineResults",element: <ConsumptionBaselineResults />,},
     { path: "consumptionHseEnergy", element: <ConsumptionHseEnergy /> },
+    { path: "consumptionTransport", element: <ConsumptionTransport /> },
     { path: "consumptionResults", element: <ConsumptionSummary /> },
     { path: "newResidents", element: <NewResidents /> },
     { path: "u2planner", element: <U2planner /> },
@@ -42,6 +46,8 @@ export const AppRoutes = () => {
     { path: "buildingsNewUnits", element: <BuildingsNewUnits /> },
     { path: "buildingsPolicies", element: <BuildingsPolicies /> },
     { path: "buildingsPoliciesCharts", element: <BuildingsPoliciesCharts /> },
+    { path: "generateReport", element: <GenerateReport/> },
+    { path: "*", element: <Navigate to="/"/> }, 
   ]);
   return routes;
 };

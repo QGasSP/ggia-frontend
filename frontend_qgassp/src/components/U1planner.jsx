@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { Button } from "./Button";
 import { LineLegend } from "./LineLegend";
 import "../css/u1planner.css";
 import axios from "axios";
 import CircularProgress from "@mui/material/CircularProgress";
+import { useNavigate} from "react-router-dom";
 import {
   XYPlot,
   XAxis,
@@ -15,11 +15,13 @@ import {
   RadialChart,
 } from "react-vis";
 
-import { NewResidents } from "./NewResidents";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import { Legend } from "./Legend";
 import urlPrefix from "../Config";
+
+
+
 
 /**
  * U1 Planner baseline user input form
@@ -27,13 +29,14 @@ import urlPrefix from "../Config";
  */
 const BarSeries = VerticalBarSeries;
 
-export const U1planner = ({
-  country,
-  year,
-  population,
-  settlementDistribution,
-}) => {
-  
+export const U1planner = () => {
+  const navigate = useNavigate();
+  const country = localStorage.getItem("country");
+  const year = parseInt(localStorage.getItem("year"));
+  const population = parseInt(localStorage.getItem("population"));
+  const settlementDistribution =JSON.parse(localStorage.getItem("settlementDistribution"));
+
+
   const [emission, setEmissionData] = useState(() => {
     const savedEm = localStorage.getItem("emission");
     const initialValue = JSON.parse(savedEm);
@@ -52,8 +55,6 @@ export const U1planner = ({
     return initialValue || {};
   });
 
-  const [errorU1planner, setU1PlannerError] = useState("");
-  const [nextNewResidentview, setNewResidentView] = useState(false);
   const [isLoadingTransport, setIsLoadingTransport] = useState(true);
   const [isErrorTransport, setIsErrorTransport] = useState(false);
 
@@ -73,6 +74,7 @@ export const U1planner = ({
       population,
       settlementDistribution,
     };
+    
     setBaseline({ baseline });
     const raw = { baseline };
 
@@ -90,9 +92,8 @@ export const U1planner = ({
       .catch((error) => {
         setIsLoadingTransport(false);
         setIsErrorTransport(true);
-        setU1PlannerError({ errorMessage: error.message });
         // eslint-disable-next-line no-console
-        console.error("There was an error!", errorU1planner);
+        console.error("There was an error!", error.message );
       });
   }, []);
 
@@ -108,13 +109,19 @@ export const U1planner = ({
     localStorage.setItem("baseline", JSON.stringify(baseline));
   }, [baseline]);
 
-  /* useEffect(() => {
-    localStorage.setItem(
-      "settlementDistribution",
-      JSON.stringify(settlementDistribution)
-    );
-  }, [settlementDistribution]);
- */
+  const goToNewResidents = () => {
+    navigate("../newResidents", {
+      replace: true,
+     /*  state: {
+        baseline:baseline,
+        emission:emission,
+        projections:projections,
+        year:year,
+        settlementDistribution: settlementDistribution,
+      }, */
+    });
+  };
+
   if (isLoadingTransport) {
     return <CircularProgress color="success" />;
   }
@@ -139,7 +146,8 @@ export const U1planner = ({
     });
   }
 
-  if (nextNewResidentview === false && Object.keys(projections).length !== 0) {
+ /*  if (nextNewResidentview === false && Object.keys(projections).length !== 0) { */
+  if (Object.keys(projections).length !== 0) {
     return (
       <article>
         <br />
@@ -377,19 +385,30 @@ export const U1planner = ({
             <LineLegend />
           </div>
         </div>
+        <div className="backButtonNew">
+            <Button
+              size="small"
+              value="backProjections"
+              onClick={() => navigate("../transportBaseline", { replace: true })}
+              label="&laquo; Previous"
+              secondary
+            />
+          </div>
 
         <div className="nextU2Button">
           <Button
             size="small"
             value="u2next_inputs"
-            onClick={() => setNewResidentView(true)}
+            // onClick={() => setNewResidentView(true)}
+            onClick={goToNewResidents}
             label="Next &raquo;"
             primary
           />
         </div>
+        
       </article>
     );
-  } else if (nextNewResidentview === true) {
+ /*  } else if (nextNewResidentview === true) {
     return (
       <NewResidents
         baseline={baseline}
@@ -400,14 +419,6 @@ export const U1planner = ({
       />
     );
   } else {
-    return <></>;
+    return <></>; */
   }
-};
-
-U1planner.propTypes = {
-  /*  baseline: PropTypes.object.isRequired, */
-  settlementDistribution: PropTypes.object.isRequired,
-  year: PropTypes.number.isRequired,
-  country: PropTypes.string.isRequired,
-  population: PropTypes.number.isRequired,
 };

@@ -37,7 +37,7 @@ export const ConsumptionSummary = ({
     { title: "Baseline emissions", color: "#3d58a3", strokeWidth: 13 },
     { title: "Policy emissions", color: "#ef7d00", strokeWidth: 13 },
   ];
-  
+
   // blTransport
 
   const bLHousingEnergy = [];

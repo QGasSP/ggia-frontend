@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { Button } from "./Button";
 import "../css/u3planner.css";
 import Divider from "@mui/material/Divider";
@@ -9,63 +8,70 @@ import { U3policies } from "./U3policies";
 import urlPrefix from "../Config";
 import Alert from "@mui/material/Alert";
 import Tooltip from "@mui/material/Tooltip";
+import {useNavigate} from "react-router-dom";
+import { useStorageInt, useStorageString } from "../reducers/useStorage";
 
 /**
  * U3 planner component for user inputs for policy quantification
  * @return {}
  */
 
-export const U3planner = ({ emission, baseline, newDevelopment }) => {
-  const [policyQuantification, setPolicyQuantification] = useState("");
-  const [yearStart, setYearStart] = useState(0);
-  const [yearFinish, setYearFinish] = useState(0);
-  const [nextU3policies, setU3policies] = useState(false);
+export const U3planner = () => {
+  const navigate = useNavigate();
+  const base= JSON.parse(localStorage.getItem("baseline"));
+  const baseline = base.baseline;
+  const newDevelopment = JSON.parse(localStorage.getItem("newDevelopment"));
+  const emission = JSON.parse(localStorage.getItem("emission"));
+
+  const [policyQuantification, setPolicyQuantification] = useStorageString("policyQuantification","");
+  const [yearStart, setYearStart] = useStorageInt("yearStart",0);
+  const [yearFinish, setYearFinish] = useStorageInt("yearFinish",0);
   const [errorU3, setU3Error] = useState("");
-  const [modalPassShares, setModalPassShares] = useState("");
-  const [shares, setShares] = useState("");
-  const [expectedPassChange, setExpectedPassChange] = useState(0);
-  const [affectedPassArea, setAffectedPassArea] = useState(0);
-  const [expectedFreChange, setExpectedFreChange] = useState(0);
-  const [passTransPolicyTarget, setPassTransPolicyTarget] = useState(0);
-  const [freTransPolicyTarget, setFreTransPolicyTarget] = useState(0);
-  const [expectedChange, setExpectedChange] = useState(0);
-  const [affectedArea, setAffectedArea] = useState(0);
-  const [passengerMob, setPassengerMobility] = useState("");
-  const [freightTrans, setFreightTransport] = useState("");
-  const [modalSplitPass, setModalSplitPass] = useState("");
+  const [modalPassShares, setModalPassShares] = useStorageString("modalPassShares","");
+  const [shares, setShares] = useStorageString("shares","");
+  const [expectedPassChange, setExpectedPassChange] =  useStorageInt("expectedPassChange",0);
+  const [affectedPassArea, setAffectedPassArea] = useStorageInt("affectedPassArea",0);
+  const [expectedFreChange, setExpectedFreChange] = useStorageInt("expectedFreChange",0);
+  const [passTransPolicyTarget, setPassTransPolicyTarget] = useStorageInt("passTransPolicyTarget",0);
+  const [freTransPolicyTarget, setFreTransPolicyTarget] = useStorageInt("freTransPolicyTarget",0);
+  const [expectedChange, setExpectedChange] = useStorageInt("expectedChange",0);
+  const [affectedArea, setAffectedArea] = useStorageInt("affectedArea",0);
+  const [passengerMob, setPassengerMobility] =  useStorageString("passengerMob","");
+  const [freightTrans, setFreightTransport] = useStorageString("freightTrans","");
+  const [modalSplitPass, setModalSplitPass] = useStorageString("modalSplitPass","");
   // const [modalPassShares, setModalPassShares] = useState("");
-  const [modalFreShares, setModalFreightShares] = useState("");
-  const [modalSplitFre, setModalSplitFre] = useState("");
-  const [buses, setBus] = useState(0);
-  const [metros, setMetro] = useState(0);
-  const [trams, setTram] = useState(0);
-  const [trains, setTrain] = useState(0);
-  const [cars, setCar] = useState(0);
-  const [affectedPopulation, setAffectedPopulation] = useState(0);
-  const [railTransport, setRailTransport] = useState(0);
-  const [waterwaysTransport, setWaterwaysTransport] = useState(0);
-  const [roadTransport, setRoadTransport] = useState(0);
-  const [lpg, setLpg] = useState(0);
-  const [cng, setCng] = useState(0);
-  const [electricity, setElectricity] = useState(0);
-  const [petrol, setPetrol] = useState(0);
-  const [diesel, setDiesel] = useState(0);
-  const [fuelSharesBusTypes, setFuelSharesBusTypes] = useState("");
-  const [fuelSharesBus, setFuelSharesBus] = useState("");
-  const [types, setTypes] = useState("");
-  const [ngv, setNgv] = useState(0);
-  const [hep, setHep] = useState(0);
-  const [phev, setPhev] = useState(0);
-  const [hydrogenfuel, setHydrogenfuel] = useState(0);
-  const [bioethanol, setBioethanol] = useState(0);
-  const [biodiesel, setBiodiesel] = useState(0);
-  const [bifuel, setBifuel] = useState(0);
-  const [other, setOther] = useState(0);
-  const [fuelSharesCarTypes, setFuelSharesCarTypes] = useState("");
-  const [fuelSharesCar, setFuelSharesCar] = useState("");
-  const [renewables, setRenewables] = useState(0);
-  const [electricityTransTypes, setElectricityTransTypes] = useState("");
-  const [electricityTrans, setElectricityTrans] = useState("");
+  const [modalFreShares, setModalFreightShares] = useStorageString("modalFreShares","");
+  const [modalSplitFre, setModalSplitFre] = useStorageString("modalSplitFre","");
+  const [buses, setBus] = useStorageInt("buses",0);
+  const [metros, setMetro] = useStorageInt("metros",0);
+  const [trams, setTram] = useStorageInt("trams",0);
+  const [trains, setTrain] = useStorageInt("trains",0);
+  const [cars, setCar] = useStorageInt("cars",0);
+  const [affectedPopulation, setAffectedPopulation] = useStorageInt("affectedPopulation",0);
+  const [railTransport, setRailTransport] = useStorageInt("railTransport",0);
+  const [waterwaysTransport, setWaterwaysTransport] = useStorageInt("waterwaysTransport",0);
+  const [roadTransport, setRoadTransport] = useStorageInt("roadTransport",0);
+  const [lpg, setLpg] = useStorageInt("lpg",0);
+  const [cng, setCng] = useStorageInt("cng",0);
+  const [electricity, setElectricity] = useStorageInt("electricity",0);
+  const [petrol, setPetrol] = useStorageInt("petrol",0);
+  const [diesel, setDiesel] = useStorageInt("diesel",0);
+  const [fuelSharesBusTypes, setFuelSharesBusTypes] = useStorageString("fuelSharesBusTypes","");
+  const [fuelSharesBus, setFuelSharesBus] = useStorageString("fuelShareBus","");
+  const [types, setTypes] = useStorageString("types","");
+  const [ngv, setNgv] = useStorageInt("ngv",0);
+  const [hep, setHep] = useStorageInt("hep",0);
+  const [phev, setPhev] = useStorageInt("phev",0);
+  const [hydrogenfuel, setHydrogenfuel] = useStorageInt("hydrogenfuel",0);
+  const [bioethanol, setBioethanol] = useStorageInt("bioethanol",0);
+  const [biodiesel, setBiodiesel] = useStorageInt("biodiesel",0);
+  const [bifuel, setBifuel] = useStorageInt("bifuel",0);
+  const [other, setOther] = useStorageInt("other",0);
+  const [fuelSharesCarTypes, setFuelSharesCarTypes] = useStorageString("fuelSharesCarTypes","");
+  const [fuelSharesCar, setFuelSharesCar] = useStorageString("fuelSharesCar","");
+  const [renewables, setRenewables] = useStorageInt("renewables",0);
+  const [electricityTransTypes, setElectricityTransTypes] = useStorageString("electricityTransTypes","");
+  const [electricityTrans, setElectricityTrans] = useStorageString("electricityTrans","");
 
   // const [policyQuant, setPolicyQuantification] = useState("");
 
@@ -334,17 +340,21 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
   }, [policyQuantification]);
 
   const gotoU3policies = () => {
-    setU3policies(true);
+    navigate("/u3policies", {
+      replace: true,
+    }); 
   };
 
-  if (nextU3policies === false) {
+ 
     return (
       <article>
+           <br/>
         <div>
           <Divider textAlign="left" flexItem>
             {" "}
             <Chip label="POLICY QUANTIFICATION" />
           </Divider>
+          <br/>
           <Alert severity="info">
             This section estimates the impact of a planning policy on the
             transport-related greenhouse gas emissions.
@@ -1469,6 +1479,17 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
             {/*  electricity for transport end */}
 
             <br />
+            <div className="backButtonNew">
+              <Button
+                size="small"
+                value="backProjections"
+                onClick={() =>
+                  navigate("../u2planner", { replace: true })
+                }
+                label="&laquo; Previous"
+                secondary
+              />
+            </div>
             <div className="nextU3Button">
               <Button
                 size="small"
@@ -1483,7 +1504,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
         </section>
       </article>
     );
-  } else {
+ /*  } else {
     return (
       <U3policies
         emission={emission}
@@ -1504,13 +1525,7 @@ export const U3planner = ({ emission, baseline, newDevelopment }) => {
         baseline={baseline}
         // projections={projections}
       />
-    );
-  }
+    ); */
+  // }
 };
 
-U3planner.propTypes = {
-  baseline: PropTypes.object.isRequired,
-  emission: PropTypes.object.isRequired,
-  newDevelopment: PropTypes.object.isRequired,
-  // projections: PropTypes.object.isRequired,
-};
