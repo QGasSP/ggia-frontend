@@ -11,8 +11,8 @@ import { U2planner } from "./U2planner";
 import { LUCBarChart } from "./LUCBarChart";
 import { BuildingBaselineCharts } from "./BuildingBaselineCharts";
 import { BuildingsPoliciesCharts } from "./BuildingsPoliciesCharts";
-import { ConsumptionBaselineResults } from "./ConsumptionBaselineResults";
-import { ConsumptionSummary } from "./ConsumptionSummary";
+/* import { ConsumptionBaselineResults } from "./ConsumptionBaselineResults";
+import { ConsumptionSummary } from "./ConsumptionSummary"; */
 import { Button } from "./Button";
 
 // https://github.com/gregnb/react-to-print/issues/184

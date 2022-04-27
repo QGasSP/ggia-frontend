@@ -3,7 +3,7 @@ import Divider from "@mui/material/Divider";
 import "../css/u1planner.css";
 import Chip from "@mui/material/Chip";
 import axios from "axios";
-/* import { ConsumptionSummary } from "./ConsumptionSummary"; */
+import { ConsumptionSummary } from "./ConsumptionSummary"; 
 import CircularProgress from "@mui/material/CircularProgress";
 import urlPrefix from "../Config";
 import { Button } from "./Button";
@@ -104,7 +104,40 @@ export const ConsumptionResults = () => {
   };
 
   useEffect(async () => {
-    fetchConsumptionData();
+    // fetchConsumptionData();
+    const consumptionRequest = JSON.parse(localStorage.getItem("consumptionRequest"));
+    const headers = { "Content-type": "application/json" };
+
+    axios
+      .post(
+        urlPrefix + "/api/v1/calculate/consumption",
+        consumptionRequest,
+        headers
+      )
+      .then((response) => {
+        setBlConsumption(response.data.data.consumption.BL);
+        setBlTotalEmissions(response.data.data.consumption.BLTotalEmissions);
+        setP1totalAreaEmissions(
+          response.data.data.consumption.P1TotalAreaEmissions
+        );
+        setP1(response.data.data.consumption.P1);
+        setP1totalEmissions(response.data.data.consumption.P1TotalEmissions);
+        setBlTotalAreaEmissions(
+          response.data.data.consumption.BLTotalAreaEmissions
+        );
+        /*   setP1YMax(response.data.data.consumption.P1TotalAreaEmissionsMax);
+        setBlYMax(response.data.data.consumption.BLMax); */
+        setBlSummedEmissions(response.data.data.consumption.BLSummedEmissions);
+        setP1SummedEmissions(response.data.data.consumption.P1SummedEmissions);
+          // eslint-disable-next-line no-console
+          console.log(response.data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        // eslint-disable-next-line no-console
+        console.error("There was an error!", error.message);
+      });
   }, []);
 
 
@@ -171,7 +204,7 @@ export const ConsumptionResults = () => {
           {" "}
           <Chip label="Results" />
         </Divider>
-      {/*   <>
+        <>
         {bl !== undefined &&(
           <ConsumptionSummary
             p1TotalEmissions={p1TotalEmissions}
@@ -184,7 +217,7 @@ export const ConsumptionResults = () => {
             p1={p1}
           />
           )}
-        </> */}
+        </>
         <div className="backButtonNew">
             <Button
               size="small"

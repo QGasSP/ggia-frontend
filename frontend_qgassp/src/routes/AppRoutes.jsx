@@ -11,7 +11,6 @@ import { U3policies } from "../components/U3policies";
 import { ConsumptionBaseline } from "../components/ConsumptionBaseline";
 import { ConsumptionBaselineResults } from "../components/ConsumptionBaselineResults";
 import { ConsumptionHseEnergy } from "../components/ConsumptionHseEnergy";
-import { ConsumptionSummary } from "../components/ConsumptionSummary";
 import { BuildingBaseline } from "../components/BuildingBaseline";
 import { BuildingBaselineCharts } from "../components/BuildingBaselineCharts";
 import { BuildingsNewUnits } from "../components/BuildingsNewUnits";
@@ -20,6 +19,7 @@ import { BuildingsPoliciesCharts } from "../components/BuildingsPoliciesCharts";
 import { LandUseChangeTableForm } from "../components/LandUseChangeTableForm";
 import { GenerateReport } from "../components/GenerateReport";
 import { ConsumptionTransport } from "../components/ConsumptionTransport";
+import { ConsumptionResults } from "../components/ConsumptionResults";
 
 export const AppRoutes = () => {
   const routes = useRoutes([
@@ -36,7 +36,7 @@ export const AppRoutes = () => {
     { path: "consumptionBaselineResults",element: <ConsumptionBaselineResults />,},
     { path: "consumptionHseEnergy", element: <ConsumptionHseEnergy /> },
     { path: "consumptionTransport", element: <ConsumptionTransport /> },
-    { path: "consumptionResults", element: <ConsumptionSummary /> },
+    { path: "consumptionResults", element: <ConsumptionResults /> },
     { path: "newResidents", element: <NewResidents /> },
     { path: "u2planner", element: <U2planner /> },
     { path: "u3planner", element: <U3planner /> },
