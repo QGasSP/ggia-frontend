@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import { Button } from "./Button";
 import "../css/startpage.css";
 import Divider from "@mui/material/Divider";
@@ -48,16 +48,17 @@ export const StartPage = () => {
     e.preventDefault();
     setYear(Number(e.target.value));
   };
-  const clearLocalStorage = (e) => {
-    e.preventDefault();
+  const clearLocalStorage = () => {
     setNextModule(false);
     setFillFields(false);
-    window.localStorage.clear();
     setCountry("");
     setLocalDataset("");
     setPopulation(0);
     setYear(0);
+    window.localStorage.clear();
   };
+  
+
 
   const startBaseline = () => {
     if (population > 0 && country !== "" && year > 0) {
@@ -211,6 +212,7 @@ export const StartPage = () => {
                   placeholder={population}
                   min="0"
                   onChange={handlePopulation}
+                  value={population}
                   required
                 />
               </div>

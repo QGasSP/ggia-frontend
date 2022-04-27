@@ -5,14 +5,13 @@ import ReactToPrint, {
 } from "react-to-print";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
-import { any } from "prop-types";
 import { U1planner } from "./U1planner";
 import { U2planner } from "./U2planner";
 import { LUCBarChart } from "./LUCBarChart";
 import { BuildingBaselineCharts } from "./BuildingBaselineCharts";
 import { BuildingsPoliciesCharts } from "./BuildingsPoliciesCharts";
 import { ConsumptionBaselineResults } from "./ConsumptionBaselineResults";
-import { ConsumptionSummary } from "./ConsumptionSummary";
+import { ConsumptionSummary } from "./ConsumptionSummary"; 
 import { Button } from "./Button";
 
 // https://github.com/gregnb/react-to-print/issues/184
@@ -205,9 +204,9 @@ export const GenerateReport = () => {
                     <ConsumptionBaselineResults
                       consumptionBaselineToPrint={consumptionBaselineToPrint}
                     />
-                  )}
+                  )} 
 
-                {bL !== null &&
+               {bL !== null &&
                   p1 !== null &&
                   bl !== null &&
                   bLTotalAreaEmissions !== null &&
@@ -238,7 +237,7 @@ export const GenerateReport = () => {
                       bl={bl}
                       p1={p1}
                     />
-                  )}
+                  )} 
               </>
             </div>
           )}

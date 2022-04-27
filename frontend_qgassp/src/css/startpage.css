@@ -36,6 +36,7 @@
   }
 }
 .form-group {
+/*   z-index: 0; */
   display: block;
   padding: 0.25rem;
   font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;

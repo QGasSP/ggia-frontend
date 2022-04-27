@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "../css/startpage.css";
 import Divider from "@mui/material/Divider";
 import "../css/u1planner.css";
-import PropTypes from "prop-types";
 import {
   XYPlot,
   VerticalGridLines,
@@ -18,29 +17,36 @@ import { LineLegendConsumption } from "./LineLegendConsumption";
 import { hseHoldEmissions } from "../reducers/Consumption";
 import axios from "axios";
 import { Button } from "./Button";
-import { ConsumptionHseEnergy } from "./ConsumptionHseEnergy";
 import Alert from "@mui/material/Alert";
 import { useStorageFloat } from "../reducers/useStorage";
-import { CbBreadcrumb } from "./CbBreadcrumb";
+import { useNavigate} from "react-router-dom";
 
 const BarSeries = VerticalBarSeries;
 
-export const ConsumptionBaselineResults = ({
+export const ConsumptionBaselineResults = (
+ /*  {
   areaType,
   houseSize,
   incomeChoice,
   effScalerInitial,
-}) => {
+} */
+) => {
+  const navigate = useNavigate();
   const country = localStorage.getItem("country");
   const localDataset = localStorage.getItem("localDataset");
   const year = parseInt(localStorage.getItem("year"));
   const region = localStorage.getItem("country");
   const popSize = parseInt(localStorage.getItem("population"));
 
+  const areaType = localStorage.getItem("areaType");
+  const houseSize= parseInt(localStorage.getItem("houseSize"));
+  const incomeChoice = parseInt(localStorage.getItem("incomeChoice"));
+  const effScalerInitial = localStorage.getItem("effScalerInitial");
+
   const [districtProp, setDistrictProp] = useStorageFloat("districtProp",parseFloat(0));
   const [electricityHeatProp, setElectricityHeatProp] = useStorageFloat("electricityHeatProp",parseFloat(0));
   const [combustableFuelsProp, setCombustableFuelsProp] = useStorageFloat("combustableFuelsProp",parseFloat(0));
-  const [liquidsProp, setLiquidProp] = useStorageFloat("liquidsProp",0);
+  const [liquidsProp, setLiquidProp] = useStorageFloat("liquidsProp",parseFloat(0));
   const [solidsProp, setSolidsProp] = useStorageFloat("solidsProp",parseFloat(0));
   const [gasesProp, setGasesProp] = useStorageFloat("gasesProp",parseFloat(0));
   const [districtValue, setDistrictValue] = useStorageFloat("districtValue",parseFloat(0));
@@ -73,7 +79,7 @@ export const ConsumptionBaselineResults = ({
   const dataBlTangiblegoods = [];
   const dataBlServices = [];
 
-  const [nextCBQuantification, setCbq] = useState(false);
+  // const [nextCBQuantification, setCbq] = useState(false);
   const fetchConsumptionBaseline = () => {
     const rawData = {
       country,
@@ -138,6 +144,12 @@ export const ConsumptionBaselineResults = ({
     localStorage.setItem("bLTotalEmissions", JSON.stringify(bLTotalEmissions));
   }, [bLTotalEmissions]);
 
+  const showConsumptionHseEnergy = () => {
+    navigate("../consumptionHseEnergy", {
+      replace: true,
+    });
+  };
+
   if (isBaselineLoading) {
     return <CircularProgress color="success" />;
   }
@@ -153,12 +165,9 @@ export const ConsumptionBaselineResults = ({
     dataBlServices.push({ x: i, y: bL.services[i] });
   }
 
-  if (nextCBQuantification === false) {
+ 
     return (
       <>
-      {/*  <div className="settlementDiv">
-          <CbBreadcrumb/>
-        </div> */}
         {consumptionBlStatus !== "success" && <div>{errorBlConsumption}</div>}
         <br />
         <Divider textAlign="left" flexItem>
@@ -178,7 +187,7 @@ export const ConsumptionBaselineResults = ({
             />
           </div>
 
-          <XYPlot width={1000} height={500} stackBy="y" xType="ordinal"  margin={{ left: 80 }}>
+          <XYPlot width={1000} height={500} stackBy="y" xType="ordinal">
             <HorizontalGridLines />
             <VerticalGridLines />
             <VerticalBarSeries className="StackedBarchart" />
@@ -234,6 +243,7 @@ export const ConsumptionBaselineResults = ({
                 <th className="tableTotalEmissions">Total emissions</th>
               </tr>
             </thead>
+
             {Object.keys(bLTotalEmissions).map((key, i) => (
               <tbody key={i}>
                 <tr>
@@ -246,38 +256,30 @@ export const ConsumptionBaselineResults = ({
                 </tr>
               </tbody>
             ))}
+            
           </table>
         </div>
+        <div className="backButtonNew">
+            <Button
+              size="small"
+              value="backProjections"
+              onClick={() => navigate("../consumptionBaseline", { replace: true })}
+              label="&laquo; Previous"
+              secondary
+            />
+          </div>
 
         <div className="nextCBQ">
           <Button
             size="small"
             value="charts"
-            onClick={() => setCbq(true)}
+            onClick={showConsumptionHseEnergy}
             label="Next &raquo;"
             primary
           />
         </div>
       </>
     );
-  } else {
-    return (
-      <ConsumptionHseEnergy
-        districtProp={districtProp}
-        electricityHeatProp={electricityHeatProp}
-        combustableFuelsProp={combustableFuelsProp}
-        liquidsProp={liquidsProp}
-        solidsProp={solidsProp}
-        gasesProp={gasesProp}
-        districtValue={districtValue}
-      />
-    );
-  }
 };
 
-ConsumptionBaselineResults.propTypes = {
-  areaType: PropTypes.string.isRequired,
-  houseSize: PropTypes.number.isRequired,
-  incomeChoice: PropTypes.number.isRequired,
-  effScalerInitial: PropTypes.string.isRequired,
-};
+
