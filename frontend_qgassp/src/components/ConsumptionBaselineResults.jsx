@@ -236,28 +236,33 @@ export const ConsumptionBaselineResults = (
             The second graph is a bar chart showing the breakdown of per capita
             emissions by sector for the baseline year.
           </Alert>
-          <table>
-            <thead className="tableHeader">
-              <tr>
-                <th className="tableTotalEmissions">Year</th>
-                <th className="tableTotalEmissions">Total emissions</th>
-              </tr>
-            </thead>
-
-            {Object.keys(bLTotalEmissions).map((key, i) => (
-              <tbody key={i}>
-                <tr>
-                  <td className="tableTotalEmissions">
-                    <b>{key}</b>
-                  </td>
-                  <td className="tableTotalEmissions">
-                    {bLTotalEmissions[key]}
-                  </td>
+          <section className="overflow-table">
+            <table>
+              <thead className="tableHeader">
+              <tr >
+              <th className="tableTotalEmissions">Year</th>
+                {Object.keys(bLTotalEmissions).map((key, i) => (
+                  <th key={i} className="tableTotalEmissions">
+                        <b>{key}</b>
+                  </th>
+                ))}
                 </tr>
+              </thead>
+              <tbody>
+              <tr >
+              <td className="tableTotalEmissions">Total emissions</td>
+                {Object.keys(bLTotalEmissions).map((key, i) => (
+                   (
+                  <td  key={i} className="tableTotalEmissions">
+                        {bLTotalEmissions[key]}
+                  </td>
+                   )
+                ))}
+                    </tr>
               </tbody>
-            ))}
             
-          </table>
+            </table>
+          </section>
         </div>
         <div className="backButtonNew">
             <Button

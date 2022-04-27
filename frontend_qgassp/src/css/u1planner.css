@@ -44,7 +44,10 @@
   font-family: sans-serif;
   box-sizing: border-box;
 }
-
+.overflow-table{
+  overflow-x: auto;
+  width: 97%;
+}
 .column {
   float: left;
   width: 50%;
