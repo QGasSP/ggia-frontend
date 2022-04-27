@@ -8,6 +8,8 @@ import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 import Tooltip from "@mui/material/Tooltip";
 import Alert from "@mui/material/Alert";
+import axios from "axios";
+import urlPrefix from "../Config";
 
 /**
  * BuildingsPolicies user input form
@@ -893,7 +895,7 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
     setSixthSelectorEndYear(Number(e.target.value));
   };
   // #endregion
-
+  const [errorBuildPolicies, setErrorBuildPolicies] = useState("");
   const [policiesCharts, setPoliciesCharts] = useState(false);
   const policyQuantificationResponseDummy = {
     2022: {
@@ -1399,18 +1401,18 @@ export const BuildingsPolicies = ({ baseline, newConstructionResponse, country, 
       "Access-Control-Allow-Origin": "*",
       "Content-type": "application/json",
     };
-    // axios
-    // .post(
-    //   urlPrefix + "/api/v1/calculate/buildings",
-    //   rawData,
-    //   headers
-    // )
-    // .then((response) => setpolicyQuantificationResponseDummy(response.data))
-    // .catch((error) => {
-    //   setErrorBuildBaseline({ errorMessage: error.message });
-    //   // eslint-disable-next-line no-console
-    //   console.error("There was an error!", errorBuildBaseline);
-    // });
+    axios
+    .post(
+      urlPrefix + "/api/v1/calculate/buildings/policy",
+      rawData,
+      headers
+    )
+    .then((response) => setPolicyQuantificationResponse(response.data))
+    .catch((error) => {
+      setErrorBuildPolicies({ errorMessage: error.message });
+      // eslint-disable-next-line no-console
+      console.error("There was an error!", errorBuildPolicies);
+    });
     setPoliciesCharts(true);
   };
   useEffect(() => {
