@@ -5,7 +5,7 @@ import "../css/buildingbaseline.css";
 import axios from "axios";
 
 import urlPrefix from "../Config";
-
+import { CircularProgress } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import Tooltip from "@mui/material/Tooltip";
@@ -66,8 +66,8 @@ export const BuildingBaseline = () => {
   };
   // #endregion
 
-  const [residential, setResidential] = useState({});
-  const [commercial, setCommercial] = useState({});
+  // const [residential, setResidential] = useState({});
+  // const [commercial, setCommercial] = useState({});
   const [buildingsBaselineCharts, setBuildingsBaselineCharts] = useState(false);
   const [errorBuildBaseline, setErrorBuildBaseline] = useState("");
   const [buildingsBaselineResponse, setBuildingsBaselineResponse] = useState(() => {
@@ -127,15 +127,21 @@ export const BuildingBaseline = () => {
   };
   // #endregion
 
+  const [nextBtnStyles, setNextBtnStyle] = useState({
+    display: "none",
+  });
+  const [loadingStyles, setLoadingStyle] = useState({
+    display: "none",
+  });
   // render next page
   const setBuildingTypes = () => {
-    const residentials = {
+    const residential = {
       apartment,
       terraced,
       semiDetached,
       detached,
     };
-    const commercials = {
+    const commercial = {
       retail,
       health,
       hospitality,
@@ -143,39 +149,58 @@ export const BuildingBaseline = () => {
       industrial,
       warehouses,
     };
-    setResidential(residentials);
-    setCommercial(commercials);
-    const baseline = {
+    // setResidential(residentials);
+    // setCommercial(commercials);
+    const request = {
       country,
       year,
       population,
-      residential,
-      commercial,
+      baseline: {
+        residential,
+        commercial,
+      }
     };
-    const rawData = { baseline };
+    const rawData = { request };
     localStorage.setItem(
       "buildingsBaselineRequest",
-      JSON.stringify(baseline)
+      JSON.stringify(request)
     );
     const headers = {
       "Access-Control-Allow-Origin": "*",
       "Content-type": "application/json",
     };
+    setNextBtnStyle({
+      display: "none",
+    });
+    setLoadingStyle({
+      display: "block",
+    });
     axios
     .post(
       urlPrefix + "/api/v1/calculate/buildings/baseline",
-      rawData,
+      request,
       headers
     )
     .then((response) => setBuildingsResponse(response.data))
+    .then(() => {
+      setNextBtnStyle({
+        display: "block",
+      });
+      setLoadingStyle({
+        display: "none",
+      });
+    })
     .catch((error) => {
       setErrorBuildBaseline({ errorMessage: error.message });
       // eslint-disable-next-line no-console
       console.error("There was an error!", errorBuildBaseline);
     });
 
-    setBuildingsBaselineCharts(true);
   };
+
+  const moveToBuildingsBaselineResults = () => {
+    setBuildingsBaselineCharts(true);
+  }
 
   useEffect(() => {
     localStorage.setItem(
@@ -527,13 +552,26 @@ export const BuildingBaseline = () => {
             <section>
               {
                 <div className="nextU2Button">
+                  <div className="luc_alert_container">
+                    <Button
+                      size="small"
+                      value="charts"
+                      onClick={setBuildingTypes}
+                      label="Submit"
+                      primary
+                    />
+                  </div>
                   <Button
+                    id="btn-next"
                     size="small"
-                    value="charts"
-                    onClick={setBuildingTypes}
+                    type="submit"
+                    value="Submit"
+                    onClick={moveToBuildingsBaselineResults}
                     label="Next &raquo;"
-                    primary
+                    primary="true"
+                    style={nextBtnStyles}
                   />
+                  <CircularProgress label="loading" style={loadingStyles} />
                 </div>
               }
             </section>

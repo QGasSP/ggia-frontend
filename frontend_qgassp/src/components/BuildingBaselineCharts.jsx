@@ -26,365 +26,114 @@ const BarSeries = VerticalBarSeries;
 export const BuildingBaselineCharts = ({
   country,
   year,
-  baseline,
+  buildingsBaselineResponse,
 }) => {
 
   const [nextNewUnitsView, setNextNewUnitsView] = useState(false);
-// dummy reponse object
-  const response = {
-    status: "success",
-    data: {
-      2022: {
-        apartments: 2000,
-        terraced: 2000,
-        semidetached: 2000,
-        detached: 2000,
-        retail: 2000,
-        health: 2000,
-        hospitality: 2000,
-        offices: 2000,
-        industrial: 2000,
-        warehouses: 2000,
-      },
-      2023: {
-        apartments: 2000,
-        terraced: 2000,
-        semidetached: 2000,
-        detached: 2000,
-        retail: 2000,
-        health: 2000,
-        hospitality: 2000,
-        offices: 2000,
-        industrial: 2000,
-        warehouses: 2000,
-      },
-      2024: {
-        apartments: 1900,
-        terraced: 1900,
-        semidetached: 1900,
-        detached: 1900,
-        retail: 1900,
-        health: 1900,
-        hospitality: 1900,
-        offices: 1900,
-        industrial: 1900,
-        warehouses: 1900,
-      },
-      2025: {
-        apartments: 1800,
-        terraced: 1800,
-        semidetached: 1800,
-        detached: 1800,
-        retail: 1800,
-        health: 1800,
-        hospitality: 1800,
-        offices: 1800,
-        industrial: 1800,
-        warehouses: 1800,
-      },
-      2026: {
-        apartments: 1700,
-        terraced: 1700,
-        semidetached: 1700,
-        detached: 1700,
-        retail: 1700,
-        health: 1700,
-        hospitality: 1700,
-        offices: 1700,
-        industrial: 1700,
-        warehouses: 1700,
-      },
-      2027: {
-        apartments: 1600,
-        terraced: 1600,
-        semidetached: 1600,
-        detached: 1600,
-        retail: 1600,
-        health: 1600,
-        hospitality: 1600,
-        offices: 1600,
-        industrial: 1600,
-        warehouses: 1600,
-      },
-      2028: {
-        apartments: 1500,
-        terraced: 1500,
-        semidetached: 1500,
-        detached: 1500,
-        retail: 1500,
-        health: 1500,
-        hospitality: 1500,
-        offices: 1500,
-        industrial: 1500,
-        warehouses: 1500,
-      },
-      2029: {
-        apartments: 1400,
-        terraced: 1400,
-        semidetached: 1400,
-        detached: 1400,
-        retail: 1400,
-        health: 1400,
-        hospitality: 1400,
-        offices: 1400,
-        industrial: 1400,
-        warehouses: 1400,
-      },
-      2030: {
-        apartments: 1300,
-        terraced: 1300,
-        semidetached: 1300,
-        detached: 1300,
-        retail: 1300,
-        health: 1300,
-        hospitality: 1300,
-        offices: 1300,
-        industrial: 1300,
-        warehouses: 1300,
-      },
-      2031: {
-        apartments: 1200,
-        terraced: 800,
-        semidetached: 800,
-        detached: 800,
-        retail: 800,
-        health: 800,
-        hospitality: 800,
-        offices: 800,
-        industrial: 800,
-        warehouses: 800,
-      },
-      2032: {
-        apartments: 1100,
-        terraced: 800,
-        semidetached: 800,
-        detached: 800,
-        retail: 800,
-        health: 800,
-        hospitality: 800,
-        offices: 800,
-        industrial: 800,
-        warehouses: 800,
-      },
-      2033: {
-        apartments: 1100,
-        terraced: 800,
-        semidetached: 800,
-        detached: 800,
-        retail: 800,
-        health: 800,
-        hospitality: 800,
-        offices: 800,
-        industrial: 800,
-        warehouses: 800,
-      },
-      2034: {
-        apartments: 1000,
-        terraced: 800,
-        semidetached: 800,
-        detached: 800,
-        retail: 800,
-        health: 800,
-        hospitality: 800,
-        offices: 800,
-        industrial: 800,
-        warehouses: 800,
-      },
-      2035: {
-        apartments: 900,
-        terraced: 800,
-        semidetached: 800,
-        detached: 800,
-        retail: 800,
-        health: 800,
-        hospitality: 800,
-        offices: 800,
-        industrial: 800,
-        warehouses: 800,
-      },
-      2036: {
-        apartments: 900,
-        terraced: 800,
-        semidetached: 800,
-        detached: 800,
-        retail: 800,
-        health: 800,
-        hospitality: 800,
-        offices: 800,
-        industrial: 800,
-        warehouses: 800,
-      },
-      2037: {
-        apartments: 900,
-        terraced: 800,
-        semidetached: 800,
-        detached: 800,
-        retail: 800,
-        health: 800,
-        hospitality: 800,
-        offices: 800,
-        industrial: 800,
-        warehouses: 800,
-      },
-      2038: {
-        apartments: 800,
-        terraced: 800,
-        semidetached: 800,
-        detached: 800,
-        retail: 800,
-        health: 800,
-        hospitality: 800,
-        offices: 800,
-        industrial: 800,
-        warehouses: 800,
-      },
-      2039: {
-        apartments: 800,
-        terraced: 800,
-        semidetached: 800,
-        detached: 800,
-        retail: 800,
-        health: 800,
-        hospitality: 800,
-        offices: 800,
-        industrial: 800,
-        warehouses: 800,
-      },
-      2040: {
-        apartments: 800,
-        terraced: 800,
-        semidetached: 800,
-        detached: 800,
-        retail: 800,
-        health: 800,
-        hospitality: 800,
-        offices: 800,
-        industrial: 800,
-        warehouses: 800,
-      },
-      2041: {
-        apartments: 800,
-        terraced: 800,
-        semidetached: 800,
-        detached: 800,
-        retail: 800,
-        health: 800,
-        hospitality: 800,
-        offices: 800,
-        industrial: 800,
-        warehouses: 800,
-      },
-      2042: {
-        apartments: 800,
-        terraced: 800,
-        semidetached: 800,
-        detached: 800,
-        retail: 800,
-        health: 800,
-        hospitality: 800,
-        offices: 800,
-        industrial: 800,
-        warehouses: 800,
-      },
-      2043: {
-        apartments: 800,
-        terraced: 800,
-        semidetached: 800,
-        detached: 800,
-        retail: 800,
-        health: 800,
-        hospitality: 800,
-        offices: 800,
-        industrial: 800,
-        warehouses: 800,
-      },
-      2044: {
-        apartments: 800,
-        terraced: 800,
-        semidetached: 800,
-        detached: 800,
-        retail: 800,
-        health: 800,
-        hospitality: 800,
-        offices: 800,
-        industrial: 800,
-        warehouses: 800,
-      },
-      2045: {
-        apartments: 800,
-        terraced: 800,
-        semidetached: 800,
-        detached: 800,
-        retail: 800,
-        health: 800,
-        hospitality: 800,
-        offices: 800,
-        industrial: 800,
-        warehouses: 800,
-      },
-      2046: {
-        apartments: 800,
-        terraced: 800,
-        semidetached: 800,
-        detached: 800,
-        retail: 800,
-        health: 800,
-        hospitality: 800,
-        offices: 800,
-        industrial: 800,
-        warehouses: 800,
-      },
-      2047: {
-        apartments: 800,
-        terraced: 800,
-        semidetached: 800,
-        detached: 800,
-        retail: 800,
-        health: 800,
-        hospitality: 800,
-        offices: 800,
-        industrial: 800,
-        warehouses: 800,
-      },
-      2048: {
-        apartments: 800,
-        terraced: 800,
-        semidetached: 800,
-        detached: 800,
-        retail: 800,
-        health: 800,
-        hospitality: 800,
-        offices: 800,
-        industrial: 800,
-        warehouses: 800,
-      },
-      2049: {
-        apartments: 800,
-        terraced: 800,
-        semidetached: 800,
-        detached: 800,
-        retail: 800,
-        health: 800,
-        hospitality: 800,
-        offices: 800,
-        industrial: 800,
-        warehouses: 800,
-      },
-      2050: {
-        apartments: 800,
-        terraced: 800,
-        semidetached: 800,
-        detached: 800,
-        retail: 800,
-        health: 800,
-        hospitality: 800,
-        offices: 800,
-        industrial: 800,
-        warehouses: 800,
-      },
-    },
-  };
-  baseline = response.data;
+
+  // #region residential co2
+  const apartmentTotal = 
+              (buildingsBaselineResponse.residentialTable.apartment.electricity + 
+              buildingsBaselineResponse.residentialTable.apartment.gas + 
+              buildingsBaselineResponse.residentialTable.apartment.oil + 
+              buildingsBaselineResponse.residentialTable.apartment.heat + 
+              buildingsBaselineResponse.residentialTable.apartment.renewable + 
+              buildingsBaselineResponse.residentialTable.apartment.wood + 
+              buildingsBaselineResponse.residentialTable.apartment.coal + 
+              buildingsBaselineResponse.residentialTable.apartment.peat);
+
+  const terracedTotal = 
+              (buildingsBaselineResponse.residentialTable.terraced.electricity + 
+              buildingsBaselineResponse.residentialTable.terraced.gas + 
+              buildingsBaselineResponse.residentialTable.terraced.oil + 
+              buildingsBaselineResponse.residentialTable.terraced.heat + 
+              buildingsBaselineResponse.residentialTable.terraced.renewable + 
+              buildingsBaselineResponse.residentialTable.terraced.wood + 
+              buildingsBaselineResponse.residentialTable.terraced.coal + 
+              buildingsBaselineResponse.residentialTable.terraced.peat);
+
+  const semiDetachedTotal = 
+              (buildingsBaselineResponse.residentialTable.semiDetached.electricity + 
+              buildingsBaselineResponse.residentialTable.semiDetached.gas + 
+              buildingsBaselineResponse.residentialTable.semiDetached.oil + 
+              buildingsBaselineResponse.residentialTable.semiDetached.heat + 
+              buildingsBaselineResponse.residentialTable.semiDetached.renewable + 
+              buildingsBaselineResponse.residentialTable.semiDetached.wood + 
+              buildingsBaselineResponse.residentialTable.semiDetached.coal + 
+              buildingsBaselineResponse.residentialTable.semiDetached.peat);
+
+  const detachedTotal = 
+              (buildingsBaselineResponse.residentialTable.detached.electricity + 
+              buildingsBaselineResponse.residentialTable.detached.gas + 
+              buildingsBaselineResponse.residentialTable.detached.oil + 
+              buildingsBaselineResponse.residentialTable.detached.heat + 
+              buildingsBaselineResponse.residentialTable.detached.renewable + 
+              buildingsBaselineResponse.residentialTable.detached.wood + 
+              buildingsBaselineResponse.residentialTable.detached.coal + 
+              buildingsBaselineResponse.residentialTable.detached.peat);
+  // #endregion
+
+    // #region commercial co2
+    const retailTotal = 
+    (buildingsBaselineResponse.commercialTable.retail.electricity + 
+    buildingsBaselineResponse.commercialTable.retail.gas + 
+    buildingsBaselineResponse.commercialTable.retail.oil + 
+    buildingsBaselineResponse.commercialTable.retail.heat + 
+    buildingsBaselineResponse.commercialTable.retail.renewable + 
+    buildingsBaselineResponse.commercialTable.retail.wood + 
+    buildingsBaselineResponse.commercialTable.retail.coal + 
+    buildingsBaselineResponse.commercialTable.retail.peat);
+    
+    const healthTotal = 
+        (buildingsBaselineResponse.commercialTable.health.electricity + 
+        buildingsBaselineResponse.commercialTable.health.gas + 
+        buildingsBaselineResponse.commercialTable.health.oil + 
+        buildingsBaselineResponse.commercialTable.health.heat + 
+        buildingsBaselineResponse.commercialTable.health.renewable + 
+        buildingsBaselineResponse.commercialTable.health.wood + 
+        buildingsBaselineResponse.commercialTable.health.coal + 
+        buildingsBaselineResponse.commercialTable.health.peat);
+    
+    const hospitalityTotal = 
+        (buildingsBaselineResponse.commercialTable.hospitality.electricity + 
+        buildingsBaselineResponse.commercialTable.hospitality.gas + 
+        buildingsBaselineResponse.commercialTable.hospitality.oil + 
+        buildingsBaselineResponse.commercialTable.hospitality.heat + 
+        buildingsBaselineResponse.commercialTable.hospitality.renewable + 
+        buildingsBaselineResponse.commercialTable.hospitality.wood + 
+        buildingsBaselineResponse.commercialTable.hospitality.coal + 
+        buildingsBaselineResponse.commercialTable.hospitality.peat);
+    
+    const officesTotal = 
+        (buildingsBaselineResponse.commercialTable.offices.electricity + 
+        buildingsBaselineResponse.commercialTable.offices.gas + 
+        buildingsBaselineResponse.commercialTable.offices.oil + 
+        buildingsBaselineResponse.commercialTable.offices.heat + 
+        buildingsBaselineResponse.commercialTable.offices.renewable + 
+        buildingsBaselineResponse.commercialTable.offices.wood + 
+        buildingsBaselineResponse.commercialTable.offices.coal + 
+        buildingsBaselineResponse.commercialTable.offices.peat);
+    
+    const industrialTotal = 
+        (buildingsBaselineResponse.commercialTable.industrial.electricity + 
+        buildingsBaselineResponse.commercialTable.industrial.gas + 
+        buildingsBaselineResponse.commercialTable.industrial.oil + 
+        buildingsBaselineResponse.commercialTable.industrial.heat + 
+        buildingsBaselineResponse.commercialTable.industrial.renewable + 
+        buildingsBaselineResponse.commercialTable.industrial.wood + 
+        buildingsBaselineResponse.commercialTable.industrial.coal + 
+        buildingsBaselineResponse.commercialTable.industrial.peat);
+    
+    const warehousesTotal = 
+        (buildingsBaselineResponse.commercialTable.warehouses.electricity + 
+        buildingsBaselineResponse.commercialTable.warehouses.gas + 
+        buildingsBaselineResponse.commercialTable.warehouses.oil + 
+        buildingsBaselineResponse.commercialTable.warehouses.heat + 
+        buildingsBaselineResponse.commercialTable.warehouses.renewable + 
+        buildingsBaselineResponse.commercialTable.warehouses.wood + 
+        buildingsBaselineResponse.commercialTable.warehouses.coal + 
+        buildingsBaselineResponse.commercialTable.warehouses.peat);
+    // #endregion
 
   // #region data distribution
   const apartmentsData = [];
@@ -399,20 +148,20 @@ export const BuildingBaselineCharts = ({
   const warehousesData = [];
 
   for (let i = year; i < 2051; i++) {
-    apartmentsData.push({ x: i, y: baseline[i].apartments });
-    terracedData.push({ x: i, y: baseline[i].terraced });
-    semidetachedData.push({ x: i, y: baseline[i].semidetached });
-    detachedData.push({ x: i, y: baseline[i].detached });
-    retailData.push({ x: i, y: baseline[i].retail });
-    healthData.push({ x: i, y: baseline[i].health });
-    hospitalityData.push({ x: i, y: baseline[i].hospitality });
-    officesData.push({ x: i, y: baseline[i].offices });
-    industrialData.push({ x: i, y: baseline[i].industrial });
-    warehousesData.push({ x: i, y: baseline[i].warehouses });
+    apartmentsData.push({ x: i, y: buildingsBaselineResponse.baseline[i].apartment });
+    terracedData.push({ x: i, y: buildingsBaselineResponse.baseline[i].terraced });
+    semidetachedData.push({ x: i, y: buildingsBaselineResponse.baseline[i].semiDetached });
+    detachedData.push({ x: i, y: buildingsBaselineResponse.baseline[i].detached });
+    retailData.push({ x: i, y: buildingsBaselineResponse.baseline[i].retail });
+    healthData.push({ x: i, y: buildingsBaselineResponse.baseline[i].health });
+    hospitalityData.push({ x: i, y: buildingsBaselineResponse.baseline[i].hospitality });
+    officesData.push({ x: i, y: buildingsBaselineResponse.baseline[i].offices });
+    industrialData.push({ x: i, y: buildingsBaselineResponse.baseline[i].industrial });
+    warehousesData.push({ x: i, y: buildingsBaselineResponse.baseline[i].warehouses });
   }
   // #endregion
 
-  if (nextNewUnitsView === false && Object.keys(baseline).length !== 0) {
+  if (nextNewUnitsView === false && Object.keys(buildingsBaselineResponse).length !== 0) {
     return (
       <section>
         <div>
@@ -448,55 +197,55 @@ export const BuildingBaselineCharts = ({
           <tbody>
             <tr>
               <td>Apartment</td>
-              <td>Apartment</td>
-              <td>Apartment</td>
-              <td>Apartment</td>
-              <td>Apartment</td>
-              <td>Apartment</td>
-              <td>Apartment</td>
-              <td>Apartment</td>
-              <td>Apartment</td>
-              <td>total</td>
+              <td>{buildingsBaselineResponse.residentialTable.apartment.electricity}</td>
+              <td>{buildingsBaselineResponse.residentialTable.apartment.gas}</td>
+              <td>{buildingsBaselineResponse.residentialTable.apartment.oil}</td>
+              <td>{buildingsBaselineResponse.residentialTable.apartment.coal}</td>
+              <td>{buildingsBaselineResponse.residentialTable.apartment.peat}</td>
+              <td>{buildingsBaselineResponse.residentialTable.apartment.wood}</td>
+              <td>{buildingsBaselineResponse.residentialTable.apartment.renewable}</td>
+              <td>{buildingsBaselineResponse.residentialTable.apartment.heat}</td>
+              <td>{apartmentTotal}</td>
             </tr>
             <tr>
               <td>Terraced</td>
-              <td>Terraced</td>
-              <td>Terraced</td>
-              <td>Terraced</td>
-              <td>Terraced</td>
-              <td>Terraced</td>
-              <td>Terraced</td>
-              <td>Terraced</td>
-              <td>Terraced</td>
-              <td>total</td>
+              <td>{buildingsBaselineResponse.residentialTable.terraced.electricity}</td>
+              <td>{buildingsBaselineResponse.residentialTable.terraced.gas}</td>
+              <td>{buildingsBaselineResponse.residentialTable.terraced.oil}</td>
+              <td>{buildingsBaselineResponse.residentialTable.terraced.coal}</td>
+              <td>{buildingsBaselineResponse.residentialTable.terraced.peat}</td>
+              <td>{buildingsBaselineResponse.residentialTable.terraced.wood}</td>
+              <td>{buildingsBaselineResponse.residentialTable.terraced.renewable}</td>
+              <td>{buildingsBaselineResponse.residentialTable.terraced.heat}</td>
+              <td>{terracedTotal}</td>
             </tr>
             <tr>
               <td>Semi-detached</td>
-              <td>Semi-detached</td>
-              <td>Semi-detached</td>
-              <td>Semi-detached</td>
-              <td>Semi-detached</td>
-              <td>Semi-detached</td>
-              <td>Semi-detached</td>
-              <td>Semi-detached</td>
-              <td>Semi-detached</td>
-              <td>total</td>
+              <td>{buildingsBaselineResponse.residentialTable.semiDetached.electricity}</td>
+              <td>{buildingsBaselineResponse.residentialTable.semiDetached.gas}</td>
+              <td>{buildingsBaselineResponse.residentialTable.semiDetached.oil}</td>
+              <td>{buildingsBaselineResponse.residentialTable.semiDetached.coal}</td>
+              <td>{buildingsBaselineResponse.residentialTable.semiDetached.peat}</td>
+              <td>{buildingsBaselineResponse.residentialTable.semiDetached.wood}</td>
+              <td>{buildingsBaselineResponse.residentialTable.semiDetached.renewable}</td>
+              <td>{buildingsBaselineResponse.residentialTable.semiDetached.heat}</td>
+              <td>{semiDetachedTotal}</td>
             </tr>
             <tr>
               <td>Detached</td>
-              <td>Detached</td>
-              <td>Detached</td>
-              <td>Detached</td>
-              <td>Detached</td>
-              <td>Detached</td>
-              <td>Detached</td>
-              <td>Detached</td>
-              <td>Detached</td>
-              <td>total</td>
+              <td>{buildingsBaselineResponse.residentialTable.detached.electricity}</td>
+              <td>{buildingsBaselineResponse.residentialTable.detached.gas}</td>
+              <td>{buildingsBaselineResponse.residentialTable.detached.oil}</td>
+              <td>{buildingsBaselineResponse.residentialTable.detached.coal}</td>
+              <td>{buildingsBaselineResponse.residentialTable.detached.peat}</td>
+              <td>{buildingsBaselineResponse.residentialTable.detached.wood}</td>
+              <td>{buildingsBaselineResponse.residentialTable.detached.renewable}</td>
+              <td>{buildingsBaselineResponse.residentialTable.detached.heat}</td>
+              <td>{detachedTotal}</td>
             </tr>
             <tr>
               <td colSpan={9}>Residential buildings total</td>
-              <td>total</td>
+              <td>{detachedTotal + apartmentTotal + semiDetachedTotal + terracedTotal}</td>
             </tr>
           </tbody>
         </table>
@@ -530,79 +279,79 @@ export const BuildingBaselineCharts = ({
           <tbody>
             <tr>
               <td>Retail</td>
-              <td>Retail</td>
-              <td>Retail</td>
-              <td>Retail</td>
-              <td>Retail</td>
-              <td>Retail</td>
-              <td>Retail</td>
-              <td>Retail</td>
-              <td>Retail</td>
-              <td>total</td>
+              <td>{buildingsBaselineResponse.commercialTable.retail.electricity}</td>
+              <td>{buildingsBaselineResponse.commercialTable.retail.gas}</td>
+              <td>{buildingsBaselineResponse.commercialTable.retail.oil}</td>
+              <td>{buildingsBaselineResponse.commercialTable.retail.coal}</td>
+              <td>{buildingsBaselineResponse.commercialTable.retail.peat}</td>
+              <td>{buildingsBaselineResponse.commercialTable.retail.wood}</td>
+              <td>{buildingsBaselineResponse.commercialTable.retail.renewable}</td>
+              <td>{buildingsBaselineResponse.commercialTable.retail.heat}</td>
+              <td>{retailTotal}</td>
             </tr>
             <tr>
               <td>Health</td>
-              <td>Health</td>
-              <td>Health</td>
-              <td>Health</td>
-              <td>Health</td>
-              <td>Health</td>
-              <td>Health</td>
-              <td>Health</td>
-              <td>Health</td>
-              <td>total</td>
+              <td>{buildingsBaselineResponse.commercialTable.health.electricity}</td>
+              <td>{buildingsBaselineResponse.commercialTable.health.gas}</td>
+              <td>{buildingsBaselineResponse.commercialTable.health.oil}</td>
+              <td>{buildingsBaselineResponse.commercialTable.health.coal}</td>
+              <td>{buildingsBaselineResponse.commercialTable.health.peat}</td>
+              <td>{buildingsBaselineResponse.commercialTable.health.wood}</td>
+              <td>{buildingsBaselineResponse.commercialTable.health.renewable}</td>
+              <td>{buildingsBaselineResponse.commercialTable.health.heat}</td>
+              <td>{healthTotal}</td>
             </tr>
             <tr>
               <td>Hospitality</td>
-              <td>Hospitality</td>
-              <td>Hospitality</td>
-              <td>Hospitality</td>
-              <td>Hospitality</td>
-              <td>Hospitality</td>
-              <td>Hospitality</td>
-              <td>Hospitality</td>
-              <td>Hospitality</td>
-              <td>total</td>
+              <td>{buildingsBaselineResponse.commercialTable.hospitality.electricity}</td>
+              <td>{buildingsBaselineResponse.commercialTable.hospitality.gas}</td>
+              <td>{buildingsBaselineResponse.commercialTable.hospitality.oil}</td>
+              <td>{buildingsBaselineResponse.commercialTable.hospitality.coal}</td>
+              <td>{buildingsBaselineResponse.commercialTable.hospitality.peat}</td>
+              <td>{buildingsBaselineResponse.commercialTable.hospitality.wood}</td>
+              <td>{buildingsBaselineResponse.commercialTable.hospitality.renewable}</td>
+              <td>{buildingsBaselineResponse.commercialTable.hospitality.heat}</td>
+              <td>{hospitalityTotal}</td>
             </tr>
             <tr>
               <td>Offices</td>
-              <td>Offices</td>
-              <td>Offices</td>
-              <td>Offices</td>
-              <td>Offices</td>
-              <td>Offices</td>
-              <td>Offices</td>
-              <td>Offices</td>
-              <td>Offices</td>
-              <td>total</td>
+              <td>{buildingsBaselineResponse.commercialTable.offices.electricity}</td>
+              <td>{buildingsBaselineResponse.commercialTable.offices.gas}</td>
+              <td>{buildingsBaselineResponse.commercialTable.offices.oil}</td>
+              <td>{buildingsBaselineResponse.commercialTable.offices.coal}</td>
+              <td>{buildingsBaselineResponse.commercialTable.offices.peat}</td>
+              <td>{buildingsBaselineResponse.commercialTable.offices.wood}</td>
+              <td>{buildingsBaselineResponse.commercialTable.offices.renewable}</td>
+              <td>{buildingsBaselineResponse.commercialTable.offices.heat}</td>
+              <td>{officesTotal}</td>
             </tr>
             <tr>
-              <td>Industrial</td>
-              <td>Industrial</td>
-              <td>Industrial</td>
-              <td>Industrial</td>
-              <td>Industrial</td>
-              <td>Industrial</td>
-              <td>Industrial</td>
-              <td>Industrial</td>
-              <td>Industrial</td>
-              <td>total</td>
+                <td>Industrial</td>
+                <td>{buildingsBaselineResponse.commercialTable.industrial.electricity}</td>
+                <td>{buildingsBaselineResponse.commercialTable.industrial.gas}</td>
+                <td>{buildingsBaselineResponse.commercialTable.industrial.oil}</td>
+                <td>{buildingsBaselineResponse.commercialTable.industrial.coal}</td>
+                <td>{buildingsBaselineResponse.commercialTable.industrial.peat}</td>
+                <td>{buildingsBaselineResponse.commercialTable.industrial.wood}</td>
+                <td>{buildingsBaselineResponse.commercialTable.industrial.renewable}</td>
+                <td>{buildingsBaselineResponse.commercialTable.industrial.heat}</td>
+                <td>{industrialTotal}</td>
             </tr>
             <tr>
-              <td>Warehouses</td>
-              <td>Warehouses</td>
-              <td>Warehouses</td>
-              <td>Warehouses</td>
-              <td>Warehouses</td>
-              <td>Warehouses</td>
-              <td>Warehouses</td>
-              <td>Warehouses</td>
-              <td>Warehouses</td>
-              <td>total</td>
+                <td>Warehouses</td>
+                <td>{buildingsBaselineResponse.commercialTable.warehouses.electricity}</td>
+                <td>{buildingsBaselineResponse.commercialTable.warehouses.gas}</td>
+                <td>{buildingsBaselineResponse.commercialTable.warehouses.oil}</td>
+                <td>{buildingsBaselineResponse.commercialTable.warehouses.coal}</td>
+                <td>{buildingsBaselineResponse.commercialTable.warehouses.peat}</td>
+                <td>{buildingsBaselineResponse.commercialTable.warehouses.wood}</td>
+                <td>{buildingsBaselineResponse.commercialTable.warehouses.renewable}</td>
+                <td>{buildingsBaselineResponse.commercialTable.warehouses.heat}</td>
+                <td>{warehousesTotal}</td>
             </tr>
             <tr>
               <td colSpan={9}>Commercial buildings total</td>
-              <td>total</td>
+              <td>{officesTotal + retailTotal + hospitalityTotal + healthTotal + warehousesTotal + industrialTotal}</td>
             </tr>
           </tbody>
         </table>
@@ -775,7 +524,7 @@ export const BuildingBaselineCharts = ({
   } else if (nextNewUnitsView === true) {
     return (
       <BuildingsNewUnits
-        baseline={baseline}
+        baseline={buildingsBaselineResponse}
         //  emissionResidential={emissionResidential}
         //  emissionCommercial={emissionCommercial}
         year={year}
@@ -789,13 +538,13 @@ export const BuildingBaselineCharts = ({
 };
 
 BuildingBaselineCharts.propTypes = {
-  baseline: PropTypes.object.isRequired,
+  buildingsBaselineResponse: PropTypes.object.isRequired,
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
 };
 
 BuildingBaselineCharts.defaultProps = {
-  baseline: {},
+  buildingsBaselineResponse: {},
   year: 2030,
   country: "Estonia",
 };
