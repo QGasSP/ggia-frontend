@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/startpage.css";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import "../css/u1planner.css";
 import { Button } from "./Button";
+import { ConsumptionBaselineResults } from "./ConsumptionBaselineResults";
 import { useStorageInt, useStorageString } from "../reducers/useStorage";
 import Tooltip from "@mui/material/Tooltip";
 import Alert from "@mui/material/Alert";
-import { useNavigate} from "react-router-dom";
 
 export const ConsumptionBaseline = () => {
-  const navigate = useNavigate();
+  const [nextShowCharts, setNextShow] = useState(false);
+
   const [areaType, setAreaType] = useStorageString("areaType", "");
   const [houseSize, setHouseSize] = useStorageInt("houseSize", 0);
   const [incomeChoice, setIncomeChoice] = useStorageInt("incomeChoice", 0);
@@ -34,15 +35,16 @@ export const ConsumptionBaseline = () => {
   };
 
   const showConsumptionBaseline = () => {
-    navigate("../consumptionBaselineResults", {
-      replace: true,
-    });
+    setNextShow(true);
   };
 
-
+  if (nextShowCharts === false) {
     return (
       <>
         <br />
+        {/*  <div className="settlementDiv">
+          <CbBreadcrumb />
+        </div> */}
         <article>
           <br />
           <div>
@@ -163,7 +165,7 @@ export const ConsumptionBaseline = () => {
                 <Button
                   size="small"
                   value="charts"
-                  onClick={showConsumptionBaseline}
+                  onClick={() => setNextShow(true)}
                   label="Next &raquo;"
                   primary
                 />
@@ -174,4 +176,14 @@ export const ConsumptionBaseline = () => {
         </article>
       </>
     );
+  } else {
+    return (
+      <ConsumptionBaselineResults
+        areaType={areaType}
+        houseSize={parseInt(houseSize)}
+        incomeChoice={parseInt(incomeChoice)}
+        effScalerInitial={effScalerInitial}
+      />
+    );
+  }
 };

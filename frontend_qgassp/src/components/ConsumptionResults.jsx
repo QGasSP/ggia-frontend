@@ -3,21 +3,17 @@ import Divider from "@mui/material/Divider";
 import "../css/u1planner.css";
 import Chip from "@mui/material/Chip";
 import axios from "axios";
-import { ConsumptionSummary } from "./ConsumptionSummary"; 
+import PropTypes from "prop-types";
+import { ConsumptionSummary } from "./ConsumptionSummary";
 import CircularProgress from "@mui/material/CircularProgress";
 import urlPrefix from "../Config";
-import { Button } from "./Button";
-import { useNavigate} from "react-router-dom";
+
 /**
  * Consumption Results
  * @return {}
  */
 
-export const ConsumptionResults = () => {
-  const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true);
- 
-
+export const ConsumptionResults = ({ consumptionRequest }) => {
   const [bl, setBlConsumption]= useState(() => {
     const savedBaselineConsumption = localStorage.getItem("bl");
     const initialValue = JSON.parse(savedBaselineConsumption);
@@ -66,9 +62,11 @@ export const ConsumptionResults = () => {
     return initialValue || {};
   });
 
+  const [isLoading, setIsLoading] = useState(true);
+  /* const [bLMax, setBlYMax] = useState(false);
+  const [p1TotalAreaEmissionsMax, setP1YMax] = useState(false); */
 
   const fetchConsumptionData = () => {
-    const consumptionRequest = JSON.parse(localStorage.getItem("consumptionRequest"));
     const headers = { "Content-type": "application/json" };
 
     axios
@@ -78,6 +76,8 @@ export const ConsumptionResults = () => {
         headers
       )
       .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log(response);
         setBlConsumption(response.data.data.consumption.BL);
         setBlTotalEmissions(response.data.data.consumption.BLTotalEmissions);
         setP1totalAreaEmissions(
@@ -92,8 +92,6 @@ export const ConsumptionResults = () => {
         setBlYMax(response.data.data.consumption.BLMax); */
         setBlSummedEmissions(response.data.data.consumption.BLSummedEmissions);
         setP1SummedEmissions(response.data.data.consumption.P1SummedEmissions);
-          // eslint-disable-next-line no-console
-          console.log(response.data);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -104,40 +102,7 @@ export const ConsumptionResults = () => {
   };
 
   useEffect(async () => {
-    // fetchConsumptionData();
-    const consumptionRequest = JSON.parse(localStorage.getItem("consumptionRequest"));
-    const headers = { "Content-type": "application/json" };
-
-    axios
-      .post(
-        urlPrefix + "/api/v1/calculate/consumption",
-        consumptionRequest,
-        headers
-      )
-      .then((response) => {
-        setBlConsumption(response.data.data.consumption.BL);
-        setBlTotalEmissions(response.data.data.consumption.BLTotalEmissions);
-        setP1totalAreaEmissions(
-          response.data.data.consumption.P1TotalAreaEmissions
-        );
-        setP1(response.data.data.consumption.P1);
-        setP1totalEmissions(response.data.data.consumption.P1TotalEmissions);
-        setBlTotalAreaEmissions(
-          response.data.data.consumption.BLTotalAreaEmissions
-        );
-        /*   setP1YMax(response.data.data.consumption.P1TotalAreaEmissionsMax);
-        setBlYMax(response.data.data.consumption.BLMax); */
-        setBlSummedEmissions(response.data.data.consumption.BLSummedEmissions);
-        setP1SummedEmissions(response.data.data.consumption.P1SummedEmissions);
-          // eslint-disable-next-line no-console
-          console.log(response.data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        // eslint-disable-next-line no-console
-        console.error("There was an error!", error.message);
-      });
+    fetchConsumptionData();
   }, []);
 
 
@@ -205,7 +170,6 @@ export const ConsumptionResults = () => {
           <Chip label="Results" />
         </Divider>
         <>
-        {bl !== undefined &&(
           <ConsumptionSummary
             p1TotalEmissions={p1TotalEmissions}
             blTotalEmmissions={blTotalEmmissions}
@@ -216,19 +180,12 @@ export const ConsumptionResults = () => {
             bl={bl}
             p1={p1}
           />
-          )}
         </>
-        <div className="backButtonNew">
-            <Button
-              size="small"
-              value="backProjections"
-              onClick={() => navigate("../consumptionTransport", { replace: true })}
-              label="&laquo; Previous"
-              secondary
-            />
-          </div>
       </section>
     </article>
   );
 };
 
+ConsumptionResults.propTypes = {
+  consumptionRequest: PropTypes.object.isRequired,
+};

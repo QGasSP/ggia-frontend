@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { U2legend } from "./U2legend";
 import axios from "axios";
 import "../css/u2planner.css";
@@ -14,25 +15,21 @@ import {
   VerticalGridLines,
   LineSeries,
 } from "react-vis";
-// import { U3planner } from "./U3planner";
+import { U3planner } from "./U3planner";
 import urlPrefix from "../Config";
-import {useNavigate} from "react-router-dom";
 
 /**
  * U2 Planner component for visualization of  baseline vs new-resident population
  * @return {}
  */
 
-export const U2planner = () => {
-  const navigate = useNavigate();
-
-  const base= JSON.parse(localStorage.getItem("baseline"));
-  const baseline = base.baseline;
-
-  const newDevelopment = JSON.parse(localStorage.getItem("newDevelopment"));
-  const settlementDistribution = JSON.parse(localStorage.getItem("settlementDistribution"));
-  const projections = JSON.parse(localStorage.getItem("projections"));
-  // const newDevelopment = location.state.newDevelopment;
+export const U2planner = ({
+  baseline,
+  newDevelopment,
+  settlementDistribution,
+  emission,
+  projections,
+}) => {
   const [errorU2, setU2Error] = useState("");
   
   const [newPopulation, setNewPopulation] = useState(() => {
@@ -44,8 +41,6 @@ export const U2planner = () => {
   const [isU2Loading, setIsU2Loading] = useState(true);
   const dataNewPopulation = [];
   const dataProjectionPopulation = [];
-
-
 
   const fetchU2PlannerData = () => {
     const rawData = { baseline, newDevelopment };
@@ -83,9 +78,7 @@ export const U2planner = () => {
   }
 
   const gotoU3planner = () => {
-    navigate("/u3planner", {
-      replace: true,
-    }); 
+    setU3planner(true);
   };
 
   useEffect(() => {
@@ -99,10 +92,9 @@ export const U2planner = () => {
 
   if (isU2Loading) {
     return <CircularProgress color="success" />;
-  };
+  }
 
-
-  
+  if (nextU3planer === false) {
     return (
       <article>
         <div className="headerSettlement">
@@ -209,17 +201,6 @@ export const U2planner = () => {
               />
             </XYPlot>
             <U2legend />
-            <div className="backButtonNew">
-              <Button
-                size="small"
-                value="backProjections"
-                onClick={() =>
-                  navigate("../newResidents", { replace: true })
-                }
-                label="&laquo; Previous"
-                secondary
-              />
-            </div>
 
             <div className="nextU2Button">
               <Button
@@ -234,6 +215,26 @@ export const U2planner = () => {
         </section>
       </article>
     );
+  } else {
+    return (
+      <U3planner
+        baseline={baseline}
+        newDevelopment={newDevelopment}
+        emission={emission}
+        projections={projections}
+      />
+    );
+  }
 };
 
+U2planner.propTypes = {
+  emission: PropTypes.object.isRequired,
+  projections: PropTypes.object.isRequired,
+  baseline: PropTypes.object.isRequired,
+  settlementDistribution: PropTypes.object.isRequired,
+  newDevelopment: PropTypes.object.isRequired,
+};
 
+U2planner.defaultProps = {
+  user: null,
+};
