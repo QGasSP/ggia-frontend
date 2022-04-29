@@ -37,7 +37,7 @@ export const ConsumptionSummary = ({
     { title: "Baseline emissions", color: "#3d58a3", strokeWidth: 13 },
     { title: "Policy emissions", color: "#ef7d00", strokeWidth: 13 },
   ];
-  
+
   // blTransport
 
   const bLHousingEnergy = [];
@@ -65,7 +65,6 @@ export const ConsumptionSummary = ({
   const policyTotalEmissions = [];
   const policyTotalAreaEmissions = [];
   const policySummedEmissions = [];
-  
 
   for (let i = 2020; i < 2051; i++) {
     bLHousingEnergy.push({ x: i, y: bl.housingEnergy[i] });
@@ -91,31 +90,30 @@ export const ConsumptionSummary = ({
     policyTotalEmissions.push({ x: i, y: p1TotalEmissions[i] });
     policyTotalAreaEmissions.push({ x: i, y: p1TotalAreaEmissions[i] });
     policySummedEmissions.push({ x: i, y: p1SummedEmissions[i] });
-  };
+  }
 
   const baselineDataPolicyYear = [
-    { x: "Housing_energy", y: bl.housingEnergy[policyYear]},
+    { x: "Housing_energy", y: bl.housingEnergy[policyYear] },
     { x: "Housing_other", y: bl.housingOther[policyYear] },
     { x: "Transport_fuels", y: bl.transportFuels[policyYear] },
     { x: "Transport_other", y: bl.transportOther[policyYear] },
     { x: "Air_travel", y: bl.airTravel[policyYear] },
     { x: "Food", y: bl.food[policyYear] },
     { x: "Tangible_goods", y: bl.tangibleGoods[policyYear] },
-    { x: "Services", y:  bl.services[policyYear] },
-    { x: "Total_emissions", y: blTotalEmmissions[policyYear]},
+    { x: "Services", y: bl.services[policyYear] },
+    { x: "Total_emissions", y: blTotalEmmissions[policyYear] },
   ];
   const policyDataPolicyYear = [
-    { x: "Housing_energy", y: p1.housingEnergy[policyYear]},
+    { x: "Housing_energy", y: p1.housingEnergy[policyYear] },
     { x: "Housing_other", y: p1.housingOther[policyYear] },
     { x: "Transport_fuels", y: p1.transportFuels[policyYear] },
     { x: "Transport_other", y: p1.transportOther[policyYear] },
     { x: "Air_travel", y: p1.airTravel[policyYear] },
     { x: "Food", y: p1.food[policyYear] },
     { x: "Tangible_goods", y: p1.tangibleGoods[policyYear] },
-    { x: "Services", y:  p1.services[policyYear] },
-    { x: "Total_emissions", y: p1TotalEmissions[policyYear]},
+    { x: "Services", y: p1.services[policyYear] },
+    { x: "Total_emissions", y: p1TotalEmissions[policyYear] },
   ];
-
 
   return (
     <>
@@ -164,24 +162,14 @@ export const ConsumptionSummary = ({
           data={policyAirTravel}
           stack
         />
-        <BarSeries
-          color="#996e35"
-          opacity={0.55}
-          data={policyFood}
-          stack
-        />
+        <BarSeries color="#996e35" opacity={0.55} data={policyFood} stack />
         <BarSeries
           color="#e1719a"
           opacity={0.55}
           data={policyTangiblegoods}
           stack
         />
-        <BarSeries
-          color="#76918e"
-          opacity={0.55}
-          data={policyServices}
-          stack
-        />
+        <BarSeries color="#76918e" opacity={0.55} data={policyServices} stack />
         <LineSeries
           className="fourth-series"
           color="#000000"
@@ -192,7 +180,7 @@ export const ConsumptionSummary = ({
 
       {Object.keys(p1).length !== 0 && (
         <>
-         {/*  <Divider textAlign="left" flexItem>
+          {/*  <Divider textAlign="left" flexItem>
             {" "}
             <b> {country}: Policy vs annual household emissions</b>
           </Divider>
@@ -260,34 +248,40 @@ export const ConsumptionSummary = ({
           <br />
 
           <Divider textAlign="left" flexItem>
-          {" "}
-          <b>Baseline vs Policy {policyYear}</b>
-        </Divider>
-        <XYPlot xType="ordinal" width={1000} height={400} xDistance={100}  margin={{ left: 80 }}>
-              <VerticalGridLines />
-              <HorizontalGridLines />
-              <XAxis/>
-              <YAxis title="Emissions/ kG C02 eq" />
-              <BarSeries
-                className="vertical-bar-series-example"
-               /*  opacity={0.50} */
-                data={baselineDataPolicyYear}
-                color="#3d58a3"
-              />
-              <BarSeries
-                className="vertical-bar-series-example"
-               /*  opacity={0.55} */
-                data={policyDataPolicyYear}
-                color="#ef7d00" 
-              /> 
-    
-            </XYPlot>
+            {" "}
+            <b>Baseline vs Policy {policyYear}</b>
+          </Divider>
+          <XYPlot
+            xType="ordinal"
+            width={1000}
+            height={400}
+            xDistance={100}
+            margin={{ left: 80 }}
+          >
+            <VerticalGridLines />
+            <HorizontalGridLines />
+            <XAxis />
+            <YAxis title="Emissions/ kG C02 eq" />
+            <BarSeries
+              className="vertical-bar-series-example"
+              /*  opacity={0.50} */
+              data={baselineDataPolicyYear}
+              color="#3d58a3"
+            />
+            <BarSeries
+              className="vertical-bar-series-example"
+              /*  opacity={0.55} */
+              data={policyDataPolicyYear}
+              color="#ef7d00"
+            />
+          </XYPlot>
 
           <Divider textAlign="left" flexItem>
             {" "}
             <b>
               {" "}
-              {country}: Baseline total summed emissions vs Policy total summed emissions
+              {country}: Baseline total summed emissions vs Policy total summed
+              emissions
             </b>
           </Divider>
           <br />

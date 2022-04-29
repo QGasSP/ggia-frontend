@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "../css/startpage.css";
 import Divider from "@mui/material/Divider";
 import "../css/u1planner.css";
-import PropTypes from "prop-types";
 import {
   XYPlot,
   VerticalGridLines,
@@ -18,49 +17,71 @@ import { LineLegendConsumption } from "./LineLegendConsumption";
 import { hseHoldEmissions } from "../reducers/Consumption";
 import axios from "axios";
 import { Button } from "./Button";
-import { ConsumptionHseEnergy } from "./ConsumptionHseEnergy";
 import Alert from "@mui/material/Alert";
 import { useStorageFloat } from "../reducers/useStorage";
+import { useNavigate } from "react-router-dom";
 
 const BarSeries = VerticalBarSeries;
 
-export const ConsumptionBaselineResults = ({
-  areaType,
-  houseSize,
-  incomeChoice,
-  effScalerInitial,
-}) => {
+/**
+ * Consumption baseline charts UI component
+ * @return {}
+ */
+
+export const ConsumptionBaselineResults = () => {
+  const navigate = useNavigate();
   const country = localStorage.getItem("country");
   const localDataset = localStorage.getItem("localDataset");
   const year = parseInt(localStorage.getItem("year"));
   const region = localStorage.getItem("country");
   const popSize = parseInt(localStorage.getItem("population"));
 
-  const [districtProp, setDistrictProp] = useStorageFloat("districtProp",parseFloat(0));
-  const [electricityHeatProp, setElectricityHeatProp] = useStorageFloat("electricityHeatProp",parseFloat(0));
-  const [combustableFuelsProp, setCombustableFuelsProp] = useStorageFloat("combustableFuelsProp",parseFloat(0));
-  const [liquidsProp, setLiquidProp] = useStorageFloat("liquidsProp",0);
-  const [solidsProp, setSolidsProp] = useStorageFloat("solidsProp",parseFloat(0));
-  const [gasesProp, setGasesProp] = useStorageFloat("gasesProp",parseFloat(0));
-  const [districtValue, setDistrictValue] = useStorageFloat("districtValue",parseFloat(0));
+  const areaType = localStorage.getItem("areaType");
+  const houseSize = parseInt(localStorage.getItem("houseSize"));
+  const incomeChoice = parseInt(localStorage.getItem("incomeChoice"));
+  const effScalerInitial = localStorage.getItem("effScalerInitial");
+
+  const [districtProp, setDistrictProp] = useStorageFloat(
+    "districtProp",
+    parseFloat(0)
+  );
+  const [electricityHeatProp, setElectricityHeatProp] = useStorageFloat(
+    "electricityHeatProp",
+    parseFloat(0)
+  );
+  const [combustableFuelsProp, setCombustableFuelsProp] = useStorageFloat(
+    "combustableFuelsProp",
+    parseFloat(0)
+  );
+  const [liquidsProp, setLiquidProp] = useStorageFloat(
+    "liquidsProp",
+    parseFloat(0)
+  );
+  const [solidsProp, setSolidsProp] = useStorageFloat(
+    "solidsProp",
+    parseFloat(0)
+  );
+  const [gasesProp, setGasesProp] = useStorageFloat("gasesProp", parseFloat(0));
+  const [districtValue, setDistrictValue] = useStorageFloat(
+    "districtValue",
+    parseFloat(0)
+  );
   const [isBaselineLoading, setIsLoadingBaseline] = useState(true);
   const [isResponseError, setIsResponseError] = useState(false);
   const [consumptionBlStatus, setConsumptionBlStatus] = useState("");
   const [errorBlConsumption, setBlConsumptionError] = useState("");
 
- 
- const [bL, setBL] = useState(() => {
+  const [bL, setBL] = useState(() => {
     const savedBase = localStorage.getItem("bL");
     const initialValue = JSON.parse(savedBase);
     return initialValue || {};
   });
 
-  const [bLTotalEmissions, setBLTotalEmissions]= useState(() => {
+  const [bLTotalEmissions, setBLTotalEmissions] = useState(() => {
     const savedBase = localStorage.getItem("bLTotalEmissions");
     const initialValue = JSON.parse(savedBase);
     return initialValue || {};
   });
-
 
   const dataBlHousingEnergy = [];
 
@@ -72,7 +93,7 @@ export const ConsumptionBaselineResults = ({
   const dataBlTangiblegoods = [];
   const dataBlServices = [];
 
-  const [nextCBQuantification, setCbq] = useState(false);
+  // const [nextCBQuantification, setCbq] = useState(false);
   const fetchConsumptionBaseline = () => {
     const rawData = {
       country,
@@ -137,6 +158,12 @@ export const ConsumptionBaselineResults = ({
     localStorage.setItem("bLTotalEmissions", JSON.stringify(bLTotalEmissions));
   }, [bLTotalEmissions]);
 
+  const showConsumptionHseEnergy = () => {
+    navigate("../consumptionHseEnergy", {
+      replace: true,
+    });
+  };
+
   if (isBaselineLoading) {
     return <CircularProgress color="success" />;
   }
@@ -152,133 +179,106 @@ export const ConsumptionBaselineResults = ({
     dataBlServices.push({ x: i, y: bL.services[i] });
   }
 
-  if (nextCBQuantification === false) {
-    return (
-      <>
-        {consumptionBlStatus !== "success" && <div>{errorBlConsumption}</div>}
-        <br />
-        <Divider textAlign="left" flexItem>
-          {" "}
-          <b>{country}: Annual household emissions </b>
-        </Divider>
-        <div>
-          <Alert severity="info">
-            The first graph shows a projection of annual emissions under the
-            baseline scenario for each resident for every year until 2050. Each
-            bar is subdivided into emissions from each sector.
-          </Alert>
-          <div className="settlementDiv">
-            <LineLegendConsumption
-              colorItems={hseHoldEmissions}
-              orientation="horizontal"
-            />
-          </div>
-
-          <XYPlot width={1000} height={500} stackBy="y" xType="ordinal"  margin={{ left: 80 }}>
-            <HorizontalGridLines />
-            <VerticalGridLines />
-            <VerticalBarSeries className="StackedBarchart" />
-            <XAxis title="Year" />
-            <YAxis title="Emissions/ kG C02 eq" />
-            <BarSeries
-              color="#3d58a3"
-              data={dataBlHousingEnergy}
-              opacity={0.6}
-            />
-            <BarSeries
-              color="#ef7d00"
-              data={dataBlHousingOther}
-              opacity={0.6}
-            />
-            <BarSeries
-              color="#95c11f"
-              data={dataBlTransportFuels}
-              opacity={0.6}
-            />
-            <BarSeries
-              color="#ce143d"
-              data={dataBlTransportOther}
-              opacity={0.6}
-            />
-            <BarSeries color="#845f9e" data={dataBlAirTravel} opacity={0.6} />
-            <BarSeries color="#996e35" data={dataBlFood} opacity={0.6} />
-
-            <BarSeries
-              color="#e1719a"
-              data={dataBlTangiblegoods}
-              opacity={0.6}
-            />
-
-            <BarSeries color="#76918e" data={dataBlServices} opacity={0.6} />
-          </XYPlot>
-        </div>
-        <Divider textAlign="left" flexItem>
-          {" "}
-          <b> {country}: Total emissions of area based on year</b>
-        </Divider>
-
-        <br />
-        <div className="consumptionTableDiv">
-          <Alert severity="info">
-            The second graph is a bar chart showing the breakdown of per capita
-            emissions by sector for the baseline year.
-          </Alert>
-          <table>
-              <thead className="tableHeader">
-              <tr >
-              <th className="tableTotalEmissions">Year</th>
-                {Object.keys(bLTotalEmissions).map((key, i) => (
-                  <th key={i} className="tableTotalEmissions">
-                        <b>{key}</b>
-                  </th>
-                ))}
-                </tr>
-              </thead>
-              <tbody>
-              <tr >
-              <td className="tableTotalEmissions">Total emissions</td>
-                {Object.keys(bLTotalEmissions).map((key, i) => (
-                   (
-                  <td  key={i} className="tableTotalEmissions">
-                        {bLTotalEmissions[key]}
-                  </td>
-                   )
-                ))}
-                    </tr>
-              </tbody>
-            
-            </table>
-        </div>
-
-        <div className="nextCBQ">
-          <Button
-            size="small"
-            value="charts"
-            onClick={() => setCbq(true)}
-            label="Next &raquo;"
-            primary
+  return (
+    <>
+      {consumptionBlStatus !== "success" && <div>{errorBlConsumption}</div>}
+      <br />
+      <Divider textAlign="left" flexItem>
+        {" "}
+        <b>{country}: Annual household emissions </b>
+      </Divider>
+      <div>
+        <Alert severity="info">
+          The first graph shows a projection of annual emissions under the
+          baseline scenario for each resident for every year until 2050. Each
+          bar is subdivided into emissions from each sector.
+        </Alert>
+        <div className="settlementDiv">
+          <LineLegendConsumption
+            colorItems={hseHoldEmissions}
+            orientation="horizontal"
           />
         </div>
-      </>
-    );
-  } else {
-    return (
-      <ConsumptionHseEnergy
-        districtProp={districtProp}
-        electricityHeatProp={electricityHeatProp}
-        combustableFuelsProp={combustableFuelsProp}
-        liquidsProp={liquidsProp}
-        solidsProp={solidsProp}
-        gasesProp={gasesProp}
-        districtValue={districtValue}
-      />
-    );
-  }
-};
 
-ConsumptionBaselineResults.propTypes = {
-  areaType: PropTypes.string.isRequired,
-  houseSize: PropTypes.number.isRequired,
-  incomeChoice: PropTypes.number.isRequired,
-  effScalerInitial: PropTypes.string.isRequired,
+        <XYPlot width={1000} height={500} stackBy="y" xType="ordinal">
+          <HorizontalGridLines />
+          <VerticalGridLines />
+          <VerticalBarSeries className="StackedBarchart" />
+          <XAxis title="Year" />
+          <YAxis title="Emissions/ kG C02 eq" />
+          <BarSeries color="#3d58a3" data={dataBlHousingEnergy} opacity={0.6} />
+          <BarSeries color="#ef7d00" data={dataBlHousingOther} opacity={0.6} />
+          <BarSeries
+            color="#95c11f"
+            data={dataBlTransportFuels}
+            opacity={0.6}
+          />
+          <BarSeries
+            color="#ce143d"
+            data={dataBlTransportOther}
+            opacity={0.6}
+          />
+          <BarSeries color="#845f9e" data={dataBlAirTravel} opacity={0.6} />
+          <BarSeries color="#996e35" data={dataBlFood} opacity={0.6} />
+
+          <BarSeries color="#e1719a" data={dataBlTangiblegoods} opacity={0.6} />
+
+          <BarSeries color="#76918e" data={dataBlServices} opacity={0.6} />
+        </XYPlot>
+      </div>
+      <Divider textAlign="left" flexItem>
+        {" "}
+        <b> {country}: Total emissions of area based on year</b>
+      </Divider>
+
+      <br />
+      <div className="consumptionTableDiv">
+        <Alert severity="info">
+          The second graph is a bar chart showing the breakdown of per capita
+          emissions by sector for the baseline year.
+        </Alert>
+        <table>
+          <thead className="tableHeader">
+            <tr>
+              <th className="tableTotalEmissions">Year</th>
+              {Object.keys(bLTotalEmissions).map((key, i) => (
+                <th key={i} className="tableTotalEmissions">
+                  <b>{key}</b>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="tableTotalEmissions">Total emissions</td>
+              {Object.keys(bLTotalEmissions).map((key, i) => (
+                <td key={i} className="tableTotalEmissions">
+                  {bLTotalEmissions[key]}
+                </td>
+              ))}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div className="backButtonNew">
+        <Button
+          size="small"
+          value="backProjections"
+          onClick={() => navigate("../consumptionBaseline", { replace: true })}
+          label="&laquo; Previous"
+          secondary
+        />
+      </div>
+
+      <div className="nextCBQ">
+        <Button
+          size="small"
+          value="charts"
+          onClick={showConsumptionHseEnergy}
+          label="Next &raquo;"
+          primary
+        />
+      </div>
+    </>
+  );
 };

@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react";
 import "../css/tabs.css";
 import { ModuleHeader } from "./ModuleHeader";
-import { LandUseChangeTableForm } from "./LandUseChangeTableForm";
-import { Welcome } from "./Welcome";
-import { BuildingBaseline } from "./BuildingBaseline";
-import { ConsumptionBaseline } from "./ConsumptionBaseline";
-import { TransportBaseline } from "./TransportBaseline";
-import { GenerateReport } from "./GenerateReport";
-import { StartPage } from "./StartPage";
-/* import { TransportBaseline } from "./TransportBaseline";
+import { useNavigate } from "react-router-dom";
+
+/**
+ * TabModules for application tabs navigation
+ * @return {}
  */
+
 export const TabModules = () => {
   const [toggleState, setToggleState] = useState(1);
+  const navigate = useNavigate();
   const ggiaGuideUrl = "https://github.com/QGasSP/ggia/wiki";
   const country = localStorage.getItem("country");
   const year = parseInt(localStorage.getItem("year"));
@@ -21,15 +20,47 @@ export const TabModules = () => {
     setToggleState(index);
   };
 
+  const openWelcomePage = () => {
+    toggleTab(1);
+    navigate("/", { replace: true });
+  };
+
+
+  const openTransportModule = () => {
+    toggleTab(2);
+    navigate("transportBaseline", { replace: true });
+  };
+
+  const openLandUseChange = () => {
+    toggleTab(3);
+    navigate("landUseChangeTableForm", { replace: true });
+  };
+
+  const openBuildings = () => {
+    toggleTab(4);
+    navigate("buildingBaseline", { replace: true });
+  };
+  const openConsumption = () => {
+    toggleTab(5);
+    navigate("consumptionBaseline", { replace: true });
+  };
+  const openGenerateReport = () => {
+    toggleTab(7);
+    navigate("generateReport", { replace: true });
+  };
+  
   useEffect(() => {
     localStorage.setItem("toggleState", JSON.stringify(toggleState));
   }, [toggleState]);
+
 
   const openGuide = () => {
     window.open(ggiaGuideUrl, "_blank");
   };
 
-  if (population === 0 && year === 0 && country === "" || window.localStorage === null) {
+  if (population === 0 && year === 0 &&  country === "" ||
+    window.localStorage === null
+  ) {
     return (
       <>
         <ModuleHeader />
@@ -39,14 +70,14 @@ export const TabModules = () => {
           <div className="bloc-tabs">
             <button
               className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
-              onClick={() => toggleTab(1)}
+              onClick={openWelcomePage}
               id="start"
             >
               Start{" "}
             </button>
 
             <button
-              className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
+             className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
               id="transport"
             >
               Transport
@@ -59,7 +90,7 @@ export const TabModules = () => {
             </button>
             <button
               className={toggleState === 4 ? "tabs active-tabs" : "tabs"}
-              onClick={() => toggleTab(4)}
+              onClick={() => navigate("buildingBaseline", { replace: true })}
               id="buildings"
             >
               Buildings
@@ -74,7 +105,6 @@ export const TabModules = () => {
             </button>
             <button
               className={toggleState === 6 ? "tabs active-tabs" : "tabs"}
-              /* onClick={() => toggleTab(6)} */
               onClick={openGuide}
               id="user_guide"
             >
@@ -90,20 +120,11 @@ export const TabModules = () => {
           </div>
         </div>
         <div className="content-tabs">
-          <>
-            {toggleState == 1 && <Welcome />}
-          {/*   {toggleState == 2 && <StartPage />} */}
-          {/*   {toggleState == 3 && <StartPage />} */}
-            {toggleState == 4 && <BuildingBaseline />}
-          {/*   {toggleState == 5 && <StartPage />} */}
-            {/*   {toggleState == 6 && <Report />} */}
-            {toggleState == 7 && <GenerateReport />}
-          </>
+          <></>
         </div>
       </>
     );
-  };
-
+  }else{
 
   return (
     <>
@@ -114,7 +135,7 @@ export const TabModules = () => {
         <div className="bloc-tabs">
           <button
             className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
-            onClick={() => toggleTab(1)}
+            onClick={openWelcomePage}
             id="start"
           >
             Start{" "}
@@ -122,28 +143,28 @@ export const TabModules = () => {
 
           <button
             className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
-            onClick={() => toggleTab(2)}
+            onClick={openTransportModule}
             id="transport"
           >
             Transport
           </button>
           <button
             className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
-            onClick={() => toggleTab(3)}
+            onClick={openLandUseChange}
             id="luc"
           >
             Land-use change
           </button>
           <button
             className={toggleState === 4 ? "tabs active-tabs" : "tabs"}
-            onClick={() => toggleTab(4)}
+            onClick={openBuildings}
             id="buildings"
           >
             Buildings
           </button>
           <button
             className={toggleState === 5 ? "tabs active-tabs" : "tabs"}
-            onClick={() => toggleTab(5)}
+            onClick={openConsumption}
             id="consumption"
           >
             Consumption-based
@@ -152,7 +173,6 @@ export const TabModules = () => {
           </button>
           <button
             className={toggleState === 6 ? "tabs active-tabs" : "tabs"}
-            /*  onClick={() => toggleTab(6)} */
             onClick={openGuide}
             id="user_guide"
           >
@@ -160,7 +180,8 @@ export const TabModules = () => {
           </button>
           <button
             className={toggleState === 7 ? "tabs active-tabs" : "tabs"}
-            onClick={() => toggleTab(7)}
+            //  onClick={() => toggleTab(7)}
+            onClick={openGenerateReport}
             id="generate_report"
           >
             Generate report
@@ -168,16 +189,9 @@ export const TabModules = () => {
         </div>
       </div>
       <div className="content-tabs">
-        <>
-          {toggleState == 1 && <Welcome />}
-          {toggleState == 2 && <TransportBaseline />}
-          {toggleState == 3 && <LandUseChangeTableForm />}
-          {toggleState == 4 && <BuildingBaseline />}
-          {toggleState == 5 && <ConsumptionBaseline />}
-          {/*  {toggleState == 6 && <StartPage />} */}
-          {toggleState == 7 && <GenerateReport />}
-        </>
+        <> </>
       </div>
     </>
   );
+};
 };
