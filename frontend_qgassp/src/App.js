@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 function App({ user, onLogin, onLogout, onCreateAccount }) {
   return (
     <>
+      <Router>
       {
         <Header
           user={user}
@@ -16,8 +17,6 @@ function App({ user, onLogin, onLogout, onCreateAccount }) {
           onCreateAccount={onCreateAccount}
         />
       }
-
-      <Router>
         <AppRoutes />
       </Router>
     </>
