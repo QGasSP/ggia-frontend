@@ -551,7 +551,7 @@ export const BuildingBaseline = () => {
             </div>
             <section>
               {
-                <div className="nextU2Button">
+                <div className="nextU2Button luc_alert_container">
                   <div className="luc_alert_container">
                     <Button
                       size="small"
