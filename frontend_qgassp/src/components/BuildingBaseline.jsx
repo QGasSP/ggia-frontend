@@ -149,8 +149,6 @@ export const BuildingBaseline = () => {
       industrial,
       warehouses,
     };
-    // setResidential(residentials);
-    // setCommercial(commercials);
     const request = {
       country,
       year,
@@ -160,7 +158,6 @@ export const BuildingBaseline = () => {
         commercial,
       }
     };
-    const rawData = { request };
     localStorage.setItem(
       "buildingsBaselineRequest",
       JSON.stringify(request)
@@ -549,9 +546,9 @@ export const BuildingBaseline = () => {
                 </div>
               </div>
             </div>
-            <section>
               {
                 <div className="nextU2Button luc_alert_container">
+                   {country && population && year && (
                   <div className="luc_alert_container">
                     <Button
                       size="small"
@@ -561,6 +558,7 @@ export const BuildingBaseline = () => {
                       primary
                     />
                   </div>
+                   )}
                   <Button
                     id="btn-next"
                     size="small"
@@ -574,7 +572,6 @@ export const BuildingBaseline = () => {
                   <CircularProgress label="loading" style={loadingStyles} />
                 </div>
               }
-            </section>
           </section>
         </article>
       </div>
@@ -584,6 +581,7 @@ export const BuildingBaseline = () => {
       <BuildingBaselineCharts
         country={country}
         year={year}
+        population={population}
         buildingsBaselineResponse={buildingsBaselineResponse}
       />
     );

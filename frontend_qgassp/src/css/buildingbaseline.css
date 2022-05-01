@@ -21,3 +21,10 @@
 label.bb-lbl {
   width: 140.6px;
 }
+
+.buildings-buttons{
+  margin-left: 50px;
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button } from "./Button";
-import { LineLegend } from "./LineLegend";
 import "../css/u1planner.css";
-import axios from "axios";
 import {
   XYPlot,
   XAxis,
@@ -14,53 +12,77 @@ import {
   RadialChart,
 } from "react-vis";
 
-import { BuildingsNewUnits } from "./BuildingsNewUnits";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
-import { Legend } from "./Legend";
-import urlPrefix from "../Config";
+import { useNavigate } from "react-router-dom";
+import { LineLegendBuildingBaselineCharts } from "./LineLegendBuildingBaselineCharts";
 
 /**
  * BuildingsPoliciesCharts baseline
  * @return {}
  */
 const BarSeries = VerticalBarSeries;
-export const BuildingsPoliciesCharts = ({ baseline, newConstructionResponse, policyQuantificationResponseDummy, country, year }) => {
-  const [errorBBC, setErrorBBC] = useState("");
-
-  // #region data distribution
-  const apartmentsData = [];
-  const terracedData = [];
-  const semidetachedData = [];
-  const detachedData = [];
-  const retailData = [];
-  const healthData = [];
-  const hospitalityData = [];
-  const officesData = [];
-  const industrialData = [];
-  const warehousesData = [];
+export const BuildingsPoliciesCharts = ({newConstructionResponse, policyQuantificationResponse, year }) => {
+  const navigate = useNavigate();
+  // #region data distribution NewConstruction
+  const apartmentsDataNewConstruction = [];
+  const terracedDataNewConstruction = [];
+  const semidetachedDataNewConstruction = [];
+  const detachedDataNewConstruction = [];
+  const retailDataNewConstruction = [];
+  const healthDataNewConstruction = [];
+  const hospitalityDataNewConstruction = [];
+  const officesDataNewConstruction = [];
+  const industrialDataNewConstruction = [];
+  const warehousesDataNewConstruction = [];
 
   for (let i = year; i < 2051; i++) {
-    apartmentsData.push({ x: i, y: policyQuantificationResponseDummy[i].apartments });
-    terracedData.push({ x: i, y: policyQuantificationResponseDummy[i].terraced });
-    semidetachedData.push({ x: i, y: policyQuantificationResponseDummy[i].semidetached });
-    detachedData.push({ x: i, y: policyQuantificationResponseDummy[i].detached });
-    retailData.push({ x: i, y: policyQuantificationResponseDummy[i].retail });
-    healthData.push({ x: i, y: policyQuantificationResponseDummy[i].health });
-    hospitalityData.push({ x: i, y: policyQuantificationResponseDummy[i].hospitality });
-    officesData.push({ x: i, y: policyQuantificationResponseDummy[i].offices });
-    industrialData.push({ x: i, y: policyQuantificationResponseDummy[i].industrial });
-    warehousesData.push({ x: i, y: policyQuantificationResponseDummy[i].warehouses });
+    apartmentsDataNewConstruction.push({ x: i, y: newConstructionResponse[i].apartment });
+    terracedDataNewConstruction.push({ x: i, y: newConstructionResponse[i].terraced });
+    semidetachedDataNewConstruction.push({ x: i, y: newConstructionResponse[i].semiDetached });
+    detachedDataNewConstruction.push({ x: i, y: newConstructionResponse[i].detached });
+    retailDataNewConstruction.push({ x: i, y: newConstructionResponse[i].retail });
+    healthDataNewConstruction.push({ x: i, y: newConstructionResponse[i].health });
+    hospitalityDataNewConstruction.push({ x: i, y: newConstructionResponse[i].hospitality });
+    officesDataNewConstruction.push({ x: i, y: newConstructionResponse[i].offices });
+    industrialDataNewConstruction.push({ x: i, y: newConstructionResponse[i].industrial });
+    warehousesDataNewConstruction.push({ x: i, y: newConstructionResponse[i].warehouses });
   }
   // #endregion
 
-   if (Object.keys(policyQuantificationResponseDummy).length !== 0) {
+  // #region data distribution PolicyQuant
+  const apartmentsDataPolicyQuant = [];
+  const terracedDataPolicyQuant = [];
+  const semidetachedDataPolicyQuant = [];
+  const detachedDataPolicyQuant = [];
+  const retailDataPolicyQuant = [];
+  const healthDataPolicyQuant = [];
+  const hospitalityDataPolicyQuant = [];
+  const officesDataPolicyQuant = [];
+  const industrialDataPolicyQuant = [];
+  const warehousesDataPolicyQuant = [];
+
+  for (let i = year; i < 2051; i++) {
+    apartmentsDataPolicyQuant.push({ x: i, y: policyQuantificationResponse[i].apartment });
+    terracedDataPolicyQuant.push({ x: i, y: policyQuantificationResponse[i].terraced });
+    semidetachedDataPolicyQuant.push({ x: i, y: policyQuantificationResponse[i].semiDetached });
+    detachedDataPolicyQuant.push({ x: i, y: policyQuantificationResponse[i].detached });
+    retailDataPolicyQuant.push({ x: i, y: policyQuantificationResponse[i].retail });
+    healthDataPolicyQuant.push({ x: i, y: policyQuantificationResponse[i].health });
+    hospitalityDataPolicyQuant.push({ x: i, y: policyQuantificationResponse[i].hospitality });
+    officesDataPolicyQuant.push({ x: i, y: policyQuantificationResponse[i].offices });
+    industrialDataPolicyQuant.push({ x: i, y: policyQuantificationResponse[i].industrial });
+    warehousesDataPolicyQuant.push({ x: i, y: policyQuantificationResponse[i].warehouses });
+  }
+  // #endregion
+
+   if (Object.keys(policyQuantificationResponse).length !== 0 && Object.keys(newConstructionResponse).length !== 0) {
     return (
-      <article>
+      <section>
         <div className="headerSettlement">
           <Divider textAlign="left" flexItem>
             {" "}
-            <Chip label="POLICY QUANTIFICATION RESULTS" />
+            <Chip label="POLICY QUANTIFICATION AND NEW SETTLEMENT RESULTS" />
           </Divider>
         </div>
         <div className="luc_alert_container">
@@ -91,28 +113,30 @@ export const BuildingsPoliciesCharts = ({ baseline, newConstructionResponse, pol
             />
             <YAxis title="Energy use  tC02e" />
             {/* 1 */}
-            <BarSeries color="#ffdf43" opacity={0.6} data={apartmentsData} />
+            <BarSeries color="#ffdf43" opacity={0.6} data={apartmentsDataNewConstruction} />
             {/* 2 */}
-            <BarSeries color="#76918e" opacity={0.6} data={terracedData} />
+            <BarSeries color="#76918e" opacity={0.6} data={terracedDataNewConstruction} />
             {/* 3 */}
-            <BarSeries color="#ce143d" opacity={0.6} data={semidetachedData} />
+            <BarSeries color="#ce143d" opacity={0.6} data={semidetachedDataNewConstruction} />
             {/* 4 */}
-            <BarSeries color="#d6e7d9" opacity={0.6} data={detachedData} />
+            <BarSeries color="#d6e7d9" opacity={0.6} data={detachedDataNewConstruction} />
             {/* 5 */}
-            <BarSeries color="#002117" opacity={0.6} data={retailData} />
+            <BarSeries color="#002117" opacity={0.6} data={retailDataNewConstruction} />
             {/* 6 */}
-            <BarSeries color="#ef7d00" opacity={0.6} data={healthData} />
+            <BarSeries color="#ef7d00" opacity={0.6} data={healthDataNewConstruction} />
             {/* 7 */}
-            <BarSeries color="#6c3b00" opacity={0.6} data={hospitalityData} />
+            <BarSeries color="#6c3b00" opacity={0.6} data={hospitalityDataNewConstruction} />
             {/* 8 */}
-            <BarSeries color="#00aed5" opacity={0.6} data={officesData} />
+            <BarSeries color="#00aed5" opacity={0.6} data={officesDataNewConstruction} />
             {/* 9 */}
-            <BarSeries color="#8C0303" opacity={0.6} data={industrialData} />
+            <BarSeries color="#8C0303" opacity={0.6} data={industrialDataNewConstruction} />
             {/* 10 */}
-            <BarSeries color="#A6036D" opacity={0.6} data={warehousesData} />
+            <BarSeries color="#A6036D" opacity={0.6} data={warehousesDataNewConstruction} />
           </XYPlot>
         </div>
-
+        <div className="luc_legendline">
+          <LineLegendBuildingBaselineCharts />
+        </div>
         <div className="luc_alert_container">
           <Divider textAlign="left" flexItem>
             {" "}
@@ -142,29 +166,43 @@ export const BuildingsPoliciesCharts = ({ baseline, newConstructionResponse, pol
             />
             <YAxis title="Energy use  tC02e" />
             {/* 1 */}
-            <BarSeries color="#ffdf43" opacity={0.6} data={apartmentsData} />
+            <BarSeries color="#ffdf43" opacity={0.6} data={apartmentsDataPolicyQuant} />
             {/* 2 */}
-            <BarSeries color="#76918e" opacity={0.6} data={terracedData} />
+            <BarSeries color="#76918e" opacity={0.6} data={terracedDataPolicyQuant} />
             {/* 3 */}
-            <BarSeries color="#ce143d" opacity={0.6} data={semidetachedData} />
+            <BarSeries color="#ce143d" opacity={0.6} data={semidetachedDataPolicyQuant} />
             {/* 4 */}
-            <BarSeries color="#d6e7d9" opacity={0.6} data={detachedData} />
+            <BarSeries color="#d6e7d9" opacity={0.6} data={detachedDataPolicyQuant} />
             {/* 5 */}
-            <BarSeries color="#002117" opacity={0.6} data={retailData} />
+            <BarSeries color="#002117" opacity={0.6} data={retailDataPolicyQuant} />
             {/* 6 */}
-            <BarSeries color="#ef7d00" opacity={0.6} data={healthData} />
+            <BarSeries color="#ef7d00" opacity={0.6} data={healthDataPolicyQuant} />
             {/* 7 */}
-            <BarSeries color="#6c3b00" opacity={0.6} data={hospitalityData} />
+            <BarSeries color="#6c3b00" opacity={0.6} data={hospitalityDataPolicyQuant} />
             {/* 8 */}
-            <BarSeries color="#00aed5" opacity={0.6} data={officesData} />
+            <BarSeries color="#00aed5" opacity={0.6} data={officesDataPolicyQuant} />
             {/* 9 */}
-            <BarSeries color="#8C0303" opacity={0.6} data={industrialData} />
+            <BarSeries color="#8C0303" opacity={0.6} data={industrialDataPolicyQuant} />
             {/* 10 */}
-            <BarSeries color="#A6036D" opacity={0.6} data={warehousesData} />
+            <BarSeries color="#A6036D" opacity={0.6} data={warehousesDataPolicyQuant} />
           </XYPlot>
         </div>
-
-      </article>
+        <div className="luc_legendline">
+          <LineLegendBuildingBaselineCharts />
+        </div>
+        <div className="buildings-buttons">
+          <div className="">
+            <Button
+              size="small"
+              value="backProjections"
+              onClick={() => navigate("../buildingsPolicies", { replace: true })}
+              label="&laquo; Previous"
+              secondary
+            />
+          </div>
+        </div>
+        
+      </section>
     );
   }
 };
@@ -172,7 +210,6 @@ export const BuildingsPoliciesCharts = ({ baseline, newConstructionResponse, pol
 BuildingsPoliciesCharts.propTypes = {
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
-  baseline: PropTypes.object.isRequired,
   newConstructionResponse: PropTypes.object.isRequired,
-  policyQuantificationResponseDummy: PropTypes.object.isRequired
+  policyQuantificationResponse: PropTypes.object.isRequired
 };

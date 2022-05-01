@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Button } from "./Button";
 import "../css/u1planner.css";
 import "../css/buildingbaseline.css";
+import { useNavigate } from "react-router-dom";
 import {
   XYPlot,
   XAxis,
@@ -16,7 +17,6 @@ import { BuildingsNewUnits } from "./BuildingsNewUnits";
 import { LineLegendBuildingBaselineCharts } from "./LineLegendBuildingBaselineCharts";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
-import urlPrefix from "../Config";
 
 /**
  * BuildingBaselineCharts baseline
@@ -27,9 +27,11 @@ export const BuildingBaselineCharts = ({
   country,
   year,
   buildingsBaselineResponse,
+  population
 }) => {
 
   const [nextNewUnitsView, setNextNewUnitsView] = useState(false);
+  const navigate = useNavigate();
 
   // #region residential co2
   const apartmentTotal = 
@@ -510,14 +512,25 @@ export const BuildingBaselineCharts = ({
          </div>
          */}
 
-        <div className="nextU2Button">
-          <Button
-            size="small"
-            value="u2next_inputs"
-            onClick={() => setNextNewUnitsView(true)}
-            label="Next &raquo;"
-            primary
-          />
+        <div className="buildings-buttons">
+          <div className="">
+            <Button
+              size="small"
+              value="backProjections"
+              onClick={() => navigate("../buildingBaseline", { replace: true })}
+              label="&laquo; Previous"
+              secondary
+            />
+          </div>
+          <div>
+            <Button
+              size="small"
+              value="u2next_inputs"
+              onClick={() => setNextNewUnitsView(true)}
+              label="Next &raquo;"
+              primary
+            />
+          </div>
         </div>
       </section>
     );
@@ -529,6 +542,7 @@ export const BuildingBaselineCharts = ({
         //  emissionCommercial={emissionCommercial}
         year={year}
         country={country}
+        population={population}
       />
     );
   }
@@ -540,11 +554,13 @@ export const BuildingBaselineCharts = ({
 BuildingBaselineCharts.propTypes = {
   buildingsBaselineResponse: PropTypes.object.isRequired,
   year: PropTypes.number.isRequired,
+  population: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
 };
 
-BuildingBaselineCharts.defaultProps = {
-  buildingsBaselineResponse: {},
-  year: 2030,
-  country: "Estonia",
-};
+// BuildingBaselineCharts.defaultProps = {
+//   buildingsBaselineResponse: {},
+//   year: 2030,
+//   country: "Estonia",
+
+// };

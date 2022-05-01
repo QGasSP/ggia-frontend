@@ -10,6 +10,7 @@ import axios from "axios";
 import urlPrefix from "../Config";
 import Tooltip from "@mui/material/Tooltip";
 import Alert from "@mui/material/Alert";
+import { useNavigate } from "react-router-dom";
 
 /**
  * BuildingsNewUnits user input form
@@ -17,7 +18,7 @@ import Alert from "@mui/material/Alert";
  */
 
 export const BuildingsNewUnits = ({
-  baseline,
+  population,
   year,
   country,
 }) => {
@@ -762,7 +763,7 @@ export const BuildingsNewUnits = ({
     setWarehousesDensAreaAfter(parseInt(warehousesAreaDensificated + (warehousesAreaDensificated * warehousesDensRate / 100)));
   };
   // #endregion
-
+  const navigate = useNavigate();
   const [errorBuildNewUnits, setErrorBuildNewUnits] = useState("");
   const [newConstructionResponse, setNewConstructionResponse] = useState(() => {
     const savedNew = localStorage.getItem("newConstructionResponse");
@@ -848,7 +849,7 @@ export const BuildingsNewUnits = ({
     };
     // #endregion
     
-    const newConstruction = {
+    const construction = {
       "residential":{
         "apartment": apartment,
         "terraced": terraced,
@@ -941,8 +942,10 @@ export const BuildingsNewUnits = ({
       }
     };
     const rawData = {
-      baseline,
-      newConstruction,
+      country,
+      year,
+      population,
+      construction,
       densification
     }
     localStorage.setItem(
@@ -2591,26 +2594,35 @@ export const BuildingsNewUnits = ({
             </form>
           </div>
         </section>
-          {
-            <div className="nextU2Button">
+          <div className="buildings-buttons">
+            <div className="">
               <Button
                 size="small"
-                value="charts"
-                onClick={moveToBuildingsPolicies}
-                label="Next &raquo;"
-                primary
+                value="backProjections"
+                onClick={() => navigate("../buildingBaselineCharts", { replace: true })}
+                label="&laquo; Previous"
+                secondary
               />
             </div>
-          }
+            <div className="nextU2Button">
+                <Button
+                  size="small"
+                  value="charts"
+                  onClick={moveToBuildingsPolicies}
+                  label="Next &raquo;"
+                  primary
+                />
+              </div>
+        </div>
       </section>
     );
   } else {
     return (
       <BuildingsPolicies
         newConstructionResponse={newConstructionResponse}
-        baseline={baseline}
         country={country}
         year={year}
+        population={population}
       />
     );
   }
@@ -2618,7 +2630,7 @@ export const BuildingsNewUnits = ({
 
 BuildingsNewUnits.propTypes = {
   year: PropTypes.number.isRequired,
+  population: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
-  baseline: PropTypes.object.isRequired,
   newConstruction: PropTypes.object.isRequired
 };
