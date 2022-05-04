@@ -550,7 +550,7 @@ export const BuildingBaseline = () => {
                     />
                   </div>
                    )}
-                   {buildingsBaselineResponse && (
+                   {Object.keys(buildingsBaselineResponse).length !== 0 && (
                   <Button
                     id="btn-next"
                     size="small"
