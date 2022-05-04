@@ -12,9 +12,7 @@ import Tooltip from "@mui/material/Tooltip";
 import Alert from "@mui/material/Alert";
 import { RadialChart, DiscreteColorLegend } from "react-vis";
 import {
-  useStorageFloat,
-  useStorageInt,
-  useStorageString,
+  useStorageFloat
 } from "../reducers/useStorage";
 
 /**
@@ -47,10 +45,10 @@ export const BuildingBaseline = () => {
   const [terraced, setTerraced] = useStorageFloat("terraced", 0);
   const [semiDetached, setSemiDetached] = useStorageFloat("semiDetached", 0);
   const [detached, setDetached] = useStorageFloat("detached", 0);
-  const [residentialTotal, setResidentialTotal] = useState(0);
+  const [residentialTotal, setResidentialTotal] = useStorageFloat("residentialTotal", 0);
 
   const getCurrentResidentTotal = () => {
-    setResidentialTotal(parseFloat(apartment)  + parseFloat(terraced) + parseFloat(semiDetached) + parseFloat(detached));
+    setResidentialTotal(apartment  + terraced + semiDetached + detached);
   };
   // #endregion
 
@@ -62,7 +60,7 @@ export const BuildingBaseline = () => {
   const [offices, setOffices] = useStorageFloat("offices", 0);
   const [industrial, setIndustrial] = useStorageFloat("industrial", 0);
   const [warehouses, setWarehouses] = useStorageFloat("warehouses", 0);
-  const [commTotal, setCommTotal] =  useState(0);
+  const [commTotal, setCommTotal] =  useStorageFloat("commTotal", 0);
 
   const getCurrentCommTotal = () => {
     setCommTotal(
@@ -71,8 +69,6 @@ export const BuildingBaseline = () => {
   };
   // #endregion
 
-  // const [residential, setResidential] = useState({});
-  // const [commercial, setCommercial] = useState({});
   const [buildingsBaselineCharts, setBuildingsBaselineCharts] = useState(false);
   const [errorBuildBaseline, setErrorBuildBaseline] = useState("");
   const [buildingsBaselineResponse, setBuildingsBaselineResponse] = useState(() => {
@@ -132,9 +128,6 @@ export const BuildingBaseline = () => {
   };
   // #endregion
 
-  const [nextBtnStyles, setNextBtnStyle] = useState({
-    display: "none",
-  });
   const [loadingStyles, setLoadingStyle] = useState({
     display: "none",
   });
@@ -171,9 +164,6 @@ export const BuildingBaseline = () => {
       "Access-Control-Allow-Origin": "*",
       "Content-type": "application/json",
     };
-    setNextBtnStyle({
-      display: "none",
-    });
     setLoadingStyle({
       display: "block",
     });
@@ -185,9 +175,6 @@ export const BuildingBaseline = () => {
     )
     .then((response) => setBuildingsResponse(response.data))
     .then(() => {
-      setNextBtnStyle({
-        display: "block",
-      });
       setLoadingStyle({
         display: "none",
       });
@@ -551,7 +538,6 @@ export const BuildingBaseline = () => {
                 </div>
               </div>
             </div>
-              {
                 <div className="nextU2Button luc_alert_container">
                    {country && population && year && (
                   <div className="luc_alert_container">
@@ -564,6 +550,7 @@ export const BuildingBaseline = () => {
                     />
                   </div>
                    )}
+                   {buildingsBaselineResponse && (
                   <Button
                     id="btn-next"
                     size="small"
@@ -572,11 +559,10 @@ export const BuildingBaseline = () => {
                     onClick={moveToBuildingsBaselineResults}
                     label="Next &raquo;"
                     primary="true"
-                    style={nextBtnStyles}
                   />
+                  )}
                   <CircularProgress label="loading" style={loadingStyles} />
                 </div>
-              }
           </section>
         </article>
       </div>

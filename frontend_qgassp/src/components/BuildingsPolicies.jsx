@@ -878,9 +878,6 @@ export const BuildingsPolicies = ({newConstructionResponse, country, year, popul
   const [errorBuildPolicies, setErrorBuildPolicies] = useState("");
   const [policiesCharts, setPoliciesCharts] = useState(false);
 
-  const [nextBtnStyles, setNextBtnStyle] = useState({
-    display: "none",
-  });
   const [loadingStyles, setLoadingStyle] = useState({
     display: "none",
   });
@@ -1049,9 +1046,6 @@ export const BuildingsPolicies = ({newConstructionResponse, country, year, popul
     )
     .then((response) => setPolicyQuantificationResponse(response.data.data))
     .then(() => {
-      setNextBtnStyle({
-        display: "block",
-      });
       setLoadingStyle({
         display: "none",
       });
@@ -2882,17 +2876,18 @@ export const BuildingsPolicies = ({newConstructionResponse, country, year, popul
                     primary
                   />
                 </div>
-              <Button
-                id="btn-next"
-                size="small"
-                type="submit"
-                value="Submit"
-                onClick={moveToPoliciesResults}
-                label="Next &raquo;"
-                primary="true"
-                style={nextBtnStyles}
-              />
-              <CircularProgress label="loading" style={loadingStyles} />
+                {Object.keys(policyQuantificationResponse).length !== 0 && (
+                <Button
+                  id="btn-next"
+                  size="small"
+                  type="submit"
+                  value="Submit"
+                  onClick={moveToPoliciesResults}
+                  label="Next &raquo;"
+                  primary="true"
+                />
+                )}
+                <CircularProgress label="loading" style={loadingStyles} />
           </div>
         </div>
       </section>
