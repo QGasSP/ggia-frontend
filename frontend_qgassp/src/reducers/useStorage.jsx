@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 
-function getStorageValue(key, defaultValue) {
+function getStorageValue(key, defaultValue, parser) {
   const saved = window.localStorage.getItem(key);
-  return saved !== null ? saved : defaultValue;
+  return saved !== null ? parser(saved) : parser(defaultValue);
 }
 
 export const useStorageInt = (key, defaultValue) => {
   const [value, setValue] = useState(() => {
-    return getStorageValue(key, defaultValue);
+    return getStorageValue(key, defaultValue, parseInt);
   });
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export const useStorageInt = (key, defaultValue) => {
 
 export const useStorageString = (key, defaultValue) => {
   const [value, setValue] = useState(() => {
-    return getStorageValue(key, defaultValue);
+    return getStorageValue(key, defaultValue, (x) => {return x;});
   });
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export const useStorageString = (key, defaultValue) => {
 
 export const useStorageFloat = (key, defaultValue) => {
   const [value, setValue] = useState(() => {
-    return getStorageValue(key, defaultValue);
+    return getStorageValue(key, defaultValue, parseFloat);
   });
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export const useStorageFloat = (key, defaultValue) => {
 
 export const useStorageBool = (key, defaultValue) => {
   const [value, setValue] = useState(() => {
-    return getStorageValue(key, defaultValue);
+    return getStorageValue(key, defaultValue, (x) => {return Boolean(x);});
   });
 
   useEffect(() => {
