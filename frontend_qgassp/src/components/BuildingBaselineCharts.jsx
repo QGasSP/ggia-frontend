@@ -29,6 +29,10 @@ export const BuildingBaselineCharts = ({
   buildingsBaselineResponse,
   population
 }) => {
+  country = country ? country : localStorage.getItem("country");
+  year = year ? year : parseInt(localStorage.getItem("year"));
+  population = population ? population : parseInt(localStorage.getItem("population"));
+  buildingsBaselineResponse = buildingsBaselineResponse ? buildingsBaselineResponse : JSON.parse(localStorage.buildingsBaselineResponse); 
 
   const [nextNewUnitsView, setNextNewUnitsView] = useState(false);
   const navigate = useNavigate();
@@ -538,17 +542,12 @@ export const BuildingBaselineCharts = ({
     return (
       <BuildingsNewUnits
         baseline={buildingsBaselineResponse}
-        //  emissionResidential={emissionResidential}
-        //  emissionCommercial={emissionCommercial}
         year={year}
         country={country}
         population={population}
       />
     );
   }
-  //  else {
-  //    return <></>;
-  //  }
 };
 
 BuildingBaselineCharts.propTypes = {
@@ -557,10 +556,3 @@ BuildingBaselineCharts.propTypes = {
   population: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
 };
-
-// BuildingBaselineCharts.defaultProps = {
-//   buildingsBaselineResponse: {},
-//   year: 2030,
-//   country: "Estonia",
-
-// };

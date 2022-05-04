@@ -11,6 +11,11 @@ import urlPrefix from "../Config";
 import Tooltip from "@mui/material/Tooltip";
 import Alert from "@mui/material/Alert";
 import { useNavigate } from "react-router-dom";
+import {
+  useStorageFloat,
+  useStorageInt,
+  useStorageString,
+} from "../reducers/useStorage";
 
 /**
  * BuildingsNewUnits user input form
@@ -22,39 +27,40 @@ export const BuildingsNewUnits = ({
   year,
   country,
 }) => {
+  country = country ? country : localStorage.getItem("country");
+  year = year ? year : parseInt(localStorage.getItem("year"));
+  population = population ? population : parseInt(localStorage.getItem("population"));
   // resiedntial
   // apartment
   // #region
-  const [apartmentUnits, setApartmentUnits] = useState(parseInt(0));
-  const [apartmentStartYear, setApartmentStartYear] = useState(Number(year));
-  const [apartmentEndYear, setApartmentEndYear] = useState(Number(year));
-  const [apartmentEnergy, setApartmentEnergy] = useState(parseInt(0));
+  const [apartmentUnits, setApartmentUnits] = useStorageInt("apartmentUnits", 0);
+  const [apartmentStartYear, setApartmentStartYear] = useStorageInt("apartmentStartYear", year);
+  const [apartmentEndYear, setApartmentEndYear] = useStorageInt("apartmentEndYear", year);
+  const [apartmentEnergy, setApartmentEnergy] = useStorageInt("apartmentEnergy", 0);
   // #endregion
 
   // terraced
   // #region
-  const [terracedUnits, setTerracedUnits] = useState(parseInt(0));
-  const [terracedStartYear, setTerracedStartYear] = useState(Number(year));
-  const [terracedEndYear, setTerracedEndYear] = useState(Number(year));
-  const [terracedEnergy, setTerracedEnergy] = useState(parseInt(0));
+  const [terracedUnits, setTerracedUnits] = useStorageInt("terracedUnits", 0);
+  const [terracedStartYear, setTerracedStartYear] = useStorageInt("terracedStartYear", year);
+  const [terracedEndYear, setTerracedEndYear] = useStorageInt("terracedEndYear", year);
+  const [terracedEnergy, setTerracedEnergy] = useStorageInt("terracedEnergy", 0);
   // #endregion
 
   // semiDetached
   // #region
-  const [semiDetachedUnits, setSemiDetachedUnits] = useState(parseInt(0));
-  const [semiDetachedStartYear, setSemiDetachedStartYear] = useState(
-    Number(year)
-  );
-  const [semiDetachedEndYear, setSemiDetachedEndYear] = useState(Number(year));
-  const [semiDetachedEnergy, setSemiDetachedEnergy] = useState(parseInt(0));
+  const [semiDetachedUnits, setSemiDetachedUnits] = useStorageInt("semiDetachedUnits", 0);
+  const [semiDetachedStartYear, setSemiDetachedStartYear] = useStorageInt("semiDetachedStartYear", year);
+  const [semiDetachedEndYear, setSemiDetachedEndYear] = useStorageInt("semiDetachedEndYear", year);
+  const [semiDetachedEnergy, setSemiDetachedEnergy] = useStorageInt("semiDetachedEnergy", 0);
   // #endregion
 
   // detached
   // #region
-  const [detachedUnits, setDetachedUnits] = useState(parseInt(0));
-  const [detachedStartYear, setDetachedStartYear] = useState(Number(year));
-  const [detachedEndYear, setDetachedEndYear] = useState(Number(year));
-  const [detachedEnergy, setDetachedEnergy] = useState(parseInt(0));
+  const [detachedUnits, setDetachedUnits] = useStorageInt("detachedUnits", 0);
+  const [detachedStartYear, setDetachedStartYear] = useStorageInt("detachedStartYear", year);
+  const [detachedEndYear, setDetachedEndYear] = useStorageInt("detachedEndYear", year);
+  const [detachedEnergy, setDetachedEnergy] = useStorageInt("detachedEnergy", 0);
   // #endregion
 
   // apartment handlers
@@ -140,52 +146,50 @@ export const BuildingsNewUnits = ({
   // commercials
   // retail
   // #region
-  const [retailArea, setRetailArea] = useState(parseInt(0));
-  const [retailStartYear, setRetailStartYear] = useState(Number(year));
-  const [retailEndYear, setRetailEndYear] = useState(Number(year));
-  const [retailEnergy, setRetailEnergy] = useState(parseInt(0));
+  const [retailArea, setRetailArea] = useStorageInt("retailArea", 0);
+  const [retailStartYear, setRetailStartYear] = useStorageInt("retailStartYear", year);
+  const [retailEndYear, setRetailEndYear] = useStorageInt("retailEndYear", year);
+  const [retailEnergy, setRetailEnergy] = useStorageInt("retailEnergy", 0);
   // #endregion
 
   // health
   // #region
-  const [healthArea, setHealthArea] = useState(parseInt(0));
-  const [healthStartYear, setHealthStartYear] = useState(Number(year));
-  const [healthEndYear, setHealthEndYear] = useState(Number(year));
-  const [healthEnergy, setHealthEnergy] = useState(parseInt(0));
+  const [healthArea, setHealthArea] = useStorageInt("healthArea", 0);
+  const [healthStartYear, setHealthStartYear] = useStorageInt("healthStartYear", year);
+  const [healthEndYear, setHealthEndYear] = useStorageInt("healthEndYear", year);
+  const [healthEnergy, setHealthEnergy] = useStorageInt("healthEnergy", 0);
   // #endregion
 
   // hospitality
   // #region
-  const [hospitalityArea, setHospitalityArea] = useState(parseInt(0));
-  const [hospitalityStartYear, setHospitalityStartYear] = useState(
-    Number(year)
-  );
-  const [hospitalityEndYear, setHospitalityEndYear] = useState(Number(year));
-  const [hospitalityEnergy, setHospitalityEnergy] = useState(parseInt(0));
+  const [hospitalityArea, setHospitalityArea] = useStorageInt("hospitalityArea", 0);
+  const [hospitalityStartYear, setHospitalityStartYear] = useStorageInt("hospitalityStartYear", year);
+  const [hospitalityEndYear, setHospitalityEndYear] = useStorageInt("hospitalityEndYear", year);
+  const [hospitalityEnergy, setHospitalityEnergy] = useStorageInt("hospitalityEnergy", 0);
   // #endregion
 
   // offices
   // #region
-  const [officesArea, setOfficesArea] = useState(parseInt(0));
-  const [officesStartYear, setOfficesStartYear] = useState(Number(year));
-  const [officesEndYear, setOfficesEndYear] = useState(Number(year));
-  const [officesEnergy, setOfficesEnergy] = useState(parseInt(0));
+  const [officesArea, setOfficesArea] = useStorageInt("officesArea", 0);
+  const [officesStartYear, setOfficesStartYear] = useStorageInt("officesStartYear", year);
+  const [officesEndYear, setOfficesEndYear] = useStorageInt("officesEndYear", year);
+  const [officesEnergy, setOfficesEnergy] = useStorageInt("officesEnergy", 0);
   // #endregion
 
   // industrial
   // #region
-  const [industrialArea, setIndustrialArea] = useState(parseInt(0));
-  const [industrialStartYear, setIndustrialStartYear] = useState(Number(year));
-  const [industrialEndYear, setIndustrialEndYear] = useState(Number(year));
-  const [industrialEnergy, setIndustrialEnergy] = useState(parseInt(0));
+  const [industrialArea, setIndustrialArea] = useStorageInt("industrialArea", 0);
+  const [industrialStartYear, setIndustrialStartYear] = useStorageInt("industrialStartYear", year);
+  const [industrialEndYear, setIndustrialEndYear] = useStorageInt("industrialEndYear", year);
+  const [industrialEnergy, setIndustrialEnergy] = useStorageInt("industrialEnergy", 0);
   // #endregion
 
   // warehouses
   // #region
-  const [warehousesArea, setWarehousesArea] = useState(parseInt(0));
-  const [warehousesStartYear, setWarehousesStartYear] = useState(Number(year));
-  const [warehousesEndYear, setWarehousesEndYear] = useState(Number(year));
-  const [warehousesEnergy, setWarehousesEnergy] = useState(parseInt(0));
+  const [warehousesArea, setWarehousesArea] = useStorageInt("warehousesArea", 0);
+  const [warehousesStartYear, setWarehousesStartYear] = useStorageInt("warehousesStartYear", year);
+  const [warehousesEndYear, setWarehousesEndYear] = useStorageInt("warehousesEndYear", year);
+  const [warehousesEnergy, setWarehousesEnergy] = useStorageInt("warehousesEnergy", 0);
   // #endregion
 
   // retail handlers
@@ -311,73 +315,55 @@ export const BuildingsNewUnits = ({
   // densification of residentials
   // apartment
   // #region densification
-  const [apartmentUnitsDensificated, setApartmentUnitsDensificated] = useState(
-    parseInt(0)
-  );
+  const [apartmentUnitsDensificated, setApartmentUnitsDensificated] = useStorageInt("apartmentUnitsDensificated", 0);
   const [apartmentStartYearDensificated, setApartmentStartYearDensificated] =
-    useState(Number(year));
+    useStorageInt("apartmentStartYearDensificated", year);
   const [apartmentEndYearDensificated, setApartmentEndYearDensificated] =
-    useState(Number(year));
+    useStorageInt("apartmentEndYearDensificated", year);
   const [apartmentEnergyDensificated, setApartmentEnergyDensificated] =
-    useState(parseInt(0));
-  const [apartmentDensUnitsAfter, setApartmentDensUnitsAfter] = useState(
-    parseInt(0)
-  );
-  const [apartmentDensRate, setApartmentDensRate] = useState(parseInt(0));
+    useStorageInt("apartmentEnergyDensificated", 0);
+  const [apartmentDensUnitsAfter, setApartmentDensUnitsAfter] = useStorageInt("apartmentDensUnitsAfter", 0);
+  const [apartmentDensRate, setApartmentDensRate] = useStorageInt("apartmentDensRate", 0);
   // #endregion densification
 
   // terraced
   // #region densification
-  const [terracedUnitsDensificated, setTerracedUnitsDensificated] = useState(
-    parseInt(0)
-  );
+  const [terracedUnitsDensificated, setTerracedUnitsDensificated] = useStorageInt("terracedUnitsDensificated", 0);
   const [terracedStartYearDensificated, setTerracedStartYearDensificated] =
-    useState(Number(year));
+    useStorageInt("terracedStartYearDensificated", year);
   const [terracedEndYearDensificated, setTerracedEndYearDensificated] =
-    useState(Number(year));
-  const [terracedEnergyDensificated, setTerracedEnergyDensificated] = useState(
-    parseInt(0)
-  );
-  const [terracedDensUnitsAfter, setTerracedDensUnitsAfter] = useState(
-    parseInt(0)
-  );
-  const [terracedDensRate, setTerracedDensRate] = useState(parseInt(0));
+    useStorageInt("terracedEndYearDensificated", year);
+  const [terracedEnergyDensificated, setTerracedEnergyDensificated] = useStorageInt("terracedEnergyDensificated", 0);
+  const [terracedDensUnitsAfter, setTerracedDensUnitsAfter] = useStorageInt("terracedDensUnitsAfter", 0);
+  const [terracedDensRate, setTerracedDensRate] = useStorageInt("terracedDensRate", 0);
   // #endregion densification
 
   // semiDetached
   // #region densification
   const [semiDetachedUnitsDensificated, setSemiDetachedUnitsDensificated] =
-    useState(parseInt(0));
+    useStorageInt("semiDetachedUnitsDensificated", 0);
   const [
     semiDetachedStartYearDensificated,
     setSemiDetachedStartYearDensificated,
-  ] = useState(Number(year));
+  ] = useStorageInt("semiDetachedStartYearDensificated", year);
   const [semiDetachedEndYearDensificated, setSemiDetachedEndYearDensificated] =
-    useState(Number(year));
+    useStorageInt("semiDetachedEndYearDensificated", year);
   const [semiDetachedEnergyDensificated, setSemiDetachedEnergyDensificated] =
-    useState(parseInt(0));
-  const [semiDetachedDensUnitsAfter, setSemiDetachedDensUnitsAfter] = useState(
-    parseInt(0)
-  );
-  const [semiDetachedDensRate, setSemiDetachedDensRate] = useState(parseInt(0));
+    useStorageInt("semiDetachedEnergyDensificated", 0);
+  const [semiDetachedDensUnitsAfter, setSemiDetachedDensUnitsAfter] = useStorageInt("semiDetachedDensUnitsAfter", 0);
+  const [semiDetachedDensRate, setSemiDetachedDensRate] = useStorageInt("semiDetachedDensRate", 0);
   // #endregion densification
 
   // detached
   // #region densification
-  const [detachedUnitsDensificated, setDetachedUnitsDensificated] = useState(
-    parseInt(0)
-  );
+  const [detachedUnitsDensificated, setDetachedUnitsDensificated] = useStorageInt("detachedUnitsDensificated", 0);
   const [detachedStartYearDensificated, setDetachedStartYearDensificated] =
-    useState(Number(year));
+    useStorageInt("detachedStartYearDensificated", year);
   const [detachedEndYearDensificated, setDetachedEndYearDensificated] =
-    useState(Number(year));
-  const [detachedEnergyDensificated, setDetachedEnergyDensificated] = useState(
-    parseInt(0)
-  );
-  const [detachedDensUnitsAfter, setDetachedDensUnitsAfter] = useState(
-    parseInt(0)
-  );
-  const [detachedDensRate, setDetachedDensRate] = useState(parseInt(0));
+    useStorageInt("detachedEndYearDensificated", year);
+  const [detachedEnergyDensificated, setDetachedEnergyDensificated] = useStorageInt("detachedEnergyDensificated", 0);
+  const [detachedDensUnitsAfter, setDetachedDensUnitsAfter] = useStorageInt("detachedDensUnitsAfter", 0);
+  const [detachedDensRate, setDetachedDensRate] = useStorageInt("detachedDensRate", 0);
   // #endregion densification
 
   // apartment handlers
@@ -495,105 +481,77 @@ export const BuildingsNewUnits = ({
   // densification of commercials
   // retail
   // #region
-  const [retailAreaDensificated, setRetailAreaDensificated] = useState(
-    parseInt(0)
-  );
+  const [retailAreaDensificated, setRetailAreaDensificated] = useStorageInt("retailAreaDensificated", 0);
   const [retailStartYearDensificated, setRetailStartYearDensificated] =
-    useState(Number(year));
-  const [retailEndYearDensificated, setRetailEndYearDensificated] = useState(
-    Number(year)
-  );
-  const [retailEnergyDensificated, setRetailEnergyDensificated] = useState(
-    parseInt(0)
-  );
-  const [retailDensAreaAfter, setRetailDensAreaAfter] = useState(parseInt(0));
-  const [retailDensRate, setRetailDensRate] = useState(parseInt(0));
+    useStorageInt("retailStartYearDensificated", year);
+  const [retailEndYearDensificated, setRetailEndYearDensificated] = useStorageInt("retailEndYearDensificated", year);
+  const [retailEnergyDensificated, setRetailEnergyDensificated] = useStorageInt("retailEnergyDensificated", 0);
+  const [retailDensAreaAfter, setRetailDensAreaAfter] = useStorageInt("retailDensAreaAfter", 0);
+  const [retailDensRate, setRetailDensRate] = useStorageInt("retailDensRate", 0);
   // #endregion
 
   // health
   // #region
-  const [healthAreaDensificated, setHealthAreaDensificated] = useState(
-    parseInt(0)
-  );
+  const [healthAreaDensificated, setHealthAreaDensificated] = useStorageInt("healthAreaDensificated", 0);
   const [healthStartYearDensificated, setHealthStartYearDensificated] =
-    useState(Number(year));
-  const [healthEndYearDensificated, setHealthEndYearDensificated] = useState(
-    Number(year)
-  );
-  const [healthEnergyDensificated, setHealthEnergyDensificated] = useState(
-    parseInt(0)
-  );
-  const [healthDensAreaAfter, setHealthDensAreaAfter] = useState(parseInt(0));
-  const [healthDensRate, setHealthDensRate] = useState(parseInt(0));
+    useStorageInt("healthStartYearDensificated", year);
+  const [healthEndYearDensificated, setHealthEndYearDensificated] = useStorageInt("healthEndYearDensificated", year);
+  const [healthEnergyDensificated, setHealthEnergyDensificated] = useStorageInt("healthEnergyDensificated", 0);
+  const [healthDensAreaAfter, setHealthDensAreaAfter] = useStorageInt("healthDensAreaAfter", 0);
+  const [healthDensRate, setHealthDensRate] = useStorageInt("healthDensRate", 0);
   // #endregion
 
   // hospitality
   // #region
   const [hospitalityAreaDensificated, setHospitalityAreaDensificated] =
-    useState(parseInt(0));
+    useStorageInt("hospitalityAreaDensificated", 0);
   const [
     hospitalityStartYearDensificated,
     setHospitalityStartYearDensificated,
-  ] = useState(Number(year));
+  ] = useStorageInt("hospitalityStartYearDensificated", year);
   const [hospitalityEndYearDensificated, setHospitalityEndYearDensificated] =
-    useState(Number(year));
+    useStorageInt("hospitalityEndYearDensificated", year);
   const [hospitalityEnergyDensificated, setHospitalityEnergyDensificated] =
-    useState(parseInt(0));
-  const [hospitalityDensAreaAfter, setHospitalityDensAreaAfter] = useState(
-    parseInt(0)
-  );
-  const [hospitalityDensRate, setHospitalityDensRate] = useState(parseInt(0));
+    useStorageInt("hospitalityEnergyDensificated", 0);
+  const [hospitalityDensAreaAfter, setHospitalityDensAreaAfter] = useStorageInt("hospitalityDensAreaAfter", 0);
+  const [hospitalityDensRate, setHospitalityDensRate] = useStorageInt("hospitalityDensRate", 0);
   // #endregion
 
   // offices
   // #region
-  const [officesAreaDensificated, setOfficesAreaDensificated] = useState(
-    parseInt(0)
-  );
+  const [officesAreaDensificated, setOfficesAreaDensificated] = useStorageInt("officesAreaDensificated", 0);
   const [officesStartYearDensificated, setOfficesStartYearDensificated] =
-    useState(Number(year));
-  const [officesEndYearDensificated, setOfficesEndYearDensificated] = useState(
-    Number(year)
-  );
-  const [officesEnergyDensificated, setOfficesEnergyDensificated] = useState(
-    parseInt(0)
-  );
-  const [officesDensAreaAfter, setOfficesDensAreaAfter] = useState(parseInt(0));
-  const [officesDensRate, setOfficesDensRate] = useState(parseInt(0));
+    useStorageInt("officesStartYearDensificated", year);
+  const [officesEndYearDensificated, setOfficesEndYearDensificated] = useStorageInt("officesEndYearDensificated", year);
+  const [officesEnergyDensificated, setOfficesEnergyDensificated] = useStorageInt("officesEnergyDensificated", 0);
+  const [officesDensAreaAfter, setOfficesDensAreaAfter] = useStorageInt("officesDensAreaAfter", 0);
+  const [officesDensRate, setOfficesDensRate] = useStorageInt("officesDensRate", 0);
   // #endregion
 
   // industrial
   // #region
-  const [industrialAreaDensificated, setIndustrialAreaDensificated] = useState(
-    parseInt(0)
-  );
+  const [industrialAreaDensificated, setIndustrialAreaDensificated] = useStorageInt("industrialAreaDensificated", 0);
   const [industrialStartYearDensificated, setIndustrialStartYearDensificated] =
-    useState(Number(year));
+    useStorageInt("industrialStartYearDensificated", year);
   const [industrialEndYearDensificated, setIndustrialEndYearDensificated] =
-    useState(Number(year));
+    useStorageInt("industrialEndYearDensificated", year);
   const [industrialEnergyDensificated, setIndustrialEnergyDensificated] =
-    useState(parseInt(0));
-  const [industrialDensAreaAfter, setIndustrialDensAreaAfter] = useState(
-    parseInt(0)
-  );
-  const [industrialDensRate, setIndustrialDensRate] = useState(parseInt(0));
+    useStorageInt("industrialEnergyDensificated", 0);
+  const [industrialDensAreaAfter, setIndustrialDensAreaAfter] = useStorageInt("industrialDensAreaAfter", 0);
+  const [industrialDensRate, setIndustrialDensRate] = useStorageInt("industrialDensRate", 0);
   // #endregion
 
   // warehouses
   // #region
-  const [warehousesAreaDensificated, setWarehousesAreaDensificated] = useState(
-    parseInt(0)
-  );
+  const [warehousesAreaDensificated, setWarehousesAreaDensificated] = useStorageInt("warehousesAreaDensificated", 0);
   const [warehousesStartYearDensificated, setWarehousesStartYearDensificated] =
-    useState(Number(year));
+    useStorageInt("warehousesStartYearDensificated", year);
   const [warehousesEndYearDensificated, setWarehousesEndYearDensificated] =
-    useState(Number(year));
+    useStorageInt("warehousesEndYearDensificated", year);
   const [warehousesEnergyDensificated, setWarehousesEnergyDensificated] =
-    useState(parseInt(0));
-  const [warehousesDensAreaAfter, setWarehousesDensAreaAfter] = useState(
-    parseInt(0)
-  );
-  const [warehousesDensRate, setWarehousesDensRate] = useState(parseInt(0));
+    useStorageInt("warehousesEnergyDensificated", 0);
+  const [warehousesDensAreaAfter, setWarehousesDensAreaAfter] = useStorageInt("warehousesDensAreaAfter", 0);
+  const [warehousesDensRate, setWarehousesDensRate] = useStorageInt("warehousesDensRate", 0);
   // #endregion
 
   // retail handlers
@@ -763,6 +721,7 @@ export const BuildingsNewUnits = ({
     setWarehousesDensAreaAfter(parseInt(warehousesAreaDensificated + (warehousesAreaDensificated * warehousesDensRate / 100)));
   };
   // #endregion
+  
   const navigate = useNavigate();
   const [errorBuildNewUnits, setErrorBuildNewUnits] = useState("");
   const [newConstructionResponse, setNewConstructionResponse] = useState(() => {
@@ -786,66 +745,66 @@ export const BuildingsNewUnits = ({
   const moveToBuildingsPolicies = () => {
     // #region residentials
     const apartment = {
-      "numberOfUnits": apartmentUnits,
-      "startYear": apartmentStartYear,
-      "endYear": apartmentEndYear,
-      "renewableEnergyPercent": apartmentEnergy
+      "numberOfUnits": parseInt(apartmentUnits),
+      "startYear": parseInt(apartmentStartYear),
+      "endYear": parseInt(apartmentEndYear),
+      "renewableEnergyPercent": parseInt(apartmentEnergy)
     };
     const terraced = {
-      "numberOfUnits": terracedUnits,
-      "startYear": terracedStartYear,
-      "endYear": terracedEndYear,
-      "renewableEnergyPercent": terracedEnergy
+      "numberOfUnits": parseInt(terracedUnits),
+      "startYear": parseInt(terracedStartYear),
+      "endYear": parseInt(terracedEndYear),
+      "renewableEnergyPercent": parseInt(terracedEnergy)
     };
     const semiDetached = {
-      "numberOfUnits": semiDetachedUnits,
-      "startYear": semiDetachedStartYear,
-      "endYear": semiDetachedEndYear,
-      "renewableEnergyPercent": semiDetachedEnergy
+      "numberOfUnits": parseInt(semiDetachedUnits),
+      "startYear": parseInt(semiDetachedStartYear),
+      "endYear": parseInt(semiDetachedEndYear),
+      "renewableEnergyPercent": parseInt(semiDetachedEnergy)
     };
     const detached = {
-      "numberOfUnits": detachedUnits,
-      "startYear": detachedStartYear,
-      "endYear": detachedEndYear,
-      "renewableEnergyPercent": detachedEnergy
+      "numberOfUnits": parseInt(detachedUnits),
+      "startYear": parseInt(detachedStartYear),
+      "endYear": parseInt(detachedEndYear),
+      "renewableEnergyPercent": parseInt(detachedEnergy)
     };
     // #endregion
     // #region commercials
     const retail = {
-      "floorArea": retailArea,
-      "renewableEnergyPercent": retailEnergy,
-      "startYear": retailEndYear,
-      "endYear": retailEndYear
+      "floorArea": parseInt(retailArea),
+      "renewableEnergyPercent": parseInt(retailEnergy),
+      "startYear": parseInt(retailEndYear),
+      "endYear": parseInt(retailEndYear)
     };
     const health = {
-      "floorArea": healthArea,
-      "renewableEnergyPercent": healthEnergy,
-      "startYear": healthStartYear,
-      "endYear": healthEndYear
+      "floorArea": parseInt(healthArea),
+      "renewableEnergyPercent": parseInt(healthEnergy),
+      "startYear": parseInt(healthStartYear),
+      "endYear": parseInt(healthEndYear)
     };
     const hospitality = {
-      "floorArea": hospitalityArea,
-      "renewableEnergyPercent": hospitalityEnergy,
-      "startYear": hospitalityStartYear,
-      "endYear": hospitalityEndYear
+      "floorArea": parseInt(hospitalityArea),
+      "renewableEnergyPercent": parseInt(hospitalityEnergy),
+      "startYear": parseInt(hospitalityStartYear),
+      "endYear": parseInt(hospitalityEndYear)
     };
     const offices = {
-      "floorArea": officesArea,
-      "renewableEnergyPercent": hospitalityEnergy,
-      "startYear": officesStartYear,
-      "endYear": officesEndYear
+      "floorArea": parseInt(officesArea),
+      "renewableEnergyPercent": parseInt(hospitalityEnergy),
+      "startYear": parseInt(officesStartYear),
+      "endYear": parseInt(officesEndYear)
     };
     const industrial = {
-      "floorArea": industrialArea,
-      "renewableEnergyPercent": industrialEnergy,
-      "startYear": industrialStartYear,
-      "endYear": industrialEndYear
+      "floorArea": parseInt(industrialArea),
+      "renewableEnergyPercent": parseInt(industrialEnergy),
+      "startYear": parseInt(industrialStartYear),
+      "endYear": parseInt(industrialEndYear)
     };
     const warehouses = {
-      "floorArea": warehousesArea,
-      "renewableEnergyPercent": warehousesEnergy,
-      "startYear": warehousesStartYear,
-      "endYear": warehousesEndYear
+      "floorArea": parseInt(warehousesArea),
+      "renewableEnergyPercent": parseInt(warehousesEnergy),
+      "startYear": parseInt(warehousesStartYear),
+      "endYear": parseInt(warehousesEndYear)
     };
     // #endregion
     
@@ -943,8 +902,8 @@ export const BuildingsNewUnits = ({
     };
     const rawData = {
       country,
-      year,
-      population,
+      year: parseInt(year),
+      population: parseInt(population),
       construction,
       densification
     }
@@ -2613,6 +2572,7 @@ export const BuildingsNewUnits = ({
                   primary
                 />
               </div>
+              
         </div>
       </section>
     );

@@ -11,6 +11,11 @@ import Chip from "@mui/material/Chip";
 import Tooltip from "@mui/material/Tooltip";
 import Alert from "@mui/material/Alert";
 import { RadialChart, DiscreteColorLegend } from "react-vis";
+import {
+  useStorageFloat,
+  useStorageInt,
+  useStorageString,
+} from "../reducers/useStorage";
 
 /**
  * BuildingsBaseline user input form
@@ -38,26 +43,26 @@ export const BuildingBaseline = () => {
 
   // residential units
   // #region
-  const [apartment, setApartment] = useState(parseFloat(0));
-  const [terraced, setTerraced] = useState(parseFloat(0));
-  const [semiDetached, setSemiDetached] = useState(parseFloat(0));
-  const [detached, setDetached] = useState(parseFloat(0));
-  const [residentialTotal, setResidentialTotal] = useState(parseFloat(0));
+  const [apartment, setApartment] = useStorageFloat("apartment", 0);
+  const [terraced, setTerraced] = useStorageFloat("terraced", 0);
+  const [semiDetached, setSemiDetached] = useStorageFloat("semiDetached", 0);
+  const [detached, setDetached] = useStorageFloat("detached", 0);
+  const [residentialTotal, setResidentialTotal] = useState(0);
 
   const getCurrentResidentTotal = () => {
-    setResidentialTotal(apartment + terraced + semiDetached + detached);
+    setResidentialTotal(parseFloat(apartment)  + parseFloat(terraced) + parseFloat(semiDetached) + parseFloat(detached));
   };
   // #endregion
 
   // commercuial buildings
   // #region
-  const [retail, setRetail] = useState(parseFloat(0));
-  const [health, setHealth] = useState(parseFloat(0));
-  const [hospitality, setHospitality] = useState(parseFloat(0));
-  const [offices, setOffices] = useState(parseFloat(0));
-  const [industrial, setIndustrial] = useState(parseFloat(0));
-  const [warehouses, setWarehouses] = useState(parseFloat(0));
-  const [commTotal, setCommTotal] = useState(parseFloat(0));
+  const [retail, setRetail] = useStorageFloat("retail", 0);
+  const [health, setHealth] = useStorageFloat("health", 0);
+  const [hospitality, setHospitality] = useStorageFloat("hospitality", 0);
+  const [offices, setOffices] = useStorageFloat("offices", 0);
+  const [industrial, setIndustrial] = useStorageFloat("industrial", 0);
+  const [warehouses, setWarehouses] = useStorageFloat("warehouses", 0);
+  const [commTotal, setCommTotal] =  useState(0);
 
   const getCurrentCommTotal = () => {
     setCommTotal(
@@ -136,19 +141,19 @@ export const BuildingBaseline = () => {
   // render next page
   const setBuildingTypes = () => {
     const residential = {
-      apartment,
-      terraced,
-      semiDetached,
-      detached,
+      apartment: parseFloat(apartment),
+      terraced: parseFloat(terraced),
+      semiDetached: parseFloat(semiDetached),
+      detached: parseFloat(detached)
     };
     const commercial = {
-      retail,
-      health,
-      hospitality,
-      offices,
-      industrial,
-      warehouses,
-    };
+      retail: parseFloat(retail),
+      health: parseFloat(health),
+      hospitality: parseFloat(hospitality),
+      offices: parseFloat(offices),
+      industrial: parseFloat(industrial),
+      warehouses: parseFloat(warehouses),
+    }; 
     const request = {
       country,
       year,
@@ -252,7 +257,7 @@ export const BuildingBaseline = () => {
                         step="1"
                         id="apartment"
                         min="0"
-                        /*  defaultValue={apartment} */
+                        placeholder={apartment}
                         onChange={handleApartment}
                         onMouseLeave={getCurrentResidentTotal}
                         required
@@ -270,7 +275,7 @@ export const BuildingBaseline = () => {
                         step="1"
                         id="terraced"
                         min="0"
-                        /*   value={terraced} */
+                        placeholder={terraced}
                         onChange={handleTerraced}
                         onMouseLeave={getCurrentResidentTotal}
                         required
@@ -289,7 +294,7 @@ export const BuildingBaseline = () => {
                         id="semiDetached"
                         step="any"
                         min="1"
-                        /*   defaultValue={semiDetached} */
+                        placeholder={semiDetached}
                         onChange={handleSemiDetached}
                         onMouseLeave={getCurrentResidentTotal}
                         required
@@ -307,7 +312,7 @@ export const BuildingBaseline = () => {
                         id="detached"
                         step="1"
                         min="0.0"
-                        /*   value={detached} */
+                        placeholder={detached}
                         onChange={handleDetached}
                         onMouseLeave={getCurrentResidentTotal}
                         required
@@ -395,7 +400,7 @@ export const BuildingBaseline = () => {
                       step="1"
                       id="retail"
                       min="0"
-                      /*  defaultValue={retail} */
+                      placeholder={retail}
                       onChange={handleRetail}
                       onMouseLeave={getCurrentCommTotal}
                       required
@@ -412,7 +417,7 @@ export const BuildingBaseline = () => {
                       step="1"
                       id="health"
                       min="0"
-                      /*   value={health} */
+                      placeholder={health}
                       onChange={handleHealth}
                       onMouseLeave={getCurrentCommTotal}
                       required
@@ -430,7 +435,7 @@ export const BuildingBaseline = () => {
                       id="hospitality"
                       step="any"
                       min="1"
-                      /*   defaultValue={hospitality} */
+                      placeholder={hospitality}
                       onChange={handleHospitality}
                       onMouseLeave={getCurrentCommTotal}
                       required
@@ -447,7 +452,7 @@ export const BuildingBaseline = () => {
                       id="offices"
                       step="1"
                       min="0.0"
-                      /*   value={offices} */
+                      placeholder={offices}
                       onChange={handleOffices}
                       onMouseLeave={getCurrentCommTotal}
                       required
@@ -463,7 +468,7 @@ export const BuildingBaseline = () => {
                       id="industrial"
                       step="1"
                       min="0.0"
-                      /*   value={offices} */
+                      placeholder={industrial}
                       onChange={handleIndustrial}
                       onMouseLeave={getCurrentCommTotal}
                       required
@@ -479,7 +484,7 @@ export const BuildingBaseline = () => {
                       id="warehouses"
                       step="1"
                       min="0.0"
-                      /*   value={offices} */
+                      placeholder={warehouses}
                       onChange={handleWarehouses}
                       onMouseLeave={getCurrentCommTotal}
                       required
