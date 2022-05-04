@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/lucbarchart.css";
+import { useNavigate } from "react-router-dom";
 import {
-  XYPlot,
   FlexibleXYPlot,
   XAxis,
   YAxis,
@@ -12,6 +12,7 @@ import {
 import PropTypes from "prop-types";
 import { LineLegendLandUse } from "./LineLegendLandUse";
 import Divider from "@mui/material/Divider";
+import { Button } from "./Button";
 
 const BarSeries = VerticalBarSeries;
 
@@ -21,6 +22,7 @@ const BarSeries = VerticalBarSeries;
  */
 
 export const LUCBarChart = ({ landUseChangeResponse, year }) => {
+  year = year ? year : parseInt(localStorage.getItem("year"));
   // #region data distribution
   const dataCroplandToForestland = [];
   const dataGrasslandToForestland = [];
@@ -206,15 +208,15 @@ export const LUCBarChart = ({ landUseChangeResponse, year }) => {
     });
   }
   // #endregion
-
-  localStorage.landUse = JSON.stringify(landUseChangeResponse);
+  const navigate = useNavigate();
 
   return (
-    <div>
-      <br/>
-      <Divider textAlign="left" flexItem>
-        <b>Land-use Change Bar Chart</b>
-      </Divider>
+    <section>
+      <div className="luc_alert_container">
+        <Divider textAlign="left" flexItem>
+          <b>Land-use Change Bar Chart</b>
+        </Divider>
+      </div>
       <div className="luc_container">
         <div className="landusechange_bar">
           <FlexibleXYPlot width={1200} height={500} xType="ordinal" stackBy="y">
@@ -416,7 +418,18 @@ export const LUCBarChart = ({ landUseChangeResponse, year }) => {
       <div className="luc_legendline">
         <LineLegendLandUse />
       </div>
-    </div>
+      <div className="buildings-buttons">
+        <div className="">
+              <Button
+                size="small"
+                value="backProjections"
+                onClick={() => navigate("../landUseChangeTableForm", { replace: true })}
+                label="&laquo; Previous"
+                secondary
+              />
+        </div>
+      </div>
+    </section>
   );
 };
 
