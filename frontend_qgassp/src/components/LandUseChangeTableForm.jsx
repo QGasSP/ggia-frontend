@@ -491,7 +491,7 @@ export const LandUseChangeTableForm = () => {
         grassToSettlements +
         wetToSettlements +
         otherToSettlements
-    ).toPrecision(2));
+    ).toFixed(2));
     setTotalMineral((
       cropToForestMineral +
         grassToForestMineral +
@@ -523,7 +523,7 @@ export const LandUseChangeTableForm = () => {
         grassToSettlementsMineral +
         wetToSettlementsMineral +
         otherToSettlementsMineral
-    ).toPrecision(2));
+    ).toFixed(2));
     setTotalOrganic((
       cropToForestOrganic +
         grassToForestOrganic +
@@ -555,7 +555,7 @@ export const LandUseChangeTableForm = () => {
         grassToSettlementsOrganic +
         wetToSettlementsOrganic +
         otherToSettlementsOrganic
-    ).toPrecision(2));
+    ).toFixed(2));
   };
   // toForest handlers
   // #region
