@@ -1044,7 +1044,9 @@ export const BuildingsPolicies = ({newConstructionResponse, country, year, popul
       rawData,
       headers
     )
-    .then((response) => setPolicyQuantificationResponse(response.data.data))
+    .then((response) => {
+      setPolicyQuantificationResponse(response.data.data);
+    })
     .then(() => {
       setLoadingStyle({
         display: "none",
@@ -1056,10 +1058,6 @@ export const BuildingsPolicies = ({newConstructionResponse, country, year, popul
       console.error("There was an error!", errorBuildPolicies);
     });
   };
-
-  const moveToPoliciesResults = () => {
-    setPoliciesCharts(true);
-  }
   useEffect(() => {
     localStorage.setItem(
       "policyQuantificationResponse",
@@ -1067,6 +1065,12 @@ export const BuildingsPolicies = ({newConstructionResponse, country, year, popul
     );
   }, [policyQuantificationResponse]);
 
+
+  const moveToPoliciesResults = () => {
+    setPoliciesCharts(true);
+    navigate("../buildingsPoliciesCharts", { replace: true });
+  };
+  
   if (policiesCharts === false) {
     return (
       <section>

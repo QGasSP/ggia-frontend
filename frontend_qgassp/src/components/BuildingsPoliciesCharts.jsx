@@ -23,6 +23,9 @@ import { LineLegendBuildingBaselineCharts } from "./LineLegendBuildingBaselineCh
  */
 const BarSeries = VerticalBarSeries;
 export const BuildingsPoliciesCharts = ({newConstructionResponse, policyQuantificationResponse, year }) => {
+  newConstructionResponse = newConstructionResponse ? newConstructionResponse : JSON.parse(localStorage.newConstructionResponse);
+  policyQuantificationResponse = policyQuantificationResponse ? policyQuantificationResponse : JSON.parse(localStorage.policyQuantificationResponse);
+  year = year ? year : localStorage.year;
   const navigate = useNavigate();
   // #region data distribution NewConstruction
   const apartmentsDataNewConstruction = [];

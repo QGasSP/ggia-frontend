@@ -921,7 +921,10 @@ export const BuildingsNewUnits = ({
       rawData,
       headers
     )
-    .then((response) => setBuildingsNewUnitsResponse(response.data))    
+    .then((response) => { 
+      setBuildingsNewUnitsResponse(response.data);
+      navigate("../buildingsPolicies", { replace: true });
+    })    
     .catch((error) => {
       setErrorBuildNewUnits({ errorMessage: error.message });
       // eslint-disable-next-line no-console

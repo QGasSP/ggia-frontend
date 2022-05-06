@@ -36,7 +36,11 @@ export const BuildingBaselineCharts = ({
 
   const [nextNewUnitsView, setNextNewUnitsView] = useState(false);
   const navigate = useNavigate();
-
+  const handleNextNewUnitsView = () => {
+    navigate("../buildingsNewUnits", { replace: true });
+    setNextNewUnitsView(true);
+  };
+  const goBackToBuildingsBaseline = () => navigate("../buildingBaseline", { replace: true });
   // #region residential co2
   const apartmentTotal = 
               (buildingsBaselineResponse.residentialTable.apartment.electricity + 
@@ -521,7 +525,7 @@ export const BuildingBaselineCharts = ({
             <Button
               size="small"
               value="backProjections"
-              onClick={() => navigate("../buildingBaseline", { replace: true })}
+              onClick={goBackToBuildingsBaseline}
               label="&laquo; Previous"
               secondary
             />
@@ -530,7 +534,7 @@ export const BuildingBaselineCharts = ({
             <Button
               size="small"
               value="u2next_inputs"
-              onClick={() => setNextNewUnitsView(true)}
+              onClick={handleNextNewUnitsView}
               label="Next &raquo;"
               primary
             />
@@ -538,7 +542,7 @@ export const BuildingBaselineCharts = ({
         </div>
       </section>
     );
-  } else if (nextNewUnitsView === true) {
+  } else {
     return (
       <BuildingsNewUnits
         baseline={buildingsBaselineResponse}

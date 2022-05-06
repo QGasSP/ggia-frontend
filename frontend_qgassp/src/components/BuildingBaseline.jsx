@@ -3,7 +3,7 @@ import { Button } from "./Button";
 import { BuildingBaselineCharts } from "./BuildingBaselineCharts";
 import "../css/buildingbaseline.css";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 import urlPrefix from "../Config";
 import { CircularProgress } from "@mui/material";
 import Divider from "@mui/material/Divider";
@@ -38,6 +38,7 @@ export const BuildingBaseline = () => {
   const country = localStorage.getItem("country");
   const year = parseInt(localStorage.getItem("year"));
   const population = parseInt(localStorage.getItem("population"));
+  const navigate = useNavigate();
 
   // residential units
   // #region
@@ -188,8 +189,9 @@ export const BuildingBaseline = () => {
   };
 
   const moveToBuildingsBaselineResults = () => {
+    navigate("../buildingBaselineCharts", { replace: true });
     setBuildingsBaselineCharts(true);
-  }
+  };
 
   useEffect(() => {
     localStorage.setItem(
