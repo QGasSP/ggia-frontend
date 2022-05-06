@@ -20,6 +20,7 @@ import { LandUseChangeTableForm } from "../components/LandUseChangeTableForm";
 import { GenerateReport } from "../components/GenerateReport";
 import { ConsumptionTransport } from "../components/ConsumptionTransport";
 import { ConsumptionResults } from "../components/ConsumptionResults";
+import { LUCBarChart } from "../components/LUCBarChart";
 
 export const AppRoutes = () => {
   const routes = useRoutes([
@@ -46,6 +47,7 @@ export const AppRoutes = () => {
     { path: "buildingsNewUnits", element: <BuildingsNewUnits /> },
     { path: "buildingsPolicies", element: <BuildingsPolicies /> },
     { path: "buildingsPoliciesCharts", element: <BuildingsPoliciesCharts /> },
+    { path: "lUCBarChart", element: <LUCBarChart /> },
     { path: "generateReport", element: <GenerateReport/> },
     { path: "*", element: <Navigate to="/"/> }, 
   ]);
