@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { LUCBarChart } from "./LUCBarChart";
 import { Button } from "./Button";
 import "../css/landusechange.css";
@@ -196,7 +197,7 @@ export const LandUseChangeTableForm = () => {
   const [settlementsToOtherOrganic, setSettlementsToOtherOrganic] = useStorageFloat("settlementsToOtherOrganic", 0);
   const [settlementsToOtherYear, setSettlementsToOtherYear] = useStorageInt("settlementsToOtherYear", year);
   // #endregion
-
+  const navigate = useNavigate();
   const [totalArea_, setTotalArea] = useState(
     cropToForest +
       grassToForest +
@@ -292,6 +293,7 @@ export const LandUseChangeTableForm = () => {
   for (let i = year; i < 2051; i++) options.push(i);
 
   const goToLandUseChangeBaseline = () => {
+    navigate("../lUCBarChart", { replace: true });
     setLUCBarChart(true);
   };
 

@@ -23,6 +23,8 @@ const BarSeries = VerticalBarSeries;
 
 export const LUCBarChart = ({ landUseChangeResponse, year }) => {
   year = year ? year : parseInt(localStorage.getItem("year"));
+  landUseChangeResponse = landUseChangeResponse ? landUseChangeResponse : JSON.parse(localStorage.landUseChangeResponse);
+  
   // #region data distribution
   const dataCroplandToForestland = [];
   const dataGrasslandToForestland = [];
