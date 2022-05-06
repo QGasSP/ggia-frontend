@@ -15,7 +15,7 @@
   padding: 0.2rem;
   display: flex;
   align-items: center;
-  position: relative;
+  /* position: relative; */
 }
 
 .wrapper_branding {
@@ -96,7 +96,7 @@ button + button {
 }
 
 .left {
-  width: 14.5%;
+  width: 14.3%;
   float: left;
   background-color: #bfbfbf;
 }
@@ -110,9 +110,9 @@ button + button {
 }
 
 .right {
-  width: 13.3%;
+  width: 13.7%;
   float: left;
   background-color: #ea8b6f;
   border: 0.71rem solid #ea8b6f;
-  margin-left: 0.5rem;
+  margin-left: 0.6rem;
 }
