@@ -1022,6 +1022,50 @@ export const BuildingsPolicies = ({newConstructionResponse, country, year, popul
             "startYear": sixthCommercialSelectorStartYear,
             "endYear": sixthCommercialSelectorEndYear
           }
+      },
+      "buildingChanges": {
+        "retrofit1": {
+            "fromType": firstSelectorBuildingTypeFrom,
+            "toType": firstSelectorBuildingTypeTo,
+            "totalFloorArea": firstSelectorArea,
+            "fromConversionsImplemented": firstSelectorStartYear,
+            "toConversionsImplemented": firstSelectorEndYear
+        },
+        "retrofit2": {
+          "fromType": secondSelectorBuildingTypeFrom,
+          "toType": secondSelectorBuildingTypeTo,
+          "totalFloorArea": secondSelectorArea,
+          "fromConversionsImplemented": secondSelectorStartYear,
+          "toConversionsImplemented": secondSelectorEndYear
+        },
+        "retrofit3": {
+          "fromType": thirdSelectorBuildingTypeFrom,
+          "toType": thirdSelectorBuildingTypeTo,
+          "totalFloorArea": thirdSelectorArea,
+          "fromConversionsImplemented": thirdSelectorStartYear,
+          "toConversionsImplemented": thirdSelectorEndYear
+        },
+        "retrofit4": {
+          "fromType": fourthSelectorBuildingTypeFrom,
+          "toType": fourthSelectorBuildingTypeTo,
+          "totalFloorArea": fourthSelectorArea,
+          "fromConversionsImplemented": fourthSelectorStartYear,
+          "toConversionsImplemented": fourthSelectorEndYear
+        },
+        "retrofit5": {
+          "fromType": fifthSelectorBuildingTypeFrom,
+          "toType": fifthSelectorBuildingTypeTo,
+          "totalFloorArea": fifthSelectorArea,
+          "fromConversionsImplemented": fifthSelectorStartYear,
+          "toConversionsImplemented": fifthSelectorEndYear
+        },
+        "retrofit6": {
+          "fromType": sixthSelectorBuildingTypeFrom,
+          "toType": sixthSelectorBuildingTypeTo,
+          "totalFloorArea": sixthSelectorArea,
+          "fromConversionsImplemented": sixthSelectorStartYear,
+          "toConversionsImplemented": sixthSelectorEndYear
+        }
       }
     };
     const rawData = {
