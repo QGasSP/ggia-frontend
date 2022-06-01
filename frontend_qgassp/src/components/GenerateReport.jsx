@@ -361,7 +361,7 @@ export const GenerateReport = () => {
                   <td className="tableTotalEmissions">Transport</td>
                   {Object.keys(buildingsBaselineResponse.baseline).map((key, i) => (
                     <td key={i} className="tableTotalEmissions">
-                      {Math.round(buildingsBaselineResponse.baseline[key].apartment/newPopulation[key])}
+                      {(Math.round(buildingsBaselineResponse.baseline[key].apartment)/newPopulation[key]).toFixed(2)}
                     </td>
                   ))}
                 </tr>
@@ -369,7 +369,7 @@ export const GenerateReport = () => {
                   <td className="tableTotalEmissions">Land-use change</td>
                   {Object.keys(landUseChangeResponse.landUseChange).map((key, i) => (
                     <td key={i} className="tableTotalEmissions">
-                      {Math.round(landUseChangeResponse.landUseChange[key].total/newPopulation[key])}
+                      {(Math.round(landUseChangeResponse.landUseChange[key].total)/newPopulation[key]).toFixed(2)}
                     </td>
                   ))}
                 </tr>
@@ -377,7 +377,7 @@ export const GenerateReport = () => {
                   <td className="tableTotalEmissions">Buildings</td>
                   {Object.keys(buildingsBaselineResponse.baseline).map((key, i) => (
                     <td key={i} className="tableTotalEmissions">
-                      {Math.round(buildingsBaselineResponse.baseline[key].apartment/newPopulation[key])}
+                      {(Math.round(buildingsBaselineResponse.baseline[key].apartment)/newPopulation[key]).toFixed(2)}
                     </td>
                   ))}
                 </tr>
@@ -385,7 +385,7 @@ export const GenerateReport = () => {
                   <td className="tableTotalEmissions">Net sinks</td>
                   {Object.keys(buildingsBaselineResponse.baseline).map((key, i) => (
                     <td key={i} className="tableTotalEmissions">
-                      {Math.round(landUseChangeResponse.landUseChange[key].sink/newPopulation[key])}
+                      {(Math.round(landUseChangeResponse.landUseChange[key].sink)/newPopulation[key]).toFixed(2)}
                     </td>
                   ))}
                 </tr>
@@ -393,7 +393,7 @@ export const GenerateReport = () => {
                   <td className="tableTotalEmissions">Net balance</td>
                   {Object.keys(buildingsBaselineResponse.baseline).map((key, i) => (
                     <td key={i} className="tableTotalEmissions">
-                      {Math.round(buildingsBaselineResponse.baseline[key].apartment/newPopulation[key])}
+                      {(Math.round(buildingsBaselineResponse.baseline[key].apartment)/newPopulation[key]).toFixed(2)}
                     </td>
                   ))}
                 </tr>
