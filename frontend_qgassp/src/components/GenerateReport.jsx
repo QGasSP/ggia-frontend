@@ -135,7 +135,7 @@ export const GenerateReport = () => {
   const policySummedEmissions = [];
   const dataBlTotalEmissions = [];
 
-  for (let i = 2020; i < 2051; i++) {
+  for (let i = year; i < 2051; i++) {
     dataBlTotalEmissions.push({ x: i, y: blTotalEmmissions[i] });
     policyHousingEnergy.push({ x: i, y: p1.housingEnergy[i] });
     policyHousingOther.push({ x: i, y: p1.housingOther[i] });
