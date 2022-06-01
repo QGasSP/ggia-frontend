@@ -11,7 +11,8 @@ import { useNavigate } from "react-router-dom";
 export const TabModules = () => {
   const [toggleState, setToggleState] = useState(1);
   const navigate = useNavigate();
-  const ggiaGuideUrl = "https://github.com/QGasSP/ggia/wiki";
+  // const ggiaGuideUrl = "https://github.com/QGasSP/ggia/wiki";
+  const ggiaGuideUrl = "https://docs.google.com/document/d/1QzVwikOG5_p9vV_XKIEMl7a1y_Mi6Boj";
   const country = localStorage.getItem("country");
   const year = parseInt(localStorage.getItem("year"));
   const population = parseInt(localStorage.getItem("population"));
