@@ -1,8 +1,12 @@
 .generate-report{
     padding: 0 20px;
+    border: 1px solid #000;
 }
 
 .table-results td, .table-results th{
     font-size: 10px !important;
     padding: 3px;
+}
+.padding{
+    padding: 10px;
 }
