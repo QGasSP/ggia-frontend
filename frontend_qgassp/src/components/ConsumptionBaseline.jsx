@@ -103,7 +103,6 @@ export const ConsumptionBaseline = () => {
                     <input
                       className="input_occupancy"
                       type="number"
-                      pattern="[0-9]*"
                       min="0"
                       id="house_size"
                       onChange={handleHouseSize}

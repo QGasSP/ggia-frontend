@@ -188,11 +188,13 @@ export const ConsumptionBaselineResults = () => {
         <b>{country}: Annual household emissions </b>
       </Divider>
       <div>
-        <Alert severity="info">
-          The first graph shows a projection of annual emissions under the
-          baseline scenario for each resident for every year until 2050. Each
-          bar is subdivided into emissions from each sector.
-        </Alert>
+        <div className="luc_alert_container">
+          <Alert severity="info">
+            The first graph shows a projection of annual emissions under the
+            baseline scenario for each resident for every year until 2050. Each
+            bar is subdivided into emissions from each sector.
+          </Alert>
+        </div>
         <div className="settlementDiv">
           <LineLegendConsumption
             colorItems={hseHoldEmissions}
@@ -237,28 +239,30 @@ export const ConsumptionBaselineResults = () => {
           The second graph is a bar chart showing the breakdown of per capita
           emissions by sector for the baseline year.
         </Alert>
-        <table>
-          <thead className="tableHeader">
-            <tr>
-              <th className="tableTotalEmissions">Year</th>
-              {Object.keys(bLTotalEmissions).map((key, i) => (
-                <th key={i} className="tableTotalEmissions">
-                  <b>{key}</b>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className="tableTotalEmissions">Total emissions</td>
-              {Object.keys(bLTotalEmissions).map((key, i) => (
-                <td key={i} className="tableTotalEmissions">
-                  {bLTotalEmissions[key]}
-                </td>
-              ))}
-            </tr>
-          </tbody>
-        </table>
+        <div className="luc_alert_container">
+          <table className="table-results">
+            <thead className="tableHeader">
+              <tr>
+                <th className="tableTotalEmissions">Year</th>
+                {Object.keys(bLTotalEmissions).map((key, i) => (
+                  <th key={i} className="tableTotalEmissions">
+                    <b>{key}</b>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="tableTotalEmissions">Total emissions</td>
+                {Object.keys(bLTotalEmissions).map((key, i) => (
+                  <td key={i} className="tableTotalEmissions">
+                    {Math.round(bLTotalEmissions[key])}
+                  </td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div className="backButtonNew">
         <Button
