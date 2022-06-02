@@ -206,6 +206,14 @@ export const GenerateReport = () => {
           year > 0 &&
           population > 0 &&
           buildingsBaselineResponse &&
+          newPopulation &&
+          landUseChangeResponse &&
+          p1 &&
+          Object.keys(newPopulation).length !== 0 &&
+          Object.keys(landUseChangeResponse).length !== 0 &&
+          Object.keys(p1).length !== 0 &&
+          Object.keys(blTotalEmmissions).length !== 0 &&
+          Object.keys(p1TotalAreaEmissions).length !== 0 &&
           Object.keys(buildingsBaselineResponse).length !== 0 && (
             <div>
               <>
@@ -529,6 +537,21 @@ export const GenerateReport = () => {
             </div>
           )}
       </div>
+        {population > 0 ||
+          buildingsBaselineResponse ||
+          newPopulation ||
+          landUseChangeResponse ||
+          p1 ||
+          Object.keys(newPopulation).length == 0 ||
+          Object.keys(landUseChangeResponse).length == 0 ||
+          Object.keys(p1).length == 0 ||
+          Object.keys(blTotalEmmissions).length == 0 ||
+          Object.keys(p1TotalAreaEmissions).length == 0 ||
+          Object.keys(buildingsBaselineResponse).length == 0 || (
+            <div>
+              There is no enough data to create report! Please, consider going through all modules.
+            </div>
+      )}
     </article>
   );
 };
