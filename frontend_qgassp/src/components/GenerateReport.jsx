@@ -67,7 +67,31 @@ export const GenerateReport = () => {
   const netBuildingsPerCapita= [];
   const netTransportPerCapita = [];
   const netBalancePerCapita = [];
+  // consumption
+  const policyHousingEnergy = [];
+  const policyHousingOther = [];
+  const policyTransportFuels = [];
+  const policyTransportOther = [];
+  const policyAirTravel = [];
+  const policyFood = [];
+  const policyTangiblegoods = [];
+  const policyServices = [];
+  const policyTotalEmissions = [];
+  const policyTotalAreaEmissions = [];
+  const policySummedEmissions = [];
+  const dataBlTotalEmissions = [];
 
+  if(
+    buildingsBaselineResponse &&
+    newPopulation &&
+    landUseChangeResponse &&
+    p1 &&
+    Object.keys(newPopulation).length !== 0 &&
+    Object.keys(landUseChangeResponse).length !== 0 &&
+    Object.keys(p1).length !== 0 &&
+    Object.keys(blTotalEmmissions).length !== 0 &&
+    Object.keys(p1TotalAreaEmissions).length !== 0 &&
+    Object.keys(buildingsBaselineResponse).length !== 0){
   for (let i = year; i < 2051; i++) {
     netSinkTotal.push({
       x: i,
@@ -122,19 +146,6 @@ export const GenerateReport = () => {
     });
   }
 
-  const policyHousingEnergy = [];
-  const policyHousingOther = [];
-  const policyTransportFuels = [];
-  const policyTransportOther = [];
-  const policyAirTravel = [];
-  const policyFood = [];
-  const policyTangiblegoods = [];
-  const policyServices = [];
-  const policyTotalEmissions = [];
-  const policyTotalAreaEmissions = [];
-  const policySummedEmissions = [];
-  const dataBlTotalEmissions = [];
-
   for (let i = 2021; i < 2051; i++) {
     dataBlTotalEmissions.push({ x: i, y: blTotalEmmissions[i] });
     policyHousingEnergy.push({ x: i, y: p1.housingEnergy[i] });
@@ -151,6 +162,8 @@ export const GenerateReport = () => {
   }
   // #endregion
   
+  }
+
   return (
     <article className="generate-report">
       <div className="headerSettlement">
@@ -537,11 +550,10 @@ export const GenerateReport = () => {
             </div>
           )}
       </div>
-        {population > 0 ||
-          buildingsBaselineResponse ||
-          newPopulation ||
-          landUseChangeResponse ||
-          p1 ||
+        {!buildingsBaselineResponse ||
+          !newPopulation ||
+          !landUseChangeResponse ||
+          !p1 ||
           Object.keys(newPopulation).length == 0 ||
           Object.keys(landUseChangeResponse).length == 0 ||
           Object.keys(p1).length == 0 ||

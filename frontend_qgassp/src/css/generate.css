@@ -2,6 +2,7 @@
     padding: 0 20px;
     border: 1px solid #000;
     overflow: scroll;
+    min-height: 100vh;
 }
 
 .table-results td, .table-results th{
