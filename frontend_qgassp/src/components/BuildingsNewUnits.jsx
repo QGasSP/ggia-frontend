@@ -26,10 +26,12 @@ export const BuildingsNewUnits = ({
   population,
   year,
   country,
+  baseline
 }) => {
   country = country ? country : localStorage.getItem("country");
   year = year ? year : parseInt(localStorage.getItem("year"));
   population = population ? population : parseInt(localStorage.getItem("population"));
+  baseline = baseline ? baseline : JSON.parse(localStorage.buildingsBaselineResponse); 
   // resiedntial
   // apartment
   // #region
@@ -724,17 +726,12 @@ export const BuildingsNewUnits = ({
   
   const navigate = useNavigate();
   const [errorBuildNewUnits, setErrorBuildNewUnits] = useState("");
-  const [newConstructionResponse, setNewConstructionResponse] = useState(() => {
+  const [newConstructionRequest, setNewConstructionRequest] = useState(() => {
     const savedNew = localStorage.getItem("newConstructionResponse");
     const initialValue = JSON.parse(savedNew);
     return initialValue || {};
   });
   const [moveToPolicies, setMoveToPolicies] = useState(false);
-
-  const setBuildingsNewUnitsResponse = (response) => {
-    setNewConstructionResponse(response.data);
-  };
-
   const optionsNewStart = [];
   const optionsNew = [];
   for (let i = year; i < 2051; i++) {
@@ -900,44 +897,22 @@ export const BuildingsNewUnits = ({
           }
       }
     };
-    const rawData = {
-      country,
-      year: parseInt(year),
-      population: parseInt(population),
+    const settlements = {
       construction,
       densification
     }
-    localStorage.setItem(
-      "NewConstructionRequest",
-      JSON.stringify(rawData)
-    );
-    const headers = {
-      "Access-Control-Allow-Origin": "*",
-      "Content-type": "application/json",
-    };
-    axios
-    .post(
-      urlPrefix + "/api/v1/calculate/buildings/settlements",
-      rawData,
-      headers
-    )
-    .then((response) => { 
-      setBuildingsNewUnitsResponse(response.data);
-      navigate("../buildingsPolicies", { replace: true });
-    })    
-    .catch((error) => {
-      setErrorBuildNewUnits({ errorMessage: error.message });
-      // eslint-disable-next-line no-console
-      console.error("There was an error!", errorBuildNewUnits);
-    });
+    setNewConstructionRequest(settlements);
+    navigate("../buildingsPolicies", { replace: true });
     setMoveToPolicies(true);
   };
+
   useEffect(() => {
     localStorage.setItem(
-      "newConstructionResponse",
-      JSON.stringify(newConstructionResponse)
+      "newConstructionRequest",
+      JSON.stringify(newConstructionRequest)
     );
-  }, [newConstructionResponse]);
+  }, [newConstructionRequest]);
+
   if (moveToPolicies === false) {
     return (
       <section>
@@ -2582,10 +2557,11 @@ export const BuildingsNewUnits = ({
   } else {
     return (
       <BuildingsPolicies
-        newConstructionResponse={newConstructionResponse}
+        newConstructionRequest={newConstructionRequest}
         country={country}
         year={year}
         population={population}
+        baseline={baseline}
       />
     );
   }
@@ -2595,5 +2571,6 @@ BuildingsNewUnits.propTypes = {
   year: PropTypes.number.isRequired,
   population: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
-  newConstruction: PropTypes.object.isRequired
+  newConstruction: PropTypes.object.isRequired,
+  baseline: PropTypes.object.isRequired
 };
