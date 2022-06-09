@@ -9,6 +9,7 @@ import {
   useStorageFloat,
   useStorageInt,
   useStorageString,
+  useLocalStorageBoolean
 } from "../reducers/useStorage";
 import Tooltip from "@mui/material/Tooltip";
 import Alert from "@mui/material/Alert";
@@ -39,17 +40,14 @@ export const ConsumptionHseEnergy = () => {
     0
   );
 
-  const [effGain, setEffGain] = useStorageBool("effGain", false);
+  const [effGain, setEffGain] = useLocalStorageBoolean("effGain", "false");
   const handleEffGain = (e) => {
     e.target.checked;
     setEffGain(!effGain);
   };
   const [effScaler, setEffScaler] = useStorageInt("effScaler", 0);
 
-  const [localElectricity, setLocalElectricity] = useStorageBool(
-    "localElectricity",
-    false
-  );
+  const [localElectricity, setLocalElectricity] = useLocalStorageBoolean("localElectricity", "false" );
   const handleLocalElectricity = (e) => {
     e.target.checked;
     setLocalElectricity(!localElectricity);
@@ -60,7 +58,7 @@ export const ConsumptionHseEnergy = () => {
   );
   const [elScaler, setElectricityScaler] = useStorageInt("elScaler", 0);
 
-  const [sHeating, setHeatingShare] = useStorageBool("sHeating", false);
+  const [sHeating, setHeatingShare] = useLocalStorageBoolean("sHeating", "false");
   const handleHeatingShare = (e) => {
     e.target.checked;
     setHeatingShare(!sHeating);

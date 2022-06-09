@@ -310,9 +310,9 @@ export const BuildingBaseline = () => {
                   </Tooltip>
                   <div className="div_transport">
                     <label htmlFor="detached" className="settle_label">
-                      Total
+                      <b>Total</b>
                     </label>
-                    <label className="bb-lbl">{residentialTotal}</label>
+                    <label className="bb-lbl"><b>{residentialTotal}</b></label>
                   </div>
                 </div>
 
@@ -481,9 +481,9 @@ export const BuildingBaseline = () => {
                   </div>
                   <div className="div_transport">
                     <label htmlFor="offices" className="settle_label">
-                      Total
+                      <b>Total</b>
                     </label>
-                    <label className="bb-lbl">{commTotal}</label>
+                    <label className="bb-lbl"><b>{commTotal}</b></label>
                   </div>
                 </div>
 

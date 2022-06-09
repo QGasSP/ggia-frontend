@@ -6,15 +6,15 @@ import "../css/landusechange.css";
 import axios from "axios";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Container } from "@mui/material";
 import urlPrefix from "../Config";
 import Tooltip from "@mui/material/Tooltip";
 import Alert from "@mui/material/Alert";
-import { Container } from "@mui/material";
+
 import {
   useStorageFloat,
   useStorageInt,
-  useStorageBool
+  useLocalStorageBoolean
 } from "../reducers/useStorage";
 
 /**
@@ -1368,64 +1368,42 @@ export const LandUseChangeTableForm = () => {
   }, [landUseChangeResponse]);
 
 
-  const [lucToForest, setLucToForest] = useStorageBool("lucToForest", false);
+  const [lucToForest, setLucToForest] = useLocalStorageBoolean("lucToForest", "false");
   const handleLucToForest = (e) => {
-       if (e.target.checked) {
-        localStorage.setItem('checkedLucToForest','true');
-    } else {
-        localStorage.setItem('checkedLucToForest','false');
-    }
+    
+      e.target.checked;
+      // eslint-disable-next-line no-console
+      console.log(lucToForest, 'luc tto forest')
       setLucToForest(!lucToForest);
   };
 
-  const [lucToCrop, setLucToCrop] = useStorageBool("lucToCrop", false);
+  const [lucToCrop, setLucToCrop] = useLocalStorageBoolean("lucToCrop", "false");
   const handleLucToCrop = (e) => {
-      if (e.target.checked) {
-        localStorage.setItem('checkedLucToCrop','true');
-    } else {
-        localStorage.setItem('checkedLucToCrop','false');
-    }
+      e.target.checked;
       setLucToCrop(!lucToCrop);
-        // eslint-disable-next-line no-console
   };
 
-  const [lucToGrass, setLucToGrass] = useStorageBool("lucToGrass", false);
+  const [lucToGrass, setLucToGrass] = useLocalStorageBoolean("lucToGrass", "false");
   const handleLucToGrass = (e) => {
-    if (e.target.checked) {
-        localStorage.setItem('checkedLucToGrass','true');
-    } else {
-        localStorage.setItem('checkedLucToGrass','false');
-    }
+    e.target.checked;
     setLucToGrass(!lucToGrass);
   };
 
-  const [lucToWet, setLucToWet] = useStorageBool("lucToWet", false);
+  const [lucToWet, setLucToWet] = useLocalStorageBoolean("lucToWet", "false");
   const handleLucToWet = (e) => {
-    if (e.target.checked) {
-        localStorage.setItem('checkedLucToWet','true');
-    } else {
-        localStorage.setItem('checkedLucToWet','false');
-    }
+    e.target.checked
     setLucToWet(!lucToWet)
   };
 
-  const [lucToSettlements, setLucToSettlements] = useStorageBool("lucToSettlements",false);
+  const [lucToSettlements, setLucToSettlements] = useLocalStorageBoolean("lucToSettlements", "false");
   const handleLucToSettlements = (e) => {
-    if (e.target.checked) {
-        localStorage.setItem('checkedLucToSettlements','true');
-    } else {
-        localStorage.setItem('checkedLucToSettlements','false');
-    }
+    e.target.checked;
     setLucToSettlements(!lucToSettlements);
   };
 
-  const [lucToOther, setLucToOther] = useStorageBool("lucToOther",false);
+  const [lucToOther, setLucToOther] = useLocalStorageBoolean("lucToOther", "false");
   const handleLucToOther = (e) => {
-    if (e.target.checked) {
-        localStorage.setItem('checkedLucToOther','true');
-    } else {
-        localStorage.setItem('checkedLucToOther','false');
-    }
+    e.target.checked;
     setLucToOther(!lucToOther);
   };
 
@@ -1476,13 +1454,14 @@ export const LandUseChangeTableForm = () => {
                       type="checkbox"
                       id="luc_tf"
                       onChange={handleLucToForest}
-                      checked={localStorage.getItem('checkedLucToForest') === 'true'}
+                      checked={lucToForest}
                     />
                     <label htmlFor="local_electricity">
                       Land-Use Change to Forest Land
                     </label>
                   </div>
-                  {localStorage.getItem('checkedLucToForest') === 'true' && (
+                  {lucToForest
+                   && (
                     <>
                     <table className="toForest tbl">
                       <thead>
@@ -1805,14 +1784,14 @@ export const LandUseChangeTableForm = () => {
                           type="checkbox"
                           id="luc_tc"
                           onChange={handleLucToCrop}
-                          checked={localStorage.getItem('checkedLucToCrop') === 'true'}
+                          checked={lucToCrop}
                       />
                     <label htmlFor="local_electricity">
                     Land-Use Change to Crop Land
                     </label>
-          
+
                   </div>
-                    {localStorage.getItem('checkedLucToCrop') === 'true'
+                    {lucToCrop
                      && (
                       <>
                     <table className="toCrop tbl">
@@ -2134,13 +2113,14 @@ export const LandUseChangeTableForm = () => {
                         type="checkbox"
                         id="luc_"
                         onChange={handleLucToGrass}
-                        checked={localStorage.getItem('checkedLucToGrass') === 'true'}
+                        checked={lucToGrass}
                         />
                       <label htmlFor="local_electricity">
                         Land-Use Change to Grassland
                       </label>
                     </div>
-                    {localStorage.getItem('checkedLucToGrass') === 'true' && (
+                    {lucToGrass
+                      && (
                       <>
                     <table className="toGrass tbl">
                       <thead>
@@ -2458,13 +2438,14 @@ export const LandUseChangeTableForm = () => {
                           type="checkbox"
                           id="luc_"
                           onChange={handleLucToWet}
-                          checked={localStorage.getItem('checkedLucToWet') === 'true'}
+                          checked={lucToWet}
                       />
                       <label htmlFor="local_electricity">
                         Land-Use Change to Wetland
                       </label>
                     </div>
-                    {localStorage.getItem('checkedLucToWet') === 'true' && (
+                    {lucToWet
+                      && (
                       <>
                     <table className="toWet tbl">
                       <thead>
@@ -2795,13 +2776,14 @@ export const LandUseChangeTableForm = () => {
                         type="checkbox"
                         id="luc_"
                         onChange={handleLucToSettlements}
-                        checked={localStorage.getItem('checkedLucToSettlements') === 'true'}
+                        checked={lucToSettlements}
                       />
                       <label htmlFor="local_electricity">
                         Land-Use Change to Settlements
                       </label>
                     </div>
-                  {localStorage.getItem('checkedLucToSettlements') === 'true' && (
+                  {lucToSettlements
+                   && (
                       <>
                     <table className="toSettlements tbl">
                       <thead>
@@ -3126,13 +3108,14 @@ export const LandUseChangeTableForm = () => {
                             type="checkbox"
                             id="luc_"
                             onChange={handleLucToOther}
-                            checked={localStorage.getItem('checkedLucToOther') === 'true'}
+                            checked={lucToOther}
                       />
                       <label htmlFor="local_electricity">
                         Land-Use Change to Other Land
                       </label>
                     </div>
-                    {localStorage.getItem('checkedLucToOther') === 'true' && (
+                    {lucToOther
+                     && (
                       <>
                         <table className="toOther tbl">
                           <thead>
