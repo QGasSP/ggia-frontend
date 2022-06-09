@@ -52,3 +52,21 @@ export const useStorageBool = (key, defaultValue) => {
 
   return [value, setValue];
 };
+
+
+export const useLocalStorageBoolean = (key, defaultValue = false) => {
+    const [value, setValue] = useState(() => {
+        const saved = localStorage.getItem(key);
+        if (saved !== false) {
+            return JSON.parse(saved);
+        }
+        return defaultValue;
+    });
+
+    useEffect(() => {
+        const rawValue = JSON.stringify(value);
+        localStorage.setItem(key, rawValue);
+    }, [value]);
+
+    return [value, setValue]
+};

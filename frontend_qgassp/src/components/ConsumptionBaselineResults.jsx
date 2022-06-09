@@ -18,6 +18,7 @@ import { hseHoldEmissions } from "../reducers/Consumption";
 import axios from "axios";
 import { Button } from "./Button";
 import Alert from "@mui/material/Alert";
+import { Container } from "@mui/material";
 import { useStorageFloat } from "../reducers/useStorage";
 import { useNavigate } from "react-router-dom";
 
@@ -180,7 +181,7 @@ export const ConsumptionBaselineResults = () => {
   }
 
   return (
-    <>
+    <Container maxWidth="xl">
       {consumptionBlStatus !== "success" && <div>{errorBlConsumption}</div>}
       <br />
       <Divider textAlign="left" flexItem>
@@ -202,11 +203,11 @@ export const ConsumptionBaselineResults = () => {
           />
         </div>
 
-        <XYPlot width={1000} height={500} stackBy="y" xType="ordinal">
+        <XYPlot width={1100} height={550} margin={{left: 100}} stackBy="y" xType="ordinal">
           <HorizontalGridLines />
           <VerticalGridLines />
           <VerticalBarSeries className="StackedBarchart" />
-          <XAxis title="Year" />
+          <XAxis title="Year"/>
           <YAxis title="Emissions/ kG C02 eq" />
           <BarSeries color="#3d58a3" data={dataBlHousingEnergy} opacity={0.6} />
           <BarSeries color="#ef7d00" data={dataBlHousingOther} opacity={0.6} />
@@ -283,6 +284,6 @@ export const ConsumptionBaselineResults = () => {
           primary
         />
       </div>
-    </>
+    </Container>
   );
 };

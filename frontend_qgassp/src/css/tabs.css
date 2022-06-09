@@ -51,7 +51,7 @@ body {
   display: block;
   position: absolute;
   top: -4px;
-  left: 40%;
+  left: 50%;
   transform: translateX(-50%);
   width: calc(100% + 2px);
   height: 0.2rem;

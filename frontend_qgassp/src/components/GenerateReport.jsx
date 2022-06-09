@@ -5,6 +5,7 @@ import ReactToPrint, {
 } from "react-to-print";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
+import { Container } from "@mui/material";
 import { Button } from "./Button";
 import '../css/generate.css';
 import {
@@ -165,6 +166,7 @@ export const GenerateReport = () => {
   }
 
   return (
+    <Container maxWidth="xl">
     <article className="generate-report">
       <div className="headerSettlement">
         <Divider textAlign="left" flexItem>
@@ -565,5 +567,6 @@ export const GenerateReport = () => {
             </div>
       )}
     </article>
+    </Container>
   );
 };
