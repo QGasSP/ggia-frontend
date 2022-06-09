@@ -9,6 +9,7 @@ import {
   VerticalGridLines,
   VerticalBarSeries,
 } from "react-vis";
+import { Container } from "@mui/material";
 import PropTypes from "prop-types";
 import { LineLegendLandUse } from "./LineLegendLandUse";
 import Divider from "@mui/material/Divider";
@@ -213,6 +214,7 @@ export const LUCBarChart = ({ landUseChangeResponse, year }) => {
   const navigate = useNavigate();
 
   return (
+    <Container maxWidth="xl">
     <section>
       <div className="luc_alert_container">
         <Divider textAlign="left" flexItem>
@@ -432,6 +434,7 @@ export const LUCBarChart = ({ landUseChangeResponse, year }) => {
         </div>
       </div>
     </section>
+    </Container>
   );
 };
 
