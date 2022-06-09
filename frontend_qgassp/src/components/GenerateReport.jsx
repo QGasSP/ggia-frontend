@@ -561,7 +561,7 @@ export const GenerateReport = () => {
           Object.keys(p1TotalAreaEmissions).length == 0 ||
           Object.keys(buildingsBaselineResponse).length == 0 || (
             <div>
-              There is no enough data to create report! Please, consider going through all modules.
+              There is not enough data to create report! Please, consider going through all modules.
             </div>
       )}
     </article>
