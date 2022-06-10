@@ -36,16 +36,16 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
   const [
     firstResidentSelectorResidentialUnit,
     setFirstResidentSelectorResidentialUnit,
-  ] = useStorageString("firstResidentSelectorResidentialUnit", "");
+  ] = useStorageString("firstResidentSelectorResidentialUnit", "Apartment");
   const [firstResidentSelectorUnits, setFirstResidentSelectorUnits] = useStorageInt("firstResidentSelectorUnits", 0);
   const [
     firstResidentSelectorIndicativeBefore,
     setFirstResidentSelectorIndicativeBefore,
-  ] = useStorageString("firstResidentSelectorIndicativeBefore", "");
+  ] = useStorageString("firstResidentSelectorIndicativeBefore", "A");
   const [
     firstResidentSelectorIndicativeAfter,
     setFirstResidentSelectorIndicativeAfter,
-  ] = useStorageString("firstResidentSelectorIndicativeAfter", "");
+  ] = useStorageString("firstResidentSelectorIndicativeAfter", "A");
   const [firstResidentSelectorStartYear, setFirstResidentSelectorStartYear] =
     useStorageInt("firstResidentSelectorStartYear", year);
   const [firstResidentSelectorEndYear, setFirstResidentSelectorEndYear] =
@@ -59,17 +59,17 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
   const [
     secondResidentSelectorResidentialUnit,
     setSecondResidentSelectorResidentialUnit,
-  ] = useStorageString("secondResidentSelectorResidentialUnit", "");
+  ] = useStorageString("secondResidentSelectorResidentialUnit", "Apartment");
   const [secondResidentSelectorUnits, setSecondResidentSelectorUnits] =
     useStorageInt("secondResidentSelectorUnits", 0);;
   const [
     secondResidentSelectorIndicativeBefore,
     setSecondResidentSelectorIndicativeBefore,
-  ] = useStorageString("secondResidentSelectorIndicativeBefore", "");
+  ] = useStorageString("secondResidentSelectorIndicativeBefore", "A");
   const [
     secondResidentSelectorIndicativeAfter,
     setSecondResidentSelectorIndicativeAfter,
-  ] = useStorageString("secondResidentSelectorIndicativeAfter", "");
+  ] = useStorageString("secondResidentSelectorIndicativeAfter", "A");
   const [secondResidentSelectorStartYear, setSecondResidentSelectorStartYear] =
     useStorageInt("secondResidentSelectorIndicativeAfter", year);
   const [secondResidentSelectorEndYear, setSecondResidentSelectorEndYear] =
@@ -83,16 +83,16 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
   const [
     thirdResidentSelectorResidentialUnit,
     setThirdResidentSelectorResidentialUnit,
-  ] = useStorageString("thirdResidentSelectorResidentialUnit", "");
+  ] = useStorageString("thirdResidentSelectorResidentialUnit", "Apartment");
   const [thirdResidentSelectorUnits, setThirdResidentSelectorUnits] = useStorageInt("thirdResidentSelectorUnits", 0);
   const [
     thirdResidentSelectorIndicativeBefore,
     setThirdResidentSelectorIndicativeBefore,
-  ] = useStorageString("thirdResidentSelectorIndicativeBefore", "");
+  ] = useStorageString("thirdResidentSelectorIndicativeBefore", "A");
   const [
     thirdResidentSelectorIndicativeAfter,
     setThirdResidentSelectorIndicativeAfter,
-  ] = useStorageString("thirdResidentSelectorIndicativeAfter", "");
+  ] = useStorageString("thirdResidentSelectorIndicativeAfter", "A");
   const [thirdResidentSelectorStartYear, setThirdResidentSelectorStartYear] =
     useStorageInt("thirdResidentSelectorStartYear", year);
   const [thirdResidentSelectorEndYear, setThirdResidentSelectorEndYear] =
@@ -106,17 +106,17 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
   const [
     fourthResidentSelectorResidentialUnit,
     setFourthResidentSelectorResidentialUnit,
-  ] = useStorageString("fourthResidentSelectorResidentialUnit", "");
+  ] = useStorageString("fourthResidentSelectorResidentialUnit", "Apartment");
   const [fourthResidentSelectorUnits, setFourthResidentSelectorUnits] =
     useStorageInt("fourthResidentSelectorUnits", 0);;
   const [
     fourthResidentSelectorIndicativeBefore,
     setFourthResidentSelectorIndicativeBefore,
-  ] = useStorageString("fourthResidentSelectorIndicativeBefore", "");
+  ] = useStorageString("fourthResidentSelectorIndicativeBefore", "A");
   const [
     fourthResidentSelectorIndicativeAfter,
     setFourthResidentSelectorIndicativeAfter,
-  ] = useStorageString("fourthResidentSelectorIndicativeAfter", "");
+  ] = useStorageString("fourthResidentSelectorIndicativeAfter", "A");
   const [fourthResidentSelectorStartYear, setFourthResidentSelectorStartYear] =
     useStorageInt("fourthResidentSelectorStartYear", year);
   const [fourthResidentSelectorEndYear, setFourthResidentSelectorEndYear] =
@@ -130,16 +130,16 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
   const [
     fifthResidentSelectorResidentialUnit,
     setFifthResidentSelectorResidentialUnit,
-  ] = useStorageString("fifthResidentSelectorResidentialUnit", "");
+  ] = useStorageString("fifthResidentSelectorResidentialUnit", "Apartment");
   const [fifthResidentSelectorUnits, setFifthResidentSelectorUnits] = useStorageInt("fifthResidentSelectorUnits", 0);
   const [
     fifthResidentSelectorIndicativeBefore,
     setFifthResidentSelectorIndicativeBefore,
-  ] = useStorageString("fifthResidentSelectorIndicativeBefore", "");
+  ] = useStorageString("fifthResidentSelectorIndicativeBefore", "A");
   const [
     fifthResidentSelectorIndicativeAfter,
     setFifthResidentSelectorIndicativeAfter,
-  ] = useStorageString("fifthResidentSelectorIndicativeAfter", "");
+  ] = useStorageString("fifthResidentSelectorIndicativeAfter", "A");
   const [fifthResidentSelectorStartYear, setFifthResidentSelectorStartYear] =
     useStorageInt("fifthResidentSelectorStartYear", year);
   const [fifthResidentSelectorEndYear, setFifthResidentSelectorEndYear] =
@@ -153,16 +153,16 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
   const [
     sixthResidentSelectorResidentialUnit,
     setSixthResidentSelectorResidentialUnit,
-  ] = useStorageString("sixthResidentSelectorResidentialUnit", "");
+  ] = useStorageString("sixthResidentSelectorResidentialUnit", "Apartment");
   const [sixthResidentSelectorUnits, setSixthResidentSelectorUnits] = useStorageInt("sixthResidentSelectorUnits", 0);
   const [
     sixthResidentSelectorIndicativeBefore,
     setSixthResidentSelectorIndicativeBefore,
-  ] = useStorageString("sixthResidentSelectorIndicativeBefore", "");
+  ] = useStorageString("sixthResidentSelectorIndicativeBefore", "A");
   const [
     sixthResidentSelectorIndicativeAfter,
     setSixthResidentSelectorIndicativeAfter,
-  ] = useStorageString("sixthResidentSelectorIndicativeAfter", "");
+  ] = useStorageString("sixthResidentSelectorIndicativeAfter", "A");
   const [sixthResidentSelectorStartYear, setSixthResidentSelectorStartYear] =
     useStorageInt("sixthResidentSelectorStartYear", year);
   const [sixthResidentSelectorEndYear, setSixthResidentSelectorEndYear] =
@@ -370,7 +370,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
   const [
     firstCommercialSelectorBuildingType,
     setFirstCommercialSelectorBuildingType,
-  ] = useStorageString("firstCommercialSelectorBuildingType", "");
+  ] = useStorageString("firstCommercialSelectorBuildingType", "Retail");
   const [firstCommercialSelectorArea, setFirstCommercialSelectorArea] =
     useStorageInt("firstCommercialSelectorArea", 0);;
   const [
@@ -392,7 +392,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
   const [
     secondCommercialSelectorBuildingType,
     setSecondCommercialSelectorBuildingType,
-  ] = useStorageString("secondCommercialSelectorBuildingType", "");
+  ] = useStorageString("secondCommercialSelectorBuildingType", "Retail");
   const [secondCommercialSelectorArea, setSecondCommercialSelectorArea] =
     useStorageInt("secondCommercialSelectorBuildingType", 0);;
   const [
@@ -414,7 +414,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
   const [
     thirdCommercialSelectorBuildingType,
     setThirdCommercialSelectorBuildingType,
-  ] = useStorageString("thirdCommercialSelectorBuildingType", "");
+  ] = useStorageString("thirdCommercialSelectorBuildingType", "Retail");
   const [thirdCommercialSelectorArea, setThirdCommercialSelectorArea] =
     useStorageInt("thirdCommercialSelectorArea", 0);;
   const [
@@ -436,7 +436,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
   const [
     fourthCommercialSelectorBuildingType,
     setFourthCommercialSelectorBuildingType,
-  ] = useStorageString("fourthCommercialSelectorBuildingType", "");
+  ] = useStorageString("fourthCommercialSelectorBuildingType", "Retail");
   const [fourthCommercialSelectorArea, setFourthCommercialSelectorArea] =
     useStorageInt("fourthCommercialSelectorArea", 0);;
   const [
@@ -458,7 +458,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
   const [
     fifthCommercialSelectorBuildingType,
     setFifthCommercialSelectorBuildingType,
-  ] = useStorageString("fifthCommercialSelectorBuildingType", "");
+  ] = useStorageString("fifthCommercialSelectorBuildingType", "Retail");
   const [fifthCommercialSelectorArea, setFifthCommercialSelectorArea] =
     useStorageInt("fifthCommercialSelectorArea", 0);;
   const [
@@ -480,7 +480,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
   const [
     sixthCommercialSelectorBuildingType,
     setSixthCommercialSelectorBuildingType,
-  ] = useStorageString("sixthCommercialSelectorBuildingType", "");
+  ] = useStorageString("sixthCommercialSelectorBuildingType", "Retail");
   const [sixthCommercialSelectorArea, setSixthCommercialSelectorArea] =
     useStorageInt("sixthCommercialSelectorArea", 0);;
   const [
@@ -669,9 +669,9 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
   // firstSelector
   // #region
   const [firstSelectorBuildingTypeFrom, setFirstSelectorBuildingTypeFrom] =
-    useStorageString("firstSelectorBuildingTypeFrom", "");
+    useStorageString("firstSelectorBuildingTypeFrom", "Apartment");
   const [firstSelectorBuildingTypeTo, setFirstSelectorBuildingTypeTo] =
-    useStorageString("firstSelectorBuildingTypeTo", "");
+    useStorageString("firstSelectorBuildingTypeTo", "Apartment");
   const [firstSelectorArea, setFirstSelectorArea] = useStorageInt("firstSelectorArea", 0);;
   const [firstSelectorStartYear, setFirstSelectorStartYear] = useStorageInt("firstSelectorStartYear", year);
   const [firstSelectorEndYear, setFirstSelectorEndYear] = useStorageInt("firstSelectorEndYear", year);
@@ -680,9 +680,9 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
   // secondSelector
   // #region
   const [secondSelectorBuildingTypeFrom, setSecondSelectorBuildingTypeFrom] =
-    useStorageString("secondSelectorBuildingTypeFrom", "");
+    useStorageString("secondSelectorBuildingTypeFrom", "Apartment");
   const [secondSelectorBuildingTypeTo, setSecondSelectorBuildingTypeTo] =
-    useStorageString("secondSelectorBuildingTypeTo", "");
+    useStorageString("secondSelectorBuildingTypeTo", "Apartment");
   const [secondSelectorArea, setSecondSelectorArea] = useStorageInt("secondSelectorArea", 0);;
   const [secondSelectorStartYear, setSecondSelectorStartYear] = useStorageInt("secondSelectorStartYear", year);
   const [secondSelectorEndYear, setSecondSelectorEndYear] = useStorageInt("secondSelectorEndYear", year);
@@ -691,9 +691,9 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
   // thirdSelector
   // #region
   const [thirdSelectorBuildingTypeFrom, setThirdSelectorBuildingTypeFrom] =
-    useStorageString("thirdSelectorBuildingTypeFrom", "");
+    useStorageString("thirdSelectorBuildingTypeFrom", "Apartment");
   const [thirdSelectorBuildingTypeTo, setThirdSelectorBuildingTypeTo] =
-    useStorageString("thirdSelectorBuildingTypeTo", "");
+    useStorageString("thirdSelectorBuildingTypeTo", "Apartment");
   const [thirdSelectorArea, setThirdSelectorArea] = useStorageInt("thirdSelectorArea", 0);;
   const [thirdSelectorStartYear, setThirdSelectorStartYear] = useStorageInt("thirdSelectorStartYear", year);
   const [thirdSelectorEndYear, setThirdSelectorEndYear] = useStorageInt("thirdSelectorEndYear", year);
@@ -702,9 +702,9 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
   // fourthSelector
   // #region
   const [fourthSelectorBuildingTypeFrom, setFourthSelectorBuildingTypeFrom] =
-    useStorageString("fourthSelectorBuildingTypeFrom", "");
+    useStorageString("fourthSelectorBuildingTypeFrom", "Apartment");
   const [fourthSelectorBuildingTypeTo, setFourthSelectorBuildingTypeTo] =
-    useStorageString("fourthSelectorBuildingTypeTo", "");
+    useStorageString("fourthSelectorBuildingTypeTo", "Apartment");
   const [fourthSelectorArea, setFourthSelectorArea] = useStorageInt("fourthSelectorArea", 0);;
   const [fourthSelectorStartYear, setFourthSelectorStartYear] = useStorageInt("fourthSelectorStartYear", year);
   const [fourthSelectorEndYear, setFourthSelectorEndYear] = useStorageInt("fourthSelectorEndYear", year);
@@ -713,9 +713,9 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
   // fifthSelector
   // #region
   const [fifthSelectorBuildingTypeFrom, setFifthSelectorBuildingTypeFrom] =
-    useStorageString("fifthSelectorBuildingTypeFrom", "");
+    useStorageString("fifthSelectorBuildingTypeFrom", "Apartment");
   const [fifthSelectorBuildingTypeTo, setFifthSelectorBuildingTypeTo] =
-    useStorageString("fifthSelectorBuildingTypeTo", "");
+    useStorageString("fifthSelectorBuildingTypeTo", "Apartment");
   const [fifthSelectorArea, setFifthSelectorArea] = useStorageInt("fifthSelectorArea", 0);;
   const [fifthSelectorStartYear, setFifthSelectorStartYear] = useStorageInt("fifthSelectorStartYear", year);
   const [fifthSelectorEndYear, setFifthSelectorEndYear] = useStorageInt("fifthSelectorEndYear", year);
@@ -724,9 +724,9 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
   // sixthSelector
   // #region
   const [sixthSelectorBuildingTypeFrom, setSixthSelectorBuildingTypeFrom] =
-    useStorageString("sixthSelectorBuildingTypeFrom", "");
+    useStorageString("sixthSelectorBuildingTypeFrom", "Apartment");
   const [sixthSelectorBuildingTypeTo, setSixthSelectorBuildingTypeTo] =
-    useStorageString("sixthSelectorBuildingTypeTo", "");
+    useStorageString("sixthSelectorBuildingTypeTo", "Apartment");
   const [sixthSelectorArea, setSixthSelectorArea] = useStorageInt("sixthSelectorArea", 0);;
   const [sixthSelectorStartYear, setSixthSelectorStartYear] = useStorageInt("sixthSelectorStartYear", year);
   const [sixthSelectorEndYear, setSixthSelectorEndYear] = useStorageInt("sixthSelectorEndYear", year);
@@ -1080,10 +1080,6 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
       "densification":newConstructionRequest.densification
     };
     setPolicyQuantificationRequest(rawData);
-    // localStorage.setItem(
-    //   "policyQuantificationRequest",
-    //   JSON.stringify(rawData)
-    // );
     const headers = {
       "Access-Control-Allow-Origin": "*",
       "Content-type": "application/json",
