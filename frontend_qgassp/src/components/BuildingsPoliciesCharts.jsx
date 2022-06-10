@@ -25,7 +25,6 @@ const BarSeries = VerticalBarSeries;
 export const BuildingsPoliciesCharts = ({policyQuantificationResponse, year }) => {
   policyQuantificationResponse = policyQuantificationResponse ? policyQuantificationResponse : JSON.parse(localStorage.policyQuantificationResponse);
   year = year ? year : localStorage.year;
-  // const navigate = useNavigate();
 
   // #region data distribution 
   const apartmentsData = [];
@@ -197,55 +196,55 @@ policyQuantificationResponse.policyTable.warehouses.peat);
         <tbody>
           <tr>
             <td>Apartment</td>
-            <td>{policyQuantificationResponse.settlementsTable.apartment.electricity}</td>
-            <td>{policyQuantificationResponse.settlementsTable.apartment.gas}</td>
-            <td>{policyQuantificationResponse.settlementsTable.apartment.oil}</td>
-            <td>{policyQuantificationResponse.settlementsTable.apartment.coal}</td>
-            <td>{policyQuantificationResponse.settlementsTable.apartment.peat}</td>
-            <td>{policyQuantificationResponse.settlementsTable.apartment.wood}</td>
-            <td>{policyQuantificationResponse.settlementsTable.apartment.renewable}</td>
-            <td>{policyQuantificationResponse.settlementsTable.apartment.heat}</td>
-            <td>{apartmentTotal}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.apartment.electricity)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.apartment.gas)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.apartment.oil)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.apartment.coal)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.apartment.peat)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.apartment.wood)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.apartment.renewable)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.apartment.heat)}</td>
+            <td>{Math.round(apartmentTotal)}</td>
           </tr>
           <tr>
             <td>Terraced</td>
-            <td>{policyQuantificationResponse.settlementsTable.terraced.electricity}</td>
-            <td>{policyQuantificationResponse.settlementsTable.terraced.gas}</td>
-            <td>{policyQuantificationResponse.settlementsTable.terraced.oil}</td>
-            <td>{policyQuantificationResponse.settlementsTable.terraced.coal}</td>
-            <td>{policyQuantificationResponse.settlementsTable.terraced.peat}</td>
-            <td>{policyQuantificationResponse.settlementsTable.terraced.wood}</td>
-            <td>{policyQuantificationResponse.settlementsTable.terraced.renewable}</td>
-            <td>{policyQuantificationResponse.settlementsTable.terraced.heat}</td>
-            <td>{terracedTotal}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.terraced.electricity)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.terraced.gas)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.terraced.oil)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.terraced.coal)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.terraced.peat)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.terraced.wood)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.terraced.renewable)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.terraced.heat)}</td>
+            <td>{Math.round(terracedTotal)}</td>
           </tr>
           <tr>
             <td>Semi-detached</td>
-            <td>{policyQuantificationResponse.settlementsTable.semiDetached.electricity}</td>
-            <td>{policyQuantificationResponse.settlementsTable.semiDetached.gas}</td>
-            <td>{policyQuantificationResponse.settlementsTable.semiDetached.oil}</td>
-            <td>{policyQuantificationResponse.settlementsTable.semiDetached.coal}</td>
-            <td>{policyQuantificationResponse.settlementsTable.semiDetached.peat}</td>
-            <td>{policyQuantificationResponse.settlementsTable.semiDetached.wood}</td>
-            <td>{policyQuantificationResponse.settlementsTable.semiDetached.renewable}</td>
-            <td>{policyQuantificationResponse.settlementsTable.semiDetached.heat}</td>
-            <td>{semiDetachedTotal}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.semiDetached.electricity)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.semiDetached.gas)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.semiDetached.oil)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.semiDetached.coal)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.semiDetached.peat)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.semiDetached.wood)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.semiDetached.renewable)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.semiDetached.heat)}</td>
+            <td>{Math.round(semiDetachedTotal)}</td>
           </tr>
           <tr>
             <td>Detached</td>
-            <td>{policyQuantificationResponse.settlementsTable.detached.electricity}</td>
-            <td>{policyQuantificationResponse.settlementsTable.detached.gas}</td>
-            <td>{policyQuantificationResponse.settlementsTable.detached.oil}</td>
-            <td>{policyQuantificationResponse.settlementsTable.detached.coal}</td>
-            <td>{policyQuantificationResponse.settlementsTable.detached.peat}</td>
-            <td>{policyQuantificationResponse.settlementsTable.detached.wood}</td>
-            <td>{policyQuantificationResponse.settlementsTable.detached.renewable}</td>
-            <td>{policyQuantificationResponse.settlementsTable.detached.heat}</td>
-            <td>{detachedTotal}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.detached.electricity)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.detached.gas)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.detached.oil)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.detached.coal)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.detached.peat)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.detached.wood)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.detached.renewable)}</td>
+            <td>{Math.round(policyQuantificationResponse.settlementsTable.detached.heat)}</td>
+            <td>{Math.round(detachedTotal)}</td>
           </tr>
           <tr>
             <td colSpan={9}>Residential buildings total</td>
-            <td>{detachedTotal + apartmentTotal + semiDetachedTotal + terracedTotal}</td>
+            <td>{Math.round(detachedTotal + apartmentTotal + semiDetachedTotal + terracedTotal)}</td>
           </tr>
         </tbody>
       </table>
@@ -279,79 +278,79 @@ policyQuantificationResponse.policyTable.warehouses.peat);
         <tbody>
           <tr>
             <td>Retail</td>
-            <td>{policyQuantificationResponse.policyTable.retail.electricity}</td>
-            <td>{policyQuantificationResponse.policyTable.retail.gas}</td>
-            <td>{policyQuantificationResponse.policyTable.retail.oil}</td>
-            <td>{policyQuantificationResponse.policyTable.retail.coal}</td>
-            <td>{policyQuantificationResponse.policyTable.retail.peat}</td>
-            <td>{policyQuantificationResponse.policyTable.retail.wood}</td>
-            <td>{policyQuantificationResponse.policyTable.retail.renewable}</td>
-            <td>{policyQuantificationResponse.policyTable.retail.heat}</td>
-            <td>{retailTotal}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.retail.electricity)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.retail.gas)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.retail.oil)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.retail.coal)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.retail.peat)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.retail.wood)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.retail.renewable)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.retail.heat)}</td>
+            <td>{Math.round(retailTotal)}</td>
           </tr>
           <tr>
             <td>Health</td>
-            <td>{policyQuantificationResponse.policyTable.health.electricity}</td>
-            <td>{policyQuantificationResponse.policyTable.health.gas}</td>
-            <td>{policyQuantificationResponse.policyTable.health.oil}</td>
-            <td>{policyQuantificationResponse.policyTable.health.coal}</td>
-            <td>{policyQuantificationResponse.policyTable.health.peat}</td>
-            <td>{policyQuantificationResponse.policyTable.health.wood}</td>
-            <td>{policyQuantificationResponse.policyTable.health.renewable}</td>
-            <td>{policyQuantificationResponse.policyTable.health.heat}</td>
-            <td>{healthTotal}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.health.electricity)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.health.gas)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.health.oil)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.health.coal)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.health.peat)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.health.wood)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.health.renewable)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.health.heat)}</td>
+            <td>{Math.round(healthTotal)}</td>
           </tr>
           <tr>
             <td>Hospitality</td>
-            <td>{policyQuantificationResponse.policyTable.hospitality.electricity}</td>
-            <td>{policyQuantificationResponse.policyTable.hospitality.gas}</td>
-            <td>{policyQuantificationResponse.policyTable.hospitality.oil}</td>
-            <td>{policyQuantificationResponse.policyTable.hospitality.coal}</td>
-            <td>{policyQuantificationResponse.policyTable.hospitality.peat}</td>
-            <td>{policyQuantificationResponse.policyTable.hospitality.wood}</td>
-            <td>{policyQuantificationResponse.policyTable.hospitality.renewable}</td>
-            <td>{policyQuantificationResponse.policyTable.hospitality.heat}</td>
-            <td>{hospitalityTotal}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.hospitality.electricity)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.hospitality.gas)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.hospitality.oil)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.hospitality.coal)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.hospitality.peat)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.hospitality.wood)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.hospitality.renewable)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.hospitality.heat)}</td>
+            <td>{Math.round(hospitalityTotal)}</td>
           </tr>
           <tr>
             <td>Offices</td>
-            <td>{policyQuantificationResponse.policyTable.offices.electricity}</td>
-            <td>{policyQuantificationResponse.policyTable.offices.gas}</td>
-            <td>{policyQuantificationResponse.policyTable.offices.oil}</td>
-            <td>{policyQuantificationResponse.policyTable.offices.coal}</td>
-            <td>{policyQuantificationResponse.policyTable.offices.peat}</td>
-            <td>{policyQuantificationResponse.policyTable.offices.wood}</td>
-            <td>{policyQuantificationResponse.policyTable.offices.renewable}</td>
-            <td>{policyQuantificationResponse.policyTable.offices.heat}</td>
-            <td>{officesTotal}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.offices.electricity)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.offices.gas)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.offices.oil)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.offices.coal)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.offices.peat)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.offices.wood)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.offices.renewable)}</td>
+            <td>{Math.round(policyQuantificationResponse.policyTable.offices.heat)}</td>
+            <td>{Math.round(officesTotal)}</td>
           </tr>
           <tr>
               <td>Industrial</td>
-              <td>{policyQuantificationResponse.policyTable.industrial.electricity}</td>
-              <td>{policyQuantificationResponse.policyTable.industrial.gas}</td>
-              <td>{policyQuantificationResponse.policyTable.industrial.oil}</td>
-              <td>{policyQuantificationResponse.policyTable.industrial.coal}</td>
-              <td>{policyQuantificationResponse.policyTable.industrial.peat}</td>
-              <td>{policyQuantificationResponse.policyTable.industrial.wood}</td>
-              <td>{policyQuantificationResponse.policyTable.industrial.renewable}</td>
-              <td>{policyQuantificationResponse.policyTable.industrial.heat}</td>
-              <td>{industrialTotal}</td>
+              <td>{Math.round(policyQuantificationResponse.policyTable.industrial.electricity)}</td>
+              <td>{Math.round(policyQuantificationResponse.policyTable.industrial.gas)}</td>
+              <td>{Math.round(policyQuantificationResponse.policyTable.industrial.oil)}</td>
+              <td>{Math.round(policyQuantificationResponse.policyTable.industrial.coal)}</td>
+              <td>{Math.round(policyQuantificationResponse.policyTable.industrial.peat)}</td>
+              <td>{Math.round(policyQuantificationResponse.policyTable.industrial.wood)}</td>
+              <td>{Math.round(policyQuantificationResponse.policyTable.industrial.renewable)}</td>
+              <td>{Math.round(policyQuantificationResponse.policyTable.industrial.heat)}</td>
+              <td>{Math.round(industrialTotal)}</td>
           </tr>
           <tr>
               <td>Warehouses</td>
-              <td>{policyQuantificationResponse.policyTable.warehouses.electricity}</td>
-              <td>{policyQuantificationResponse.policyTable.warehouses.gas}</td>
-              <td>{policyQuantificationResponse.policyTable.warehouses.oil}</td>
-              <td>{policyQuantificationResponse.policyTable.warehouses.coal}</td>
-              <td>{policyQuantificationResponse.policyTable.warehouses.peat}</td>
-              <td>{policyQuantificationResponse.policyTable.warehouses.wood}</td>
-              <td>{policyQuantificationResponse.policyTable.warehouses.renewable}</td>
-              <td>{policyQuantificationResponse.policyTable.warehouses.heat}</td>
-              <td>{warehousesTotal}</td>
+              <td>{Math.round(policyQuantificationResponse.policyTable.warehouses.electricity)}</td>
+              <td>{Math.round(policyQuantificationResponse.policyTable.warehouses.gas)}</td>
+              <td>{Math.round(policyQuantificationResponse.policyTable.warehouses.oil)}</td>
+              <td>{Math.round(policyQuantificationResponse.policyTable.warehouses.coal)}</td>
+              <td>{Math.round(policyQuantificationResponse.policyTable.warehouses.peat)}</td>
+              <td>{Math.round(policyQuantificationResponse.policyTable.warehouses.wood)}</td>
+              <td>{Math.round(policyQuantificationResponse.policyTable.warehouses.renewable)}</td>
+              <td>{Math.round(policyQuantificationResponse.policyTable.warehouses.heat)}</td>
+              <td>{Math.round(warehousesTotal)}</td>
           </tr>
           <tr>
             <td colSpan={9}>Commercial buildings total</td>
-            <td>{officesTotal + retailTotal + hospitalityTotal + healthTotal + warehousesTotal + industrialTotal}</td>
+            <td>{Math.round(officesTotal + retailTotal + hospitalityTotal + healthTotal + warehousesTotal + industrialTotal)}</td>
           </tr>
         </tbody>
       </table>
