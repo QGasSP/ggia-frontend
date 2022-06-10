@@ -1180,7 +1180,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="firstResidentSelectorResidentialUnit"
                         name="firstResidentSelectorResidentialUnit"
                         onChange={handleFirstResidentSelectorResidentialUnit}
-                        defaultValue="Select unit type"
+                        value={firstResidentSelectorResidentialUnit}
                         required
                       >
                         {optionsResidents.map((option) => (
@@ -1209,7 +1209,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="firstResidentSelectorIndicativeBefore"
                         name="firstResidentSelectorIndicativeBefore"
                         onChange={handleFirstResidentSelectorIndicativeBefore}
-                        defaultValue="Select indicator"
+                        value={firstResidentSelectorIndicativeBefore}
                         required
                       >
                         {optionsIndicators.map((option) => (
@@ -1225,7 +1225,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="firstResidentSelectorIndicativeAfter"
                         name="firstResidentSelectorIndicativeAfter"
                         onChange={handleFirstResidentSelectorIndicativeAfter}
-                        defaultValue="Select indicator"
+                        value={firstResidentSelectorIndicativeAfter}
                         required
                       >
                         {optionsIndicators.map((option) => (
@@ -1254,7 +1254,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="firstResidentSelectorStartYear"
                         name="firstResidentSelectorStartYear"
                         onChange={handleFirstResidentSelectorStartYear}
-                        defaultValue="Select indicator"
+                        value={firstSelectorStartYear}
                         required
                       >
                         {optionsYear.map((option) => (
@@ -1270,7 +1270,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="firstResidentSelectorEndYear"
                         name="firstResidentSelectorEndYear"
                         onChange={handleFirstResidentSelectorEndYear}
-                        defaultValue="Select indicator"
+                        value={firstSelectorEndYear}
                         required
                       >
                         {optionsYear.map((option) => (
@@ -1288,7 +1288,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="secondResidentSelectorResidentialUnit"
                         name="secondResidentSelectorResidentialUnit"
                         onChange={handleSecondResidentSelectorResidentialUnit}
-                        defaultValue="Select unit type"
+                        value={"Apartment"}
                         required
                       >
                         {optionsResidents.map((option) => (
@@ -1317,7 +1317,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="secondResidentSelectorIndicativeBefore"
                         name="secondResidentSelectorIndicativeBefore"
                         onChange={handleSecondResidentSelectorIndicativeBefore}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsIndicators.map((option) => (
@@ -1333,7 +1333,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="secondResidentSelectorIndicativeAfter"
                         name="secondResidentSelectorIndicativeAfter"
                         onChange={handleSecondResidentSelectorIndicativeAfter}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsIndicators.map((option) => (
@@ -1362,7 +1362,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="secondResidentSelectorStartYear"
                         name="secondResidentSelectorStartYear"
                         onChange={handleSecondResidentSelectorStartYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -1378,7 +1378,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="secondResidentSelectorEndYear"
                         name="secondResidentSelectorEndYear"
                         onChange={handleSecondResidentSelectorEndYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -1396,7 +1396,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="thirdResidentSelectorResidentialUnit"
                         name="thirdResidentSelectorResidentialUnit"
                         onChange={handleThirdResidentSelectorResidentialUnit}
-                        defaultValue="Select unit type"
+                        value={"Apartment"}
                         required
                       >
                         {optionsResidents.map((option) => (
@@ -1425,7 +1425,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="thirdResidentSelectorIndicativeBefore"
                         name="thirdResidentSelectorIndicativeBefore"
                         onChange={handleThirdResidentSelectorIndicativeBefore}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsIndicators.map((option) => (
@@ -1441,7 +1441,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="thirdResidentSelectorIndicativeAfter"
                         name="thirdResidentSelectorIndicativeAfter"
                         onChange={handleThirdResidentSelectorIndicativeAfter}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsIndicators.map((option) => (
@@ -1470,7 +1470,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="thirdResidentSelectorStartYear"
                         name="thirdResidentSelectorStartYear"
                         onChange={handleThirdResidentSelectorStartYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -1486,7 +1486,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="thirdResidentSelectorEndYear"
                         name="thirdResidentSelectorEndYear"
                         onChange={handleThirdResidentSelectorEndYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -1504,7 +1504,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="fourthResidentSelectorResidentialUnit"
                         name="fourthResidentSelectorResidentialUnit"
                         onChange={handleFourthResidentSelectorResidentialUnit}
-                        defaultValue="Select unit type"
+                        value={"Apartment"}
                         required
                       >
                         {optionsResidents.map((option) => (
@@ -1533,7 +1533,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="fourthResidentSelectorIndicativeBefore"
                         name="fourthResidentSelectorIndicativeBefore"
                         onChange={handleFourthResidentSelectorIndicativeBefore}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsIndicators.map((option) => (
@@ -1549,7 +1549,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="fourthResidentSelectorIndicativeAfter"
                         name="fourthResidentSelectorIndicativeAfter"
                         onChange={handleFourthResidentSelectorIndicativeAfter}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsIndicators.map((option) => (
@@ -1578,7 +1578,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="fourthResidentSelectorStartYear"
                         name="fourthResidentSelectorStartYear"
                         onChange={handleFourthResidentSelectorStartYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -1594,7 +1594,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="fourthResidentSelectorEndYear"
                         name="fourthResidentSelectorEndYear"
                         onChange={handleFourthResidentSelectorEndYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -1612,7 +1612,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="fifthResidentSelectorResidentialUnit"
                         name="fifthResidentSelectorResidentialUnit"
                         onChange={handleFifthResidentSelectorResidentialUnit}
-                        defaultValue="Select unit type"
+                        value={"Apartment"}
                         required
                       >
                         {optionsResidents.map((option) => (
@@ -1641,7 +1641,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="fifthResidentSelectorIndicativeBefore"
                         name="fifthResidentSelectorIndicativeBefore"
                         onChange={handleFifthResidentSelectorIndicativeBefore}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsIndicators.map((option) => (
@@ -1657,7 +1657,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="fifthResidentSelectorIndicativeAfter"
                         name="fifthResidentSelectorIndicativeAfter"
                         onChange={handleFifthResidentSelectorIndicativeAfter}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsIndicators.map((option) => (
@@ -1686,7 +1686,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="fifthResidentSelectorStartYear"
                         name="fifthResidentSelectorStartYear"
                         onChange={handleFifthResidentSelectorStartYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -1702,7 +1702,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="fifthResidentSelectorEndYear"
                         name="fifthResidentSelectorEndYear"
                         onChange={handleFifthResidentSelectorEndYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -1720,7 +1720,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="sixthResidentSelectorResidentialUnit"
                         name="sixthResidentSelectorResidentialUnit"
                         onChange={handleSixthResidentSelectorResidentialUnit}
-                        defaultValue="Select unit type"
+                        value={"Apartment"}
                         required
                       >
                         {optionsResidents.map((option) => (
@@ -1749,7 +1749,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="sixthResidentSelectorIndicativeBefore"
                         name="sixthResidentSelectorIndicativeBefore"
                         onChange={handleSixthResidentSelectorIndicativeBefore}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsIndicators.map((option) => (
@@ -1765,7 +1765,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="sixthResidentSelectorIndicativeAfter"
                         name="sixthResidentSelectorIndicativeAfter"
                         onChange={handleSixthResidentSelectorIndicativeAfter}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsIndicators.map((option) => (
@@ -1794,7 +1794,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="sixthResidentSelectorStartYear"
                         name="sixthResidentSelectorStartYear"
                         onChange={handleSixthResidentSelectorStartYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -1810,7 +1810,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="sixthResidentSelectorEndYear"
                         name="sixthResidentSelectorEndYear"
                         onChange={handleSixthResidentSelectorEndYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -1921,7 +1921,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="firstCommercialSelectorStartYear"
                         name="firstCommercialSelectorStartYear"
                         onChange={handleFirstCommercialSelectorStartYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -1937,7 +1937,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="firstCommercialSelectorEndYear"
                         name="firstCommercialSelectorEndYear"
                         onChange={handleFirstCommercialSelectorEndYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -2011,7 +2011,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="secondCommercialSelectorStartYear"
                         name="secondCommercialSelectorStartYear"
                         onChange={handleSecondCommercialSelectorStartYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -2027,7 +2027,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="secondCommercialSelectorEndYear"
                         name="secondCommercialSelectorEndYear"
                         onChange={handleSecondCommercialSelectorEndYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -2101,7 +2101,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="thirdCommercialSelectorStartYear"
                         name="thirdCommercialSelectorStartYear"
                         onChange={handleThirdCommercialSelectorStartYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -2117,7 +2117,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="thirdCommercialSelectorEndYear"
                         name="thirdCommercialSelectorEndYear"
                         onChange={handleThirdCommercialSelectorEndYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -2191,7 +2191,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="fourthCommercialSelectorStartYear"
                         name="fourthCommercialSelectorStartYear"
                         onChange={handleFourthCommercialSelectorStartYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -2207,7 +2207,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="fourthCommercialSelectorEndYear"
                         name="fourthCommercialSelectorEndYear"
                         onChange={handleFourthCommercialSelectorEndYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -2281,7 +2281,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="fifthCommercialSelectorStartYear"
                         name="fifthCommercialSelectorStartYear"
                         onChange={handleFifthCommercialSelectorStartYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -2297,7 +2297,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="fifthCommercialSelectorEndYear"
                         name="fifthCommercialSelectorEndYear"
                         onChange={handleFifthCommercialSelectorEndYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -2371,7 +2371,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="sixthCommercialSelectorStartYear"
                         name="sixthCommercialSelectorStartYear"
                         onChange={handleSixthCommercialSelectorStartYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -2387,7 +2387,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="sixthCommercialSelectorEndYear"
                         name="sixthCommercialSelectorEndYear"
                         onChange={handleSixthCommercialSelectorEndYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -2483,7 +2483,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="firstSelectorStartYear"
                         name="firstSelectorStartYear"
                         onChange={handleFirstSelectorStartYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -2499,7 +2499,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="firstSelectorEndYear"
                         name="firstSelectorEndYear"
                         onChange={handleFirstSelectorEndYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -2562,7 +2562,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="secondSelectorStartYear"
                         name="secondSelectorStartYear"
                         onChange={handleSecondSelectorStartYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -2578,7 +2578,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="secondSelectorEndYear"
                         name="secondSelectorEndYear"
                         onChange={handleSecondSelectorEndYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -2641,7 +2641,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="thirdSelectorStartYear"
                         name="thirdSelectorStartYear"
                         onChange={handleThirdSelectorStartYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -2657,7 +2657,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="thirdSelectorEndYear"
                         name="thirdSelectorEndYear"
                         onChange={handleThirdSelectorEndYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -2720,7 +2720,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="fourthSelectorStartYear"
                         name="fourthSelectorStartYear"
                         onChange={handleFourthSelectorStartYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -2736,7 +2736,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="fourthSelectorEndYear"
                         name="fourthSelectorEndYear"
                         onChange={handleFourthSelectorEndYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -2799,7 +2799,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="fifthSelectorStartYear"
                         name="fifthSelectorStartYear"
                         onChange={handleFifthSelectorStartYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -2815,7 +2815,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="fifthSelectorEndYear"
                         name="fifthSelectorEndYear"
                         onChange={handleFifthSelectorEndYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -2878,7 +2878,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="sixthSelectorStartYear"
                         name="sixthSelectorStartYear"
                         onChange={handleSixthSelectorStartYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
@@ -2894,7 +2894,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
                         id="sixthSelectorEndYear"
                         name="sixthSelectorEndYear"
                         onChange={handleSixthSelectorEndYear}
-                        defaultValue="Select indicator"
+                        value="A"
                         required
                       >
                         {optionsYear.map((option) => (
