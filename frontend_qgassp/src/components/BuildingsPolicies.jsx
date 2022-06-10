@@ -23,8 +23,9 @@ import {
  * @return {}
  */
 
-export const BuildingsPolicies = ({newConstructionResponse, country, year, population }) => {
-  newConstructionResponse = newConstructionResponse ? newConstructionResponse : JSON.parse(localStorage.newConstructionResponse);  
+export const BuildingsPolicies = ({newConstructionRequest, country, year, population, baseline }) => {
+  newConstructionRequest = newConstructionRequest ? newConstructionRequest : JSON.parse(localStorage.newConstructionRequest);
+  baseline = baseline ? baseline : JSON.parse(localStorage.buildingsBaselineResponse); 
   country = country ? country : localStorage.getItem("country");
   year = year ? year : parseInt(localStorage.getItem("year"));
   population = population ? population : parseInt(localStorage.getItem("population"));
@@ -1023,56 +1024,59 @@ export const BuildingsPolicies = ({newConstructionResponse, country, year, popul
             "endYear": sixthCommercialSelectorEndYear
           }
       },
-      "buildingChanges": {
-        "retrofit1": {
-            "fromType": firstSelectorBuildingTypeFrom,
-            "toType": firstSelectorBuildingTypeTo,
-            "totalFloorArea": firstSelectorArea,
-            "fromConversionsImplemented": firstSelectorStartYear,
-            "toConversionsImplemented": firstSelectorEndYear
-        },
-        "retrofit2": {
-          "fromType": secondSelectorBuildingTypeFrom,
-          "toType": secondSelectorBuildingTypeTo,
-          "totalFloorArea": secondSelectorArea,
-          "fromConversionsImplemented": secondSelectorStartYear,
-          "toConversionsImplemented": secondSelectorEndYear
-        },
-        "retrofit3": {
-          "fromType": thirdSelectorBuildingTypeFrom,
-          "toType": thirdSelectorBuildingTypeTo,
-          "totalFloorArea": thirdSelectorArea,
-          "fromConversionsImplemented": thirdSelectorStartYear,
-          "toConversionsImplemented": thirdSelectorEndYear
-        },
-        "retrofit4": {
-          "fromType": fourthSelectorBuildingTypeFrom,
-          "toType": fourthSelectorBuildingTypeTo,
-          "totalFloorArea": fourthSelectorArea,
-          "fromConversionsImplemented": fourthSelectorStartYear,
-          "toConversionsImplemented": fourthSelectorEndYear
-        },
-        "retrofit5": {
-          "fromType": fifthSelectorBuildingTypeFrom,
-          "toType": fifthSelectorBuildingTypeTo,
-          "totalFloorArea": fifthSelectorArea,
-          "fromConversionsImplemented": fifthSelectorStartYear,
-          "toConversionsImplemented": fifthSelectorEndYear
-        },
-        "retrofit6": {
-          "fromType": sixthSelectorBuildingTypeFrom,
-          "toType": sixthSelectorBuildingTypeTo,
-          "totalFloorArea": sixthSelectorArea,
-          "fromConversionsImplemented": sixthSelectorStartYear,
-          "toConversionsImplemented": sixthSelectorEndYear
-        }
-      }
+      // "buildingChanges": {
+      //   "retrofit1": {
+      //       "fromType": firstSelectorBuildingTypeFrom,
+      //       "toType": firstSelectorBuildingTypeTo,
+      //       "totalFloorArea": firstSelectorArea,
+      //       "fromConversionsImplemented": firstSelectorStartYear,
+      //       "toConversionsImplemented": firstSelectorEndYear
+      //   },
+      //   "retrofit2": {
+      //     "fromType": secondSelectorBuildingTypeFrom,
+      //     "toType": secondSelectorBuildingTypeTo,
+      //     "totalFloorArea": secondSelectorArea,
+      //     "fromConversionsImplemented": secondSelectorStartYear,
+      //     "toConversionsImplemented": secondSelectorEndYear
+      //   },
+      //   "retrofit3": {
+      //     "fromType": thirdSelectorBuildingTypeFrom,
+      //     "toType": thirdSelectorBuildingTypeTo,
+      //     "totalFloorArea": thirdSelectorArea,
+      //     "fromConversionsImplemented": thirdSelectorStartYear,
+      //     "toConversionsImplemented": thirdSelectorEndYear
+      //   },
+      //   "retrofit4": {
+      //     "fromType": fourthSelectorBuildingTypeFrom,
+      //     "toType": fourthSelectorBuildingTypeTo,
+      //     "totalFloorArea": fourthSelectorArea,
+      //     "fromConversionsImplemented": fourthSelectorStartYear,
+      //     "toConversionsImplemented": fourthSelectorEndYear
+      //   },
+      //   "retrofit5": {
+      //     "fromType": fifthSelectorBuildingTypeFrom,
+      //     "toType": fifthSelectorBuildingTypeTo,
+      //     "totalFloorArea": fifthSelectorArea,
+      //     "fromConversionsImplemented": fifthSelectorStartYear,
+      //     "toConversionsImplemented": fifthSelectorEndYear
+      //   },
+      //   "retrofit6": {
+      //     "fromType": sixthSelectorBuildingTypeFrom,
+      //     "toType": sixthSelectorBuildingTypeTo,
+      //     "totalFloorArea": sixthSelectorArea,
+      //     "fromConversionsImplemented": sixthSelectorStartYear,
+      //     "toConversionsImplemented": sixthSelectorEndYear
+      //   }
+      // }
     };
     const rawData = {
-      country,
-      year,
-      population,
-      policyQuantification
+      "country":country,
+      "year":year,
+      "population":population,
+      "policyQuantification":policyQuantification,
+      "construction":newConstructionRequest.construction,
+      "baseline":baseline,
+      "densification":newConstructionRequest.densification
     };
     localStorage.setItem(
       "policyQuantificationRequest",
@@ -1084,7 +1088,7 @@ export const BuildingsPolicies = ({newConstructionResponse, country, year, popul
     };
     axios
     .post(
-      urlPrefix + "/api/v1/calculate/buildings/policy",
+      urlPrefix + "/api/v1/calculate/buildings/settlements-and-policy",
       rawData,
       headers
     )
@@ -2944,7 +2948,6 @@ export const BuildingsPolicies = ({newConstructionResponse, country, year, popul
     return (
       <BuildingsPoliciesCharts
         year={year}
-        newConstructionResponse={newConstructionResponse}
         policyQuantificationResponse={policyQuantificationResponse}
       />
     );
@@ -2954,7 +2957,8 @@ export const BuildingsPolicies = ({newConstructionResponse, country, year, popul
 BuildingsPolicies.propTypes = {
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
-  newConstructionResponse: PropTypes.object.isRequired,
+  baseline: PropTypes.object.isRequired,
+  newConstructionRequest: PropTypes.object.isRequired,
   population: PropTypes.number.isRequired,
 };
 
