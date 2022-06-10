@@ -72,6 +72,7 @@ export const BuildingBaseline = () => {
 
   const [buildingsBaselineCharts, setBuildingsBaselineCharts] = useState(false);
   const [errorBuildBaseline, setErrorBuildBaseline] = useState("");
+  const [baseline, setBaseline] = useState({});
   const [buildingsBaselineResponse, setBuildingsBaselineResponse] = useState(() => {
     const savedBasline = localStorage.getItem("buildingsBaselineResponse");
     const initialValue = JSON.parse(savedBasline);
@@ -157,9 +158,10 @@ export const BuildingBaseline = () => {
         commercial,
       }
     };
+    setBaseline(request.baseline);
     localStorage.setItem(
       "buildingsBaselineRequest",
-      JSON.stringify(request)
+      JSON.stringify(request.baseline)
     );
     const headers = {
       "Access-Control-Allow-Origin": "*",
@@ -576,6 +578,7 @@ export const BuildingBaseline = () => {
         year={year}
         population={population}
         buildingsBaselineResponse={buildingsBaselineResponse}
+        baseline={baseline}
       />
     );
   }

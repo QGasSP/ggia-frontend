@@ -25,7 +25,7 @@ import {
 
 export const BuildingsPolicies = ({newConstructionRequest, country, year, population, baseline }) => {
   newConstructionRequest = newConstructionRequest ? newConstructionRequest : JSON.parse(localStorage.newConstructionRequest);
-  baseline = baseline ? baseline : JSON.parse(localStorage.buildingsBaselineResponse); 
+  baseline = baseline ? baseline : JSON.parse(localStorage.buildingsBaselineRequest); 
   country = country ? country : localStorage.getItem("country");
   year = year ? year : parseInt(localStorage.getItem("year"));
   population = population ? population : parseInt(localStorage.getItem("population"));
@@ -888,6 +888,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
     const initialValue = JSON.parse(savedBasline);
     return initialValue || {};
   });
+  const [policyQuantificationRequest, setPolicyQuantificationRequest] = useState({});
   const optionsIndicators = ["A", "B", "C", "D", "E", "F", "G"];
   const optionsYear = [];
   for (let i = year; i < 2051; i++) optionsYear.push(i);
@@ -1024,50 +1025,50 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
             "endYear": sixthCommercialSelectorEndYear
           }
       },
-      // "buildingChanges": {
-      //   "retrofit1": {
-      //       "fromType": firstSelectorBuildingTypeFrom,
-      //       "toType": firstSelectorBuildingTypeTo,
-      //       "totalFloorArea": firstSelectorArea,
-      //       "fromConversionsImplemented": firstSelectorStartYear,
-      //       "toConversionsImplemented": firstSelectorEndYear
-      //   },
-      //   "retrofit2": {
-      //     "fromType": secondSelectorBuildingTypeFrom,
-      //     "toType": secondSelectorBuildingTypeTo,
-      //     "totalFloorArea": secondSelectorArea,
-      //     "fromConversionsImplemented": secondSelectorStartYear,
-      //     "toConversionsImplemented": secondSelectorEndYear
-      //   },
-      //   "retrofit3": {
-      //     "fromType": thirdSelectorBuildingTypeFrom,
-      //     "toType": thirdSelectorBuildingTypeTo,
-      //     "totalFloorArea": thirdSelectorArea,
-      //     "fromConversionsImplemented": thirdSelectorStartYear,
-      //     "toConversionsImplemented": thirdSelectorEndYear
-      //   },
-      //   "retrofit4": {
-      //     "fromType": fourthSelectorBuildingTypeFrom,
-      //     "toType": fourthSelectorBuildingTypeTo,
-      //     "totalFloorArea": fourthSelectorArea,
-      //     "fromConversionsImplemented": fourthSelectorStartYear,
-      //     "toConversionsImplemented": fourthSelectorEndYear
-      //   },
-      //   "retrofit5": {
-      //     "fromType": fifthSelectorBuildingTypeFrom,
-      //     "toType": fifthSelectorBuildingTypeTo,
-      //     "totalFloorArea": fifthSelectorArea,
-      //     "fromConversionsImplemented": fifthSelectorStartYear,
-      //     "toConversionsImplemented": fifthSelectorEndYear
-      //   },
-      //   "retrofit6": {
-      //     "fromType": sixthSelectorBuildingTypeFrom,
-      //     "toType": sixthSelectorBuildingTypeTo,
-      //     "totalFloorArea": sixthSelectorArea,
-      //     "fromConversionsImplemented": sixthSelectorStartYear,
-      //     "toConversionsImplemented": sixthSelectorEndYear
-      //   }
-      // }
+      "buildingChanges": {
+        "retrofit1": {
+            "fromType": firstSelectorBuildingTypeFrom,
+            "toType": firstSelectorBuildingTypeTo,
+            "totalFloorArea": firstSelectorArea,
+            "fromConversionsImplemented": firstSelectorStartYear,
+            "toConversionsImplemented": firstSelectorEndYear
+        },
+        "retrofit2": {
+          "fromType": secondSelectorBuildingTypeFrom,
+          "toType": secondSelectorBuildingTypeTo,
+          "totalFloorArea": secondSelectorArea,
+          "fromConversionsImplemented": secondSelectorStartYear,
+          "toConversionsImplemented": secondSelectorEndYear
+        },
+        "retrofit3": {
+          "fromType": thirdSelectorBuildingTypeFrom,
+          "toType": thirdSelectorBuildingTypeTo,
+          "totalFloorArea": thirdSelectorArea,
+          "fromConversionsImplemented": thirdSelectorStartYear,
+          "toConversionsImplemented": thirdSelectorEndYear
+        },
+        "retrofit4": {
+          "fromType": fourthSelectorBuildingTypeFrom,
+          "toType": fourthSelectorBuildingTypeTo,
+          "totalFloorArea": fourthSelectorArea,
+          "fromConversionsImplemented": fourthSelectorStartYear,
+          "toConversionsImplemented": fourthSelectorEndYear
+        },
+        "retrofit5": {
+          "fromType": fifthSelectorBuildingTypeFrom,
+          "toType": fifthSelectorBuildingTypeTo,
+          "totalFloorArea": fifthSelectorArea,
+          "fromConversionsImplemented": fifthSelectorStartYear,
+          "toConversionsImplemented": fifthSelectorEndYear
+        },
+        "retrofit6": {
+          "fromType": sixthSelectorBuildingTypeFrom,
+          "toType": sixthSelectorBuildingTypeTo,
+          "totalFloorArea": sixthSelectorArea,
+          "fromConversionsImplemented": sixthSelectorStartYear,
+          "toConversionsImplemented": sixthSelectorEndYear
+        }
+      }
     };
     const rawData = {
       "country":country,
@@ -1078,10 +1079,11 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
       "baseline":baseline,
       "densification":newConstructionRequest.densification
     };
-    localStorage.setItem(
-      "policyQuantificationRequest",
-      JSON.stringify(rawData)
-    );
+    setPolicyQuantificationRequest(rawData);
+    // localStorage.setItem(
+    //   "policyQuantificationRequest",
+    //   JSON.stringify(rawData)
+    // );
     const headers = {
       "Access-Control-Allow-Origin": "*",
       "Content-type": "application/json",
@@ -1093,7 +1095,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
       headers
     )
     .then((response) => {
-      setPolicyQuantificationResponse(response.data.data);
+      setPolicyQuantificationResponse(response.data);
     })
     .then(() => {
       setLoadingStyle({
@@ -1112,7 +1114,12 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
       JSON.stringify(policyQuantificationResponse)
     );
   }, [policyQuantificationResponse]);
-
+  useEffect(() => {
+    localStorage.setItem(
+      "policyQuantificationRequest",
+      JSON.stringify(policyQuantificationRequest)
+    );
+  }, [policyQuantificationRequest]);
 
   const moveToPoliciesResults = () => {
     setPoliciesCharts(true);
@@ -2961,8 +2968,3 @@ BuildingsPolicies.propTypes = {
   newConstructionRequest: PropTypes.object.isRequired,
   population: PropTypes.number.isRequired,
 };
-
-// BuildingsPolicies.defaultProps = {
-//   year: 2030,
-//   country: "Estonia",
-// };

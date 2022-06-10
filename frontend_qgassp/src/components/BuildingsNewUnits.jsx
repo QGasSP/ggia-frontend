@@ -739,7 +739,7 @@ export const BuildingsNewUnits = ({
     optionsNew.push(i)
   }
   
-  const moveToBuildingsPolicies = () => {
+  const submitNewConstruction = () => {
     // #region residentials
     const apartment = {
       "numberOfUnits": parseInt(apartmentUnits),
@@ -809,7 +809,7 @@ export const BuildingsNewUnits = ({
       "residential":{
         "apartment": apartment,
         "terraced": terraced,
-        "semidetached": semiDetached,
+        "semiDetached": semiDetached,
         "detached": detached
       },
       "commercial":{
@@ -837,7 +837,7 @@ export const BuildingsNewUnits = ({
               "endYear": terracedEndYearDensificated,
               "renewableEnergyPercent": terracedEnergyDensificated
           },
-          "semidetached": {
+          "semiDetached": {
               "numberOfExistingUnits": semiDetachedUnitsDensificated,
               "densificationRate": semiDetachedDensRate,
               "startYear": semiDetachedStartYearDensificated,
@@ -901,7 +901,15 @@ export const BuildingsNewUnits = ({
       construction,
       densification
     }
+    localStorage.setItem(
+      "newConstructionRequest",
+      JSON.stringify(newConstructionRequest)
+    );
     setNewConstructionRequest(settlements);
+   
+  };
+
+  const moveToPoliciesForms = () => {
     navigate("../buildingsPolicies", { replace: true });
     setMoveToPolicies(true);
   };
@@ -2542,15 +2550,27 @@ export const BuildingsNewUnits = ({
               />
             </div>
             <div className="nextU2Button">
-                <Button
-                  size="small"
-                  value="charts"
-                  onClick={moveToBuildingsPolicies}
-                  label="Next &raquo;"
-                  primary
-                />
-              </div>
-              
+                <div className="">
+                  <Button
+                    size="small"
+                    value="charts"
+                    onClick={moveToPoliciesForms}
+                    label="Next &raquo;"
+                    primary
+                  />
+                </div>
+                <div className="">
+                  <Button
+                    id="btn-next"
+                    size="small"
+                    type="submit"
+                    value="Submit"
+                    onClick={submitNewConstruction}
+                    label="Sumbit"
+                    primary="true"
+                  />
+                </div>
+            </div>
         </div>
       </section>
     );
