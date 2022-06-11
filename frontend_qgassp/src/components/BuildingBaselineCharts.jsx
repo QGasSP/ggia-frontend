@@ -27,7 +27,8 @@ export const BuildingBaselineCharts = ({
   country,
   year,
   buildingsBaselineResponse,
-  population
+  population,
+  baseline
 }) => {
   country = country ? country : localStorage.getItem("country");
   year = year ? year : parseInt(localStorage.getItem("year"));
@@ -43,7 +44,7 @@ export const BuildingBaselineCharts = ({
   const goBackToBuildingsBaseline = () => navigate("../buildingBaseline", { replace: true });
   // #region residential co2
   const apartmentTotal = 
-              (buildingsBaselineResponse.residentialTable.apartment.electricity + 
+  Math.round(buildingsBaselineResponse.residentialTable.apartment.electricity + 
               buildingsBaselineResponse.residentialTable.apartment.gas + 
               buildingsBaselineResponse.residentialTable.apartment.oil + 
               buildingsBaselineResponse.residentialTable.apartment.heat + 
@@ -53,7 +54,7 @@ export const BuildingBaselineCharts = ({
               buildingsBaselineResponse.residentialTable.apartment.peat);
 
   const terracedTotal = 
-              (buildingsBaselineResponse.residentialTable.terraced.electricity + 
+  Math.round(buildingsBaselineResponse.residentialTable.terraced.electricity + 
               buildingsBaselineResponse.residentialTable.terraced.gas + 
               buildingsBaselineResponse.residentialTable.terraced.oil + 
               buildingsBaselineResponse.residentialTable.terraced.heat + 
@@ -63,7 +64,7 @@ export const BuildingBaselineCharts = ({
               buildingsBaselineResponse.residentialTable.terraced.peat);
 
   const semiDetachedTotal = 
-              (buildingsBaselineResponse.residentialTable.semiDetached.electricity + 
+  Math.round(buildingsBaselineResponse.residentialTable.semiDetached.electricity + 
               buildingsBaselineResponse.residentialTable.semiDetached.gas + 
               buildingsBaselineResponse.residentialTable.semiDetached.oil + 
               buildingsBaselineResponse.residentialTable.semiDetached.heat + 
@@ -73,7 +74,7 @@ export const BuildingBaselineCharts = ({
               buildingsBaselineResponse.residentialTable.semiDetached.peat);
 
   const detachedTotal = 
-              (buildingsBaselineResponse.residentialTable.detached.electricity + 
+  Math.round(buildingsBaselineResponse.residentialTable.detached.electricity + 
               buildingsBaselineResponse.residentialTable.detached.gas + 
               buildingsBaselineResponse.residentialTable.detached.oil + 
               buildingsBaselineResponse.residentialTable.detached.heat + 
@@ -85,7 +86,7 @@ export const BuildingBaselineCharts = ({
 
     // #region commercial co2
     const retailTotal = 
-    (buildingsBaselineResponse.commercialTable.retail.electricity + 
+    Math.round(buildingsBaselineResponse.commercialTable.retail.electricity + 
     buildingsBaselineResponse.commercialTable.retail.gas + 
     buildingsBaselineResponse.commercialTable.retail.oil + 
     buildingsBaselineResponse.commercialTable.retail.heat + 
@@ -95,7 +96,7 @@ export const BuildingBaselineCharts = ({
     buildingsBaselineResponse.commercialTable.retail.peat);
     
     const healthTotal = 
-        (buildingsBaselineResponse.commercialTable.health.electricity + 
+    Math.round(buildingsBaselineResponse.commercialTable.health.electricity + 
         buildingsBaselineResponse.commercialTable.health.gas + 
         buildingsBaselineResponse.commercialTable.health.oil + 
         buildingsBaselineResponse.commercialTable.health.heat + 
@@ -105,7 +106,7 @@ export const BuildingBaselineCharts = ({
         buildingsBaselineResponse.commercialTable.health.peat);
     
     const hospitalityTotal = 
-        (buildingsBaselineResponse.commercialTable.hospitality.electricity + 
+    Math.round(buildingsBaselineResponse.commercialTable.hospitality.electricity + 
         buildingsBaselineResponse.commercialTable.hospitality.gas + 
         buildingsBaselineResponse.commercialTable.hospitality.oil + 
         buildingsBaselineResponse.commercialTable.hospitality.heat + 
@@ -115,7 +116,7 @@ export const BuildingBaselineCharts = ({
         buildingsBaselineResponse.commercialTable.hospitality.peat);
     
     const officesTotal = 
-        (buildingsBaselineResponse.commercialTable.offices.electricity + 
+    Math.round(buildingsBaselineResponse.commercialTable.offices.electricity + 
         buildingsBaselineResponse.commercialTable.offices.gas + 
         buildingsBaselineResponse.commercialTable.offices.oil + 
         buildingsBaselineResponse.commercialTable.offices.heat + 
@@ -125,7 +126,7 @@ export const BuildingBaselineCharts = ({
         buildingsBaselineResponse.commercialTable.offices.peat);
     
     const industrialTotal = 
-        (buildingsBaselineResponse.commercialTable.industrial.electricity + 
+    Math.round(buildingsBaselineResponse.commercialTable.industrial.electricity + 
         buildingsBaselineResponse.commercialTable.industrial.gas + 
         buildingsBaselineResponse.commercialTable.industrial.oil + 
         buildingsBaselineResponse.commercialTable.industrial.heat + 
@@ -135,7 +136,7 @@ export const BuildingBaselineCharts = ({
         buildingsBaselineResponse.commercialTable.industrial.peat);
     
     const warehousesTotal = 
-        (buildingsBaselineResponse.commercialTable.warehouses.electricity + 
+    Math.round(buildingsBaselineResponse.commercialTable.warehouses.electricity + 
         buildingsBaselineResponse.commercialTable.warehouses.gas + 
         buildingsBaselineResponse.commercialTable.warehouses.oil + 
         buildingsBaselineResponse.commercialTable.warehouses.heat + 
@@ -207,50 +208,50 @@ export const BuildingBaselineCharts = ({
           <tbody>
             <tr>
               <td>Apartment</td>
-              <td>{buildingsBaselineResponse.residentialTable.apartment.electricity}</td>
-              <td>{buildingsBaselineResponse.residentialTable.apartment.gas}</td>
-              <td>{buildingsBaselineResponse.residentialTable.apartment.oil}</td>
-              <td>{buildingsBaselineResponse.residentialTable.apartment.coal}</td>
-              <td>{buildingsBaselineResponse.residentialTable.apartment.peat}</td>
-              <td>{buildingsBaselineResponse.residentialTable.apartment.wood}</td>
-              <td>{buildingsBaselineResponse.residentialTable.apartment.renewable}</td>
-              <td>{buildingsBaselineResponse.residentialTable.apartment.heat}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.apartment.electricity)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.apartment.gas)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.apartment.oil)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.apartment.coal)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.apartment.peat)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.apartment.wood)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.apartment.renewable)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.apartment.heat)}</td>
               <td>{apartmentTotal}</td>
             </tr>
             <tr>
               <td>Terraced</td>
-              <td>{buildingsBaselineResponse.residentialTable.terraced.electricity}</td>
-              <td>{buildingsBaselineResponse.residentialTable.terraced.gas}</td>
-              <td>{buildingsBaselineResponse.residentialTable.terraced.oil}</td>
-              <td>{buildingsBaselineResponse.residentialTable.terraced.coal}</td>
-              <td>{buildingsBaselineResponse.residentialTable.terraced.peat}</td>
-              <td>{buildingsBaselineResponse.residentialTable.terraced.wood}</td>
-              <td>{buildingsBaselineResponse.residentialTable.terraced.renewable}</td>
-              <td>{buildingsBaselineResponse.residentialTable.terraced.heat}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.terraced.electricity)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.terraced.gas)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.terraced.oil)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.terraced.coal)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.terraced.peat)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.terraced.wood)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.terraced.renewable)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.terraced.heat)}</td>
               <td>{terracedTotal}</td>
             </tr>
             <tr>
               <td>Semi-detached</td>
-              <td>{buildingsBaselineResponse.residentialTable.semiDetached.electricity}</td>
-              <td>{buildingsBaselineResponse.residentialTable.semiDetached.gas}</td>
-              <td>{buildingsBaselineResponse.residentialTable.semiDetached.oil}</td>
-              <td>{buildingsBaselineResponse.residentialTable.semiDetached.coal}</td>
-              <td>{buildingsBaselineResponse.residentialTable.semiDetached.peat}</td>
-              <td>{buildingsBaselineResponse.residentialTable.semiDetached.wood}</td>
-              <td>{buildingsBaselineResponse.residentialTable.semiDetached.renewable}</td>
-              <td>{buildingsBaselineResponse.residentialTable.semiDetached.heat}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.semiDetached.electricity)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.semiDetached.gas)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.semiDetached.oil)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.semiDetached.coal)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.semiDetached.peat)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.semiDetached.wood)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.semiDetached.renewable)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.semiDetached.heat)}</td>
               <td>{semiDetachedTotal}</td>
             </tr>
             <tr>
               <td>Detached</td>
-              <td>{buildingsBaselineResponse.residentialTable.detached.electricity}</td>
-              <td>{buildingsBaselineResponse.residentialTable.detached.gas}</td>
-              <td>{buildingsBaselineResponse.residentialTable.detached.oil}</td>
-              <td>{buildingsBaselineResponse.residentialTable.detached.coal}</td>
-              <td>{buildingsBaselineResponse.residentialTable.detached.peat}</td>
-              <td>{buildingsBaselineResponse.residentialTable.detached.wood}</td>
-              <td>{buildingsBaselineResponse.residentialTable.detached.renewable}</td>
-              <td>{buildingsBaselineResponse.residentialTable.detached.heat}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.detached.electricity)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.detached.gas)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.detached.oil)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.detached.coal)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.detached.peat)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.detached.wood)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.detached.renewable)}</td>
+              <td>{Math.round(buildingsBaselineResponse.residentialTable.detached.heat)}</td>
               <td>{detachedTotal}</td>
             </tr>
             <tr>
@@ -289,74 +290,74 @@ export const BuildingBaselineCharts = ({
           <tbody>
             <tr>
               <td>Retail</td>
-              <td>{buildingsBaselineResponse.commercialTable.retail.electricity}</td>
-              <td>{buildingsBaselineResponse.commercialTable.retail.gas}</td>
-              <td>{buildingsBaselineResponse.commercialTable.retail.oil}</td>
-              <td>{buildingsBaselineResponse.commercialTable.retail.coal}</td>
-              <td>{buildingsBaselineResponse.commercialTable.retail.peat}</td>
-              <td>{buildingsBaselineResponse.commercialTable.retail.wood}</td>
-              <td>{buildingsBaselineResponse.commercialTable.retail.renewable}</td>
-              <td>{buildingsBaselineResponse.commercialTable.retail.heat}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.retail.electricity)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.retail.gas)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.retail.oil)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.retail.coal)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.retail.peat)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.retail.wood)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.retail.renewable)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.retail.heat)}</td>
               <td>{retailTotal}</td>
             </tr>
             <tr>
               <td>Health</td>
-              <td>{buildingsBaselineResponse.commercialTable.health.electricity}</td>
-              <td>{buildingsBaselineResponse.commercialTable.health.gas}</td>
-              <td>{buildingsBaselineResponse.commercialTable.health.oil}</td>
-              <td>{buildingsBaselineResponse.commercialTable.health.coal}</td>
-              <td>{buildingsBaselineResponse.commercialTable.health.peat}</td>
-              <td>{buildingsBaselineResponse.commercialTable.health.wood}</td>
-              <td>{buildingsBaselineResponse.commercialTable.health.renewable}</td>
-              <td>{buildingsBaselineResponse.commercialTable.health.heat}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.health.electricity)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.health.gas)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.health.oil)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.health.coal)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.health.peat)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.health.wood)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.health.renewable)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.health.heat)}</td>
               <td>{healthTotal}</td>
             </tr>
             <tr>
               <td>Hospitality</td>
-              <td>{buildingsBaselineResponse.commercialTable.hospitality.electricity}</td>
-              <td>{buildingsBaselineResponse.commercialTable.hospitality.gas}</td>
-              <td>{buildingsBaselineResponse.commercialTable.hospitality.oil}</td>
-              <td>{buildingsBaselineResponse.commercialTable.hospitality.coal}</td>
-              <td>{buildingsBaselineResponse.commercialTable.hospitality.peat}</td>
-              <td>{buildingsBaselineResponse.commercialTable.hospitality.wood}</td>
-              <td>{buildingsBaselineResponse.commercialTable.hospitality.renewable}</td>
-              <td>{buildingsBaselineResponse.commercialTable.hospitality.heat}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.hospitality.electricity)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.hospitality.gas)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.hospitality.oil)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.hospitality.coal)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.hospitality.peat)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.hospitality.wood)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.hospitality.renewable)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.hospitality.heat)}</td>
               <td>{hospitalityTotal}</td>
             </tr>
             <tr>
               <td>Offices</td>
-              <td>{buildingsBaselineResponse.commercialTable.offices.electricity}</td>
-              <td>{buildingsBaselineResponse.commercialTable.offices.gas}</td>
-              <td>{buildingsBaselineResponse.commercialTable.offices.oil}</td>
-              <td>{buildingsBaselineResponse.commercialTable.offices.coal}</td>
-              <td>{buildingsBaselineResponse.commercialTable.offices.peat}</td>
-              <td>{buildingsBaselineResponse.commercialTable.offices.wood}</td>
-              <td>{buildingsBaselineResponse.commercialTable.offices.renewable}</td>
-              <td>{buildingsBaselineResponse.commercialTable.offices.heat}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.offices.electricity)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.offices.gas)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.offices.oil)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.offices.coal)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.offices.peat)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.offices.wood)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.offices.renewable)}</td>
+              <td>{Math.round(buildingsBaselineResponse.commercialTable.offices.heat)}</td>
               <td>{officesTotal}</td>
             </tr>
             <tr>
                 <td>Industrial</td>
-                <td>{buildingsBaselineResponse.commercialTable.industrial.electricity}</td>
-                <td>{buildingsBaselineResponse.commercialTable.industrial.gas}</td>
-                <td>{buildingsBaselineResponse.commercialTable.industrial.oil}</td>
-                <td>{buildingsBaselineResponse.commercialTable.industrial.coal}</td>
-                <td>{buildingsBaselineResponse.commercialTable.industrial.peat}</td>
-                <td>{buildingsBaselineResponse.commercialTable.industrial.wood}</td>
-                <td>{buildingsBaselineResponse.commercialTable.industrial.renewable}</td>
-                <td>{buildingsBaselineResponse.commercialTable.industrial.heat}</td>
+                <td>{Math.round(buildingsBaselineResponse.commercialTable.industrial.electricity)}</td>
+                <td>{Math.round(buildingsBaselineResponse.commercialTable.industrial.gas)}</td>
+                <td>{Math.round(buildingsBaselineResponse.commercialTable.industrial.oil)}</td>
+                <td>{Math.round(buildingsBaselineResponse.commercialTable.industrial.coal)}</td>
+                <td>{Math.round(buildingsBaselineResponse.commercialTable.industrial.peat)}</td>
+                <td>{Math.round(buildingsBaselineResponse.commercialTable.industrial.wood)}</td>
+                <td>{Math.round(buildingsBaselineResponse.commercialTable.industrial.renewable)}</td>
+                <td>{Math.round(buildingsBaselineResponse.commercialTable.industrial.heat)}</td>
                 <td>{industrialTotal}</td>
             </tr>
             <tr>
                 <td>Warehouses</td>
-                <td>{buildingsBaselineResponse.commercialTable.warehouses.electricity}</td>
-                <td>{buildingsBaselineResponse.commercialTable.warehouses.gas}</td>
-                <td>{buildingsBaselineResponse.commercialTable.warehouses.oil}</td>
-                <td>{buildingsBaselineResponse.commercialTable.warehouses.coal}</td>
-                <td>{buildingsBaselineResponse.commercialTable.warehouses.peat}</td>
-                <td>{buildingsBaselineResponse.commercialTable.warehouses.wood}</td>
-                <td>{buildingsBaselineResponse.commercialTable.warehouses.renewable}</td>
-                <td>{buildingsBaselineResponse.commercialTable.warehouses.heat}</td>
+                <td>{Math.round(buildingsBaselineResponse.commercialTable.warehouses.electricity)}</td>
+                <td>{Math.round(buildingsBaselineResponse.commercialTable.warehouses.gas)}</td>
+                <td>{Math.round(buildingsBaselineResponse.commercialTable.warehouses.oil)}</td>
+                <td>{Math.round(buildingsBaselineResponse.commercialTable.warehouses.coal)}</td>
+                <td>{Math.round(buildingsBaselineResponse.commercialTable.warehouses.peat)}</td>
+                <td>{Math.round(buildingsBaselineResponse.commercialTable.warehouses.wood)}</td>
+                <td>{Math.round(buildingsBaselineResponse.commercialTable.warehouses.renewable)}</td>
+                <td>{Math.round(buildingsBaselineResponse.commercialTable.warehouses.heat)}</td>
                 <td>{warehousesTotal}</td>
             </tr>
             <tr>
@@ -417,109 +418,6 @@ export const BuildingBaselineCharts = ({
           <LineLegendBuildingBaselineCharts />
         </div>
 
-        {/* <section>
-           <Divider textAlign="left" flexItem>
-             {" "}
-             <b>CO2e emissions from the energy use in commercial buildings by building type and source of heating energy</b>
-           </Divider>
-         </section> */}
-
-        {/* <div className="piechart_container">
-           <div className="piechart_diagram">
-             <div>
-               <RadialChart
-                 data={[
-                   {
-                     angle:
-                       Math.round(
-                         (emissionResidential.bus / emissionResidential.total + Number.EPSILON) * 36000
-                       ) / 2000,
-                     label: "Bus",
-                     color: "#8C0303",
-                   },
-                   {
-                     angle:
-                       Math.round(
-                         (emissionResidential.metro / emissionResidential.total + Number.EPSILON) *
-                           36000
-                       ) / 2000,
-                     label: "Metro",
-                     color: "#400D01",
-                   },
-                   {
-                     angle:
-                       Math.round(
-                         (emissionResidential.train / emissionResidential.total + Number.EPSILON) *
-                           36000
-                       ) / 2000,
-                     label: "Train",
-                     color: "#D90404",
-                   },
-                   {
-                     angle:
-                       Math.round(
-                         (emissionResidential.road_transport / emissionResidential.total +
-                           Number.EPSILON) *
-                           36000
-                       ) / 2000,
-                     label: "Road transport",
-                     color: "#595959",
-                   },
-                   {
-                     angle:
-                       Math.round(
-                         (emissionResidential.car / emissionResidential.total + Number.EPSILON) * 36000
-                       ) / 2000,
-                     label: "Car",
-                     color: "#A6036D",
-                     rotation: 90,
-                   },
-                   {
-                     angle:
-                       Math.round(
-                         (emissionResidential.tram / emissionResidential.total + Number.EPSILON) *
-                           36000
-                       ) / 2000,
-                     label: "Tram",
-                     color: " #C4D4F2",
-                   },
-                   {
-                     angle:
-                       Math.round(
-                         (emissionResidential.rail_transport / emissionResidential.total +
-                           Number.EPSILON) *
-                           36000
-                       ) / 2000,
-                     label: "Rail transport",
-                     color: "#80D941",
-                   },
-                   {
-                     angle:
-                       Math.round(
-                         (emissionResidential.waterways_transport / emissionResidential.total +
-                           Number.EPSILON) *
-                           36000
-                       ) / 2000,
-                     label: "Waterways transport",
-                     color: "#F2CE1B",
-                   },
-                 ]}
-                 colorType="literal"
-                 innerRadius={2000}
-                 radius={2600}
-                 getAngle={(d) => d.angle}
-                 width={350}
-                 height={350}
-               />
-             </div>
-           </div>
-           <div className="piechart_legend">
-             <Legend />
-           </div>
-           <div></div>
-         </div>
-         */}
-
         <div className="buildings-buttons">
           <div className="">
             <Button
@@ -545,7 +443,7 @@ export const BuildingBaselineCharts = ({
   } else {
     return (
       <BuildingsNewUnits
-        baseline={buildingsBaselineResponse}
+        baseline={baseline}
         year={year}
         country={country}
         population={population}
@@ -556,6 +454,7 @@ export const BuildingBaselineCharts = ({
 
 BuildingBaselineCharts.propTypes = {
   buildingsBaselineResponse: PropTypes.object.isRequired,
+  baseline: PropTypes.object.isRequired,
   year: PropTypes.number.isRequired,
   population: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,

@@ -23,8 +23,9 @@ import {
  * @return {}
  */
 
-export const BuildingsPolicies = ({newConstructionResponse, country, year, population }) => {
-  newConstructionResponse = newConstructionResponse ? newConstructionResponse : JSON.parse(localStorage.newConstructionResponse);  
+export const BuildingsPolicies = ({newConstructionRequest, country, year, population, baseline }) => {
+  newConstructionRequest = newConstructionRequest ? newConstructionRequest : JSON.parse(localStorage.newConstructionRequest);
+  baseline = baseline ? baseline : JSON.parse(localStorage.buildingsBaselineRequest); 
   country = country ? country : localStorage.getItem("country");
   year = year ? year : parseInt(localStorage.getItem("year"));
   population = population ? population : parseInt(localStorage.getItem("population"));
@@ -887,6 +888,7 @@ export const BuildingsPolicies = ({newConstructionResponse, country, year, popul
     const initialValue = JSON.parse(savedBasline);
     return initialValue || {};
   });
+  const [policyQuantificationRequest, setPolicyQuantificationRequest] = useState({});
   const optionsIndicators = ["A", "B", "C", "D", "E", "F", "G"];
   const optionsYear = [];
   for (let i = year; i < 2051; i++) optionsYear.push(i);
@@ -1069,27 +1071,31 @@ export const BuildingsPolicies = ({newConstructionResponse, country, year, popul
       }
     };
     const rawData = {
-      country,
-      year,
-      population,
-      policyQuantification
+      "country":country,
+      "year":year,
+      "population":population,
+      "policyQuantification":policyQuantification,
+      "construction":newConstructionRequest.construction,
+      "baseline":baseline,
+      "densification":newConstructionRequest.densification
     };
-    localStorage.setItem(
-      "policyQuantificationRequest",
-      JSON.stringify(rawData)
-    );
+    setPolicyQuantificationRequest(rawData);
+    // localStorage.setItem(
+    //   "policyQuantificationRequest",
+    //   JSON.stringify(rawData)
+    // );
     const headers = {
       "Access-Control-Allow-Origin": "*",
       "Content-type": "application/json",
     };
     axios
     .post(
-      urlPrefix + "/api/v1/calculate/buildings/policy",
+      urlPrefix + "/api/v1/calculate/buildings/settlements-and-policy",
       rawData,
       headers
     )
     .then((response) => {
-      setPolicyQuantificationResponse(response.data.data);
+      setPolicyQuantificationResponse(response.data);
     })
     .then(() => {
       setLoadingStyle({
@@ -1108,7 +1114,12 @@ export const BuildingsPolicies = ({newConstructionResponse, country, year, popul
       JSON.stringify(policyQuantificationResponse)
     );
   }, [policyQuantificationResponse]);
-
+  useEffect(() => {
+    localStorage.setItem(
+      "policyQuantificationRequest",
+      JSON.stringify(policyQuantificationRequest)
+    );
+  }, [policyQuantificationRequest]);
 
   const moveToPoliciesResults = () => {
     setPoliciesCharts(true);
@@ -2944,7 +2955,6 @@ export const BuildingsPolicies = ({newConstructionResponse, country, year, popul
     return (
       <BuildingsPoliciesCharts
         year={year}
-        newConstructionResponse={newConstructionResponse}
         policyQuantificationResponse={policyQuantificationResponse}
       />
     );
@@ -2954,11 +2964,7 @@ export const BuildingsPolicies = ({newConstructionResponse, country, year, popul
 BuildingsPolicies.propTypes = {
   year: PropTypes.number.isRequired,
   country: PropTypes.string.isRequired,
-  newConstructionResponse: PropTypes.object.isRequired,
+  baseline: PropTypes.object.isRequired,
+  newConstructionRequest: PropTypes.object.isRequired,
   population: PropTypes.number.isRequired,
 };
-
-// BuildingsPolicies.defaultProps = {
-//   year: 2030,
-//   country: "Estonia",
-// };
