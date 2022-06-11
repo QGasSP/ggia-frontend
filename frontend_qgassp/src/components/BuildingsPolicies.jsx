@@ -71,7 +71,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
     setSecondResidentSelectorIndicativeAfter,
   ] = useStorageString("secondResidentSelectorIndicativeAfter", "A");
   const [secondResidentSelectorStartYear, setSecondResidentSelectorStartYear] =
-    useStorageInt("secondResidentSelectorIndicativeAfter", year);
+    useStorageInt("secondResidentSelectorEndYear", year);
   const [secondResidentSelectorEndYear, setSecondResidentSelectorEndYear] =
     useStorageInt("secondResidentSelectorEndYear", year);
   const [secondResidentSelectorEnergy, setSecondResidentSelectorEnergy] =
@@ -394,7 +394,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
     setSecondCommercialSelectorBuildingType,
   ] = useStorageString("secondCommercialSelectorBuildingType", "Retail");
   const [secondCommercialSelectorArea, setSecondCommercialSelectorArea] =
-    useStorageInt("secondCommercialSelectorBuildingType", 0);
+    useStorageInt("secondCommercialSelectorArea", 0);
   const [
     secondCommercialSelectorReduction,
     setSecondCommercialSelectorReduction,
