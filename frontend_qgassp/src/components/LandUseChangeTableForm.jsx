@@ -1370,10 +1370,7 @@ export const LandUseChangeTableForm = () => {
 
   const [lucToForest, setLucToForest] = useLocalStorageBoolean("lucToForest", "false");
   const handleLucToForest = (e) => {
-    
       e.target.checked;
-      // eslint-disable-next-line no-console
-      console.log(lucToForest, 'luc tto forest')
       setLucToForest(!lucToForest);
   };
 

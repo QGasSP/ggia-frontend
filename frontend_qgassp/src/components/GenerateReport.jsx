@@ -17,8 +17,10 @@ import {
   VerticalBarSeries,
   LineSeries
 } from "react-vis";
+import { ConsumptionBaselineResults } from "./ConsumptionBaselineResults";
 // https://github.com/gregnb/react-to-print/issues/184
 const BarSeries = VerticalBarSeries;
+
 export const GenerateReport = () => {
   const country = localStorage.getItem("country");
   const year = parseInt(localStorage.getItem("year"));
@@ -42,7 +44,15 @@ export const GenerateReport = () => {
     localStorage.getItem("landUseChangeResponse")
   );
   const emission = JSON.parse(localStorage.getItem("emission"));
+
   const projections = JSON.parse(localStorage.getItem("projections"));
+
+  // eslint-disable-next-line no-console
+  console.log(p1, 'p1')
+
+
+  // eslint-disable-next-line no-console
+  console.log(projections, 'transport projections')
   const newDevelopment = JSON.parse(localStorage.getItem("newDevelopment"));
 
   const buildingsBaselineResponse = JSON.parse(localStorage.getItem("buildingsBaselineResponse"));
@@ -62,6 +72,7 @@ export const GenerateReport = () => {
   const netBuildingsTotal = [];
   const netTransportTotal = [];
   const netBalanceTotal = [];
+
   // per capita values
   const netSinkPerCapita = [];
   const netLandUseChangePerCapita = [];
@@ -82,17 +93,30 @@ export const GenerateReport = () => {
   const policySummedEmissions = [];
   const dataBlTotalEmissions = [];
 
+  // transport
+  const busProjection = [];
+  const carProjection = [];
+  const metroProjection = [];
+  const railTransportProjection = [];
+  const roadTransportProjection = [];
+  const trainProjection = [];
+  const tramProjection = [];
+  const waterwaysTransportProjection = [];
+  const totalTransportProjection = [];
+
   if(
     buildingsBaselineResponse &&
     newPopulation &&
     landUseChangeResponse &&
     p1 &&
+    projections &&
     Object.keys(newPopulation).length !== 0 &&
     Object.keys(landUseChangeResponse).length !== 0 &&
     Object.keys(p1).length !== 0 &&
     Object.keys(blTotalEmmissions).length !== 0 &&
     Object.keys(p1TotalAreaEmissions).length !== 0 &&
-    Object.keys(buildingsBaselineResponse).length !== 0){
+    Object.keys(buildingsBaselineResponse).length !== 0 &&
+    Object.keys(projections).length !== 0){
   for (let i = year; i < 2051; i++) {
     netSinkTotal.push({
       x: i,
@@ -147,7 +171,7 @@ export const GenerateReport = () => {
     });
   }
 
-  for (let i = 2021; i < 2051; i++) {
+  for (let i = 2022; i < 2051; i++) {
     dataBlTotalEmissions.push({ x: i, y: blTotalEmmissions[i] });
     policyHousingEnergy.push({ x: i, y: p1.housingEnergy[i] });
     policyHousingOther.push({ x: i, y: p1.housingOther[i] });
@@ -160,7 +184,23 @@ export const GenerateReport = () => {
     policyTotalEmissions.push({ x: i, y: p1TotalEmissions[i] });
     policyTotalAreaEmissions.push({ x: i, y: p1TotalAreaEmissions[i] });
     policySummedEmissions.push({ x: i, y: p1SummedEmissions[i] });
+
   }
+
+  for (let i = 2022; i < 2051; i++) { 
+    // eslint-disable-next-line no-console
+    console.log(i)
+    busProjection.push({ x: i, y: projections.bus[i] });  
+    carProjection.push({ x: i, y: projections.car[i] });
+    metroProjection.push({ x: i, y: projections.metro[i] });
+    railTransportProjection.push({ x: i, y: projections.rail_transport[i] });
+    roadTransportProjection.push({ x: i, y: projections.road_transport[i] });
+    trainProjection.push({ x: i, y: projections.train[i] });
+    tramProjection.push({ x: i, y: projections.tram[i] });
+    waterwaysTransportProjection.push({ x: i, y: projections.waterways_transport[i] });
+    // totalTransportProjection.push({ x: i, y: projections.total[i] });
+  }
+
   // #endregion
   
   }
@@ -224,12 +264,14 @@ export const GenerateReport = () => {
           newPopulation &&
           landUseChangeResponse &&
           p1 &&
+          projections &&
           Object.keys(newPopulation).length !== 0 &&
           Object.keys(landUseChangeResponse).length !== 0 &&
           Object.keys(p1).length !== 0 &&
           Object.keys(blTotalEmmissions).length !== 0 &&
           Object.keys(p1TotalAreaEmissions).length !== 0 &&
-          Object.keys(buildingsBaselineResponse).length !== 0 && (
+          Object.keys(buildingsBaselineResponse).length !== 0 &&
+          Object.keys(projections).length !== 0 && (
             <div>
               <>
             <div className="luc_alert_container">
@@ -548,10 +590,80 @@ export const GenerateReport = () => {
                 />
               </FlexibleXYPlot>
             </div>
-              </>
+             {/* transport projections start here */}
+               <div className="luc_alert_container">
+              <Divider textAlign="left" flexItem>
+                <Chip label="Transport projections" />
+              </Divider>
+              <FlexibleXYPlot
+                margin={{ left: 80 }}
+                width={1150}
+                height={500}
+                stackBy="y"
+                xType="ordinal"
+              >
+                <VerticalGridLines />
+                <HorizontalGridLines />
+                <XAxis title="Year" />
+                <YAxis title="here goes a value!!!" />
+                <BarSeries
+                  color="#3d58a3"
+                  opacity={0.5}
+                  data={busProjection}
+                  stack
+                />
+                <BarSeries
+                  color="#ef7d00"
+                  opacity={0.55}
+                  data={carProjection}
+                  stack
+                />
+                <BarSeries
+                  color="#95c11f"
+                  opacity={0.55}
+                  data={metroProjection}
+                  stack
+                />
+                <BarSeries
+                  color="#ce143d"
+                  opacity={0.55}
+                  data={railTransportProjection}
+                  stack
+                />
+                <BarSeries
+                  color="#845f9e"
+                  opacity={0.55}
+                  data={roadTransportProjection}
+                  stack
+                />
+                <BarSeries color="#996e35" opacity={0.55} data={trainProjection} stack />
+                
+                <BarSeries color="#76918e" opacity={0.55} data={tramProjection} stack />
+                <BarSeries
+                  color="#000000"
+                  strokeWidth="1"
+                  data={waterwaysTransportProjection}
+                />
+                <LineSeries
+                  className="fourth-series"
+                  color="#000000"
+                  strokeWidth="1"
+                  data={totalTransportProjection}
+                />
+              </FlexibleXYPlot>
+              </div>
+
+              {/* <ConsumptionBaselineResults /> */}
+            
+              </>        
             </div>
+
+            
           )}
       </div>
+        {
+          // ? why is here == not === 
+        }
         {!buildingsBaselineResponse ||
           !newPopulation ||
           !landUseChangeResponse ||

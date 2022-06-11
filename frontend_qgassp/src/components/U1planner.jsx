@@ -19,6 +19,8 @@ import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import { Legend } from "./Legend";
 import urlPrefix from "../Config";
+import { Container, Grid, Paper, Tooltip } from "@mui/material";
+
 
 
 
@@ -109,6 +111,8 @@ export const U1planner = () => {
     localStorage.setItem("baseline", JSON.stringify(baseline));
   }, [baseline]);
 
+  const emissionTotal = emission.bus + emission.train + emission.car + emission.metro + emission.waterways_transport + emission.tram + emission.rail_transport + emission.road_transport
+
   const goToNewResidents = () => {
     navigate("../newResidents", {
       replace: true,
@@ -127,6 +131,7 @@ export const U1planner = () => {
   }
 
   for (let i = year; i < 2051; i++) {
+
     dataProjectionsBus.push({ x: i, y: projections.bus[i] });
     dataProjectionsCar.push({ x: i, y: projections.car[i] });
     dataProjectionsMetro.push({ x: i, y: projections.metro[i] });
@@ -146,15 +151,22 @@ export const U1planner = () => {
     });
   }
 
+
   if (Object.keys(projections).length !== 0) {
     return (
+      <Container maxWidth="xl">
       <article>
+        <div style={{marginTop:"20px", textAlign:"center"}}><h3>Baseline Results</h3></div>
+        
         <br />
-        <Divider textAlign="left" flexItem>
+
+        <Grid container spacing={6} style={{marginTop:"10px"}}>
+
+        <Grid item xs={6}>
+            <Paper>
           {" "}
           <b>{country}: Baseline - Transport CO2e emission</b>
-        </Divider>
-
+          
         <div className="piechart_container">
           <div className="piechart_diagram">
             <div>
@@ -163,7 +175,7 @@ export const U1planner = () => {
                   {
                     angle:
                       Math.round(
-                        (emission.bus / emission.total + Number.EPSILON) * 36000
+                        (emission.bus / emissionTotal + Number.EPSILON) * 36000
                       ) / 100,
                     label: "Bus",
                     color: "#8C0303",
@@ -171,7 +183,7 @@ export const U1planner = () => {
                   {
                     angle:
                       Math.round(
-                        (emission.metro / emission.total + Number.EPSILON) *
+                        (emission.metro / emissionTotal + Number.EPSILON) *
                           36000
                       ) / 100,
                     label: "Metro",
@@ -180,7 +192,7 @@ export const U1planner = () => {
                   {
                     angle:
                       Math.round(
-                        (emission.train / emission.total + Number.EPSILON) *
+                        (emission.train / emissionTotal + Number.EPSILON) *
                           36000
                       ) / 100,
                     label: "Train",
@@ -189,7 +201,7 @@ export const U1planner = () => {
                   {
                     angle:
                       Math.round(
-                        (emission.road_transport / emission.total +
+                        (emission.road_transport / emissionTotal +
                           Number.EPSILON) *
                           36000
                       ) / 100,
@@ -199,7 +211,7 @@ export const U1planner = () => {
                   {
                     angle:
                       Math.round(
-                        (emission.car / emission.total + Number.EPSILON) * 36000
+                        (emission.car / emissionTotal + Number.EPSILON) * 36000
                       ) / 100,
                     label: "Car",
                     color: "#A6036D",
@@ -208,7 +220,7 @@ export const U1planner = () => {
                   {
                     angle:
                       Math.round(
-                        (emission.tram / emission.total + Number.EPSILON) *
+                        (emission.tram / emissionTotal + Number.EPSILON) *
                           36000
                       ) / 100,
                     label: "Tram",
@@ -217,7 +229,7 @@ export const U1planner = () => {
                   {
                     angle:
                       Math.round(
-                        (emission.rail_transport / emission.total +
+                        (emission.rail_transport / emissionTotal +
                           Number.EPSILON) *
                           36000
                       ) / 100,
@@ -227,7 +239,7 @@ export const U1planner = () => {
                   {
                     angle:
                       Math.round(
-                        (emission.waterways_transport / emission.total +
+                        (emission.waterways_transport / emissionTotal +
                           Number.EPSILON) *
                           36000
                       ) / 100,
@@ -239,22 +251,97 @@ export const U1planner = () => {
                 innerRadius={100}
                 radius={140}
                 getAngle={(d) => d.angle}
-                width={350}
-                height={350}
+                width="350"
+                height="350"
               />
             </div>
           </div>
-          <div className="piechart_legend">
+          <div className="piechart_legend" style={{height:'60%',width:'60%', marginLeft:"70px"}}>
             <Legend />
           </div>
-          <div></div>
+          
         </div>
+
+          </Paper>
+        </Grid>
+
+
+        <Grid item xs={6} style={{width:'100%'}}>
+          
+            <Paper>
+              <Tooltip>
+            <table style={{width:'100%'}}>
+              <thead>
+                <tr>
+              <th>Transport Co2 Emissions</th>
+              <th>kgCO2e/resident</th>
+            </tr>
+              </thead>
+            <tbody>
+            <tr>
+              <td>Bus</td>
+              <td>{emission.bus}</td>
+            </tr>
+
+            <tr>
+              <td>Passenger car</td>
+              <td>{emission.car}</td>
+            </tr>
+
+            <tr>
+              <td>Metro</td>
+              <td>{emission.metro}</td>
+            </tr>
+
+            <tr>
+              <td>Tram</td>
+              <td>{emission.tram}</td>
+            </tr>
+
+            <tr>
+              <td>Passenger train</td>
+              <td>{emission.train}</td>
+            </tr>
+
+            <tr>
+              <td>Rail transport</td>
+              <td>{emission.rail_transport}</td>
+            </tr>
+
+            <tr>
+              <td>Passenger train</td>
+              <td>{emission.train}</td>
+            </tr>
+
+            <tr>
+              <td>Road transport</td>
+              <td>{emission.road_transport}</td>
+            </tr>
+
+            <tr>
+              <td>Transport on inland waterways</td>
+              <td>{emission.waterways_transport}</td>
+            </tr>
+
+            <tr>
+              <td><b>Total Transport emissions per capita</b></td>
+              <td><b>{emissionTotal}</b></td>
+            </tr>
+            </tbody>
+          </table>
+          </Tooltip>
+          </Paper>
+        </Grid>
+      </Grid>
+
+        <br/>
+        
         <Divider textAlign="left" flexItem>
-          <b>{country}: Baseline - Transport CO2e emission/resident</b>
+          <b>{country}: Baseline Scenario- Transport CO2e emission/resident</b>
         </Divider>
 
         <div className="barchart_container">
-          <XYPlot xType="ordinal" width={1000} height={300} xDistance={200}>
+          <XYPlot xType="ordinal" width={1000} height={300} xDistance={200} margin={{left:100}}>
             <HorizontalGridLines />
             <VerticalGridLines />
             <VerticalBarSeries
@@ -390,7 +477,7 @@ export const U1planner = () => {
               value="backProjections"
               onClick={() => navigate("../transportBaseline", { replace: true })}
               label="&laquo; Previous"
-              secondary
+              secondary="true"
             />
           </div>
 
@@ -406,6 +493,7 @@ export const U1planner = () => {
         </div>
         
       </article>
+      </Container>
     );
   }
 };

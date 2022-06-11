@@ -9,6 +9,7 @@ import Alert from "@mui/material/Alert";
 import Tooltip from "@mui/material/Tooltip";
 import {useNavigate} from "react-router-dom";
 import { useStorageInt, useStorageString } from "../reducers/useStorage";
+import { Container } from "@mui/material";
 
 /**
  * U3 planner component for user inputs for policy quantification
@@ -17,47 +18,93 @@ import { useStorageInt, useStorageString } from "../reducers/useStorage";
 
 export const U3planner = () => {
   const navigate = useNavigate();
+
+  // get items 
   const base= JSON.parse(localStorage.getItem("baseline"));
   const baseline = base.baseline;
   const newDevelopment = JSON.parse(localStorage.getItem("newDevelopment"));
   const emission = JSON.parse(localStorage.getItem("emission"));
 
+  // policy quantification response / request
   const [policyQuantification, setPolicyQuantification] = useStorageString("policyQuantification","");
-  const [yearStart, setYearStart] = useStorageInt("yearStart",0);
-  const [yearFinish, setYearFinish] = useStorageInt("yearFinish",0);
+  const [policyQuantificationTransportResponse, setPolicyQuantificationTransportResponse] = useState(() => {
+    const savedBasline = localStorage.getItem("policyQuantificationTransportResponse");
+    const initialValue = JSON.parse(savedBasline);
+    return initialValue || {};
+  });
+  const [policyQuantificationTransportRequest, setPolicyQuantificationTransportRequest] = useState({});
+
   const [errorU3, setU3Error] = useState("");
-  const [modalPassShares, setModalPassShares] = useStorageString("modalPassShares","");
+ 
   const [shares, setShares] = useStorageString("shares","");
-  const [expectedPassChange, setExpectedPassChange] =  useStorageInt("expectedPassChange",0);
-  const [affectedPassArea, setAffectedPassArea] = useStorageInt("affectedPassArea",0);
-  const [expectedFreChange, setExpectedFreChange] = useStorageInt("expectedFreChange",0);
-  const [passTransPolicyTarget, setPassTransPolicyTarget] = useStorageInt("passTransPolicyTarget",0);
-  const [freTransPolicyTarget, setFreTransPolicyTarget] = useStorageInt("freTransPolicyTarget",0);
-  const [expectedChange, setExpectedChange] = useStorageInt("expectedChange",0);
-  const [affectedArea, setAffectedArea] = useStorageInt("affectedArea",0);
-  const [passengerMob, setPassengerMobility] =  useStorageString("passengerMob","");
-  const [freightTrans, setFreightTransport] = useStorageString("freightTrans","");
-  const [modalSplitPass, setModalSplitPass] = useStorageString("modalSplitPass","");
-  // const [modalPassShares, setModalPassShares] = useState("");
-  const [modalFreShares, setModalFreightShares] = useStorageString("modalFreShares","");
-  const [modalSplitFre, setModalSplitFre] = useStorageString("modalSplitFre","");
-  const [buses, setBus] = useStorageInt("buses",0);
-  const [metros, setMetro] = useStorageInt("metros",0);
-  const [trams, setTram] = useStorageInt("trams",0);
-  const [trains, setTrain] = useStorageInt("trains",0);
-  const [cars, setCar] = useStorageInt("cars",0);
-  const [affectedPopulation, setAffectedPopulation] = useStorageInt("affectedPopulation",0);
+
+  // passenger mobility
+  const [passengerMobility, setPassengerMobility] =  useStorageString("passengerMobility","");
+  const [populationAffectedPassengerMobility, setPopulationAffectedPassengerMobility] = useStorageInt("populationAffectedPassengerMobility",0);
+  const [passengerMobilityYearStart, setPassengerMobilityYearStart]= useStorageInt("passengerMobilityYearStart", 0);
+  const [passengerMobilityYearEnd, setPassengerMobilityYearEnd]= useStorageInt("passengerMobilityYearEnd", 0);
+  const [passengerMobilityExpectedChange, setPassengerMobilityExpectedChange] = useStorageInt("passengerMobilityExpectedChange", 0)
+  // passenger mobility end
+
+  // freight transport start
+  const [freightTransport, setFreightTransport] = useStorageString("freightTransport","");
+  const [freightTransportMobility, setFreightTransportMobility] = useStorageInt("freightTransportMobility", 0)
+  const [freightTransportYearStart, setFreightTransportYearStart] = useStorageInt("freightTransportYearStart", 0)
+  const [freightTransportYearEnd, setFreightTransportYearEnd] = useStorageInt("freightTransportYearEnd", 0)
+  // freight transport end
+
+  // modal split-passanger section starts
+   const [modalPassShares, setModalPassShares] = useStorageString("modalPassShares","");
+  const [modalSplitPassenger, setModalSplitPassenger] = useStorageString("modalSplitPassenger","");
+  const [bus, setBus] = useStorageInt("buses",0);
+  const [metro, setMetro] = useStorageInt("metros",0);
+  const [tram, setTram] = useStorageInt("trams",0);
+  const [train, setTrain] = useStorageInt("trains",0);
+  const [car, setCar] = useStorageInt("cars",0);
+  const [modalSplitPassengerPopulationAffected, setModalSplitPassengerPopulationAffected] = useStorageInt("modalSplitPassengerPopulationAffected", 0)
+  const [modalSplitPassengerYearStart, setModalSplitPassengerYearStart] = useStorageInt("modalSplitPassengerYearStart", 0)
+  const [modalSplitPassengerYearEnd, setModalSplitPassengerYearEnd] = useStorageInt("modalSplitPassengerYearEnd", 0)
+  // modal split-passanger section end
+
+
+  // modal split freight transport start
   const [railTransport, setRailTransport] = useStorageInt("railTransport",0);
   const [waterwaysTransport, setWaterwaysTransport] = useStorageInt("waterwaysTransport",0);
   const [roadTransport, setRoadTransport] = useStorageInt("roadTransport",0);
+  const [modalFreShares, setModalFreightShares] = useStorageString("modalFreShares","");
+  const [modalSplitFreight, setModalSplitFreight] = useStorageString("modalSplitFreight","");
+
+  const [modalSplitFreightYearStart, setModalSplitFreightYearStart] = useStorageInt("modalSplitFreightYearStart", 0)
+  const [modalSplitFreightYearEnd, setModalSplitFreightYearEnd] = useStorageInt("modalSplitFreightYearEnd", 0)
+  // modal split freight transport end
+
+  
+  // Shares of fuel types in bus transport start
   const [lpg, setLpg] = useStorageInt("lpg",0);
   const [cng, setCng] = useStorageInt("cng",0);
   const [electricity, setElectricity] = useStorageInt("electricity",0);
   const [petrol, setPetrol] = useStorageInt("petrol",0);
   const [diesel, setDiesel] = useStorageInt("diesel",0);
+
   const [fuelSharesBusTypes, setFuelSharesBusTypes] = useStorageString("fuelSharesBusTypes","");
   const [fuelSharesBus, setFuelSharesBus] = useStorageString("fuelShareBus","");
-  const [types, setTypes] = useStorageString("types","");
+  const [fuelSharesBusYearStart, setFuelSharesBusYearStart] = useStorageInt("fuelSharesBusYearStart", 0)
+  const [fuelSharesBusYearEnd, setFuelSharesBusYearEnd] = useStorageInt("fuelSharesBusYearEnd", 0)
+  const [fuelSharesBusPopulationAffected, setFuelSharesBusPopulationAffected] = useStorageInt("fuelSharesBusPopulationAffected", 0)
+  // fuel shares bus end
+
+
+  // shares of fuel types in car transport start
+  const [fuelSharesCarTypes, setFuelSharesCarTypes] = useStorageString("fuelSharesCarTypes","");
+  const [fuelSharesCar, setFuelSharesCar] = useStorageString("fuelSharesCar","");
+  const [fuelSharesCarYearStart, setFuelSharesCarYearStart] = useStorageInt("fuelSharesCarYearStart", 0);
+  const [fuelSharesCarYearEnd, setFuelSharesCarYearEnd] = useStorageInt("fuelSharesCarYearEnd", 0);
+  const [fuelSharesCarPopulationAffected, setFuelSharesCarPopulationAffected] = useStorageInt("fuelSharesCarPopulationAffected", 0);
+  const [carLpg, setCarLpg] = useStorageInt("carLpg", 0)
+  const [carCng, setCarCng] = useStorageInt("carCng", 0)
+  const [carElectricity, setCarElectricity] = useStorageInt("carElectricity", 0)
+  const [carPetrol, setCarPetrol] = useStorageInt("carPetrol",0);
+  const [carDiesel, setCarDiesel] = useStorageInt("carDiesel",0);
   const [ngv, setNgv] = useStorageInt("ngv",0);
   const [hep, setHep] = useStorageInt("hep",0);
   const [phev, setPhev] = useStorageInt("phev",0);
@@ -66,43 +113,72 @@ export const U3planner = () => {
   const [biodiesel, setBiodiesel] = useStorageInt("biodiesel",0);
   const [bifuel, setBifuel] = useStorageInt("bifuel",0);
   const [other, setOther] = useStorageInt("other",0);
-  const [fuelSharesCarTypes, setFuelSharesCarTypes] = useStorageString("fuelSharesCarTypes","");
-  const [fuelSharesCar, setFuelSharesCar] = useStorageString("fuelSharesCar","");
+  // shares of fuel types in car transport end
+  
+  // electricity transportation renewables start
   const [renewables, setRenewables] = useStorageInt("renewables",0);
   const [electricityTransTypes, setElectricityTransTypes] = useStorageString("electricityTransTypes","");
-  const [electricityTrans, setElectricityTrans] = useStorageString("electricityTrans","");
-
-  // const [policyQuant, setPolicyQuantification] = useState("");
+  const [electricityTransport, setElectricityTransport] = useStorageString("electricityTransport","");
+  const [electricityTransportYearStart, setElectricityTransportYearStart] = useStorageInt("electricityTransportYearStart", 0)
+  const [electricityTransportYearEnd, setElectricityTransportYearEnd] = useStorageInt("electricityTransportYearEnd", 0)
+  const [electricityTransportPopulationAffected, setElectricityTransportPopulationAffected] = useStorageInt("electricityTransportPopulationAffected", 0)
 
   const optionsNew = [];
   for (let i = 2022; i < 2051; i++) optionsNew.push(i);
-  const handleStartYear = (e) => {
-    setYearStart(Number(e.target.value));
-  };
-  const handleYearFinish = (e) => {
+
+  // passenger mobility handlers
+  const handlePassengerMobilityExpectedChange = (e) => {
     e.preventDefault();
-    setYearFinish(Number(e.target.value));
-  };
-  const handleExpectedPassChange = (e) => {
+    setPassengerMobilityExpectedChange(Number(e.target.value))
+  }
+
+  const handlePopulationAffectedPassengerMobility = (e) => {
     e.preventDefault();
-    setExpectedPassChange(Number(e.target.value));
-  };
-  const handleAffectedPassArea = (e) => {
+    setPopulationAffectedPassengerMobility(Number(e.target.value))
+  }
+
+  const handlePassengerMobilityYearStart = (e) => {
     e.preventDefault();
-    setAffectedPassArea(Number(e.target.value));
-  };
-  const handleExpectedFreChange = (e) => {
+    setPassengerMobilityYearStart(Number(e.target.value))
+  }
+
+  const handlePassengerMobilityYearEnd = (e) => {
     e.preventDefault();
-    setExpectedFreChange(Number(e.target.value));
-  };
-  const handlePassTransPolicyTarget = (e) => {
+    setPassengerMobilityYearEnd(Number(e.target.value))
+  }  
+
+  // freight transport mobility handlers
+  const handleFreightTransportMobility = (e) => {
     e.preventDefault();
-    setPassTransPolicyTarget(Number(e.target.value));
-  };
-  const handleFreTransPolicyTarget = (e) => {
+    setFreightTransportMobility(Number(e.target.value))
+  }
+
+  const handleFreightTransportYearStart = (e) => {
     e.preventDefault();
-    setFreTransPolicyTarget(Number(e.target.value));
-  };
+    setFreightTransportYearStart(Number(e.target.value))
+  }
+
+  const handleFreightTransportYearEnd = (e) => {
+    e.preventDefault();
+    setFreightTransportYearEnd(Number(e.target.value))
+  }
+
+  // handlers for modal split passenger transport
+  const handleModalSplitPassengerPopulationAffected = (e) => {
+    e.preventDefault();
+    setModalSplitPassengerPopulationAffected(Number(e.target.value))
+  }
+
+  const handleModalSplitPassengerYearStart = (e) => {
+    e.preventDefault();
+    setModalSplitPassengerYearStart(Number(e.target.value))
+  }
+
+  const handleModalSplitPassengerYearEnd = (e) => {
+    e.preventDefault();
+    setModalSplitPassengerYearEnd(Number(e.target.value))
+  }
+
   const handleBus = (e) => {
     e.preventDefault();
     setBus(Number(e.target.value));
@@ -123,23 +199,37 @@ export const U3planner = () => {
     e.preventDefault();
     setCar(Number(e.target.value));
   };
-  const handleAffectedPopulation = (e) => {
-    e.preventDefault();
-    setAffectedPopulation(Number(e.target.value));
-  };
+
+
+  // handlers for modal split freight transport
+
   const handleRailTransport = (e) => {
     e.preventDefault();
     setRailTransport(Number(e.target.value));
   };
+
   const handleWaterwaysTransport = (e) => {
     e.preventDefault();
     setWaterwaysTransport(Number(e.target.value));
   };
+
   const handleRoadTransport = (e) => {
     e.preventDefault();
     setRoadTransport(Number(e.target.value));
   };
 
+  const handleModalSplitFreightYearStart = (e) => {
+    e.preventDefault();
+    setModalSplitFreightYearStart(Number(e.target.value))
+  }
+
+  const handleModalSplitFreightYearEnd = (e) => {
+    e.preventDefault();
+    setModalSplitFreightYearEnd(Number(e.target.value))
+  }
+
+
+  // handlers for bus fuel shares
   const handleLpg = (e) => {
     e.preventDefault();
     setLpg(Number(e.target.value));
@@ -161,80 +251,161 @@ export const U3planner = () => {
     setDiesel(Number(e.target.value));
   };
 
-  const handleNgv = (e) => {
+  const handleFuelSharesBusYearStart = (e) => {
+    e.preventDefault();
+    setFuelSharesBusYearStart(Number(e.target.value));
+  }
+
+  const handleFuelSharesBusYearEnd = (e) => {
+    e.preventDefault();
+    setFuelSharesBusYearEnd(Number(e.target.value));
+  }
+
+  const handleFuelSharesBusPopulationAffected = (e) => {
+    e.preventDefault();
+    setFuelSharesBusPopulationAffected(Number(e.target.value));
+  }
+
+// handlers for car fuels
+
+  const handleFuelSharesCarYearStart = (e) => {
+    e.preventDefault();
+    setFuelSharesCarYearStart(Number(e.target.value))
+};
+
+  const handleFuelSharesCarYearEnd = (e) => {
+    e.preventDefault();
+    setFuelSharesCarYearEnd(Number(e.target.value))
+};
+
+const handleFuelSharesCarPopulationAffected = (e) => {
+    e.preventDefault();
+    setFuelSharesCarPopulationAffected(Number(e.target.value))
+};
+
+const handleCarLpg = (e) => {
+  e.preventDefault();
+  setCarLpg(Number(e.target.value));
+};
+
+const handleCarCng = (e) => {
+  e.preventDefault();
+  setCarCng(Number(e.target.value));
+};
+
+const handleCarPetrol = e => {
+  e.preventDefault();
+  setCarPetrol(Number(e.target.value))
+}
+
+const handleCarDiesel = e => {
+  e.preventDefault();
+  setCarDiesel(Number(e.target.value));
+};
+
+const handleCarElectricity = e => {
+  e.preventDefault();
+  setCarElectricity(Number(e.target.value))
+};
+
+const handleNgv = (e) => {
     e.preventDefault();
     setNgv(Number(e.target.value));
   };
-  const handleHep = (e) => {
+const handleHep = (e) => {
     e.preventDefault();
     setHep(Number(e.target.value));
   };
-  const handlePhev = (e) => {
+const handlePhev = (e) => {
     e.preventDefault();
     setPhev(Number(e.target.value));
   };
-  const handleHydrogenfuel = (e) => {
+const handleHydrogenfuel = (e) => {
     e.preventDefault();
     setHydrogenfuel(Number(e.target.value));
   };
-  const handleBioethanol = (e) => {
+const handleBioethanol = (e) => {
     e.preventDefault();
     setBioethanol(Number(e.target.value));
   };
-  const handleBiodiesel = (e) => {
+const handleBiodiesel = (e) => {
     e.preventDefault();
     setBiodiesel(Number(e.target.value));
   };
-  const handleBifuel = (e) => {
+const handleBifuel = (e) => {
     e.preventDefault();
     setBifuel(Number(e.target.value));
   };
-  const handleOther = (e) => {
+  
+const handleOther = (e) => {
     e.preventDefault();
     setOther(Number(e.target.value));
   };
+
+  // car fuel shares end
+
+  // electricity trans types start
+
   const handleRenewables = (e) => {
     e.preventDefault();
     setRenewables(Number(e.target.value));
   };
-  const handleAffectedArea = (e) => {
+
+  const handleElectricityTransportYearStart = e => {
     e.preventDefault();
-    setAffectedArea(Number(e.target.value));
+    setElectricityTransportYearStart(Number(e.target.value));
   };
 
-  const createPolicyQuantification = () => {
-    const passengerMob = {
-      expectedChange,
-      affectedArea,
-      yearStart,
-      yearFinish,
-    };
-    setPassengerMobility(passengerMob);
+  const handleElectricityTransportYearEnd = e => {
+    e.preventDefault();
+    setElectricityTransportYearEnd(Number(e.target.value));
+  };
 
-    const freightTrans = {
-      expectedChange,
-      yearStart,
-      yearFinish,
+  const handleElectricityTransportPopulationAffected = e => {
+    e.preventDefault();
+    setElectricityTransportPopulationAffected(Number(e.target.value));
+  };
+
+
+
+  
+
+  const createPolicyQuantification = (e) => {
+    e.preventDefault();
+
+    const passengerMobility = {
+      "expectedChange": passengerMobilityExpectedChange,
+      "affectedArea": populationAffectedPassengerMobility,
+      "yearStart": passengerMobilityYearStart,
+      "yearEnd": passengerMobilityYearEnd
     };
-    setFreightTransport(freightTrans);
+    setPassengerMobility(passengerMobility);
+
+    const freightTransport = {
+      "expectedChange": freightTransportMobility,
+      "yearStart": freightTransportYearStart,
+      "yearEnd": freightTransportYearEnd
+    };
+    setFreightTransport(freightTransport);
 
     const modalPassShares = {
-      buses,
-      metros,
-      trams,
-      trains,
-      cars,
+      bus,
+      metro,
+      tram,
+      train,
+      car,
     };
     setModalPassShares(modalPassShares);
 
-    const modalSplitPass = {
-      shares,
-      affectedPopulation,
-      yearStart,
-      yearFinish,
+    const modalSplitPassenger = {
+      "shares": modalPassShares,
+      "affectedPopulation": modalSplitPassengerPopulationAffected,
+      "yearStart": modalSplitPassengerYearStart,
+      "yearEnd": modalSplitPassengerYearEnd,
     };
-    setModalSplitPass(modalSplitPass);
+    setModalSplitPassenger(modalSplitPassenger);
 
+    // modal freight
     const modalFreShares = {
       railTransport,
       waterwaysTransport,
@@ -242,13 +413,15 @@ export const U3planner = () => {
     };
     setModalFreightShares(modalFreShares);
 
-    const modalSplitFre = {
-      shares,
-      yearStart,
-      yearFinish,
+    const modalSplitFreight = {
+      "shares": modalFreShares,
+      "yearStart": modalSplitFreightYearStart,
+      "yearEnd": modalSplitFreightYearEnd,
     };
-    setModalSplitFre(modalSplitFre);
+    setModalSplitFreight(modalSplitFreight);
 
+
+    // bus start
     const fuelSharesBusTypes = {
       lpg,
       cng,
@@ -259,13 +432,15 @@ export const U3planner = () => {
     setFuelSharesBusTypes(fuelSharesBusTypes);
 
     const fuelSharesBus = {
-      types,
-      yearStart,
-      yearFinish,
-      affectedArea,
+      "types": fuelSharesBusTypes,
+      "yearStart": fuelSharesBusYearStart,
+      "yearEnd": fuelSharesBusYearEnd,
+      "affectedArea": fuelSharesBusPopulationAffected,
     };
     setFuelSharesBus(fuelSharesBus);
+    // bus end
 
+    // fuel car start
     const fuelSharesCarTypes = {
       lpg,
       cng,
@@ -284,68 +459,103 @@ export const U3planner = () => {
     setFuelSharesCarTypes(fuelSharesCarTypes);
 
     const fuelSharesCar = {
-      types,
-      yearStart,
-      yearFinish,
-      affectedArea,
+      "types": fuelSharesCarTypes,
+      "yearStart": fuelSharesCarYearStart,
+      "yearEnd": fuelSharesCarYearEnd,
+      "affectedArea": fuelSharesCarPopulationAffected,
     };
     setFuelSharesCar(fuelSharesCar);
+    // fuel car end
 
+    // electricity  start
     const electricityTransTypes = {
       renewables,
     };
     setElectricityTransTypes(electricityTransTypes);
 
-    const electricityTrans = {
-      types,
-      yearStart,
-      yearFinish,
-      affectedArea,
+    const electricityTransport = {
+      "types": electricityTransTypes,
+      "yearStart": electricityTransportYearStart,
+      "yearEnd": electricityTransportYearEnd,
+      "affectedArea": electricityTransportPopulationAffected,
     };
-    setElectricityTrans(electricityTrans);
+    setElectricityTransport(electricityTransport);
 
-    const policyQuant = {
-      passengerMob,
-      freightTrans,
-      modalSplitPass,
-      modalSplitFre,
+    // electricity end
+
+    const policyQuantification = {
+      passengerMobility,
+      freightTransport,
+      modalSplitPassenger,
+      modalSplitFreight,
       fuelSharesBus,
       fuelSharesCar,
-      electricityTrans,
+      electricityTransport
     };
-    setPolicyQuantification(policyQuant);
-  };
-  useEffect(async () => {
-    const raw = { baseline, newDevelopment, policyQuantification };
+    
+    setPolicyQuantification(policyQuantification);
+
     const headers = {
       "Content-type": "application/json",
       "Access-Control-Allow-Origin": "*",
     };
+
+    const raw = { baseline, newDevelopment, policyQuantification };
+    setPolicyQuantificationTransportRequest(raw)
+
+    // eslint-disable-next-line no-console
+    // console.log("policy quantification", policyQuantification);
+
+    // eslint-disable-next-line no-console
+    // console.log("raw", baseline);
+
+
     axios
-      .post(urlPrefix + "/api/v1/calculate/transport", raw, headers)
-      .then((response) => setU3Response(response.data.json))
+      .post(
+        urlPrefix + "/api/v1/calculate/transport",
+        headers,
+        raw)
+        // eslint-disable-next-line no-console
+      .then((response) => {
+            setPolicyQuantificationTransportResponse(response.data)
+      })
       .catch((error) => {
         setU3Error({ errorMessage: error.message });
         // eslint-disable-next-line no-console
         console.error("There was an error!", errorU3);
       });
-  }, []);
-  const setU3Response = (response) => {
-    setPolicyQuantification(response.data.policy_quantification);
+
+ { /* useEffect(() => {
+    fetchPolicyData()
+  },[]) */}
+
   };
 
   useEffect(() => {
-    localStorage.setItem("policyQuantification", JSON.stringify(policyQuantification));
-  }, [policyQuantification]);
+   localStorage.setItem("policyQuantificationTransportResponse", JSON.stringify(policyQuantificationTransportResponse));
+  }, [policyQuantificationTransportResponse]);
 
-  const gotoU3policies = () => {
+  useEffect(() => {
+    localStorage.setItem(
+      "policyQuantificationTransportRequest",
+      JSON.stringify(policyQuantificationTransportRequest)
+    );
+  }, [policyQuantificationTransportRequest]);
+
+   const gotoU3policies = () => {
     navigate("/u3policies", {
       replace: true,
     }); 
   };
 
- 
+        // eslint-disable-next-line no-console
+        console.log("policyquantification response", policyQuantificationTransportResponse);
+        // eslint-disable-next-line no-console
+        console.log("policyquantification request", policyQuantificationTransportRequest);
+
+
     return (
+      <Container maxWidth="xl">
       <article>
            <br/>
         <div>
@@ -370,8 +580,8 @@ export const U3planner = () => {
                   change and the population affected below.
                 </Alert>
               </div>
-              {/*  passenger mobility section start */}
-              <div className="column_u3">
+             {/*  passenger mobility section start */}
+              <div className="column_u3" >
                 <div>
                   {" "}
                   <label>
@@ -389,8 +599,10 @@ export const U3planner = () => {
                       <select
                         className="select_u3"
                         name="start_year"
-                        onChange={handleStartYear}
-                        defaultValue="2022"
+                        onChange={handlePassengerMobilityYearStart}
+                        value={passengerMobilityYearStart}
+                        placeholder={passengerMobilityYearStart}
+                        
                         required
                       >
                         <option value="DefaultOption">Select start year</option>
@@ -401,11 +613,14 @@ export const U3planner = () => {
                         ))}
                       </select>
                     </div>
+                    <div>
                     <select
                       className="select_u3"
                       name="finish_year"
-                      onChange={handleYearFinish}
-                      defaultValue="2022"
+                      onChange={handlePassengerMobilityYearEnd}
+                      value={passengerMobilityYearEnd}
+                      placeholder={passengerMobilityYearEnd}
+                      
                       required
                     >
                       <option value="DefaultOption">Select end year</option>
@@ -415,6 +630,7 @@ export const U3planner = () => {
                         </option>
                       ))}
                     </select>
+                    </div>
                   </div>
                 </Tooltip>
               </div>
@@ -430,9 +646,10 @@ export const U3planner = () => {
                       id="inputspace"
                       type="number"
                       step="0.1"
-                      // id="pass_expected_change"
-                      placeholder="0"
-                      onChange={handleExpectedPassChange}
+                      placeholder={passengerMobilityExpectedChange}
+                      value={passengerMobilityExpectedChange}
+                      onChange={handlePassengerMobilityExpectedChange}
+
                       required
                     />
                   </div>
@@ -446,10 +663,11 @@ export const U3planner = () => {
                     className="input_affected_area"
                     type="number"
                     step="0.1"
-                    placeholder="0"
+                    placeholder={populationAffectedPassengerMobility}
                     min="0"
                     max="100"
-                    onChange={handleAffectedPassArea}
+                    onChange={handlePopulationAffectedPassengerMobility}
+                    value={populationAffectedPassengerMobility}
                     required
                   />
                 </div>
@@ -488,8 +706,8 @@ export const U3planner = () => {
                         className="select_u3"
                         id="start_year"
                         name="start_year"
-                        onChange={handleStartYear}
-                        defaultValue="2022"
+                        onChange={handleFreightTransportYearStart}
+                        value={freightTransportYearStart}
                         required
                       >
                         <option value="DefaultOption">Select start year</option>
@@ -505,8 +723,8 @@ export const U3planner = () => {
                         className="select_u3"
                         id="finish_year"
                         name="finish_year"
-                        onChange={handleYearFinish}
-                        defaultValue="2022"
+                        onChange={handleFreightTransportYearEnd}
+                        value={freightTransportYearEnd}
                         required
                       >
                         <option value="DefaultOption">Select end year</option>
@@ -528,7 +746,8 @@ export const U3planner = () => {
                     type="number"
                     step="0.1"
                     placeholder="0"
-                    onChange={handleExpectedFreChange}
+                    onChange={handleFreightTransportMobility}
+                    value={freightTransportMobility}
                     required
                   />
                 </div>
@@ -553,7 +772,7 @@ export const U3planner = () => {
               <div className="column_u3">
                 <div>
                   <label>
-                    <b>Modal split, passenger transport</b>
+                    <b>Modal split: Passenger transport</b>
                   </label>
                 </div>
                 <div>
@@ -578,8 +797,8 @@ export const U3planner = () => {
                       <select
                         className="select_u3"
                         name="start_year"
-                        onChange={handleStartYear}
-                        defaultValue="2022"
+                        onChange={handleModalSplitPassengerYearStart}
+                        value={modalSplitPassengerYearStart}
                         required
                       >
                         <option value="DefaultOption">Select start year</option>
@@ -594,8 +813,8 @@ export const U3planner = () => {
                       <select
                         className="select_u3"
                         name="finish_year"
-                        onChange={handleYearFinish}
-                        defaultValue="2022"
+                        onChange={handleModalSplitPassengerYearEnd}
+                        value={modalSplitPassengerYearEnd}
                         required
                       >
                         <option value="DefaultOption">Select end year</option>
@@ -613,7 +832,7 @@ export const U3planner = () => {
                 <div className="column_u3">
                   <div>
                     {" "}
-                    <label>Without policy</label>
+                    <label><b>Without policy</b></label>
                   </div>
                   <div>
                     <label>{emission.bus}</label>
@@ -634,9 +853,10 @@ export const U3planner = () => {
               </Tooltip>
               <Tooltip title="Insert the target percentages for public transportation. The remaining share is allocated to passenger car transport.">
                 <div className="column_u3">
-                  <label>Policy target %</label>
+                  <label><b>Policy target %</b></label>
                   {/*  bus */}
-                  <input
+                  <div>
+                    <input
                     className="input_u3_planner"
                     type="number"
                     step="0.1"
@@ -646,8 +866,11 @@ export const U3planner = () => {
                     max="100"
                     // onChange={handlePassTransPolicyTarget}
                     onChange={handleBus}
+                    value={bus}
                     required
                   />
+                  </div>
+                  
                   {/*  metro */}
                   <div>
                     {" "}
@@ -659,6 +882,7 @@ export const U3planner = () => {
                       min="0"
                       max="100"
                       onChange={handleMetro}
+                      value={metro}
                       required
                     />
                   </div>
@@ -674,6 +898,7 @@ export const U3planner = () => {
                       min="0"
                       max="100"
                       onChange={handleTram}
+                      value={tram}
                       required
                     />
                   </div>
@@ -689,17 +914,32 @@ export const U3planner = () => {
                       min="0"
                       max="100"
                       onChange={handleTrain}
+                      value={train}
                       required
                     />
                   </div>
 
                   {/*    car */}
+                  <div>
+                    {" "}
+                    <input
+                      type="number"
+                      step="0.1"
+                      className="input_u3_planner"
+                      placeholder="0"
+                      min="0"
+                      max="100"
+                      onChange={handleCar}
+                      value={car}
+                      required
+                    />
+                  </div>
                   <div>This is calculated automatically</div>
                 </div>
               </Tooltip>
               <Tooltip title="Insert a percentage of population expected to change the modal share due to the planning policy. This share applies to the passenger transport of both residents and non-residents within the assessment area.">
                 <div className="column_u3">
-                  <label>Population affected</label>
+                  <label><b>Population affected</b></label>
                   <input
                     type="number"
                     step="0.1"
@@ -707,7 +947,8 @@ export const U3planner = () => {
                     placeholder="0"
                     min="0"
                     max="100"
-                    onChange={handleAffectedPassArea}
+                    onChange={handleModalSplitPassengerPopulationAffected}
+                    value={modalSplitPassengerPopulationAffected}
                     required
                   />
                 </div>
@@ -728,7 +969,7 @@ export const U3planner = () => {
               <div className="column_u3">
                 <div>
                   <label>
-                    <b>Modal split, passenger transport</b>
+                    <b>Modal split: Freight transport</b>
                   </label>
                 </div>
                 <div>
@@ -747,8 +988,8 @@ export const U3planner = () => {
                       <select
                         className="select_u3"
                         name="start_year"
-                        onChange={handleStartYear}
-                        defaultValue="2022"
+                        onChange={handleModalSplitFreightYearStart}
+                        value={modalSplitFreightYearStart}
                         required
                       >
                         <option value="DefaultOption">Select start year</option>
@@ -763,8 +1004,8 @@ export const U3planner = () => {
                       <select
                         className="select_u3"
                         name="finish_year"
-                        onChange={handleYearFinish}
-                        defaultValue="2022"
+                        onChange={handleModalSplitFreightYearEnd}
+                        value={modalSplitFreightYearEnd}
                         required
                       >
                         <option value="DefaultOption">Select end year</option>
@@ -797,9 +1038,10 @@ export const U3planner = () => {
               </Tooltip>
               <Tooltip title="Insert the target percentages for the freight transport on rails and on waterways. The remaining share is allocated to road freight.">
                 <div className="column_u3">
-                  <label>Policy target %</label>
+                  <label><b>Policy target %</b></label>
                   {/*  rail */}
-                  <input
+                  <div>
+                    <input
                     className="input_u3_planner"
                     type="number"
                     step="0.1"
@@ -807,10 +1049,12 @@ export const U3planner = () => {
                     placeholder="0"
                     min="0"
                     max="100"
-                    // onChange={handlePassTransPolicyTarget}
-                    onChange={handleFreTransPolicyTarget}
+                    onChange={handleRailTransport}
+                    value={railTransport}
                     required
                   />
+                  </div>
+                  
                   {/*  water */}
                   <div>
                     {" "}
@@ -821,18 +1065,50 @@ export const U3planner = () => {
                       placeholder="0"
                       min="0"
                       max="100"
-                      onChange={handleFreTransPolicyTarget}
+                      onChange={handleWaterwaysTransport}
+                      value={waterwaysTransport}
                       required
                     />
                   </div>
-
+                  
                   {/*   road */}
+                  <div>
+                    {" "}
+                    <input
+                      type="number"
+                      step="0.1"
+                      className="input_u3_planner"
+                      placeholder="0"
+                      min="0"
+                      max="100"
+                      onChange={handleRoadTransport}
+                      value={roadTransport}
+                      required
+                    />
+                  </div>
                   <div>
                     {" "}
                     <label>This is calculated automatically</label>
                   </div>
                 </div>
               </Tooltip>
+              {/*
+                <Tooltip title="Insert a percentage of the area affected by the planning policy.">
+                <div className="column_u3">
+                  <label>% of Population Affected</label>
+                  <input
+                    className="input_u3_planner "
+                    type="number"
+                    step="0.1"
+                    placeholder="0"
+                    onChange={handleAffectedPopulation}
+                    value={affectedPopulation}
+                    required
+                  />
+                </div>
+              </Tooltip>
+              */}
+              
             </div>
             {/* modal split-freight transport section end */}
             <br />
@@ -867,7 +1143,7 @@ export const U3planner = () => {
                   <label>Natural Gas (CNG)</label>
                 </div>
                 <div>
-                  <label>Electricty</label>
+                  <label>Electricity</label>
                 </div>
                 <div>
                   {" "}
@@ -880,8 +1156,8 @@ export const U3planner = () => {
                       <select
                         className="select_u3"
                         name="start_year"
-                        onChange={handleStartYear}
-                        defaultValue="2022"
+                        onChange={handleFuelSharesBusYearStart}
+                        value={fuelSharesBusYearStart}
                         required
                       >
                         <option value="DefaultOption">Select start year</option>
@@ -896,8 +1172,8 @@ export const U3planner = () => {
                       <select
                         className="select_u3"
                         name="finish_year"
-                        onChange={handleYearFinish}
-                        defaultValue="2022"
+                        onChange={handleFuelSharesBusYearEnd}
+                        value={fuelSharesBusYearEnd}
                         required
                       >
                         <option value="DefaultOption">Select end year</option>
@@ -915,7 +1191,7 @@ export const U3planner = () => {
                 <div className="column_u3">
                   <div>
                     {" "}
-                    <label>Without policy</label>
+                    <label><b>Without policy</b></label>
                   </div>
                   <div>
                     {" "}
@@ -942,13 +1218,12 @@ export const U3planner = () => {
               <Tooltip title="Insert the target percentages for the fuel types used in the bus fleet by the end of the policy implementation period. The remaining share is allocated to diesel engines.">
                 <div className="column_u3">
                   <div>
-                    <label>Policy target %</label>
+                    <label><b>Policy target %</b></label>
                   </div>
                   <div>
                     {" "}
                     <input
                       className="input_u3_planner "
-                      /*   id="inputspace" */
                       type="number"
                       step="0.1"
                       // id="fre_policy_target"
@@ -956,13 +1231,13 @@ export const U3planner = () => {
                       min="0"
                       max="100"
                       onChange={handlePetrol}
+                      value={petrol}
                       required
                     />
                   </div>
                   <div>
                     {" "}
                     <input
-                      // id="inputspace"
                       type="number"
                       step="0.1"
                       className="input_u3_planner "
@@ -971,6 +1246,7 @@ export const U3planner = () => {
                       min="0"
                       max="100"
                       onChange={handleLpg}
+                      value={lpg}
                       required
                     />
                   </div>
@@ -985,6 +1261,8 @@ export const U3planner = () => {
                       min="0"
                       max="100"
                       onChange={handleCng}
+                      
+                      value={cng}
                       required
                     />
                   </div>
@@ -998,6 +1276,7 @@ export const U3planner = () => {
                       min="0"
                       max="100"
                       onChange={handleElectricity}
+                      value={electricity}
                       required
                     />
                   </div>
@@ -1011,6 +1290,7 @@ export const U3planner = () => {
                       min="0"
                       max="100"
                       onChange={handleDiesel}
+                      value={diesel}
                       required
                     />
                   </div>
@@ -1024,13 +1304,15 @@ export const U3planner = () => {
                     type="number"
                     step="0.1"
                     placeholder="0"
-                    // onChange={}
+                    onChange={handleFuelSharesBusPopulationAffected}
+                    value={fuelSharesBusPopulationAffected}
                     required
                   />
                 </div>
               </Tooltip>
             </div>
             {/* fuel-bus transport section end */}
+
             {/* fuel-car transport section start*/}
             <div className="row_u3">
               <div className="div2">
@@ -1108,8 +1390,9 @@ export const U3planner = () => {
                       <select
                         className="select_u3"
                         name="start_year"
-                        onChange={handleStartYear}
-                        defaultValue="2022"
+                        onChange={handleFuelSharesCarYearStart}
+                        value={fuelSharesCarYearStart}
+                        
                         required
                       >
                         <option value="DefaultOption">Select start year</option>
@@ -1124,8 +1407,8 @@ export const U3planner = () => {
                       <select
                         className="select_u3"
                         name="finish_year"
-                        onChange={handleYearFinish}
-                        defaultValue="2022"
+                        onChange={handleFuelSharesCarYearStart}
+                        value={fuelSharesCarYearEnd}
                         required
                       >
                         <option value="DefaultOption">Select end year</option>
@@ -1215,7 +1498,8 @@ export const U3planner = () => {
                       placeholder="0.0"
                       min="0"
                       max="100"
-                      onChange={handleLpg}
+                      onChange={handleCarLpg}
+                      value={carLpg}
                       required
                     />
                   </div>
@@ -1230,7 +1514,8 @@ export const U3planner = () => {
                       placeholder="0.0"
                       min="0"
                       max="100"
-                      onChange={handleCng}
+                      onChange={handleCarCng}
+                      value={carCng}
                       required
                     />
                   </div>
@@ -1245,6 +1530,7 @@ export const U3planner = () => {
                       min="0"
                       max="100"
                       onChange={handleNgv}
+                      value={ngv}
                       required
                     />
                   </div>
@@ -1258,6 +1544,7 @@ export const U3planner = () => {
                       min="0"
                       max="100"
                       onChange={handleHep}
+                      value={hep}
                       required
                     />
                   </div>
@@ -1271,6 +1558,7 @@ export const U3planner = () => {
                       min="0"
                       max="100"
                       onChange={handlePhev}
+                      value={phev}
                       required
                     />
                   </div>
@@ -1286,6 +1574,7 @@ export const U3planner = () => {
                       min="0"
                       max="100"
                       onChange={handleHydrogenfuel}
+                      value={hydrogenfuel}
                       required
                     />
                   </div>
@@ -1301,6 +1590,7 @@ export const U3planner = () => {
                       min="0"
                       max="100"
                       onChange={handleBioethanol}
+                      value={bioethanol}
                       required
                     />
                   </div>
@@ -1315,6 +1605,7 @@ export const U3planner = () => {
                       min="0"
                       max="100"
                       onChange={handleBiodiesel}
+                      value={biodiesel}
                       required
                     />
                   </div>
@@ -1328,6 +1619,7 @@ export const U3planner = () => {
                       min="0"
                       max="100"
                       onChange={handleBifuel}
+                      value={bifuel}
                       required
                     />
                   </div>
@@ -1341,6 +1633,7 @@ export const U3planner = () => {
                       min="0"
                       max="100"
                       onChange={handleOther}
+                      value={other}
                       required
                     />
                   </div>
@@ -1354,12 +1647,41 @@ export const U3planner = () => {
                       placeholder="0.0"
                       min="0"
                       max="100"
-                      onChange={handleElectricity}
+                      onChange={handleCarElectricity}
+                      value={carElectricity}
                       required
                     />
                   </div>
                   <div>
-                    <label>This is calculated automatically</label>
+                    {" "}
+                    <input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleCarPetrol}
+                      value={carPetrol}
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    {" "}
+                    <input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleCarDiesel}
+                      value={carDiesel}
+                      required
+                    />
                   </div>
                   <div>
                     <label>This is calculated automatically</label>
@@ -1374,7 +1696,8 @@ export const U3planner = () => {
                     type="number"
                     step="0.1"
                     placeholder="0"
-                    // onChange={}
+                    onChange={handleFuelSharesCarPopulationAffected}
+                    value={fuelSharesCarPopulationAffected}
                     required
                   />
                 </div>
@@ -1409,8 +1732,9 @@ export const U3planner = () => {
                         className="select_u3"
                         id="start_year"
                         name="start_year"
-                        onChange={handleStartYear}
-                        defaultValue="2022"
+                        onChange={handleElectricityTransportYearStart}
+                        value={electricityTransportYearStart}
+                        
                         required
                       >
                         <option value="DefaultOption">Select start year</option>
@@ -1426,8 +1750,9 @@ export const U3planner = () => {
                         className="select_u3"
                         id="finish_year"
                         name="finish_year"
-                        onChange={handleYearFinish}
-                        defaultValue="2022"
+                        onChange={handleElectricityTransportYearEnd}
+                        value={electricityTransportYearEnd}
+                        
                         required
                       >
                         <option value="DefaultOption">Select end year</option>
@@ -1446,7 +1771,7 @@ export const U3planner = () => {
               </div>
               <Tooltip title="Insert the percentage of renewable energies that is produced locally for the transport electricity. Positive percentage improves the electricity mix and reduces the greenhouse gas emissions.">
                 <div className="column_u3">
-                  <label>Reduction</label>
+                  <label><b>Reduction</b></label>
                   <input
                     className="input_u3_planner"
                     type="number"
@@ -1454,6 +1779,7 @@ export const U3planner = () => {
                     // id="car_fuel_policy_target"
                     placeholder="0"
                     onChange={handleRenewables}
+                    value={renewables}
                     required
                   />
                 </div>
@@ -1468,7 +1794,8 @@ export const U3planner = () => {
                     placeholder="0"
                     min="0"
                     max="100"
-                    onChange={handleAffectedArea}
+                    onChange={handleElectricityTransportPopulationAffected}
+                    value={electricityTransportPopulationAffected}
                     required
                   />
                 </div>
@@ -1485,9 +1812,11 @@ export const U3planner = () => {
                   navigate("../u2planner", { replace: true })
                 }
                 label="&laquo; Previous"
-                secondary
+                secondary="true"
               />
             </div>
+            {/* here is button for submitting */}
+
             <div className="nextU3Button">
               <Button
                 size="small"
@@ -1497,8 +1826,19 @@ export const U3planner = () => {
                 primary
               />
             </div>
+            <div className="">
+              <Button
+                size="small"
+                // value="nextU3policies"
+                onClick={createPolicyQuantification}
+                label="Submit"
+                type="Submit"
+                primary
+              />
+            </div>
           </form>
         </section>
       </article>
+      </Container>
     );
 };
