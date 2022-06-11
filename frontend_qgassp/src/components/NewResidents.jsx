@@ -99,7 +99,9 @@ export const NewResidents = () => {
     );
   };
 
-  const updateU2Planner = () => {
+  const updateU2Planner = (e) => {
+    e.preventDefault();
+
     const newSettlementDistribution = {
       metropolitanCenter: nsMetropolitanCenter,
       urban: nsUrban,
@@ -107,10 +109,12 @@ export const NewResidents = () => {
       town: nsTown,
       rural: nsRural,
     };
+
     localStorage.setItem(
       "newSettlementDistribution",
       JSON.stringify(newSettlementDistribution)
     );
+
     const newDevelopment = {
       newResidents,
       yearStart,
@@ -118,6 +122,7 @@ export const NewResidents = () => {
       newSettlementDistribution,
     };
     localStorage.setItem("newDevelopment", JSON.stringify(newDevelopment));
+
     goToU2();
   };
 
@@ -147,10 +152,6 @@ export const NewResidents = () => {
         },  */
     });
   };
-
-  useEffect(() => {
-    localStorage.setItem("newDevelopment", JSON.stringify(newDevelopment));
-  }, [newDevelopment]);
 
   return (
     <article>
@@ -363,7 +364,7 @@ export const NewResidents = () => {
                   navigate("../u1planner", { replace: true })
                 }
                 label="&laquo; Previous"
-                secondary
+                secondary="true"
               />
             </div>
             <div className="nextButtonNew">
@@ -371,6 +372,7 @@ export const NewResidents = () => {
                 size="small"
                 type="submit"
                 value="Submit"
+                onClick={updateU2Planner}
                 label="Next &raquo;"
                 primary
               />

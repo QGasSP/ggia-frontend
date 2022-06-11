@@ -7,6 +7,7 @@ import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import { RadialChart, DiscreteColorLegend } from "react-vis";
 import {
+  useLocalStorageBoolean,
   useStorageFloat,
   useStorageInt,
   useStorageString,
@@ -14,6 +15,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { StartPage } from "./StartPage";
 import { country, year, population } from "../reducers/GetStorageItem";
+import { Container } from "@mui/system";
 /**
  * Transport baseline user input form
  * @return {}
@@ -90,6 +92,20 @@ export const TransportBaseline = () => {
     setRural(parseFloat(e.target.value));
   };
 
+
+
+  const [metroSystem, setMetroSystem] = useLocalStorageBoolean("metroSystem", "false")
+  const handleMetro = (e) => {
+    e.target.checked;
+    setMetroSystem(!metroSystem)
+  }
+
+  const [tramSystem, setTramSystem] = useLocalStorageBoolean("tramSystem", "false")
+  const handleTram = (e) => {
+    e.target.checked;
+    setTramSystem(!tramSystem)
+  }
+
   const setSettlementType = () => {
     const settlementDist = {
       metropolitanCenter,
@@ -131,11 +147,12 @@ export const TransportBaseline = () => {
 
   if (population === 0 && year === 0 && country === "" ||
   window.localStorage === null
-) {
+  ) {
   return <StartPage/>;
-};
+  };
 
   return (
+    <Container maxWidth="xl">
     <div className="div_transport">
       <article>
         <div className="headerSettlement">
@@ -178,7 +195,7 @@ export const TransportBaseline = () => {
                       id="metropolitan"
                       min="0"
                       max="100"
-                      placeholder={metropolitanCenter}
+                      value={metropolitanCenter}
                       onChange={handleMetropolitanCenter}
                       onMouseLeave={getCurrentTotal}
                       required
@@ -199,8 +216,8 @@ export const TransportBaseline = () => {
                       id="urban"
                       min="0"
                       max="100"
-                      placeholder={urban}
-                      /*   value={urban} */
+                      // placeholder={urban}
+                      value={urban}
                       onChange={handleUrban}
                       onMouseLeave={getCurrentTotal}
                       required
@@ -222,8 +239,7 @@ export const TransportBaseline = () => {
                       step="any"
                       min="0.01"
                       max="100.0"
-                      placeholder={suburban}
-                      /*   defaultValue={suburban} */
+                      value={suburban}
                       onChange={handleSuburban}
                       onMouseLeave={getCurrentTotal}
                       required
@@ -244,8 +260,7 @@ export const TransportBaseline = () => {
                       step="0.01"
                       min="0.0"
                       max="100.0"
-                      /*   value={town} */
-                      placeholder={town}
+                      value={town}
                       onChange={handleTown}
                       onMouseLeave={getCurrentTotal}
                       required
@@ -267,7 +282,7 @@ export const TransportBaseline = () => {
                       min="0"
                       max="100"
                       placeholder={rural}
-                      /*   value={rural} */
+                      value={rural}
                       onChange={handleRural}
                       onMouseLeave={getCurrentTotal}
                       required
@@ -343,6 +358,7 @@ export const TransportBaseline = () => {
                     min="0"
                     onChange={handleNsArea}
                     placeholder={nsArea}
+                    value={nsArea}
                     required
                   />
                 </div>
@@ -357,6 +373,7 @@ export const TransportBaseline = () => {
                     id="ew_measure"
                     min="0"
                     onChange={handleEwArea}
+                    value={ewArea}
                     placeholder={ewArea}
                     required
                   />
@@ -406,7 +423,8 @@ export const TransportBaseline = () => {
                   id="freight_road"
                   name="freight_road"
                   onChange={(e) => setFreightRoad(e.target.value)}
-                  defaultValue={freightRoad}
+                  value={freightRoad}
+                  placeholder={freightRoad}
                 >
                   <option value="DefaultOption">Select intensity</option>
                   <optgroup label="Select road transport intensity">
@@ -427,7 +445,8 @@ export const TransportBaseline = () => {
                   id="freight_rail"
                   name="freight_rail"
                   onChange={(e) => setFreightRail(e.target.value)}
-                  defaultValue={freightRail}
+                  value={freightRail}
+                  placeholder={freightRail}
                 >
                   <option value="DefaultOption">Select intensity</option>
                   <optgroup label="Select road transport intensity">
@@ -450,7 +469,8 @@ export const TransportBaseline = () => {
                   id="freight_waterway"
                   name="freight_waterway"
                   onChange={(e) => setFreightInlandWaterway(e.target.value)}
-                  defaultValue={freightInlandWaterway}
+                  value={freightInlandWaterway}
+                  placeholder={freightInlandWaterway}
                 >
                   <option value="DefaultOption">Select intensity</option>
                   <optgroup label="Select road transport intensity">
@@ -464,7 +484,7 @@ export const TransportBaseline = () => {
             </Tooltip>
           </div>
 
-          {total == 100.0 && (
+          {total === 100.0 && (
             <div className="nextU2Button">
               <Button
                 size="small"
@@ -478,5 +498,6 @@ export const TransportBaseline = () => {
         </section>
       </article>
     </div>
+    </Container>
   );
 };

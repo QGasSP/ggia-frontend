@@ -3,6 +3,7 @@ import { Button } from "./Button";
 import "../css/u3policies.css";
 import axios from "axios";
 import {
+  FlexibleXYPlot,
   XYPlot,
   XAxis,
   YAxis,
@@ -16,6 +17,7 @@ import {
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import {useNavigate} from "react-router-dom";
+import { Container } from "@mui/material";
 
 const BarSeries = VerticalBarSeries;
 /**
@@ -46,7 +48,8 @@ export const U3policies = () =>
     const base = JSON.parse(localStorage.getItem("baseline"))|| {};
     const baseline = base.baseline;
     const navigate = useNavigate();
-    const policyQuantification =localStorage.getItem("policyQuantification")|| "";
+    const policyQuantification = localStorage.getItem("policyQuantification")|| "";
+
     const emission = JSON.parse(localStorage.getItem("emission"))||{};
     const projections = JSON.parse(localStorage.getItem("projections"))|| {};
     const passengerMob = localStorage.getItem("passengerMob") || 0;
@@ -63,8 +66,44 @@ export const U3policies = () =>
     const electricityTransTypes = localStorage.getItem("electricityTransTypes")|| "";
     const electricityTrans = localStorage.getItem("  electricityTrans")|| "";
 
+    // eslint-disable-next-line no-console
+    // console.log(policyQuantification, 'policy quantification')
+
+     // eslint-disable-next-line no-console
+    console.log(modalSplitPass, 'modal split pass')
+
+    // transport projections
+    const busProjection = [];
+    const carProjection = [];
+    const metroProjection = [];
+    const railTransportProjection = [];
+    const roadTransportProjection = [];
+    const trainProjection = [];
+    const tramProjection = [];
+    const waterwaysTransportProjection = [];
+    const totalTransportProjection = [];
+
+    // projections push data in order to get them in the graph
+    if(
+    projections &&
+    Object.keys(projections).length !== 0){
+    for (let i = 2022; i < 2051; i++) {
     
+    busProjection.push({ x: i, y: projections.bus[i] });  
+    carProjection.push({ x: i, y: projections.car[i] });
+    metroProjection.push({ x: i, y: projections.metro[i] });
+    railTransportProjection.push({ x: i, y: projections.rail_transport[i] });
+    roadTransportProjection.push({ x: i, y: projections.road_transport[i] });
+    trainProjection.push({ x: i, y: projections.train[i] });
+    tramProjection.push({ x: i, y: projections.tram[i] });
+    waterwaysTransportProjection.push({ x: i, y: projections.waterways_transport[i] });
+    // totalTransportProjection.push({ x: i, y: projections.total[i] });
+  }
+  }
+
+
     return (
+      <Container maxWidth="xl">
       <article>
         <br />
         <div className="headerU3policies">
@@ -159,6 +198,70 @@ export const U3policies = () =>
                   <label></label>
                   <label></label>
                 </div>
+                {/* transport projections start here */}
+                {/* 
+                <div className="luc_alert_container">
+              <Divider textAlign="left" flexItem>
+                <Chip label="Transport projections" />
+              </Divider>
+              <FlexibleXYPlot
+                margin={{ left: 80 }}
+                width={1150}
+                height={500}
+                stackBy="y"
+                xType="ordinal"
+              >
+                <VerticalGridLines />
+                <HorizontalGridLines />
+                <XAxis title="Year" />
+                <YAxis title="here goes a value!!!" />
+                <BarSeries
+                  color="#3d58a3"
+                  opacity={0.5}
+                  data={busProjection}
+                  stack
+                />
+                <BarSeries
+                  color="#ef7d00"
+                  opacity={0.55}
+                  data={carProjection}
+                  stack
+                />
+                <BarSeries
+                  color="#95c11f"
+                  opacity={0.55}
+                  data={metroProjection}
+                  stack
+                />
+                <BarSeries
+                  color="#ce143d"
+                  opacity={0.55}
+                  data={railTransportProjection}
+                  stack
+                />
+                <BarSeries
+                  color="#845f9e"
+                  opacity={0.55}
+                  data={roadTransportProjection}
+                  stack
+                />
+                <BarSeries color="#996e35" opacity={0.55} data={trainProjection} stack />
+                
+                <BarSeries color="#76918e" opacity={0.55} data={tramProjection} stack />
+                <BarSeries
+                  color="#000000"
+                  strokeWidth="1"
+                  data={waterwaysTransportProjection}
+                />
+                <LineSeries
+                  className="fourth-series"
+                  color="#000000"
+                  strokeWidth="1"
+                  data={totalTransportProjection}
+                />
+              </FlexibleXYPlot>
+              </div>
+              */}
                 <div>
                   <label>Policy period</label>
                   <label> {modalSplitPass.yearStart}</label>
@@ -244,7 +347,7 @@ export const U3policies = () =>
               <br />
               <div>
                 <label>
-                  <b>Modal split/Freight transport</b>
+                  <b>Modal split/ Freight transport</b>
                 </label>
                 <label>withouth policy</label>
                 <label>policy target %</label>
@@ -348,7 +451,7 @@ export const U3policies = () =>
               <br />
               <div>
                 <label>
-                  <b>Shares of fuel types/Bus transport</b>
+                  <b>Shares of fuel types/ Bus transport</b>
                 </label>
                 <label>withouth policy</label>
                 <label>policy target %</label>
@@ -1307,12 +1410,13 @@ export const U3policies = () =>
                   navigate("../u2planner", { replace: true })
                 }
                 label="&laquo; Previous"
-                secondary
+                secondary="true"
               />
             </div>
             </form>
           </div>
         </section>
       </article>
+      </Container>
     );
   };

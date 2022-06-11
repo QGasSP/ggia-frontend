@@ -13,10 +13,18 @@ import {
   HorizontalGridLines,
   VerticalGridLines,
   LineSeries,
+  RadialChart,
+  DiscreteColorLegend,
+  VerticalBarSeries
 } from "react-vis";
+
+
+const BarSeries = VerticalBarSeries;
+
 // import { U3planner } from "./U3planner";
 import urlPrefix from "../Config";
 import {useNavigate} from "react-router-dom";
+import { Container, Grid } from "@mui/material";
 
 /**
  * U2 Planner component for visualization of  baseline vs new-resident population
@@ -52,6 +60,7 @@ export const U2planner = () => {
     const headers = {
       "Content-type": "application/json",
     };
+  
     axios
       .post(
         urlPrefix + "/api/v1/calculate/transport/new-development",
@@ -91,7 +100,6 @@ export const U2planner = () => {
   useEffect(() => {
     localStorage.setItem("newPopulation", JSON.stringify(newPopulation));
   }, [newPopulation]);
-
   
   useEffect(() => {
     localStorage.setItem("newDevelopment", JSON.stringify(newDevelopment));
@@ -101,19 +109,28 @@ export const U2planner = () => {
     return <CircularProgress color="success" />;
   };
 
-
+  const itemLabels = [
+  { title: "Metropolitan Area", color: "#ADD8E6" },
+  { title: "Urban", color: "green" },
+  { title: "Suburban", color: "orange" },
+  { title: "Town", color: "red" },
+  { title: "Rural", color: "brown" },
+  
+]
   
     return (
+      <Container maxWidth="xl">
       <article>
-        <div className="headerSettlement">
+         <section>
+
+            <div className="headerSettlement">
           <Divider textAlign="left" flexItem>
             {" "}
             <Chip label="U2 NEW DEVELOPMENT" />
           </Divider>
         </div>
 
-        <section>
-          <form>
+       
             <label>
               <b>New residents</b>
             </label>
@@ -135,43 +152,169 @@ export const U2planner = () => {
               <label> End</label>
               <label> {newDevelopment.yearFinish}</label>
             </div>
+          
+        
+          
+          <XYPlot
+              xType="ordinal"
+              width={1000}
+              height={500}
+              margin={{ left: 100 }}
+            >
+          
+          <VerticalGridLines />
+          <HorizontalGridLines />
+          <XAxis />
+          <YAxis />
+          <BarSeries
+            
+            color="#12939A"
+            data={dataProjectionPopulation}
+          />
+          <BarSeries
+            
+            color="#79C7E3"
+            data={dataNewPopulation}
+          />
+          <LineSeries
+          color="black"
+            data={dataProjectionPopulation}
+            strokeStyle="dashed"
+          />
+         
+          
+        </XYPlot>
+
+
             <br />
-            <label>
-              <b>Settlement type</b>
-            </label>
-            <label>
-              <b>Existing environment</b>
-            </label>
-            <label>
-              <b>New development</b>
-            </label>
+
+            {/* settlement type starts here */}
+            <Grid container spacing={6}>
+              <Grid item xs={6}>
+                <div>
+                  <table style={{width:'100%'}}>
+                    <thead>
+                        <tr>
+                          <th>Settlement type</th>
+                          <th>Existing environment</th>
+                          <th>New development</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                          <td>Metropolitan Area</td>
+                          <td>{settlementDistribution.metropolitanCenter}</td>
+                          <td>{newDevelopment.newSettlementDistribution.metropolitanCenter}</td>
+                        </tr>
+
+                        <tr>
+                          <td>Urban</td>
+                          <td>{settlementDistribution.urban}</td>
+                          <td>{newDevelopment.newSettlementDistribution.urban}</td>
+                        </tr>
+
+                        <tr>
+                          <td>Suburban</td>
+                          <td>{settlementDistribution.suburban}</td>
+                          <td>{newDevelopment.newSettlementDistribution.suburban}</td>
+                        </tr>
+
+                        <tr>
+                          <td>Town</td>
+                          <td>{settlementDistribution.town}</td>
+                          <td>{newDevelopment.newSettlementDistribution.town}</td>
+                        </tr>
+
+                        <tr>
+                          <td>Rural</td>
+                          <td>{settlementDistribution.rural}</td>
+                          <td>{newDevelopment.newSettlementDistribution.rural}</td>
+                        </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+           
+              </Grid>
+              <Grid item xs={6}>
+                  <Divider textAlign="left" flexItem>
+          {" "}
+          <b>New settlement type and its distribution</b>
+        </Divider>
+
+        <div className="piechart_container">
+          <div className="piechart_diagram">
             <div>
-              <label>Metropolitan Area</label>
-              <label>{settlementDistribution.metropolitanCenter}</label>
-              <label>
-                {newDevelopment.newSettlementDistribution.metropolitanCenter}
-              </label>
+              <RadialChart
+                data={[
+                  {
+                    angle:
+                      Math.round(
+                        (newDevelopment.newSettlementDistribution.metropolitanCenter / 100 + Number.EPSILON) * 36000
+                      ) / 100,
+                    label: "Metropolitan Area",
+                    color: "#ADD8E6",
+                  },
+                  {
+                    angle:
+                      Math.round(
+                        (newDevelopment.newSettlementDistribution.urban / 100 + Number.EPSILON) *
+                          36000
+                      ) / 100,
+                    label: "Urban",
+                    color: "green",
+                  },
+                  {
+                    angle:
+                      Math.round(
+                        (newDevelopment.newSettlementDistribution.suburban / 100 + Number.EPSILON) *
+                          36000
+                      ) / 100,
+                    label: "Suburban",
+                    color: "orange",
+                  },
+                  {
+                    angle:
+                      Math.round(
+                        (newDevelopment.newSettlementDistribution.town / 100 +
+                          Number.EPSILON) *
+                          36000
+                      ) / 100,
+                    label: "Town",
+                    color: "red",
+                  },
+                  {
+                    angle:
+                      Math.round(
+                        (newDevelopment.newSettlementDistribution.rural / 100 + Number.EPSILON) * 36000
+                      ) / 100,
+                    label: "Rural",
+                    color: "brown",
+                    rotation: 90,
+                  },
+                ]}
+                colorType="literal"
+                innerRadius={100}
+                radius={140}
+                getAngle={(d) => d.angle}
+                width={350}
+                height={350}
+              />
             </div>
-            <div>
-              <label>Urban</label>
-              <label>{settlementDistribution.urban}</label>
-              <label>{newDevelopment.newSettlementDistribution.urban}</label>
-            </div>
-            <div>
-              <label> Suburban</label>
-              <label>{settlementDistribution.suburban}</label>
-              <label>{newDevelopment.newSettlementDistribution.suburban}</label>
-            </div>
-            <div>
-              <label htmlFor="town">Town</label>
-              <label>{settlementDistribution.town}</label>
-              <label>{newDevelopment.newSettlementDistribution.town}</label>
-            </div>
-            <div>
-              <label htmlFor="rural">Rural</label>
-              <label>{settlementDistribution.rural}</label>
-              <label>{newDevelopment.newSettlementDistribution.rural}</label>
-            </div>
+          </div>
+          <div className="piechart_legend" style={{height:'60%',width:'60%', marginLeft:"70px"}}>
+            <DiscreteColorLegend
+              items={itemLabels}
+              orientation="vertical"
+              strokeWidth="50px"
+              />
+          </div>
+          <div></div>
+        </div>
+
+            </Grid>
+            </Grid>
+            <br/>
             <Divider textAlign="left" flexItem>
               {" "}
               <b>
@@ -209,6 +352,10 @@ export const U2planner = () => {
               />
             </XYPlot>
             <U2legend />
+
+            <br />
+
+
             <div className="backButtonNew">
               <Button
                 size="small"
@@ -217,7 +364,7 @@ export const U2planner = () => {
                   navigate("../newResidents", { replace: true })
                 }
                 label="&laquo; Previous"
-                secondary
+                secondary="true"
               />
             </div>
 
@@ -230,9 +377,10 @@ export const U2planner = () => {
                 primary
               />
             </div>
-          </form>
+          
         </section>
       </article>
+      </Container>
     );
 };
 

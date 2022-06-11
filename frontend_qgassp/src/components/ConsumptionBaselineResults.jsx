@@ -203,7 +203,7 @@ export const ConsumptionBaselineResults = () => {
           />
         </div>
 
-        <XYPlot width={1100} height={550} margin={{left: 100}} stackBy="y" xType="ordinal">
+        <XYPlot width={1000} height={500} margin={{left: 100}} stackBy="y" xType="ordinal">
           <HorizontalGridLines />
           <VerticalGridLines />
           <VerticalBarSeries className="StackedBarchart" />
