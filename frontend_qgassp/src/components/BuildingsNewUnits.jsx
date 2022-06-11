@@ -2566,7 +2566,7 @@ export const BuildingsNewUnits = ({
                     type="submit"
                     value="Submit"
                     onClick={submitNewConstruction}
-                    label="Sumbit"
+                    label="Submit"
                     primary="true"
                   />
                 </div>
