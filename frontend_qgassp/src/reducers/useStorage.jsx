@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 function getStorageValue(key, defaultValue, parser) {
   const saved = window.localStorage.getItem(key);
-  return saved !== null ? parser(saved) : parser(defaultValue);
+  return saved == null || saved === '' ? parser(defaultValue) : parser(saved);
 }
 
 export const useStorageInt = (key, defaultValue) => {
