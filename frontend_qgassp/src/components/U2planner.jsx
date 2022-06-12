@@ -160,28 +160,23 @@ export const U2planner = () => {
               height={500}
               margin={{ left: 100 }}
             >
-          
           <VerticalGridLines />
           <HorizontalGridLines />
           <XAxis />
           <YAxis />
           <BarSeries
-            
             color="#12939A"
             data={dataProjectionPopulation}
           />
           <BarSeries
-            
             color="#79C7E3"
             data={dataNewPopulation}
           />
           <LineSeries
-          color="black"
+            color="black"
             data={dataProjectionPopulation}
             strokeStyle="dashed"
           />
-         
-          
         </XYPlot>
 
 

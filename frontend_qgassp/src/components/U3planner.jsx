@@ -367,9 +367,6 @@ const handleOther = (e) => {
   };
 
 
-
-  
-
   const createPolicyQuantification = (e) => {
     e.preventDefault();
 
@@ -540,12 +537,6 @@ const handleOther = (e) => {
       replace: true,
     }); 
   };
-
-        // eslint-disable-next-line no-console
-        console.log("policyquantification response", policyQuantificationTransportResponse);
-        // eslint-disable-next-line no-console
-        console.log("policyquantification request", policyQuantificationTransportRequest);
-
 
     return (
       <Container maxWidth="xl">
@@ -1106,6 +1097,7 @@ const handleOther = (e) => {
             {/* modal split-freight transport section end */}
             <br />
             {/* fuel-bus transport section start*/}
+              <div>
               <div className="div2">
                 <Alert severity="info">
                   Does the planning policy increase the use of low-carbon fuels
@@ -1271,6 +1263,7 @@ const handleOther = (e) => {
                 </tbody>
               </table>
               </div>
+              </div>
               <br/>
             {/* fuel-bus transport section end */}
 
@@ -1285,70 +1278,259 @@ const handleOther = (e) => {
                   implementation.
                 </Alert>
               </div>
-              <div className="column_u3">
-                <div>
-                  {" "}
-                  <label>
-                    <b>Shares of fuel types in car transport</b>{" "}
-                  </label>
-                </div>
-                <div>
-                  {" "}
-                  <label>Liquified Petroleum Gas (LPG)</label>
-                </div>
-                <div>
-                  {" "}
-                  <label>Natural Gas (CNG)</label>
-                </div>
-                <div>
-                  {" "}
-                  <label>Alternative Energy/biomethane NGV</label>
-                </div>
-                <div>
-                  {" "}
-                  <label>Hybrid electric-petrol</label>
-                </div>
-                <div>
-                  {" "}
-                  <label>Plug-in hybrid petrol-electric PHEV</label>
-                </div>
-                <div>
-                  {" "}
-                  <label>Hydrogen and fuel cells</label>
-                </div>
-                <div>
-                  {" "}
-                  <label>Bioethanol</label>
-                </div>
-                <div>
-                  {" "}
-                  <label>Bio-diesel</label>
-                </div>
-                <div>
-                  {" "}
-                  <label>Bi-fuel</label>
-                </div>
-                <div>
-                  {" "}
-                  <label>Other (unknown)</label>
-                </div>
-                <div>
-                  {" "}
-                  <label>Electricity BEV</label>
-                </div>
-                <div>
-                  {" "}
-                  <label>Petrol, according to country selection</label>
-                </div>
-                <div>
-                  {" "}
-                  <label>Diesel, according to country selection</label>
-                </div>
-                <Tooltip title="Insert the target percentages for the fuel types of the passenger car fleet by the end of the policy implementation period. The remaining share is allocated to petrol and diesel engines.">
-                  <div>
-                    <label>Policy period</label>
-                    <div className="divspace">
-                      <select
+              <div>
+                <table style={{width:"100%"}}>
+                  <thead>
+                    <tr>
+                      <th>Shares of fuel types in car transport</th>
+                      <Tooltip title="This column shows You the fuel shares in the passenger car fleet as in the baseline scenario.">
+                      <th>Without policy</th>
+                      </Tooltip>
+                      <Tooltip title="Insert the target percentages for the fuel types of the passenger car fleet by the end of the policy implementation period. The remaining share is allocated to petrol and diesel engines.">
+                      <th>Policy target %</th>
+                      </Tooltip>
+
+                      <th>% of the area affected</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Liquified Petroleum Gas (LPG)</td>
+                      <td></td>
+                      <td> <input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleCarLpg}
+                      value={carLpg}
+                      required
+                      /></td>
+                      <td>
+                        <Tooltip title="Insert a percentage of passenger car transport in the area affected by the planning policy.">
+                
+                      <input
+                        className="input_u3_planner "
+                        type="number"
+                        step="0.1"
+                        placeholder="0"
+                        onChange={handleFuelSharesCarPopulationAffected}
+                        value={fuelSharesCarPopulationAffected}
+                        required
+                      />
+                      </Tooltip></td>
+                    </tr>
+
+                    <tr>
+                      <td>Natural Gas (CNG)</td>
+                      <td></td>
+                      <td><input
+                      // id="inputspace"
+                      type="number"
+                      step="0.1"
+                      className="input_u3_planner "
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleCarCng}
+                      value={carCng}
+                      required
+                    /></td>
+                    </tr>
+
+                    <tr>
+                      <td>Alternative Energy/biomethane NGV</td>
+                      <td></td>
+                      <td><input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleNgv}
+                      value={ngv}
+                      required
+                    /></td>
+                    </tr>
+
+                    <tr>
+                      <td>Hybrid electric-petrol</td>
+                      <td></td>
+                      <td> <input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleHep}
+                      value={hep}
+                      required
+                    /></td>
+                    </tr>
+
+                    <tr>
+                      <td>Plug-in hybrid petrol-electric PHEV</td>
+                      <td></td>
+                      <td><input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handlePhev}
+                      value={phev}
+                      required
+                    /></td>
+                    </tr>
+
+                    <tr>
+                      <td>Hydrogen and fuel cells</td>
+                      <td></td>
+                      <td><input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleHydrogenfuel}
+                      value={hydrogenfuel}
+                      required
+                    /></td>
+                    </tr>
+
+                    <tr>
+                      <td>Bioethanol</td>
+                      <td></td>
+                      <td><input
+                      type="number"
+                      step="0.1"
+                      className="input_u3_planner "
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleBioethanol}
+                      value={bioethanol}
+                      required
+                    /></td>
+                    </tr>
+
+                    <tr>
+                      <td>Bio-diesel</td>
+                      <td></td>
+                      <td><input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleBiodiesel}
+                      value={biodiesel}
+                      required
+                    /></td>
+                    </tr>
+
+                    <tr>
+                      <td>Bi-fuel</td>
+                      <td></td>
+                      <td><input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleBifuel}
+                      value={bifuel}
+                      required
+                    /></td>
+                    </tr>
+
+                    <tr>
+                      <td>Other (unknown)</td>
+                      <td></td>
+                      <td> <input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleOther}
+                      value={other}
+                      required
+                      />
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Electricity BEV</td>
+                      <td></td>
+                      <td><input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleCarElectricity}
+                      value={carElectricity}
+                      required
+                      /></td>
+                    </tr>
+
+                    <tr>
+                      <td>Petrol, according to country selection</td>
+                      <td></td>
+                      <td><input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleCarPetrol}
+                      value={carPetrol}
+                      required
+                      /></td>
+                    </tr>
+
+                    <tr>
+                      <td>Diesel, according to country selection</td>
+                      <td></td>
+                      <td><input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleCarDiesel}
+                      value={carDiesel}
+                      required
+                    /></td>
+                    </tr>
+
+
+                    <tr>
+                      <td><b>Policy period</b></td>
+                      <td><b>Start year:</b> <select
                         className="select_u3"
                         name="start_year"
                         onChange={handleFuelSharesCarYearStart}
@@ -1362,10 +1544,8 @@ const handleOther = (e) => {
                             {option}{" "}
                           </option>
                         ))}
-                      </select>
-                    </div>
-                    <div className="divspace">
-                      <select
+                      </select></td>
+                      <td><b>End year:</b><select
                         className="select_u3"
                         name="finish_year"
                         onChange={handleFuelSharesCarYearEnd}
@@ -1378,291 +1558,12 @@ const handleOther = (e) => {
                             {option}{" "}
                           </option>
                         ))}
-                      </select>
-                    </div>
-                  </div>
-                </Tooltip>
-              </div>
-              <Tooltip title="This column shows You the fuel shares in the passenger car fleet as in the baseline scenario.">
-                <div className="column_u3">
-                  <div>
-                    {" "}
-                    <label>Without policy</label>
-                  </div>
-                  <div>
-                    {" "}
-                    <label></label>
-                  </div>
-                  <div>
-                    {" "}
-                    <label></label>
-                  </div>
-                  <div>
-                    {" "}
-                    <label></label>
-                  </div>
-                  <div>
-                    {" "}
-                    <label></label>
-                  </div>
-                  <div>
-                    {" "}
-                    <label></label>
-                  </div>
-                  <div>
-                    {" "}
-                    <label></label>
-                  </div>
-                  <div>
-                    {" "}
-                    <label></label>
-                  </div>
-                  <div>
-                    {" "}
-                    <label></label>
-                  </div>
-                  <div>
-                    {" "}
-                    <label></label>
-                  </div>
-                  <div>
-                    {" "}
-                    <label></label>
-                  </div>
-                  <div>
-                    {" "}
-                    <label></label>
-                  </div>
-                  <div>
-                    {" "}
-                    <label></label>
-                  </div>
-                  <div>
-                    {" "}
-                    <label></label>
-                  </div>
-                </div>
-              </Tooltip>
-              <Tooltip title="Insert the target percentages for the fuel types of the passenger car fleet by the end of the policy implementation period. The remaining share is allocated to petrol and diesel engines.">
-                <div className="column_u3">
-                  <div>
-                    <label>Policy target %</label>
-                  </div>
-                  <div>
-                    {" "}
-                    <input
-                      className="input_u3_planner "
-                      /*   id="inputspace" */
-                      type="number"
-                      step="0.1"
-                      // id="fre_policy_target"
-                      placeholder="0.0"
-                      min="0"
-                      max="100"
-                      onChange={handleCarLpg}
-                      value={carLpg}
-                      required
-                    />
-                  </div>
-                  <div>
-                    {" "}
-                    <input
-                      // id="inputspace"
-                      type="number"
-                      step="0.1"
-                      className="input_u3_planner "
-                      id="bus_fuel_policy_target"
-                      placeholder="0.0"
-                      min="0"
-                      max="100"
-                      onChange={handleCarCng}
-                      value={carCng}
-                      required
-                    />
-                  </div>
-                  <div>
-                    {" "}
-                    <input
-                      className="input_u3_planner "
-                      type="number"
-                      step="0.1"
-                      id="bus_fuel_policy_target"
-                      placeholder="0.0"
-                      min="0"
-                      max="100"
-                      onChange={handleNgv}
-                      value={ngv}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <input
-                      className="input_u3_planner "
-                      type="number"
-                      step="0.1"
-                      id="bus_fuel_policy_target"
-                      placeholder="0.0"
-                      min="0"
-                      max="100"
-                      onChange={handleHep}
-                      value={hep}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <input
-                      className="input_u3_planner "
-                      type="number"
-                      step="0.1"
-                      id="bus_fuel_policy_target"
-                      placeholder="0.0"
-                      min="0"
-                      max="100"
-                      onChange={handlePhev}
-                      value={phev}
-                      required
-                    />
-                  </div>
-                  <div>
-                    {" "}
-                    <input
-                      className="input_u3_planner "
-                      /*   id="inputspace" */
-                      type="number"
-                      step="0.1"
-                      // id="fre_policy_target"
-                      placeholder="0.0"
-                      min="0"
-                      max="100"
-                      onChange={handleHydrogenfuel}
-                      value={hydrogenfuel}
-                      required
-                    />
-                  </div>
-                  <div>
-                    {" "}
-                    <input
-                      // id="inputspace"
-                      type="number"
-                      step="0.1"
-                      className="input_u3_planner "
-                      id="bus_fuel_policy_target"
-                      placeholder="0.0"
-                      min="0"
-                      max="100"
-                      onChange={handleBioethanol}
-                      value={bioethanol}
-                      required
-                    />
-                  </div>
-                  <div>
-                    {" "}
-                    <input
-                      className="input_u3_planner "
-                      type="number"
-                      step="0.1"
-                      id="bus_fuel_policy_target"
-                      placeholder="0.0"
-                      min="0"
-                      max="100"
-                      onChange={handleBiodiesel}
-                      value={biodiesel}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <input
-                      className="input_u3_planner "
-                      type="number"
-                      step="0.1"
-                      id="bus_fuel_policy_target"
-                      placeholder="0.0"
-                      min="0"
-                      max="100"
-                      onChange={handleBifuel}
-                      value={bifuel}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <input
-                      className="input_u3_planner "
-                      type="number"
-                      step="0.1"
-                      id="bus_fuel_policy_target"
-                      placeholder="0.0"
-                      min="0"
-                      max="100"
-                      onChange={handleOther}
-                      value={other}
-                      required
-                    />
-                  </div>
-                  <div>
-                    {" "}
-                    <input
-                      className="input_u3_planner "
-                      type="number"
-                      step="0.1"
-                      id="bus_fuel_policy_target"
-                      placeholder="0.0"
-                      min="0"
-                      max="100"
-                      onChange={handleCarElectricity}
-                      value={carElectricity}
-                      required
-                    />
-                  </div>
-                  <div>
-                    {" "}
-                    <input
-                      className="input_u3_planner "
-                      type="number"
-                      step="0.1"
-                      id="bus_fuel_policy_target"
-                      placeholder="0.0"
-                      min="0"
-                      max="100"
-                      onChange={handleCarPetrol}
-                      value={carPetrol}
-                      required
-                    />
-                  </div>
+                      </select></td>
+                    </tr>
 
-                  <div>
-                    {" "}
-                    <input
-                      className="input_u3_planner "
-                      type="number"
-                      step="0.1"
-                      id="bus_fuel_policy_target"
-                      placeholder="0.0"
-                      min="0"
-                      max="100"
-                      onChange={handleCarDiesel}
-                      value={carDiesel}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label>This is calculated automatically</label>
-                  </div>
-                </div>
-              </Tooltip>
-              <Tooltip title="Insert a percentage of passenger car transport in the area affected by the planning policy.">
-                <div className="column_u3">
-                  <label>% of the area affeccted</label>
-                  <input
-                    className="input_u3_planner "
-                    type="number"
-                    step="0.1"
-                    placeholder="0"
-                    onChange={handleFuelSharesCarPopulationAffected}
-                    value={fuelSharesCarPopulationAffected}
-                    required
-                  />
-                </div>
-              </Tooltip>
+                  </tbody>
+                </table>
+              </div>
             </div>
             {/* fuel-car transport section end */}
             <br />
@@ -1784,6 +1685,7 @@ const handleOther = (e) => {
                 value="nextU3policies"
                 onClick={gotoU3policies}
                 label="Next &raquo;"
+                type="Submit"
                 primary
               />
             </div>

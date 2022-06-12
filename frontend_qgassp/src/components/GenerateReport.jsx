@@ -46,13 +46,6 @@ export const GenerateReport = () => {
   const emission = JSON.parse(localStorage.getItem("emission"));
 
   const projections = JSON.parse(localStorage.getItem("projections"));
-
-  // eslint-disable-next-line no-console
-  console.log(p1, 'p1')
-
-
-  // eslint-disable-next-line no-console
-  console.log(projections, 'transport projections')
   const newDevelopment = JSON.parse(localStorage.getItem("newDevelopment"));
 
   const buildingsBaselineResponse = JSON.parse(localStorage.getItem("buildingsBaselineResponse"));
@@ -188,8 +181,6 @@ export const GenerateReport = () => {
   }
 
   for (let i = 2022; i < 2051; i++) { 
-    // eslint-disable-next-line no-console
-    console.log(i)
     busProjection.push({ x: i, y: projections.bus[i] });  
     carProjection.push({ x: i, y: projections.car[i] });
     metroProjection.push({ x: i, y: projections.metro[i] });
@@ -333,6 +324,70 @@ export const GenerateReport = () => {
                 </tr>
               </tbody>
             </table>
+
+            {/* transport projections start here */}
+               <div className="luc_alert_container">
+              <Divider textAlign="left" flexItem>
+                <Chip label="Transport projections" />
+              </Divider>
+              <FlexibleXYPlot
+                margin={{ left: 80 }}
+                width={1150}
+                height={500}
+                stackBy="y"
+                xType="ordinal"
+              >
+                <VerticalGridLines />
+                <HorizontalGridLines />
+                <XAxis title="Year" />
+                <YAxis title="Emissions/ kG C02 eq" />
+                <BarSeries
+                  color="#3d58a3"
+                  opacity={0.5}
+                  data={busProjection}
+                  stack
+                />
+                <BarSeries
+                  color="#ef7d00"
+                  opacity={0.55}
+                  data={carProjection}
+                  stack
+                />
+                <BarSeries
+                  color="#95c11f"
+                  opacity={0.55}
+                  data={metroProjection}
+                  stack
+                />
+                <BarSeries
+                  color="#ce143d"
+                  opacity={0.55}
+                  data={railTransportProjection}
+                  stack
+                />
+                <BarSeries
+                  color="#845f9e"
+                  opacity={0.55}
+                  data={roadTransportProjection}
+                  stack
+                />
+                <BarSeries color="#996e35" opacity={0.55} data={trainProjection} stack />
+                
+                <BarSeries color="#76918e" opacity={0.55} data={tramProjection} stack />
+                <BarSeries
+                  color="#000000"
+                  strokeWidth="1"
+                  data={waterwaysTransportProjection}
+                />
+                <LineSeries
+                  className="fourth-series"
+                  color="#000000"
+                  strokeWidth="1"
+                  data={totalTransportProjection}
+                />
+              </FlexibleXYPlot>
+              </div>
+
             <div className="luc_alert_container">
             <FlexibleXYPlot
                 margin={{ left: 80 }}
@@ -590,68 +645,6 @@ export const GenerateReport = () => {
                 />
               </FlexibleXYPlot>
             </div>
-             {/* transport projections start here */}
-               <div className="luc_alert_container">
-              <Divider textAlign="left" flexItem>
-                <Chip label="Transport projections" />
-              </Divider>
-              <FlexibleXYPlot
-                margin={{ left: 80 }}
-                width={1150}
-                height={500}
-                stackBy="y"
-                xType="ordinal"
-              >
-                <VerticalGridLines />
-                <HorizontalGridLines />
-                <XAxis title="Year" />
-                <YAxis title="here goes a value!!!" />
-                <BarSeries
-                  color="#3d58a3"
-                  opacity={0.5}
-                  data={busProjection}
-                  stack
-                />
-                <BarSeries
-                  color="#ef7d00"
-                  opacity={0.55}
-                  data={carProjection}
-                  stack
-                />
-                <BarSeries
-                  color="#95c11f"
-                  opacity={0.55}
-                  data={metroProjection}
-                  stack
-                />
-                <BarSeries
-                  color="#ce143d"
-                  opacity={0.55}
-                  data={railTransportProjection}
-                  stack
-                />
-                <BarSeries
-                  color="#845f9e"
-                  opacity={0.55}
-                  data={roadTransportProjection}
-                  stack
-                />
-                <BarSeries color="#996e35" opacity={0.55} data={trainProjection} stack />
-                
-                <BarSeries color="#76918e" opacity={0.55} data={tramProjection} stack />
-                <BarSeries
-                  color="#000000"
-                  strokeWidth="1"
-                  data={waterwaysTransportProjection}
-                />
-                <LineSeries
-                  className="fourth-series"
-                  color="#000000"
-                  strokeWidth="1"
-                  data={totalTransportProjection}
-                />
-              </FlexibleXYPlot>
-              </div>
 
               {/* <ConsumptionBaselineResults /> */}
             
