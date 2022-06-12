@@ -44,6 +44,12 @@
   position: absolute;
   left: 70%;
 }
+
+.submitU3Button {
+  position: absolute;
+  left: 65%;
+}
+
 .label_u3 {
   width: 25%;
 }

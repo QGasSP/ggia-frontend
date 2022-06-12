@@ -114,8 +114,7 @@ export const U2planner = () => {
   { title: "Urban", color: "green" },
   { title: "Suburban", color: "orange" },
   { title: "Town", color: "red" },
-  { title: "Rural", color: "brown" },
-  
+  { title: "Rural", color: "brown" }
 ]
   
     return (
