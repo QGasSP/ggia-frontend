@@ -33,7 +33,7 @@ export const ConsumptionHseEnergy = () => {
   const gasesProp = parseInt(localStorage.getItem("gasesProp"));
   const districtValue = parseInt(localStorage.getItem("districtValue"));
 
-  const [policyYear, setPolicyYear] = useStorageBool("policyYear", 0);
+  const [policyYear, setPolicyYear] = useStorageInt("policyYear", 0);
   const [newFloorArea, setNewFloorArea] = useStorageInt("newFloorArea", 0);
   const [popSizePolicy, setPopulationSizePolicy] = useStorageInt(
     "popSizePolicy",
@@ -532,7 +532,7 @@ export const ConsumptionHseEnergy = () => {
             />
           </div>
 
-        {policyYear > 0 && popSizePolicy > 0 && newFloorArea > 0 && (
+        {policyYear > 0 && popSizePolicy >= 0 && newFloorArea > 0 && (
           <div className="nextCBQ">
             <Button
               size="small"
