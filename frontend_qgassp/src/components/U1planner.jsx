@@ -251,8 +251,8 @@ export const U1planner = () => {
                 innerRadius={100}
                 radius={140}
                 getAngle={(d) => d.angle}
-                width="350"
-                height="350"
+                width={350}
+                height={350}
               />
             </div>
           </div>

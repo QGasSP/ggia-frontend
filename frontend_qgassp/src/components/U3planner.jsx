@@ -503,18 +503,11 @@ const handleOther = (e) => {
     const raw = { baseline, newDevelopment, policyQuantification };
     setPolicyQuantificationTransportRequest(raw)
 
-    // eslint-disable-next-line no-console
-    // console.log("policy quantification", policyQuantification);
-
-    // eslint-disable-next-line no-console
-    // console.log("raw", baseline);
-
-
     axios
       .post(
         urlPrefix + "/api/v1/calculate/transport",
-        headers,
-        raw)
+        raw,
+        headers)
         // eslint-disable-next-line no-console
       .then((response) => {
             setPolicyQuantificationTransportResponse(response.data)
@@ -569,7 +562,7 @@ const handleOther = (e) => {
             transport-related greenhouse gas emissions.
           </Alert>
         </div>
-
+        <br/>
         <section className="section-u3">
           <form onSubmit={createPolicyQuantification}>
             <div className="row_u3">
@@ -1113,7 +1106,6 @@ const handleOther = (e) => {
             {/* modal split-freight transport section end */}
             <br />
             {/* fuel-bus transport section start*/}
-            <div className="row_u3">
               <div className="div2">
                 <Alert severity="info">
                   Does the planning policy increase the use of low-carbon fuels
@@ -1123,52 +1115,142 @@ const handleOther = (e) => {
                   policy implementation.
                 </Alert>
               </div>
-              <div className="column_u3">
-                <div>
-                  {" "}
-                  <label>
-                    <b>Shares of fuel types in bus transport</b>{" "}
-                  </label>
-                </div>
-                <div>
-                  {" "}
-                  <label>Petroleum products</label>
-                </div>
-                <div>
-                  {" "}
-                  <label>Liquified Petroleum Gas (LPG)</label>
-                </div>
-                <div>
-                  {" "}
-                  <label>Natural Gas (CNG)</label>
-                </div>
-                <div>
-                  <label>Electricity</label>
-                </div>
-                <div>
-                  {" "}
-                  <label>Diesel</label>
-                </div>
-                <Tooltip title="Start year is the first year during which the policy starts to change the fuel shares. The change is assumed permanent after the last year of implementation period.">
-                  <div>
-                    <label>Policy period</label>
-                    <div className="divspace">
+              <br/>
+              <div>
+              <table style={{width:"100%"}}>
+                <thead>
+                  <tr>
+                    <th>Shares of fuel types in bus transport</th>
+                    <Tooltip title="This column shows You the fuel shares in the bus fleet as in the baseline scenario.">
+                    <th>Without policy</th>
+                    </Tooltip>
+                    <Tooltip title="Insert the target percentages for the fuel types used in the bus fleet by the end of the policy implementation period. The remaining share is allocated to diesel engines.">
+                    <th>Policy target %</th>
+                    </Tooltip>
+                    <Tooltip title="Insert a percentage of bus transport in the area affected by the planning policy.">
+                    <th>% of the area affected</th>
+                    </Tooltip>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Petroleum products</td>
+                    <td></td>
+                    <td><input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      // id="fre_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handlePetrol}
+                      value={petrol}
+                      required
+                    /></td>
+                    <td><input
+                    className="input_u3_planner "
+                    type="number"
+                    step="0.1"
+                    placeholder="0"
+                    onChange={handleFuelSharesBusPopulationAffected}
+                    value={fuelSharesBusPopulationAffected}
+                    required
+                  /></td>
+                  </tr>
+
+                  <tr>
+                    <td>Liquified Petroleum Gas (LPG)</td>
+                    <td></td>
+                    <td><input
+                      type="number"
+                      step="0.1"
+                      className="input_u3_planner "
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleLpg}
+                      value={lpg}
+                      required
+                    /></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Natural Gas (CNG)</td>
+                    <td></td>
+                    <td><input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleCng}
+                      value={cng}
+                      required
+                    /></td>
+                  </tr>
+
+                  <tr>
+                    <td>Electricity</td>
+                    <td></td>
+                    <td><input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleElectricity}
+                      value={electricity}
+                      required
+                    /></td>
+                  </tr>
+
+                  <tr>
+                    <td>Diesel</td>
+                    <td></td>
+                    <td><input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleDiesel}
+                      value={diesel}
+                      required
+                    /></td>
+                  </tr>
+                  
+                  <Tooltip title="Start year is the first year during which the policy starts to change the fuel shares. The change is assumed permanent after the last year of implementation period.">
+                  <tr>
+                     <td>
+                      <b>Policy period</b>
+                    </td>
+
+                    <td><b>Start year:</b>
                       <select
                         className="select_u3"
-                        name="start_year"
+                        name="finish_year"
                         onChange={handleFuelSharesBusYearStart}
                         value={fuelSharesBusYearStart}
                         required
                       >
-                        <option value="DefaultOption">Select start year</option>
+                        <option value="DefaultOption">Select end year</option>
                         {optionsNew.map((option) => (
                           <option key={option} value={option}>
                             {option}{" "}
                           </option>
                         ))}
                       </select>
-                    </div>
-                    <div className="divspace">
+                    </td>
+
+                    <td><b>End year: </b>    
                       <select
                         className="select_u3"
                         name="finish_year"
@@ -1183,134 +1265,13 @@ const handleOther = (e) => {
                           </option>
                         ))}
                       </select>
-                    </div>
-                  </div>
-                </Tooltip>
+                    </td>
+                  </tr>
+                  </Tooltip>
+                </tbody>
+              </table>
               </div>
-              <Tooltip title="This column shows You the fuel shares in the bus fleet as in the baseline scenario.">
-                <div className="column_u3">
-                  <div>
-                    {" "}
-                    <label><b>Without policy</b></label>
-                  </div>
-                  <div>
-                    {" "}
-                    <label></label>
-                  </div>
-                  <div>
-                    {" "}
-                    <label></label>
-                  </div>
-                  <div>
-                    {" "}
-                    <label></label>
-                  </div>
-                  <div>
-                    {" "}
-                    <label></label>
-                  </div>
-                  <div>
-                    {" "}
-                    <label></label>
-                  </div>
-                </div>
-              </Tooltip>
-              <Tooltip title="Insert the target percentages for the fuel types used in the bus fleet by the end of the policy implementation period. The remaining share is allocated to diesel engines.">
-                <div className="column_u3">
-                  <div>
-                    <label><b>Policy target %</b></label>
-                  </div>
-                  <div>
-                    {" "}
-                    <input
-                      className="input_u3_planner "
-                      type="number"
-                      step="0.1"
-                      // id="fre_policy_target"
-                      placeholder="0.0"
-                      min="0"
-                      max="100"
-                      onChange={handlePetrol}
-                      value={petrol}
-                      required
-                    />
-                  </div>
-                  <div>
-                    {" "}
-                    <input
-                      type="number"
-                      step="0.1"
-                      className="input_u3_planner "
-                      id="bus_fuel_policy_target"
-                      placeholder="0.0"
-                      min="0"
-                      max="100"
-                      onChange={handleLpg}
-                      value={lpg}
-                      required
-                    />
-                  </div>
-                  <div>
-                    {" "}
-                    <input
-                      className="input_u3_planner "
-                      type="number"
-                      step="0.1"
-                      id="bus_fuel_policy_target"
-                      placeholder="0.0"
-                      min="0"
-                      max="100"
-                      onChange={handleCng}
-                      
-                      value={cng}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <input
-                      className="input_u3_planner "
-                      type="number"
-                      step="0.1"
-                      id="bus_fuel_policy_target"
-                      placeholder="0.0"
-                      min="0"
-                      max="100"
-                      onChange={handleElectricity}
-                      value={electricity}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <input
-                      className="input_u3_planner "
-                      type="number"
-                      step="0.1"
-                      id="bus_fuel_policy_target"
-                      placeholder="0.0"
-                      min="0"
-                      max="100"
-                      onChange={handleDiesel}
-                      value={diesel}
-                      required
-                    />
-                  </div>
-                </div>
-              </Tooltip>
-              <Tooltip title="Insert a percentage of bus transport in the area affected by the planning policy.">
-                <div className="column_u3">
-                  <label>% of the area affeccted</label>
-                  <input
-                    className="input_u3_planner "
-                    type="number"
-                    step="0.1"
-                    placeholder="0"
-                    onChange={handleFuelSharesBusPopulationAffected}
-                    value={fuelSharesBusPopulationAffected}
-                    required
-                  />
-                </div>
-              </Tooltip>
-            </div>
+              <br/>
             {/* fuel-bus transport section end */}
 
             {/* fuel-car transport section start*/}
@@ -1407,7 +1368,7 @@ const handleOther = (e) => {
                       <select
                         className="select_u3"
                         name="finish_year"
-                        onChange={handleFuelSharesCarYearStart}
+                        onChange={handleFuelSharesCarYearEnd}
                         value={fuelSharesCarYearEnd}
                         required
                       >
@@ -1826,7 +1787,7 @@ const handleOther = (e) => {
                 primary
               />
             </div>
-            <div className="">
+            <div className="submitU3Button">
               <Button
                 size="small"
                 // value="nextU3policies"
