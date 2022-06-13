@@ -269,7 +269,7 @@ export const U1planner = () => {
         <Grid item xs={6} style={{width:'100%'}}>
           
             <Paper>
-              <Tooltip>
+              <Tooltip title="">
             <table style={{width:'100%'}}>
               <thead>
                 <tr>

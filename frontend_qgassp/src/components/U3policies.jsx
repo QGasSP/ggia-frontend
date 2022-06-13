@@ -12,7 +12,7 @@ import {
   LineSeries,
   VerticalBarSeries,
   RadialChart,
-  DiscreteColorLegend,
+  DiscreteColorLegend
 } from "react-vis";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
@@ -55,28 +55,10 @@ export const U3policies = () =>
     const policyQuantificationGetRequest = JSON.parse(localStorage.getItem("policyQuantificationTransportRequest")) || "";
     const getModalSplitPassenger = policyQuantificationGetRequest.policyQuantification.modalSplitPassenger
     
-    
     const emission = JSON.parse(localStorage.getItem("emission"))||{};
+    const emissions = JSON.parse(localStorage.getItem("emissions"))||{};
     const projections = JSON.parse(localStorage.getItem("projections"))|| {};
 
-    const passengerMobility = localStorage.getItem("passengerMobility") || 0;
-
-    const freightTransport = localStorage.getItem("freightTransport")|| "";
-
-    const modalPassShares = localStorage.getItem("modalPassShares ") || 0;
-    const modalSplitPassenger = localStorage.getItem("modalSplitPassenger ")|| "";
-
-    const modalFreShares = localStorage.getItem("modalFreShares")|| 0;
-    const modalSplitFreight = localStorage.getItem("modalSplitFreight")|| "";
-
-    const fuelSharesBusTypes = localStorage.getItem(" fuelSharesBusTypes ")|| "";
-    const fuelSharesBus = localStorage.getItem("fuelSharesBus")|| "";
-
-    const fuelSharesCarTypes = localStorage.getItem("fuelSharesCarTypes ") ||" ";
-    const fuelSharesCar = localStorage.getItem("fuelSharesCar ")|| "";
-
-    const electricityTransTypes = localStorage.getItem("electricityTransTypes")|| "";
-    const electricityTransport = localStorage.getItem("electricityTransport")|| "";
 
     const emissionTotal = emission.bus + emission.train + emission.car + emission.metro  + emission.tram
 
@@ -163,6 +145,8 @@ export const U3policies = () =>
       strokeWidth: 6
     }
     ]
+    // eslint-disable-next-line no-console
+    console.log(emissions, 'emission')
 
   // policy quantification results
   const busPolicyQuantification = [];
@@ -185,21 +169,21 @@ export const U3policies = () =>
   const trainProjection = [];
   const tramProjection = [];
   const waterwaysTransportProjection = [];
+  const totalProjections = []
   
   
   for (let i = 2022; i < 2051; i++) { 
     [
-      busProjection.push({ x: i, y: projections.bus[i] }),
+    busProjection.push({ x: i, y: projections.bus[i] }),
     carProjection.push({ x: i, y: projections.car[i] }),
     metroProjection.push({ x: i, y: projections.metro[i] }),
     railTransportProjection.push({ x: i, y: projections.rail_transport[i] }),
     roadTransportProjection.push({ x: i, y: projections.road_transport[i] }),
     trainProjection.push({ x: i, y: projections.train[i] }),
     tramProjection.push({ x: i, y: projections.tram[i] }),
-    waterwaysTransportProjection.push({ x: i, y: projections.waterways_transport[i] })
-    ]
-  }
+    waterwaysTransportProjection.push({ x: i, y: projections.waterways_transport[i] }),
 
+    ]}
   
       for (let i = 2021; i < 2051; i++) {[
     busPolicyQuantification.push({ x: i, y: policyQuantification.bus[i] }), 
@@ -210,9 +194,10 @@ export const U3policies = () =>
     trainPolicyQuantification.push({ x: i, y: policyQuantification.train[i] }),
     tramPolicyQuantification.push({ x: i, y: policyQuantification.tram[i] }),
     waterwaysTransportPolicyQuantification.push({ x: i, y: policyQuantification.waterways_transport[i] }),
-    // totalPolicyQuantification.push({ x: i, y: policyQuantification.total[i] })
-      ] 
-  }
+    totalPolicyQuantification.push({ x: i, y: policyQuantification.total[i] })
+      ]}
+    
+
     return (
       <Container maxWidth="xl">
      
@@ -420,11 +405,17 @@ export const U3policies = () =>
               >
                 <VerticalGridLines />
                 <HorizontalGridLines />
-                <XAxis />
-                <YAxis />
+                <XAxis title="Year"
+                style={{
+          line: {stroke: '#ADDDE1'},
+          ticks: {stroke: '#ADDDE1'},
+          text: {stroke: 'none', fill: '#6b6b76', fontWeight: 600}
+        }}
+         />
+                <YAxis title="Emissions/ kG C02 eq" />
                 <BarSeries
                   color="#3d58a3"
-                  opacity={0.5}
+                  opacity={0.55}
                   data={busPolicyQuantification}
                   stack
                 />
@@ -456,14 +447,13 @@ export const U3policies = () =>
                 <BarSeries color="#76918e" opacity={0.55} data={tramPolicyQuantification} stack />
                 <BarSeries
                   color="#0000CD"
+                  opacity={0.55}
                   data={waterwaysTransportPolicyQuantification}
                   stack
                 />
                 <LineSeries
-                  className="fourth-series"
-                  color="#000000"
-                  strokeWidth="1"
-                  data={totalPolicyQuantification}
+                color="black"
+                // data={totalPolicyQuantification}
                 />
               </XYPlot>
 
@@ -530,11 +520,12 @@ export const U3policies = () =>
                   stack
                 />
                 <LineSeries
-                  className="fourth-series"
-                  color="#000000"
-                  strokeWidth="1"
-                  // data={totalTransportProjection}
-                />
+                color="#3d58a3"
+                curve={null}
+                strokeWidth="2"
+                strokeStyle="dashed"
+                data={totalProjections}
+              />
               </XYPlot>
               <div>
                 <DiscreteColorLegend

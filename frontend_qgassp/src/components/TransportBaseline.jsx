@@ -484,6 +484,7 @@ export const TransportBaseline = () => {
             </Tooltip>
           </div>
 
+          <div>
           {total === 100.0 && (
             <div className="nextU2Button">
               <Button
@@ -495,6 +496,7 @@ export const TransportBaseline = () => {
               />
             </div>
           )}
+          </div>
         </section>
       </article>
     </div>
