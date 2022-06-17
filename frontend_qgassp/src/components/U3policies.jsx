@@ -12,7 +12,7 @@ import {
   LineSeries,
   VerticalBarSeries,
   RadialChart,
-  DiscreteColorLegend
+  DiscreteColorLegend,
 } from "react-vis";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
@@ -50,15 +50,18 @@ export const U3policies = () =>
     const baseline = base.baseline;
     const navigate = useNavigate();
     const policyQuantificationGetResponse = JSON.parse(localStorage.getItem("policyQuantificationTransportResponse")) || "";
-    const policyQuantification = policyQuantificationGetResponse.data.policy_quantification
+
+    
+    // const  policyQuantification2 = policyQuantificationGetResponse.data.policy_quantification ? policyQuantification : 0
+
 
     const policyQuantificationGetRequest = JSON.parse(localStorage.getItem("policyQuantificationTransportRequest")) || "";
     const getModalSplitPassenger = policyQuantificationGetRequest.policyQuantification.modalSplitPassenger
     
     const emission = JSON.parse(localStorage.getItem("emission"))||{};
-    const emissions = JSON.parse(localStorage.getItem("emissions"))||{};
     const projections = JSON.parse(localStorage.getItem("projections"))|| {};
 
+    const policyQuantification = policyQuantificationGetResponse.data || policyQuantificationGetResponse.messages
 
     const emissionTotal = emission.bus + emission.train + emission.car + emission.metro  + emission.tram
 
@@ -144,9 +147,13 @@ export const U3policies = () =>
       color: "#0000CD",
       strokeWidth: 6
     }
-    ]
+    ];
+
     // eslint-disable-next-line no-console
-    console.log(emissions, 'emission')
+    // console.log(emissions.bus)
+   
+    // eslint-disable-next-line no-console
+    // console.log(projections.bus, 'projections')
 
   // policy quantification results
   const busPolicyQuantification = [];
@@ -169,35 +176,41 @@ export const U3policies = () =>
   const trainProjection = [];
   const tramProjection = [];
   const waterwaysTransportProjection = [];
-  const totalProjections = []
+  const totalProjections = [];
   
   
-  for (let i = 2022; i < 2051; i++) { 
-    [
-    busProjection.push({ x: i, y: projections.bus[i] }),
-    carProjection.push({ x: i, y: projections.car[i] }),
-    metroProjection.push({ x: i, y: projections.metro[i] }),
-    railTransportProjection.push({ x: i, y: projections.rail_transport[i] }),
-    roadTransportProjection.push({ x: i, y: projections.road_transport[i] }),
-    trainProjection.push({ x: i, y: projections.train[i] }),
-    tramProjection.push({ x: i, y: projections.tram[i] }),
-    waterwaysTransportProjection.push({ x: i, y: projections.waterways_transport[i] }),
 
-    ]}
-  
-      for (let i = 2021; i < 2051; i++) {[
-    busPolicyQuantification.push({ x: i, y: policyQuantification.bus[i] }), 
-    carPolicyQuantification.push({ x: i, y: policyQuantification.car[i] }),
-    metroPolicyQuantification.push({ x: i, y: policyQuantification.metro[i] }),
-    railTransportPolicyQuantification.push({ x: i, y: policyQuantification.rail_transport[i] }),
-    roadTransportPolicyQuantification.push({ x: i, y: policyQuantification.road_transport[i] }),
-    trainPolicyQuantification.push({ x: i, y: policyQuantification.train[i] }),
-    tramPolicyQuantification.push({ x: i, y: policyQuantification.tram[i] }),
-    waterwaysTransportPolicyQuantification.push({ x: i, y: policyQuantification.waterways_transport[i] }),
-    totalPolicyQuantification.push({ x: i, y: policyQuantification.total[i] })
-      ]}
-    
+      if (policyQuantification &&
+          Object.keys(policyQuantification).length !== 0 &&
+          policyQuantification !== undefined
+       ){
+        for (let i = 2023; i < 2051; i++) {
+          busPolicyQuantification.push({ x: i, y: policyQuantification.bus[i] })
+          carPolicyQuantification.push({ x: i, y: policyQuantification.car[i] })
+          metroPolicyQuantification.push({ x: i, y: policyQuantification.metro[i] })
+          railTransportPolicyQuantification.push({ x: i, y: policyQuantification.rail_transport[i] })
+          roadTransportPolicyQuantification.push({ x: i, y: policyQuantification.road_transport[i] })
+          trainPolicyQuantification.push({ x: i, y: policyQuantification.train[i] })
+          tramPolicyQuantification.push({ x: i, y: policyQuantification.tram[i] })
+          waterwaysTransportPolicyQuantification.push({ x: i, y: policyQuantification.waterways_transport[i] })
+          totalPolicyQuantification.push({ x: i, y: policyQuantification.total[i] })
+      };
+      }
 
+      if (projections &&
+      Object.keys(projections).length !== 0) {
+        for (let i = 2023; i < 2051; i++) {
+          busProjection.push({ x: i, y: projections.bus[i]})
+          carProjection.push({ x: i, y: projections.car[i] })
+          metroProjection.push({ x: i, y: projections.metro[i] })
+          railTransportProjection.push({ x: i, y: projections.rail_transport[i] })
+          roadTransportProjection.push({ x: i, y: projections.road_transport[i] })
+          trainProjection.push({ x: i, y: projections.train[i] })
+          tramProjection.push({ x: i, y: projections.tram[i] })
+          waterwaysTransportProjection.push({ x: i, y: projections.waterways_transport[i] })
+      }
+      }
+      
     return (
       <Container maxWidth="xl">
      
@@ -264,6 +277,12 @@ export const U3policies = () =>
               <div>
               <h4>Emissions without policy</h4>
               <RadialChart
+              type="piechart"
+                colorType="literal"
+                radius={140}
+                getAngle={(d) => d.angle}
+                width={350}
+                height={350}
                 data={[
                   {
                     angle:
@@ -310,12 +329,6 @@ export const U3policies = () =>
                   },
                   
                 ]}
-                type="piechart"
-                colorType="literal"
-                radius={140}
-                getAngle={(d) => d.angle}
-                width={350}
-                height={350}
               />
               </div>
               <div>
@@ -329,6 +342,12 @@ export const U3policies = () =>
               <div>
               <h4>Emissions with policy</h4>
               <RadialChart
+              type="piechart"
+                colorType="literal"
+                radius={140}
+                getAngle={(d) => d.angle}
+                width={350}
+                height={350}
                 data={[
                   {
                     angle:
@@ -375,12 +394,6 @@ export const U3policies = () =>
                   },
                   
                 ]}
-                type="piechart"
-                colorType="literal"
-                radius={140}
-                getAngle={(d) => d.angle}
-                width={350}
-                height={350}
               />
               </div>
               <div>
@@ -391,8 +404,69 @@ export const U3policies = () =>
             </Grid>
           </Grid>
         </div>
-
-        <div style={{marginTop:"60px"}}>
+        <div style={{margin:"30px"}}>
+          {/* transport projections start here */}
+              <h3>Transport Projection Results</h3>
+              <XYPlot
+                width={ 1100 }
+                height={ 550 } 
+                xType="ordinal"
+                stackBy="y" 
+                
+              >
+                <VerticalGridLines />
+                <HorizontalGridLines />
+                <VerticalBarSeries className="transport-projection-chart"/>
+                <XAxis />
+                <YAxis />
+                <BarSeries
+                  color="#3d58a3"
+                  opacity={0.5}
+                  data={busProjection}
+                  stack
+                />
+                <BarSeries
+                  color="#ef7d00"
+                  opacity={0.55}
+                  data={carProjection}
+                  stack
+                />
+                <BarSeries
+                  color="#95c11f"
+                  opacity={0.55}
+                  data={metroProjection}
+                  stack
+                />
+                <BarSeries
+                  color="#ce143d"
+                  opacity={0.55}
+                  data={railTransportProjection}
+                  stack
+                />
+                <BarSeries
+                  color="#845f9e"
+                  opacity={0.55}
+                  data={roadTransportProjection}
+                  stack
+                />
+                <BarSeries color="#996e35" opacity={0.55} data={trainProjection} stack />
+                <BarSeries color="#76918e" opacity={0.55} data={tramProjection} stack />
+                <BarSeries
+                  color="#0000CD"
+                  strokeWidth="1"
+                  data={waterwaysTransportProjection}
+                  stack
+                />
+              </XYPlot>
+              <div>
+                <DiscreteColorLegend
+                items={transportAndPolicyResultsLegend}
+                orientation="horizontal"/>
+              </div>
+              
+        </div>
+        <br/>
+         <div style={{margin:"30px"}}>
           {/* policy quantification results */}
               <h3>Policy Quantification Results</h3>
               <XYPlot
@@ -405,13 +479,9 @@ export const U3policies = () =>
               >
                 <VerticalGridLines />
                 <HorizontalGridLines />
+                <VerticalBarSeries />
                 <XAxis title="Year"
-                style={{
-          line: {stroke: '#ADDDE1'},
-          ticks: {stroke: '#ADDDE1'},
-          text: {stroke: 'none', fill: '#6b6b76', fontWeight: 600}
-        }}
-         />
+                 />
                 <YAxis title="Emissions/ kG C02 eq" />
                 <BarSeries
                   color="#3d58a3"
@@ -453,7 +523,7 @@ export const U3policies = () =>
                 />
                 <LineSeries
                 color="black"
-                // data={totalPolicyQuantification}
+                data={totalPolicyQuantification}
                 />
               </XYPlot>
 
@@ -465,76 +535,6 @@ export const U3policies = () =>
               
         </div>
         <br/>
-        <div style={{margin:"30px"}}>
-          {/* transport projections start here */}
-              <h3>Transport Projection Results</h3>
-              <XYPlot
-                className="transport-projection-chart"
-                stackBy="y"
-                xType="ordinal"
-                margin={{ left: 80 }}
-                width={1150}
-                height={500}
-                
-              >
-                <VerticalGridLines />
-                <HorizontalGridLines />
-                <XAxis />
-                <YAxis />
-                <BarSeries
-                  color="#3d58a3"
-                  opacity={0.5}
-                  data={busProjection}
-                  stack
-                />
-                <BarSeries
-                  color="#ef7d00"
-                  opacity={0.55}
-                  data={carProjection}
-                  stack
-                />
-                <BarSeries
-                  color="#95c11f"
-                  opacity={0.55}
-                  data={metroProjection}
-                  stack
-                />
-                <BarSeries
-                  color="#ce143d"
-                  opacity={0.55}
-                  data={railTransportProjection}
-                  stack
-                />
-                <BarSeries
-                  color="#845f9e"
-                  opacity={0.55}
-                  data={roadTransportProjection}
-                  stack
-                />
-                <BarSeries color="#996e35" opacity={0.55} data={trainProjection} stack />
-                <BarSeries color="#76918e" opacity={0.55} data={tramProjection} stack />
-                <BarSeries
-                  color="#0000CD"
-                  strokeWidth="1"
-                  data={waterwaysTransportProjection}
-                  stack
-                />
-                <LineSeries
-                color="#3d58a3"
-                curve={null}
-                strokeWidth="2"
-                strokeStyle="dashed"
-                data={totalProjections}
-              />
-              </XYPlot>
-              <div>
-                <DiscreteColorLegend
-                items={transportAndPolicyResultsLegend}
-                orientation="horizontal"/>
-              </div>
-              
-        </div>
-
               <br />
               <div className="backButtonNew">
               <Button

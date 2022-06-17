@@ -9,12 +9,14 @@ import Alert from "@mui/material/Alert";
 import Tooltip from "@mui/material/Tooltip";
 import {useNavigate} from "react-router-dom";
 import { useStorageInt, useStorageString } from "../reducers/useStorage";
-import { Container } from "@mui/material";
+import { Container, CircularProgress } from "@mui/material";
 
 /**
  * U3 planner component for user inputs for policy quantification
  * @return {}
  */
+
+// let isMounted = true
 
 export const U3planner = () => {
   const navigate = useNavigate();
@@ -37,6 +39,10 @@ export const U3planner = () => {
   const [errorU3, setU3Error] = useState("");
  
   const [shares, setShares] = useStorageString("shares","");
+
+   const [loadingStyles, setLoadingStyle] = useState({
+    display: "none",
+  });
 
   // passenger mobility
   const [passengerMobility, setPassengerMobility] =  useStorageString("passengerMobility","");
@@ -103,8 +109,8 @@ export const U3planner = () => {
   const [carLpg, setCarLpg] = useStorageInt("carLpg", 0)
   const [carCng, setCarCng] = useStorageInt("carCng", 0)
   const [carElectricity, setCarElectricity] = useStorageInt("carElectricity", 0)
-  const [carPetrol, setCarPetrol] = useStorageInt("carPetrol",0);
-  const [carDiesel, setCarDiesel] = useStorageInt("carDiesel",0);
+  // const [carPetrol, setCarPetrol] = useStorageInt("carPetrol",0);
+  // const [carDiesel, setCarDiesel] = useStorageInt("carDiesel",0);
   const [ngv, setNgv] = useStorageInt("ngv",0);
   const [hep, setHep] = useStorageInt("hep",0);
   const [phev, setPhev] = useStorageInt("phev",0);
@@ -293,15 +299,15 @@ const handleCarCng = (e) => {
   setCarCng(Number(e.target.value));
 };
 
-const handleCarPetrol = e => {
-  e.preventDefault();
-  setCarPetrol(Number(e.target.value))
-}
+// const handleCarPetrol = e => {
+  // e.preventDefault();
+  // setCarPetrol(Number(e.target.value))
+// }
 
-const handleCarDiesel = e => {
-  e.preventDefault();
-  setCarDiesel(Number(e.target.value));
-};
+// const handleCarDiesel = e => {
+  // e.preventDefault();
+   // setCarDiesel(Number(e.target.value));
+// };
 
 const handleCarElectricity = e => {
   e.preventDefault();
@@ -367,8 +373,7 @@ const handleOther = (e) => {
   };
 
 
-  const createPolicyQuantification = (e) => {
-    e.preventDefault();
+  const createPolicyQuantification = () => {
 
     const passengerMobility = {
       "expectedChange": passengerMobilityExpectedChange,
@@ -449,9 +454,9 @@ const handleOther = (e) => {
       biodiesel,
       bifuel,
       other,
-      electricity,
-      petrol,
-      diesel,
+      electricity
+      // petrol,
+      // diesel,
     };
     setFuelSharesCarTypes(fuelSharesCarTypes);
 
@@ -498,45 +503,53 @@ const handleOther = (e) => {
     };
 
     const raw = { baseline, newDevelopment, policyQuantification };
-    setPolicyQuantificationTransportRequest(raw)
+     setPolicyQuantificationTransportRequest(raw)
 
-    axios
+
+     setLoadingStyle({
+        display: "block",
+      })
+
+      axios
       .post(
         urlPrefix + "/api/v1/calculate/transport",
         raw,
         headers)
-        // eslint-disable-next-line no-console
       .then((response) => {
-            setPolicyQuantificationTransportResponse(response.data)
+        setPolicyQuantificationTransportResponse(response.data)
       })
+      .then(() => {
+      setLoadingStyle({
+        display: "none",
+      });
+    })
       .catch((error) => {
         setU3Error({ errorMessage: error.message });
         // eslint-disable-next-line no-console
         console.error("There was an error!", errorU3);
       });
+  }
 
- { /* useEffect(() => {
-    fetchPolicyData()
-  },[]) */}
-
-  };
-
-  useEffect(() => {
-   localStorage.setItem("policyQuantificationTransportResponse", JSON.stringify(policyQuantificationTransportResponse));
-  }, [policyQuantificationTransportResponse]);
-
-  useEffect(() => {
-    localStorage.setItem(
-      "policyQuantificationTransportRequest",
-      JSON.stringify(policyQuantificationTransportRequest)
-    );
-  }, [policyQuantificationTransportRequest]);
+   useEffect(async () => {
+    createPolicyQuantification();
+  }, []);
 
    const gotoU3policies = () => {
     navigate("/u3policies", {
       replace: true,
     }); 
   };
+
+  const handleSubmit = async(e) => {
+    await createPolicyQuantification(e.preventDefault());
+    await gotoU3policies();
+  }
+
+  // eslint-disable-next-line no-console
+  console.log((JSON.stringify(policyQuantificationTransportRequest)), 'request')
+
+  // eslint-disable-next-line no-console
+  console.log(policyQuantificationTransportResponse, 'response')
 
     return (
       <Container maxWidth="xl">
@@ -1493,7 +1506,7 @@ const handleOther = (e) => {
                       /></td>
                     </tr>
 
-                    <tr>
+                   {/* <tr>
                       <td>Petrol, according to country selection</td>
                       <td></td>
                       <td><input
@@ -1525,7 +1538,7 @@ const handleOther = (e) => {
                       value={carDiesel}
                       required
                     /></td>
-                    </tr>
+                    </tr> */}
 
 
                     <tr>
@@ -1564,6 +1577,8 @@ const handleOther = (e) => {
                   </tbody>
                 </table>
               </div>
+              
+              
             </div>
             {/* fuel-car transport section end */}
             <br />
@@ -1679,27 +1694,24 @@ const handleOther = (e) => {
             </div>
             {/* here is button for submitting */}
 
-            <div className="nextU3Button">
+  
+          
+            
+          </form>
+
+          {Object.keys(policyQuantificationTransportResponse).length !== 0 && (
+                <div className="nextU3Button">
+                  <CircularProgress label="loading" style={loadingStyles} />
               <Button
                 size="small"
                 value="nextU3policies"
-                onClick={gotoU3policies}
+                onClick={handleSubmit}
                 label="Next &raquo;"
                 type="Submit"
                 primary
               />
             </div>
-            <div className="submitU3Button">
-              <Button
-                size="small"
-                // value="nextU3policies"
-                onClick={createPolicyQuantification}
-                label="Submit"
-                type="Submit"
-                primary
-              />
-            </div>
-          </form>
+                )}
         </section>
       </article>
       </Container>
