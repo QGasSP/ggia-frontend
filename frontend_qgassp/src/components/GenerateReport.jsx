@@ -519,7 +519,7 @@ export const GenerateReport = () => {
                 </tr>
               </tbody>
             </table>
-            <div className="luc_alert_container">
+            {/* <div className="luc_alert_container">
               <FlexibleXYPlot
                 margin={{ left: 80 }}
                 width={1150}
@@ -538,37 +538,37 @@ export const GenerateReport = () => {
                   text: { stroke: "none", fill: "#6b6b76", fontWeight: 600 },
                 }}
               />
-              <YAxis title="Land-use tC02/a" />
+              <YAxis title="Land-use tC02/a" /> */}
               {/* 1 */}
-              <BarSeries
+              {/* <BarSeries
                 cluster='1'
                 color="#ffdf43"
                 opacity={0.5}
                 data={netTransportPerCapita}
-              />
+              /> */}
               {/* 2 */}
-              <BarSeries
+              {/* <BarSeries
                 cluster='2'
                 color="#ef7d00"
                 opacity={0.5}
                 data={netLandUseChangePerCapita}
-              />
+              /> */}
               {/* 3 */}
-              <BarSeries  
+              {/* <BarSeries  
                 cluster='3' 
                 color="#76918e" 
                 opacity={0.6} 
                 data={netBuildingsPerCapita} 
-              />
+              /> */}
               {/* 4 */}
-              <BarSeries
+              {/* <BarSeries
                 cluster='4'
                 color="#ce143d"
                 opacity={0.5}
                 data={netSinkPerCapita}
-              />
+              /> */}
               {/* 5 */}
-              <BarSeries
+              {/* <BarSeries
                 cluster='5'
                 color="#d6e7d9"
                 opacity={0.5}
@@ -581,7 +581,7 @@ export const GenerateReport = () => {
                 data={netBalancePerCapita}
               />
               </FlexibleXYPlot>
-            </div>
+            </div> */}
             <div className="luc_alert_container">
               <Divider textAlign="left" flexItem>
                 <Chip label="Consumption Baseline VS Annual Household Emissions" />
@@ -657,7 +657,7 @@ export const GenerateReport = () => {
         {
           // ? why is here == not === 
         }
-        {!buildingsBaselineResponse ||
+        {/* {!buildingsBaselineResponse || TODO: Doesn't seem to work
           !newPopulation ||
           !landUseChangeResponse ||
           !p1 ||
@@ -670,7 +670,7 @@ export const GenerateReport = () => {
             <div>
               There is not enough data to create report! Please, consider going through all modules.
             </div>
-      )}
+      )} */}
     </article>
     </Container>
   );
