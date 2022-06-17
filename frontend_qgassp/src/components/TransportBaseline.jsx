@@ -7,15 +7,17 @@ import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import { RadialChart, DiscreteColorLegend } from "react-vis";
 import {
-  useLocalStorageBoolean,
+  useStorageBool,
   useStorageFloat,
   useStorageInt,
   useStorageString,
 } from "../reducers/useStorage";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { StartPage } from "./StartPage";
 import { country, year, population } from "../reducers/GetStorageItem";
-import { Container } from "@mui/material";
+import urlPrefix from "../Config";
+import { Container, Box, Paper, Grid } from "@mui/material"; 
 /**
  * Transport baseline user input form
  * @return {}
@@ -48,6 +50,8 @@ export const TransportBaseline = () => {
       parseFloat(rural)
   );
 
+  const [error, setError] = useState("");
+
   const [settlementDistribution, setSettlementDistribution] = useState({});
   const [nsArea, setNsArea] = useStorageInt("nsArea", 0);
   const [ewArea, setEwArea] = useStorageInt("ewArea", 0);
@@ -62,6 +66,60 @@ export const TransportBaseline = () => {
     ""
   );
 
+  const [metroAndTramSystems, setMetroAndTramSystems] = useState({});
+  const [metroAndTramSystemCheck, setMetroAndTramSystemCheck] = useStorageBool("metroAndTramSystemCheck", false)
+  const [metroSplit, setMetroSplit] = useState({})
+  const [tramSplit, setTramSplit] = useState({})
+  
+  const [metroInput, seMetroInput] = useStorageInt("metroInput", 0);
+  const [tramInput, setTramInput] = useStorageInt("tramInput", 0)
+
+   // eslint-disable-next-line no-console
+    console.log("Tram input!", tramInput);
+
+
+  const getMetroTramSystemResponse = async() => {
+    const raw = {
+    "metroTramList": {
+        "country": country
+        }
+    };
+
+    const headers = {
+      "Content-type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    };
+
+    axios
+    .post( urlPrefix + "/api/v1/calculate/transport/metro-tram-list", raw, headers )
+    .then((response) => {
+       setMetroAndTramSystems(response.data)
+      })
+    .then(()=> {
+      localStorage.setItem("metroCity", JSON.stringify((Object.values(metroAndTramSystems.data.metro_tram_list.metro_list))))
+    })
+     .then(()=> {
+      localStorage.setItem("tramCity", JSON.stringify((Object.values(metroAndTramSystems.data.metro_tram_list.tram_list))))
+    })
+    .catch((error) => {
+        setError({ errorMessage: error.message });
+        // eslint-disable-next-line no-console
+        console.error("There was an error!", error);
+      });
+  }
+
+  useEffect(() => {
+    getMetroTramSystemResponse();
+  }, [])
+
+  const handleMetroAndTram = async(e) => {
+    e.target.checked;
+    await setMetroAndTramSystemCheck(!metroAndTramSystemCheck);
+    await getMetroTramSystemResponse();
+  }
+  // eslint-disable-next-line no-console
+
+  // handlers 
   const handleNsArea = (e) => {
     e.preventDefault();
     setNsArea(Number(e.target.value));
@@ -92,21 +150,20 @@ export const TransportBaseline = () => {
     setRural(parseFloat(e.target.value));
   };
 
+  const handleMetroInput = (e) => {
+    e.preventDefault();
+    seMetroInput(Number(e.target.value));
+  };
 
-
-  const [metroSystem, setMetroSystem] = useLocalStorageBoolean("metroSystem", "false")
-  const handleMetro = (e) => {
-    e.target.checked;
-    setMetroSystem(!metroSystem)
+  const handleTramInput = (e) => {
+    e.preventDefault();
+    setTramInput(Number(e.target.value))
   }
 
-  const [tramSystem, setTramSystem] = useLocalStorageBoolean("tramSystem", "false")
-  const handleTram = (e) => {
-    e.target.checked;
-    setTramSystem(!tramSystem)
-  }
+
 
   const setSettlementType = () => {
+  
     const settlementDist = {
       metropolitanCenter,
       urban,
@@ -115,8 +172,32 @@ export const TransportBaseline = () => {
       rural,
     };
 
+   const getMetroCity = JSON.parse(localStorage.getItem("metroCity"));
+   const cityMetro = getMetroCity.map(city => ({[city]: metroInput}))
+
+   const metroSplit = Object.assign({}, ...cityMetro);
+
+   const getTramCity = JSON.parse(localStorage.getItem("tramCity"))
+   const cityTram = getTramCity.map(city => ({[city]: tramInput}))
+
+   const tramSplit = Object.assign({}, ...cityTram);
+  
+    
+    // eslint-disable-next-line no-console
+        console.log("Tram splitt", tramSplit);
+
+        // eslint-disable-next-line no-console
+       // console.log("city tram", cityTram);
+
+
     localStorage.setItem("settlementDist", JSON.stringify(settlementDist));
     setSettlementDistribution(settlementDist);
+
+    localStorage.setItem("metroSplit", JSON.stringify(metroSplit));
+    setMetroSplit(metroSplit);
+
+    localStorage.setItem("tramSplit", JSON.stringify(tramSplit));
+    setTramSplit(tramSplit);
     // setU1Charts(true);
     if (Object.keys(settlementDistribution).length !== 0) {
       navigate("../u1planner", {
@@ -144,6 +225,24 @@ export const TransportBaseline = () => {
       JSON.stringify(settlementDistribution)
     );
   }, [settlementDistribution]);
+
+
+  useEffect(() => {
+    localStorage.setItem
+    (
+      "metroSplit",
+      JSON.stringify(metroSplit)
+    )
+  },[metroSplit])
+
+   useEffect(() => {
+    localStorage.setItem
+    (
+      "tramSplit",
+      JSON.stringify(tramSplit)
+    )
+  },[tramSplit])
+
 
   if (population === 0 && year === 0 && country === "" ||
   window.localStorage === null
@@ -482,6 +581,84 @@ export const TransportBaseline = () => {
                 </select>
               </div>
             </Tooltip>
+
+
+            <Box style={{margin: "40px"}}>
+             
+              <h4>
+                  Include metro and tram systems in {country}
+                   <input
+                    className="checkbox"
+                    type="checkbox"
+                    onChange={handleMetroAndTram}
+                    checked={metroAndTramSystemCheck}
+                  />
+              </h4>
+          
+
+            {metroAndTramSystemCheck && Object.keys(metroAndTramSystems).length !== 0 &&
+
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+
+                 <Paper>
+            <table style={{width:"100%"}}>
+              <thead>
+                <tr>
+                  <th>Use of metro in {country}</th>
+                </tr>
+
+                 {Object.values(metroAndTramSystems.data.metro_tram_list.metro_list).map(metro => <tr  key={metro}><td>{metro}</td>
+                 <td>
+                <input
+                onChange={handleMetroInput}
+                value={metroInput.metro}
+                placeholder={metroInput.metro}
+                name="metroInput"
+                />
+                </td>
+                </tr>
+                )}
+              </thead>
+            </table>
+            </Paper>
+
+
+              </Grid>
+              <Grid item xs={6}>
+
+                  <Paper>
+            <table style={{width:"100%"}}>
+              <thead>
+                <tr>
+                  <th>Use of tram in {country}</th>
+                </tr>
+
+                
+              {Object.values(metroAndTramSystems.data.metro_tram_list.tram_list).map(tram => <tr key={tram}><td>{tram} </td>
+              <td>
+                  <input
+                  onChange={handleTramInput}
+                  value={tramInput.tram}
+                  placeholder={tramInput.tram}
+                  name="tramInput"
+                  />
+                  </td>
+                
+                </tr>
+                
+                )}
+                
+
+              </thead>
+            </table>
+            </Paper>
+              </Grid>
+            </Grid>
+           
+            }
+            </Box>
+            
           </div>
 
           <div>
