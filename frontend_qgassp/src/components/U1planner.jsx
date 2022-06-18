@@ -37,8 +37,9 @@ export const U1planner = () => {
   const year = parseInt(localStorage.getItem("year"));
   const population = parseInt(localStorage.getItem("population"));
   const settlementDistribution =JSON.parse(localStorage.getItem("settlementDistribution"));
-  const metroSplit = JSON.parse(localStorage.getItem("metroSplit"))
-  const tramSplit = JSON.parse(localStorage.getItem("tramSplit"))
+  const intensityNonResAndFt = JSON.parse(localStorage.getItem("intensityNonResAndFt"));
+  const metroSplit = JSON.parse(localStorage.getItem("metroSplit"));
+  const tramSplit = JSON.parse(localStorage.getItem("tramSplit"));
 
 
   const [emission, setEmissionData] = useState(() => {
@@ -77,6 +78,7 @@ export const U1planner = () => {
       year,
       population,
       settlementDistribution,
+      intensityNonResAndFt,
       metroSplit,
       tramSplit
     };
