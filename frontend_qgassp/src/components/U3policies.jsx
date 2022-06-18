@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from "react";
 import { Button } from "./Button";
 import "../css/u3policies.css";
-import axios from "axios";
 import {
-  FlexibleXYPlot,
   XYPlot,
   XAxis,
   YAxis,
@@ -49,25 +46,23 @@ export const U3policies = () =>
     const base = JSON.parse(localStorage.getItem("baseline"))|| {};
     const baseline = base.baseline;
     const navigate = useNavigate();
-    const policyQuantificationGetResponse = JSON.parse(localStorage.getItem("policyQuantificationTransportResponse")) || "";
-
-    
-    // const  policyQuantification2 = policyQuantificationGetResponse.data.policy_quantification ? policyQuantification : 0
-
 
     const policyQuantificationGetRequest = JSON.parse(localStorage.getItem("policyQuantificationTransportRequest")) || "";
     const getModalSplitPassenger = policyQuantificationGetRequest.policyQuantification.modalSplitPassenger
+
+    const policyQuantificationGetResponse = JSON.parse(localStorage.getItem("policyQuantificationTransportResponse")) || "";
+    const policyQuantification = policyQuantificationGetResponse.data.policy_quantification || policyQuantificationGetResponse.messages
+
     
     const emission = JSON.parse(localStorage.getItem("emission"))||{};
     const projections = JSON.parse(localStorage.getItem("projections"))|| {};
 
-    const policyQuantification = policyQuantificationGetResponse.data || policyQuantificationGetResponse.messages
-
+    
+    // total
     const emissionTotal = emission.bus + emission.train + emission.car + emission.metro  + emission.tram
-
-
-  const policyQuantificationTotal = getModalSplitPassenger.shares.bus + getModalSplitPassenger.shares.tram + getModalSplitPassenger.shares.car +
-  getModalSplitPassenger.shares.metro + getModalSplitPassenger.shares.train
+    
+    const policyQuantificationTotal = getModalSplitPassenger.shares.bus + getModalSplitPassenger.shares.tram + getModalSplitPassenger.shares.car +
+    getModalSplitPassenger.shares.metro + getModalSplitPassenger.shares.train
 
     const emissionPolicyLegendItems = [
     {

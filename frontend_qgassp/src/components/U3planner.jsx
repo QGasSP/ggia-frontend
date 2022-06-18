@@ -40,7 +40,7 @@ export const U3planner = () => {
  
   const [shares, setShares] = useStorageString("shares","");
 
-   const [loadingStyles, setLoadingStyle] = useState({
+  const [loadingStyles, setLoadingStyle] = useState({
     display: "none",
   });
 
@@ -60,7 +60,7 @@ export const U3planner = () => {
   // freight transport end
 
   // modal split-passanger section starts
-   const [modalPassShares, setModalPassShares] = useStorageString("modalPassShares","");
+  const [modalPassShares, setModalPassShares] = useStorageString("modalPassShares","");
   const [modalSplitPassenger, setModalSplitPassenger] = useStorageString("modalSplitPassenger","");
   const [bus, setBus] = useStorageInt("buses",0);
   const [metro, setMetro] = useStorageInt("metros",0);
@@ -119,6 +119,9 @@ export const U3planner = () => {
   const [biodiesel, setBiodiesel] = useStorageInt("biodiesel",0);
   const [bifuel, setBifuel] = useStorageInt("bifuel",0);
   const [other, setOther] = useStorageInt("other",0);
+  const [dEhybrid, setDeHybrid] = useStorageInt("dEhybrid", 0)
+  const [dEphev, setDePhev] = useStorageInt("dEphev", 0)
+  
   // shares of fuel types in car transport end
   
   // electricity transportation renewables start
@@ -348,6 +351,16 @@ const handleOther = (e) => {
     setOther(Number(e.target.value));
   };
 
+const handleDeHybrid = (e) => {
+  e.preventDefault();
+  setDeHybrid(Number(e.target.value))
+}
+
+const handleDePhev = (e) => {
+  e.preventDefault();
+  setDePhev(Number(e.target.value));
+}
+
   // car fuel shares end
 
   // electricity trans types start
@@ -422,7 +435,6 @@ const handleOther = (e) => {
     };
     setModalSplitFreight(modalSplitFreight);
 
-
     // bus start
     const fuelSharesBusTypes = {
       lpg,
@@ -444,17 +456,19 @@ const handleOther = (e) => {
 
     // fuel car start
     const fuelSharesCarTypes = {
-      lpg,
-      cng,
-      ngv,
-      hep,
-      phev,
-      hydrogenfuel,
-      bioethanol,
-      biodiesel,
-      bifuel,
-      other,
-      electricity
+      "lpg": lpg,
+      "cng": cng,
+      "ngv": ngv,
+      "p_e_hybrid": hep,
+      "p_e_phev": phev,
+      "d_e_hybrid": dEhybrid,
+      "d_e_phev": dEphev,
+      "hydrogen_fuel": hydrogenfuel,
+      "bioethanol": bioethanol,
+      "biodiesel": biodiesel,
+      "bifuel": bifuel,
+      "other": other,
+      "electricity_bev": electricity
       // petrol,
       // diesel,
     };
@@ -534,19 +548,27 @@ const handleOther = (e) => {
     createPolicyQuantification();
   }, []);
 
+  useEffect(async () => {
+   localStorage.setItem("policyQuantificationTransportResponse", JSON.stringify(policyQuantificationTransportResponse)) 
+  }, [policyQuantificationTransportResponse]);
+
+  useEffect(async () => {
+   localStorage.setItem("policyQuantificationTransportRequest", JSON.stringify(policyQuantificationTransportRequest)) 
+  }, [policyQuantificationTransportRequest]);
+
    const gotoU3policies = () => {
     navigate("/u3policies", {
       replace: true,
     }); 
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     await createPolicyQuantification(e.preventDefault());
     await gotoU3policies();
   }
 
   // eslint-disable-next-line no-console
-  console.log((JSON.stringify(policyQuantificationTransportRequest)), 'request')
+  console.log((policyQuantificationTransportRequest), 'request')
 
   // eslint-disable-next-line no-console
   console.log(policyQuantificationTransportResponse, 'response')
@@ -587,7 +609,7 @@ const handleOther = (e) => {
                 </div>
                 <div>
                   {" "}
-                  <label>Change in passenger mobility %</label>
+                  <label><b>Change in passenger mobility %</b></label>
                 </div>
                 <Tooltip title="Start year is the first year during which the policy changes the need for motorized passenger transport within the area. The change is assumed permanent after the last year of implementation.">
                   <div>
@@ -655,7 +677,7 @@ const handleOther = (e) => {
               <Tooltip title="Estimate the percentage of the population that is affected by the policy.">
                 <div className="column_u3">
                   {/* <label className="space_holder"></label> */}
-                  <label>Population affected</label>
+                  <label><b>% Population affected</b></label>
                   <input
                     className="input_affected_area"
                     type="number"
@@ -936,7 +958,7 @@ const handleOther = (e) => {
               </Tooltip>
               <Tooltip title="Insert a percentage of population expected to change the modal share due to the planning policy. This share applies to the passenger transport of both residents and non-residents within the assessment area.">
                 <div className="column_u3">
-                  <label><b>Population affected</b></label>
+                  <label><b>% Population affected</b></label>
                   <input
                     type="number"
                     step="0.1"
@@ -1372,7 +1394,7 @@ const handleOther = (e) => {
                     </tr>
 
                     <tr>
-                      <td>Hybrid electric-petrol</td>
+                      <td>Petrol-electric hybrid</td>
                       <td></td>
                       <td> <input
                       className="input_u3_planner "
@@ -1388,7 +1410,7 @@ const handleOther = (e) => {
                     </tr>
 
                     <tr>
-                      <td>Plug-in hybrid petrol-electric PHEV</td>
+                      <td>Petrol-electric plug-in hybrid (PHEV)</td>
                       <td></td>
                       <td><input
                       className="input_u3_planner "
@@ -1400,6 +1422,40 @@ const handleOther = (e) => {
                       max="100"
                       onChange={handlePhev}
                       value={phev}
+                      required
+                    /></td>
+                    </tr>
+
+                    <tr>
+                      <td>Diesel-electric hybrid</td>
+                      <td></td>
+                      <td><input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleDeHybrid}
+                      value={dEhybrid}
+                      required
+                    /></td>
+                    </tr>
+
+                     <tr>
+                      <td>Diesel-electric plug-in hybrid (PHEV)</td>
+                      <td></td>
+                      <td><input
+                      className="input_u3_planner "
+                      type="number"
+                      step="0.1"
+                      id="bus_fuel_policy_target"
+                      placeholder="0.0"
+                      min="0"
+                      max="100"
+                      onChange={handleDePhev}
+                      value={dEphev}
                       required
                     /></td>
                     </tr>
@@ -1692,10 +1748,6 @@ const handleOther = (e) => {
                 secondary="true"
               />
             </div>
-            {/* here is button for submitting */}
-
-  
-          
             
           </form>
 
