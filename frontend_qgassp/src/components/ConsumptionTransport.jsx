@@ -327,7 +327,7 @@ export const ConsumptionTransport = () =>{
                 <>
                   <div className="div_transport">
                     <label htmlFor="msFuelScaler" className="settle_label">
-                      what percentage of private vehicle use is reduced?
+                      by what percentage is private vehicle use reduced?
                     </label>
                     <input
                       className="input_occupancy"
@@ -342,7 +342,7 @@ export const ConsumptionTransport = () =>{
                   </div>
                   <div className="div_transport">
                     <label htmlFor="msVehScaler" className="settle_label">
-                      what percentage of private vehicle ownership is reduced?
+                      by what percentage is private vehicle ownership reduced?
                     </label>
                     <input
                       className="input_occupancy"
@@ -357,7 +357,8 @@ export const ConsumptionTransport = () =>{
                   </div>
                   <div className="div_transport">
                     <label htmlFor="msPtScaler" className="settle_label">
-                      what percentage is public transport use increased?
+                      by what percentage is public transport use changed
+                      (positive means increase, negative means decrease)?
                     </label>
                     <input
                       className="input_occupancy"
