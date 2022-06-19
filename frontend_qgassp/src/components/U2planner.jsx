@@ -43,8 +43,6 @@ export const U2planner = () => {
   const settlementDistribution = JSON.parse(localStorage.getItem("settlementDistribution"));
   const projections = JSON.parse(localStorage.getItem("projections"));
 
-  const absoluteEmissionsYear1 = JSON.parse(localStorage.getItem("absoluteEmissionsYear1"))
-
   // const newDevelopment = location.state.newDevelopment;
   const [errorU2, setU2Error] = useState("");
   
@@ -145,7 +143,6 @@ export const U2planner = () => {
     absoluteEmissionsWaterwaysTransport.push({ x: i, y: absoluteEmissions.waterways_transport[i] });
   };
 
-
   if(absoluteProjections &&
   Object.keys(absoluteProjections).length !== 0){
   for (let i = year; i < 2051; i++) {
@@ -159,7 +156,6 @@ export const U2planner = () => {
     absoluteProjectionsWaterwaysTransport.push({ x: i, y: absoluteProjections.waterways_transport[i] });
   };
 }
-
 
   const gotoU3planner = () => {
     navigate("/u3planner", {

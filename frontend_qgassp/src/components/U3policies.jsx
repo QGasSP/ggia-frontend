@@ -54,6 +54,7 @@ export const U3policies = () =>
     const absolutePolicyQuantification = JSON.parse(localStorage.getItem("absolutePolicyQuantification")) || "";
     const emission = JSON.parse(localStorage.getItem("emission"))||{};
     const projections = JSON.parse(localStorage.getItem("projections"))|| {};
+    const absoluteEmissionsYear1 = JSON.parse(localStorage.getItem("absoluteEmissionsYear1"));
 
     
     // total
@@ -142,6 +143,16 @@ export const U3policies = () =>
     }
     ];
 
+   // policy quantification results
+  const busYear1 = [];
+  const carYear1 = []
+  const tramYear1 = [];
+  const metroYear1 = [];
+  const trainYear1 = [];
+  const railTransportYear1 = [];
+  const roadTransportYear1= [];
+  const waterwaysTransportYear1 = [];
+
   // policy quantification results
   const busPolicyQuantification = [];
   const carPolicyQuantification = []
@@ -172,15 +183,15 @@ export const U3policies = () =>
   const trainProjection = [];
   const tramProjection = [];
   const waterwaysTransportProjection = [];
-  const totalProjections = [];
+  // const totalProjections = [];
   
   
 
-      if (policyQuantification &&
-          Object.keys(policyQuantification).length !== 0 &&
-          policyQuantification !== undefined
-       ){
-        for (let i = year; i < 2051; i++) {
+  if (policyQuantification &&
+      Object.keys(policyQuantification).length !== 0 &&
+      policyQuantification !== undefined
+  ){
+    for (let i = year; i < 2051; i++) {
           busPolicyQuantification.push({ x: i, y: policyQuantification.bus[i] })
           carPolicyQuantification.push({ x: i, y: policyQuantification.car[i] })
           metroPolicyQuantification.push({ x: i, y: policyQuantification.metro[i] })
@@ -189,7 +200,7 @@ export const U3policies = () =>
           trainPolicyQuantification.push({ x: i, y: policyQuantification.train[i] })
           tramPolicyQuantification.push({ x: i, y: policyQuantification.tram[i] })
           waterwaysTransportPolicyQuantification.push({ x: i, y: policyQuantification.waterways_transport[i] })
-          totalPolicyQuantification.push({ x: i, y: policyQuantification.total[i] })
+          totalPolicyQuantification.push({ x: i, y: policyQuantification.total[i] })          
       };
       }
 
@@ -223,7 +234,8 @@ export const U3policies = () =>
           waterwaysTransportProjection.push({ x: i, y: projections.waterways_transport[i] })
       }
       }
-      
+
+
     return (
       <Container maxWidth="xl">
      

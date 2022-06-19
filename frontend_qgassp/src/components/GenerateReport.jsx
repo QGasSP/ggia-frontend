@@ -54,12 +54,12 @@ export const GenerateReport = () => {
   const policyQuantificationGetResponse = JSON.parse(localStorage.getItem("policyQuantificationResponse"));
  
  const absolutePolicyQuantification = JSON.parse(localStorage.getItem("absolutePolicyQuantification"))
-
   const componentRef = useRef();
   // const handlePrint = useReactToPrint({
   //   content: () => componentRef.current,
   // });
   // const zip = (array1, array2) => array1.map((x, i) => [x, array2[i]]); 
+
   const transportAndPolicyResultsLegend = [
     {
       title: "Bus",
@@ -110,6 +110,7 @@ export const GenerateReport = () => {
     }
     ];
   // #region data distribution
+
   // absolute values
   const netSinkTotal = [];
   const netLandUseChangeTotal = [];
@@ -174,9 +175,6 @@ export const GenerateReport = () => {
           // totalPolicyQuantification.push({ x: i, y: absolutePolicyQuantification.total[i] })
       };
       }
-
-      
-
 
   if(
     buildingsBaselineResponse &&
@@ -329,22 +327,6 @@ export const GenerateReport = () => {
           )}
         </div>
 
-       {/* country !== "" &&
-          year > 0 &&
-          population > 0 &&
-          buildingsBaselineResponse &&
-          newPopulation &&
-          landUseChangeResponse &&
-          p1 &&
-          projections &&
-          Object.keys(newPopulation).length !== 0 &&
-          Object.keys(landUseChangeResponse).length !== 0 &&
-          Object.keys(p1).length !== 0 &&
-          Object.keys(blTotalEmmissions).length !== 0 &&
-          Object.keys(p1TotalAreaEmissions).length !== 0 &&
-          Object.keys(buildingsBaselineResponse).length !== 0 &&
-          Object.keys(projections).length !== 0 && */}
-
         {country !== "" &&
           year > 0 &&
           population > 0 &&
@@ -488,7 +470,9 @@ export const GenerateReport = () => {
 
                 <div style={{margin:"30px"}}>
           {/* policy quantification results */}
-              <h3>Absolute Policy Quantification Results</h3>
+              <Divider textAlign="left" flexItem>
+                <Chip label="Absolute Policy Quantification Results" />
+              </Divider>
               <FlexibleXYPlot
                 className="policy-quantification-chart"
                 stackBy="y"

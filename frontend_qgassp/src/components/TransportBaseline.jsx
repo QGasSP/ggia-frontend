@@ -236,13 +236,13 @@ export const TransportBaseline = () => {
     );
     await localStorage.setItem
     (
-      "tramSplit",
+      "metroInput",
       JSON.stringify(metroInput)
     );
 
     await localStorage.setItem
     (
-      "tramSplit",
+      "tramInput",
       JSON.stringify(tramInput)
     );
   }, [settlementDistribution, intensityNonResAndFt, tramSplit, metroSplit, tramInput, metroInput]);
