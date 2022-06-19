@@ -59,7 +59,8 @@ export const StartPage = () => {
     setYear(0);
   };
 
-  const startBaseline = () => {
+  const startBaseline = (e) => {
+    e.preventDefault();
     if (population > 0 && country !== "" && year > 0) {
       setNextModule(true);
     } else {
@@ -140,7 +141,7 @@ export const StartPage = () => {
                   className="baseline_select"
                   onChange={handleSelectedYear}
                   value={year}
-                  defaultValue="Select year"
+                  placeholder="Select year"
                   required
                 >
                   <option value="DefaultOption">Select year</option>
@@ -164,7 +165,7 @@ export const StartPage = () => {
                   name="country"
                   onChange={handleSelected}
                   value={country}
-                  defaultValue="Select country"
+                  placeholder="Select country"
                   required
                 >
                   <option value="DefaultOption">Select country</option>
@@ -187,7 +188,7 @@ export const StartPage = () => {
                   name="localDataset"
                   onChange={handleSelectedLocalDataset}
                   value={localDataset}
-                  defaultValue="None"
+                  placeholder="None"
                 >
                   <option value="DefaultOption">None</option>
                   {localDatasets.map((localDataset) => (
@@ -222,7 +223,7 @@ export const StartPage = () => {
                   id="baseline_save"
                   label="Save"
                   onClick={startBaseline}
-                  primary="true"
+                  primary
                 />
               </div>
               <div className="reset_button btn-start">
@@ -230,7 +231,7 @@ export const StartPage = () => {
                   size="small"
                   onClick={clearLocalStorage}
                   label="Reset"
-                  primary="true"
+                  primary
                 />
               </div>
             </div>
@@ -267,7 +268,7 @@ export const StartPage = () => {
                   </select>
                 </div>
                 <div className="local_dataset">
-                  <Button size="small" label="Set baseline" primary="true" />
+                  <Button size="small" label="Set baseline" primary />
                 </div>
               </form>
             </div>

@@ -17,6 +17,7 @@ import {
   DiscreteColorLegend,
   VerticalBarSeries
 } from "react-vis";
+import { LineLegend } from "./LineLegend";
 
 
 const BarSeries = VerticalBarSeries;
@@ -36,10 +37,14 @@ export const U2planner = () => {
 
   const base= JSON.parse(localStorage.getItem("baseline"));
   const baseline = base.baseline;
+  const year = parseInt(localStorage.getItem("year"));
 
   const newDevelopment = JSON.parse(localStorage.getItem("newDevelopment"));
   const settlementDistribution = JSON.parse(localStorage.getItem("settlementDistribution"));
   const projections = JSON.parse(localStorage.getItem("projections"));
+
+  const absoluteEmissionsYear1 = JSON.parse(localStorage.getItem("absoluteEmissionsYear1"))
+
   // const newDevelopment = location.state.newDevelopment;
   const [errorU2, setU2Error] = useState("");
   
@@ -48,12 +53,23 @@ export const U2planner = () => {
     const initialValue = JSON.parse(savedPop);
     return initialValue || {};
   });
+
+  const [absoluteProjections, setAbsoluteProjections] = useState(() => {
+    const savedPop = localStorage.getItem("absoluteProjections");
+    const initialValue = JSON.parse(savedPop);
+    return initialValue || {};
+  });
+
+  const [absoluteEmissions, setAbsoluteEmissions] = useState(() => {
+    const savedPop = localStorage.getItem("absoluteEmissions");
+    const initialValue = JSON.parse(savedPop);
+    return initialValue || {};
+  });
+
   const [nextU3planer, setU3planner] = useState(false);
   const [isU2Loading, setIsU2Loading] = useState(true);
   const dataNewPopulation = [];
   const dataProjectionPopulation = [];
-
-
 
   const fetchU2PlannerData = () => {
     const rawData = { baseline, newDevelopment };
@@ -70,7 +86,8 @@ export const U2planner = () => {
       .then((response) => {
         // setU2Response(response.data);
         setNewPopulation(response.data.data.new_development.impact.population);
-
+        setAbsoluteProjections(response.data.data.baseline.absolute_projections)
+        setAbsoluteEmissions(response.data.data.new_development.impact.absolute_emissions)
         setIsU2Loading(false);
       })
       .catch((error) => {
@@ -81,15 +98,68 @@ export const U2planner = () => {
       });
   };
 
-
-  useEffect(async () => {
+  useEffect(() => {
     fetchU2PlannerData();
   }, []);
+
+  useEffect(async () => {
+    localStorage.setItem("newDevelopment", JSON.stringify(newDevelopment));
+    localStorage.setItem("newPopulation", JSON.stringify(newPopulation));
+    localStorage.setItem("absoluteProjections", JSON.stringify(absoluteProjections));
+    localStorage.setItem("absoluteEmissions", JSON.stringify(absoluteEmissions));
+  }, [newDevelopment, newPopulation, absoluteProjections, absoluteEmissions]);
+
+  const absoluteEmissionsBus = [];
+  const absoluteEmissionsCar = [];
+  const absoluteEmissionsMetro = [];
+  const absoluteEmissionsTram = [];
+  const absoluteEmissionsTrain = [];
+  const absoluteEmissionsRailTransport = [];
+  const absoluteEmissionsRoadTransport = [];
+  const absoluteEmissionsWaterwaysTransport = [];
+
+  const absoluteProjectionsBus = [];
+  const absoluteProjectionsCar = [];
+  const absoluteProjectionsMetro = [];
+  const absoluteProjectionsTram = [];
+  const absoluteProjectionsTrain = [];
+  const absoluteProjectionsRailTransport = [];
+  const absoluteProjectionsRoadTransport = [];
+  const absoluteProjectionsWaterwaysTransport = [];
 
   for (let i = baseline.year; i < 2051; i++) {
     dataProjectionPopulation.push({ x: i, y: projections.population[i] });
     dataNewPopulation.push({ x: i, y: newPopulation[i] });
-  }
+  };
+
+  if(absoluteEmissions &&
+  Object.keys(absoluteEmissions).length !== 0)
+  for (let i = year; i < 2051; i++) {
+    absoluteEmissionsBus.push({ x: i, y: absoluteEmissions.bus[i] });
+    absoluteEmissionsCar.push({ x: i, y: absoluteEmissions.car[i] });
+    absoluteEmissionsMetro.push({ x: i, y: absoluteEmissions.metro[i] });
+    absoluteEmissionsTram.push({ x: i, y: absoluteEmissions.tram[i] });
+    absoluteEmissionsTrain.push({ x: i, y: absoluteEmissions.train[i] });
+    absoluteEmissionsRailTransport.push({ x: i, y: absoluteEmissions.rail_transport[i] });
+    absoluteEmissionsRoadTransport.push({ x: i, y: absoluteEmissions.road_transport[i] });
+    absoluteEmissionsWaterwaysTransport.push({ x: i, y: absoluteEmissions.waterways_transport[i] });
+  };
+
+
+  if(absoluteProjections &&
+  Object.keys(absoluteProjections).length !== 0){
+  for (let i = year; i < 2051; i++) {
+    absoluteProjectionsBus.push({ x: i, y: absoluteProjections.bus[i] });
+    absoluteProjectionsCar.push({ x: i, y: absoluteProjections.car[i] });
+    absoluteProjectionsMetro.push({ x: i, y: absoluteProjections.metro[i] });
+    absoluteProjectionsTram.push({ x: i, y: absoluteProjections.tram[i] });
+    absoluteProjectionsTrain.push({ x: i, y: absoluteProjections.train[i] });
+    absoluteProjectionsRailTransport.push({ x: i, y: absoluteProjections.rail_transport[i] });
+    absoluteProjectionsRoadTransport.push({ x: i, y: absoluteProjections.road_transport[i] });
+    absoluteProjectionsWaterwaysTransport.push({ x: i, y: absoluteProjections.waterways_transport[i] });
+  };
+}
+
 
   const gotoU3planner = () => {
     navigate("/u3planner", {
@@ -97,13 +167,6 @@ export const U2planner = () => {
     }); 
   };
 
-  useEffect(() => {
-    localStorage.setItem("newPopulation", JSON.stringify(newPopulation));
-  }, [newPopulation]);
-  
-  useEffect(() => {
-    localStorage.setItem("newDevelopment", JSON.stringify(newDevelopment));
-  }, [newDevelopment]);
 
   if (isU2Loading) {
     return <CircularProgress color="success" />;
@@ -348,6 +411,128 @@ export const U2planner = () => {
             <U2legend />
 
             <br />
+
+
+          {/* absolute emissions */}
+
+          <div>
+          <h3>Absolute Emissions</h3>
+          <XYPlot
+            width={1000}
+            height={500}
+            stackBy="y"
+            xType="ordinal"
+            margin={{ left: 80 }}
+          >
+            <HorizontalGridLines />
+            <VerticalGridLines />
+            <VerticalBarSeries className="StackedBarchart" />
+            <XAxis title="Year" />
+            <YAxis title="tCO2/a" />
+            <BarSeries
+              color="#8C0303"
+              data={absoluteEmissionsBus}
+              opacity={0.5}
+            />
+            <BarSeries
+              color="#A6036D"
+              data={absoluteEmissionsCar}
+              opacity={0.5}
+            />
+            <BarSeries
+              color="#400D01"
+              data={absoluteEmissionsMetro}
+              opacity={0.5}
+            />
+            <BarSeries
+              color=" #C4D4F2"
+              data={absoluteEmissionsTram}
+              opacity={0.5}
+            />
+            <BarSeries
+              color="#D90404"
+              data={absoluteEmissionsTrain}
+              opacity={0.5}
+            />
+            <BarSeries
+              color="#80D941"
+              data={absoluteEmissionsRailTransport}
+              opacity={0.5}
+            />
+            <BarSeries
+              color="#595959"
+              data={absoluteEmissionsRoadTransport}
+              opacity={0.5}
+            />
+            <BarSeries
+              color="#F2CE1B"
+              data={absoluteEmissionsWaterwaysTransport}
+            />
+          </XYPlot>
+          <div>
+            <LineLegend />
+          </div>
+        </div>
+
+
+         <div>
+          <h3>Absolute Projections</h3>
+          <XYPlot
+            width={1000}
+            height={500}
+            stackBy="y"
+            xType="ordinal"
+            margin={{ left: 80 }}
+          >
+            <HorizontalGridLines />
+            <VerticalGridLines />
+            <VerticalBarSeries className="StackedBarchart" />
+            <XAxis title="Year" />
+            <YAxis title="tCO2/a" />
+            <BarSeries
+              color="#8C0303"
+              data={absoluteProjectionsBus}
+              opacity={0.5}
+            />
+            <BarSeries
+              color="#A6036D"
+              data={absoluteProjectionsCar}
+              opacity={0.5}
+            />
+            <BarSeries
+              color="#400D01"
+              data={absoluteProjectionsMetro}
+              opacity={0.5}
+            />
+            <BarSeries
+              color=" #C4D4F2"
+              data={absoluteProjectionsTram}
+              opacity={0.5}
+            />
+            <BarSeries
+              color="#D90404"
+              data={absoluteProjectionsTrain}
+              opacity={0.5}
+            />
+            <BarSeries
+              color="#80D941"
+              data={absoluteProjectionsRailTransport}
+              opacity={0.5}
+            />
+            <BarSeries
+              color="#595959"
+              data={absoluteProjectionsRoadTransport}
+              opacity={0.5}
+            />
+            <BarSeries
+              color="#F2CE1B"
+              data={absoluteProjectionsWaterwaysTransport}
+            />
+          </XYPlot>
+          <div>
+            <LineLegend />
+          </div>
+        </div> 
 
 
             <div className="backButtonNew">

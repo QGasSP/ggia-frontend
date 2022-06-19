@@ -45,15 +45,13 @@ export const U3policies = () =>
   {
     const base = JSON.parse(localStorage.getItem("baseline"))|| {};
     const baseline = base.baseline;
+    const year = parseInt(localStorage.getItem("year"));
     const navigate = useNavigate();
 
     const policyQuantificationGetRequest = JSON.parse(localStorage.getItem("policyQuantificationTransportRequest")) || "";
     const getModalSplitPassenger = policyQuantificationGetRequest.policyQuantification.modalSplitPassenger
-
-    const policyQuantificationGetResponse = JSON.parse(localStorage.getItem("policyQuantificationTransportResponse")) || "";
-    const policyQuantification = policyQuantificationGetResponse.data.policy_quantification || policyQuantificationGetResponse.messages
-
-    
+    const policyQuantification = JSON.parse(localStorage.getItem("policyQuantificationTransportResponse")) || "";
+    const absolutePolicyQuantification = JSON.parse(localStorage.getItem("absolutePolicyQuantification")) || "";
     const emission = JSON.parse(localStorage.getItem("emission"))||{};
     const projections = JSON.parse(localStorage.getItem("projections"))|| {};
 
@@ -144,12 +142,6 @@ export const U3policies = () =>
     }
     ];
 
-    // eslint-disable-next-line no-console
-    // console.log(emissions.bus)
-   
-    // eslint-disable-next-line no-console
-    // console.log(projections.bus, 'projections')
-
   // policy quantification results
   const busPolicyQuantification = [];
   const carPolicyQuantification = []
@@ -160,7 +152,16 @@ export const U3policies = () =>
   const roadTransportPolicyQuantification = [];
   const waterwaysTransportPolicyQuantification = [];
   const totalPolicyQuantification = [];
- 
+
+  // absolute policy quantification
+  const busAbsolutePolicyQuantification = [];
+  const carAbsolutePolicyQuantification = [];
+  const tramAbsolutePolicyQuantification = [];
+  const metroAbsolutePolicyQuantification = [];
+  const trainAbsolutePolicyQuantification = [];
+  const railTransportAbsolutePolicyQuantification = [];
+  const roadTransportAbsolutePolicyQuantification = [];
+  const waterwaysTransportAbsolutePolicyQuantification = [];
 
   // transport projections
   const busProjection = [];
@@ -179,7 +180,7 @@ export const U3policies = () =>
           Object.keys(policyQuantification).length !== 0 &&
           policyQuantification !== undefined
        ){
-        for (let i = 2023; i < 2051; i++) {
+        for (let i = year; i < 2051; i++) {
           busPolicyQuantification.push({ x: i, y: policyQuantification.bus[i] })
           carPolicyQuantification.push({ x: i, y: policyQuantification.car[i] })
           metroPolicyQuantification.push({ x: i, y: policyQuantification.metro[i] })
@@ -192,9 +193,26 @@ export const U3policies = () =>
       };
       }
 
+       if (absolutePolicyQuantification &&
+          Object.keys(absolutePolicyQuantification).length !== 0 &&
+          policyQuantification !== undefined
+       ){
+        for (let i = year; i < 2051; i++) {
+          busAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.bus[i] })
+          carAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.car[i] })
+          metroAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.metro[i] })
+          railTransportAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.rail_transport[i] })
+          roadTransportAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.road_transport[i] })
+          trainAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.train[i] })
+          tramAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.tram[i] })
+          waterwaysTransportAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.waterways_transport[i] })
+          // totalPolicyQuantification.push({ x: i, y: absolutePolicyQuantification.total[i] })
+      };
+      }
+
       if (projections &&
       Object.keys(projections).length !== 0) {
-        for (let i = 2023; i < 2051; i++) {
+        for (let i = year; i < 2051; i++) {
           busProjection.push({ x: i, y: projections.bus[i]})
           carProjection.push({ x: i, y: projections.car[i] })
           metroProjection.push({ x: i, y: projections.metro[i] })
@@ -530,6 +548,72 @@ export const U3policies = () =>
               
         </div>
         <br/>
+
+          <div style={{margin:"30px"}}>
+          {/* policy quantification results */}
+              <h3>Absolute Policy Quantification Results</h3>
+              <XYPlot
+                className="policy-quantification-chart"
+                stackBy="y"
+                xType="ordinal"
+                margin={{ left: 80 }}
+                width={1150}
+                height={500}
+              >
+                <VerticalGridLines />
+                <HorizontalGridLines />
+                <VerticalBarSeries />
+                <XAxis title="Year"
+                 />
+                <YAxis title="tCO2/a" />
+                <BarSeries
+                  color="#3d58a3"
+                  opacity={0.55}
+                  data={busAbsolutePolicyQuantification}
+                  stack
+                />
+                <BarSeries
+                  color="#ef7d00"
+                  opacity={0.55}
+                  data={carAbsolutePolicyQuantification}
+                  stack
+                />
+                <BarSeries
+                  color="#95c11f"
+                  opacity={0.55}
+                  data={metroAbsolutePolicyQuantification}
+                  stack
+                />
+                <BarSeries
+                  color="#ce143d"
+                  opacity={0.55}
+                  data={railTransportAbsolutePolicyQuantification}
+                  stack
+                />
+                <BarSeries
+                  color="#845f9e"
+                  opacity={0.55}
+                  data={roadTransportAbsolutePolicyQuantification}
+                  stack
+                />
+                <BarSeries color="#996e35" opacity={0.55} data={trainAbsolutePolicyQuantification} stack />
+                <BarSeries color="#76918e" opacity={0.55} data={tramAbsolutePolicyQuantification} stack />
+                <BarSeries
+                  color="#0000CD"
+                  opacity={0.55}
+                  data={waterwaysTransportAbsolutePolicyQuantification}
+                  stack
+                />
+              </XYPlot>
+
+              <div>
+                <DiscreteColorLegend
+                items={transportAndPolicyResultsLegend}
+                orientation="horizontal"/>
+              </div>
+              
+        </div>
+
               <br />
               <div className="backButtonNew">
               <Button

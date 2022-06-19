@@ -34,6 +34,12 @@ export const U3planner = () => {
     const initialValue = JSON.parse(savedBasline);
     return initialValue || {};
   });
+
+  const [absolutePolicyQuantification, setAbsolutePolicyQuantification] = useState(() => {
+    const savedBasline = localStorage.getItem("absolutePolicyQuantification");
+    const initialValue = JSON.parse(savedBasline);
+    return initialValue || {};
+  });
   const [policyQuantificationTransportRequest, setPolicyQuantificationTransportRequest] = useState({});
 
   const [errorU3, setU3Error] = useState("");
@@ -208,7 +214,6 @@ export const U3planner = () => {
     e.preventDefault();
     setCar(Number(e.target.value));
   };
-
 
   // handlers for modal split freight transport
 
@@ -530,7 +535,8 @@ const handleDePhev = (e) => {
         raw,
         headers)
       .then((response) => {
-        setPolicyQuantificationTransportResponse(response.data)
+        setPolicyQuantificationTransportResponse(response.data.data.policy_quantification)
+        setAbsolutePolicyQuantification(response.data.data.absolute_policy_quantification)
       })
       .then(() => {
       setLoadingStyle({
@@ -556,6 +562,10 @@ const handleDePhev = (e) => {
    localStorage.setItem("policyQuantificationTransportRequest", JSON.stringify(policyQuantificationTransportRequest)) 
   }, [policyQuantificationTransportRequest]);
 
+  useEffect(async () => {
+   localStorage.setItem("absolutePolicyQuantification", JSON.stringify(absolutePolicyQuantification)) 
+  }, [absolutePolicyQuantification]);
+
    const gotoU3policies = () => {
     navigate("/u3policies", {
       replace: true,
@@ -566,12 +576,6 @@ const handleDePhev = (e) => {
     await createPolicyQuantification(e.preventDefault());
     await gotoU3policies();
   }
-
-  // eslint-disable-next-line no-console
-  console.log((policyQuantificationTransportRequest), 'request')
-
-  // eslint-disable-next-line no-console
-  console.log(policyQuantificationTransportResponse, 'response')
 
     return (
       <Container maxWidth="xl">
@@ -609,7 +613,7 @@ const handleDePhev = (e) => {
                 </div>
                 <div>
                   {" "}
-                  <label><b>Change in passenger mobility %</b></label>
+                  <label>Change in passenger mobility %</label>
                 </div>
                 <Tooltip title="Start year is the first year during which the policy changes the need for motorized passenger transport within the area. The change is assumed permanent after the last year of implementation.">
                   <div>

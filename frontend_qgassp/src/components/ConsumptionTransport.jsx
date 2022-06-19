@@ -5,7 +5,7 @@ import Chip from "@mui/material/Chip";
 import { Button } from "./Button";
 import Tooltip from "@mui/material/Tooltip";
 import Alert from "@mui/material/Alert";
-import { useStorageBool, useStorageInt } from "../reducers/useStorage";
+import { useStorageInt, useLocalStorageBoolean } from "../reducers/useStorage";
 import { useNavigate} from "react-router-dom";
 /**
  * Consumption transport UI
@@ -34,24 +34,21 @@ export const ConsumptionTransport = () =>{
     const gasesProp = parseFloat(localStorage.getItem("gasesPropLocal"));
     const districtValue = parseFloat(localStorage.getItem("districtValueLocal"));
 
-    const [biofuelTakeup, setBiofuelTakeup] = useStorageBool(
-      "biofuelTakeup",
-      false
-    );
+    const [biofuelTakeup, setBiofuelTakeup] = useLocalStorageBoolean("biofuelTakeup", "false");
     const handleBiofuelTakeup = (e) => {
       e.target.checked;
       setBiofuelTakeup(!biofuelTakeup);
     };
     const [bioScaler, setBioScaler] = useStorageInt("bioScaler", 0);
 
-    const [evTakeup, setEvTakeup] = useStorageBool("evTakeup", false);
+    const [evTakeup, setEvTakeup] = useLocalStorageBoolean("evTakeup", "false");
     const handleEvTakeup = (e) => {
       e.target.checked;
       setEvTakeup(!evTakeup);
     };
     const [evScaler, setEvScaler] = useStorageInt("evScaler", 0);
 
-    const [modalShift, setModalShift] = useStorageBool("modalShift", false);
+    const [modalShift, setModalShift] = useLocalStorageBoolean("modalShift", "false");
     const handleModalShift = (e) => {
       e.target.checked;
       setModalShift(!modalShift);
@@ -379,7 +376,7 @@ export const ConsumptionTransport = () =>{
               value="backProjections"
               onClick={() => navigate("../consumptionHseEnergy", { replace: true })}
               label="&laquo; Previous"
-              secondary
+              secondary="true"
             />
           </div>
 
