@@ -532,7 +532,7 @@ export const ConsumptionHseEnergy = () => {
             />
           </div>
 
-        {policyYear > 0 && popSizePolicy >= 0 && newFloorArea > 0 && (
+        {policyYear > 0 && popSizePolicy >= 0 && (
           <div className="nextCBQ">
             <Button
               size="small"

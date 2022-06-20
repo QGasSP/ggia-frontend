@@ -66,14 +66,18 @@ export const TransportBaseline = () => {
   const [metroSplit, setMetroSplit] = useState({})
   const [tramSplit, setTramSplit] = useState({})
 
-  const [metroInput, setMetroInput] = useState(0);
-  const [tramInput, setTramInput] = useState(0);
+  const [metroInput, setMetroInput] = useState(() => {
+    const savedBasline = localStorage.getItem("metroInput");
+    const initialValue = JSON.parse(savedBasline);
+    return initialValue || {};
+  });
+  const [tramInput, setTramInput] = useState(() => {
+    const savedBasline = localStorage.getItem("tramInput");
+    const initialValue = JSON.parse(savedBasline);
+    return initialValue || {};
+  });
 
-   // eslint-disable-next-line no-console
-    console.log("Tram input!", tramInput);
-
-
-  const getMetroTramSystemResponse = async() => {
+  const getMetroTramSystemResponse = async() => {      
     const raw = {
     "metroTramList": {
         "country": country
@@ -103,19 +107,18 @@ export const TransportBaseline = () => {
       });
   }
 
-  useEffect(() => {
+  useEffect(async() => {
       getMetroTramSystemResponse();
-    
   }, [])
+
+  const getMetroCity = JSON.parse(localStorage.getItem("metroCity")) || [];
+  const getTramCity = JSON.parse(localStorage.getItem("tramCity")) || [];
 
   const handleMetroAndTram = async(e) => {
    e.target.checked;
    await setMetroAndTramSystemCheck(!metroAndTramSystemCheck);
-   await getMetroTramSystemResponse();
+   await getMetroTramSystemResponse(e.preventDefault());
   }
-
-  const getMetroCity = JSON.parse(localStorage.getItem("metroCity")) || [];
-  const getTramCity = JSON.parse(localStorage.getItem("tramCity")) || [];
 
   // handlers 
   const handleNsArea = (e) => {
@@ -147,8 +150,9 @@ export const TransportBaseline = () => {
     setRural(parseFloat(e.target.value));
   };
 
-  const setSettlementType = () => {
-  
+  const setSettlementType = async(e) => {
+    e.preventDefault();
+
     const settlementDist = {
       metropolitanCenter,
       urban,
@@ -185,13 +189,15 @@ export const TransportBaseline = () => {
     localStorage.setItem("tramSplit", JSON.stringify(tramSplit));
     setTramSplit(tramSplit);
 
-    // setU1Charts(true);
+    localStorage.setItem("metroInput", JSON.stringify(metroInput));
+    setMetroSplit(metroInput);
+
+    localStorage.setItem("tramInput", JSON.stringify(tramInput));
+    setTramSplit(tramInput);
+
     if (Object.keys(settlementDistribution).length !== 0) {
-      navigate("../u1planner", {
+      return navigate("/u1planner", {
         replace: true
-       /*  state: {
-          settlementDistribution: settlementDist,
-        }, */
       });
     };
   };
@@ -206,37 +212,40 @@ export const TransportBaseline = () => {
     );
   };
 
-  useEffect(() => {
-    localStorage.setItem(
+  useEffect(async() => {
+    await localStorage.setItem(
       "settlementDistribution",
       JSON.stringify(settlementDistribution)
     );
-  }, [settlementDistribution]);
 
-  useEffect(() => {
-    localStorage.setItem(
+    await localStorage.setItem(
       "intensityNonResAndFt",
       JSON.stringify(intensityNonResAndFt)
     );
-  }, [intensityNonResAndFt]);
 
-
-  useEffect(() => {
-    localStorage.setItem
+    await localStorage.setItem
     (
       "metroSplit",
       JSON.stringify(metroSplit)
-    )
-  },[metroSplit])
+    );
 
-   useEffect(() => {
-    localStorage.setItem
+    await localStorage.setItem
     (
       "tramSplit",
       JSON.stringify(tramSplit)
-    )
-  },[tramSplit])
+    );
+    await localStorage.setItem
+    (
+      "metroInput",
+      JSON.stringify(metroInput)
+    );
 
+    await localStorage.setItem
+    (
+      "tramInput",
+      JSON.stringify(tramInput)
+    );
+  }, [settlementDistribution, intensityNonResAndFt, tramSplit, metroSplit, tramInput, metroInput]);
 
   if (population === 0 && year === 0 && country === "" ||
   window.localStorage === null
@@ -500,9 +509,9 @@ export const TransportBaseline = () => {
                   <option value="DefaultOption">Select intensity</option>
                   <optgroup label="Select transport intensity">
                     <option value="none">none</option>
-                    <option value="low_intensity">low-intensity</option>
-                    <option value="average_intensity">average-intensity</option>
-                    <option value="high_intensity">high-intensity</option>
+                    <option value="low_intensity">low intensity</option>
+                    <option value="average_intensity">average intensity</option>
+                    <option value="high_intensity">high intensity</option>
                   </optgroup>
                 </select>
               </div>
@@ -522,9 +531,9 @@ export const TransportBaseline = () => {
                   <option value="DefaultOption">Select intensity</option>
                   <optgroup label="Select road transport intensity">
                     <option value="none">none</option>
-                    <option value="low_intensity">low-intensity</option>
-                    <option value="average_intensity">average-intensity</option>
-                    <option value="high_intensity">high-intensity</option>
+                    <option value="low_intensity">low intensity</option>
+                    <option value="average_intensity">average intensity</option>
+                    <option value="high_intensity">high intensity</option>
                   </optgroup>
                 </select>
               </div>
@@ -544,9 +553,9 @@ export const TransportBaseline = () => {
                   <option value="DefaultOption">Select intensity</option>
                   <optgroup label="Select road transport intensity">
                     <option value="none">none</option>
-                    <option value="low_intensity">low-intensity</option>
-                    <option value="average_intensity">average-intensity</option>
-                    <option value="high_intensity">high-intensity</option>
+                    <option value="low_intensity">low intensity</option>
+                    <option value="average_intensity">average intensity</option>
+                    <option value="high_intensity">high intensity</option>
                   </optgroup>
                 </select>
               </div>
@@ -568,9 +577,9 @@ export const TransportBaseline = () => {
                   <option value="DefaultOption">Select intensity</option>
                   <optgroup label="Select road transport intensity">
                    <option value="none">none</option>
-                    <option value="low_intensity">low-intensity</option>
-                    <option value="average_intensity">average-intensity</option>
-                    <option value="high_intensity">high-intensity</option>
+                    <option value="low_intensity">low intensity</option>
+                    <option value="average_intensity">average intensity</option>
+                    <option value="high_intensity">high intensity</option>
                   </optgroup>
                 </select>
               </div>
@@ -581,15 +590,16 @@ export const TransportBaseline = () => {
              
               
           <h4>
-            use of metro systems in {country}
+            Use of metro and tram systems in {country}
             <input
             type="checkbox"
+            name="metroTramCheckbox"
             onChange={handleMetroAndTram}
             checked={metroAndTramSystemCheck}
             />
           </h4>
 
-            {metroAndTramSystemCheck &&
+            {metroAndTramSystemCheck && Object.values(metroAndTramSystems) !== 0 &&
             <Grid container spacing={2}>
               <Grid item xs={6}>
               <Paper>
@@ -599,7 +609,9 @@ export const TransportBaseline = () => {
                     <th>Metro systems included</th>
                     <th>%</th>
                   </tr>
-                    {getMetroCity.map(metro => <tr key={metro}><td>{metro}</td>
+                  </thead>
+                  <tbody>
+                    { getMetroCity.length === 0 ? <tr><td>Nothing to display here</td></tr> : getMetroCity.map(metro => <tr key={metro}><td>{metro}</td>
                     <td>
                     <input
                     onChange={(e) =>
@@ -613,7 +625,7 @@ export const TransportBaseline = () => {
                     </td>
                     </tr>
                     )}
-              </thead>
+              </tbody>
             </table>
             </Paper>
             </Grid>
@@ -626,7 +638,9 @@ export const TransportBaseline = () => {
                   <th>Tram systems included</th>
                   <th>%</th>
                 </tr>
-                {getTramCity.map(tram => <tr key={tram}><td>{tram}</td>
+              </thead>
+              <tbody>
+                {getTramCity.length === 0 ? <td>Nothing to display here</td> : getTramCity.map(tram => <tr key={tram}><td>{tram}</td>
                   <td>
                   <input
                   onChange={(e) =>
@@ -640,7 +654,7 @@ export const TransportBaseline = () => {
                   </td>
                 </tr>
               )}
-              </thead>
+              </tbody>
             </table>
             </Paper>
             </Grid>
@@ -651,17 +665,18 @@ export const TransportBaseline = () => {
           </div>
 
           <div>
-          {total === 100.0 && (
+          {total === 100.0 &&
             <div className="nextU2Button">
               <Button
                 size="small"
                 value="charts"
+                type="submit"
                 onClick={setSettlementType}
                 label="Next &raquo;"
                 primary
               />
             </div>
-          )}
+          }
           </div>
         </section>
       </article>

@@ -60,6 +60,12 @@ export const U1planner = () => {
     return initialValue || {};
   });
 
+  const [absoluteEmissionsYear1, setAbsoluteEmissionsYear1] = useState(() => {
+    const savedBase = localStorage.getItem("absoluteEmissionsYear1");
+    const initialValue = JSON.parse(savedBase);
+    return initialValue || {};
+  });
+
   const [isLoadingTransport, setIsLoadingTransport] = useState(true);
   const [isErrorTransport, setIsErrorTransport] = useState(false);
 
@@ -71,6 +77,8 @@ export const U1planner = () => {
   const dataProjectionsRailTransport = [];
   const dataProjectionsRoadTransport = [];
   const dataProjectionsWaterwaysTransport = [];
+
+
 
   useEffect(async () => {
     const baseline = {
@@ -94,7 +102,9 @@ export const U1planner = () => {
       .then((response) => {
         // setResponse(response.data.data.baseline);
         setEmissionData(response.data.data.baseline.emissions);
+        setAbsoluteEmissionsYear1(response.data.data.baseline.absolute_year1_emissions);
         setProjections(response.data.data.baseline.projections);
+
         setIsLoadingTransport(false);
       })
       .catch((error) => {
@@ -117,18 +127,15 @@ export const U1planner = () => {
     localStorage.setItem("baseline", JSON.stringify(baseline));
   }, [baseline]);
 
+  useEffect(() => {
+    localStorage.setItem("absoluteEmissionsYear1", JSON.stringify(absoluteEmissionsYear1));
+  }, [absoluteEmissionsYear1]);
+
   const emissionTotal = emission.bus + emission.train + emission.car + emission.metro + emission.waterways_transport + emission.tram + emission.rail_transport + emission.road_transport
 
   const goToNewResidents = () => {
     navigate("../newResidents", {
-      replace: true,
-     /*  state: {
-        baseline:baseline,
-        emission:emission,
-        projections:projections,
-        year:year,
-        settlementDistribution: settlementDistribution,
-      }, */
+      replace: true
     });
   };
 
@@ -137,26 +144,15 @@ export const U1planner = () => {
   }
 
   for (let i = year; i < 2051; i++) {
-
     dataProjectionsBus.push({ x: i, y: projections.bus[i] });
     dataProjectionsCar.push({ x: i, y: projections.car[i] });
     dataProjectionsMetro.push({ x: i, y: projections.metro[i] });
     dataProjectionsTram.push({ x: i, y: projections.tram[i] });
     dataProjectionsTrain.push({ x: i, y: projections.train[i] });
-    dataProjectionsRailTransport.push({
-      x: i,
-      y: projections.rail_transport[i],
-    });
-    dataProjectionsRoadTransport.push({
-      x: i,
-      y: projections.road_transport[i],
-    });
-    dataProjectionsWaterwaysTransport.push({
-      x: i,
-      y: projections.waterways_transport[i],
-    });
+    dataProjectionsRailTransport.push({ x: i, y: projections.rail_transport[i] });
+    dataProjectionsRoadTransport.push({ x: i, y: projections.road_transport[i] });
+    dataProjectionsWaterwaysTransport.push({ x: i, y: projections.waterways_transport[i] });
   }
-
 
   if (Object.keys(projections).length !== 0) {
     return (
@@ -477,6 +473,7 @@ export const U1planner = () => {
             <LineLegend />
           </div>
         </div>
+
         <div className="backButtonNew">
             <Button
               size="small"

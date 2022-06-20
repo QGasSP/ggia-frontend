@@ -15,7 +15,8 @@ import {
   HorizontalGridLines,
   VerticalGridLines,
   VerticalBarSeries,
-  LineSeries
+  LineSeries,
+  DiscreteColorLegend
 } from "react-vis";
 import { ConsumptionBaselineResults } from "./ConsumptionBaselineResults";
 // https://github.com/gregnb/react-to-print/issues/184
@@ -50,15 +51,66 @@ export const GenerateReport = () => {
 
   const buildingsBaselineResponse = JSON.parse(localStorage.getItem("buildingsBaselineResponse"));
   const newConstructionResponse = JSON.parse(localStorage.getItem("newConstructionResponse"));
-  const policyQuantificationResponse = JSON.parse(localStorage.getItem("policyQuantificationResponse"));
-
+  const policyQuantificationGetResponse = JSON.parse(localStorage.getItem("policyQuantificationResponse"));
+ 
+ const absolutePolicyQuantification = JSON.parse(localStorage.getItem("absolutePolicyQuantification"))
   const componentRef = useRef();
   // const handlePrint = useReactToPrint({
   //   content: () => componentRef.current,
   // });
   // const zip = (array1, array2) => array1.map((x, i) => [x, array2[i]]); 
-  
+
+  const transportAndPolicyResultsLegend = [
+    {
+      title: "Bus",
+      color: "#3d58a3",
+      strokeWidth: 6
+    },
+
+    {
+      title: "Car",
+      color: "#ef7d00",
+      strokeWidth: 6
+    },
+
+    {
+      title: "Metro",
+      color: "#95c11f",
+      strokeWidth: 6
+    },
+
+    {
+      title: "Rail Transport",
+      color: "#ce143d",
+      strokeWidth: 6
+    },
+
+    {
+      title: "Road Transport",
+      color: "#845f9e",
+      strokeWidth: 6
+    },
+
+    {
+      title: "Train",
+      color: "#996e35",
+      strokeWidth: 6
+    },
+
+    {
+      title: "Tram",
+      color: "#76918e",
+      strokeWidth: 6
+    },
+
+    {
+      title: "Waterways transport",
+      color: "#0000CD",
+      strokeWidth: 6
+    }
+    ];
   // #region data distribution
+
   // absolute values
   const netSinkTotal = [];
   const netLandUseChangeTotal = [];
@@ -96,6 +148,33 @@ export const GenerateReport = () => {
   const tramProjection = [];
   const waterwaysTransportProjection = [];
   const totalTransportProjection = [];
+
+  // absolute policy quantification
+  const busAbsolutePolicyQuantification = [];
+  const carAbsolutePolicyQuantification = [];
+  const tramAbsolutePolicyQuantification = [];
+  const metroAbsolutePolicyQuantification = [];
+  const trainAbsolutePolicyQuantification = [];
+  const railTransportAbsolutePolicyQuantification = [];
+  const roadTransportAbsolutePolicyQuantification = [];
+  const waterwaysTransportAbsolutePolicyQuantification = [];
+
+
+   if (absolutePolicyQuantification &&
+      Object.keys(absolutePolicyQuantification).length !== 0
+       ){
+        for (let i = year; i < 2051; i++) {
+          busAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.bus[i] })
+          carAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.car[i] })
+          metroAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.metro[i] })
+          railTransportAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.rail_transport[i] })
+          roadTransportAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.road_transport[i] })
+          trainAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.train[i] })
+          tramAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.tram[i] })
+          waterwaysTransportAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.waterways_transport[i] })
+          // totalPolicyQuantification.push({ x: i, y: absolutePolicyQuantification.total[i] })
+      };
+      }
 
   if(
     buildingsBaselineResponse &&
@@ -262,7 +341,8 @@ export const GenerateReport = () => {
           Object.keys(blTotalEmmissions).length !== 0 &&
           Object.keys(p1TotalAreaEmissions).length !== 0 &&
           Object.keys(buildingsBaselineResponse).length !== 0 &&
-          Object.keys(projections).length !== 0 && (
+          Object.keys(projections).length !== 0 &&
+           (
             <div>
               <>
             <div className="luc_alert_container">
@@ -387,6 +467,73 @@ export const GenerateReport = () => {
                 />
               </FlexibleXYPlot>
               </div>
+
+                <div style={{margin:"30px"}}>
+          {/* policy quantification results */}
+              <Divider textAlign="left" flexItem>
+                <Chip label="Absolute Policy Quantification Results" />
+              </Divider>
+              <FlexibleXYPlot
+                className="policy-quantification-chart"
+                stackBy="y"
+                xType="ordinal"
+                margin={{ left: 80 }}
+                width={1150}
+                height={500}
+              >
+                <VerticalGridLines />
+                <HorizontalGridLines />
+                <VerticalBarSeries />
+                <XAxis title="Year"
+                 />
+                <YAxis title="tCO2/a" />
+                <BarSeries
+                  color="#3d58a3"
+                  opacity={0.55}
+                  data={busAbsolutePolicyQuantification}
+                  stack
+                />
+                <BarSeries
+                  color="#ef7d00"
+                  opacity={0.55}
+                  data={carAbsolutePolicyQuantification}
+                  stack
+                />
+                <BarSeries
+                  color="#95c11f"
+                  opacity={0.55}
+                  data={metroAbsolutePolicyQuantification}
+                  stack
+                />
+                <BarSeries
+                  color="#ce143d"
+                  opacity={0.55}
+                  data={railTransportAbsolutePolicyQuantification}
+                  stack
+                />
+                <BarSeries
+                  color="#845f9e"
+                  opacity={0.55}
+                  data={roadTransportAbsolutePolicyQuantification}
+                  stack
+                />
+                <BarSeries color="#996e35" opacity={0.55} data={trainAbsolutePolicyQuantification} stack />
+                <BarSeries color="#76918e" opacity={0.55} data={tramAbsolutePolicyQuantification} stack />
+                <BarSeries
+                  color="#0000CD"
+                  opacity={0.55}
+                  data={waterwaysTransportAbsolutePolicyQuantification}
+                  stack
+                />
+              </FlexibleXYPlot>
+
+              <div>
+                <DiscreteColorLegend
+                items={transportAndPolicyResultsLegend}
+                orientation="horizontal"/>
+              </div>
+              
+        </div>
 
             <div className="luc_alert_container">
             <FlexibleXYPlot
@@ -650,8 +797,6 @@ export const GenerateReport = () => {
             
               </>        
             </div>
-
-            
           )}
       </div>
         {
