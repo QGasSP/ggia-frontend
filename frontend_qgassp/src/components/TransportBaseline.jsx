@@ -25,11 +25,11 @@ import { Container, Box, Paper, Grid } from "@mui/material";
  */
 
 const settlementLabels = [
-  { title: "urban", color: "#164059" },
-  { title: "suburban", color: "#F25F29" },
-  { title: "town", color: "#F23A29" },
-  { title: "rural", color: "#D9D9D9" },
-  { title: "Metropolitan center", color: "#730E16" },
+  { title: "urban", color: "#164059", strokeWidth: 10 },
+  { title: "suburban", color: "#F25F29", strokeWidth: 10 },
+  { title: "town", color: "#F23A29", strokeWidth: 10 },
+  { title: "rural", color: "#D9D9D9", strokeWidth: 10 },
+  { title: "Metropolitan center", color: "#730E16", strokeWidth: 10 },
 ];
 
 export const TransportBaseline = () => {
@@ -94,12 +94,6 @@ export const TransportBaseline = () => {
     .then((response) => {
        setMetroAndTramSystems(response.data)
       })
-    .then(()=> {
-      localStorage.setItem("metroCity", JSON.stringify((Object.values(metroAndTramSystems.data.metro_tram_list.metro_list))))
-    })
-     .then(()=> {
-      localStorage.setItem("tramCity", JSON.stringify((Object.values(metroAndTramSystems.data.metro_tram_list.tram_list))))
-    })
     .catch((error) => {
         setError({ errorMessage: error.message });
         // eslint-disable-next-line no-console
@@ -110,6 +104,12 @@ export const TransportBaseline = () => {
   useEffect(async() => {
       getMetroTramSystemResponse();
   }, [])
+
+  useEffect(async()=> {
+    localStorage.setItem("metroAndTramSystems", JSON.stringify(metroAndTramSystems))
+    localStorage.setItem("metroCity", JSON.stringify((Object.values(metroAndTramSystems.data.metro_tram_list.metro_list))))
+    localStorage.setItem("tramCity", JSON.stringify((Object.values(metroAndTramSystems.data.metro_tram_list.tram_list))))
+  }, [metroAndTramSystems])
 
   const getMetroCity = JSON.parse(localStorage.getItem("metroCity")) || [];
   const getTramCity = JSON.parse(localStorage.getItem("tramCity")) || [];
@@ -441,7 +441,7 @@ export const TransportBaseline = () => {
               </div>
             </div>
 
-            <div className="div_transport2">
+            {/* <div className="div_transport2">
               <label>
                 <b>Area</b>{" "}
               </label>
@@ -481,13 +481,13 @@ export const TransportBaseline = () => {
                   />
                 </div>
               </Tooltip>
-            </div>
+            </div> */}
             <br />
             <div className="div_transport2">
               <label>
                 <b>Non-residential and freight</b>
               </label>
-              <label>Transport intensity</label>
+              <label><b>Transport intensity</b></label>
               <Alert severity="info">
                 Describe the intensity of non-residential passenger road
                 transport and freight transport within the assessment area.
@@ -506,13 +506,12 @@ export const TransportBaseline = () => {
                   onChange={(e) => setNonResidentialRoad(e.target.value)}
                   defaultValue={nonResidentialRoad}
                 >
-                  <option value="DefaultOption">Select intensity</option>
-                  <optgroup label="Select transport intensity">
+                    <option value="DefaultOption">Select intensity</option>
                     <option value="none">none</option>
                     <option value="low_intensity">low intensity</option>
                     <option value="average_intensity">average intensity</option>
                     <option value="high_intensity">high intensity</option>
-                  </optgroup>
+                 
                 </select>
               </div>
             </Tooltip>
@@ -528,13 +527,11 @@ export const TransportBaseline = () => {
                   value={freightRoad}
                   placeholder={freightRoad}
                 >
-                  <option value="DefaultOption">Select intensity</option>
-                  <optgroup label="Select road transport intensity">
+                    <option value="DefaultOption">Select intensity</option>
                     <option value="none">none</option>
                     <option value="low_intensity">low intensity</option>
                     <option value="average_intensity">average intensity</option>
                     <option value="high_intensity">high intensity</option>
-                  </optgroup>
                 </select>
               </div>
             </Tooltip>
@@ -550,13 +547,11 @@ export const TransportBaseline = () => {
                   value={freightRail}
                   placeholder={freightRail}
                 >
-                  <option value="DefaultOption">Select intensity</option>
-                  <optgroup label="Select road transport intensity">
+                    <option value="DefaultOption">Select intensity</option>
                     <option value="none">none</option>
                     <option value="low_intensity">low intensity</option>
                     <option value="average_intensity">average intensity</option>
                     <option value="high_intensity">high intensity</option>
-                  </optgroup>
                 </select>
               </div>
             </Tooltip>
@@ -574,13 +569,11 @@ export const TransportBaseline = () => {
                   value={freightInlandWaterway}
                   placeholder={freightInlandWaterway}
                 >
-                  <option value="DefaultOption">Select intensity</option>
-                  <optgroup label="Select road transport intensity">
-                   <option value="none">none</option>
+                    <option value="DefaultOption">Select intensity</option>
+                    <option value="none">none</option>
                     <option value="low_intensity">low intensity</option>
                     <option value="average_intensity">average intensity</option>
                     <option value="high_intensity">high intensity</option>
-                  </optgroup>
                 </select>
               </div>
             </Tooltip>
@@ -623,6 +616,7 @@ export const TransportBaseline = () => {
                     name="metroInput"
                     />
                     </td>
+                    
                     </tr>
                     )}
               </tbody>
@@ -640,7 +634,7 @@ export const TransportBaseline = () => {
                 </tr>
               </thead>
               <tbody>
-                {getTramCity.length === 0 ? <td>Nothing to display here</td> : getTramCity.map(tram => <tr key={tram}><td>{tram}</td>
+                {getTramCity.length === 0 ? <tr><td>Nothing to display here</td></tr> : getTramCity.map(tram => <tr key={tram}><td>{tram}</td>
                   <td>
                   <input
                   onChange={(e) =>

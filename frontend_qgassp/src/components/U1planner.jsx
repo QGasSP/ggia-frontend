@@ -21,10 +21,6 @@ import { Legend } from "./Legend";
 import urlPrefix from "../Config";
 import { Container, Grid, Paper, Tooltip } from "@mui/material";
 
-
-
-
-
 /**
  * U1 Planner baseline user input form
  * @return {}
