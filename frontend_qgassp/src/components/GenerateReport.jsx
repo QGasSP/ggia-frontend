@@ -51,9 +51,10 @@ export const GenerateReport = () => {
 
   const buildingsBaselineResponse = JSON.parse(localStorage.getItem("buildingsBaselineResponse"));
   const newConstructionResponse = JSON.parse(localStorage.getItem("newConstructionResponse"));
-  const policyQuantificationGetResponse = JSON.parse(localStorage.getItem("policyQuantificationResponse"));
+  const policyQuantificationResponse = JSON.parse(localStorage.getItem("policyQuantificationResponse"));
+  const absolutePolicyQuantification = JSON.parse(localStorage.getItem("absolutePolicyQuantification"))
+
  
- const absolutePolicyQuantification = JSON.parse(localStorage.getItem("absolutePolicyQuantification"))
   const componentRef = useRef();
   // const handlePrint = useReactToPrint({
   //   content: () => componentRef.current,
@@ -110,6 +111,10 @@ export const GenerateReport = () => {
     }
     ];
   // #region data distribution
+
+  // total values
+  const buildingEmissionsTotal = []
+  const buildingBaseline = []
 
   // absolute values
   const netSinkTotal = [];
@@ -174,7 +179,16 @@ export const GenerateReport = () => {
           waterwaysTransportAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.waterways_transport[i] })
           // totalPolicyQuantification.push({ x: i, y: absolutePolicyQuantification.total[i] })
       };
+    }
+    if (policyQuantificationResponse &&
+    policyQuantificationResponse.length !== 0){
+      for (let i = year; i < 2051; i++) {
+        buildingEmissionsTotal.push({x: i, y: policyQuantificationResponse.data.graph[i].total})
+        buildingBaseline.push({x: i, y: policyQuantificationResponse.data.graph[i].baseline})
       }
+      
+    }
+    
 
   if(
     buildingsBaselineResponse &&
@@ -404,7 +418,45 @@ export const GenerateReport = () => {
                 </tr>
               </tbody>
             </table>
+            {/* graph final for generate report from excel */}
+            <div style={{margin:"30px"}}>
+          {/* policy quantification results */}
+              <Divider textAlign="left" flexItem>
+                <Chip label="Absolute Territorial Results" />
+              </Divider>
+              <FlexibleXYPlot
+                className="policy-quantification-chart"
+                stackBy="y"
+                xType="ordinal"
+                margin={{ left: 80 }}
+                width={1150}
+                height={500}
+              >
+                <VerticalGridLines />
+                <HorizontalGridLines />
+                <VerticalBarSeries />
+                <XAxis title="Year"
+                 />
+                <YAxis title="tCO2/a" />
+                <BarSeries
+                  color="#3d58a3"
+                  opacity={0.55}
+                  data={buildingEmissionsTotal}
+                  stack
+                />
+                <BarSeries
+                  color="#ef7d00"
+                  opacity={0.55}
+                  data={buildingBaseline}
+                  stack
+                />
+              </FlexibleXYPlot>
 
+              <div>
+                
+              </div>
+              
+              </div>
             {/* transport projections start here */}
                <div className="luc_alert_container">
               <Divider textAlign="left" flexItem>
@@ -468,7 +520,7 @@ export const GenerateReport = () => {
               </FlexibleXYPlot>
               </div>
 
-                <div style={{margin:"30px"}}>
+              <div style={{margin:"30px"}}>
           {/* policy quantification results */}
               <Divider textAlign="left" flexItem>
                 <Chip label="Absolute Policy Quantification Results" />
@@ -533,7 +585,7 @@ export const GenerateReport = () => {
                 orientation="horizontal"/>
               </div>
               
-        </div>
+              </div>
 
             <div className="luc_alert_container">
             <FlexibleXYPlot

@@ -595,7 +595,7 @@ const handleDePhev = (e) => {
         <br/>
         <section className="section-u3">
           <form onSubmit={createPolicyQuantification}>
-            <div className="row_u3">
+            
               <div className="div2">
                 <Alert severity="info">
                   Does the planning policy reduce the need for motorized
@@ -604,22 +604,52 @@ const handleDePhev = (e) => {
                 </Alert>
               </div>
              {/*  passenger mobility section start */}
-              <div className="column_u3" >
-                <div>
-                  {" "}
-                  <label>
-                    <b>Passenger mobility</b>
-                  </label>
-                </div>
-                <div>
-                  {" "}
-                  <label>Change in passenger mobility %</label>
-                </div>
-                <Tooltip title="Start year is the first year during which the policy changes the need for motorized passenger transport within the area. The change is assumed permanent after the last year of implementation.">
-                  <div>
-                    <label>Policy period</label>
-                    <div className="divspace">
-                      <select
+              
+            <div>
+              <table style={{width:"100%", margin:"20px"}}>
+                <thead>
+                  <tr>
+                  <th>Passenger mobility</th>
+                  <Tooltip title="A reduction is inserted as a positive percentage.">
+                  <th>Decrease in mobility</th>
+                  </Tooltip>
+                  <Tooltip title="Estimate the percentage of the population that is affected by the policy.">
+                  <th>% Population affected</th>
+                  </Tooltip>
+                  <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Change in passenger mobility %</td>
+                    <td><input
+                      id="inputspace"
+                      type="number"
+                      step="0.1"
+                      placeholder={passengerMobilityExpectedChange}
+                      value={passengerMobilityExpectedChange}
+                      onChange={handlePassengerMobilityExpectedChange}
+                      required
+                    /></td>
+                    <td>
+                       <input
+                    className="input_affected_area"
+                    type="number"
+                    step="0.1"
+                    placeholder={populationAffectedPassengerMobility}
+                    min="0"
+                    max="100"
+                    onChange={handlePopulationAffectedPassengerMobility}
+                    value={populationAffectedPassengerMobility}
+                    required
+                  />
+                    </td>
+                  </tr>
+                   <Tooltip title="Start year is the first year during which the policy changes the need for motorized passenger transport within the area. The change is assumed permanent after the last year of implementation.">
+                  <tr>
+                    <td><b>Policy period</b></td>
+                    <td><b>Start year</b> 
+                        <select
                         className="select_u3"
                         name="start_year"
                         onChange={handlePassengerMobilityYearStart}
@@ -634,10 +664,8 @@ const handleDePhev = (e) => {
                             {option}{" "}
                           </option>
                         ))}
-                      </select>
-                    </div>
-                    <div>
-                    <select
+                      </select></td>
+                      <td><b>End year</b> <select
                       className="select_u3"
                       name="finish_year"
                       onChange={handlePassengerMobilityYearEnd}
@@ -652,55 +680,19 @@ const handleDePhev = (e) => {
                           {option}{" "}
                         </option>
                       ))}
-                    </select>
-                    </div>
-                  </div>
-                </Tooltip>
-              </div>
-              <Tooltip title="A reduction is inserted as a positive percentage.">
-                <div className="column_u3">
-                  <div>
-                    {" "}
-                    <label>Decrease in mobility</label>
-                  </div>
-                  <div>
-                    {" "}
-                    <input
-                      id="inputspace"
-                      type="number"
-                      step="0.1"
-                      placeholder={passengerMobilityExpectedChange}
-                      value={passengerMobilityExpectedChange}
-                      onChange={handlePassengerMobilityExpectedChange}
-
-                      required
-                    />
-                  </div>
-                </div>
-              </Tooltip>
-              <Tooltip title="Estimate the percentage of the population that is affected by the policy.">
-                <div className="column_u3">
-                  {/* <label className="space_holder"></label> */}
-                  <label><b>% Population affected</b></label>
-                  <input
-                    className="input_affected_area"
-                    type="number"
-                    step="0.1"
-                    placeholder={populationAffectedPassengerMobility}
-                    min="0"
-                    max="100"
-                    onChange={handlePopulationAffectedPassengerMobility}
-                    value={populationAffectedPassengerMobility}
-                    required
-                  />
-                </div>
-              </Tooltip>
-              <div className="column_u3"></div>
+                    </select></td>
+                  </tr>
+                  </Tooltip>
+                </tbody>
+              </table>
             </div>
+            
+
+           
             {/*  passenger mobility section end*/}
 
             {/*  freight transport section */}
-            <div className="row_u3">
+            
               <div className="div2">
                 <Alert severity="info">
                   Does the planning policy reduce the freight transport within
@@ -708,82 +700,80 @@ const handleDePhev = (e) => {
                   assessment area below.
                 </Alert>
               </div>
-              <div className="column_u3">
-                <div>
-                  <label>
-                    <b>Freight transport</b>
-                  </label>
-                </div>
-                <div>
-                  {" "}
-                  <label>Change in freight transport %</label>
-                </div>
-                <Tooltip title="Start year is the first year during which the policy changes the volume of freight transport within the area. The change is assumed permanent after the last year of implementation.">
-                  <div>
-                    <div>
-                      {" "}
-                      <label>Policy period</label>
-                    </div>
-                    <div className="divspace">
-                      <select
-                        className="select_u3"
-                        id="start_year"
-                        name="start_year"
-                        onChange={handleFreightTransportYearStart}
-                        value={freightTransportYearStart}
-                        required
-                      >
-                        <option value="DefaultOption">Select start year</option>
-                        {optionsNew.map((option) => (
-                          <option key={option} value={option}>
-                            {option}{" "}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                    <div className="divspace">
-                      <select
-                        className="select_u3"
-                        id="finish_year"
-                        name="finish_year"
-                        onChange={handleFreightTransportYearEnd}
-                        value={freightTransportYearEnd}
-                        required
-                      >
-                        <option value="DefaultOption">Select end year</option>
-                        {optionsNew.map((option) => (
-                          <option key={option} value={option}>
-                            {option}{" "}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-                </Tooltip>
+              <br/>
+              <div>
+                <table style={{width:"100%", margin:"20px"}}>
+                  <thead>
+                    <tr>
+                      <th>Freight transport</th>
+                      <Tooltip title="A reduction is inserted as a positive percentage.">
+                      <th>Decrease in mobility</th>
+                      </Tooltip>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Change in freight transport %</td>
+                       <td><input
+                      className="input_freight_change"
+                      type="number"
+                      step="0.1"
+                      placeholder="0"
+                      onChange={handleFreightTransportMobility}
+                      value={freightTransportMobility}
+                      required
+                    /></td>
+                    </tr>
+                   
+                    <Tooltip title="Start year is the first year during which the policy changes the volume of freight transport within the area. The change is assumed permanent after the last year of implementation.">
+                    <tr>
+                      <td><b>Policy period</b></td>
+                      <td><b>Start year</b><select
+                          className="select_u3"
+                          id="start_year"
+                          name="start_year"
+                          onChange={handleFreightTransportYearStart}
+                          value={freightTransportYearStart}
+                          required
+                        >
+                          <option value="DefaultOption">Select start year</option>
+                          {optionsNew.map((option) => (
+                            <option key={option} value={option}>
+                              {option}{" "}
+                            </option>
+                          ))}
+                        </select></td>
+                        <td>
+                          <b>End year</b>
+                          <select
+                          className="select_u3"
+                          id="finish_year"
+                          name="finish_year"
+                          onChange={handleFreightTransportYearEnd}
+                          value={freightTransportYearEnd}
+                          required
+                        >
+                          <option value="DefaultOption">Select end year</option>
+                          {optionsNew.map((option) => (
+                            <option key={option} value={option}>
+                              {option}{" "}
+                            </option>
+                          ))}
+                        </select>
+                        </td>
+                    </tr>
+                    </Tooltip>
+                  </tbody>
+                </table>
               </div>
-              <Tooltip title="A reduction is inserted as a positive percentage.">
-                <div className="column_u3">
-                  <label>Decrease in mobility</label>
-                  <input
-                    className="input_freight_change"
-                    type="number"
-                    step="0.1"
-                    placeholder="0"
-                    onChange={handleFreightTransportMobility}
-                    value={freightTransportMobility}
-                    required
-                  />
-                </div>
-              </Tooltip>
-              <div className="column_u3"></div>
-              <div className="column_u3"></div>
-            </div>
             {/*  freight transport section end */}
 
             <br />
 
             {/* modal split-passenger transport section start */}
-            <div className="row_u3">
+            
               <div className="div2">
                 <Alert severity="info">
                   Does the planning policy change the modal split of the
@@ -792,32 +782,114 @@ const handleDePhev = (e) => {
                   achieved by the end of the last year of policy implementation.
                 </Alert>
               </div>
-              <div className="column_u3">
-                <div>
-                  <label>
-                    <b>Modal split: Passenger transport</b>
-                  </label>
-                </div>
-                <div>
-                  <label>Share for bus</label>
-                </div>
-                <div>
-                  <label>Share for metro</label>
-                </div>
-                <div>
-                  <label>Share for tram</label>
-                </div>
-                <div>
-                  <label>Share for train</label>
-                </div>
-                <div>
-                  <label>Share for car</label>
-                </div>
-                <Tooltip title="Start year is the first year during which the policy changes the modal share. The change is assumed permanent after the last year of implementation period.">
-                  <div>
-                    <label>Policy period</label>
-                    <div className="divspace">
-                      <select
+              <div>
+              <table style={{width:"100%", margin:"20px"}}>
+                <thead>
+                  <tr>
+                    <th>Modal split: Passenger transport</th>
+                    <Tooltip title="This column shows You the modal shares according to the baseline scenario.">
+                    <th>Without policy %</th>
+                    </Tooltip>
+                    <Tooltip title="Insert the target percentages for public transportation. The remaining share is allocated to passenger car transport.">
+                    <th>Policy target %</th>
+                    </Tooltip>
+                    <Tooltip title="Insert a percentage of population expected to change the modal share due to the planning policy. This share applies to the passenger transport of both residents and non-residents within the assessment area.">
+                    <th>Population affected %</th>
+                    </Tooltip>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Share for bus</td>
+                    <td>{emission.bus}</td>
+                    <td> <input
+                    className="input_u3_planner"
+                    type="number"
+                    step="0.1"
+                    // id="pass_policy_target"
+                    placeholder="0"
+                    min="0"
+                    max="100"
+                    onChange={handleBus}
+                    value={bus}
+                    required
+                  /></td>
+                  <td><input
+                    type="number"
+                    step="0.1"
+                    className="input_u3_planner"
+                    placeholder="0"
+                    min="0"
+                    max="100"
+                    onChange={handleModalSplitPassengerPopulationAffected}
+                    value={modalSplitPassengerPopulationAffected}
+                    required
+                  /></td>
+                  </tr>
+                  <tr>
+                    <td>Share for metro</td>
+                    <td>{emission.metro}</td>
+                    <td><input
+                      type="number"
+                      step="0.1"
+                      className="input_u3_planner"
+                      placeholder="0"
+                      min="0"
+                      max="100"
+                      onChange={handleMetro}
+                      value={metro}
+                      required
+                    /></td>
+                  </tr>
+                  <tr>
+                    <td>Share for tram</td>
+                    <td>{emission.tram}</td>
+                    <td> <input
+                      type="number"
+                      step="0.1"
+                      id="inputspace"
+                      placeholder="0"
+                      min="0"
+                      max="100"
+                      onChange={handleTram}
+                      value={tram}
+                      required
+                    /></td>
+                  </tr>
+                  <tr>
+                    <td>Share for train</td>
+                    <td>{emission.train}</td>
+                    <td><input
+                      type="number"
+                      step="0.1"
+                      className="input_u3_planner"
+                      placeholder="0"
+                      min="0"
+                      max="100"
+                      onChange={handleTrain}
+                      value={train}
+                      required
+                    /></td>
+                  </tr>
+                  <tr>
+                    <td>Share for car</td>
+                    <td>{emission.car}</td>
+                    <td><input
+                      type="number"
+                      step="0.1"
+                      className="input_u3_planner"
+                      placeholder="0"
+                      min="0"
+                      max="100"
+                      onChange={handleCar}
+                      value={car}
+                      required
+                    /></td>
+                  </tr>
+                  <Tooltip title="Start year is the first year during which the policy changes the modal share. The change is assumed permanent after the last year of implementation period.">
+                  <tr>
+                    <td><b>Policy period</b></td>
+                    <td><b>Start year</b> <select
                         className="select_u3"
                         name="start_year"
                         onChange={handleModalSplitPassengerYearStart}
@@ -830,10 +902,8 @@ const handleDePhev = (e) => {
                             {option}{" "}
                           </option>
                         ))}
-                      </select>
-                    </div>
-                    <div className="divspace">
-                      <select
+                      </select></td>
+                    <td><b>End year</b><select
                         className="select_u3"
                         name="finish_year"
                         onChange={handleModalSplitPassengerYearEnd}
@@ -846,141 +916,15 @@ const handleDePhev = (e) => {
                             {option}{" "}
                           </option>
                         ))}
-                      </select>
-                    </div>
-                  </div>
-                </Tooltip>
+                      </select></td>
+                  </tr>
+                  </Tooltip>
+                </tbody>
+              </table>
               </div>
-              <Tooltip title="This column shows You the modal shares according to the baseline scenario.">
-                <div className="column_u3">
-                  <div>
-                    {" "}
-                    <label><b>Without policy</b></label>
-                  </div>
-                  <div>
-                    <label>{emission.bus}</label>
-                  </div>
-                  <div>
-                    <label>{emission.metro}</label>
-                  </div>
-                  <div>
-                    <label>{emission.tram}</label>
-                  </div>
-                  <div>
-                    <label>{emission.train}</label>
-                  </div>
-                  <div>
-                    <label>{emission.car}</label>
-                  </div>
-                </div>
-              </Tooltip>
-              <Tooltip title="Insert the target percentages for public transportation. The remaining share is allocated to passenger car transport.">
-                <div className="column_u3">
-                  <label><b>Policy target %</b></label>
-                  {/*  bus */}
-                  <div>
-                    <input
-                    className="input_u3_planner"
-                    type="number"
-                    step="0.1"
-                    // id="pass_policy_target"
-                    placeholder="0"
-                    min="0"
-                    max="100"
-                    // onChange={handlePassTransPolicyTarget}
-                    onChange={handleBus}
-                    value={bus}
-                    required
-                  />
-                  </div>
-                  
-                  {/*  metro */}
-                  <div>
-                    {" "}
-                    <input
-                      type="number"
-                      step="0.1"
-                      className="input_u3_planner"
-                      placeholder="0"
-                      min="0"
-                      max="100"
-                      onChange={handleMetro}
-                      value={metro}
-                      required
-                    />
-                  </div>
-
-                  {/*   tram */}
-                  <div>
-                    {" "}
-                    <input
-                      type="number"
-                      step="0.1"
-                      id="inputspace"
-                      placeholder="0"
-                      min="0"
-                      max="100"
-                      onChange={handleTram}
-                      value={tram}
-                      required
-                    />
-                  </div>
-
-                  {/*  train */}
-                  <div>
-                    {" "}
-                    <input
-                      type="number"
-                      step="0.1"
-                      className="input_u3_planner"
-                      placeholder="0"
-                      min="0"
-                      max="100"
-                      onChange={handleTrain}
-                      value={train}
-                      required
-                    />
-                  </div>
-
-                  {/*    car */}
-                  <div>
-                    {" "}
-                    <input
-                      type="number"
-                      step="0.1"
-                      className="input_u3_planner"
-                      placeholder="0"
-                      min="0"
-                      max="100"
-                      onChange={handleCar}
-                      value={car}
-                      required
-                    />
-                  </div>
-                  <div>This is calculated automatically</div>
-                </div>
-              </Tooltip>
-              <Tooltip title="Insert a percentage of population expected to change the modal share due to the planning policy. This share applies to the passenger transport of both residents and non-residents within the assessment area.">
-                <div className="column_u3">
-                  <label><b>% Population affected</b></label>
-                  <input
-                    type="number"
-                    step="0.1"
-                    className="input_u3_planner"
-                    placeholder="0"
-                    min="0"
-                    max="100"
-                    onChange={handleModalSplitPassengerPopulationAffected}
-                    value={modalSplitPassengerPopulationAffected}
-                    required
-                  />
-                </div>
-              </Tooltip>
-            </div>
             {/* modal split-passenger transport section end */}
             <br />
             {/* modal split-freight transport section start */}
-            <div className="row_u3">
               <div className="div2">
                 <Alert severity="info">
                   Does the planning policy change the modal split of the freight
@@ -989,26 +933,71 @@ const handleDePhev = (e) => {
                   end of the last year of policy implementation.
                 </Alert>
               </div>
-              <div className="column_u3">
-                <div>
-                  <label>
-                    <b>Modal split: Freight transport</b>
-                  </label>
-                </div>
-                <div>
-                  <label>Share for rail</label>
-                </div>
-                <div>
-                  <label>Share for inland waterways</label>
-                </div>
-                <div>
-                  <label>Share for road freight</label>
-                </div>
-                <Tooltip title="Start year is the first year during which the policy changes the modal share. The change is assumed permanent after the last year of implementation period.">
-                  <div>
-                    <label>Policy period</label>
-                    <div className="divspace">
-                      <select
+            <div>
+              <table style={{width:"100%", margin:"20px"}}>
+                <thead>
+                  <tr>
+                    <th>Modal split: Freight transport</th>
+                    <Tooltip title="This column shows You the modal shares according to the baseline scenario.">
+                    <th>Without policy %</th>
+                    </Tooltip>
+                    <Tooltip title="Insert the target percentages for the freight transport on rails and on waterways. The remaining share is allocated to road freight.">
+                    <th>Policy target %</th>
+                    </Tooltip>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Share for rail</td>
+                    <td>{emission.rail_transport}</td>
+                    <td><input
+                    className="input_u3_planner"
+                    type="number"
+                    step="0.1"
+                    // id="pass_policy_target"
+                    placeholder="0"
+                    min="0"
+                    max="100"
+                    onChange={handleRailTransport}
+                    value={railTransport}
+                    required
+                  /></td>
+                  </tr>
+                  <tr>
+                    <td>Share for inland waterways</td>
+                    <td>{emission.waterways_transport}</td>
+                    <td><input
+                      type="number"
+                      step="0.1"
+                      className="input_u3_planner"
+                      placeholder="0"
+                      min="0"
+                      max="100"
+                      onChange={handleWaterwaysTransport}
+                      value={waterwaysTransport}
+                      required
+                    /></td>
+                  </tr>
+                  <tr>
+                    <td>Share for road freight</td>
+                    <td>{emission.road_transport}</td>
+                    <td><input
+                      type="number"
+                      step="0.1"
+                      className="input_u3_planner"
+                      placeholder="0"
+                      min="0"
+                      max="100"
+                      onChange={handleRoadTransport}
+                      value={roadTransport}
+                      required
+                    /></td>
+                  </tr>
+                  <Tooltip title="Start year is the first year during which the policy changes the modal share. The change is assumed permanent after the last year of implementation period.">
+                  <tr>
+                    <td><b>Policy period</b></td>
+                    <td><b>Start year</b><select
                         className="select_u3"
                         name="start_year"
                         onChange={handleModalSplitFreightYearStart}
@@ -1021,10 +1010,8 @@ const handleDePhev = (e) => {
                             {option}{" "}
                           </option>
                         ))}
-                      </select>
-                    </div>
-                    <div className="divspace">
-                      <select
+                      </select></td>
+                    <td><b>End year</b><select
                         className="select_u3"
                         name="finish_year"
                         onChange={handleModalSplitFreightYearEnd}
@@ -1037,101 +1024,11 @@ const handleDePhev = (e) => {
                             {option}{" "}
                           </option>
                         ))}
-                      </select>
-                    </div>
-                  </div>
-                </Tooltip>
-              </div>
-              <Tooltip title="This column shows You the modal shares according to the baseline scenario.">
-                <div className="column_u3">
-                  <div>
-                    {" "}
-                    <label>Without policy</label>
-                  </div>
-                  <div>
-                    <label>{emission.rail_transport}</label>
-                  </div>
-                  <div>
-                    <label>{emission.waterways_transport}</label>
-                  </div>
-                  <div>
-                    <label>{emission.road_transport}</label>
-                  </div>
-                </div>
-              </Tooltip>
-              <Tooltip title="Insert the target percentages for the freight transport on rails and on waterways. The remaining share is allocated to road freight.">
-                <div className="column_u3">
-                  <label><b>Policy target %</b></label>
-                  {/*  rail */}
-                  <div>
-                    <input
-                    className="input_u3_planner"
-                    type="number"
-                    step="0.1"
-                    // id="pass_policy_target"
-                    placeholder="0"
-                    min="0"
-                    max="100"
-                    onChange={handleRailTransport}
-                    value={railTransport}
-                    required
-                  />
-                  </div>
-                  
-                  {/*  water */}
-                  <div>
-                    {" "}
-                    <input
-                      type="number"
-                      step="0.1"
-                      className="input_u3_planner"
-                      placeholder="0"
-                      min="0"
-                      max="100"
-                      onChange={handleWaterwaysTransport}
-                      value={waterwaysTransport}
-                      required
-                    />
-                  </div>
-                  
-                  {/*   road */}
-                  <div>
-                    {" "}
-                    <input
-                      type="number"
-                      step="0.1"
-                      className="input_u3_planner"
-                      placeholder="0"
-                      min="0"
-                      max="100"
-                      onChange={handleRoadTransport}
-                      value={roadTransport}
-                      required
-                    />
-                  </div>
-                  <div>
-                    {" "}
-                    <label>This is calculated automatically</label>
-                  </div>
-                </div>
-              </Tooltip>
-              {/*
-                <Tooltip title="Insert a percentage of the area affected by the planning policy.">
-                <div className="column_u3">
-                  <label>% of Population Affected</label>
-                  <input
-                    className="input_u3_planner "
-                    type="number"
-                    step="0.1"
-                    placeholder="0"
-                    onChange={handleAffectedPopulation}
-                    value={affectedPopulation}
-                    required
-                  />
-                </div>
-              </Tooltip>
-              */}
-              
+                      </select></td>
+                  </tr>
+                  </Tooltip>
+                </tbody>
+              </table>
             </div>
             {/* modal split-freight transport section end */}
             <br />
@@ -1148,12 +1045,12 @@ const handleDePhev = (e) => {
               </div>
               <br/>
               <div>
-              <table style={{width:"100%"}}>
+              <table  style={{width:"100%", margin:"20px"}}>
                 <thead>
                   <tr>
                     <th>Shares of fuel types in bus transport</th>
                     <Tooltip title="This column shows You the fuel shares in the bus fleet as in the baseline scenario.">
-                    <th>Without policy</th>
+                    <th>Without policy %</th>
                     </Tooltip>
                     <Tooltip title="Insert the target percentages for the fuel types used in the bus fleet by the end of the policy implementation period. The remaining share is allocated to diesel engines.">
                     <th>Policy target %</th>
@@ -1307,7 +1204,7 @@ const handleDePhev = (e) => {
             {/* fuel-bus transport section end */}
 
             {/* fuel-car transport section start*/}
-            <div className="row_u3">
+            
               <div className="div2">
                 <Alert severity="info">
                   Does the planning policy increase the use of low-carbon fuels
@@ -1318,12 +1215,12 @@ const handleDePhev = (e) => {
                 </Alert>
               </div>
               <div>
-                <table style={{width:"100%"}}>
+                <table  style={{width:"100%", margin:"20px"}}>
                   <thead>
                     <tr>
                       <th>Shares of fuel types in car transport</th>
                       <Tooltip title="This column shows You the fuel shares in the passenger car fleet as in the baseline scenario.">
-                      <th>Without policy</th>
+                      <th>Without policy %</th>
                       </Tooltip>
                       <Tooltip title="Insert the target percentages for the fuel types of the passenger car fleet by the end of the policy implementation period. The remaining share is allocated to petrol and diesel engines.">
                       <th>Policy target %</th>
@@ -1637,13 +1534,10 @@ const handleDePhev = (e) => {
                   </tbody>
                 </table>
               </div>
-              
-              
-            </div>
+      
             {/* fuel-car transport section end */}
             <br />
             {/*  electricity for transport start */}
-            <div className="row_u3">
               <div className="div2">
                 <Alert severity="info">
                   Does the planning policy increase the share of renewable
@@ -1652,20 +1546,51 @@ const handleDePhev = (e) => {
                   electricity in comparison to the average grid electricity.
                 </Alert>
               </div>
-              <div className="column_u3">
-                <div>
-                  <label>
-                    <b>Electricity for transport</b>
-                  </label>
-                </div>
-                <div>
-                  <label>Increase in the share of renewables</label>
-                </div>
-                <Tooltip title="Start year is the first year during which the share of renewables in transport electricity starts to increase. The change is assumed permanent after the last year of implementation period.">
-                  <div>
-                    <label>Policy period</label>
-                    <div className="divspace">
-                      <select
+            <div>
+              <table style={{width:"100%", margin:"20px"}}>
+                <thead>
+                  <tr>
+                    <th>Electricity for transport</th>
+                    <th>gCO2e/kWh without policy</th>
+                    <Tooltip title="Insert the percentage of renewable energies that is produced locally for the transport electricity. Positive percentage improves the electricity mix and reduces the greenhouse gas emissions.">
+                    <th>Renewables %</th>
+                    </Tooltip>
+                     <Tooltip title="Insert a percentage of transport in the area affected by the policy.">
+                    <th>% of the area affected</th>
+                    </Tooltip>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>Increase in renewables in transport electricty</td>
+                    <td></td>
+                    <td><input
+                    className="input_u3_planner"
+                    type="number"
+                    step="0.1"
+                    // id="car_fuel_policy_target"
+                    placeholder="0"
+                    onChange={handleRenewables}
+                    value={renewables}
+                    required
+                  /></td>
+                  <td><input
+                    type="number"
+                    step="0.1"
+                    id="electricity_trans_affected_area"
+                    placeholder="0"
+                    min="0"
+                    max="100"
+                    onChange={handleElectricityTransportPopulationAffected}
+                    value={electricityTransportPopulationAffected}
+                    required
+                  /></td>
+                  </tr>
+                  <Tooltip title="Start year is the first year during which the share of renewables in transport electricity starts to increase. The change is assumed permanent after the last year of implementation period.">
+                  <tr>
+                    <td><b>Policy period</b></td>
+                    <td><b>Start year</b><select
                         className="select_u3"
                         id="start_year"
                         name="start_year"
@@ -1680,10 +1605,8 @@ const handleDePhev = (e) => {
                             {option}{" "}
                           </option>
                         ))}
-                      </select>
-                    </div>
-                    <div className="divspace">
-                      <select
+                      </select></td>
+                      <td><b>End year</b><select
                         className="select_u3"
                         id="finish_year"
                         name="finish_year"
@@ -1698,45 +1621,11 @@ const handleDePhev = (e) => {
                             {option}{" "}
                           </option>
                         ))}
-                      </select>
-                    </div>
-                  </div>
-                </Tooltip>
-              </div>
-              <div className="column_u3">
-                <label>gCO2e/kWh without policy</label>
-              </div>
-              <Tooltip title="Insert the percentage of renewable energies that is produced locally for the transport electricity. Positive percentage improves the electricity mix and reduces the greenhouse gas emissions.">
-                <div className="column_u3">
-                  <label><b>Reduction</b></label>
-                  <input
-                    className="input_u3_planner"
-                    type="number"
-                    step="0.1"
-                    // id="car_fuel_policy_target"
-                    placeholder="0"
-                    onChange={handleRenewables}
-                    value={renewables}
-                    required
-                  />
-                </div>
-              </Tooltip>
-              <Tooltip title="Insert a percentage of transport in the area affected by the policy.">
-                <div className="column_u3">
-                  <label>% of the area affected</label>
-                  <input
-                    type="number"
-                    step="0.1"
-                    id="electricity_trans_affected_area"
-                    placeholder="0"
-                    min="0"
-                    max="100"
-                    onChange={handleElectricityTransportPopulationAffected}
-                    value={electricityTransportPopulationAffected}
-                    required
-                  />
-                </div>
-              </Tooltip>
+                      </select></td>
+                  </tr>
+                  </Tooltip>
+                </tbody>
+              </table>
             </div>
             {/*  electricity for transport end */}
 

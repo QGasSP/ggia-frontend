@@ -62,7 +62,7 @@ export const Welcome = () => {
                 label="Start"
                 type="submit"
                 onClick={() => navigate("startPage", { replace: true })}
-                primary="true"
+                primary
               />
             </div>
             </div>
@@ -70,13 +70,9 @@ export const Welcome = () => {
             <div className="column_welcome">
               <br />
 
-              <iframe
-                width="90%"
-                height="360"
-                src="https://www.youtube.com/embed/BcMUDxOC5Tg"
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              ></iframe>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/DIwmF1K4tjI"
+              title="YouTube video player" allow="accelerometer; autoplay; clipboard-write;
+              encrypted-media; gyroscope; picture-in-picture"></iframe>
             </div>
         </div>
       </section>

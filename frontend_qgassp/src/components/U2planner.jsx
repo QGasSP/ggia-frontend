@@ -169,11 +169,11 @@ export const U2planner = () => {
   };
 
   const itemLabels = [
-  { title: "Metropolitan Area", color: "#ADD8E6" },
-  { title: "Urban", color: "green" },
-  { title: "Suburban", color: "orange" },
-  { title: "Town", color: "red" },
-  { title: "Rural", color: "brown" }
+  { title: "Metropolitan Area", color: "#ADD8E6", strokeWidth: 20 },
+  { title: "Urban", color: "green", strokeWidth: 20 },
+  { title: "Suburban", color: "orange", strokeWidth:20 },
+  { title: "Town", color: "red", strokeWidth: 20 },
+  { title: "Rural", color: "brown", strokeWidth: 20 }
 ]
   
     return (
