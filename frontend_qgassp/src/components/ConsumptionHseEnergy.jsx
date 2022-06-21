@@ -228,7 +228,7 @@ export const ConsumptionHseEnergy = () => {
 
           <div className="div_transport">
             <label htmlFor="population_size" className="settle_label">
-              Total new population size
+              Number of new residents
             </label>
             <input
               className="input_occupancy"

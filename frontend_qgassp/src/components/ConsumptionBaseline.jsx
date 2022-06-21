@@ -133,7 +133,7 @@ export const ConsumptionBaseline = () => {
                         <option value="2">20-40 %</option>
                         <option value="3">40-60%</option>
                         <option value="4">60-80 %</option>
-                        <option value="3">Average/unknown</option>
+                        <option value="0">Average/unknown</option>
                       </optgroup>
                     </select>
                   </div>
