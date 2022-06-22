@@ -251,7 +251,7 @@ export const NewResidents = () => {
               <b>Existing environment</b>
             </label>
             <label>
-              <b>New development ({totalNewResidents}%)</b>
+              <b>New development</b>
             </label>
             <div className="div2">
               <Alert severity="info">
@@ -356,6 +356,11 @@ export const NewResidents = () => {
                 />
               </div>
             </Tooltip>
+              <div>
+                <label htmlFor="nsRural"><b>Total</b></label>
+                <label></label>
+                {totalNewResidents === 100 ? <label>{totalNewResidents}%</label> : <label><b>Error: Total value needs to equal to 100%</b></label>}
+              </div>
             <div className="backButtonNew">
               <Button
                 size="small"
@@ -368,6 +373,7 @@ export const NewResidents = () => {
               />
             </div>
             <div className="nextButtonNew">
+              {totalNewResidents === 100.0 &&
               <Button
                 size="small"
                 type="submit"
@@ -375,7 +381,7 @@ export const NewResidents = () => {
                 onClick={updateU2Planner}
                 label="Next &raquo;"
                 primary
-              />
+              />}
             </div>
           </form>
         </div>

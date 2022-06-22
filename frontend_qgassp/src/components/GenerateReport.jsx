@@ -53,6 +53,7 @@ export const GenerateReport = () => {
   const newConstructionResponse = JSON.parse(localStorage.getItem("newConstructionResponse"));
   const policyQuantificationResponse = JSON.parse(localStorage.getItem("policyQuantificationResponse"));
   const absolutePolicyQuantification = JSON.parse(localStorage.getItem("absolutePolicyQuantification"))
+  const absoluteEmissions = JSON.parse(localStorage.getItem("absoluteEmissions"))
 
  
   const componentRef = useRef();
@@ -115,6 +116,7 @@ export const GenerateReport = () => {
   // total values
   const buildingEmissionsTotal = []
   const buildingBaseline = []
+  const absoluteEmissionsTotal = []
 
   // absolute values
   const netSinkTotal = [];
@@ -185,6 +187,7 @@ export const GenerateReport = () => {
       for (let i = year; i < 2051; i++) {
         buildingEmissionsTotal.push({x: i, y: policyQuantificationResponse.data.graph[i].total})
         buildingBaseline.push({x: i, y: policyQuantificationResponse.data.graph[i].baseline})
+        absoluteEmissionsTotal.push({x:i, y: absoluteEmissions.total[i]})
       }
       
     }
@@ -421,7 +424,7 @@ export const GenerateReport = () => {
             {/* graph final for generate report from excel */}
             <div style={{margin:"30px"}}>
           {/* policy quantification results */}
-              <Divider textAlign="left" flexItem>
+             {/* <Divider textAlign="left" flexItem>
                 <Chip label="Absolute Territorial Results" />
               </Divider>
               <FlexibleXYPlot
@@ -450,12 +453,13 @@ export const GenerateReport = () => {
                   data={buildingBaseline}
                   stack
                 />
-              </FlexibleXYPlot>
-
-              <div>
-                
-              </div>
-              
+                <BarSeries
+                  color="#2e8b57"
+                  opacity={0.55}
+                  data={absoluteEmissionsTotal}
+                  stack
+                />
+              </FlexibleXYPlot> */}
               </div>
             {/* transport projections start here */}
                <div className="luc_alert_container">

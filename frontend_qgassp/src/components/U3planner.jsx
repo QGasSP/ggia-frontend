@@ -8,7 +8,7 @@ import urlPrefix from "../Config";
 import Alert from "@mui/material/Alert";
 import Tooltip from "@mui/material/Tooltip";
 import {useNavigate} from "react-router-dom";
-import { useStorageInt, useStorageString } from "../reducers/useStorage";
+import { useStorageFloat, useStorageInt, useStorageString } from "../reducers/useStorage";
 import { Container, CircularProgress } from "@mui/material";
 
 /**
@@ -23,6 +23,7 @@ export const U3planner = () => {
 
   // get items 
   const base= JSON.parse(localStorage.getItem("baseline"));
+  const year = JSON.parse(localStorage.getItem("year"))
   const baseline = base.baseline;
   const newDevelopment = JSON.parse(localStorage.getItem("newDevelopment"));
   const emission = JSON.parse(localStorage.getItem("emission"));
@@ -68,11 +69,12 @@ export const U3planner = () => {
   // modal split-passanger section starts
   const [modalPassShares, setModalPassShares] = useStorageString("modalPassShares","");
   const [modalSplitPassenger, setModalSplitPassenger] = useStorageString("modalSplitPassenger","");
-  const [bus, setBus] = useStorageInt("buses",0);
-  const [metro, setMetro] = useStorageInt("metros",0);
-  const [tram, setTram] = useStorageInt("trams",0);
-  const [train, setTrain] = useStorageInt("trains",0);
-  const [car, setCar] = useStorageInt("cars",0);
+  const [bus, setBus] = useStorageFloat("buses", 0);
+  const [metro, setMetro] = useStorageFloat("metros", 0);
+  const [tram, setTram] = useStorageFloat("trams", 0);
+  const [train, setTrain] = useStorageFloat("trains", 0);
+  const [car, setCar] = useStorageFloat("cars", 0);
+  const [totalPassengerTransport, setTotalPassengerTransport] = useStorageFloat("totalPassengerTransport", 0)
   const [modalSplitPassengerPopulationAffected, setModalSplitPassengerPopulationAffected] = useStorageInt("modalSplitPassengerPopulationAffected", 0)
   const [modalSplitPassengerYearStart, setModalSplitPassengerYearStart] = useStorageInt("modalSplitPassengerYearStart", 0)
   const [modalSplitPassengerYearEnd, setModalSplitPassengerYearEnd] = useStorageInt("modalSplitPassengerYearEnd", 0)
@@ -80,24 +82,24 @@ export const U3planner = () => {
 
 
   // modal split freight transport start
-  const [railTransport, setRailTransport] = useStorageInt("railTransport",0);
-  const [waterwaysTransport, setWaterwaysTransport] = useStorageInt("waterwaysTransport",0);
-  const [roadTransport, setRoadTransport] = useStorageInt("roadTransport",0);
+  const [railTransport, setRailTransport] = useStorageFloat("railTransport", 0);
+  const [waterwaysTransport, setWaterwaysTransport] = useStorageFloat("waterwaysTransport", 0);
+  const [roadTransport, setRoadTransport] = useStorageFloat("roadTransport", 0);
+  const [totalFreightTransport, setTotalFreightTransport] = useStorageFloat("totalFreightTransport", 0)
   const [modalFreShares, setModalFreightShares] = useStorageString("modalFreShares","");
   const [modalSplitFreight, setModalSplitFreight] = useStorageString("modalSplitFreight","");
-
   const [modalSplitFreightYearStart, setModalSplitFreightYearStart] = useStorageInt("modalSplitFreightYearStart", 0)
   const [modalSplitFreightYearEnd, setModalSplitFreightYearEnd] = useStorageInt("modalSplitFreightYearEnd", 0)
   // modal split freight transport end
 
   
   // Shares of fuel types in bus transport start
-  const [lpg, setLpg] = useStorageInt("lpg",0);
-  const [cng, setCng] = useStorageInt("cng",0);
-  const [electricity, setElectricity] = useStorageInt("electricity",0);
-  const [petrol, setPetrol] = useStorageInt("petrol",0);
-  const [diesel, setDiesel] = useStorageInt("diesel",0);
-
+  const [lpg, setLpg] = useStorageFloat("lpg",0);
+  const [cng, setCng] = useStorageFloat("cng",0);
+  const [electricity, setElectricity] = useStorageFloat("electricity",0);
+  const [petrol, setPetrol] = useStorageFloat("petrol",0);
+  const [diesel, setDiesel] = useStorageFloat("diesel",0);
+  const [totalFuelBus, setTotalFuelBus] = useStorageFloat("totalFuelBus", 0)
   const [fuelSharesBusTypes, setFuelSharesBusTypes] = useStorageString("fuelSharesBusTypes","");
   const [fuelSharesBus, setFuelSharesBus] = useStorageString("fuelShareBus","");
   const [fuelSharesBusYearStart, setFuelSharesBusYearStart] = useStorageInt("fuelSharesBusYearStart", 0)
@@ -115,8 +117,8 @@ export const U3planner = () => {
   const [carLpg, setCarLpg] = useStorageInt("carLpg", 0)
   const [carCng, setCarCng] = useStorageInt("carCng", 0)
   const [carElectricity, setCarElectricity] = useStorageInt("carElectricity", 0)
-  // const [carPetrol, setCarPetrol] = useStorageInt("carPetrol",0);
-  // const [carDiesel, setCarDiesel] = useStorageInt("carDiesel",0);
+  const [carPetrol, setCarPetrol] = useStorageInt("carPetrol",0);
+  const [carDiesel, setCarDiesel] = useStorageInt("carDiesel",0);
   const [ngv, setNgv] = useStorageInt("ngv",0);
   const [hep, setHep] = useStorageInt("hep",0);
   const [phev, setPhev] = useStorageInt("phev",0);
@@ -139,7 +141,7 @@ export const U3planner = () => {
   const [electricityTransportPopulationAffected, setElectricityTransportPopulationAffected] = useStorageInt("electricityTransportPopulationAffected", 0)
 
   const optionsNew = [];
-  for (let i = 2022; i < 2051; i++) optionsNew.push(i);
+  for (let i = year; i < 2051; i++) optionsNew.push(i);
 
   // passenger mobility handlers
   const handlePassengerMobilityExpectedChange = (e) => {
@@ -211,8 +213,13 @@ export const U3planner = () => {
     setTrain(Number(e.target.value));
   };
   const handleCar = (e) => {
+    const totalWithoutCarPassenger = bus + train + metro + tram
     e.preventDefault();
-    setCar(Number(e.target.value));
+    setCar(100.00 - totalWithoutCarPassenger);
+  };
+
+  const getCurrentTotalPassenger = () => {
+    setTotalPassengerTransport(bus + metro + train + tram + car) 
   };
 
   // handlers for modal split freight transport
@@ -229,7 +236,8 @@ export const U3planner = () => {
 
   const handleRoadTransport = (e) => {
     e.preventDefault();
-    setRoadTransport(Number(e.target.value));
+    const totalWithoutRoad = railTransport + waterwaysTransport
+    setRoadTransport(100.00 - totalWithoutRoad);
   };
 
   const handleModalSplitFreightYearStart = (e) => {
@@ -241,6 +249,10 @@ export const U3planner = () => {
     e.preventDefault();
     setModalSplitFreightYearEnd(Number(e.target.value))
   }
+
+  const getCurrentTotalFreightTransport = () => {
+    setTotalFreightTransport(roadTransport + waterwaysTransport + railTransport)
+  };
 
 
   // handlers for bus fuel shares
@@ -262,7 +274,8 @@ export const U3planner = () => {
   };
   const handleDiesel = (e) => {
     e.preventDefault();
-    setDiesel(Number(e.target.value));
+    const totalNoDiesel = petrol + lpg + cng + electricity
+    setDiesel(100 - totalNoDiesel);
   };
 
   const handleFuelSharesBusYearStart = (e) => {
@@ -278,6 +291,10 @@ export const U3planner = () => {
   const handleFuelSharesBusPopulationAffected = (e) => {
     e.preventDefault();
     setFuelSharesBusPopulationAffected(Number(e.target.value));
+  }
+
+  const getFuelBusTotal = () => {
+    setTotalFuelBus(petrol+lpg+cng+electricity+diesel)
   }
 
 // handlers for car fuels
@@ -307,15 +324,15 @@ const handleCarCng = (e) => {
   setCarCng(Number(e.target.value));
 };
 
-// const handleCarPetrol = e => {
-  // e.preventDefault();
-  // setCarPetrol(Number(e.target.value))
-// }
+const handleCarPetrol = e => {
+  e.preventDefault();
+  setCarPetrol(Number(e.target.value))
+}
 
-// const handleCarDiesel = e => {
-  // e.preventDefault();
-   // setCarDiesel(Number(e.target.value));
-// };
+const handleCarDiesel = e => {
+  e.preventDefault();
+   setCarDiesel(Number(e.target.value));
+};
 
 const handleCarElectricity = e => {
   e.preventDefault();
@@ -637,7 +654,7 @@ const handleDePhev = (e) => {
                     type="number"
                     step="0.1"
                     placeholder={populationAffectedPassengerMobility}
-                    min="0"
+                    min="0.00"
                     max="100"
                     onChange={handlePopulationAffectedPassengerMobility}
                     value={populationAffectedPassengerMobility}
@@ -655,7 +672,6 @@ const handleDePhev = (e) => {
                         onChange={handlePassengerMobilityYearStart}
                         value={passengerMobilityYearStart}
                         placeholder={passengerMobilityYearStart}
-                        
                         required
                       >
                         <option value="DefaultOption">Select start year</option>
@@ -783,7 +799,8 @@ const handleDePhev = (e) => {
                 </Alert>
               </div>
               <div>
-              <table style={{width:"100%", margin:"20px"}}>
+              <table style={{width:"100%", margin:"20px"}} 
+                      onMouseOver={handleCar} onMouseLeave={getCurrentTotalPassenger}>
                 <thead>
                   <tr>
                     <th>Modal split: Passenger transport</th>
@@ -808,9 +825,10 @@ const handleDePhev = (e) => {
                     step="0.1"
                     // id="pass_policy_target"
                     placeholder="0"
-                    min="0"
+                    min="0.00"
                     max="100"
                     onChange={handleBus}
+                    onMouseLeave={getCurrentTotalPassenger}
                     value={bus}
                     required
                   /></td>
@@ -819,7 +837,7 @@ const handleDePhev = (e) => {
                     step="0.1"
                     className="input_u3_planner"
                     placeholder="0"
-                    min="0"
+                    min="0.00"
                     max="100"
                     onChange={handleModalSplitPassengerPopulationAffected}
                     value={modalSplitPassengerPopulationAffected}
@@ -834,9 +852,10 @@ const handleDePhev = (e) => {
                       step="0.1"
                       className="input_u3_planner"
                       placeholder="0"
-                      min="0"
+                      min="0.00"
                       max="100"
                       onChange={handleMetro}
+                      onMouseLeave={getCurrentTotalPassenger}
                       value={metro}
                       required
                     /></td>
@@ -849,9 +868,10 @@ const handleDePhev = (e) => {
                       step="0.1"
                       id="inputspace"
                       placeholder="0"
-                      min="0"
+                      min="0.00"
                       max="100"
                       onChange={handleTram}
+                      onMouseLeave={getCurrentTotalPassenger}
                       value={tram}
                       required
                     /></td>
@@ -861,12 +881,12 @@ const handleDePhev = (e) => {
                     <td>{emission.train}</td>
                     <td><input
                       type="number"
-                      step="0.1"
                       className="input_u3_planner"
                       placeholder="0"
-                      min="0"
-                      max="100"
+                      step="0.1"
+                      min="0.00"
                       onChange={handleTrain}
+                      onMouseLeave={getCurrentTotalPassenger}
                       value={train}
                       required
                     /></td>
@@ -876,15 +896,17 @@ const handleDePhev = (e) => {
                     <td>{emission.car}</td>
                     <td><input
                       type="number"
-                      step="0.1"
                       className="input_u3_planner"
                       placeholder="0"
-                      min="0"
-                      max="100"
-                      onChange={handleCar}
-                      value={car}
-                      required
+                      onMouseOver={handleCar}
+                      value={car <= 100 && car >= 0 ? car : 0}
+                      disabled
                     /></td>
+                  </tr>
+                  <tr>
+                    <td>Total</td>
+                    <td></td>
+                    {totalPassengerTransport === 100 ? <td>{totalPassengerTransport}%</td> : <td>Error: Total value needs to equal to 100%</td>} 
                   </tr>
                   <Tooltip title="Start year is the first year during which the policy changes the modal share. The change is assumed permanent after the last year of implementation period.">
                   <tr>
@@ -934,7 +956,7 @@ const handleDePhev = (e) => {
                 </Alert>
               </div>
             <div>
-              <table style={{width:"100%", margin:"20px"}}>
+              <table style={{width:"100%", margin:"20px"}} onMouseOver={handleRoadTransport} onMouseDown={getCurrentTotalFreightTransport}>
                 <thead>
                   <tr>
                     <th>Modal split: Freight transport</th>
@@ -954,12 +976,12 @@ const handleDePhev = (e) => {
                     <td><input
                     className="input_u3_planner"
                     type="number"
-                    step="0.1"
-                    // id="pass_policy_target"
+                    step="0.01"
                     placeholder="0"
-                    min="0"
+                    min="0.00"
                     max="100"
                     onChange={handleRailTransport}
+                    onMouseOver={handleRoadTransport}
                     value={railTransport}
                     required
                   /></td>
@@ -972,9 +994,11 @@ const handleDePhev = (e) => {
                       step="0.1"
                       className="input_u3_planner"
                       placeholder="0"
-                      min="0"
+                      min="0.00"
                       max="100"
                       onChange={handleWaterwaysTransport}
+                      onMouseOver={handleRoadTransport}
+                      onMouseLeave={getCurrentTotalFreightTransport}
                       value={waterwaysTransport}
                       required
                     /></td>
@@ -987,12 +1011,18 @@ const handleDePhev = (e) => {
                       step="0.1"
                       className="input_u3_planner"
                       placeholder="0"
-                      min="0"
+                      min="0.00"
                       max="100"
-                      onChange={handleRoadTransport}
-                      value={roadTransport}
-                      required
+                      onMouseOver={handleRoadTransport}
+                      onMouseLeave={getCurrentTotalFreightTransport}
+                      value={roadTransport <= 100 && roadTransport >= 0 ? roadTransport : 0}
+                      disabled
                     /></td>
+                  </tr>
+                  <tr>
+                    <td>Total</td>
+                    <td></td>
+                    {totalFreightTransport === 100 ? <td>{totalFreightTransport}%</td> : <td>Error: Total value needs to equal to 100%</td>}
                   </tr>
                   <Tooltip title="Start year is the first year during which the policy changes the modal share. The change is assumed permanent after the last year of implementation period.">
                   <tr>
@@ -1070,9 +1100,11 @@ const handleDePhev = (e) => {
                       step="0.1"
                       // id="fre_policy_target"
                       placeholder="0.0"
-                      min="0"
+                      min="0.00"
                       max="100"
+                      onMouseLeave={getFuelBusTotal}
                       onChange={handlePetrol}
+                      onMouseOver={handleDiesel}
                       value={petrol}
                       required
                     /></td>
@@ -1096,9 +1128,11 @@ const handleDePhev = (e) => {
                       className="input_u3_planner "
                       id="bus_fuel_policy_target"
                       placeholder="0.0"
-                      min="0"
+                      min="0.00"
                       max="100"
+                      onMouseLeave={getFuelBusTotal}
                       onChange={handleLpg}
+                      onMouseOver={handleDiesel}
                       value={lpg}
                       required
                     /></td>
@@ -1113,9 +1147,11 @@ const handleDePhev = (e) => {
                       step="0.1"
                       id="bus_fuel_policy_target"
                       placeholder="0.0"
-                      min="0"
+                      min="0.00"
                       max="100"
+                      onMouseLeave={getFuelBusTotal}
                       onChange={handleCng}
+                      onMouseOver={handleDiesel}
                       value={cng}
                       required
                     /></td>
@@ -1130,9 +1166,11 @@ const handleDePhev = (e) => {
                       step="0.1"
                       id="bus_fuel_policy_target"
                       placeholder="0.0"
-                      min="0"
+                      min="0.00"
                       max="100"
+                      onMouseLeave={getFuelBusTotal}
                       onChange={handleElectricity}
+                      onMouseOver={handleDiesel}
                       value={electricity}
                       required
                     /></td>
@@ -1147,12 +1185,18 @@ const handleDePhev = (e) => {
                       step="0.1"
                       id="bus_fuel_policy_target"
                       placeholder="0.0"
-                      min="0"
+                      min="0.00"
                       max="100"
-                      onChange={handleDiesel}
-                      value={diesel}
-                      required
+                      onMouseLeave={getFuelBusTotal}
+                      onMouseOver={handleDiesel}
+                      value={diesel <= 100 && diesel >= 0 ? diesel : 0}
+                      disabled
                     /></td>
+                  </tr>
+                  <tr>
+                    <td>Total</td>
+                    <td></td>
+                    {totalFuelBus === 100 ? <td>{totalFuelBus} %</td> : <td>Error: Total value needs to equal to 100%</td>}
                   </tr>
                   
                   <Tooltip title="Start year is the first year during which the policy starts to change the fuel shares. The change is assumed permanent after the last year of implementation period.">
@@ -1238,7 +1282,7 @@ const handleDePhev = (e) => {
                       type="number"
                       step="0.1"
                       placeholder="0.0"
-                      min="0"
+                      min="0.00"
                       max="100"
                       onChange={handleCarLpg}
                       value={carLpg}
@@ -1269,7 +1313,7 @@ const handleDePhev = (e) => {
                       className="input_u3_planner "
                       id="bus_fuel_policy_target"
                       placeholder="0.0"
-                      min="0"
+                      min="0.00"
                       max="100"
                       onChange={handleCarCng}
                       value={carCng}
@@ -1286,7 +1330,7 @@ const handleDePhev = (e) => {
                       step="0.1"
                       id="bus_fuel_policy_target"
                       placeholder="0.0"
-                      min="0"
+                      min="0.00"
                       max="100"
                       onChange={handleNgv}
                       value={ngv}
@@ -1302,7 +1346,7 @@ const handleDePhev = (e) => {
                       type="number"
                       step="0.1"
                       placeholder="0.0"
-                      min="0"
+                      min="0.00"
                       max="100"
                       onChange={handleHep}
                       value={hep}
@@ -1319,7 +1363,7 @@ const handleDePhev = (e) => {
                       step="0.1"
                       id="bus_fuel_policy_target"
                       placeholder="0.0"
-                      min="0"
+                      min="0.00"
                       max="100"
                       onChange={handlePhev}
                       value={phev}
@@ -1336,7 +1380,7 @@ const handleDePhev = (e) => {
                       step="0.1"
                       id="bus_fuel_policy_target"
                       placeholder="0.0"
-                      min="0"
+                      min="0.00"
                       max="100"
                       onChange={handleDeHybrid}
                       value={dEhybrid}
@@ -1353,7 +1397,7 @@ const handleDePhev = (e) => {
                       step="0.1"
                       id="bus_fuel_policy_target"
                       placeholder="0.0"
-                      min="0"
+                      min="0.00"
                       max="100"
                       onChange={handleDePhev}
                       value={dEphev}
@@ -1369,7 +1413,7 @@ const handleDePhev = (e) => {
                       type="number"
                       step="0.1"
                       placeholder="0.0"
-                      min="0"
+                      min="0.00"
                       max="100"
                       onChange={handleHydrogenfuel}
                       value={hydrogenfuel}
@@ -1386,7 +1430,7 @@ const handleDePhev = (e) => {
                       className="input_u3_planner "
                       id="bus_fuel_policy_target"
                       placeholder="0.0"
-                      min="0"
+                      min="0.00"
                       max="100"
                       onChange={handleBioethanol}
                       value={bioethanol}
@@ -1403,7 +1447,7 @@ const handleDePhev = (e) => {
                       step="0.1"
                       id="bus_fuel_policy_target"
                       placeholder="0.0"
-                      min="0"
+                      min="0.00"
                       max="100"
                       onChange={handleBiodiesel}
                       value={biodiesel}
@@ -1420,7 +1464,7 @@ const handleDePhev = (e) => {
                       step="0.1"
                       id="bus_fuel_policy_target"
                       placeholder="0.0"
-                      min="0"
+                      min="0.00"
                       max="100"
                       onChange={handleBifuel}
                       value={bifuel}
@@ -1437,7 +1481,7 @@ const handleDePhev = (e) => {
                       step="0.1"
                       id="bus_fuel_policy_target"
                       placeholder="0.0"
-                      min="0"
+                      min="0.00"
                       max="100"
                       onChange={handleOther}
                       value={other}
@@ -1455,7 +1499,7 @@ const handleDePhev = (e) => {
                       step="0.1"
                       id="bus_fuel_policy_target"
                       placeholder="0.0"
-                      min="0"
+                      min="0.00"
                       max="100"
                       onChange={handleCarElectricity}
                       value={carElectricity}
@@ -1463,7 +1507,7 @@ const handleDePhev = (e) => {
                       /></td>
                     </tr>
 
-                   {/* <tr>
+                   <tr>
                       <td>Petrol, according to country selection</td>
                       <td></td>
                       <td><input
@@ -1472,11 +1516,11 @@ const handleDePhev = (e) => {
                       step="0.1"
                       id="bus_fuel_policy_target"
                       placeholder="0.0"
-                      min="0"
+                      min="0.00"
                       max="100"
                       onChange={handleCarPetrol}
                       value={carPetrol}
-                      required
+                      disabled
                       /></td>
                     </tr>
 
@@ -1489,13 +1533,13 @@ const handleDePhev = (e) => {
                       step="0.1"
                       id="bus_fuel_policy_target"
                       placeholder="0.0"
-                      min="0"
+                      min="0.00"
                       max="100"
                       onChange={handleCarDiesel}
                       value={carDiesel}
-                      required
+                      disabled
                     /></td>
-                    </tr> */}
+                    </tr> 
 
 
                     <tr>
@@ -1569,7 +1613,7 @@ const handleDePhev = (e) => {
                     className="input_u3_planner"
                     type="number"
                     step="0.1"
-                    // id="car_fuel_policy_target"
+                    min="0.00"
                     placeholder="0"
                     onChange={handleRenewables}
                     value={renewables}
@@ -1580,7 +1624,7 @@ const handleDePhev = (e) => {
                     step="0.1"
                     id="electricity_trans_affected_area"
                     placeholder="0"
-                    min="0"
+                    min="0.00"
                     max="100"
                     onChange={handleElectricityTransportPopulationAffected}
                     value={electricityTransportPopulationAffected}

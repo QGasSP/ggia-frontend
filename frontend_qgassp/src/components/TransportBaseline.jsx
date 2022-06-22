@@ -180,7 +180,7 @@ export const TransportBaseline = () => {
     localStorage.setItem("settlementDist", JSON.stringify(settlementDist));
     setSettlementDistribution(settlementDist);
 
-    localStorage.setItem("intensityNonResAndFt", JSON.stringify(intensityNonResAndFt));
+    localStorage.setItem("intensity_non_res_and_ft", JSON.stringify(intensityNonResAndFt));
     setIntensityNonResAndFt(intensityNonResAndFt);
 
     localStorage.setItem("metroSplit", JSON.stringify(metroSplit));
@@ -275,7 +275,7 @@ export const TransportBaseline = () => {
                   <label className="shareInfo">
                     <b>Settlement type </b>
                   </label>
-                  <label>Share ({total}%)</label>
+                  <label><b>Share</b></label>
                 </div>
                 <Tooltip title="Urban settlement characterized by superb provision of public transportation including metro and/or tram, large pedestrian zones and high density of population.">
                   <div className="div_transport">
@@ -391,7 +391,15 @@ export const TransportBaseline = () => {
                     />
                   </div>
                 </Tooltip>
+                  <div className="div_transport">
+                    <label htmlFor="rural" className="settle_label">
+                     <b>Total</b>
+                    </label>
+                    {total === 100 ? <label>{total}%</label> : <label><b>Error: Total value needs to equal to 100%</b></label>}
+                  </div>
               </div>
+
+              
 
               <div className="column">
                 <div className="div_transport">
@@ -579,11 +587,13 @@ export const TransportBaseline = () => {
             </Tooltip>
 
 
-            <Box style={{margin: "40px"}}>
+            <Box style={{marginTop: "50px"}}>
+               <Alert severity="info" style={{width: "50%"}}>
+              </Alert>
              
-              
-          <h4>
-            Use of metro and tram systems in {country}
+          <div>
+            <h4>
+            <b>Metro and tram systems in {country}</b>
             <input
             type="checkbox"
             name="metroTramCheckbox"
@@ -591,9 +601,11 @@ export const TransportBaseline = () => {
             checked={metroAndTramSystemCheck}
             />
           </h4>
+          </div>    
+          
 
             {metroAndTramSystemCheck && Object.values(metroAndTramSystems) !== 0 &&
-            <Grid container spacing={2}>
+            <Grid container spacing={2} style={{marginTop:"10px"}}>
               <Grid item xs={6}>
               <Paper>
               <table style={{width:"100%"}}>

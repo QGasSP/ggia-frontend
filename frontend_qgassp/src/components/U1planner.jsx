@@ -33,7 +33,7 @@ export const U1planner = () => {
   const year = parseInt(localStorage.getItem("year"));
   const population = parseInt(localStorage.getItem("population"));
   const settlementDistribution =JSON.parse(localStorage.getItem("settlementDistribution"));
-  const intensityNonResAndFt = JSON.parse(localStorage.getItem("intensityNonResAndFt"));
+  const intensityNonResAndFt = JSON.parse(localStorage.getItem("intensity_non_res_and_ft"));
   const metroSplit = JSON.parse(localStorage.getItem("metroSplit"));
   const tramSplit = JSON.parse(localStorage.getItem("tramSplit"));
 
@@ -82,9 +82,9 @@ export const U1planner = () => {
       year,
       population,
       settlementDistribution,
-      intensityNonResAndFt,
-      metroSplit,
-      tramSplit
+      "intensity_non_res_and_ft": intensityNonResAndFt,
+      "metro_split": metroSplit,
+      "tram_split": tramSplit
     };
     
     setBaseline({ baseline });
@@ -113,19 +113,10 @@ export const U1planner = () => {
 
   useEffect(() => {
     localStorage.setItem("projections", JSON.stringify(projections));
-  }, [projections]);
-
-  useEffect(() => {
     localStorage.setItem("emission", JSON.stringify(emission));
-  }, [emission]);
-
-  useEffect(() => {
     localStorage.setItem("baseline", JSON.stringify(baseline));
-  }, [baseline]);
-
-  useEffect(() => {
     localStorage.setItem("absoluteEmissionsYear1", JSON.stringify(absoluteEmissionsYear1));
-  }, [absoluteEmissionsYear1]);
+  }, [projections, emission, baseline, absoluteEmissionsYear1]);
 
   const emissionTotal = emission.bus + emission.train + emission.car + emission.metro + emission.waterways_transport + emission.tram + emission.rail_transport + emission.road_transport
 
@@ -322,8 +313,8 @@ export const U1planner = () => {
             </tr>
 
             <tr>
-              <td><b>Total Transport emissions per capita</b></td>
-              <td><b>{emissionTotal}</b></td>
+              <td><b>Total transport emissions per capita</b></td>
+              <td><b>{emissionTotal.toFixed(3)}</b></td>
             </tr>
             </tbody>
           </table>
