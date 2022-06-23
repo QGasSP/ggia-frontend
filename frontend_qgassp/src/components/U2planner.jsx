@@ -25,7 +25,7 @@ const BarSeries = VerticalBarSeries;
 // import { U3planner } from "./U3planner";
 import urlPrefix from "../Config";
 import {useNavigate} from "react-router-dom";
-import { Container, Grid } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 
 /**
  * U2 Planner component for visualization of  baseline vs new-resident population
@@ -157,6 +157,12 @@ export const U2planner = () => {
   };
 }
 
+    const items = [
+  { title: "Baseline population", color: "#12939A", strokeWidth:10 },
+  { title: "New population", color: "#79C7E3", strokeWidth:10 }
+  ];
+
+
   const gotoU3planner = () => {
     navigate("/u3planner", {
       replace: true,
@@ -180,7 +186,6 @@ export const U2planner = () => {
       <Container maxWidth="xl">
       <article>
          <section>
-
             <div className="headerSettlement">
           <Divider textAlign="left" flexItem>
             {" "}
@@ -188,7 +193,6 @@ export const U2planner = () => {
           </Divider>
         </div>
 
-       
             <label>
               <b>New residents</b>
             </label>
@@ -237,12 +241,12 @@ export const U2planner = () => {
             strokeStyle="dashed"
           />
         </XYPlot>
-
+        <DiscreteColorLegend orientation="horizontal" items={items}/>
 
             <br />
-
+            
             {/* settlement type starts here */}
-            <Grid container spacing={6}>
+            <Grid container spacing={6} style={{marginTop:"12px"}}>
               <Grid item xs={6}>
                 <div>
                   <table style={{width:'100%'}}>
@@ -363,12 +367,14 @@ export const U2planner = () => {
               />
           </div>
           <div></div>
-        </div>
+          </div>
 
             </Grid>
             </Grid>
             <br/>
-            <Divider textAlign="left" flexItem>
+            
+            
+            {/* <Divider textAlign="left" flexItem>
               {" "}
               <b>
                 {" "}
@@ -406,130 +412,133 @@ export const U2planner = () => {
             </XYPlot>
             <U2legend />
 
-            <br />
+            <br /> */}
 
 
           {/* absolute emissions */}
-
-          <div>
-          <h3>Absolute Emissions</h3>
-          <XYPlot
-            width={1000}
-            height={500}
-            stackBy="y"
-            xType="ordinal"
-            margin={{ left: 80 }}
-          >
-            <HorizontalGridLines />
-            <VerticalGridLines />
-            <VerticalBarSeries className="StackedBarchart" />
-            <XAxis title="Year" />
-            <YAxis title="tCO2/a" />
-            <BarSeries
-              color="#8C0303"
-              data={absoluteEmissionsBus}
-              opacity={0.5}
-            />
-            <BarSeries
-              color="#A6036D"
-              data={absoluteEmissionsCar}
-              opacity={0.5}
-            />
-            <BarSeries
-              color="#400D01"
-              data={absoluteEmissionsMetro}
-              opacity={0.5}
-            />
-            <BarSeries
-              color=" #C4D4F2"
-              data={absoluteEmissionsTram}
-              opacity={0.5}
-            />
-            <BarSeries
-              color="#D90404"
-              data={absoluteEmissionsTrain}
-              opacity={0.5}
-            />
-            <BarSeries
-              color="#80D941"
-              data={absoluteEmissionsRailTransport}
-              opacity={0.5}
-            />
-            <BarSeries
-              color="#595959"
-              data={absoluteEmissionsRoadTransport}
-              opacity={0.5}
-            />
-            <BarSeries
-              color="#F2CE1B"
-              data={absoluteEmissionsWaterwaysTransport}
-            />
-          </XYPlot>
-          <div>
-            <LineLegend />
-          </div>
-        </div>
-
-
-         <div>
-          <h3>Absolute Projections</h3>
-          <XYPlot
-            width={1000}
-            height={500}
-            stackBy="y"
-            xType="ordinal"
-            margin={{ left: 80 }}
-          >
-            <HorizontalGridLines />
-            <VerticalGridLines />
-            <VerticalBarSeries className="StackedBarchart" />
-            <XAxis title="Year" />
-            <YAxis title="tCO2/a" />
-            <BarSeries
-              color="#8C0303"
-              data={absoluteProjectionsBus}
-              opacity={0.5}
-            />
-            <BarSeries
-              color="#A6036D"
-              data={absoluteProjectionsCar}
-              opacity={0.5}
-            />
-            <BarSeries
-              color="#400D01"
-              data={absoluteProjectionsMetro}
-              opacity={0.5}
-            />
-            <BarSeries
-              color=" #C4D4F2"
-              data={absoluteProjectionsTram}
-              opacity={0.5}
-            />
-            <BarSeries
-              color="#D90404"
-              data={absoluteProjectionsTrain}
-              opacity={0.5}
-            />
-            <BarSeries
-              color="#80D941"
-              data={absoluteProjectionsRailTransport}
-              opacity={0.5}
-            />
-            <BarSeries
-              color="#595959"
-              data={absoluteProjectionsRoadTransport}
-              opacity={0.5}
-            />
-            <BarSeries
-              color="#F2CE1B"
-              data={absoluteProjectionsWaterwaysTransport}
-            />
-          </XYPlot>
-          <div>
-            <LineLegend />
-          </div>
-        </div> 
-
+            <Box 
+            display="flex"
+            minHeight="100vh">
+            <div>
+            <h3>Absolute Emissions</h3>
+            <XYPlot
+              width={1000}
+              height={500}
+              stackBy="y"
+              xType="ordinal"
+              margin={{ left: 80 }}
+            >
+              <HorizontalGridLines />
+              <VerticalGridLines />
+              <VerticalBarSeries className="StackedBarchart" />
+              <XAxis title="Year" />
+              <YAxis title="tCO2/a" />
+              <BarSeries
+                color="#8C0303"
+                data={absoluteEmissionsBus}
+                opacity={0.5}
+              />
+              <BarSeries
+                color="#A6036D"
+                data={absoluteEmissionsCar}
+                opacity={0.5}
+              />
+              <BarSeries
+                color="#400D01"
+                data={absoluteEmissionsMetro}
+                opacity={0.5}
+              />
+              <BarSeries
+                color=" #C4D4F2"
+                data={absoluteEmissionsTram}
+                opacity={0.5}
+              />
+              <BarSeries
+                color="#D90404"
+                data={absoluteEmissionsTrain}
+                opacity={0.5}
+              />
+              <BarSeries
+                color="#80D941"
+                data={absoluteEmissionsRailTransport}
+                opacity={0.5}
+              />
+              <BarSeries
+                color="#595959"
+                data={absoluteEmissionsRoadTransport}
+                opacity={0.5}
+              />
+              <BarSeries
+                color="#F2CE1B"
+                data={absoluteEmissionsWaterwaysTransport}
+              />
+            </XYPlot>
+            <div>
+              <LineLegend />
+            </div>
+            </div>
+          </Box>
+          <Box display="flex"
+            minHeight="100vh">
+            <div>
+              <h3>Absolute Projections</h3>
+              <XYPlot
+                width={1000}
+                height={500}
+                stackBy="y"
+                xType="ordinal"
+                margin={{ left: 80 }}
+              >
+                <HorizontalGridLines />
+                <VerticalGridLines />
+                <VerticalBarSeries className="StackedBarchart" />
+                <XAxis title="Year" />
+                <YAxis title="tCO2/a" />
+                <BarSeries
+                  color="#8C0303"
+                  data={absoluteProjectionsBus}
+                  opacity={0.5}
+                />
+                <BarSeries
+                  color="#A6036D"
+                  data={absoluteProjectionsCar}
+                  opacity={0.5}
+                />
+                <BarSeries
+                  color="#400D01"
+                  data={absoluteProjectionsMetro}
+                  opacity={0.5}
+                />
+                <BarSeries
+                  color=" #C4D4F2"
+                  data={absoluteProjectionsTram}
+                  opacity={0.5}
+                />
+                <BarSeries
+                  color="#D90404"
+                  data={absoluteProjectionsTrain}
+                  opacity={0.5}
+                />
+                <BarSeries
+                  color="#80D941"
+                  data={absoluteProjectionsRailTransport}
+                  opacity={0.5}
+                />
+                <BarSeries
+                  color="#595959"
+                  data={absoluteProjectionsRoadTransport}
+                  opacity={0.5}
+                />
+                <BarSeries
+                  color="#F2CE1B"
+                  data={absoluteProjectionsWaterwaysTransport}
+                />
+              </XYPlot>
+              <div>
+                <LineLegend />
+              </div>
+            </div> 
+          </Box>
 
             <div className="backButtonNew">
               <Button
