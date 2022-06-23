@@ -799,8 +799,7 @@ const handleDePhev = (e) => {
                 </Alert>
               </div>
               <div>
-              <table style={{width:"100%", margin:"20px"}} 
-                      onMouseOver={handleCar} onMouseLeave={getCurrentTotalPassenger}>
+              <table style={{width:"100%", margin:"20px"}} >
                 <thead>
                   <tr>
                     <th>Modal split: Passenger transport</th>
@@ -829,6 +828,7 @@ const handleDePhev = (e) => {
                     max="100"
                     onChange={handleBus}
                     onMouseLeave={getCurrentTotalPassenger}
+                    onMouseOver={handleCar}
                     value={bus}
                     required
                   /></td>
@@ -841,6 +841,7 @@ const handleDePhev = (e) => {
                     max="100"
                     onChange={handleModalSplitPassengerPopulationAffected}
                     value={modalSplitPassengerPopulationAffected}
+                    onMouseOver={handleCar}
                     required
                   /></td>
                   </tr>
@@ -856,6 +857,7 @@ const handleDePhev = (e) => {
                       max="100"
                       onChange={handleMetro}
                       onMouseLeave={getCurrentTotalPassenger}
+                      onMouseOver={handleCar}
                       value={metro}
                       required
                     /></td>
@@ -872,6 +874,7 @@ const handleDePhev = (e) => {
                       max="100"
                       onChange={handleTram}
                       onMouseLeave={getCurrentTotalPassenger}
+                      onMouseOver={handleCar}
                       value={tram}
                       required
                     /></td>
@@ -887,6 +890,7 @@ const handleDePhev = (e) => {
                       min="0.00"
                       onChange={handleTrain}
                       onMouseLeave={getCurrentTotalPassenger}
+                      onMouseOver={handleCar}
                       value={train}
                       required
                     /></td>
