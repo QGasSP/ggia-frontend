@@ -12,14 +12,13 @@ import {
   VerticalGridLines,
   HorizontalGridLines,
   VerticalBarSeries,
-  RadialChart,
+  RadialChart
 } from "react-vis";
 
 import Divider from "@mui/material/Divider";
-import Chip from "@mui/material/Chip";
-import { Legend } from "./Legend";
 import urlPrefix from "../Config";
-import { Container, Grid, Paper, Tooltip } from "@mui/material";
+import { Container, Grid, Tooltip, Box } from "@mui/material";
+
 
 /**
  * U1 Planner baseline user input form
@@ -62,19 +61,32 @@ export const U1planner = () => {
     return initialValue || {};
   });
 
+   const [absoluteProjections, setAbsoluteProjections] = useState(() => {
+    const savedPop = localStorage.getItem("absoluteProjections");
+    const initialValue = JSON.parse(savedPop);
+    return initialValue || {};
+  });
+
   const [isLoadingTransport, setIsLoadingTransport] = useState(true);
   const [isErrorTransport, setIsErrorTransport] = useState(false);
 
-  const dataProjectionsBus = [];
+  {/* const dataProjectionsBus = [];
   const dataProjectionsCar = [];
   const dataProjectionsMetro = [];
   const dataProjectionsTram = [];
   const dataProjectionsTrain = [];
   const dataProjectionsRailTransport = [];
   const dataProjectionsRoadTransport = [];
-  const dataProjectionsWaterwaysTransport = [];
+  const dataProjectionsWaterwaysTransport = []; */}
 
-
+  const absoluteProjectionsBus = [];
+  const absoluteProjectionsCar = [];
+  const absoluteProjectionsMetro = [];
+  const absoluteProjectionsTram = [];
+  const absoluteProjectionsTrain = [];
+  const absoluteProjectionsRailTransport = [];
+  const absoluteProjectionsRoadTransport = [];
+  const absoluteProjectionsWaterwaysTransport = [];
 
   useEffect(async () => {
     const baseline = {
@@ -100,7 +112,7 @@ export const U1planner = () => {
         setEmissionData(response.data.data.baseline.emissions);
         setAbsoluteEmissionsYear1(response.data.data.baseline.absolute_year1_emissions);
         setProjections(response.data.data.baseline.projections);
-
+        // setAbsoluteProjections(response.data.data.baseline.absolute_projections);
         setIsLoadingTransport(false);
       })
       .catch((error) => {
@@ -111,12 +123,13 @@ export const U1planner = () => {
       });
   }, []);
 
-  useEffect(() => {
+  useEffect(async () => {
     localStorage.setItem("projections", JSON.stringify(projections));
     localStorage.setItem("emission", JSON.stringify(emission));
     localStorage.setItem("baseline", JSON.stringify(baseline));
     localStorage.setItem("absoluteEmissionsYear1", JSON.stringify(absoluteEmissionsYear1));
-  }, [projections, emission, baseline, absoluteEmissionsYear1]);
+    localStorage.setItem("absoluteProjections", JSON.stringify(absoluteProjections));
+  }, [projections, emission, baseline, absoluteEmissionsYear1, absoluteProjections]);
 
   const emissionTotal = emission.bus + emission.train + emission.car + emission.metro + emission.waterways_transport + emission.tram + emission.rail_transport + emission.road_transport
 
@@ -130,7 +143,7 @@ export const U1planner = () => {
     return <CircularProgress color="success" />;
   }
 
-  for (let i = year; i < 2051; i++) {
+  {/* for (let i = year; i < 2051; i++) {
     dataProjectionsBus.push({ x: i, y: projections.bus[i] });
     dataProjectionsCar.push({ x: i, y: projections.car[i] });
     dataProjectionsMetro.push({ x: i, y: projections.metro[i] });
@@ -139,26 +152,42 @@ export const U1planner = () => {
     dataProjectionsRailTransport.push({ x: i, y: projections.rail_transport[i] });
     dataProjectionsRoadTransport.push({ x: i, y: projections.road_transport[i] });
     dataProjectionsWaterwaysTransport.push({ x: i, y: projections.waterways_transport[i] });
-  }
+  } */}
+
+    if(absoluteProjections &&
+    Object.keys(absoluteProjections).length !== 0){
+  for (let i = year; i < 2051; i++) {
+    absoluteProjectionsBus.push({ x: i, y: absoluteProjections.bus[i] });
+    absoluteProjectionsCar.push({ x: i, y: absoluteProjections.car[i] });
+    absoluteProjectionsMetro.push({ x: i, y: absoluteProjections.metro[i] });
+    absoluteProjectionsTram.push({ x: i, y: absoluteProjections.tram[i] });
+    absoluteProjectionsTrain.push({ x: i, y: absoluteProjections.train[i] });
+    absoluteProjectionsRailTransport.push({ x: i, y: absoluteProjections.rail_transport[i] });
+    absoluteProjectionsRoadTransport.push({ x: i, y: absoluteProjections.road_transport[i] });
+    absoluteProjectionsWaterwaysTransport.push({ x: i, y: absoluteProjections.waterways_transport[i] });
+  };
+}
 
   if (Object.keys(projections).length !== 0) {
     return (
       <Container maxWidth="xl">
       <article>
-        <div style={{marginTop:"20px", textAlign:"center"}}><h3>Baseline Results</h3></div>
-        
+        <div className="heading">
+          <h2>Baseline results</h2> 
+        </div>
         <br />
+        <Grid container
+            spacing={11}
+            direction="row"
+            justifyContent="center"
+            mt={0.5}
+            mb={3}
+          >
 
-        <Grid container spacing={6} style={{marginTop:"10px"}}>
-
-        <Grid item xs={6}>
-            <Paper>
-          {" "}
-          <b>{country}: Baseline - Transport CO2e emission</b>
-          
-        <div className="piechart_container">
-          <div className="piechart_diagram">
-            <div>
+        <Grid item xs={5}>
+            {" "}
+          <b>Baseline GHG emissions {year} for transport (kgCO2e/capita, a)</b>
+            <div id="piechart">
               <RadialChart
                 data={[
                   {
@@ -167,7 +196,7 @@ export const U1planner = () => {
                         (emission.bus / emissionTotal + Number.EPSILON) * 36000
                       ) / 100,
                     label: "Bus",
-                    color: "#8C0303",
+                    color: "#e69500",
                   },
                   {
                     angle:
@@ -176,7 +205,7 @@ export const U1planner = () => {
                           36000
                       ) / 100,
                     label: "Metro",
-                    color: "#400D01",
+                    color: "#005aff",
                   },
                   {
                     angle:
@@ -244,224 +273,142 @@ export const U1planner = () => {
                 height={350}
               />
             </div>
-          </div>
-          <div className="piechart_legend" style={{height:'60%',width:'60%', marginLeft:"70px"}}>
-            <Legend />
-          </div>
-          
-        </div>
-
-          </Paper>
+           
         </Grid>
 
 
-        <Grid item xs={6} style={{width:'100%'}}>
+        <Grid item xs={6}>
           
-            <Paper>
-              <Tooltip title="">
             <table style={{width:'100%'}}>
               <thead>
                 <tr>
               <th>Transport Co2 Emissions</th>
-              <th>kgCO2e/resident</th>
+              <th>kgCO2e/capita, a</th>
             </tr>
               </thead>
             <tbody>
             <tr>
-              <td>Bus</td>
-              <td>{emission.bus}</td>
+              <td><span className="legend" id="bus">o</span>{"    "} Bus</td>
+              <td>{emission.bus.toFixed(1)}</td>
             </tr>
 
             <tr>
-              <td>Passenger car</td>
-              <td>{emission.car}</td>
+              <td><span className="legend" id="car">o</span>{"    "}Passenger car</td>
+              <td>{emission.car.toFixed(1)}</td>
             </tr>
 
             <tr>
-              <td>Metro</td>
-              <td>{emission.metro}</td>
+              <td><span className="legend" id="metro">o</span>{"    "}Metro</td>
+              <td>{emission.metro.toFixed(1)}</td>
             </tr>
 
             <tr>
-              <td>Tram</td>
-              <td>{emission.tram}</td>
+              <td><span className="legend" id="tram">o</span>{"    "}Tram</td>
+              <td>{emission.tram.toFixed(1)}</td>
             </tr>
 
             <tr>
-              <td>Passenger train</td>
-              <td>{emission.train}</td>
+              <td><span className="legend" id="train">o</span>{"    "}Passenger train</td>
+              <td>{emission.train.toFixed(1)}</td>
             </tr>
 
             <tr>
-              <td>Rail transport</td>
-              <td>{emission.rail_transport}</td>
+              <td><span className="legend" id="rail">o</span>{"    "}Freight on rails</td>
+              <td>{emission.rail_transport.toFixed(1)}</td>
             </tr>
 
             <tr>
-              <td>Passenger train</td>
-              <td>{emission.train}</td>
+              <td><span className="legend" id="road">o</span>{"    "}Freight on road</td>
+              <td>{emission.road_transport.toFixed(1)}</td>
             </tr>
 
             <tr>
-              <td>Road transport</td>
-              <td>{emission.road_transport}</td>
-            </tr>
-
-            <tr>
-              <td>Transport on inland waterways</td>
-              <td>{emission.waterways_transport}</td>
+              <td><span className="legend" id="water">o</span>{"    "}Freight on water</td>
+              <td>{emission.waterways_transport.toFixed(1)}</td>
             </tr>
 
             <tr>
               <td><b>Total transport emissions per capita</b></td>
-              <td><b>{emissionTotal.toFixed(3)}</b></td>
+              <td><b>{emissionTotal.toFixed(1)}</b></td>
             </tr>
             </tbody>
           </table>
-          </Tooltip>
-          </Paper>
         </Grid>
-      </Grid>
+        </Grid>
 
         <br/>
-        
-        <Divider textAlign="left" flexItem>
-          <b>{country}: Baseline Scenario- Transport CO2e emission/resident</b>
-        </Divider>
+         <Divider textAlign="left">
+          <h3>Annual baseline GHG emissions for transport (tCO2e/a)</h3>
+         </Divider>
+          <Box 
+            display="flex"
+            minHeight="80vh"
+            mt={10}
+            >
+            <div>
+              <XYPlot
+                width={1000}
+                height={500}
+                stackBy="y"
+                xType="ordinal"
+                margin={{left: 80}}
+              >
+                <HorizontalGridLines />
+                <VerticalGridLines />
+                <VerticalBarSeries className="StackedBarchart" />
+                <XAxis title="Year" />
+                <YAxis title="tCO2e/a" />
+                <BarSeries
+                  color="#8C0303"
+                  data={absoluteProjectionsBus}
+                  opacity={0.5}
+                />
+                <BarSeries
+                  color="#A6036D"
+                  data={absoluteProjectionsCar}
+                  opacity={0.5}
+                />
+                <BarSeries
+                  color="#400D01"
+                  data={absoluteProjectionsMetro}
+                  opacity={0.5}
+                />
+                <BarSeries
+                  color=" #C4D4F2"
+                  data={absoluteProjectionsTram}
+                  opacity={0.5}
+                />
+                <BarSeries
+                  color="#D90404"
+                  data={absoluteProjectionsTrain}
+                  opacity={0.5}
+                />
+                <BarSeries
+                  color="#80D941"
+                  data={absoluteProjectionsRailTransport}
+                  opacity={0.5}
+                />
+                <BarSeries
+                  color="#595959"
+                  data={absoluteProjectionsRoadTransport}
+                  opacity={0.5}
+                />
+                <BarSeries
+                  color="#F2CE1B"
+                  data={absoluteProjectionsWaterwaysTransport}
+                />
+              </XYPlot>
 
-        <div className="barchart_container">
-          <XYPlot xType="ordinal" width={1000} height={300} xDistance={200} margin={{left:100}}>
-            <HorizontalGridLines />
-            <VerticalGridLines />
-            <VerticalBarSeries
-              className="BaselineBarchart"
-              data={[
-                {
-                  y: Math.round((emission.bus + Number.EPSILON) * 100) / 100,
-                  x: "Bus",
-                },
-                {
-                  y: Math.round((emission.metro + Number.EPSILON) * 100) / 100,
-                  x: "Metro",
-                },
-                {
-                  y: Math.round((emission.train + Number.EPSILON) * 100) / 100,
-                  x: "Train",
-                },
-                {
-                  y:
-                    Math.round(
-                      (emission.road_transport + Number.EPSILON) * 100
-                    ) / 100,
-                  x: "Road transport",
-                },
-                {
-                  y: Math.round((emission.car + Number.EPSILON) * 100) / 100,
-                  x: "Car",
-                },
-                {
-                  y: Math.round((emission.tram + Number.EPSILON) * 100) / 100,
-                  x: "Tram",
-                },
-                {
-                  y:
-                    Math.round(
-                      (emission.rail_transport + Number.EPSILON) * 100
-                    ) / 100,
-                  x: "Rail transport",
-                },
-                {
-                  y:
-                    Math.round(
-                      (emission.waterways_transport + Number.EPSILON) * 100
-                    ) / 100,
-                  x: "Waterway transport",
-                },
-                {
-                  y: Math.round((emission.total + Number.EPSILON) * 100) / 100,
-                  x: "total emissions",
-                },
-              ]}
-            />
-            <XAxis />
-            <YAxis />
-          </XYPlot>
-        </div>
+               <div className="transport-legend-style">
+                <LineLegend />
+               </div>
+            </div> 
 
-        <div className="headerSettlement">
-          <Divider textAlign="left" flexItem>
-            {" "}
-            <Chip label="Projections" />
-          </Divider>
-        </div>
-        <br />
+            
+          </Box>
 
-        <Divider textAlign="left" flexItem>
-          {" "}
-          <b>
-            {country}: CO2e emissions per capita {year}-2050
-          </b>
-        </Divider>
-
-        <div>
-          <XYPlot
-            width={1000}
-            height={500}
-            stackBy="y"
-            xType="ordinal"
-            margin={{ left: 80 }}
-          >
-            <HorizontalGridLines />
-            <VerticalGridLines />
-            <VerticalBarSeries className="StackedBarchart" />
-            <XAxis title="Year" />
-            <YAxis title="Emissions/ kG C02 eq" />
-            <BarSeries
-              color="#8C0303"
-              data={dataProjectionsBus}
-              opacity={0.5}
-            />
-            <BarSeries
-              color="#A6036D"
-              data={dataProjectionsCar}
-              opacity={0.5}
-            />
-            <BarSeries
-              color="#400D01"
-              data={dataProjectionsMetro}
-              opacity={0.5}
-            />
-            <BarSeries
-              color=" #C4D4F2"
-              data={dataProjectionsTram}
-              opacity={0.5}
-            />
-            <BarSeries
-              color="#D90404"
-              data={dataProjectionsTrain}
-              opacity={0.5}
-            />
-            <BarSeries
-              color="#80D941"
-              data={dataProjectionsRailTransport}
-              opacity={0.5}
-            />
-            <BarSeries
-              color="#595959"
-              data={dataProjectionsRoadTransport}
-              opacity={0.5}
-            />
-            <BarSeries
-              color="#F2CE1B"
-              data={dataProjectionsWaterwaysTransport}
-            />
-          </XYPlot>
-          <div>
-            <LineLegend />
-          </div>
-        </div>
-
-        <div className="backButtonNew">
+          <Box mb={10}>
+            <div className="backButtonNew">
             <Button
               size="small"
               value="backProjections"
@@ -471,17 +418,16 @@ export const U1planner = () => {
             />
           </div>
 
-        <div className="nextU2Button">
+           <div className="nextU2Button">
           <Button
             size="small"
             value="u2next_inputs"
-            // onClick={() => setNewResidentView(true)}
             onClick={goToNewResidents}
             label="Next &raquo;"
             primary
           />
-        </div>
-        
+            </div>
+          </Box>
       </article>
       </Container>
     );

@@ -4,19 +4,18 @@ import { AppRoutes } from "./routes/AppRoutes";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Header } from "./components/Header";
 import PropTypes from "prop-types";
+import Footer from "./components/Footer"
 
 function App({ user, onLogin, onLogout, onCreateAccount }) {
   return (
     <>
       <Router>
-      {
         <Header
           user={user}
           onLogin={onLogin}
           onLogout={onLogout}
           onCreateAccount={onCreateAccount}
         />
-      }
         <AppRoutes />
       </Router>
     </>

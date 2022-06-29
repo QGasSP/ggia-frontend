@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Button } from "./Button";
 import "../css/u2planner.css";
+import "../css/u1planner.css";
 import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 import Alert from "@mui/material/Alert";
@@ -155,17 +156,14 @@ export const NewResidents = () => {
 
   return (
     <article>
-      <div className="headerSettlement">
-        <Divider textAlign="left" flexItem>
-          {" "}
-          <Chip label="U2 NEW DEVELOPMENT INPUT" />
-        </Divider>
+      <div className="heading">
+        <h2>New development input</h2>
+        <br/>
         <Alert severity="info">
           This section estimates new residents’ impact on the transport-related
           greenhouse gas emissions.
         </Alert>
       </div>
-
       <section className="sectionNewDev">
         <div className="newResidentDiv">
           <form onSubmit={updateU2Planner}>

@@ -182,8 +182,10 @@ export const GenerateReport = () => {
           // totalPolicyQuantification.push({ x: i, y: absolutePolicyQuantification.total[i] })
       };
     }
-    if (policyQuantificationResponse &&
-    policyQuantificationResponse.length !== 0){
+    if (policyQuantificationResponse && 
+        absoluteEmissions &&
+        policyQuantificationResponse.length !== 0 &&
+        absoluteEmissions.length !== 0){
       for (let i = year; i < 2051; i++) {
         buildingEmissionsTotal.push({x: i, y: policyQuantificationResponse.data.graph[i].total})
         buildingBaseline.push({x: i, y: policyQuantificationResponse.data.graph[i].baseline})

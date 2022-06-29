@@ -12,7 +12,7 @@
 }
 #inputspace {
   margin-right: 5rem;
-  width: 60% !important;
+  width: 20% !important;
 }
 
 #fre_policy_target {
@@ -63,6 +63,7 @@
 }
 .select_u3 {
   width: 60%;
+  margin-right: 22px;
 }
 
 .input_affected_area {
@@ -88,4 +89,8 @@
 
 .div2 {
   width: 50%;
+}
+
+.input-u3 {
+  width: 30%;
 }

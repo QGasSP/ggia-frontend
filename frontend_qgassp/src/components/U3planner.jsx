@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "./Button";
 import "../css/u3planner.css";
+import "../css/u1planner.css";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import axios from "axios";
@@ -598,17 +599,14 @@ const handleDePhev = (e) => {
       <Container maxWidth="xl">
       <article>
            <br/>
-        <div>
-          <Divider textAlign="left" flexItem>
-            {" "}
-            <Chip label="POLICY QUANTIFICATION" />
-          </Divider>
+        <div className="heading" style={{marginBottom: "15px"}}>
+          <h2>Policy quantification input</h2>
           <br/>
+         </div>
           <Alert severity="info">
             This section estimates the impact of a planning policy on the
             transport-related greenhouse gas emissions.
           </Alert>
-        </div>
         <br/>
         <section className="section-u3">
           <form onSubmit={createPolicyQuantification}>
@@ -640,7 +638,7 @@ const handleDePhev = (e) => {
                   <tr>
                     <td>Change in passenger mobility %</td>
                     <td><input
-                      id="inputspace"
+                      className="input-u3"
                       type="number"
                       step="0.1"
                       placeholder={passengerMobilityExpectedChange}
@@ -650,7 +648,7 @@ const handleDePhev = (e) => {
                     /></td>
                     <td>
                        <input
-                    className="input_affected_area"
+                    className="input-u3"
                     type="number"
                     step="0.1"
                     placeholder={populationAffectedPassengerMobility}
@@ -665,7 +663,7 @@ const handleDePhev = (e) => {
                    <Tooltip title="Start year is the first year during which the policy changes the need for motorized passenger transport within the area. The change is assumed permanent after the last year of implementation.">
                   <tr>
                     <td><b>Policy period</b></td>
-                    <td><b>Start year</b> 
+                    <td><b>Start year{" "}</b>{" "}
                         <select
                         className="select_u3"
                         name="start_year"
@@ -680,8 +678,8 @@ const handleDePhev = (e) => {
                             {option}{" "}
                           </option>
                         ))}
-                      </select></td>
-                      <td><b>End year</b> <select
+                      </select>
+                      <b>End year{" "}</b>{" "}<select
                       className="select_u3"
                       name="finish_year"
                       onChange={handlePassengerMobilityYearEnd}
@@ -733,7 +731,7 @@ const handleDePhev = (e) => {
                     <tr>
                       <td>Change in freight transport %</td>
                        <td><input
-                      className="input_freight_change"
+                      className="input-u3"
                       type="number"
                       step="0.1"
                       placeholder="0"
@@ -746,7 +744,7 @@ const handleDePhev = (e) => {
                     <Tooltip title="Start year is the first year during which the policy changes the volume of freight transport within the area. The change is assumed permanent after the last year of implementation.">
                     <tr>
                       <td><b>Policy period</b></td>
-                      <td><b>Start year</b><select
+                      <td><b>Start year{" "}</b>{" "}<select
                           className="select_u3"
                           id="start_year"
                           name="start_year"
@@ -760,9 +758,9 @@ const handleDePhev = (e) => {
                               {option}{" "}
                             </option>
                           ))}
-                        </select></td>
-                        <td>
-                          <b>End year</b>
+                        </select>
+                        
+                          <b>End year {" "}</b>{" "}
                           <select
                           className="select_u3"
                           id="finish_year"
@@ -781,6 +779,13 @@ const handleDePhev = (e) => {
                         </td>
                     </tr>
                     </Tooltip>
+                    <tr>
+                      <td></td>
+                      <td>
+                        
+                        </td>
+                    </tr>
+                    
                   </tbody>
                 </table>
               </div>
@@ -804,7 +809,7 @@ const handleDePhev = (e) => {
                   <tr>
                     <th>Modal split: Passenger transport</th>
                     <Tooltip title="This column shows You the modal shares according to the baseline scenario.">
-                    <th>Without policy %</th>
+                    {modalSplitPassengerYearEnd === 0 ? <th>% Without policy </th> : <th>% Without policy in {modalSplitPassengerYearEnd}</th>}
                     </Tooltip>
                     <Tooltip title="Insert the target percentages for public transportation. The remaining share is allocated to passenger car transport.">
                     <th>Policy target %</th>
@@ -819,7 +824,7 @@ const handleDePhev = (e) => {
                     <td>Share for bus</td>
                     <td>{emission.bus}</td>
                     <td> <input
-                    className="input_u3_planner"
+                    className="input-u3"
                     type="number"
                     step="0.1"
                     // id="pass_policy_target"
@@ -835,7 +840,7 @@ const handleDePhev = (e) => {
                   <td><input
                     type="number"
                     step="0.1"
-                    className="input_u3_planner"
+                    className="input-u3"
                     placeholder="0"
                     min="0.00"
                     max="100"
@@ -851,7 +856,7 @@ const handleDePhev = (e) => {
                     <td><input
                       type="number"
                       step="0.1"
-                      className="input_u3_planner"
+                      className="input-u3"
                       placeholder="0"
                       min="0.00"
                       max="100"
@@ -868,7 +873,7 @@ const handleDePhev = (e) => {
                     <td> <input
                       type="number"
                       step="0.1"
-                      id="inputspace"
+                      className="input-u3"
                       placeholder="0"
                       min="0.00"
                       max="100"
@@ -884,7 +889,7 @@ const handleDePhev = (e) => {
                     <td>{emission.train}</td>
                     <td><input
                       type="number"
-                      className="input_u3_planner"
+                      className="input-u3"
                       placeholder="0"
                       step="0.1"
                       min="0.00"
@@ -900,7 +905,7 @@ const handleDePhev = (e) => {
                     <td>{emission.car}</td>
                     <td><input
                       type="number"
-                      className="input_u3_planner"
+                      className="input-u3"
                       placeholder="0"
                       onMouseOver={handleCar}
                       value={car <= 100 && car >= 0 ? car : 0}
@@ -915,7 +920,7 @@ const handleDePhev = (e) => {
                   <Tooltip title="Start year is the first year during which the policy changes the modal share. The change is assumed permanent after the last year of implementation period.">
                   <tr>
                     <td><b>Policy period</b></td>
-                    <td><b>Start year</b> <select
+                    <td><b>Start year{" "}</b>{" "}<select
                         className="select_u3"
                         name="start_year"
                         onChange={handleModalSplitPassengerYearStart}
@@ -928,8 +933,8 @@ const handleDePhev = (e) => {
                             {option}{" "}
                           </option>
                         ))}
-                      </select></td>
-                    <td><b>End year</b><select
+                      </select>
+                    <b>End year{" "}</b>{" "}<select
                         className="select_u3"
                         name="finish_year"
                         onChange={handleModalSplitPassengerYearEnd}
@@ -965,7 +970,7 @@ const handleDePhev = (e) => {
                   <tr>
                     <th>Modal split: Freight transport</th>
                     <Tooltip title="This column shows You the modal shares according to the baseline scenario.">
-                    <th>Without policy %</th>
+                    {modalSplitFreightYearEnd === 0 ? <th>% Without policy</th> : <th>% Without policy in {modalSplitFreightYearEnd}</th>}
                     </Tooltip>
                     <Tooltip title="Insert the target percentages for the freight transport on rails and on waterways. The remaining share is allocated to road freight.">
                     <th>Policy target %</th>
@@ -978,7 +983,7 @@ const handleDePhev = (e) => {
                     <td>Share for rail</td>
                     <td>{emission.rail_transport}</td>
                     <td><input
-                    className="input_u3_planner"
+                    className="input-u3"
                     type="number"
                     step="0.01"
                     placeholder="0"
@@ -996,7 +1001,7 @@ const handleDePhev = (e) => {
                     <td><input
                       type="number"
                       step="0.1"
-                      className="input_u3_planner"
+                      className="input-u3"
                       placeholder="0"
                       min="0.00"
                       max="100"
@@ -1013,7 +1018,7 @@ const handleDePhev = (e) => {
                     <td><input
                       type="number"
                       step="0.1"
-                      className="input_u3_planner"
+                      className="input-u3"
                       placeholder="0"
                       min="0.00"
                       max="100"
@@ -1031,7 +1036,7 @@ const handleDePhev = (e) => {
                   <Tooltip title="Start year is the first year during which the policy changes the modal share. The change is assumed permanent after the last year of implementation period.">
                   <tr>
                     <td><b>Policy period</b></td>
-                    <td><b>Start year</b><select
+                    <td><b>Start year{" "}</b>{" "}<select
                         className="select_u3"
                         name="start_year"
                         onChange={handleModalSplitFreightYearStart}
@@ -1044,8 +1049,8 @@ const handleDePhev = (e) => {
                             {option}{" "}
                           </option>
                         ))}
-                      </select></td>
-                    <td><b>End year</b><select
+                      </select>
+                    <b>End year{" "}</b>{" "}<select
                         className="select_u3"
                         name="finish_year"
                         onChange={handleModalSplitFreightYearEnd}
@@ -1084,7 +1089,7 @@ const handleDePhev = (e) => {
                   <tr>
                     <th>Shares of fuel types in bus transport</th>
                     <Tooltip title="This column shows You the fuel shares in the bus fleet as in the baseline scenario.">
-                    <th>Without policy %</th>
+                    {fuelSharesBusYearEnd === 0 ? <th>% Without policy</th> : <th>% Without policy in {fuelSharesBusYearEnd}</th>}
                     </Tooltip>
                     <Tooltip title="Insert the target percentages for the fuel types used in the bus fleet by the end of the policy implementation period. The remaining share is allocated to diesel engines.">
                     <th>Policy target %</th>
@@ -1099,10 +1104,9 @@ const handleDePhev = (e) => {
                     <td>Petroleum products</td>
                     <td></td>
                     <td><input
-                      className="input_u3_planner "
+                      className="input-u3"
                       type="number"
                       step="0.1"
-                      // id="fre_policy_target"
                       placeholder="0.0"
                       min="0.00"
                       max="100"
@@ -1113,7 +1117,7 @@ const handleDePhev = (e) => {
                       required
                     /></td>
                     <td><input
-                    className="input_u3_planner "
+                    className="input-u3"
                     type="number"
                     step="0.1"
                     placeholder="0"
@@ -1129,7 +1133,7 @@ const handleDePhev = (e) => {
                     <td><input
                       type="number"
                       step="0.1"
-                      className="input_u3_planner "
+                      className="input-u3"
                       id="bus_fuel_policy_target"
                       placeholder="0.0"
                       min="0.00"
@@ -1146,7 +1150,7 @@ const handleDePhev = (e) => {
                     <td>Natural Gas (CNG)</td>
                     <td></td>
                     <td><input
-                      className="input_u3_planner "
+                      className="input-u3"
                       type="number"
                       step="0.1"
                       id="bus_fuel_policy_target"
@@ -1165,7 +1169,7 @@ const handleDePhev = (e) => {
                     <td>Electricity</td>
                     <td></td>
                     <td><input
-                      className="input_u3_planner "
+                      className="input-u3"
                       type="number"
                       step="0.1"
                       id="bus_fuel_policy_target"
@@ -1184,7 +1188,7 @@ const handleDePhev = (e) => {
                     <td>Diesel</td>
                     <td></td>
                     <td><input
-                      className="input_u3_planner "
+                      className="input-u3"
                       type="number"
                       step="0.1"
                       id="bus_fuel_policy_target"
@@ -1209,7 +1213,7 @@ const handleDePhev = (e) => {
                       <b>Policy period</b>
                     </td>
 
-                    <td><b>Start year:</b>
+                    <td><b>Start year{" "}</b>{" "}
                       <select
                         className="select_u3"
                         name="finish_year"
@@ -1224,9 +1228,7 @@ const handleDePhev = (e) => {
                           </option>
                         ))}
                       </select>
-                    </td>
-
-                    <td><b>End year: </b>    
+                    <b>End year{" "}</b>{" "}   
                       <select
                         className="select_u3"
                         name="finish_year"
@@ -1268,7 +1270,7 @@ const handleDePhev = (e) => {
                     <tr>
                       <th>Shares of fuel types in car transport</th>
                       <Tooltip title="This column shows You the fuel shares in the passenger car fleet as in the baseline scenario.">
-                      <th>Without policy %</th>
+                      {fuelSharesCarYearEnd === 0 ? <th>% Without policy</th> : <th>% Without policy in {fuelSharesCarYearEnd}</th>}
                       </Tooltip>
                       <Tooltip title="Insert the target percentages for the fuel types of the passenger car fleet by the end of the policy implementation period. The remaining share is allocated to petrol and diesel engines.">
                       <th>Policy target %</th>
@@ -1282,7 +1284,7 @@ const handleDePhev = (e) => {
                       <td>Liquified Petroleum Gas (LPG)</td>
                       <td></td>
                       <td> <input
-                      className="input_u3_planner "
+                      className="input-u3"
                       type="number"
                       step="0.1"
                       placeholder="0.0"
@@ -1296,7 +1298,7 @@ const handleDePhev = (e) => {
                         <Tooltip title="Insert a percentage of passenger car transport in the area affected by the planning policy.">
                 
                       <input
-                        className="input_u3_planner "
+                        className="input-u3"
                         type="number"
                         step="0.1"
                         placeholder="0"
@@ -1311,10 +1313,9 @@ const handleDePhev = (e) => {
                       <td>Natural Gas (CNG)</td>
                       <td></td>
                       <td><input
-                      // id="inputspace"
                       type="number"
                       step="0.1"
-                      className="input_u3_planner "
+                      className="input-u3"
                       id="bus_fuel_policy_target"
                       placeholder="0.0"
                       min="0.00"
@@ -1329,10 +1330,9 @@ const handleDePhev = (e) => {
                       <td>Alternative Energy/biomethane NGV</td>
                       <td></td>
                       <td><input
-                      className="input_u3_planner "
+                      className="input-u3"
                       type="number"
                       step="0.1"
-                      id="bus_fuel_policy_target"
                       placeholder="0.0"
                       min="0.00"
                       max="100"
@@ -1346,7 +1346,7 @@ const handleDePhev = (e) => {
                       <td>Petrol-electric hybrid</td>
                       <td></td>
                       <td> <input
-                      className="input_u3_planner "
+                      className="input-u3"
                       type="number"
                       step="0.1"
                       placeholder="0.0"
@@ -1362,10 +1362,9 @@ const handleDePhev = (e) => {
                       <td>Petrol-electric plug-in hybrid (PHEV)</td>
                       <td></td>
                       <td><input
-                      className="input_u3_planner "
+                      className="input-u3"
                       type="number"
                       step="0.1"
-                      id="bus_fuel_policy_target"
                       placeholder="0.0"
                       min="0.00"
                       max="100"
@@ -1379,10 +1378,9 @@ const handleDePhev = (e) => {
                       <td>Diesel-electric hybrid</td>
                       <td></td>
                       <td><input
-                      className="input_u3_planner "
+                      className="input-u3"
                       type="number"
                       step="0.1"
-                      id="bus_fuel_policy_target"
                       placeholder="0.0"
                       min="0.00"
                       max="100"
@@ -1396,10 +1394,9 @@ const handleDePhev = (e) => {
                       <td>Diesel-electric plug-in hybrid (PHEV)</td>
                       <td></td>
                       <td><input
-                      className="input_u3_planner "
+                      className="input-u3"
                       type="number"
                       step="0.1"
-                      id="bus_fuel_policy_target"
                       placeholder="0.0"
                       min="0.00"
                       max="100"
@@ -1413,7 +1410,7 @@ const handleDePhev = (e) => {
                       <td>Hydrogen and fuel cells</td>
                       <td></td>
                       <td><input
-                      className="input_u3_planner "
+                      className="input-u3"
                       type="number"
                       step="0.1"
                       placeholder="0.0"
@@ -1431,8 +1428,7 @@ const handleDePhev = (e) => {
                       <td><input
                       type="number"
                       step="0.1"
-                      className="input_u3_planner "
-                      id="bus_fuel_policy_target"
+                      className="input-u3"
                       placeholder="0.0"
                       min="0.00"
                       max="100"
@@ -1446,10 +1442,9 @@ const handleDePhev = (e) => {
                       <td>Bio-diesel</td>
                       <td></td>
                       <td><input
-                      className="input_u3_planner "
+                      className="input-u3"
                       type="number"
                       step="0.1"
-                      id="bus_fuel_policy_target"
                       placeholder="0.0"
                       min="0.00"
                       max="100"
@@ -1463,10 +1458,9 @@ const handleDePhev = (e) => {
                       <td>Bi-fuel</td>
                       <td></td>
                       <td><input
-                      className="input_u3_planner "
+                      className="input-u3"
                       type="number"
                       step="0.1"
-                      id="bus_fuel_policy_target"
                       placeholder="0.0"
                       min="0.00"
                       max="100"
@@ -1480,10 +1474,9 @@ const handleDePhev = (e) => {
                       <td>Other (unknown)</td>
                       <td></td>
                       <td> <input
-                      className="input_u3_planner "
+                      className="input-u3"
                       type="number"
                       step="0.1"
-                      id="bus_fuel_policy_target"
                       placeholder="0.0"
                       min="0.00"
                       max="100"
@@ -1498,10 +1491,9 @@ const handleDePhev = (e) => {
                       <td>Electricity BEV</td>
                       <td></td>
                       <td><input
-                      className="input_u3_planner "
+                      className="input-u3"
                       type="number"
                       step="0.1"
-                      id="bus_fuel_policy_target"
                       placeholder="0.0"
                       min="0.00"
                       max="100"
@@ -1515,10 +1507,9 @@ const handleDePhev = (e) => {
                       <td>Petrol, according to country selection</td>
                       <td></td>
                       <td><input
-                      className="input_u3_planner "
+                      className="input-u3"
                       type="number"
                       step="0.1"
-                      id="bus_fuel_policy_target"
                       placeholder="0.0"
                       min="0.00"
                       max="100"
@@ -1532,10 +1523,9 @@ const handleDePhev = (e) => {
                       <td>Diesel, according to country selection</td>
                       <td></td>
                       <td><input
-                      className="input_u3_planner "
+                      className="input-u3"
                       type="number"
                       step="0.1"
-                      id="bus_fuel_policy_target"
                       placeholder="0.0"
                       min="0.00"
                       max="100"
@@ -1545,15 +1535,13 @@ const handleDePhev = (e) => {
                     /></td>
                     </tr> 
 
-
                     <tr>
                       <td><b>Policy period</b></td>
-                      <td><b>Start year:</b> <select
+                      <td><b>Start year {" "}</b>{" "}<select
                         className="select_u3"
                         name="start_year"
                         onChange={handleFuelSharesCarYearStart}
                         value={fuelSharesCarYearStart}
-                        
                         required
                       >
                         <option value="DefaultOption">Select start year</option>
@@ -1562,8 +1550,8 @@ const handleDePhev = (e) => {
                             {option}{" "}
                           </option>
                         ))}
-                      </select></td>
-                      <td><b>End year:</b><select
+                      </select>
+                      <b>End year{" "}</b>{" "}<select
                         className="select_u3"
                         name="finish_year"
                         onChange={handleFuelSharesCarYearEnd}
@@ -1599,7 +1587,7 @@ const handleDePhev = (e) => {
                 <thead>
                   <tr>
                     <th>Electricity for transport</th>
-                    <th>gCO2e/kWh without policy</th>
+                    {electricityTransportYearEnd === 0 ? <th>gCO2e/kWh without policy</th> : <th>gCO2e/kWh without policy in {electricityTransportYearEnd}</th>}
                     <Tooltip title="Insert the percentage of renewable energies that is produced locally for the transport electricity. Positive percentage improves the electricity mix and reduces the greenhouse gas emissions.">
                     <th>Renewables %</th>
                     </Tooltip>
@@ -1614,7 +1602,7 @@ const handleDePhev = (e) => {
                     <td>Increase in renewables in transport electricty</td>
                     <td></td>
                     <td><input
-                    className="input_u3_planner"
+                    className="input-u3"
                     type="number"
                     step="0.1"
                     min="0.00"
@@ -1626,7 +1614,7 @@ const handleDePhev = (e) => {
                   <td><input
                     type="number"
                     step="0.1"
-                    id="electricity_trans_affected_area"
+                    className="input-u3"
                     placeholder="0"
                     min="0.00"
                     max="100"
@@ -1638,7 +1626,7 @@ const handleDePhev = (e) => {
                   <Tooltip title="Start year is the first year during which the share of renewables in transport electricity starts to increase. The change is assumed permanent after the last year of implementation period.">
                   <tr>
                     <td><b>Policy period</b></td>
-                    <td><b>Start year</b><select
+                    <td><b>Start year{" "}</b>{" "}<select
                         className="select_u3"
                         id="start_year"
                         name="start_year"
@@ -1653,8 +1641,8 @@ const handleDePhev = (e) => {
                             {option}{" "}
                           </option>
                         ))}
-                      </select></td>
-                      <td><b>End year</b><select
+                      </select>
+                      <b>End year{" "}</b>{" "}<select
                         className="select_u3"
                         id="finish_year"
                         name="finish_year"

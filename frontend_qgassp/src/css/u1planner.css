@@ -54,6 +54,7 @@
   z-index: 1;
 }
 
+
 .row:after {
   margin-top: 0.5rem;
   content: "";
@@ -113,6 +114,7 @@ input[type="number"] {
 
 .section-transport .div_transport {
   margin-bottom: 10px;
+  
 }
 .section-transport .div_transport2 {
   margin-bottom: 10px;
@@ -120,9 +122,7 @@ input[type="number"] {
 }
 
 .barchart_container {
-  width: 80%;
-  display: flex;
-  flex-direction: row;
+  margin: 2rem;
 }
 .baseline_barchart {
   width: 100%;
@@ -154,7 +154,7 @@ input[type="number"] {
 
 .nextU2Button {
   position: absolute;
-  left: 22rem;
+  right: 13%;
 }
 
 .nextCBQ {
@@ -188,6 +188,7 @@ input[type="number"] {
 
 .headerSettlement {
   margin-top: 1.5em;
+  margin-bottom: 1em;
   text-align: center;
   font-size: 1.3em;
   font-weight: 400;
@@ -229,3 +230,64 @@ input[type="number"] {
   padding: 0.2rem;
 }
 
+
+.pieChart {
+margin-top: 20%;
+}
+
+.legend span { 
+  border: 1px solid #ccc;
+  float: left; width: 12px; 
+  height: 12px; 
+  margin: 20px; 
+  
+}
+
+#bus {
+  background-color: #e69500;
+  color: #e69500;
+}
+
+#car {
+  background-color: #A6036D;
+  color: #A6036D;
+}
+
+#metro {
+  background-color: #005aff;
+  color: #005aff;
+}
+
+#tram {
+  background-color: #C4D4F2;
+  color: #C4D4F2;
+}
+
+#train {
+  background-color: #D90404;
+  color: #D90404;
+}
+
+#rail {
+  background-color: #80D941;
+  color: #80D941;
+}
+
+#road {
+  background-color: #595959;
+  color: #595959;
+}
+
+#water {
+  background-color: #F2CE1B;
+  color: #F2CE1B;
+}
+
+.heading {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.transport-legend-style {
+  text-align: right;
+}

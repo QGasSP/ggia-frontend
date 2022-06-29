@@ -3,8 +3,6 @@ import { Button } from "./Button";
 import "../css/u1planner.css";
 import Alert from "@mui/material/Alert";
 import Tooltip from "@mui/material/Tooltip";
-import Divider from "@mui/material/Divider";
-import Chip from "@mui/material/Chip";
 import { RadialChart, DiscreteColorLegend } from "react-vis";
 import {
   useStorageBool,
@@ -18,7 +16,8 @@ import { useNavigate } from "react-router-dom";
 import { StartPage } from "./StartPage";
 import { country, year, population } from "../reducers/GetStorageItem";
 import urlPrefix from "../Config";
-import { Container, Box, Paper, Grid } from "@mui/material"; 
+import { Container, Box, Grid } from "@mui/material"; 
+import RefreshIcon from '@mui/icons-material/Refresh';
 /**
  * Transport baseline user input form
  * @return {}
@@ -257,16 +256,14 @@ export const TransportBaseline = () => {
     <Container maxWidth="xl">
     <div className="div_transport">
       <article>
-        <div className="headerSettlement">
-          <Divider textAlign="left" flexItem>
-            {" "}
-            <Chip label="TRANSPORT BASELINE" />
-          </Divider>
+        <div className="heading">
+          <h2>Transport baseline</h2>
         </div>
-        <Alert severity="info">
+        <Box mt={5}>
+          <Alert severity="info">
           This section creates a baseline scenario until 2050 for the
           transport-related greenhouse gas emissions in the assessment area.
-        </Alert>
+          </Alert>
         <section className="section-transport">
           <div className="settlementDiv">
             <div className="row">
@@ -399,10 +396,9 @@ export const TransportBaseline = () => {
                   </div>
               </div>
 
-              
-
               <div className="column">
                 <div className="div_transport">
+                  <div className="pieChart">
                   {total > 0 && total < 101 && (
                     <RadialChart
                       type="piechart"
@@ -446,6 +442,7 @@ export const TransportBaseline = () => {
                     strokeWidth="40"
                   />
                 )}
+                </div>
               </div>
             </div>
 
@@ -589,25 +586,35 @@ export const TransportBaseline = () => {
 
             <Box style={{marginTop: "50px"}}>
                <Alert severity="info" style={{width: "50%"}}>
+                Select the metro and tram systems that operate in the assessment area and are included in the study.
+                100% = included entirely, 0% = excluded.“
               </Alert>
-             
-          <div>
-            <h4>
+
+            <div style={{display: "flex"}}>
+            <label>
             <b>Metro and tram systems in {country}</b>
+            </label>
             <input
             type="checkbox"
             name="metroTramCheckbox"
             onChange={handleMetroAndTram}
             checked={metroAndTramSystemCheck}
             />
-          </h4>
-          </div>    
+            <br/>
+             {metroAndTramSystemCheck && 
+                <span>
+                <RefreshIcon
+                sx={{ "&:hover": { color: "gray" }}}
+                />
+                {"  "}Refresh
+                </span>
+              }
+            </div>    
           
 
             {metroAndTramSystemCheck && Object.values(metroAndTramSystems) !== 0 &&
             <Grid container spacing={2} style={{marginTop:"10px"}}>
               <Grid item xs={6}>
-              <Paper>
               <table style={{width:"100%"}}>
                 <thead>
                   <tr>
@@ -633,11 +640,9 @@ export const TransportBaseline = () => {
                     )}
               </tbody>
             </table>
-            </Paper>
             </Grid>
 
             <Grid item xs={6}>
-            <Paper>
             <table style={{width:"100%"}}>
               <thead>
                 <tr>
@@ -662,7 +667,6 @@ export const TransportBaseline = () => {
               )}
               </tbody>
             </table>
-            </Paper>
             </Grid>
           </Grid>
             }
@@ -685,6 +689,7 @@ export const TransportBaseline = () => {
           }
           </div>
         </section>
+        </Box>
       </article>
     </div>
     </Container>
