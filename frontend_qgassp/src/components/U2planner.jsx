@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { U2legend } from "./U2legend";
 import axios from "axios";
 import "../css/u2planner.css";
+import "../css/u1planner.css";
 import { Button } from "./Button";
-import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 import CircularProgress from "@mui/material/CircularProgress";
 import {
@@ -42,18 +42,12 @@ export const U2planner = () => {
   const newDevelopment = JSON.parse(localStorage.getItem("newDevelopment"));
   const settlementDistribution = JSON.parse(localStorage.getItem("settlementDistribution"));
   const projections = JSON.parse(localStorage.getItem("projections"));
+  const absoluteProjections = JSON.parse(localStorage.getItem("absoluteProjections"))
 
-  // const newDevelopment = location.state.newDevelopment;
   const [errorU2, setU2Error] = useState("");
   
   const [newPopulation, setNewPopulation] = useState(() => {
     const savedPop = localStorage.getItem("newPopulation");
-    const initialValue = JSON.parse(savedPop);
-    return initialValue || {};
-  });
-
-  const [absoluteProjections, setAbsoluteProjections] = useState(() => {
-    const savedPop = localStorage.getItem("absoluteProjections");
     const initialValue = JSON.parse(savedPop);
     return initialValue || {};
   });
@@ -82,10 +76,8 @@ export const U2planner = () => {
         headers
       )
       .then((response) => {
-        // setU2Response(response.data);
         setNewPopulation(response.data.data.new_development.impact.population);
-        setAbsoluteProjections(response.data.data.baseline.absolute_projections)
-        setAbsoluteEmissions(response.data.data.new_development.impact.absolute_emissions)
+        setAbsoluteEmissions(response.data.data.new_development.impact.absolute_emissions);
         setIsU2Loading(false);
       })
       .catch((error) => {
@@ -103,9 +95,8 @@ export const U2planner = () => {
   useEffect(async () => {
     localStorage.setItem("newDevelopment", JSON.stringify(newDevelopment));
     localStorage.setItem("newPopulation", JSON.stringify(newPopulation));
-    localStorage.setItem("absoluteProjections", JSON.stringify(absoluteProjections));
     localStorage.setItem("absoluteEmissions", JSON.stringify(absoluteEmissions));
-  }, [newDevelopment, newPopulation, absoluteProjections, absoluteEmissions]);
+  }, [newDevelopment, newPopulation, absoluteEmissions]);
 
   const absoluteEmissionsBus = [];
   const absoluteEmissionsCar = [];
@@ -115,15 +106,8 @@ export const U2planner = () => {
   const absoluteEmissionsRailTransport = [];
   const absoluteEmissionsRoadTransport = [];
   const absoluteEmissionsWaterwaysTransport = [];
+  const absoluteEmissionsTotal = [];
 
-  const absoluteProjectionsBus = [];
-  const absoluteProjectionsCar = [];
-  const absoluteProjectionsMetro = [];
-  const absoluteProjectionsTram = [];
-  const absoluteProjectionsTrain = [];
-  const absoluteProjectionsRailTransport = [];
-  const absoluteProjectionsRoadTransport = [];
-  const absoluteProjectionsWaterwaysTransport = [];
 
   for (let i = baseline.year; i < 2051; i++) {
     dataProjectionPopulation.push({ x: i, y: projections.population[i] });
@@ -131,7 +115,9 @@ export const U2planner = () => {
   };
 
   if(absoluteEmissions &&
-  Object.keys(absoluteEmissions).length !== 0)
+    absoluteProjections &&
+  Object.keys(absoluteEmissions).length !== 0 &&
+  Object.keys(absoluteProjections).length !== 0)
   for (let i = year; i < 2051; i++) {
     absoluteEmissionsBus.push({ x: i, y: absoluteEmissions.bus[i] });
     absoluteEmissionsCar.push({ x: i, y: absoluteEmissions.car[i] });
@@ -141,34 +127,19 @@ export const U2planner = () => {
     absoluteEmissionsRailTransport.push({ x: i, y: absoluteEmissions.rail_transport[i] });
     absoluteEmissionsRoadTransport.push({ x: i, y: absoluteEmissions.road_transport[i] });
     absoluteEmissionsWaterwaysTransport.push({ x: i, y: absoluteEmissions.waterways_transport[i] });
+    absoluteEmissionsTotal.push({ x: i, y: absoluteProjections.total[i]});
   };
-
-  if(absoluteProjections &&
-  Object.keys(absoluteProjections).length !== 0){
-  for (let i = year; i < 2051; i++) {
-    absoluteProjectionsBus.push({ x: i, y: absoluteProjections.bus[i] });
-    absoluteProjectionsCar.push({ x: i, y: absoluteProjections.car[i] });
-    absoluteProjectionsMetro.push({ x: i, y: absoluteProjections.metro[i] });
-    absoluteProjectionsTram.push({ x: i, y: absoluteProjections.tram[i] });
-    absoluteProjectionsTrain.push({ x: i, y: absoluteProjections.train[i] });
-    absoluteProjectionsRailTransport.push({ x: i, y: absoluteProjections.rail_transport[i] });
-    absoluteProjectionsRoadTransport.push({ x: i, y: absoluteProjections.road_transport[i] });
-    absoluteProjectionsWaterwaysTransport.push({ x: i, y: absoluteProjections.waterways_transport[i] });
-  };
-}
 
     const items = [
   { title: "Baseline population", color: "#12939A", strokeWidth:10 },
-  { title: "New population", color: "#79C7E3", strokeWidth:10 }
+  { title: "Population with new residents", color: "#79C7E3", strokeWidth:10 }
   ];
-
 
   const gotoU3planner = () => {
     navigate("/u3planner", {
       replace: true,
     }); 
   };
-
 
   if (isU2Loading) {
     return <CircularProgress color="success" />;
@@ -186,66 +157,13 @@ export const U2planner = () => {
       <Container maxWidth="xl">
       <article>
          <section>
-            <div className="headerSettlement">
-          <Divider textAlign="left" flexItem>
-            {" "}
-            <Chip label="U2 NEW DEVELOPMENT" />
-          </Divider>
-        </div>
-
-            <label>
-              <b>New residents</b>
-            </label>
-            <div>
-              <label htmlFor="new_residents">
-                Number of new residents moving in
-              </label>
-              <label htmlFor="start_year_selection">
-                {" "}
-                {newDevelopment.newResidents}
-              </label>
-            </div>
-            <div>
-              <label> Start</label>
-              <label> {newDevelopment.yearStart}</label>
-            </div>
-
-            <div>
-              <label> End</label>
-              <label> {newDevelopment.yearFinish}</label>
-            </div>
+          
+          <div className="heading"> 
+            <h2>New development results</h2>
+          </div>
           
         
-          
-          <XYPlot
-              xType="ordinal"
-              width={1000}
-              height={500}
-              margin={{ left: 100 }}
-            >
-          <VerticalGridLines />
-          <HorizontalGridLines />
-          <XAxis />
-          <YAxis />
-          <BarSeries
-            color="#12939A"
-            data={dataProjectionPopulation}
-          />
-          <BarSeries
-            color="#79C7E3"
-            data={dataNewPopulation}
-          />
-          <LineSeries
-            color="black"
-            data={dataProjectionPopulation}
-            strokeStyle="dashed"
-          />
-        </XYPlot>
-        <DiscreteColorLegend orientation="horizontal" items={items}/>
-
-            <br />
-            
-            {/* settlement type starts here */}
+              {/* settlement type starts here */}
             <Grid container spacing={6} style={{marginTop:"12px"}}>
               <Grid item xs={6}>
                 <div>
@@ -294,10 +212,9 @@ export const U2planner = () => {
            
               </Grid>
               <Grid item xs={6}>
-                  <Divider textAlign="left" flexItem>
-          {" "}
-          <b>New settlement type and its distribution</b>
-        </Divider>
+                <Divider textAlign="left" flexItem>
+                    <b>New settlement type and its distribution</b>
+                </Divider>
 
         <div className="piechart_container">
           <div className="piechart_diagram">
@@ -372,6 +289,60 @@ export const U2planner = () => {
             </Grid>
             </Grid>
             <br/>
+          <Divider textAlign="left">
+            <h3>New residents</h3>
+          </Divider>
+          <Grid container spacing={12} style={{marginTop:"1px"}}>
+            <Grid item xs={9}>
+               <XYPlot
+                  xType="ordinal"
+                  width={1000}
+                  height={500}
+                  margin={{ left: 100 }}
+                >
+              <VerticalGridLines />
+              <HorizontalGridLines />
+              <XAxis />
+              <YAxis />
+              <BarSeries
+                color="#12939A"
+                data={dataProjectionPopulation}
+              />
+              <BarSeries
+                color="#79C7E3"
+                data={dataNewPopulation}
+              />
+            </XYPlot>
+            <div className="transport-legend-style">
+              <DiscreteColorLegend orientation="horizontal" items={items}/>
+            </div>
+            
+            </Grid>
+            <Grid item xs={3}>
+              
+            <div>
+              <label htmlFor="new_residents">
+               <b>Number of new residents moving in</b>
+              </label>
+              <label htmlFor="start_year_selection">
+                {" "}
+                {newDevelopment.newResidents}
+              </label>
+            </div>
+            <div>
+              <label><b>Start</b></label>
+              <label> {newDevelopment.yearStart}</label>
+            </div>
+
+            <div>
+              <label><b>End</b></label>
+              <label> {newDevelopment.yearFinish}</label>
+            </div>
+            </Grid>
+          </Grid>
+    
+            <br />
+          
             
             
             {/* <Divider textAlign="left" flexItem>
@@ -416,11 +387,15 @@ export const U2planner = () => {
 
 
           {/* absolute emissions */}
+            <Divider mt={5} textAlign="left">
+                <h3>Annual GHG emissions for transport, with new residents (tCO2e/a)</h3>
+            </Divider>
             <Box 
             display="flex"
-            minHeight="100vh">
+            minHeight="100vh"
+            mt={5}>
             <div>
-            <h3>Absolute Emissions</h3>
+            
             <XYPlot
               width={1000}
               height={500}
@@ -472,72 +447,16 @@ export const U2planner = () => {
                 color="#F2CE1B"
                 data={absoluteEmissionsWaterwaysTransport}
               />
+              <LineSeries
+              color="black"
+              strokeStyle="dashed"
+              data={absoluteEmissionsTotal}
+              />
             </XYPlot>
-            <div>
+            <div className="transport-legend-style">
               <LineLegend />
             </div>
             </div>
-          </Box>
-          <Box display="flex"
-            minHeight="100vh">
-            <div>
-              <h3>Absolute Projections</h3>
-              <XYPlot
-                width={1000}
-                height={500}
-                stackBy="y"
-                xType="ordinal"
-                margin={{ left: 80 }}
-              >
-                <HorizontalGridLines />
-                <VerticalGridLines />
-                <VerticalBarSeries className="StackedBarchart" />
-                <XAxis title="Year" />
-                <YAxis title="tCO2/a" />
-                <BarSeries
-                  color="#8C0303"
-                  data={absoluteProjectionsBus}
-                  opacity={0.5}
-                />
-                <BarSeries
-                  color="#A6036D"
-                  data={absoluteProjectionsCar}
-                  opacity={0.5}
-                />
-                <BarSeries
-                  color="#400D01"
-                  data={absoluteProjectionsMetro}
-                  opacity={0.5}
-                />
-                <BarSeries
-                  color=" #C4D4F2"
-                  data={absoluteProjectionsTram}
-                  opacity={0.5}
-                />
-                <BarSeries
-                  color="#D90404"
-                  data={absoluteProjectionsTrain}
-                  opacity={0.5}
-                />
-                <BarSeries
-                  color="#80D941"
-                  data={absoluteProjectionsRailTransport}
-                  opacity={0.5}
-                />
-                <BarSeries
-                  color="#595959"
-                  data={absoluteProjectionsRoadTransport}
-                  opacity={0.5}
-                />
-                <BarSeries
-                  color="#F2CE1B"
-                  data={absoluteProjectionsWaterwaysTransport}
-                />
-              </XYPlot>
-              <div>
-                <LineLegend />
-              </div>
-            </div> 
           </Box>
 
             <div className="backButtonNew">

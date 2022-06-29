@@ -1,7 +1,7 @@
 .start_button {
   position: absolute;
   left: 2%;
-  padding: 1rem;
+  margin-left: 20%;
 }
 
 .row_welcome {
@@ -10,11 +10,19 @@
 
 .column_welcome {
   flex: 50%;
-  padding: 1rem;
+  padding: 0.8rem;
   height: 100%;
   font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-align: left;
-  font-size: 0.75rem;
+  font-size: 1em;
+}
+
+.column_welcome2 {
+  flex: 50%;
+  height: 100%;
+
+  position: relative;
+  text-align: center;
 }
 
 .section_welcome {
@@ -24,4 +32,17 @@
 .youtube {
   padding-bottom: 5%;
   position: absolute;
+}
+
+.welcome-paragraph {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.link {
+  color: black;
+} 
+
+.link:hover {
+  color: gray;
 }

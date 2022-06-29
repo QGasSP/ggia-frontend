@@ -103,7 +103,7 @@ export const StartPage = () => {
         <div>
           <Divider textAlign="left" flexItem>
             {" "}
-            <Chip label="ASSESSMENT AREA INFORMATION" />
+            <Chip style={{fontSize:"18px"}} label="Assesment area information" />
           </Divider>
         </div>
 
@@ -119,8 +119,7 @@ export const StartPage = () => {
             </Alert>
             {nextModule && (
               <Alert severity="success">
-                You can proceed to either Transport, Land-use change or
-                Consumption-based module
+                After saving the basic information please proceed to either Transport, Land-use or Buildings module or Consumption-based quantification.
               </Alert>
             )}
 
