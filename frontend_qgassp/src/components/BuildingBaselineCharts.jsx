@@ -16,7 +16,7 @@ import {
 import { BuildingsNewUnits } from "./BuildingsNewUnits";
 import { LineLegendBuildingBaselineCharts } from "./LineLegendBuildingBaselineCharts";
 import Divider from "@mui/material/Divider";
-import Chip from "@mui/material/Chip";
+import { Box, Grid } from "@mui/material";
 
 /**
  * BuildingBaselineCharts baseline
@@ -174,104 +174,98 @@ export const BuildingBaselineCharts = ({
 
   if (nextNewUnitsView === false && Object.keys(buildingsBaselineResponse).length !== 0) {
     return (
+    <>
       <section>
-        <div>
-          <Divider textAlign="left" flexItem>
-            <Chip label="BUILDINGS BASELINE RESULTS" />
-          </Divider>
+        <div className="heading">
+              <h2>Buildings baseline results</h2>
         </div>
-        <section>
-          <Divider textAlign="left" flexItem>
+        <Grid container spacing={2}> 
+          <Grid item xs={5}>
+
+            <section>
             <b>
               GHG emissions from the energy use in residential buildings by unit
-              type and source of heating energy
+              type and source of heating energy, {year}
             </b>
-          </Divider>
-        </section>
-
-        {/* table 1 6X9 */}
-        <table className="buildings-table">
-          <thead>
-            <tr>
-              <th>tCO2/a</th>
-              <th>Electricity</th>
-              <th>Gas</th>
-              <th>Oil</th>
-              <th>Coal</th>
-              <th>Peat</th>
-              <th>Wood</th>
-              <th>Renewable</th>
-              <th>Heat</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Apartment</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.apartment.electricity)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.apartment.gas)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.apartment.oil)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.apartment.coal)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.apartment.peat)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.apartment.wood)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.apartment.renewable)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.apartment.heat)}</td>
-              <td>{apartmentTotal}</td>
-            </tr>
-            <tr>
-              <td>Terraced</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.terraced.electricity)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.terraced.gas)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.terraced.oil)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.terraced.coal)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.terraced.peat)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.terraced.wood)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.terraced.renewable)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.terraced.heat)}</td>
-              <td>{terracedTotal}</td>
-            </tr>
-            <tr>
-              <td>Semi-detached</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.semiDetached.electricity)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.semiDetached.gas)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.semiDetached.oil)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.semiDetached.coal)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.semiDetached.peat)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.semiDetached.wood)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.semiDetached.renewable)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.semiDetached.heat)}</td>
-              <td>{semiDetachedTotal}</td>
-            </tr>
-            <tr>
-              <td>Detached</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.detached.electricity)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.detached.gas)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.detached.oil)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.detached.coal)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.detached.peat)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.detached.wood)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.detached.renewable)}</td>
-              <td>{Math.round(buildingsBaselineResponse.residentialTable.detached.heat)}</td>
-              <td>{detachedTotal}</td>
-            </tr>
-            <tr>
-              <td colSpan={9}>Residential buildings total</td>
-              <td>{detachedTotal + apartmentTotal + semiDetachedTotal + terracedTotal}</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <section>
-          <Divider textAlign="left" flexItem>
-            {" "}
+            </section>
+                     
+          <table className="buildings-table">
+            <thead>
+              <tr>
+                <th>tCO2/a</th>
+                <th>Electricity</th>
+                <th>Gas</th>
+                <th>Oil</th>
+                <th>Coal</th>
+                <th>Peat</th>
+                <th>Wood</th>
+                <th>Renewable</th>
+                <th>Heat</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Apartment</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.apartment.electricity)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.apartment.gas)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.apartment.oil)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.apartment.coal)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.apartment.peat)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.apartment.wood)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.apartment.renewable)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.apartment.heat)}</td>
+                <td>{apartmentTotal}</td>
+              </tr>
+              <tr>
+                <td>Terraced</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.terraced.electricity)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.terraced.gas)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.terraced.oil)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.terraced.coal)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.terraced.peat)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.terraced.wood)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.terraced.renewable)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.terraced.heat)}</td>
+                <td>{terracedTotal}</td>
+              </tr>
+              <tr>
+                <td>Semi-detached</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.semiDetached.electricity)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.semiDetached.gas)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.semiDetached.oil)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.semiDetached.coal)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.semiDetached.peat)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.semiDetached.wood)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.semiDetached.renewable)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.semiDetached.heat)}</td>
+                <td>{semiDetachedTotal}</td>
+              </tr>
+              <tr>
+                <td>Detached</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.detached.electricity)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.detached.gas)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.detached.oil)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.detached.coal)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.detached.peat)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.detached.wood)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.detached.renewable)}</td>
+                <td>{Math.round(buildingsBaselineResponse.residentialTable.detached.heat)}</td>
+                <td>{detachedTotal}</td>
+              </tr>
+              <tr>
+                <td colSpan={9}>Residential buildings total</td>
+                <td>{detachedTotal + apartmentTotal + semiDetachedTotal + terracedTotal}</td>
+              </tr>
+            </tbody>
+          </table>
+          <section>
             <b>
               CO2 emissions from the energy use in commercial buildings by
-              building type and source of heating energy
+              building type and source of heating energy, {year}
             </b>
-          </Divider>
-        </section>
-
-        {/* table 2 8X9 */}
+          </section>
+       
         <table className="buildings-table">
           <thead>
             <tr>
@@ -366,17 +360,15 @@ export const BuildingBaselineCharts = ({
             </tr>
           </tbody>
         </table>
-
-        <div className="headerSettlement">
-            <Divider textAlign="left" flexItem>
-              <Chip label="BASELINE EMISSIONS - ENERGY USE IN BUILDINGS (tCO2e)" />
-            </Divider>
-        </div>
-
-        <div className="buildings-baseline">
+          </Grid>
+          <Grid item xs={7} mt={30}>
+           <section>
+              <b>Baseline emissions - Energy use in buildings (tCO2e)</b>
+            </section>
+             <div>
           <XYPlot
             width={800}
-            height={500}
+            height={400}
             xType="ordinal"
             stackBy="y"
           >
@@ -392,31 +384,34 @@ export const BuildingBaselineCharts = ({
               }}
             />
             <YAxis title="Energy use  tC02e" />
-            {/* 1 */}
+            
             <BarSeries color="#ffdf43" opacity={0.6} data={apartmentsData} />
-            {/* 2 */}
+            
             <BarSeries color="#76918e" opacity={0.6} data={terracedData} />
-            {/* 3 */}
+            
             <BarSeries color="#ce143d" opacity={0.6} data={semidetachedData} />
-            {/* 4 */}
+            
             <BarSeries color="#d6e7d9" opacity={0.6} data={detachedData} />
-            {/* 5 */}
+            
             <BarSeries color="#002117" opacity={0.6} data={retailData} />
-            {/* 6 */}
+            
             <BarSeries color="#ef7d00" opacity={0.6} data={healthData} />
-            {/* 7 */}
+            
             <BarSeries color="#6c3b00" opacity={0.6} data={hospitalityData} />
-            {/* 8 */}
+           
             <BarSeries color="#00aed5" opacity={0.6} data={officesData} />
-            {/* 9 */}
+            
             <BarSeries color="#8C0303" opacity={0.6} data={industrialData} />
-            {/* 10 */}
+            
             <BarSeries color="#A6036D" opacity={0.6} data={warehousesData} />
           </XYPlot>
-        </div>
-        <div className="luc_legendline">
+          
+          <div className="transport-legend-style">
           <LineLegendBuildingBaselineCharts />
-        </div>
+          </div>
+          </div>
+          </Grid>
+        </Grid>
 
         <div className="buildings-buttons">
           <div className="">
@@ -439,6 +434,7 @@ export const BuildingBaselineCharts = ({
           </div>
         </div>
       </section>
+    </>
     );
   } else {
     return (

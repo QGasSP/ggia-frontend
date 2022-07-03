@@ -108,11 +108,10 @@ export const U1planner = () => {
     axios
       .post(urlPrefix + "/api/v1/calculate/transport/baseline", raw, headers)
       .then((response) => {
-        // setResponse(response.data.data.baseline);
         setEmissionData(response.data.data.baseline.emissions);
         setAbsoluteEmissionsYear1(response.data.data.baseline.absolute_year1_emissions);
         setProjections(response.data.data.baseline.projections);
-        // setAbsoluteProjections(response.data.data.baseline.absolute_projections);
+        setAbsoluteProjections(response.data.data.baseline.absolute_projections);
         setIsLoadingTransport(false);
       })
       .catch((error) => {
@@ -273,12 +272,8 @@ export const U1planner = () => {
                 height={350}
               />
             </div>
-           
         </Grid>
-
-
         <Grid item xs={6}>
-          
             <table style={{width:'100%'}}>
               <thead>
                 <tr>

@@ -2,14 +2,12 @@ import React from "react";
 import "../css/header.css";
 import { TabModules } from "./TabModules";
 
-
 /* import { SuperHeader } from "./SuperHeader"; */
 
 export const Header = () => {
   return (
     <>
       <header>
-        {/*   <SuperHeader /> */}
         <div className="wrapper_branding">
           <div className="row_header">
             <svg
@@ -67,7 +65,7 @@ export const Header = () => {
               />
             </svg>
           </div>
-          <div className="column_header">
+          <div className="headingOne">
             <h1>ESPON GGIA TOOL</h1>
           </div>
         </div>

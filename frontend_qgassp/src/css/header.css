@@ -11,7 +11,6 @@
 .module_wrapper {
   font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 0.9rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 0.2rem;
   display: flex;
   align-items: center;
@@ -74,8 +73,7 @@ h1 {
   font-size: 20px;
   font-family: sans-serif;
   line-height: 1;
-  margin: 15px 0 6px 4px;
-  display: inline-block;
+  
   vertical-align: top;
 }
 
@@ -86,7 +84,11 @@ button + button {
 .row_header {
   display: flex;
   flex-direction: row;
-  width: 40%;
+}
+
+.headingOne {
+  text-align: center;
+  width: 78%;
 }
 
 .column_header {
@@ -98,21 +100,22 @@ button + button {
 .left {
   width: 14.3%;
   float: left;
-  background-color: #bfbfbf;
+  background-color: #d8d8d8;
 }
 
 .mid {
   width: 42.5%;
   float: left;
   text-align: center;
-  background-color: #d5eaea;
-  border: 0.2rem solid #d5eaea;
+  background-color: #d8d8d8;
+  border: 0.2rem solid #d8d8d8;
+  color: #1f3864;
 }
 
 .right {
   width: 13.7%;
   float: left;
-  background-color: #ea8b6f;
-  border: 0.71rem solid #ea8b6f;
+  background-color: #d8d8d8;
+  border: 0.71rem solid #d8d8d8;
   margin-left: 0.7rem;
 }

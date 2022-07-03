@@ -3,9 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { LUCBarChart } from "./LUCBarChart";
 import { Button } from "./Button";
 import "../css/landusechange.css";
+import "../css/u1planner.css";
 import axios from "axios";
-import Divider from "@mui/material/Divider";
-import Chip from "@mui/material/Chip";
 import { CircularProgress, Container } from "@mui/material";
 import urlPrefix from "../Config";
 import Tooltip from "@mui/material/Tooltip";
@@ -1410,11 +1409,8 @@ export const LandUseChangeTableForm = () => {
       <Container maxWidth="xl">
       <div>
         <article>
-          <div className="headerSettlement">
-            <Divider textAlign="left" flexItem>
-              {" "}
-              <Chip label="LAND-USE CHANGE" />
-            </Divider>
+          <div className="heading">
+            <h2>Land-use change</h2>
           </div>
           <div className="luc_main">
             <div className="luc_alert_container">

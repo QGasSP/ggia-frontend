@@ -297,17 +297,14 @@ export const GenerateReport = () => {
   return (
     <Container maxWidth="xl">
     <article className="generate-report">
-      <div className="headerSettlement">
-        <Divider textAlign="left" flexItem>
-          {" "}
-          <Chip label="Generate summary report" />
-        </Divider>
+      <div className="heading">
+       <h2>Generate summary report</h2>
       </div>
       {country !== "" && year > 0 && population > 0 && <></>}
       <br />
       <ReactToPrint
         trigger={() => (
-          <div className="luc_alert_container">
+          <div className="backButtonNew">
             <Button
               size="small"
               value="print"
@@ -366,7 +363,7 @@ export const GenerateReport = () => {
               <>
             <div className="luc_alert_container">
               <Divider textAlign="left" flexItem>
-                <Chip label="ABSOLUTE CO2e EMISSIONS | TERRITORIAL APPROACH" />
+                <b>ABSOLUTE CO2e EMISSIONS | TERRITORIAL APPROACH</b>
               </Divider>
             </div>
             <table className="table-results">
@@ -464,7 +461,7 @@ export const GenerateReport = () => {
               </FlexibleXYPlot> */}
               </div>
             {/* transport projections start here */}
-               <div className="luc_alert_container">
+             {/*   <div className="luc_alert_container">
               <Divider textAlign="left" flexItem>
                 <Chip label="Transport projections" />
               </Divider>
@@ -524,12 +521,12 @@ export const GenerateReport = () => {
                   data={totalTransportProjection}
                 />
               </FlexibleXYPlot>
-              </div>
+              </div> */}  
 
               <div style={{margin:"30px"}}>
           {/* policy quantification results */}
               <Divider textAlign="left" flexItem>
-                <Chip label="Absolute Policy Quantification Results" />
+                <b>Absolute Policy Quantification Results</b>
               </Divider>
               <FlexibleXYPlot
                 className="policy-quantification-chart"
@@ -659,7 +656,7 @@ export const GenerateReport = () => {
 
             <div className="luc_alert_container">
               <Divider textAlign="left" flexItem>
-                <Chip label="CO2e EMISSIONS PER CAPITA | TERRITORIAL APPROACH" />
+                <b>CO2e EMISSIONS PER CAPITA | TERRITORIAL APPROACH</b>
               </Divider>
             </div>
             <table className="table-results">
@@ -789,7 +786,7 @@ export const GenerateReport = () => {
             </div> */}
             <div className="luc_alert_container">
               <Divider textAlign="left" flexItem>
-                <Chip label="Consumption Baseline VS Annual Household Emissions" />
+                <b>Consumption Baseline VS Annual Household Emissions</b>
               </Divider>
             </div>
             <div className="luc_alert_container">

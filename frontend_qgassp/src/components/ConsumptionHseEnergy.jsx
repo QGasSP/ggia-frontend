@@ -190,14 +190,10 @@ export const ConsumptionHseEnergy = () => {
   /*  if (nextCBTransport === false) { */
   return (
     <article>
-      <section>
-        <div>
-          <Divider textAlign="left" flexItem>
-            {" "}
-            <Chip label="Household energy" />
-          </Divider>
+        <div className="heading">
+          <h2>Household energy</h2>
         </div>
-
+        <section>
         <div className="settlementDiv">
           <div className="div_transport">
             <Alert severity="info">

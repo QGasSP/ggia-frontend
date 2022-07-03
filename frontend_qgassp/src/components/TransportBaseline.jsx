@@ -274,7 +274,7 @@ export const TransportBaseline = () => {
                   </label>
                   <label><b>Share</b></label>
                 </div>
-                <Tooltip title="Urban settlement characterized by superb provision of public transportation including metro and/or tram, large pedestrian zones and high density of population.">
+                <Tooltip title="Urban settlement characterized by superb provision of public transportation including metro and/or tram, large pedestrian zones and high density of population." placement="left">
                   <div className="div_transport">
                     <Alert severity="info">
                       Describe below the settlement types that the assessment
@@ -302,7 +302,7 @@ export const TransportBaseline = () => {
                   </div>
                 </Tooltip>
 
-                <Tooltip title="Urban settlement characterized by excellent provision of public transportation and high density of population.">
+                <Tooltip title="Urban settlement characterized by excellent provision of public transportation and high density of population." placement="left">
                   <div className="div_transport">
                     <label htmlFor="urban" className="settle_label">
                       Urban area
@@ -324,7 +324,7 @@ export const TransportBaseline = () => {
                   </div>
                 </Tooltip>
 
-                <Tooltip title="Settlement dominated by private car transport and residential buildings; bus and train transportation available.">
+                <Tooltip title="Settlement dominated by private car transport and residential buildings; bus and train transportation available." placement="left">
                   <div className="div_transport">
                     <label htmlFor="suburban" className="settle_label">
                       {" "}
@@ -346,7 +346,7 @@ export const TransportBaseline = () => {
                   </div>
                 </Tooltip>
 
-                <Tooltip title="A local center that is smaller than a city, providing commercial services to a larger area as well as public transportation (bus, train).">
+                <Tooltip title="A local center that is smaller than a city, providing commercial services to a larger area as well as public transportation (bus, train)." placement="left">
                   <div className="div_transport">
                     <label htmlFor="town" className="settle_label">
                       Town
@@ -367,7 +367,7 @@ export const TransportBaseline = () => {
                   </div>
                 </Tooltip>
 
-                <Tooltip title="Sparsely populated area with limited provision of public transportation (some bus connections only).">
+                <Tooltip title="Sparsely populated area with limited provision of public transportation (some bus connections only)." placement="left">
                   <div className="div_transport">
                     <label htmlFor="rural" className="settle_label">
                       Rural
@@ -677,6 +677,7 @@ export const TransportBaseline = () => {
           <div>
           {total === 100.0 &&
             <div className="nextU2Button">
+              <div id="nextU2button">
               <Button
                 size="small"
                 value="charts"
@@ -685,6 +686,7 @@ export const TransportBaseline = () => {
                 label="Next &raquo;"
                 primary
               />
+              </div>
             </div>
           }
           </div>

@@ -206,11 +206,8 @@ export const BuildingBaseline = () => {
     return (
       <div className="div_transport">
         <article>
-          <div className="headerSettlement">
-            <Divider textAlign="left" flexItem>
-              {" "}
-              <Chip label="BUILDINGS BASELINE" />
-            </Divider>
+          <div className="heading">
+            <h2>Buildings baseline</h2>
           </div>
 
           <section className="section-transport">
@@ -222,7 +219,7 @@ export const BuildingBaseline = () => {
             <section>
               <Divider textAlign="left" flexItem>
                 {" "}
-                <b>U6.1 Number of residential units</b>
+                <b>Number of residential units</b>
               </Divider>
             </section>
             <div className="settlementDiv">
@@ -318,7 +315,7 @@ export const BuildingBaseline = () => {
                   </div>
                 </div>
 
-                <div className="column">
+                <div className="column2">
                   <div className="div_transport">
                     {residentialTotal > 0 && (
                       <RadialChart
@@ -364,7 +361,7 @@ export const BuildingBaseline = () => {
             <section>
               <Divider textAlign="left" flexItem>
                 {" "}
-                <b>U6.2 Floor area of commercial buildings</b>
+                <b>Floor area of commercial buildings</b>
               </Divider>
             </section>
             <div className="settlementDiv">
@@ -489,7 +486,7 @@ export const BuildingBaseline = () => {
                   </div>
                 </div>
 
-                <div className="column">
+                <div className="column2">
                   <div className="div_transport">
                     {commTotal > 0 && (
                       <RadialChart
@@ -561,7 +558,7 @@ export const BuildingBaseline = () => {
                     type="submit"
                     value="Submit"
                     onClick={moveToBuildingsBaselineResults}
-                    label="Next &raquo;"
+                    label="Next &raquo;     "
                     primary="true"
                   />
                   )}

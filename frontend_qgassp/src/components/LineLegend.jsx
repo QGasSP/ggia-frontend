@@ -16,8 +16,8 @@ const ITEMS = [
 
 export const LineLegend = () => {
   return (
-    <div>
-      <DiscreteColorLegend orientation="horizontal" width={800} items={ITEMS}/>
-    </div>
+    <>
+      <DiscreteColorLegend orientation="horizontal" items={ITEMS}/>
+    </>
   );
 };

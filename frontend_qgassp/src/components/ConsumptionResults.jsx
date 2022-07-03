@@ -199,11 +199,10 @@ export const ConsumptionResults = () => {
 
   return (
     <article>
+      <div className="heading">
+        <h2>Results</h2>
+      </div>
       <section>
-        <Divider textAlign="left" flexItem>
-          {" "}
-          <Chip label="Results" />
-        </Divider>
         <>
         {bl !== undefined &&(
           <ConsumptionSummary

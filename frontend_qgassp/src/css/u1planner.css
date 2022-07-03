@@ -54,6 +54,12 @@
   z-index: 1;
 }
 
+.column2 {
+  margin-top: 85px;
+  float: left;
+  width: 50%;
+  z-index: 1;
+}
 
 .row:after {
   margin-top: 0.5rem;
@@ -193,7 +199,7 @@ input[type="number"] {
   font-size: 1.3em;
   font-weight: 400;
   font-family: sans-serif;
-  color: #5e3775;
+  color: #000000;
 }
 
 .settlementDiv {
@@ -286,8 +292,14 @@ margin-top: 20%;
 .heading {
   text-align: center;
   margin-top: 40px;
+  margin-bottom: 20px;
+  font-size: medium;
 }
 
 .transport-legend-style {
   text-align: right;
+}
+
+#nextU2button {
+  margin-top: 40px;
 }

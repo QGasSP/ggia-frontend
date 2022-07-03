@@ -8,6 +8,7 @@ import { useStorageInt, useStorageString } from "../reducers/useStorage";
 import Tooltip from "@mui/material/Tooltip";
 import Alert from "@mui/material/Alert";
 import { useNavigate} from "react-router-dom";
+import { Container } from "@mui/material";
 
 /**
  * Consumption baseline input form UI component
@@ -46,24 +47,19 @@ export const ConsumptionBaseline = () => {
 
 
     return (
-      <>
-        <br />
+      <Container maxWidth="xl">
         <article>
-          <br />
-          <div>
-            <Divider textAlign="left" flexItem>
-              {" "}
-              <Chip label="Area and type population" />
-            </Divider>
-            <Alert severity="info">
+          <div className="heading">
+            <h2>Area and type population</h2>
+          </div>
+          <Alert severity="info">
               This section is used to create a baseline for the
               consumption-based quantification. The consumption calculation
               accounts for the emissions caused by the residents of the area, no
               matter where those emissions occur. The tool allocates emissions
               using data on the annual expenditure of households across a wide
               range of products.
-            </Alert>
-          </div>
+          </Alert>
           <section>
             <form onSubmit={showConsumptionBaseline}>
               <div className="settlementDiv">
@@ -176,6 +172,6 @@ export const ConsumptionBaseline = () => {
             <br />
           </section>
         </article>
-      </>
+      </Container>
     );
 };
