@@ -11,7 +11,7 @@ import {
   VerticalBarSeries,
   RadialChart,
 } from "react-vis";
-
+import { Grid } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import { useNavigate } from "react-router-dom";
@@ -162,22 +162,19 @@ policyQuantificationResponse.data.policyTable.warehouses.peat);
 
    if (Object.keys(policyQuantificationResponse).length !== 0) {
     return (
-      <section>
-      <div>
-        <Divider textAlign="left" flexItem>
-          <Chip label="BUILDINGS BASELINE RESULTS" />
-        </Divider>
+    <>
+    <section>
+     <div className="heading">
+        <h2>Policy impact</h2>
       </div>
-      <section>
-        <Divider textAlign="left" flexItem>
+      <Grid container spacing={2}>
+        <Grid item xs={5}>
+                 <section>
           <b>
             GHG emissions from the energy use in residential buildings by unit
             type and source of heating energy
           </b>
-        </Divider>
       </section>
-
-      {/* table 1 6X9 */}
       <table className="buildings-table">
         <thead>
           <tr>
@@ -250,16 +247,12 @@ policyQuantificationResponse.data.policyTable.warehouses.peat);
       </table>
 
       <section>
-        <Divider textAlign="left" flexItem>
-          {" "}
           <b>
             CO2 emissions from the energy use in commercial buildings by
             building type and source of heating energy
           </b>
-        </Divider>
       </section>
 
-      {/* table 2 8X9 */}
       <table className="buildings-table">
         <thead>
           <tr>
@@ -354,70 +347,72 @@ policyQuantificationResponse.data.policyTable.warehouses.peat);
           </tr>
         </tbody>
       </table>
-
-      <div className="headerSettlement">
-          <Divider textAlign="left" flexItem>
-            <Chip label="BASELINE EMISSIONS - ENERGY USE IN BUILDINGS (tCO2e)" />
-          </Divider>
-      </div>
-
-      <div className="buildings-baseline">
-        <XYPlot
-          width={800}
-          height={500}
-          xType="ordinal"
-          stackBy="y"
-        >
-          <HorizontalGridLines style={{ stroke: "#B7E9ED" }} />
-          <VerticalGridLines style={{ stroke: "#B7E9ED" }} />
-          <VerticalBarSeries className="LucStackedBarchart" />
-          <XAxis
-            title="Year"
-            style={{
-              line: { stroke: "#ADDDE1" },
-              ticks: { stroke: "#ADDDE1" },
-              text: { stroke: "none", fill: "#6b6b76", fontWeight: 600 },
-            }}
-          />
-          <YAxis title="Energy use  tC02e" />
-          {/* 1 */}
-          <BarSeries color="#ffdf43" opacity={0.6} data={apartmentsData} />
-          {/* 2 */}
-          <BarSeries color="#76918e" opacity={0.6} data={terracedData} />
-          {/* 3 */}
-          <BarSeries color="#ce143d" opacity={0.6} data={semidetachedData} />
-          {/* 4 */}
-          <BarSeries color="#d6e7d9" opacity={0.6} data={detachedData} />
-          {/* 5 */}
-          <BarSeries color="#002117" opacity={0.6} data={retailData} />
-          {/* 6 */}
-          <BarSeries color="#ef7d00" opacity={0.6} data={healthData} />
-          {/* 7 */}
-          <BarSeries color="#6c3b00" opacity={0.6} data={hospitalityData} />
-          {/* 8 */}
-          <BarSeries color="#00aed5" opacity={0.6} data={officesData} />
-          {/* 9 */}
-          <BarSeries color="#8C0303" opacity={0.6} data={industrialData} />
-          {/* 10 */}
-          <BarSeries color="#A6036D" opacity={0.6} data={warehousesData} />
-        </XYPlot>
-      </div>
-      <div className="luc_legendline">
+        </Grid>
+        <Grid item xs={7} mt={30}>
+          <section >
+            <b>Energy use in buildings (tCO2e)</b>
+          </section>
+          <div className="buildings-baseline">
+            <XYPlot
+              width={800}
+              height={500}
+              xType="ordinal"
+              stackBy="y"
+            >
+              <HorizontalGridLines style={{ stroke: "#B7E9ED" }} />
+              <VerticalGridLines style={{ stroke: "#B7E9ED" }} />
+              <VerticalBarSeries className="LucStackedBarchart" />
+              <XAxis
+                title="Year"
+                style={{
+                  line: { stroke: "#ADDDE1" },
+                  ticks: { stroke: "#ADDDE1" },
+                  text: { stroke: "none", fill: "#6b6b76", fontWeight: 600 },
+                }}
+              />
+              <YAxis title="Energy use  tC02e" />
+              {/* 1 */}
+              <BarSeries color="#ffdf43" opacity={0.6} data={apartmentsData} />
+              {/* 2 */}
+              <BarSeries color="#76918e" opacity={0.6} data={terracedData} />
+              {/* 3 */}
+              <BarSeries color="#ce143d" opacity={0.6} data={semidetachedData} />
+              {/* 4 */}
+              <BarSeries color="#d6e7d9" opacity={0.6} data={detachedData} />
+              {/* 5 */}
+              <BarSeries color="#002117" opacity={0.6} data={retailData} />
+              {/* 6 */}
+              <BarSeries color="#ef7d00" opacity={0.6} data={healthData} />
+              {/* 7 */}
+              <BarSeries color="#6c3b00" opacity={0.6} data={hospitalityData} />
+              {/* 8 */}
+              <BarSeries color="#00aed5" opacity={0.6} data={officesData} />
+              {/* 9 */}
+              <BarSeries color="#8C0303" opacity={0.6} data={industrialData} />
+              {/* 10 */}
+              <BarSeries color="#A6036D" opacity={0.6} data={warehousesData} />
+            </XYPlot>
+          </div>
+      <div className="transport-legend-style">
         <LineLegendBuildingBaselineCharts />
       </div>
+        </Grid>
+      </Grid>
 
       <div className="buildings-buttons">
-        <div className="">
+        <div className="policy-building-button">
           <Button
             size="small"
             value="backProjections"
             onClick={goBackToBuildingsBaseline}
             label="&laquo; Previous"
-            secondary
+            secondary="true"
           />
         </div>
       </div>
     </section>
+
+    </>
     );
   }
 };

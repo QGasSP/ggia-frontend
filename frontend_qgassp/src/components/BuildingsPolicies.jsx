@@ -1125,20 +1125,17 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
   if (policiesCharts === false) {
     return (
       <section>
-        <div className="headerSettlement">
-          <Divider textAlign="left" flexItem>
-            {" "}
-            <Chip label="U8 POLICY QUANTIFICATION" />
-          </Divider>
-          <Alert severity="info">
+        <div className="heading">
+          <h2>Policy quantification</h2>
+        </div>
+        <Alert severity="info">
             This section quantifies the impact of retrofit and renovation
             policies on the greenhouse gas emissions.
           </Alert>
-        </div>
         <section>
             <Divider textAlign="left" flexItem>
               {" "}
-              <b>U8.1 Retrofits of residental buildings</b>
+              <b>Retrofits of residental buildings</b>
             </Divider>
           <div className="newResidentDiv">
             <div className="luc_alert_container">
@@ -1829,7 +1826,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
         <section>
             <Divider textAlign="left" flexItem>
               {" "}
-              <b>U8.2 Retrofits of commercial buildings</b>
+              <b>Retrofits of commercial buildings</b>
             </Divider>
           <div className="newResidentDiv">
             <div className="luc_alert_container">
@@ -2406,7 +2403,7 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
         <section>
             <Divider textAlign="left" flexItem>
               {" "}
-              <b>U8.3 Change of building use</b>
+              <b>Change of building use</b>
             </Divider>
           <div className="newResidentDiv">
             <div className="luc_alert_container">
@@ -2918,11 +2915,11 @@ export const BuildingsPolicies = ({newConstructionRequest, country, year, popula
               value="backProjections"
               onClick={() => navigate("../buildingsNewUnits", { replace: true })}
               label="&laquo; Previous"
-              secondary
+              secondary="true"
             />
           </div>
           <div className="nextU2Button">
-                <div className="luc_alert_container">
+                <div className="">
                   <Button
                     size="small"
                     value="charts"

@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Button } from "./Button";
 import "../css/startpage.css";
 import Divider from "@mui/material/Divider";
-import Chip from "@mui/material/Chip";
 import Alert from "@mui/material/Alert";
 import axios from "axios";
 import { useStorageInt, useStorageString } from "../reducers/useStorage";
 import urlPrefix from "../Config";
 import Tooltip from "@mui/material/Tooltip";
+import { Container, Box, Stack } from "@mui/material";
 
 export const StartPage = () => {
   /*  const toggleState = localStorage.getItem("toggleState"); */
@@ -97,24 +97,25 @@ export const StartPage = () => {
   }, []);
 
   return (
-    <>
-      <article>
+    <Container maxWidth="xl">
         <br />
         <div>
           <Divider textAlign="left" flexItem>
             {" "}
-            <Chip style={{fontSize:"18px"}} label="Assesment area information" />
+            <h3>Assesment area information</h3>
           </Divider>
         </div>
-
-        <div className="row_start">
+        
+        <Box mt={2}>
+          <div className="row_start">
           <div className="column_start">
             <header className="intro_header">
-              <h1 id="title" className="header_start">
+              <h3 id="title" className="header_start">
                 Please fill in the required basic information
-              </h1>
+              </h3>
             </header>
-            <Alert severity="info">
+          <Stack spacing={0.2}>
+            <Alert severity="info" style={{marginBottom:"15px"}}>
               Provide the basic information on the assessment area.
             </Alert>
             {nextModule && (
@@ -129,7 +130,9 @@ export const StartPage = () => {
                 a local dataset is optional and only needed for advanced users.
               </Alert>
             )}
-            <Tooltip title="Select the first year of the assessment period.">
+            </Stack>
+
+            <Tooltip title="Select the first year of the assessment period." placement="left-start">
               <div className="form-group">
                 <label htmlFor="year" className="intro_label">
                   Year
@@ -153,7 +156,7 @@ export const StartPage = () => {
                 </select>
               </div>
             </Tooltip>
-            <Tooltip title="Select the location of the assessment area.">
+            <Tooltip title="Select the location of the assessment area." placement="left-start">
               <div className="form-group">
                 <label htmlFor="country" className="intro_label">
                   Country
@@ -176,7 +179,7 @@ export const StartPage = () => {
                 </select>
               </div>
             </Tooltip>
-            <Tooltip title="After creating and uploading a local dataset, select it here.">
+            <Tooltip title="After creating and uploading a local dataset, select it here." placement="left-start">
               <div className="form-group">
                 <label htmlFor="localDataset" className="intro_label">
                   Local Dataset
@@ -198,7 +201,7 @@ export const StartPage = () => {
                 </select>
               </div>
             </Tooltip>
-            <Tooltip title="Insert the total population of the assessment area in the end of the year that you selected above.">
+            <Tooltip title="Insert the total population of the assessment area in the end of the year that you selected above." placement="left-start">
               <div className="form-group">
                 <label htmlFor="population_assessment" className="intro_label">
                   Population
@@ -273,7 +276,7 @@ export const StartPage = () => {
             </div>
           </div> */}
         </div>
-      </article>
-    </>
+        </Box>
+    </Container>
   );
 };

@@ -156,15 +156,14 @@ export const ConsumptionTransport = () =>{
 
       return (
         <article>
-          <section>
-            <Divider textAlign="left" flexItem>
-              {" "}
-              <Chip label="Transportation" />
-            </Divider>
+            <div className="heading">
+              <h2>Transportation</h2>
+            </div>
             <Alert severity="info">
               This section looks at policies affecting transport related
               emissions by residents.
             </Alert>
+            <section>
             <div className="settlementDiv">
               <div className="div_transport">
                 <label>

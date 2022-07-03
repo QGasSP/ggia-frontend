@@ -11,8 +11,6 @@ import { useNavigate } from "react-router-dom";
 export const TabModules = () => {
   const [toggleState, setToggleState] = useState(1);
   const navigate = useNavigate();
-  // const ggiaGuideUrl = "https://github.com/QGasSP/ggia/wiki";
-  // const ggiaGuideUrl = "https://docs.google.com/document/d/1QzVwikOG5_p9vV_XKIEMl7a1y_Mi6Boj";
   const ggiaGuideUrl = "https://drive.google.com/file/d/1kz9lxrfJqlT1X0dXDyw8kD1OmkTkzYme";
   const country = localStorage.getItem("country");
   const year = parseInt(localStorage.getItem("year"));
@@ -26,7 +24,6 @@ export const TabModules = () => {
     toggleTab(1);
     navigate("/", { replace: true });
   };
-
 
   const openTransportModule = () => {
     toggleTab(2);
@@ -67,8 +64,6 @@ export const TabModules = () => {
       <>
         <ModuleHeader />
         <div className="container">
-          <div id="territorial_category"></div>
-
           <div className="bloc-tabs">
             <button
               className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
@@ -121,9 +116,6 @@ export const TabModules = () => {
             </button>
           </div>
         </div>
-        <div className="content-tabs">
-          <></>
-        </div>
       </>
     );
   }else{
@@ -132,15 +124,13 @@ export const TabModules = () => {
     <>
       <ModuleHeader />
       <div className="container">
-        <div id="territorial_category"></div>
-
         <div className="bloc-tabs">
           <button
             className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
             onClick={openWelcomePage}
             id="start"
           >
-            Start{" "}
+            START
           </button>
 
           <button
@@ -148,50 +138,46 @@ export const TabModules = () => {
             onClick={openTransportModule}
             id="transport"
           >
-            Transport
+            TRANSPORT
           </button>
           <button
             className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
             onClick={openLandUseChange}
             id="luc"
           >
-            Land-use change
+            LAND-USE CHANGE
           </button>
           <button
             className={toggleState === 4 ? "tabs active-tabs" : "tabs"}
             onClick={openBuildings}
             id="buildings"
           >
-            Buildings
+            BUILDINGS
           </button>
           <button
             className={toggleState === 5 ? "tabs active-tabs" : "tabs"}
             onClick={openConsumption}
             id="consumption"
           >
-            Consumption-based
+            CONSUMPTION-BASED
             <br />
-            quantification
+            QUANTIFICATION
           </button>
           <button
             className={toggleState === 6 ? "tabs active-tabs" : "tabs"}
             onClick={openGuide}
             id="user_guide"
           >
-            User-guide
+            USER-GUIDE
           </button>
           <button
             className={toggleState === 7 ? "tabs active-tabs" : "tabs"}
-            //  onClick={() => toggleTab(7)}
             onClick={openGenerateReport}
             id="generate_report"
           >
-            Generate report
+            GENERATE REPORT
           </button>
         </div>
-      </div>
-      <div className="content-tabs">
-        <> </>
       </div>
     </>
   );

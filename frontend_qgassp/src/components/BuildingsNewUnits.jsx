@@ -924,11 +924,8 @@ export const BuildingsNewUnits = ({
   if (moveToPolicies === false) {
     return (
       <section>
-        <div className="headerSettlement">
-          <Divider textAlign="left" flexItem>
-            {" "}
-            <Chip label="U7 NEW SETTLEMENT / DENSIFICATION" />
-          </Divider>
+        <div className="heading">
+            <h2>New settlement / desinfication</h2>
           <div className="luc_alert_container">
             <Alert severity="info">
               This section estimates the greenhouse gas emissions from the energy
@@ -941,7 +938,7 @@ export const BuildingsNewUnits = ({
         <section>
             <Divider textAlign="left" flexItem>
               {" "}
-              <b>U7.1 New residential units</b>
+              <b>New residential units</b>
             </Divider>
             <div className="luc_alert_container">
               <Alert severity="info">
@@ -1225,7 +1222,7 @@ export const BuildingsNewUnits = ({
         <section>
             <Divider textAlign="left" flexItem>
               {" "}
-              <b>U7.2 New commercial buildings</b>
+              <b>New commercial buildings</b>
             </Divider>
             <div className="luc_alert_container">
               <Alert severity="info">
@@ -1623,7 +1620,7 @@ export const BuildingsNewUnits = ({
         <section>
             <Divider textAlign="left" flexItem>
               {" "}
-              <b>U7.3 Densification</b>
+              <b>Densification</b>
             </Divider>
             <div className="luc_alert_container">
               <Alert severity="info">
@@ -2552,15 +2549,6 @@ export const BuildingsNewUnits = ({
             <div className="nextU2Button">
                 <div className="">
                   <Button
-                    size="small"
-                    value="charts"
-                    onClick={moveToPoliciesForms}
-                    label="Next &raquo;"
-                    primary
-                  />
-                </div>
-                <div className="">
-                  <Button
                     id="btn-next"
                     size="small"
                     type="submit"
@@ -2568,6 +2556,15 @@ export const BuildingsNewUnits = ({
                     onClick={submitNewConstruction}
                     label="Submit"
                     primary="true"
+                  />
+                </div>
+                <div className="">
+                  <Button
+                    size="small"
+                    value="charts"
+                    onClick={moveToPoliciesForms}
+                    label="Next &raquo;"
+                    primary
                   />
                 </div>
             </div>
