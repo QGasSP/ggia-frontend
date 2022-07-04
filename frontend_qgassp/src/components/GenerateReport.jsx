@@ -187,17 +187,20 @@ export const GenerateReport = () => {
           // totalPolicyQuantification.push({ x: i, y: absolutePolicyQuantification.total[i] })
       };
     }
+
     if (policyQuantificationResponse && 
         absoluteEmissions &&
         landUseChangeResponseOtherData &&
-        policyQuantificationResponse.length !== 0 &&
-        absoluteEmissions.length !== 0 &&
-        landUseChangeResponseOtherData.length !== 0){
+        landUseChangeResponse &&
+        Object.keys(policyQuantificationResponse).length !== 0 &&
+        Object.keys(absoluteEmissions).length !== 0 &&
+        Object.keys(landUseChangeResponseOtherData).length !== 0 &&
+        Object.keys(landUseChangeResponse).length !== 0 ){
       for (let i = year; i < 2051; i++) {
         buildingEmissionsTotal.push({x: i, y: policyQuantificationResponse.data.graph[i].total})
         buildingBaseline.push({x: i, y: policyQuantificationResponse.data.graph[i].baseline})
         absoluteEmissionsTotal.push({x:i, y: absoluteEmissions.total[i]})
-        netPositivesLuc.push({x: i, y:landUseChangeResponseOtherData.landUseTotalEmissions.positive[i]})
+        netPositivesLuc.push({x: i, y: landUseChangeResponseOtherData.landUseTotalEmissions.positive[i]})
         netNegativesLuc.push({x:i, y: landUseChangeResponseOtherData.landUseTotalEmissions.negative[i]})
       }
     }
