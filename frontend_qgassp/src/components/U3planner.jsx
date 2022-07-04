@@ -27,7 +27,10 @@ export const U3planner = () => {
   const year = JSON.parse(localStorage.getItem("year"))
   const baseline = base.baseline;
   const newDevelopment = JSON.parse(localStorage.getItem("newDevelopment"));
-  const emission = JSON.parse(localStorage.getItem("emission"));
+  const modalSplitPercentage = JSON.parse(localStorage.getItem("modalSplitPercentage"));
+  const busPropulsionShare = JSON.parse(localStorage.getItem("busPropulsionShare"));
+  const carPropulsionShare = JSON.parse(localStorage.getItem("carPropulsionShare"));
+  const transportElectricityConsumption = JSON.parse(localStorage.getItem("transportElectricityConsumption"));
 
   // policy quantification response / request
   const [policyQuantification, setPolicyQuantification] = useStorageString("policyQuantification","");
@@ -45,9 +48,6 @@ export const U3planner = () => {
   const [policyQuantificationTransportRequest, setPolicyQuantificationTransportRequest] = useState({});
 
   const [errorU3, setU3Error] = useState("");
- 
-  const [shares, setShares] = useStorageString("shares","");
-
   const [loadingStyles, setLoadingStyle] = useState({
     display: "none",
   });
@@ -115,21 +115,22 @@ export const U3planner = () => {
   const [fuelSharesCarYearStart, setFuelSharesCarYearStart] = useStorageInt("fuelSharesCarYearStart", 0);
   const [fuelSharesCarYearEnd, setFuelSharesCarYearEnd] = useStorageInt("fuelSharesCarYearEnd", 0);
   const [fuelSharesCarPopulationAffected, setFuelSharesCarPopulationAffected] = useStorageInt("fuelSharesCarPopulationAffected", 0);
-  const [carLpg, setCarLpg] = useStorageInt("carLpg", 0)
-  const [carCng, setCarCng] = useStorageInt("carCng", 0)
-  const [carElectricity, setCarElectricity] = useStorageInt("carElectricity", 0)
-  const [carPetrol, setCarPetrol] = useStorageInt("carPetrol",0);
-  const [carDiesel, setCarDiesel] = useStorageInt("carDiesel",0);
-  const [ngv, setNgv] = useStorageInt("ngv",0);
-  const [hep, setHep] = useStorageInt("hep",0);
-  const [phev, setPhev] = useStorageInt("phev",0);
-  const [hydrogenfuel, setHydrogenfuel] = useStorageInt("hydrogenfuel",0);
-  const [bioethanol, setBioethanol] = useStorageInt("bioethanol",0);
-  const [biodiesel, setBiodiesel] = useStorageInt("biodiesel",0);
-  const [bifuel, setBifuel] = useStorageInt("bifuel",0);
-  const [other, setOther] = useStorageInt("other",0);
-  const [dEhybrid, setDeHybrid] = useStorageInt("dEhybrid", 0)
-  const [dEphev, setDePhev] = useStorageInt("dEphev", 0)
+  const [carLpg, setCarLpg] = useStorageFloat("carLpg", 0)
+  const [carCng, setCarCng] = useStorageFloat("carCng", 0)
+  const [carElectricity, setCarElectricity] = useStorageFloat("carElectricity", 0)
+  const [carPetrol, setCarPetrol] = useStorageFloat("carPetrol",0);
+  const [carDiesel, setCarDiesel] = useStorageFloat("carDiesel",0);
+  const [ngv, setNgv] = useStorageFloat("ngv",0);
+  const [hep, setHep] = useStorageFloat("hep",0);
+  const [phev, setPhev] = useStorageFloat("phev",0);
+  const [hydrogenfuel, setHydrogenfuel] = useStorageFloat("hydrogenfuel",0);
+  const [bioethanol, setBioethanol] = useStorageFloat("bioethanol",0);
+  const [biodiesel, setBiodiesel] = useStorageFloat("biodiesel",0);
+  const [bifuel, setBifuel] = useStorageFloat("bifuel",0);
+  const [other, setOther] = useStorageFloat("other",0);
+  const [dEhybrid, setDeHybrid] = useStorageFloat("dEhybrid", 0)
+  const [dEphev, setDePhev] = useStorageFloat("dEphev", 0)
+  const [totalCarFuelShares, setTotalCarFuelShares] = useStorageFloat("totalCarFuelShares", 0)                                              
   
   // shares of fuel types in car transport end
   
@@ -325,14 +326,18 @@ const handleCarCng = (e) => {
   setCarCng(Number(e.target.value));
 };
 
+const fuelCarTotal = carLpg + carCng + ngv + hep + phev + dEhybrid + dEphev + hydrogenfuel + biodiesel + bioethanol + bifuel + other + carElectricity
+const getCarPetrol = carPropulsionShare[fuelSharesCarYearEnd].petrol / (carPropulsionShare[fuelSharesCarYearEnd].petrol + carPropulsionShare[fuelSharesCarYearEnd].diesel) * ( 100 - fuelCarTotal)
 const handleCarPetrol = e => {
   e.preventDefault();
-  setCarPetrol(Number(e.target.value))
-}
+
+  setCarPetrol(getCarPetrol);
+};
 
 const handleCarDiesel = e => {
   e.preventDefault();
-   setCarDiesel(Number(e.target.value));
+  const getCarDiesel = ( 100 - (fuelCarTotal + getCarPetrol))
+  setCarDiesel(getCarDiesel);
 };
 
 const handleCarElectricity = e => {
@@ -382,6 +387,11 @@ const handleDeHybrid = (e) => {
 const handleDePhev = (e) => {
   e.preventDefault();
   setDePhev(Number(e.target.value));
+}
+
+const getCarFuelTotal = () => {
+
+  setTotalCarFuelShares(carLpg + carCng + ngv + hep + phev + dEhybrid + dEphev + hydrogenfuel + biodiesel + bioethanol + bifuel + other + carElectricity + carDiesel + carPetrol)
 }
 
   // car fuel shares end
@@ -479,8 +489,8 @@ const handleDePhev = (e) => {
 
     // fuel car start
     const fuelSharesCarTypes = {
-      "lpg": lpg,
-      "cng": cng,
+      "lpg": carLpg,
+      "cng": carCng,
       "ngv": ngv,
       "p_e_hybrid": hep,
       "p_e_phev": phev,
@@ -491,7 +501,7 @@ const handleDePhev = (e) => {
       "biodiesel": biodiesel,
       "bifuel": bifuel,
       "other": other,
-      "electricity_bev": electricity
+      "electricity_bev": carElectricity
       // petrol,
       // diesel,
     };
@@ -574,15 +584,9 @@ const handleDePhev = (e) => {
 
   useEffect(async () => {
    localStorage.setItem("policyQuantificationTransportResponse", JSON.stringify(policyQuantificationTransportResponse)) 
-  }, [policyQuantificationTransportResponse]);
-
-  useEffect(async () => {
-   localStorage.setItem("policyQuantificationTransportRequest", JSON.stringify(policyQuantificationTransportRequest)) 
-  }, [policyQuantificationTransportRequest]);
-
-  useEffect(async () => {
-   localStorage.setItem("absolutePolicyQuantification", JSON.stringify(absolutePolicyQuantification)) 
-  }, [absolutePolicyQuantification]);
+   localStorage.setItem("absolutePolicyQuantification", JSON.stringify(absolutePolicyQuantification));
+   localStorage.setItem("policyQuantificationTransportRequest", JSON.stringify(policyQuantificationTransportRequest)); 
+  }, [policyQuantificationTransportResponse, absolutePolicyQuantification, policyQuantificationTransportRequest]);
 
    const gotoU3policies = () => {
     navigate("/u3policies", {
@@ -594,6 +598,13 @@ const handleDePhev = (e) => {
     await createPolicyQuantification(e.preventDefault());
     await gotoU3policies();
   }
+
+
+  // eslint-disable-next-line no-console
+  console.log(carPetrol, "car petrol")
+
+  // eslint-disable-next-line no-console
+  console.log(carDiesel, "car diesel")
 
     return (
       <Container maxWidth="xl">
@@ -822,7 +833,8 @@ const handleDePhev = (e) => {
                 <tbody>
                   <tr>
                     <td>Share for bus</td>
-                    <td>{emission.bus}</td>
+                    <td>{modalSplitPercentage.passenger_transport[modalSplitPassengerYearEnd] === undefined ?
+                     "" : modalSplitPercentage.passenger_transport[modalSplitPassengerYearEnd].bus.toFixed(2)}</td>
                     <td> <input
                     className="input-u3"
                     type="number"
@@ -852,7 +864,8 @@ const handleDePhev = (e) => {
                   </tr>
                   <tr>
                     <td>Share for metro</td>
-                    <td>{emission.metro}</td>
+                    <td>{modalSplitPercentage.passenger_transport[modalSplitPassengerYearEnd] === undefined ?
+                     "" : modalSplitPercentage.passenger_transport[modalSplitPassengerYearEnd].metro.toFixed(2)}</td>
                     <td><input
                       type="number"
                       step="0.1"
@@ -869,7 +882,8 @@ const handleDePhev = (e) => {
                   </tr>
                   <tr>
                     <td>Share for tram</td>
-                    <td>{emission.tram}</td>
+                    <td>{modalSplitPercentage.passenger_transport[modalSplitPassengerYearEnd] === undefined ?
+                     "" : modalSplitPercentage.passenger_transport[modalSplitPassengerYearEnd].tram.toFixed(2)}</td>
                     <td> <input
                       type="number"
                       step="0.1"
@@ -886,7 +900,8 @@ const handleDePhev = (e) => {
                   </tr>
                   <tr>
                     <td>Share for train</td>
-                    <td>{emission.train}</td>
+                    <td>{modalSplitPercentage.passenger_transport[modalSplitPassengerYearEnd] === undefined ?
+                     "" : modalSplitPercentage.passenger_transport[modalSplitPassengerYearEnd].train.toFixed(2)}</td>
                     <td><input
                       type="number"
                       className="input-u3"
@@ -902,7 +917,8 @@ const handleDePhev = (e) => {
                   </tr>
                   <tr>
                     <td>Share for car</td>
-                    <td>{emission.car}</td>
+                    <td>{modalSplitPercentage.passenger_transport[modalSplitPassengerYearEnd] === undefined ?
+                     "" : modalSplitPercentage.passenger_transport[modalSplitPassengerYearEnd].car.toFixed(2)}</td>
                     <td><input
                       type="number"
                       className="input-u3"
@@ -981,7 +997,8 @@ const handleDePhev = (e) => {
                 <tbody>
                   <tr>
                     <td>Share for rail</td>
-                    <td>{emission.rail_transport}</td>
+                    <td>{modalSplitPercentage.freight_transport[freightTransportYearEnd] === undefined ?
+                     "" : modalSplitPercentage.freight_transport[freightTransportYearEnd].rail_transport.toFixed(2)}</td>
                     <td><input
                     className="input-u3"
                     type="number"
@@ -997,7 +1014,8 @@ const handleDePhev = (e) => {
                   </tr>
                   <tr>
                     <td>Share for inland waterways</td>
-                    <td>{emission.waterways_transport}</td>
+                    <td>{modalSplitPercentage.freight_transport[freightTransportYearEnd] === undefined ?
+                     "" : modalSplitPercentage.freight_transport[freightTransportYearEnd].waterways_transport.toFixed(2)}</td>
                     <td><input
                       type="number"
                       step="0.1"
@@ -1014,7 +1032,8 @@ const handleDePhev = (e) => {
                   </tr>
                   <tr>
                     <td>Share for road freight</td>
-                    <td>{emission.road_transport}</td>
+                    <td>{modalSplitPercentage.freight_transport[freightTransportYearEnd] === undefined ?
+                     "" : modalSplitPercentage.freight_transport[freightTransportYearEnd].road_transport.toFixed(2)}</td>
                     <td><input
                       type="number"
                       step="0.1"
@@ -1102,7 +1121,8 @@ const handleDePhev = (e) => {
                 <tbody>
                   <tr>
                     <td>Petroleum products</td>
-                    <td></td>
+                    <td>{busPropulsionShare[fuelSharesBusYearEnd] === undefined ?
+                     "" : busPropulsionShare[fuelSharesBusYearEnd].petrol.toFixed(2)}</td>
                     <td><input
                       className="input-u3"
                       type="number"
@@ -1129,7 +1149,8 @@ const handleDePhev = (e) => {
 
                   <tr>
                     <td>Liquified Petroleum Gas (LPG)</td>
-                    <td></td>
+                    <td>{busPropulsionShare[fuelSharesBusYearEnd] === undefined ?
+                     "" : busPropulsionShare[fuelSharesBusYearEnd].lpg.toFixed(2)}</td>
                     <td><input
                       type="number"
                       step="0.1"
@@ -1148,7 +1169,8 @@ const handleDePhev = (e) => {
                   </tr>
                   <tr>
                     <td>Natural Gas (CNG)</td>
-                    <td></td>
+                    <td>{busPropulsionShare[fuelSharesBusYearEnd] === undefined ?
+                     "" : busPropulsionShare[fuelSharesBusYearEnd].cng.toFixed(2)}</td>
                     <td><input
                       className="input-u3"
                       type="number"
@@ -1167,7 +1189,8 @@ const handleDePhev = (e) => {
 
                   <tr>
                     <td>Electricity</td>
-                    <td></td>
+                    <td>{busPropulsionShare[fuelSharesBusYearEnd] === undefined ?
+                     "" : busPropulsionShare[fuelSharesBusYearEnd].electricity.toFixed(2)}</td>
                     <td><input
                       className="input-u3"
                       type="number"
@@ -1186,7 +1209,8 @@ const handleDePhev = (e) => {
 
                   <tr>
                     <td>Diesel</td>
-                    <td></td>
+                    <td>{busPropulsionShare[fuelSharesBusYearEnd] === undefined ?
+                     "" : busPropulsionShare[fuelSharesBusYearEnd].diesel.toFixed(2)}</td>
                     <td><input
                       className="input-u3"
                       type="number"
@@ -1282,7 +1306,8 @@ const handleDePhev = (e) => {
                   <tbody>
                     <tr>
                       <td>Liquified Petroleum Gas (LPG)</td>
-                      <td></td>
+                      <td>{carPropulsionShare[fuelSharesCarYearEnd] === undefined ?
+                       "" : carPropulsionShare[fuelSharesCarYearEnd].lpg.toFixed(2)}</td>
                       <td> <input
                       className="input-u3"
                       type="number"
@@ -1290,6 +1315,7 @@ const handleDePhev = (e) => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseLeave={getCarFuelTotal}
                       onChange={handleCarLpg}
                       value={carLpg}
                       required
@@ -1311,7 +1337,8 @@ const handleDePhev = (e) => {
 
                     <tr>
                       <td>Natural Gas (CNG)</td>
-                      <td></td>
+                      <td>{carPropulsionShare[fuelSharesCarYearEnd] === undefined ?
+                       "" : carPropulsionShare[fuelSharesCarYearEnd].cng.toFixed(2)}</td>
                       <td><input
                       type="number"
                       step="0.1"
@@ -1320,6 +1347,7 @@ const handleDePhev = (e) => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseLeave={getCarFuelTotal}
                       onChange={handleCarCng}
                       value={carCng}
                       required
@@ -1328,7 +1356,8 @@ const handleDePhev = (e) => {
 
                     <tr>
                       <td>Alternative Energy/biomethane NGV</td>
-                      <td></td>
+                      <td>{carPropulsionShare[fuelSharesCarYearEnd] === undefined ?
+                       "" : carPropulsionShare[fuelSharesCarYearEnd].ngv.toFixed(2)}</td>
                       <td><input
                       className="input-u3"
                       type="number"
@@ -1336,6 +1365,7 @@ const handleDePhev = (e) => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseLeave={getCarFuelTotal}
                       onChange={handleNgv}
                       value={ngv}
                       required
@@ -1344,7 +1374,8 @@ const handleDePhev = (e) => {
 
                     <tr>
                       <td>Petrol-electric hybrid</td>
-                      <td></td>
+                      <td>{carPropulsionShare[fuelSharesCarYearEnd] === undefined ?
+                       "" : carPropulsionShare[fuelSharesCarYearEnd].p_e_hybrid.toFixed(2)}</td>
                       <td> <input
                       className="input-u3"
                       type="number"
@@ -1352,6 +1383,7 @@ const handleDePhev = (e) => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseLeave={getCarFuelTotal}
                       onChange={handleHep}
                       value={hep}
                       required
@@ -1360,7 +1392,8 @@ const handleDePhev = (e) => {
 
                     <tr>
                       <td>Petrol-electric plug-in hybrid (PHEV)</td>
-                      <td></td>
+                      <td>{carPropulsionShare[fuelSharesCarYearEnd] === undefined ?
+                       "" : carPropulsionShare[fuelSharesCarYearEnd].p_e_phev.toFixed(2)}</td>
                       <td><input
                       className="input-u3"
                       type="number"
@@ -1368,6 +1401,7 @@ const handleDePhev = (e) => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseLeave={getCarFuelTotal}
                       onChange={handlePhev}
                       value={phev}
                       required
@@ -1376,7 +1410,8 @@ const handleDePhev = (e) => {
 
                     <tr>
                       <td>Diesel-electric hybrid</td>
-                      <td></td>
+                      <td>{carPropulsionShare[fuelSharesCarYearEnd] === undefined ?
+                       "" : carPropulsionShare[fuelSharesCarYearEnd].d_e_hybrid.toFixed(2)}</td>
                       <td><input
                       className="input-u3"
                       type="number"
@@ -1384,6 +1419,7 @@ const handleDePhev = (e) => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseLeave={getCarFuelTotal}
                       onChange={handleDeHybrid}
                       value={dEhybrid}
                       required
@@ -1392,7 +1428,8 @@ const handleDePhev = (e) => {
 
                      <tr>
                       <td>Diesel-electric plug-in hybrid (PHEV)</td>
-                      <td></td>
+                      <td>{carPropulsionShare[fuelSharesCarYearEnd] === undefined ?
+                       "" : carPropulsionShare[fuelSharesCarYearEnd].d_e_phev.toFixed(2)}</td>
                       <td><input
                       className="input-u3"
                       type="number"
@@ -1400,6 +1437,7 @@ const handleDePhev = (e) => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseLeave={getCarFuelTotal}
                       onChange={handleDePhev}
                       value={dEphev}
                       required
@@ -1408,7 +1446,8 @@ const handleDePhev = (e) => {
 
                     <tr>
                       <td>Hydrogen and fuel cells</td>
-                      <td></td>
+                      <td>{carPropulsionShare[fuelSharesCarYearEnd] === undefined ?
+                       "" : carPropulsionShare[fuelSharesCarYearEnd].hydrogen_fuel.toFixed(2)}</td>
                       <td><input
                       className="input-u3"
                       type="number"
@@ -1416,6 +1455,7 @@ const handleDePhev = (e) => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseLeave={getCarFuelTotal}
                       onChange={handleHydrogenfuel}
                       value={hydrogenfuel}
                       required
@@ -1424,7 +1464,8 @@ const handleDePhev = (e) => {
 
                     <tr>
                       <td>Bioethanol</td>
-                      <td></td>
+                      <td>{carPropulsionShare[fuelSharesCarYearEnd] === undefined ?
+                       "" : carPropulsionShare[fuelSharesCarYearEnd].bioethanol.toFixed(2)}</td>
                       <td><input
                       type="number"
                       step="0.1"
@@ -1432,6 +1473,7 @@ const handleDePhev = (e) => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseLeave={getCarFuelTotal}
                       onChange={handleBioethanol}
                       value={bioethanol}
                       required
@@ -1440,7 +1482,8 @@ const handleDePhev = (e) => {
 
                     <tr>
                       <td>Bio-diesel</td>
-                      <td></td>
+                      <td>{carPropulsionShare[fuelSharesCarYearEnd] === undefined ?
+                       "" : carPropulsionShare[fuelSharesCarYearEnd].biodiesel.toFixed(2)}</td>
                       <td><input
                       className="input-u3"
                       type="number"
@@ -1448,6 +1491,7 @@ const handleDePhev = (e) => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseLeave={getCarFuelTotal}
                       onChange={handleBiodiesel}
                       value={biodiesel}
                       required
@@ -1456,7 +1500,8 @@ const handleDePhev = (e) => {
 
                     <tr>
                       <td>Bi-fuel</td>
-                      <td></td>
+                      <td>{carPropulsionShare[fuelSharesCarYearEnd] === undefined ?
+                       "" : carPropulsionShare[fuelSharesCarYearEnd].bifuel.toFixed(2)}</td>
                       <td><input
                       className="input-u3"
                       type="number"
@@ -1464,6 +1509,7 @@ const handleDePhev = (e) => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseLeave={getCarFuelTotal}
                       onChange={handleBifuel}
                       value={bifuel}
                       required
@@ -1472,7 +1518,8 @@ const handleDePhev = (e) => {
 
                     <tr>
                       <td>Other (unknown)</td>
-                      <td></td>
+                      <td>{carPropulsionShare[fuelSharesCarYearEnd] === undefined ?
+                       "" : carPropulsionShare[fuelSharesCarYearEnd].other.toFixed(2)}</td>
                       <td> <input
                       className="input-u3"
                       type="number"
@@ -1480,6 +1527,7 @@ const handleDePhev = (e) => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseLeave={getCarFuelTotal}
                       onChange={handleOther}
                       value={other}
                       required
@@ -1489,7 +1537,8 @@ const handleDePhev = (e) => {
 
                     <tr>
                       <td>Electricity BEV</td>
-                      <td></td>
+                      <td>{carPropulsionShare[fuelSharesCarYearEnd] === undefined ?
+                       "" : carPropulsionShare[fuelSharesCarYearEnd].electricity_bev.toFixed(2)}</td>
                       <td><input
                       className="input-u3"
                       type="number"
@@ -1497,6 +1546,7 @@ const handleDePhev = (e) => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseLeave={getCarFuelTotal}
                       onChange={handleCarElectricity}
                       value={carElectricity}
                       required
@@ -1505,7 +1555,8 @@ const handleDePhev = (e) => {
 
                    <tr>
                       <td>Petrol, according to country selection</td>
-                      <td></td>
+                      <td>{carPropulsionShare[fuelSharesCarYearEnd] === undefined ?
+                       "" : carPropulsionShare[fuelSharesCarYearEnd].petrol.toFixed(2)}</td>
                       <td><input
                       className="input-u3"
                       type="number"
@@ -1513,15 +1564,17 @@ const handleDePhev = (e) => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
-                      onChange={handleCarPetrol}
-                      value={carPetrol}
+                      onMouseLeave={getCarFuelTotal}
+                      onMouseOver={handleCarPetrol}
+                      value={carPetrol <= 100 && carPetrol >= 0 ? carPetrol.toFixed(2) : 0}
                       disabled
                       /></td>
                     </tr>
 
                     <tr>
                       <td>Diesel, according to country selection</td>
-                      <td></td>
+                      <td>{carPropulsionShare[fuelSharesCarYearEnd] === undefined ?
+                       "" : carPropulsionShare[fuelSharesCarYearEnd].diesel.toFixed(2)}</td>
                       <td><input
                       className="input-u3"
                       type="number"
@@ -1529,10 +1582,17 @@ const handleDePhev = (e) => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
-                      onChange={handleCarDiesel}
-                      value={carDiesel}
+                      onMouseLeave={getCarFuelTotal}
+                      onMouseOver={handleCarDiesel}
+                      value={carDiesel <= 100 && carDiesel >= 0 ? carDiesel.toFixed(2) : 0}
                       disabled
                     /></td>
+                    </tr>
+
+                    <tr>
+                      <td>Total</td>
+                      <td></td>
+                      {totalPassengerTransport === 100 ? <td>{totalPassengerTransport}%</td> : <td>Error: Total value needs to equal to 100%</td>} 
                     </tr> 
 
                     <tr>
@@ -1600,7 +1660,8 @@ const handleDePhev = (e) => {
                 <tbody>
                   <tr>
                     <td>Increase in renewables in transport electricty</td>
-                    <td></td>
+                    <td>{transportElectricityConsumption[electricityTransportYearEnd] === undefined ?
+                     "" :transportElectricityConsumption[electricityTransportYearEnd]}</td>
                     <td><input
                     className="input-u3"
                     type="number"

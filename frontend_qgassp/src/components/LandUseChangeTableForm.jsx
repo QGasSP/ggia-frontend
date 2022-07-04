@@ -285,6 +285,13 @@ export const LandUseChangeTableForm = () => {
     const initialValue = JSON.parse(savedLuc);
     return initialValue || {};
   });
+
+  const [landUseChangeResponseOtherData, setLandUseChangeResponseOtherData] = useState(() => {
+    const savedLuc = localStorage.getItem("landUseChangeResponse");
+    const initialValue = JSON.parse(savedLuc);
+    return initialValue || {};
+  });
+
   const [loadingStyles, setLoadingStyle] = useState({
     display: "none",
   });
@@ -1358,14 +1365,19 @@ export const LandUseChangeTableForm = () => {
   };
   const setResponse = (response) => {
     setLandUseChangeResponse(response.data);
+    setLandUseChangeResponseOtherData(response.otherData);
   };
-  useEffect(() => {
+  useEffect(async () => {
     localStorage.setItem(
       "landUseChangeResponse",
       JSON.stringify(landUseChangeResponse)
     );
-  }, [landUseChangeResponse]);
 
+    localStorage.setItem(
+      "landUseChangeResponseOtherData",
+      JSON.stringify(landUseChangeResponseOtherData));
+
+  }, [landUseChangeResponse, landUseChangeResponseOtherData]);
 
   const [lucToForest, setLucToForest] = useLocalStorageBoolean("lucToForest", "false");
   const handleLucToForest = (e) => {
