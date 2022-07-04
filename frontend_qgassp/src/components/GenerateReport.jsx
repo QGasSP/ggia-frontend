@@ -262,7 +262,7 @@ export const GenerateReport = () => {
     });
   }
 
-  for (let i = 2022; i < 2051; i++) {
+  for (let i = year; i < 2051; i++) {
     dataBlTotalEmissions.push({ x: i, y: blTotalEmmissions[i] });
     policyHousingEnergy.push({ x: i, y: p1.housingEnergy[i] });
     policyHousingOther.push({ x: i, y: p1.housingOther[i] });
@@ -278,7 +278,7 @@ export const GenerateReport = () => {
 
   }
 
-  for (let i = 2022; i < 2051; i++) { 
+  for (let i = year; i < 2051; i++) { 
     busProjection.push({ x: i, y: projections.bus[i] });  
     carProjection.push({ x: i, y: projections.car[i] });
     metroProjection.push({ x: i, y: projections.metro[i] });
@@ -422,9 +422,8 @@ export const GenerateReport = () => {
             </table>
             {/* graph final for generate report from excel */}
             <div style={{margin:"30px"}}>
-          {/* policy quantification results */}
-             {/* <Divider textAlign="left" flexItem>
-                <Chip label="Absolute Territorial Results" />
+            <Divider textAlign="left" flexItem>
+                <b>Absolute Territorial Results</b>
               </Divider>
               <FlexibleXYPlot
                 className="policy-quantification-chart"
@@ -458,7 +457,11 @@ export const GenerateReport = () => {
                   data={absoluteEmissionsTotal}
                   stack
                 />
-              </FlexibleXYPlot> */}
+              </FlexibleXYPlot>
+              <div>
+              
+                
+              </div>
               </div>
             {/* transport projections start here */}
              {/*   <div className="luc_alert_container">

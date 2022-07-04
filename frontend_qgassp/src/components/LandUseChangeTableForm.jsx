@@ -3476,7 +3476,7 @@ export const LandUseChangeTableForm = () => {
                             id="btn"
                             value="Calculate and save emissions"
                             onClick={setLandUseChangeChart}
-                            primary="true"
+                            primary
                           />
                         </td>
                         <td>
@@ -3502,7 +3502,7 @@ export const LandUseChangeTableForm = () => {
                     value="Submit"
                     onClick={goToLandUseChangeBaseline}
                     label="Next &raquo;"
-                    primary="true"
+                    primary
                   />
                   )}
                   <CircularProgress label="loading" style={loadingStyles} />

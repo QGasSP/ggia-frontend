@@ -11,7 +11,7 @@
 .module_wrapper {
   font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 0.9rem;
-  padding: 0.2rem;
+  padding: 0.6px;
   display: flex;
   align-items: center;
   /* position: relative; */
@@ -115,7 +115,9 @@ button + button {
 .right {
   width: 13.7%;
   float: left;
+  text-align: center;
   background-color: #d8d8d8;
-  border: 0.71rem solid #d8d8d8;
+  border: 0.2rem solid #d8d8d8;
   margin-left: 0.7rem;
+  color:  #d8d8d8;
 }

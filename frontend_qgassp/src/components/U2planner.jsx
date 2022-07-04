@@ -58,6 +58,18 @@ export const U2planner = () => {
     return initialValue || {};
   });
 
+  const [modalSplitPercentage, setmodalSplitPercentage] = useState(() => {
+    const savedPop = localStorage.getItem("modalSplitPercentage");
+    const initialValue = JSON.parse(savedPop);
+    return initialValue || {};
+  });
+
+  const [busPropulsionShare, setBusPropulsionShare] = useState(() => {
+    const savedPop = localStorage.getItem("busPropulsionShare");
+    const initialValue = JSON.parse(savedPop);
+    return initialValue || {};
+  });
+
   const [nextU3planer, setU3planner] = useState(false);
   const [isU2Loading, setIsU2Loading] = useState(true);
   const dataNewPopulation = [];

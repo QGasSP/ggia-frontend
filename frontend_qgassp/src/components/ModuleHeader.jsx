@@ -6,7 +6,7 @@ export const ModuleHeader = () => {
       <div className="module_wrapper">
         <div className="left"></div>
         <div className="mid"> Territorial quantification</div>
-        <div className="right"></div>
+        <div className="right">/</div>
       </div>
   );
 };

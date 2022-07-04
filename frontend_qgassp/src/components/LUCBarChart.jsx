@@ -25,7 +25,7 @@ const BarSeries = VerticalBarSeries;
 export const LUCBarChart = ({ landUseChangeResponse, year }) => {
   year = year ? year : parseInt(localStorage.getItem("year"));
   landUseChangeResponse = landUseChangeResponse ? landUseChangeResponse : JSON.parse(localStorage.landUseChangeResponse);
-  
+
   // #region data distribution
   const dataCroplandToForestland = [];
   const dataGrasslandToForestland = [];
@@ -62,152 +62,152 @@ export const LUCBarChart = ({ landUseChangeResponse, year }) => {
     dataCroplandToForestland.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].croplandToForestland,
+      y: landUseChangeResponse[i].landUseChange.croplandToForestland,
     });
     dataGrasslandToForestland.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].grasslandToForestland,
+      y: landUseChangeResponse[i].landUseChange.grasslandToForestland,
     });
     dataWetlandToForestland.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].wetlandToForestland,
+      y: landUseChangeResponse[i].landUseChange.wetlandToForestland,
     });
     dataSettlementToForestland.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].settlementToForestland,
+      y: landUseChangeResponse[i].landUseChange.settlementToForestland,
     });
     dataOtherlandToForestland.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].otherlandToForestland,
+      y: landUseChangeResponse[i].landUseChange.otherlandToForestland,
     });
     dataForestlandToCropland.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].forestlandToCropland,
+      y: landUseChangeResponse[i].landUseChange.forestlandToCropland,
     });
     dataGrasslandToCropland.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].grasslandToCropland,
+      y: landUseChangeResponse[i].landUseChange.grasslandToCropland,
     });
     dataWetlandToCropland.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].wetlandToCropland,
+      y: landUseChangeResponse[i].landUseChange.wetlandToCropland,
     });
     dataSettlementToCropland.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].settlementToCropland,
+      y: landUseChangeResponse[i].landUseChange.settlementToCropland,
     });
     dataOtherlandToCropland.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].otherlandToCropland,
+      y: landUseChangeResponse[i].landUseChange.otherlandToCropland,
     });
     dataForestlandToGrassland.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].forestlandToGrassland,
+      y: landUseChangeResponse[i].landUseChange.forestlandToGrassland,
     });
     dataCroplandToGrassland.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].croplandToGrassland,
+      y: landUseChangeResponse[i].landUseChange.croplandToGrassland,
     });
     dataWetlandToGrassland.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].wetlandToGrassland,
+      y: landUseChangeResponse[i].landUseChange.wetlandToGrassland,
     });
     dataSettlementToGrassland.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].settlementToGrassland,
+      y: landUseChangeResponse[i].landUseChange.settlementToGrassland,
     });
     dataOtherlandToGrassland.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].otherlandToGrassland,
+      y: landUseChangeResponse[i].landUseChange.otherlandToGrassland,
     });
     dataForestlandToWetland.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].forestlandToWetland,
+      y: landUseChangeResponse[i].landUseChange.forestlandToWetland,
     });
     dataCroplandToWetland.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].croplandToWetland,
+      y: landUseChangeResponse[i].landUseChange.croplandToWetland,
     });
     dataGrasslandToWetland.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].grasslandToWetland,
+      y: landUseChangeResponse[i].landUseChange.grasslandToWetland,
     });
     dataLandToPeatExtraction.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].landToPeatExtraction,
+      y: landUseChangeResponse[i].landUseChange.landToPeatExtraction,
     });
     dataPeatlandRestoration.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].peatlandRestoration,
+      y: landUseChangeResponse[i].landUseChange.peatlandRestoration,
     });
     dataForestlandToSettlement.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].forestlandToSettlement,
+      y: landUseChangeResponse[i].landUseChange.forestlandToSettlement,
     });
     dataCroplandToSettlement.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].croplandToSettlement,
+      y: landUseChangeResponse[i].landUseChange.croplandToSettlement,
     });
     dataGrasslandToSettlement.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].wetlandToSettlement,
+      y: landUseChangeResponse[i].landUseChange.wetlandToSettlement,
     });
     dataWetlandToSettlement.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].wetlandToSettlement,
+      y: landUseChangeResponse[i].landUseChange.wetlandToSettlement,
     });
     dataOtherlandToSettlement.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].otherlandToSettlement,
+      y: landUseChangeResponse[i].landUseChange.otherlandToSettlement,
     });
     dataForestlandToOtherland.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].forestlandToOtherland,
+      y: landUseChangeResponse[i].landUseChange.forestlandToOtherland,
     });
     dataCroplandToOtherland.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].croplandToOtherland,
+      y: landUseChangeResponse[i].landUseChange.croplandToOtherland,
     });
     dataGrasslandToOtherland.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].grasslandToOtherland,
+      y: landUseChangeResponse[i].landUseChange.grasslandToOtherland,
     });
     dataWetlandToOtherland.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].wetlandToOtherland,
+      y: landUseChangeResponse[i].landUseChange.wetlandToOtherland,
     });
     dataSettlementToOtherland.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].settlementToOtherland,
+      y: landUseChangeResponse[i].landUseChange.settlementToOtherland,
     });
   }
   // #endregion
@@ -239,181 +239,181 @@ export const LUCBarChart = ({ landUseChangeResponse, year }) => {
             {/* 1 */}
             <BarSeries
               color="#ffdf43"
-              opacity={0.5}
+              opacity={0.8}
               data={dataCroplandToForestland}
             />
             {/* 2 */}
             <BarSeries
               color="#76918e"
-              opacity={0.5}
+              opacity={0.8}
               data={dataGrasslandToForestland}
             />
             {/* 3 */}
             <BarSeries
               color="#ce143d"
-              opacity={0.5}
+              opacity={0.8}
               data={dataWetlandToForestland}
             />
             {/* 4 */}
             <BarSeries
               color="#d6e7d9"
-              opacity={0.5}
+              opacity={0.8}
               data={dataSettlementToForestland}
             />
             {/* 5 */}
             <BarSeries
               color="#002117"
-              opacity={0.5}
+              opacity={0.8}
               data={dataOtherlandToForestland}
             />
             {/* 6 */}
             <BarSeries
               color="#ef7d00"
-              opacity={0.5}
+              opacity={0.8}
               data={dataForestlandToCropland}
             />
             {/* 7 */}
             <BarSeries
               color="#6c3b00"
-              opacity={0.5}
+              opacity={0.8}
               data={dataGrasslandToCropland}
             />
             {/* 8 */}
             <BarSeries
               color="#00aed5"
-              opacity={0.5}
+              opacity={0.8}
               data={dataWetlandToCropland}
             />
             {/* 9 */}
             <BarSeries
               color="#8C0303"
-              opacity={0.5}
+              opacity={0.8}
               data={dataSettlementToCropland}
             />
             {/* 10 */}
             <BarSeries
               color="#A6036D"
-              opacity={0.5}
+              opacity={0.8}
               data={dataOtherlandToCropland}
             />
             {/* 11 */}
             <BarSeries
               color="#400D01"
-              opacity={0.5}
+              opacity={0.8}
               data={dataForestlandToGrassland}
             />
             {/* 12 */}
             <BarSeries
               color="#C4D4F2"
-              opacity={0.5}
+              opacity={0.8}
               data={dataCroplandToGrassland}
             />
             {/* 13 */}
             <BarSeries
               color="#D90404"
-              opacity={0.5}
+              opacity={0.8}
               data={dataWetlandToGrassland}
             />
             {/* 14 */}
             <BarSeries
               color="#80D941"
-              opacity={0.5}
+              opacity={0.8}
               data={dataSettlementToGrassland}
             />
             {/* 15 */}
             <BarSeries
               color="#595959"
-              opacity={0.5}
+              opacity={0.8}
               data={dataOtherlandToGrassland}
             />
             {/* 16 */}
             <BarSeries
               color="#F2CE1B"
-              opacity={0.5}
+              opacity={0.8}
               data={dataForestlandToWetland}
             />
             {/* 17 */}
             <BarSeries
               color="#d51317"
-              opacity={0.5}
+              opacity={0.8}
               data={dataCroplandToWetland}
             />
             {/* 18 */}
             <BarSeries
               color="#8f2e57"
-              opacity={0.5}
+              opacity={0.8}
               data={dataGrasslandToWetland}
             />
             {/* 19 */}
             <BarSeries
               color="#da4f89"
-              opacity={0.5}
+              opacity={0.8}
               data={dataLandToPeatExtraction}
             />
             {/* 20 */}
             <BarSeries
               color="#6e438c"
-              opacity={0.5}
+              opacity={0.8}
               data={dataPeatlandRestoration}
             />
             {/* 21 */}
             <BarSeries
               color="#164194"
-              opacity={0.5}
+              opacity={0.8}
               data={dataForestlandToSettlement}
             />
             {/* 22 */}
             <BarSeries
               color="#2b7abf"
-              opacity={0.5}
+              opacity={0.8}
               data={dataCroplandToSettlement}
             />
             {/* 23 */}
             <BarSeries
               color="#0042d9"
-              opacity={0.5}
+              opacity={0.8}
               data={dataGrasslandToSettlement}
             />
             {/* 24 */}
             <BarSeries
               color="#6caac7"
-              opacity={0.5}
+              opacity={0.8}
               data={dataWetlandToSettlement}
             />
             {/* 25 */}
             <BarSeries
               color="#4a5b58"
-              opacity={0.5}
+              opacity={0.8}
               data={dataOtherlandToSettlement}
             />
             {/* 26 */}
             <BarSeries
               color="#f7cebd"
-              opacity={0.5}
+              opacity={0.8}
               data={dataForestlandToOtherland}
             />
             {/* 27 */}
             <BarSeries
               color="#af1411"
-              opacity={0.5}
+              opacity={0.8}
               data={dataCroplandToOtherland}
             />
             {/* 28 */}
             <BarSeries
               color="#c9b01e"
-              opacity={0.5}
+              opacity={0.8}
               data={dataGrasslandToOtherland}
             />
             {/* 29 */}
             <BarSeries
               color="#371740"
-              opacity={0.5}
+              opacity={0.8}
               data={dataWetlandToOtherland}
             />
             {/* 30 */}
             <BarSeries
               color="#620d00"
-              opacity={0.5}
+              opacity={0.8}
               data={dataSettlementToOtherland}
             />
           </FlexibleXYPlot>
@@ -429,7 +429,7 @@ export const LUCBarChart = ({ landUseChangeResponse, year }) => {
                 value="backProjections"
                 onClick={() => navigate("../landUseChangeTableForm", { replace: true })}
                 label="&laquo; Previous"
-                secondary
+                secondary="true"
               />
         </div>
       </div>

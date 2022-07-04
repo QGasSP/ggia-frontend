@@ -76,12 +76,14 @@ export const TabModules = () => {
             <button
              className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
               id="transport"
+              onClick={() => navigate("transportBaseline", { replace: true })}
             >
               Transport
             </button>
             <button
               className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
               id="luc"
+              onClick={() => navigate("landUseChangeTableForm", { replace: true })}
             >
               Land-use change
             </button>
@@ -95,6 +97,7 @@ export const TabModules = () => {
             <button
               className={toggleState === 5 ? "tabs active-tabs" : "tabs"}
               id="consumption"
+              onClick={() => navigate("consumptionBaseline", { replace: true })}
             >
               Consumption-based
               <br />
