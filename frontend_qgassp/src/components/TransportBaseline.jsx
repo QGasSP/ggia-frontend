@@ -32,6 +32,9 @@ const settlementLabels = [
 ];
 
 export const TransportBaseline = () => {
+  const country = localStorage.getItem("country");
+  const year = parseInt(localStorage.getItem("year"));
+  const population = parseInt(localStorage.getItem("population"));
   const navigate = useNavigate();
 
   const [metropolitanCenter, setMetropolitan] = useStorageFloat("metropolitanCenter", parseFloat(0) );
