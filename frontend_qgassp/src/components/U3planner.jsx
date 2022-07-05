@@ -55,16 +55,16 @@ export const U3planner = () => {
   // passenger mobility
   const [passengerMobility, setPassengerMobility] =  useStorageString("passengerMobility","");
   const [populationAffectedPassengerMobility, setPopulationAffectedPassengerMobility] = useStorageInt("populationAffectedPassengerMobility",0);
-  const [passengerMobilityYearStart, setPassengerMobilityYearStart]= useStorageInt("passengerMobilityYearStart", 0);
-  const [passengerMobilityYearEnd, setPassengerMobilityYearEnd]= useStorageInt("passengerMobilityYearEnd", 0);
+  const [passengerMobilityYearStart, setPassengerMobilityYearStart]= useStorageInt("passengerMobilityYearStart", year);
+  const [passengerMobilityYearEnd, setPassengerMobilityYearEnd]= useStorageInt("passengerMobilityYearEnd", 2050);
   const [passengerMobilityExpectedChange, setPassengerMobilityExpectedChange] = useStorageInt("passengerMobilityExpectedChange", 0)
   // passenger mobility end
 
   // freight transport start
   const [freightTransport, setFreightTransport] = useStorageString("freightTransport","");
   const [freightTransportMobility, setFreightTransportMobility] = useStorageInt("freightTransportMobility", 0)
-  const [freightTransportYearStart, setFreightTransportYearStart] = useStorageInt("freightTransportYearStart", 0)
-  const [freightTransportYearEnd, setFreightTransportYearEnd] = useStorageInt("freightTransportYearEnd", 0)
+  const [freightTransportYearStart, setFreightTransportYearStart] = useStorageInt("freightTransportYearStart", year)
+  const [freightTransportYearEnd, setFreightTransportYearEnd] = useStorageInt("freightTransportYearEnd", 2050)
   // freight transport end
 
   // modal split-passanger section starts
@@ -77,8 +77,8 @@ export const U3planner = () => {
   const [car, setCar] = useStorageFloat("cars", 0);
   const [totalPassengerTransport, setTotalPassengerTransport] = useStorageFloat("totalPassengerTransport", 0)
   const [modalSplitPassengerPopulationAffected, setModalSplitPassengerPopulationAffected] = useStorageInt("modalSplitPassengerPopulationAffected", 0)
-  const [modalSplitPassengerYearStart, setModalSplitPassengerYearStart] = useStorageInt("modalSplitPassengerYearStart", 0)
-  const [modalSplitPassengerYearEnd, setModalSplitPassengerYearEnd] = useStorageInt("modalSplitPassengerYearEnd", 0)
+  const [modalSplitPassengerYearStart, setModalSplitPassengerYearStart] = useStorageInt("modalSplitPassengerYearStart", year)
+  const [modalSplitPassengerYearEnd, setModalSplitPassengerYearEnd] = useStorageInt("modalSplitPassengerYearEnd", 2050)
   // modal split-passanger section end
 
 
@@ -89,8 +89,8 @@ export const U3planner = () => {
   const [totalFreightTransport, setTotalFreightTransport] = useStorageFloat("totalFreightTransport", 0)
   const [modalFreShares, setModalFreightShares] = useStorageString("modalFreShares","");
   const [modalSplitFreight, setModalSplitFreight] = useStorageString("modalSplitFreight","");
-  const [modalSplitFreightYearStart, setModalSplitFreightYearStart] = useStorageInt("modalSplitFreightYearStart", 0)
-  const [modalSplitFreightYearEnd, setModalSplitFreightYearEnd] = useStorageInt("modalSplitFreightYearEnd", 0)
+  const [modalSplitFreightYearStart, setModalSplitFreightYearStart] = useStorageInt("modalSplitFreightYearStart", year)
+  const [modalSplitFreightYearEnd, setModalSplitFreightYearEnd] = useStorageInt("modalSplitFreightYearEnd", 2050)
   // modal split freight transport end
 
   
@@ -103,8 +103,8 @@ export const U3planner = () => {
   const [totalFuelBus, setTotalFuelBus] = useStorageFloat("totalFuelBus", 0)
   const [fuelSharesBusTypes, setFuelSharesBusTypes] = useStorageString("fuelSharesBusTypes","");
   const [fuelSharesBus, setFuelSharesBus] = useStorageString("fuelShareBus","");
-  const [fuelSharesBusYearStart, setFuelSharesBusYearStart] = useStorageInt("fuelSharesBusYearStart", 0)
-  const [fuelSharesBusYearEnd, setFuelSharesBusYearEnd] = useStorageInt("fuelSharesBusYearEnd", 0)
+  const [fuelSharesBusYearStart, setFuelSharesBusYearStart] = useStorageInt("fuelSharesBusYearStart", year)
+  const [fuelSharesBusYearEnd, setFuelSharesBusYearEnd] = useStorageInt("fuelSharesBusYearEnd", 2050)
   const [fuelSharesBusPopulationAffected, setFuelSharesBusPopulationAffected] = useStorageInt("fuelSharesBusPopulationAffected", 0)
   // fuel shares bus end
 
@@ -112,8 +112,8 @@ export const U3planner = () => {
   // shares of fuel types in car transport start
   const [fuelSharesCarTypes, setFuelSharesCarTypes] = useStorageString("fuelSharesCarTypes","");
   const [fuelSharesCar, setFuelSharesCar] = useStorageString("fuelSharesCar","");
-  const [fuelSharesCarYearStart, setFuelSharesCarYearStart] = useStorageInt("fuelSharesCarYearStart", 0);
-  const [fuelSharesCarYearEnd, setFuelSharesCarYearEnd] = useStorageInt("fuelSharesCarYearEnd", 0);
+  const [fuelSharesCarYearStart, setFuelSharesCarYearStart] = useStorageInt("fuelSharesCarYearStart", year);
+  const [fuelSharesCarYearEnd, setFuelSharesCarYearEnd] = useStorageInt("fuelSharesCarYearEnd", 2050);
   const [fuelSharesCarPopulationAffected, setFuelSharesCarPopulationAffected] = useStorageInt("fuelSharesCarPopulationAffected", 0);
   const [carLpg, setCarLpg] = useStorageFloat("carLpg", 0)
   const [carCng, setCarCng] = useStorageFloat("carCng", 0)
@@ -138,8 +138,8 @@ export const U3planner = () => {
   const [renewables, setRenewables] = useStorageInt("renewables",0);
   const [electricityTransTypes, setElectricityTransTypes] = useStorageString("electricityTransTypes","");
   const [electricityTransport, setElectricityTransport] = useStorageString("electricityTransport","");
-  const [electricityTransportYearStart, setElectricityTransportYearStart] = useStorageInt("electricityTransportYearStart", 0)
-  const [electricityTransportYearEnd, setElectricityTransportYearEnd] = useStorageInt("electricityTransportYearEnd", 0)
+  const [electricityTransportYearStart, setElectricityTransportYearStart] = useStorageInt("electricityTransportYearStart", year)
+  const [electricityTransportYearEnd, setElectricityTransportYearEnd] = useStorageInt("electricityTransportYearEnd", 2050)
   const [electricityTransportPopulationAffected, setElectricityTransportPopulationAffected] = useStorageInt("electricityTransportPopulationAffected", 0)
 
   const optionsNew = [];
@@ -326,18 +326,29 @@ const handleCarCng = (e) => {
   setCarCng(Number(e.target.value));
 };
 
-const fuelCarTotal = carLpg + carCng + ngv + hep + phev + dEhybrid + dEphev + hydrogenfuel + biodiesel + bioethanol + bifuel + other + carElectricity
-const getCarPetrol = carPropulsionShare[fuelSharesCarYearEnd].petrol / (carPropulsionShare[fuelSharesCarYearEnd].petrol + carPropulsionShare[fuelSharesCarYearEnd].diesel) * ( 100 - fuelCarTotal)
 const handleCarPetrol = e => {
   e.preventDefault();
-
-  setCarPetrol(getCarPetrol);
+   if (carPropulsionShare[fuelSharesCarYearEnd].petrol === undefined &&
+      carPropulsionShare[fuelSharesCarYearEnd].diesel === undefined ){
+        setCarPetrol(0)
+      } else {
+      const fuelCarTotal = carLpg + carCng + ngv + hep + phev + dEhybrid + dEphev + hydrogenfuel + biodiesel + bioethanol + bifuel + other + carElectricity
+      const getCarPetrol = carPropulsionShare[fuelSharesCarYearEnd].petrol / (carPropulsionShare[fuelSharesCarYearEnd].petrol + carPropulsionShare[fuelSharesCarYearEnd].diesel) * ( 100 - fuelCarTotal)
+      setCarPetrol(getCarPetrol);
+      }
 };
 
 const handleCarDiesel = e => {
   e.preventDefault();
-  const getCarDiesel = ( 100 - (fuelCarTotal + getCarPetrol))
-  setCarDiesel(getCarDiesel);
+   if (carPropulsionShare[fuelSharesCarYearEnd].petrol === undefined &&
+      carPropulsionShare[fuelSharesCarYearEnd].diesel === undefined ){
+        setCarDiesel(0)
+      } else {
+      const fuelCarTotal = carLpg + carCng + ngv + hep + phev + dEhybrid + dEphev + hydrogenfuel + biodiesel + bioethanol + bifuel + other + carElectricity
+      const getCarPetrol = carPropulsionShare[fuelSharesCarYearEnd].petrol / (carPropulsionShare[fuelSharesCarYearEnd].petrol + carPropulsionShare[fuelSharesCarYearEnd].diesel) * ( 100 - fuelCarTotal)
+      const getCarDiesel = ( 100 - (fuelCarTotal + getCarPetrol))
+      setCarDiesel(getCarDiesel);
+      }
 };
 
 const handleCarElectricity = e => {
@@ -599,13 +610,6 @@ const getCarFuelTotal = () => {
     await gotoU3policies();
   }
 
-
-  // eslint-disable-next-line no-console
-  console.log(carPetrol, "car petrol")
-
-  // eslint-disable-next-line no-console
-  console.log(carDiesel, "car diesel")
-
     return (
       <Container maxWidth="xl">
       <article>
@@ -679,11 +683,10 @@ const getCarFuelTotal = () => {
                         className="select_u3"
                         name="start_year"
                         onChange={handlePassengerMobilityYearStart}
-                        value={passengerMobilityYearStart}
-                        placeholder={passengerMobilityYearStart}
+                        defaultValue={passengerMobilityYearStart}
                         required
                       >
-                        <option value="DefaultOption">Select start year</option>
+                        <option value="DefaultOption">{year}</option>
                         {optionsNew.map((option) => (
                           <option key={option} value={option}>
                             {option}{" "}
@@ -694,12 +697,11 @@ const getCarFuelTotal = () => {
                       className="select_u3"
                       name="finish_year"
                       onChange={handlePassengerMobilityYearEnd}
-                      value={passengerMobilityYearEnd}
-                      placeholder={passengerMobilityYearEnd}
+                      defaultValue={passengerMobilityYearEnd}
                       
                       required
                     >
-                      <option value="DefaultOption">Select end year</option>
+                      <option value="DefaultOption">{passengerMobilityYearEnd}</option>
                       {optionsNew.map((option) => (
                         <option key={option} value={option}>
                           {option}{" "}
@@ -760,10 +762,10 @@ const getCarFuelTotal = () => {
                           id="start_year"
                           name="start_year"
                           onChange={handleFreightTransportYearStart}
-                          value={freightTransportYearStart}
+                          defaultValue={freightTransportYearStart}
                           required
                         >
-                          <option value="DefaultOption">Select start year</option>
+                          <option value="DefaultOption">{year}</option>
                           {optionsNew.map((option) => (
                             <option key={option} value={option}>
                               {option}{" "}
@@ -777,10 +779,10 @@ const getCarFuelTotal = () => {
                           id="finish_year"
                           name="finish_year"
                           onChange={handleFreightTransportYearEnd}
-                          value={freightTransportYearEnd}
+                          defaultValue={freightTransportYearEnd}
                           required
                         >
-                          <option value="DefaultOption">Select end year</option>
+                          <option value="DefaultOption">{freightTransportYearEnd}</option>
                           {optionsNew.map((option) => (
                             <option key={option} value={option}>
                               {option}{" "}
@@ -940,10 +942,10 @@ const getCarFuelTotal = () => {
                         className="select_u3"
                         name="start_year"
                         onChange={handleModalSplitPassengerYearStart}
-                        value={modalSplitPassengerYearStart}
+                        defaultValue={modalSplitPassengerYearStart}
                         required
                       >
-                        <option value="DefaultOption">Select start year</option>
+                        <option value="DefaultOption">{year}</option>
                         {optionsNew.map((option) => (
                           <option key={option} value={option}>
                             {option}{" "}
@@ -954,10 +956,10 @@ const getCarFuelTotal = () => {
                         className="select_u3"
                         name="finish_year"
                         onChange={handleModalSplitPassengerYearEnd}
-                        value={modalSplitPassengerYearEnd}
+                        defaultValue={modalSplitPassengerYearEnd}
                         required
                       >
-                        <option value="DefaultOption">Select end year</option>
+                        <option value="DefaultOption">{modalSplitPassengerYearEnd}</option>
                         {optionsNew.map((option) => (
                           <option key={option} value={option}>
                             {option}{" "}
@@ -1059,10 +1061,10 @@ const getCarFuelTotal = () => {
                         className="select_u3"
                         name="start_year"
                         onChange={handleModalSplitFreightYearStart}
-                        value={modalSplitFreightYearStart}
+                        defaultValue={modalSplitFreightYearStart}
                         required
                       >
-                        <option value="DefaultOption">Select start year</option>
+                        <option value="DefaultOption">{year}</option>
                         {optionsNew.map((option) => (
                           <option key={option} value={option}>
                             {option}{" "}
@@ -1073,10 +1075,10 @@ const getCarFuelTotal = () => {
                         className="select_u3"
                         name="finish_year"
                         onChange={handleModalSplitFreightYearEnd}
-                        value={modalSplitFreightYearEnd}
+                        defaultValue={modalSplitFreightYearEnd}
                         required
                       >
-                        <option value="DefaultOption">Select end year</option>
+                        <option value="DefaultOption">{modalSplitFreightYearEnd}</option>
                         {optionsNew.map((option) => (
                           <option key={option} value={option}>
                             {option}{" "}
@@ -1242,10 +1244,10 @@ const getCarFuelTotal = () => {
                         className="select_u3"
                         name="finish_year"
                         onChange={handleFuelSharesBusYearStart}
-                        value={fuelSharesBusYearStart}
+                        defaultValue={fuelSharesBusYearStart}
                         required
                       >
-                        <option value="DefaultOption">Select end year</option>
+                        <option value="DefaultOption">{year}</option>
                         {optionsNew.map((option) => (
                           <option key={option} value={option}>
                             {option}{" "}
@@ -1257,10 +1259,10 @@ const getCarFuelTotal = () => {
                         className="select_u3"
                         name="finish_year"
                         onChange={handleFuelSharesBusYearEnd}
-                        value={fuelSharesBusYearEnd}
+                        defaultValue={fuelSharesBusYearEnd}
                         required
                       >
-                        <option value="DefaultOption">Select end year</option>
+                        <option value="DefaultOption">{fuelSharesBusYearEnd}</option>
                         {optionsNew.map((option) => (
                           <option key={option} value={option}>
                             {option}{" "}
@@ -1601,10 +1603,11 @@ const getCarFuelTotal = () => {
                         className="select_u3"
                         name="start_year"
                         onChange={handleFuelSharesCarYearStart}
-                        value={fuelSharesCarYearStart}
+                        defaultValue={fuelSharesCarYearStart}
+                        type="year"
                         required
                       >
-                        <option value="DefaultOption">Select start year</option>
+                        <option value="DefaultOption">{year}</option>
                         {optionsNew.map((option) => (
                           <option key={option} value={option}>
                             {option}{" "}
@@ -1614,11 +1617,12 @@ const getCarFuelTotal = () => {
                       <b>End year{" "}</b>{" "}<select
                         className="select_u3"
                         name="finish_year"
+                        type="year"
                         onChange={handleFuelSharesCarYearEnd}
-                        value={fuelSharesCarYearEnd}
+                        defaultValue={fuelSharesCarYearEnd}
                         required
                       >
-                        <option value="DefaultOption">Select end year</option>
+                        <option value="DefaultOption">{fuelSharesCarYearEnd}</option>
                         {optionsNew.map((option) => (
                           <option key={option} value={option}>
                             {option}{" "}
@@ -1692,11 +1696,10 @@ const getCarFuelTotal = () => {
                         id="start_year"
                         name="start_year"
                         onChange={handleElectricityTransportYearStart}
-                        value={electricityTransportYearStart}
-                        
+                        defaultValue={electricityTransportYearStart}
                         required
                       >
-                        <option value="DefaultOption">Select start year</option>
+                        <option value="DefaultOption">{year}</option>
                         {optionsNew.map((option) => (
                           <option key={option} value={option}>
                             {option}{" "}
@@ -1708,11 +1711,10 @@ const getCarFuelTotal = () => {
                         id="finish_year"
                         name="finish_year"
                         onChange={handleElectricityTransportYearEnd}
-                        value={electricityTransportYearEnd}
-                        
+                        defaultValue={electricityTransportYearEnd}
                         required
                       >
-                        <option value="DefaultOption">Select end year</option>
+                        <option value="DefaultOption">{electricityTransportYearEnd}</option>
                         {optionsNew.map((option) => (
                           <option key={option} value={option}>
                             {option}{" "}
@@ -1741,17 +1743,17 @@ const getCarFuelTotal = () => {
             
           </form>
 
-          {Object.keys(policyQuantificationTransportResponse).length !== 0 && (
+          {Object.keys(policyQuantificationTransportResponse).length !== 0 &&
+                        (
                 <div className="nextU3Button">
-                  <CircularProgress label="loading" style={loadingStyles} />
-              <Button
-                size="small"
-                value="nextU3policies"
-                onClick={handleSubmit}
-                label="Next &raquo;"
-                type="Submit"
-                primary
-              />
+                <Button
+                  size="small"
+                  value="nextU3policies"
+                  onClick={handleSubmit}
+                  label="Next &raquo;"
+                  type="Submit"
+                  primary
+                />
             </div>
                 )}
         </section>
