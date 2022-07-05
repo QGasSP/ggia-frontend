@@ -401,7 +401,6 @@ const handleDePhev = (e) => {
 }
 
 const getCarFuelTotal = () => {
-
   setTotalCarFuelShares(carLpg + carCng + ngv + hep + phev + dEhybrid + dEphev + hydrogenfuel + biodiesel + bioethanol + bifuel + other + carElectricity + carDiesel + carPetrol)
 }
 
@@ -824,7 +823,7 @@ const getCarFuelTotal = () => {
                     <Tooltip title="This column shows You the modal shares according to the baseline scenario.">
                     {modalSplitPassengerYearEnd === 0 ? <th>% Without policy </th> : <th>% Without policy in {modalSplitPassengerYearEnd}</th>}
                     </Tooltip>
-                    <Tooltip title="Insert the target percentages for public transportation. The remaining share is allocated to passenger car transport.">
+                    <Tooltip title="Insert the target percentages for public transportation. The remaining share is allocated to passenger car transport. Hover over car transport to get its value.">
                     <th>Policy target %</th>
                     </Tooltip>
                     <Tooltip title="Insert a percentage of population expected to change the modal share due to the planning policy. This share applies to the passenger transport of both residents and non-residents within the assessment area.">
@@ -990,7 +989,7 @@ const getCarFuelTotal = () => {
                     <Tooltip title="This column shows You the modal shares according to the baseline scenario.">
                     {modalSplitFreightYearEnd === 0 ? <th>% Without policy</th> : <th>% Without policy in {modalSplitFreightYearEnd}</th>}
                     </Tooltip>
-                    <Tooltip title="Insert the target percentages for the freight transport on rails and on waterways. The remaining share is allocated to road freight.">
+                    <Tooltip title="Insert the target percentages for the freight transport on rails and on waterways. The remaining share is allocated to road freight. Hover over road freight to get its value.">
                     <th>Policy target %</th>
                     </Tooltip>
                     <th></th>
@@ -1112,7 +1111,7 @@ const getCarFuelTotal = () => {
                     <Tooltip title="This column shows You the fuel shares in the bus fleet as in the baseline scenario.">
                     {fuelSharesBusYearEnd === 0 ? <th>% Without policy</th> : <th>% Without policy in {fuelSharesBusYearEnd}</th>}
                     </Tooltip>
-                    <Tooltip title="Insert the target percentages for the fuel types used in the bus fleet by the end of the policy implementation period. The remaining share is allocated to diesel engines.">
+                    <Tooltip title="Insert the target percentages for the fuel types used in the bus fleet by the end of the policy implementation period. The remaining share is allocated to diesel engines. Hover over diesel to get its value.">
                     <th>Policy target %</th>
                     </Tooltip>
                     <Tooltip title="Insert a percentage of bus transport in the area affected by the planning policy.">
@@ -1291,14 +1290,14 @@ const getCarFuelTotal = () => {
                 </Alert>
               </div>
               <div>
-                <table  style={{width:"100%", margin:"20px"}}>
+                <table  style={{width:"100%", margin:"20px"}} onMouseOver={getCarFuelTotal}>
                   <thead>
                     <tr>
                       <th>Shares of fuel types in car transport</th>
                       <Tooltip title="This column shows You the fuel shares in the passenger car fleet as in the baseline scenario.">
                       {fuelSharesCarYearEnd === 0 ? <th>% Without policy</th> : <th>% Without policy in {fuelSharesCarYearEnd}</th>}
                       </Tooltip>
-                      <Tooltip title="Insert the target percentages for the fuel types of the passenger car fleet by the end of the policy implementation period. The remaining share is allocated to petrol and diesel engines.">
+                      <Tooltip title="Insert the target percentages for the fuel types of the passenger car fleet by the end of the policy implementation period. The remaining share is allocated to petrol and diesel engines. Hover over diesel and petrol to get their values.">
                       <th>Policy target %</th>
                       </Tooltip>
 
@@ -1349,6 +1348,7 @@ const getCarFuelTotal = () => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseOver={getCarFuelTotal}
                       onMouseLeave={getCarFuelTotal}
                       onChange={handleCarCng}
                       value={carCng}
@@ -1367,6 +1367,7 @@ const getCarFuelTotal = () => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseOver={getCarFuelTotal}
                       onMouseLeave={getCarFuelTotal}
                       onChange={handleNgv}
                       value={ngv}
@@ -1385,6 +1386,7 @@ const getCarFuelTotal = () => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseOver={getCarFuelTotal}
                       onMouseLeave={getCarFuelTotal}
                       onChange={handleHep}
                       value={hep}
@@ -1403,6 +1405,7 @@ const getCarFuelTotal = () => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseOver={getCarFuelTotal}
                       onMouseLeave={getCarFuelTotal}
                       onChange={handlePhev}
                       value={phev}
@@ -1421,6 +1424,7 @@ const getCarFuelTotal = () => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseOver={getCarFuelTotal}
                       onMouseLeave={getCarFuelTotal}
                       onChange={handleDeHybrid}
                       value={dEhybrid}
@@ -1439,6 +1443,7 @@ const getCarFuelTotal = () => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseOver={getCarFuelTotal}
                       onMouseLeave={getCarFuelTotal}
                       onChange={handleDePhev}
                       value={dEphev}
@@ -1457,6 +1462,7 @@ const getCarFuelTotal = () => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseOver={getCarFuelTotal}
                       onMouseLeave={getCarFuelTotal}
                       onChange={handleHydrogenfuel}
                       value={hydrogenfuel}
@@ -1475,6 +1481,7 @@ const getCarFuelTotal = () => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseOver={getCarFuelTotal}
                       onMouseLeave={getCarFuelTotal}
                       onChange={handleBioethanol}
                       value={bioethanol}
@@ -1493,6 +1500,7 @@ const getCarFuelTotal = () => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseOver={getCarFuelTotal}
                       onMouseLeave={getCarFuelTotal}
                       onChange={handleBiodiesel}
                       value={biodiesel}
@@ -1511,6 +1519,7 @@ const getCarFuelTotal = () => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseOver={getCarFuelTotal}
                       onMouseLeave={getCarFuelTotal}
                       onChange={handleBifuel}
                       value={bifuel}
@@ -1529,6 +1538,7 @@ const getCarFuelTotal = () => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseOver={getCarFuelTotal}
                       onMouseLeave={getCarFuelTotal}
                       onChange={handleOther}
                       value={other}
@@ -1548,6 +1558,7 @@ const getCarFuelTotal = () => {
                       placeholder="0.0"
                       min="0.00"
                       max="100"
+                      onMouseOver={getCarFuelTotal}
                       onMouseLeave={getCarFuelTotal}
                       onChange={handleCarElectricity}
                       value={carElectricity}
@@ -1594,7 +1605,7 @@ const getCarFuelTotal = () => {
                     <tr>
                       <td>Total</td>
                       <td></td>
-                      {totalPassengerTransport === 100 ? <td>{totalPassengerTransport}%</td> : <td>Error: Total value needs to equal to 100%</td>} 
+                      {totalCarFuelShares === 100 ? <td>{totalCarFuelShares}%</td> : <td>Error: Total value needs to equal to 100%</td>} 
                     </tr> 
 
                     <tr>
