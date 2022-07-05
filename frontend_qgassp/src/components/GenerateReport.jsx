@@ -44,6 +44,10 @@ export const GenerateReport = () => {
   const landUseChangeResponse = JSON.parse(
     localStorage.getItem("landUseChangeResponse")
   );
+
+  const landUseChangeResponseOtherData = JSON.parse(
+    localStorage.getItem("landUseChangeResponseOtherData")
+  );
   const emission = JSON.parse(localStorage.getItem("emission"));
 
   const projections = JSON.parse(localStorage.getItem("projections"));
@@ -114,9 +118,11 @@ export const GenerateReport = () => {
   // #region data distribution
 
   // total values
-  const buildingEmissionsTotal = []
-  const buildingBaseline = []
-  const absoluteEmissionsTotal = []
+  const buildingEmissionsTotal = [];
+  const buildingBaseline = [];
+  const absoluteEmissionsTotal = [];
+  const netPositivesLuc = [];
+  const netNegativesLuc = [];
 
   // absolute values
   const netSinkTotal = [];
@@ -166,7 +172,6 @@ export const GenerateReport = () => {
   const roadTransportAbsolutePolicyQuantification = [];
   const waterwaysTransportAbsolutePolicyQuantification = [];
 
-
    if (absolutePolicyQuantification &&
       Object.keys(absolutePolicyQuantification).length !== 0
        ){
@@ -184,14 +189,17 @@ export const GenerateReport = () => {
     }
     if (policyQuantificationResponse && 
         absoluteEmissions &&
+        landUseChangeResponseOtherData &&
         policyQuantificationResponse.length !== 0 &&
-        absoluteEmissions.length !== 0){
+        absoluteEmissions.length !== 0 &&
+        landUseChangeResponseOtherData.length !== 0){
       for (let i = year; i < 2051; i++) {
         buildingEmissionsTotal.push({x: i, y: policyQuantificationResponse.data.graph[i].total})
         buildingBaseline.push({x: i, y: policyQuantificationResponse.data.graph[i].baseline})
         absoluteEmissionsTotal.push({x:i, y: absoluteEmissions.total[i]})
+        netPositivesLuc.push({x: i, y:landUseChangeResponseOtherData.landUseTotalEmissions.positive[i]})
+        netNegativesLuc.push({x:i, y: landUseChangeResponseOtherData.landUseTotalEmissions.negative[i]})
       }
-      
     }
     
 
@@ -209,15 +217,16 @@ export const GenerateReport = () => {
     Object.keys(buildingsBaselineResponse).length !== 0 &&
     Object.keys(projections).length !== 0){
   for (let i = year; i < 2051; i++) {
+
     netSinkTotal.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].sink,
+      y: landUseChangeResponseOtherData.landUseTotalEmissions.negative[i]
     });
     netLandUseChangeTotal.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse.landUseChange[i].total,
+      y: landUseChangeResponseOtherData.landUseTotalEmissions.total[i]
     });
     netBuildingsTotal.push({
       x: i,
@@ -238,12 +247,12 @@ export const GenerateReport = () => {
     netSinkPerCapita.push({
       x: i,
       y0: 0,
-      y: (landUseChangeResponse.landUseChange[i].sink/newPopulation[i]),
+      y: (landUseChangeResponseOtherData.landUseTotalEmissions.negative[i]/newPopulation[i]),
     });
     netLandUseChangePerCapita.push({
       x: i,
       y0: 0,
-      y: (landUseChangeResponse.landUseChange[i].total/newPopulation[i]),
+      y: (landUseChangeResponseOtherData.landUseTotalEmissions.total[i]/newPopulation[i]),
     });
     netBuildingsPerCapita.push({
       x: i,
@@ -363,7 +372,7 @@ export const GenerateReport = () => {
               <>
             <div className="luc_alert_container">
               <Divider textAlign="left" flexItem>
-                <b>ABSOLUTE CO2e EMISSIONS | TERRITORIAL APPROACH</b>
+                <b>Absolute CO2e emissions | Territorial approach</b>
               </Divider>
             </div>
             <table className="table-results">
@@ -388,9 +397,9 @@ export const GenerateReport = () => {
                 </tr>
                 <tr>
                   <td className="tableTotalEmissions">Land-use change</td>
-                  {Object.keys(landUseChangeResponse.landUseChange).map((key, i) => (
+                  {Object.keys(landUseChangeResponseOtherData.landUseTotalEmissions.total).map((key, i) => (
                     <td key={i} className="tableTotalEmissions">
-                      {Math.round(landUseChangeResponse.landUseChange[key].total)}
+                      {Math.round(landUseChangeResponseOtherData.landUseTotalEmissions.total[key])}
                     </td>
                   ))}
                 </tr>
@@ -404,9 +413,9 @@ export const GenerateReport = () => {
                 </tr>
                 <tr>
                   <td className="tableTotalEmissions">Net sinks</td>
-                  {Object.keys(landUseChangeResponse.landUseChange).map((key, i) => (
+                  {Object.keys(landUseChangeResponseOtherData.landUseTotalEmissions.negative).map((key, i) => (
                     <td key={i} className="tableTotalEmissions">
-                      {Math.round(landUseChangeResponse.landUseChange[key].sink)}
+                      {Math.round(landUseChangeResponseOtherData.landUseTotalEmissions.negative[key])}
                     </td>
                   ))}
                 </tr>
@@ -422,9 +431,11 @@ export const GenerateReport = () => {
             </table>
             {/* graph final for generate report from excel */}
             <div style={{margin:"30px"}}>
+              <div>
             <Divider textAlign="left" flexItem>
-                <b>Absolute Territorial Results</b>
-              </Divider>
+               <b>Absolute CO2e emissions | Territorial approach</b>
+            </Divider>
+            </div>
               <FlexibleXYPlot
                 className="policy-quantification-chart"
                 stackBy="y"
@@ -457,6 +468,19 @@ export const GenerateReport = () => {
                   data={absoluteEmissionsTotal}
                   stack
                 />
+                <BarSeries
+                  color="#00FF00"
+                  opacity={0.55}
+                  data={netPositivesLuc}
+                />
+
+                <BarSeries
+                  color= "#00FFFF"
+                  opacity={0.55}
+                  data={netNegativesLuc}
+                />
+
+
               </FlexibleXYPlot>
               <div>
               
@@ -592,7 +616,9 @@ export const GenerateReport = () => {
               </div>
               
               </div>
-
+            <Divider textAlign="left">
+              <b>Land-use change</b>
+            </Divider>
             <div className="luc_alert_container">
             <FlexibleXYPlot
                 margin={{ left: 80 }}
@@ -692,9 +718,9 @@ export const GenerateReport = () => {
                 </tr>
                 <tr>
                   <td className="tableTotalEmissions">Land-use change</td>
-                  {Object.keys(landUseChangeResponse.landUseChange).map((key, i) => (
+                  {Object.keys(landUseChangeResponseOtherData.landUseTotalEmissions.total).map((key, i) => (
                     <td key={i} className="tableTotalEmissions">
-                      {(Math.round(landUseChangeResponse.landUseChange[key].total)/newPopulation[key]).toFixed(2)}
+                      {(Math.round(landUseChangeResponseOtherData.landUseTotalEmissions.total[key])/newPopulation[key]).toFixed(2)}
                     </td>
                   ))}
                 </tr>
@@ -710,7 +736,7 @@ export const GenerateReport = () => {
                   <td className="tableTotalEmissions">Net sinks</td>
                   {Object.keys(buildingsBaselineResponse.baseline).map((key, i) => (
                     <td key={i} className="tableTotalEmissions">
-                      {(Math.round(landUseChangeResponse.landUseChange[key].sink)/newPopulation[key]).toFixed(2)}
+                      {(Math.round(landUseChangeResponseOtherData.landUseTotalEmissions.negative[key])/newPopulation[key]).toFixed(2)}
                     </td>
                   ))}
                 </tr>

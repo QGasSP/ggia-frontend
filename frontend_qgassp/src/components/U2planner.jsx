@@ -70,6 +70,18 @@ export const U2planner = () => {
     return initialValue || {};
   });
 
+  const [carPropulsionShare, setCarPropulsionShare] = useState(() => {
+    const savedPop = localStorage.getItem("carPropulsionShare");
+    const initialValue = JSON.parse(savedPop);
+    return initialValue || {};
+  });
+
+  const [transportElectricityConsumption, setTransportElectricityConsumption] = useState(() => {
+    const savedPop = localStorage.getItem("transportElectricityConsumption");
+    const initialValue = JSON.parse(savedPop);
+    return initialValue || {};
+  });
+
   const [nextU3planer, setU3planner] = useState(false);
   const [isU2Loading, setIsU2Loading] = useState(true);
   const dataNewPopulation = [];
@@ -90,6 +102,10 @@ export const U2planner = () => {
       .then((response) => {
         setNewPopulation(response.data.data.new_development.impact.population);
         setAbsoluteEmissions(response.data.data.new_development.impact.absolute_emissions);
+        setmodalSplitPercentage(response.data.data.modal_split_percentage);
+        setBusPropulsionShare(response.data.data.bus_propulsion_share);
+        setCarPropulsionShare(response.data.data.car_propulsion_share);
+        setTransportElectricityConsumption(response.data.data.transport_electricity_consumption);
         setIsU2Loading(false);
       })
       .catch((error) => {
@@ -108,7 +124,11 @@ export const U2planner = () => {
     localStorage.setItem("newDevelopment", JSON.stringify(newDevelopment));
     localStorage.setItem("newPopulation", JSON.stringify(newPopulation));
     localStorage.setItem("absoluteEmissions", JSON.stringify(absoluteEmissions));
-  }, [newDevelopment, newPopulation, absoluteEmissions]);
+    localStorage.setItem("modalSplitPercentage", JSON.stringify(modalSplitPercentage));
+    localStorage.setItem("busPropulsionShare", JSON.stringify(busPropulsionShare));
+    localStorage.setItem("carPropulsionShare", JSON.stringify(carPropulsionShare));
+    localStorage.setItem("transportElectricityConsumption", JSON.stringify(transportElectricityConsumption));
+  }, [newDevelopment, newPopulation, absoluteEmissions, modalSplitPercentage, busPropulsionShare, carPropulsionShare, transportElectricityConsumption]);
 
   const absoluteEmissionsBus = [];
   const absoluteEmissionsCar = [];
@@ -119,7 +139,6 @@ export const U2planner = () => {
   const absoluteEmissionsRoadTransport = [];
   const absoluteEmissionsWaterwaysTransport = [];
   const absoluteEmissionsTotal = [];
-
 
   for (let i = baseline.year; i < 2051; i++) {
     dataProjectionPopulation.push({ x: i, y: projections.population[i] });
