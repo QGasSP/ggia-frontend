@@ -1,5 +1,5 @@
 .generate-report{
-    overflow: scroll;
+    overflow: none;
     min-height: 100vh;
 }
 
