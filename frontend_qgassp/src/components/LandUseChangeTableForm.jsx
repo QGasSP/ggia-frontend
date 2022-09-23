@@ -3489,7 +3489,6 @@ export const LandUseChangeTableForm = () => {
                             id="btn"
                             value="Calculate and save emissions"
                             onClick={setLandUseChangeChart}
-                            primary
                           />
                         </td>
                         <td>
@@ -3499,7 +3498,6 @@ export const LandUseChangeTableForm = () => {
                             id="btn-reset"
                             value="Reset"
                             onClick={handleResetValues}
-                            secondary="true"
                           />
                         </td>
                       </tr>
