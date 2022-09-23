@@ -223,7 +223,7 @@ export const ConsumptionResults = () => {
               value="backProjections"
               onClick={() => navigate("../consumptionTransport", { replace: true })}
               label="&laquo; Previous"
-              secondary
+              secondary="true"
             />
           </div>
       </section>

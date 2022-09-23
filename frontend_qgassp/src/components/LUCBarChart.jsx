@@ -26,6 +26,9 @@ export const LUCBarChart = ({ landUseChangeResponse, year }) => {
   year = year ? year : parseInt(localStorage.getItem("year"));
   landUseChangeResponse = landUseChangeResponse ? landUseChangeResponse : JSON.parse(localStorage.landUseChangeResponse);
 
+  // eslint-disable-next-line no-console
+  console.log(landUseChangeResponse)
+
   // #region data distribution
   const dataCroplandToForestland = [];
   const dataGrasslandToForestland = [];
@@ -172,7 +175,7 @@ export const LUCBarChart = ({ landUseChangeResponse, year }) => {
     dataGrasslandToSettlement.push({
       x: i,
       y0: 0,
-      y: landUseChangeResponse[i].landUseChange.wetlandToSettlement,
+      y: landUseChangeResponse[i].landUseChange.grasslandToSettlement,
     });
     dataWetlandToSettlement.push({
       x: i,
@@ -223,7 +226,7 @@ export const LUCBarChart = ({ landUseChangeResponse, year }) => {
       </div>
       <div className="luc_container">
         <div className="landusechange_bar">
-          <FlexibleXYPlot width={1200} height={500} xType="ordinal" stackBy="y">
+          <FlexibleXYPlot width={1200} height={500} margin={{ left: 80 }} xType="ordinal" stackBy="y">
             <HorizontalGridLines />
             <VerticalGridLines />
             <VerticalBarSeries className="LucStackedBarchart" />
@@ -239,189 +242,188 @@ export const LUCBarChart = ({ landUseChangeResponse, year }) => {
             {/* 1 */}
             <BarSeries
               color="#ffdf43"
-              opacity={0.8}
+              opacity={0.9}
               data={dataCroplandToForestland}
             />
             {/* 2 */}
             <BarSeries
               color="#76918e"
-              opacity={0.8}
+              opacity={0.9}
               data={dataGrasslandToForestland}
             />
             {/* 3 */}
             <BarSeries
               color="#ce143d"
-              opacity={0.8}
+              opacity={0.9}
               data={dataWetlandToForestland}
             />
             {/* 4 */}
             <BarSeries
               color="#d6e7d9"
-              opacity={0.8}
+              opacity={0.9}
               data={dataSettlementToForestland}
             />
             {/* 5 */}
             <BarSeries
               color="#002117"
-              opacity={0.8}
+              opacity={0.9}
               data={dataOtherlandToForestland}
             />
             {/* 6 */}
             <BarSeries
               color="#ef7d00"
-              opacity={0.8}
+              opacity={0.9}
               data={dataForestlandToCropland}
             />
             {/* 7 */}
             <BarSeries
               color="#6c3b00"
-              opacity={0.8}
+              opacity={0.9}
               data={dataGrasslandToCropland}
             />
             {/* 8 */}
             <BarSeries
               color="#00aed5"
-              opacity={0.8}
+              opacity={0.9}
               data={dataWetlandToCropland}
             />
             {/* 9 */}
             <BarSeries
               color="#8C0303"
-              opacity={0.8}
+              opacity={0.9}
               data={dataSettlementToCropland}
             />
             {/* 10 */}
             <BarSeries
               color="#A6036D"
-              opacity={0.8}
+              opacity={0.9}
               data={dataOtherlandToCropland}
             />
             {/* 11 */}
             <BarSeries
               color="#400D01"
-              opacity={0.8}
+              opacity={0.9}
               data={dataForestlandToGrassland}
             />
             {/* 12 */}
             <BarSeries
               color="#C4D4F2"
-              opacity={0.8}
+              opacity={0.9}
               data={dataCroplandToGrassland}
             />
             {/* 13 */}
             <BarSeries
               color="#D90404"
-              opacity={0.8}
+              opacity={0.9}
               data={dataWetlandToGrassland}
             />
             {/* 14 */}
             <BarSeries
               color="#80D941"
-              opacity={0.8}
+              opacity={0.9}
               data={dataSettlementToGrassland}
             />
             {/* 15 */}
             <BarSeries
               color="#595959"
-              opacity={0.8}
+              opacity={0.9}
               data={dataOtherlandToGrassland}
             />
             {/* 16 */}
             <BarSeries
               color="#F2CE1B"
-              opacity={0.8}
+              opacity={0.9}
               data={dataForestlandToWetland}
             />
             {/* 17 */}
             <BarSeries
               color="#d51317"
-              opacity={0.8}
+              opacity={0.9}
               data={dataCroplandToWetland}
             />
             {/* 18 */}
             <BarSeries
               color="#8f2e57"
-              opacity={0.8}
+              opacity={0.9}
               data={dataGrasslandToWetland}
             />
             {/* 19 */}
             <BarSeries
               color="#da4f89"
-              opacity={0.8}
+              opacity={0.9}
               data={dataLandToPeatExtraction}
             />
             {/* 20 */}
             <BarSeries
               color="#6e438c"
-              opacity={0.8}
+              opacity={0.9}
               data={dataPeatlandRestoration}
             />
             {/* 21 */}
             <BarSeries
               color="#164194"
-              opacity={0.8}
+              opacity={0.9}
               data={dataForestlandToSettlement}
             />
             {/* 22 */}
             <BarSeries
               color="#2b7abf"
-              opacity={0.8}
+              opacity={0.9}
               data={dataCroplandToSettlement}
             />
             {/* 23 */}
             <BarSeries
               color="#0042d9"
-              opacity={0.8}
+              opacity={0.9}
               data={dataGrasslandToSettlement}
             />
             {/* 24 */}
             <BarSeries
               color="#6caac7"
-              opacity={0.8}
+              opacity={0.9}
               data={dataWetlandToSettlement}
             />
             {/* 25 */}
             <BarSeries
               color="#4a5b58"
-              opacity={0.8}
+              opacity={0.9}
               data={dataOtherlandToSettlement}
             />
             {/* 26 */}
             <BarSeries
               color="#f7cebd"
-              opacity={0.8}
+              opacity={0.9}
               data={dataForestlandToOtherland}
             />
             {/* 27 */}
             <BarSeries
               color="#af1411"
-              opacity={0.8}
+              opacity={0.9}
               data={dataCroplandToOtherland}
             />
             {/* 28 */}
             <BarSeries
               color="#c9b01e"
-              opacity={0.8}
+              opacity={0.9}
               data={dataGrasslandToOtherland}
             />
             {/* 29 */}
             <BarSeries
               color="#371740"
-              opacity={0.8}
+              opacity={0.9}
               data={dataWetlandToOtherland}
             />
             {/* 30 */}
             <BarSeries
               color="#620d00"
-              opacity={0.8}
+              opacity={0.9}
               data={dataSettlementToOtherland}
             />
           </FlexibleXYPlot>
         </div>
       </div>
-      <div className="luc_legendline">
-        <LineLegendLandUse />
-      </div>
+      <LineLegendLandUse />
+      
       <div className="buildings-buttons">
         <div className="">
               <Button

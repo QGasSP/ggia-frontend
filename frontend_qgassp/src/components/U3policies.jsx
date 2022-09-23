@@ -45,7 +45,7 @@ export const U3policies = () =>
 } */
   {
     const base = JSON.parse(localStorage.getItem("baseline"))|| {};
-    const baseline = base.baseline;
+    // const baseline = base.baseline;
     const year = parseInt(localStorage.getItem("year"));
     const navigate = useNavigate();
 
@@ -55,7 +55,7 @@ export const U3policies = () =>
     const absolutePolicyQuantification = JSON.parse(localStorage.getItem("absolutePolicyQuantification")) || "";
     const emission = JSON.parse(localStorage.getItem("emission"))||{};
     const projections = JSON.parse(localStorage.getItem("projections"))|| {};
-    const absoluteEmissionsYear1 = JSON.parse(localStorage.getItem("absoluteEmissionsYear1"));
+    // const absoluteEmissionsYear1 = JSON.parse(localStorage.getItem("absoluteEmissionsYear1"));
 
     
     // total
@@ -95,14 +95,14 @@ export const U3policies = () =>
   ];
 
    // policy quantification results
-  const busYear1 = [];
-  const carYear1 = []
-  const tramYear1 = [];
-  const metroYear1 = [];
-  const trainYear1 = [];
-  const railTransportYear1 = [];
-  const roadTransportYear1= [];
-  const waterwaysTransportYear1 = [];
+  // const busYear1 = [];
+  // const carYear1 = []
+  // const tramYear1 = [];
+  // const metroYear1 = [];
+  // const trainYear1 = [];
+  // const railTransportYear1 = [];
+  // const roadTransportYear1= [];
+  // const waterwaysTransportYear1 = [];
 
   // policy quantification results
   const busPolicyQuantification = [];
@@ -211,32 +211,32 @@ export const U3policies = () =>
               <tbody>
                 <tr>
                   <td>Shares for bus</td>
-                  <td>{emission.bus}</td>
+                  <td>{emission.bus.toFixed(2)}</td>
                   <td>{getModalSplitPassenger.shares.bus}</td>
                   <td>{getModalSplitPassenger.affectedPopulation}</td>
                 </tr>
 
                 <tr>
                   <td>Shares for metro</td>
-                  <td>{emission.metro}</td>
+                  <td>{emission.metro.toFixed(2)}</td>
                   <td>{getModalSplitPassenger.shares.metro}</td>
                 </tr>
 
                 <tr>
                   <td>Shares for tram</td>
-                  <td>{emission.tram}</td>
+                  <td>{emission.tram.toFixed(2)}</td>
                   <td>{getModalSplitPassenger.shares.tram}</td>
                 </tr>
 
                 <tr>
                   <td>Shares for train</td>
-                  <td>{emission.train}</td>
+                  <td>{emission.train.toFixed(2)}</td>
                   <td>{getModalSplitPassenger.shares.train}</td>
                 </tr>
 
                 <tr>
                   <td>Shares for passenger car</td>
-                  <td>{emission.car}</td>
+                  <td>{emission.car.toFixed(2)}</td>
                   <td>{getModalSplitPassenger.shares.car}</td>
                 </tr>
               </tbody>
@@ -414,42 +414,42 @@ export const U3policies = () =>
                 <VerticalBarSeries />
                 <XAxis title="Year"
                  />
-                <YAxis title="Emissions/ kG C02 eq" />
+                <YAxis title="Emissions/ kG C02 eq"/>
                 <BarSeries
                   color= "#e69500"
-                  opacity={0.55}
+                  opacity={0.8}
                   data={busPolicyQuantification}
                   stack
                 />
                 <BarSeries
                   color="#A6036D"
-                  opacity={0.55}
+                  opacity={0.8}
                   data={carPolicyQuantification}
                   stack
                 />
                 <BarSeries
                   color="#005aff"
-                  opacity={0.55}
+                  opacity={0.8}
                   data={metroPolicyQuantification}
                   stack
                 />
                 <BarSeries
                   color="#80D941"
-                  opacity={0.55}
+                  opacity={0.8}
                   data={railTransportPolicyQuantification}
                   stack
                 />
                 <BarSeries
                   color="#595959"
-                  opacity={0.55}
+                  opacity={0.8}
                   data={roadTransportPolicyQuantification}
                   stack
                 />
-                <BarSeries color="#D90404" opacity={0.55} data={trainPolicyQuantification} stack />
-                <BarSeries color="#C4D4F2" opacity={0.55} data={tramPolicyQuantification} stack />
+                <BarSeries color="#FFB6C1" opacity={0.8} data={trainPolicyQuantification} stack />
+                <BarSeries color="#C4D4F2" opacity={0.8} data={tramPolicyQuantification} stack />
                 <BarSeries
                   color="#F2CE1B"
-                  opacity={0.55}
+                  opacity={0.8}
                   data={waterwaysTransportPolicyQuantification}
                   stack
                 />
@@ -491,39 +491,39 @@ export const U3policies = () =>
                 <YAxis title="tCO2/a" />
                 <BarSeries
                   color="#e69500"
-                  opacity={0.55}
+                  opacity={0.8}
                   data={busAbsolutePolicyQuantification}
                   stack
                 />
                 <BarSeries
                   color="#A6036D"
-                  opacity={0.55}
+                  opacity={0.8}
                   data={carAbsolutePolicyQuantification}
                   stack
                 />
                 <BarSeries
                   color="#005aff"
-                  opacity={0.55}
+                  opacity={0.8}
                   data={metroAbsolutePolicyQuantification}
                   stack
                 />
                 <BarSeries
                   color="#80D941"
-                  opacity={0.55}
+                  opacity={0.8}
                   data={railTransportAbsolutePolicyQuantification}
                   stack
                 />
                 <BarSeries
                   color="#595959"
-                  opacity={0.55}
+                  opacity={0.8}
                   data={roadTransportAbsolutePolicyQuantification}
                   stack
                 />
-                <BarSeries color="#D90404" opacity={0.55} data={trainAbsolutePolicyQuantification} stack />
-                <BarSeries color="#C4D4F2" opacity={0.55} data={tramAbsolutePolicyQuantification} stack />
+                <BarSeries color="#FFB6C1" opacity={0.8} data={trainAbsolutePolicyQuantification} stack />
+                <BarSeries color="#C4D4F2" opacity={0.8} data={tramAbsolutePolicyQuantification} stack />
                 <BarSeries
                   color="#F2CE1B"
-                  opacity={0.55}
+                  opacity={0.8}
                   data={waterwaysTransportAbsolutePolicyQuantification}
                   stack
                 />

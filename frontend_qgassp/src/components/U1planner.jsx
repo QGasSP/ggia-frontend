@@ -356,37 +356,37 @@ export const U1planner = () => {
                 <BarSeries
                   color="#8C0303"
                   data={absoluteProjectionsBus}
-                  opacity={0.5}
+                  opacity={0.8}
                 />
                 <BarSeries
                   color="#A6036D"
                   data={absoluteProjectionsCar}
-                  opacity={0.5}
+                  opacity={0.8}
                 />
                 <BarSeries
                   color="#400D01"
                   data={absoluteProjectionsMetro}
-                  opacity={0.5}
+                  opacity={0.8}
                 />
                 <BarSeries
                   color=" #C4D4F2"
                   data={absoluteProjectionsTram}
-                  opacity={0.5}
+                  opacity={0.8}
                 />
                 <BarSeries
-                  color="#D90404"
+                  color="#FFB6C1"
                   data={absoluteProjectionsTrain}
-                  opacity={0.5}
+                  opacity={0.8}
                 />
                 <BarSeries
                   color="#80D941"
                   data={absoluteProjectionsRailTransport}
-                  opacity={0.5}
+                  opacity={0.8}
                 />
                 <BarSeries
                   color="#595959"
                   data={absoluteProjectionsRoadTransport}
-                  opacity={0.5}
+                  opacity={0.8}
                 />
                 <BarSeries
                   color="#F2CE1B"

@@ -1367,7 +1367,7 @@ export const LandUseChangeTableForm = () => {
     setLandUseChangeResponse(response.data);
     setLandUseChangeResponseOtherData(response.otherData);
   };
-  useEffect(async () => {
+  useEffect(() => {
     localStorage.setItem(
       "landUseChangeResponse",
       JSON.stringify(landUseChangeResponse)
@@ -1375,7 +1375,8 @@ export const LandUseChangeTableForm = () => {
 
     localStorage.setItem(
       "landUseChangeResponseOtherData",
-      JSON.stringify(landUseChangeResponseOtherData));
+      JSON.stringify(landUseChangeResponseOtherData)
+    );
 
   }, [landUseChangeResponse, landUseChangeResponseOtherData]);
 

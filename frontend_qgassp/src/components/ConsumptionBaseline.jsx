@@ -50,7 +50,7 @@ export const ConsumptionBaseline = () => {
       <Container maxWidth="xl">
         <article>
           <div className="heading">
-            <h2>Area and type population</h2>
+            <h2>Area type and population</h2>
           </div>
           <Alert severity="info">
               This section is used to create a baseline for the
