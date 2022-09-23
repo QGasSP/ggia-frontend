@@ -21,6 +21,7 @@ import { GenerateReport } from "../components/GenerateReport";
 import { ConsumptionTransport } from "../components/ConsumptionTransport";
 import { ConsumptionResults } from "../components/ConsumptionResults";
 import { LUCBarChart } from "../components/LUCBarChart";
+import { CreateLocaldataset } from "../components/create local-dataset/CreateLocaldataset";
 
 export const AppRoutes = () => {
   const routes = useRoutes([
@@ -49,6 +50,7 @@ export const AppRoutes = () => {
     { path: "buildingsPoliciesCharts", element: <BuildingsPoliciesCharts /> },
     { path: "lUCBarChart", element: <LUCBarChart /> },
     { path: "generateReport", element: <GenerateReport/> },
+    { path: "createLocaldataset", element: <CreateLocaldataset/> },
     { path: "*", element: <Navigate to="/"/> }, 
   ]);
   return routes;

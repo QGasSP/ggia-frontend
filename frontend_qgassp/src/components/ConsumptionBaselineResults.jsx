@@ -94,6 +94,15 @@ export const ConsumptionBaselineResults = () => {
   const dataBlTangiblegoods = [];
   const dataBlServices = [];
 
+  const dataBlHousingEnergyYear1 = [];
+  const dataBlHousingOtherYear1 = [];
+  const dataBlTransportFuelsYear1 = [];
+  const dataBlTransportOtherYear1 = [];
+  const dataBlAirTravelYear1 = [];
+  const dataBlFoodYear1 = [];
+  const dataBlTangiblegoodsYear1 = [];
+  const dataBlServicesYear1 = [];
+
   // const [nextCBQuantification, setCbq] = useState(false);
   const fetchConsumptionBaseline = () => {
     const rawData = {
@@ -180,6 +189,16 @@ export const ConsumptionBaselineResults = () => {
     dataBlServices.push({ x: i, y: bL.services[i] });
   }
 
+    const i = year
+    dataBlHousingEnergyYear1.push({ x:"Housing energy", y: bL.housingEnergy[i], });
+    dataBlHousingOtherYear1.push({ x: "Housing other", y: bL.housingOther[i] });
+    dataBlTransportFuelsYear1.push({ x: "Transport fuels", y: bL.transportFuels[i] });
+    dataBlTransportOtherYear1.push({ x: "Transport other", y: bL.transportOther[i] });
+    dataBlAirTravelYear1.push({ x: "Air travel", y: bL.airTravel[i] });
+    dataBlFoodYear1.push({ x: "Food", y: bL.food[i] });
+    dataBlTangiblegoodsYear1.push({ x: "Tangible goods", y: bL.tangibleGoods[i] });
+    dataBlServicesYear1.push({ x: "Services", y: bL.services[i] });
+
   return (
     <Container maxWidth="xl">
       {consumptionBlStatus !== "success" && <div>{errorBlConsumption}</div>}
@@ -209,24 +228,24 @@ export const ConsumptionBaselineResults = () => {
           <VerticalBarSeries className="StackedBarchart" />
           <XAxis title="Year"/>
           <YAxis title="Emissions/ kG C02 eq" />
-          <BarSeries color="#3d58a3" data={dataBlHousingEnergy} opacity={0.6} />
-          <BarSeries color="#ef7d00" data={dataBlHousingOther} opacity={0.6} />
+          <BarSeries color="#3d58a3" data={dataBlHousingEnergy}  />
+          <BarSeries color="#ef7d00" data={dataBlHousingOther}  />
           <BarSeries
             color="#95c11f"
             data={dataBlTransportFuels}
-            opacity={0.6}
+            
           />
           <BarSeries
             color="#ce143d"
             data={dataBlTransportOther}
-            opacity={0.6}
+            
           />
-          <BarSeries color="#845f9e" data={dataBlAirTravel} opacity={0.6} />
-          <BarSeries color="#996e35" data={dataBlFood} opacity={0.6} />
+          <BarSeries color="#845f9e" data={dataBlAirTravel}  />
+          <BarSeries color="#996e35" data={dataBlFood}  />
 
-          <BarSeries color="#e1719a" data={dataBlTangiblegoods} opacity={0.6} />
+          <BarSeries color="#e1719a" data={dataBlTangiblegoods}  />
 
-          <BarSeries color="#76918e" data={dataBlServices} opacity={0.6} />
+          <BarSeries color="#76918e" data={dataBlServices}  />
         </XYPlot>
       </div>
       <Divider textAlign="left" flexItem>
@@ -240,6 +259,32 @@ export const ConsumptionBaselineResults = () => {
           The second graph is a bar chart showing the breakdown of per capita
           emissions by sector for the baseline year.
         </Alert>
+
+        <XYPlot width={1000} height={500} margin={{left: 100}} stackBy="y" xType="ordinal">
+          <HorizontalGridLines />
+          <VerticalGridLines />
+          <VerticalBarSeries className="StackedBarchart" />
+          <XAxis title="Year"/>
+          <YAxis title="Emissions/ kG C02 eq" />
+          <BarSeries color="#3d58a3" data={dataBlHousingEnergyYear1}  />
+          <BarSeries color="#ef7d00" data={dataBlHousingOtherYear1}  />
+          <BarSeries
+            color="#95c11f"
+            data={dataBlTransportFuelsYear1}
+            
+          />
+          <BarSeries
+            color="#ce143d"
+            data={dataBlTransportOtherYear1}
+            
+          />
+          <BarSeries color="#845f9e" data={dataBlAirTravelYear1}  />
+          <BarSeries color="#996e35" data={dataBlFoodYear1}  />
+
+          <BarSeries color="#e1719a" data={dataBlTangiblegoodsYear1}  />
+
+          <BarSeries color="#76918e" data={dataBlServicesYear1}  />
+        </XYPlot>
         <div className="luc_alert_container">
           <table className="table-results">
             <thead className="tableHeader">

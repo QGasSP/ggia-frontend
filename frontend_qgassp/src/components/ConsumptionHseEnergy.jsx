@@ -1,7 +1,5 @@
 import React from "react";
-import Divider from "@mui/material/Divider";
 import "../css/u1planner.css";
-import Chip from "@mui/material/Chip";
 import { Button } from "./Button";
 import { useNavigate } from "react-router-dom";
 import {
@@ -339,11 +337,13 @@ export const ConsumptionHseEnergy = () => {
 
           {localElectricity && (
             <>
+
               <div className="div_transport">
                 <label htmlFor="el_type">
                   What is the source of local electricity production?
                 </label>
-                <select
+                <span>
+                  <select
                   className="local_energy_elec"
                   id="el_type"
                   onChange={(e) => setElectricityType(e.target.value)}
@@ -383,13 +383,56 @@ export const ConsumptionHseEnergy = () => {
                   </option>
                   <option value="Electricity nec">No Electricity</option>
                 </select>
+
+                {/* <select
+                  className="local_energy_elec"
+                  id="el_type"
+                  onChange={(e) => setElectricityType(e.target.value)}
+                  defaultValue={elType}
+                >
+                  <option value="DefaultOption">Select source</option>
+                  <option value="Electricity by coal">
+                    Electricity by coal
+                  </option>
+                  <option value="Electricity by gas">Electricity by gas</option>
+                  <option value="Electricity by nuclear">
+                    Electricity by nuclear
+                  </option>
+                  <option value="Electricity by hydro">
+                    Electricity by hydro
+                  </option>
+                  <option value="Electricity by wind">
+                    Electricity by wind
+                  </option>
+                  <option value="Electricity by petroleum and other oil derivatives">
+                    Electricity by petroleum and other oil derivatives
+                  </option>
+                  <option value="Electricity by biomass and waste">
+                    Electricity by biomass and waste
+                  </option>
+                  <option value="Electricity by solar photovoltaic">
+                    Electricity by solar photovoltaic
+                  </option>
+                  <option value="Electricity by solar thermal">
+                    Electricity by solar thermal
+                  </option>
+                  <option value="Electricity by tide, wave, ocean">
+                    Electricity by tide, wave, ocean
+                  </option>
+                  <option value="Electricity by Geothermal">
+                    Electricity by Geothermal
+                  </option>
+                  <option value="Electricity nec">No Electricity</option>
+                </select> */}
+                </span>
               </div>
 
               <div className="div_transport">
                 <label htmlFor="electricity_scaler" className="settle_label">
                   What % of demand is covered by this new source?
                 </label>
-                <input
+                <span>
+                    <input
                   className="input_occupancy"
                   type="number"
                   id="electricity_scaler"
@@ -400,6 +443,22 @@ export const ConsumptionHseEnergy = () => {
                   placeholder="0-100 %"
                   required
                 />
+                
+               {/*
+               <input
+                  className="input_occupancy"
+                  type="number"
+                  id="electricity_scaler"
+                  onChange={handleElScaler}
+                  defaultValue={elScaler}
+                  min="0"
+                  max="100"
+                  placeholder="0-100 %"
+                  required
+                />
+                 */}
+                </span>
+                
               </div>
             </>
           )}
@@ -429,7 +488,7 @@ export const ConsumptionHseEnergy = () => {
             <>
               <div className="div_heating">
                 <label htmlFor="district_heating" className="settle_label">
-                  District heating
+                  District heating (kg CO2 / euro)
                 </label>
                 <input
                   className="input_occupancy"
@@ -455,7 +514,7 @@ export const ConsumptionHseEnergy = () => {
 
               <div className="div_heating">
                 <label htmlFor="combustable_fuels" className="settle_label">
-                  Combustable fuels
+                  Combustible fuels
                 </label>
                 <input
                   className="input_occupancy"
@@ -524,7 +583,7 @@ export const ConsumptionHseEnergy = () => {
               value="backProjections"
               onClick={() => navigate("../consumptionBaselineResults", { replace: true })}
               label="&laquo; Previous"
-              secondary
+              secondary="true"
             />
           </div>
 

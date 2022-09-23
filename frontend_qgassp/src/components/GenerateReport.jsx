@@ -1,11 +1,7 @@
 import React, { useRef } from "react";
-import ReactToPrint, {
-  PrintContextConsumer,
-  useReactToPrint,
-} from "react-to-print";
+import ReactToPrint from "react-to-print";
 import Divider from "@mui/material/Divider";
-import Chip from "@mui/material/Chip";
-import { Container } from "@mui/material";
+import { Alert, Box, Container, Typography } from "@mui/material";
 import { Button } from "./Button";
 import '../css/generate.css';
 import {
@@ -15,48 +11,30 @@ import {
   HorizontalGridLines,
   VerticalGridLines,
   VerticalBarSeries,
-  LineSeries,
-  DiscreteColorLegend
+  LineSeries
 } from "react-vis";
-import { ConsumptionBaselineResults } from "./ConsumptionBaselineResults";
+import { LegendConsumptionResults } from "./LineLegendConsumption";
+import { LegendTerritorialApproach } from "./LineLegend";
+
 // https://github.com/gregnb/react-to-print/issues/184
+
 const BarSeries = VerticalBarSeries;
 
 export const GenerateReport = () => {
   const country = localStorage.getItem("country");
   const year = parseInt(localStorage.getItem("year"));
-  const transportBaseline = JSON.parse(localStorage.getItem("baseline"));
   const population = parseInt(localStorage.getItem("population"));
   const p1 = JSON.parse(localStorage.getItem("p1"));
-  const blTotalEmmissions = JSON.parse(
-    localStorage.getItem("blTotalEmmissions")
-  );
+  const bLTotalEmissions = JSON.parse(localStorage.getItem("bLTotalEmissions"));
   const p1TotalEmissions = JSON.parse(localStorage.getItem("p1TotalEmissions"));
-  const p1TotalAreaEmissions = JSON.parse(
-    localStorage.getItem("p1TotalAreaEmissions")
-  );
+  const p1TotalAreaEmissions = JSON.parse(localStorage.getItem("p1TotalAreaEmissions"));
   const p1SummedEmissions= JSON.parse(localStorage.getItem("p1SummedEmissions"));
-
-  const newPopulation = JSON.parse(
-    localStorage.getItem("newPopulation")
-  );
-
-  const landUseChangeResponse = JSON.parse(
-    localStorage.getItem("landUseChangeResponse")
-  );
-
-  const landUseChangeResponseOtherData = JSON.parse(
-    localStorage.getItem("landUseChangeResponseOtherData")
-  );
-  const emission = JSON.parse(localStorage.getItem("emission"));
-
+  const newPopulation = JSON.parse(localStorage.getItem("newPopulation"));
+  const landUseChangeResponse = JSON.parse(localStorage.getItem("landUseChangeResponse"));
+  const landUseChangeResponseOtherData = JSON.parse(localStorage.getItem("landUseChangeResponseOtherData"));
   const projections = JSON.parse(localStorage.getItem("projections"));
-  const newDevelopment = JSON.parse(localStorage.getItem("newDevelopment"));
-
   const buildingsBaselineResponse = JSON.parse(localStorage.getItem("buildingsBaselineResponse"));
-  const newConstructionResponse = JSON.parse(localStorage.getItem("newConstructionResponse"));
   const policyQuantificationResponse = JSON.parse(localStorage.getItem("policyQuantificationResponse"));
-  const absolutePolicyQuantification = JSON.parse(localStorage.getItem("absolutePolicyQuantification"))
   const absoluteEmissions = JSON.parse(localStorage.getItem("absoluteEmissions"))
 
  
@@ -66,55 +44,6 @@ export const GenerateReport = () => {
   // });
   // const zip = (array1, array2) => array1.map((x, i) => [x, array2[i]]); 
 
-  const transportAndPolicyResultsLegend = [
-    {
-      title: "Bus",
-      color: "#3d58a3",
-      strokeWidth: 6
-    },
-
-    {
-      title: "Car",
-      color: "#ef7d00",
-      strokeWidth: 6
-    },
-
-    {
-      title: "Metro",
-      color: "#95c11f",
-      strokeWidth: 6
-    },
-
-    {
-      title: "Rail Transport",
-      color: "#ce143d",
-      strokeWidth: 6
-    },
-
-    {
-      title: "Road Transport",
-      color: "#845f9e",
-      strokeWidth: 6
-    },
-
-    {
-      title: "Train",
-      color: "#996e35",
-      strokeWidth: 6
-    },
-
-    {
-      title: "Tram",
-      color: "#76918e",
-      strokeWidth: 6
-    },
-
-    {
-      title: "Waterways transport",
-      color: "#0000CD",
-      strokeWidth: 6
-    }
-    ];
   // #region data distribution
 
   // total values
@@ -124,19 +53,13 @@ export const GenerateReport = () => {
   const netPositivesLuc = [];
   const netNegativesLuc = [];
 
-  // absolute values
-  const netSinkTotal = [];
-  const netLandUseChangeTotal = [];
-  const netBuildingsTotal = [];
-  const netTransportTotal = [];
-  const netBalanceTotal = [];
-
   // per capita values
   const netSinkPerCapita = [];
-  const netLandUseChangePerCapita = [];
+  const netLucEmissionsPerCapita = [];
   const netBuildingsPerCapita= [];
   const netTransportPerCapita = [];
-  const netBalancePerCapita = [];
+  const netBaselinePerCapita = [];
+
   // consumption
   const policyHousingEnergy = [];
   const policyHousingOther = [];
@@ -160,48 +83,21 @@ export const GenerateReport = () => {
   const trainProjection = [];
   const tramProjection = [];
   const waterwaysTransportProjection = [];
-  const totalTransportProjection = [];
-
-  // absolute policy quantification
-  const busAbsolutePolicyQuantification = [];
-  const carAbsolutePolicyQuantification = [];
-  const tramAbsolutePolicyQuantification = [];
-  const metroAbsolutePolicyQuantification = [];
-  const trainAbsolutePolicyQuantification = [];
-  const railTransportAbsolutePolicyQuantification = [];
-  const roadTransportAbsolutePolicyQuantification = [];
-  const waterwaysTransportAbsolutePolicyQuantification = [];
-
-   if (absolutePolicyQuantification &&
-      Object.keys(absolutePolicyQuantification).length !== 0
-       ){
-        for (let i = year; i < 2051; i++) {
-          busAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.bus[i] })
-          carAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.car[i] })
-          metroAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.metro[i] })
-          railTransportAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.rail_transport[i] })
-          roadTransportAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.road_transport[i] })
-          trainAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.train[i] })
-          tramAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.tram[i] })
-          waterwaysTransportAbsolutePolicyQuantification.push({ x: i, y: absolutePolicyQuantification.waterways_transport[i] })
-          // totalPolicyQuantification.push({ x: i, y: absolutePolicyQuantification.total[i] })
-      };
-    }
 
     if (policyQuantificationResponse && 
         absoluteEmissions &&
-        landUseChangeResponseOtherData &&
+        landUseChangeResponseOtherData.landUseTotalEmissions &&
         landUseChangeResponse &&
+        Object.keys(landUseChangeResponseOtherData.landUseTotalEmissions).length !== 0 &&
         Object.keys(policyQuantificationResponse).length !== 0 &&
         Object.keys(absoluteEmissions).length !== 0 &&
-        Object.keys(landUseChangeResponseOtherData).length !== 0 &&
         Object.keys(landUseChangeResponse).length !== 0 ){
       for (let i = year; i < 2051; i++) {
         buildingEmissionsTotal.push({x: i, y: policyQuantificationResponse.data.graph[i].total})
         buildingBaseline.push({x: i, y: policyQuantificationResponse.data.graph[i].baseline})
         absoluteEmissionsTotal.push({x:i, y: absoluteEmissions.total[i]})
-        netPositivesLuc.push({x: i, y: landUseChangeResponseOtherData.landUseTotalEmissions.positive[i]})
-        netNegativesLuc.push({x:i, y: landUseChangeResponseOtherData.landUseTotalEmissions.negative[i]})
+        netPositivesLuc.push({x: i, y: landUseChangeResponseOtherData.landUseTotalEmissions.positive[i] })
+        netNegativesLuc.push({x:i, y: landUseChangeResponseOtherData.landUseTotalEmissions.negative[i] })
       }
     }
     
@@ -211,71 +107,51 @@ export const GenerateReport = () => {
     newPopulation &&
     landUseChangeResponse &&
     p1 &&
+    landUseChangeResponseOtherData.landUseTotalEmissions &&
     projections &&
+    absoluteEmissions &&
+    policyQuantificationResponse &&
     Object.keys(newPopulation).length !== 0 &&
+    Object.keys(policyQuantificationResponse).length !== 0 &&
     Object.keys(landUseChangeResponse).length !== 0 &&
+    Object.keys(landUseChangeResponseOtherData.landUseTotalEmissions) !== 0 &&
     Object.keys(p1).length !== 0 &&
-    Object.keys(blTotalEmmissions).length !== 0 &&
+    Object.keys(bLTotalEmissions).length !== 0 &&
     Object.keys(p1TotalAreaEmissions).length !== 0 &&
     Object.keys(buildingsBaselineResponse).length !== 0 &&
+    Object.keys(absoluteEmissions).length !== 0 &&
     Object.keys(projections).length !== 0){
   for (let i = year; i < 2051; i++) {
-
-    netSinkTotal.push({
-      x: i,
-      y0: 0,
-      y: landUseChangeResponseOtherData.landUseTotalEmissions.negative[i]
-    });
-    netLandUseChangeTotal.push({
-      x: i,
-      y0: 0,
-      y: landUseChangeResponseOtherData.landUseTotalEmissions.total[i]
-    });
-    netBuildingsTotal.push({
-      x: i,
-      y0: 0,
-      y: buildingsBaselineResponse.baseline[i].apartment,
-    });
-    netTransportTotal.push({
-      x: i,
-      y0: 0,
-      y: buildingsBaselineResponse.baseline[i].apartment,
-    });
-    netBalanceTotal.push({
-      x: i,
-      y0: 0,
-      y: buildingsBaselineResponse.baseline[i].apartment,
-    });
 
     netSinkPerCapita.push({
       x: i,
       y0: 0,
       y: (landUseChangeResponseOtherData.landUseTotalEmissions.negative[i]/newPopulation[i]),
     });
-    netLandUseChangePerCapita.push({
+    netLucEmissionsPerCapita.push({
       x: i,
       y0: 0,
-      y: (landUseChangeResponseOtherData.landUseTotalEmissions.total[i]/newPopulation[i]),
+      y: (landUseChangeResponseOtherData.landUseTotalEmissions.positive[i]/newPopulation[i]),
     });
     netBuildingsPerCapita.push({
       x: i,
       y0: 0,
-      y: (buildingsBaselineResponse.baseline[i].apartment/newPopulation[i]),
+      y: (policyQuantificationResponse.data.graph[i].total/newPopulation[i]),
+    });
+     netBaselinePerCapita .push({
+      x: i,
+      y0: 0,
+      y: (policyQuantificationResponse.data.graph[i].baseline/newPopulation[i]),
     });
     netTransportPerCapita.push({
       x: i,
       y0: 0,
-      y: (buildingsBaselineResponse.baseline[i].apartment/newPopulation[i]),
-    });
-    netBalancePerCapita.push({
-      x: i,
-      y0: 0,
-      y: (buildingsBaselineResponse.baseline[i].apartment/newPopulation[i]),
+      y: (absoluteEmissions.total[i]/newPopulation[i]),
     });
   }
 
   for (let i = year; i < 2051; i++) {
-    dataBlTotalEmissions.push({ x: i, y: blTotalEmmissions[i] });
+    dataBlTotalEmissions.push({ x: i, y: bLTotalEmissions[i] });
     policyHousingEnergy.push({ x: i, y: p1.housingEnergy[i] });
     policyHousingOther.push({ x: i, y: p1.housingOther[i] });
     policyTransportFuels.push({ x: i, y: p1.transportFuels[i] });
@@ -313,6 +189,7 @@ export const GenerateReport = () => {
        <h2>Generate summary report</h2>
       </div>
       {country !== "" && year > 0 && population > 0 && <></>}
+      
       <br />
       <ReactToPrint
         trigger={() => (
@@ -330,9 +207,13 @@ export const GenerateReport = () => {
 
       <div className="padding" ref={componentRef}>
         <div className="luc_alert_container">
-          <Divider textAlign="left" flexItem>
-            <b>Results</b>
+
+          <Divider sx={{margin: 3 }} textAlign="left">
+            <Typography variant="h6">
+              <b>Results</b>
+            </Typography>
           </Divider>
+
           {country !== "" && year > 0 && population > 0 && (
             <>
               <div>
@@ -361,21 +242,67 @@ export const GenerateReport = () => {
           buildingsBaselineResponse &&
           newPopulation &&
           landUseChangeResponse &&
+          landUseChangeResponseOtherData.landUseTotalEmissions &&
           p1 &&
           projections &&
           Object.keys(newPopulation).length !== 0 &&
           Object.keys(landUseChangeResponse).length !== 0 &&
+          Object.keys(landUseChangeResponseOtherData.landUseTotalEmissions).length !== 0 &&
           Object.keys(p1).length !== 0 &&
-          Object.keys(blTotalEmmissions).length !== 0 &&
+          Object.keys(bLTotalEmissions).length !== 0 &&
+          Object.keys(p1TotalAreaEmissions).length !== 0 &&
+          Object.keys(buildingsBaselineResponse).length !== 0 &&
+          Object.keys(projections).length !== 0 ? "" : <Typography m={3} sx={{ textAlign: "center"}}><b>Unable to generate report, <br/> please fill in data in all modules</b></Typography>}
+
+        { country !== "" &&
+          year > 0 &&
+          population > 0 &&
+          buildingsBaselineResponse &&
+          newPopulation &&
+          landUseChangeResponse &&
+          landUseChangeResponseOtherData.landUseTotalEmissions &&
+          p1 &&
+          projections &&
+          Object.keys(newPopulation).length !== 0 &&
+          Object.keys(landUseChangeResponse).length !== 0 &&
+          Object.keys(landUseChangeResponseOtherData.landUseTotalEmissions).length !== 0 &&
+          Object.keys(p1).length !== 0 &&
+          Object.keys(bLTotalEmissions).length !== 0 &&
           Object.keys(p1TotalAreaEmissions).length !== 0 &&
           Object.keys(buildingsBaselineResponse).length !== 0 &&
           Object.keys(projections).length !== 0 &&
            (
-            <div>
-              <>
+            <>
+            <Box m={6}>
+              <Alert severity="info">
+                <Typography m={0.5} variant="body1">
+                  The territorial quantification results present the greenhouse gas emissions from transport, land-use change
+                  and energy use in buildings within the assessment area from the baseline year to 2050.
+                </Typography>
+
+                <Typography m={0.5} variant="body1">
+                  The future trajectory
+                  includes the impact of other existing measures only if they are inserted through the local dataset. The dashed
+                  line shows the baseline projection and the bar chart displays the impacts of the plan/policy that is assessed
+                  with the GGIA tool.
+                </Typography>
+
+                <Typography m={0.5} variant="body1">
+                  The results are announced below in two different units. The first graph presents the absolute greenhouse
+                  gas emissions within the area. The second graph presents the results as tonnes of CO2/per capita.
+                </Typography>
+
+                <Typography m={0.5} variant="body1">
+                  Please notice that although it is a common practise to announce the territorial greenhouse gas emissions
+                  per capita, they are not caused by the residents only.
+                </Typography>
+              </Alert>
+            </Box>
             <div className="luc_alert_container">
-              <Divider textAlign="left" flexItem>
-                <b>Absolute CO2e emissions | Territorial approach</b>
+              <Divider textAlign="left" sx={{margin: 3 }}>
+                <Typography variant="h6">
+                  <b>Absolute CO2e emissions | Territorial approach</b>
+                </Typography>
               </Divider>
             </div>
             <table className="table-results">
@@ -392,30 +319,22 @@ export const GenerateReport = () => {
               <tbody>
                 <tr>
                   <td className="tableTotalEmissions">Transport</td>
-                  {Object.keys(buildingsBaselineResponse.baseline).map((key, i) => (
+                  {Object.keys(absoluteEmissions.total).map((key, i) => (
                     <td key={i} className="tableTotalEmissions">
-                      {Math.round(buildingsBaselineResponse.baseline[key].apartment)}
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <td className="tableTotalEmissions">Land-use change</td>
-                  {Object.keys(landUseChangeResponseOtherData.landUseTotalEmissions.total).map((key, i) => (
-                    <td key={i} className="tableTotalEmissions">
-                      {Math.round(landUseChangeResponseOtherData.landUseTotalEmissions.total[key])}
+                      {Math.round(absoluteEmissions.total[key])}
                     </td>
                   ))}
                 </tr>
                 <tr>
                   <td className="tableTotalEmissions">Buildings</td>
-                  {Object.keys(buildingsBaselineResponse.baseline).map((key, i) => (
+                  {Object.keys(policyQuantificationResponse.data.graph).map((key, i) => (
                     <td key={i} className="tableTotalEmissions">
-                      {Math.round(buildingsBaselineResponse.baseline[key].apartment)}
+                      { Math.round(policyQuantificationResponse.data.graph[key].total)}
                     </td>
                   ))}
                 </tr>
                 <tr>
-                  <td className="tableTotalEmissions">Net sinks</td>
+                  <td className="tableTotalEmissions">LUC removal</td>
                   {Object.keys(landUseChangeResponseOtherData.landUseTotalEmissions.negative).map((key, i) => (
                     <td key={i} className="tableTotalEmissions">
                       {Math.round(landUseChangeResponseOtherData.landUseTotalEmissions.negative[key])}
@@ -423,27 +342,58 @@ export const GenerateReport = () => {
                   ))}
                 </tr>
                 <tr>
-                  <td className="tableTotalEmissions">Net balance</td>
-                  {Object.keys(buildingsBaselineResponse.baseline).map((key, i) => (
+                  <td className="tableTotalEmissions">LUC emissions</td>
+                  {Object.keys(landUseChangeResponseOtherData.landUseTotalEmissions.positive).map((key, i) => (
                     <td key={i} className="tableTotalEmissions">
-                      {Math.round(buildingsBaselineResponse.baseline[key].apartment)}
+                      {Math.round(landUseChangeResponseOtherData.landUseTotalEmissions.positive[key])}
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <td className="tableTotalEmissions">LUC total</td>
+                  {Object.keys(landUseChangeResponseOtherData.landUseTotalEmissions.total).map((key, i) => (
+                    <td key={i} className="tableTotalEmissions">
+                      {Math.round(landUseChangeResponseOtherData.landUseTotalEmissions.total[key])}
                     </td>
                   ))}
                 </tr>
               </tbody>
             </table>
             {/* graph final for generate report from excel */}
+
             <div style={{margin:"30px"}}>
               <div>
-            <Divider textAlign="left" flexItem>
-               <b>Absolute CO2e emissions | Territorial approach</b>
-            </Divider>
-            </div>
+                <h5>
+                  <Typography m={2}>
+                    <b>Graph: Absolute CO2e emissions | Territorial approach</b>
+                  </Typography>
+                </h5>
+              </div>
+              <Box m={3}>
+              <Alert severity="info">
+                <Typography m={0.5} variant="body1">
+                  The dashed line shows the baseline projection and the coloured bar chart displays the impacts of the
+                  plan/policy that is assessed with the GGIA tool. Higher deviation means higher impact on the greenhouse
+                  gas emissions reductions within the area in assessment.
+                </Typography>
+
+                <Typography m={0.5} variant="body1">
+                  Territorial results reflect the impact of a plan/policy within the geographic boundary of the specific area. The
+                  changes in land use and in the volume of building stock are directly defined in spatial planning.
+                </Typography>
+
+                <Typography m={0.5} variant="body1">
+                  In transport,
+                  the impacts of planning is more complex, as the passenger transport by non-residents and the freight
+                  transport may be less affected by local policies.
+                </Typography>
+              </Alert>
+            </Box>
               <FlexibleXYPlot
                 className="policy-quantification-chart"
                 stackBy="y"
                 xType="ordinal"
-                margin={{ left: 80 }}
+                margin={{ left: 60 }}
                 width={1150}
                 height={500}
               >
@@ -455,240 +405,47 @@ export const GenerateReport = () => {
                 <YAxis title="tCO2/a" />
                 <BarSeries
                   color="#3d58a3"
-                  opacity={0.55}
                   data={buildingEmissionsTotal}
-                  stack
-                />
-                <BarSeries
-                  color="#ef7d00"
-                  opacity={0.55}
-                  data={buildingBaseline}
+                  opacity={0.8}
                   stack
                 />
                 <BarSeries
                   color="#2e8b57"
-                  opacity={0.55}
                   data={absoluteEmissionsTotal}
+                  opacity={0.8}
                   stack
                 />
                 <BarSeries
-                  color="#00FF00"
-                  opacity={0.55}
+                  color="#F6BE00"
                   data={netPositivesLuc}
+                  opacity={0.8}
                 />
 
                 <BarSeries
-                  color= "#00FFFF"
-                  opacity={0.55}
+                  color= "#ACD5F3"
                   data={netNegativesLuc}
+                  opacity={0.8}
                 />
 
-
-              </FlexibleXYPlot>
-              <div>
-              
-                
-              </div>
-              </div>
-            {/* transport projections start here */}
-             {/*   <div className="luc_alert_container">
-              <Divider textAlign="left" flexItem>
-                <Chip label="Transport projections" />
-              </Divider>
-              <FlexibleXYPlot
-                margin={{ left: 80 }}
-                width={1150}
-                height={500}
-                stackBy="y"
-                xType="ordinal"
-              >
-                <VerticalGridLines />
-                <HorizontalGridLines />
-                <XAxis title="Year" />
-                <YAxis title="Emissions/ kG C02 eq" />
-                <BarSeries
-                  color="#3d58a3"
-                  opacity={0.5}
-                  data={busProjection}
-                  stack
-                />
-                <BarSeries
-                  color="#ef7d00"
-                  opacity={0.55}
-                  data={carProjection}
-                  stack
-                />
-                <BarSeries
-                  color="#95c11f"
-                  opacity={0.55}
-                  data={metroProjection}
-                  stack
-                />
-                <BarSeries
-                  color="#ce143d"
-                  opacity={0.55}
-                  data={railTransportProjection}
-                  stack
-                />
-                <BarSeries
-                  color="#845f9e"
-                  opacity={0.55}
-                  data={roadTransportProjection}
-                  stack
-                />
-                <BarSeries color="#996e35" opacity={0.55} data={trainProjection} stack />
-                
-                <BarSeries color="#76918e" opacity={0.55} data={tramProjection} stack />
-                <BarSeries
-                  color="#000000"
-                  strokeWidth="1"
-                  data={waterwaysTransportProjection}
-                />
                 <LineSeries
-                  className="fourth-series"
-                  color="#000000"
-                  strokeWidth="1"
-                  data={totalTransportProjection}
+                  color="#cc7000"
+                  data={buildingBaseline}
+                  strokeStyle="dashed"
+                  strokeWidth="3"
                 />
               </FlexibleXYPlot>
-              </div> */}  
-
-              <div style={{margin:"30px"}}>
-          {/* policy quantification results */}
-              <Divider textAlign="left" flexItem>
-                <b>Absolute Policy Quantification Results</b>
-              </Divider>
-              <FlexibleXYPlot
-                className="policy-quantification-chart"
-                stackBy="y"
-                xType="ordinal"
-                margin={{ left: 80 }}
-                width={1150}
-                height={500}
-              >
-                <VerticalGridLines />
-                <HorizontalGridLines />
-                <VerticalBarSeries />
-                <XAxis title="Year"
-                 />
-                <YAxis title="tCO2/a" />
-                <BarSeries
-                  color="#3d58a3"
-                  opacity={0.55}
-                  data={busAbsolutePolicyQuantification}
-                  stack
-                />
-                <BarSeries
-                  color="#ef7d00"
-                  opacity={0.55}
-                  data={carAbsolutePolicyQuantification}
-                  stack
-                />
-                <BarSeries
-                  color="#95c11f"
-                  opacity={0.55}
-                  data={metroAbsolutePolicyQuantification}
-                  stack
-                />
-                <BarSeries
-                  color="#ce143d"
-                  opacity={0.55}
-                  data={railTransportAbsolutePolicyQuantification}
-                  stack
-                />
-                <BarSeries
-                  color="#845f9e"
-                  opacity={0.55}
-                  data={roadTransportAbsolutePolicyQuantification}
-                  stack
-                />
-                <BarSeries color="#996e35" opacity={0.55} data={trainAbsolutePolicyQuantification} stack />
-                <BarSeries color="#76918e" opacity={0.55} data={tramAbsolutePolicyQuantification} stack />
-                <BarSeries
-                  color="#0000CD"
-                  opacity={0.55}
-                  data={waterwaysTransportAbsolutePolicyQuantification}
-                  stack
-                />
-              </FlexibleXYPlot>
-
-              <div>
-                <DiscreteColorLegend
-                items={transportAndPolicyResultsLegend}
-                orientation="horizontal"/>
+                <div>
+                  <LegendTerritorialApproach />
+                </div>
+            
               </div>
-              
-              </div>
-            <Divider textAlign="left">
-              <b>Land-use change</b>
-            </Divider>
-            <div className="luc_alert_container">
-            <FlexibleXYPlot
-                margin={{ left: 80 }}
-                width={1150}
-                height={500}
-                stackBy="y"
-                xType="ordinal"
-              >
-              <HorizontalGridLines />
-              <VerticalGridLines />
-              <VerticalBarSeries className="LucStackedBarchart" />
-              <XAxis
-                title="Year"
-                style={{
-                  line: { stroke: "#ADDDE1" },
-                  ticks: { stroke: "#ADDDE1" },
-                  text: { stroke: "none", fill: "#6b6b76", fontWeight: 600 },
-                }}
-              />
-              <YAxis title="Land-use tC02/a" />
-              {/* 1 */}
-              <BarSeries
-                cluster='1'
-                color="#ffdf43"
-                opacity={0.5}
-                data={netTransportTotal}
-              />
-              {/* 2 */}
-              <BarSeries
-                cluster='2'
-                color="#ef7d00"
-                opacity={0.5}
-                data={netLandUseChangeTotal}
-              />
-              {/* 3 */}
-              <BarSeries  
-                cluster='3' 
-                color="#76918e" 
-                opacity={0.6} 
-                data={netBuildingsTotal} 
-              />
-              {/* 4 */}
-              <BarSeries
-                cluster='4'
-                color="#ce143d"
-                opacity={0.5}
-                data={netSinkTotal}
-              />
-              {/* 5 */}
-              <BarSeries
-                cluster='5'
-                color="#d6e7d9"
-                opacity={0.5}
-                data={netBalanceTotal}
-              />
-               <LineSeries
-                className="fourth-series"
-                color="#000000"
-                strokeWidth="1"
-                data={netBalanceTotal}
-              />
-              </FlexibleXYPlot>
-            </div>
+           
 
             <div className="luc_alert_container">
-              <Divider textAlign="left" flexItem>
-                <b>CO2e EMISSIONS PER CAPITA | TERRITORIAL APPROACH</b>
+              <Divider textAlign="left" sx={{margin: 3 }}>
+                <Typography variant="h6">
+                <b>CO2e Emissions per capita | Territorial Approach</b>
+                </Typography>
               </Divider>
             </div>
             <table className="table-results">
@@ -753,9 +510,16 @@ export const GenerateReport = () => {
                 </tr>
               </tbody>
             </table>
-            {/* <div className="luc_alert_container">
+
+            <h5>
+              <Typography m={2} ml={5}>
+                <b>Graph: CO2e Emissions per capita | Territorial Approach</b>
+              </Typography>
+            </h5>
+
+            <div style={{margin:"30px"}}>
               <FlexibleXYPlot
-                margin={{ left: 80 }}
+                margin={{ left: 60 }}
                 width={1150}
                 height={500}
                 stackBy="y"
@@ -772,58 +536,102 @@ export const GenerateReport = () => {
                   text: { stroke: "none", fill: "#6b6b76", fontWeight: 600 },
                 }}
               />
-              <YAxis title="Land-use tC02/a" /> */}
+              <YAxis title="tC02/ per capita" />
               {/* 1 */}
-              {/* <BarSeries
-                cluster='1'
-                color="#ffdf43"
-                opacity={0.5}
+              <BarSeries
+                color="#2e8b57"
+                opacity={0.8}
                 data={netTransportPerCapita}
-              /> */}
+              /> 
               {/* 2 */}
-              {/* <BarSeries
-                cluster='2'
-                color="#ef7d00"
-                opacity={0.5}
-                data={netLandUseChangePerCapita}
-              /> */}
+              <BarSeries
+                color="#F6BE00"
+                opacity={0.8}
+                data={ netLucEmissionsPerCapita}
+              />
               {/* 3 */}
-              {/* <BarSeries  
-                cluster='3' 
-                color="#76918e" 
-                opacity={0.6} 
+              <BarSeries
+                color="#3d58a3" 
+                opacity={0.8} 
                 data={netBuildingsPerCapita} 
-              /> */}
+              /> 
               {/* 4 */}
-              {/* <BarSeries
-                cluster='4'
-                color="#ce143d"
-                opacity={0.5}
+              <BarSeries
+                color="#ACD5F3"
+                opacity={0.8}
                 data={netSinkPerCapita}
-              /> */}
-              {/* 5 */}
-              {/* <BarSeries
-                cluster='5'
-                color="#d6e7d9"
-                opacity={0.5}
-                data={netBalancePerCapita}
               />
               <LineSeries
                 className="fourth-series"
-                color="#000000"
-                strokeWidth="1"
-                data={netBalancePerCapita}
+                color="#cc7000"
+                data={netBaselinePerCapita}
+                strokeStyle="dashed"
+                strokeWidth="3"
               />
               </FlexibleXYPlot>
-            </div> */}
-            <div className="luc_alert_container">
-              <Divider textAlign="left" flexItem>
-                <b>Consumption Baseline VS Annual Household Emissions</b>
-              </Divider>
+
+                <div>
+                  <LegendTerritorialApproach />
+                </div>
+
             </div>
+
             <div className="luc_alert_container">
+              <Divider textAlign="left" sx={{margin: 3 }}>
+                <Typography variant="h6">
+                  <b>Consumption baseline | Greenhouse gas emissions per capita</b>
+                </Typography>
+              </Divider>
+            <Box m={6}>
+              <Alert severity="info">
+                <Typography m={0.5} variant="body1">
+                  The consumption-based quantification estimates the global greenhouse gas emissions caused by the all
+                  consumption of the residents of the assessment area from the baseline year until 2050.
+                </Typography>
+                <Typography m={0.5} variant="body1">
+                  The dashed line
+                  shows the baseline projection and the bar chart displays the impacts of the plan/policy that is assessed with
+                  the GGIA tool. The results are announced as tonnes of CO2e/capita.
+                </Typography>
+                <Typography m={0.5} variant="body1">
+                  Consumption-based results are about the residents of the area, reflecting the life styles and the consumption
+                  of the households, providing a holistic picture on the global greenhouse gas emissions.
+                </Typography>
+              </Alert>
+            </Box>
+              <div className="luc_alert_container">
+          <table className="table-results">
+            <thead className="tableHeader">
+              <tr>
+                <th className="tableTotalEmissions">Year</th>
+                {Object.keys(bLTotalEmissions).map((key, i) => (
+                  <th key={i} className="tableTotalEmissions">
+                    <b>{key}</b>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="tableTotalEmissions">Total emissions</td>
+                {Object.keys(bLTotalEmissions).map((key, i) => (
+                  <td key={i} className="tableTotalEmissions">
+                    {Math.round(bLTotalEmissions[key])}
+                  </td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+            <h5>
+              <Typography m={2} ml={5}>
+                <b>Graph: Consumption baseline | Greenhouse gas emissions per capita</b>
+              </Typography>
+            </h5>
+            </div>
+            <div style={{margin:"30px"}}>
               <FlexibleXYPlot
-                margin={{ left: 80 }}
+                margin={{ left: 60 }}
                 width={1150}
                 height={500}
                 stackBy="y"
@@ -831,78 +639,55 @@ export const GenerateReport = () => {
               >
                 <VerticalGridLines />
                 <HorizontalGridLines />
-                <XAxis title="Year" />
+                <XAxis title="Year" /> 
                 <YAxis title="Emissions/ kG C02 eq" />
                 <BarSeries
                   color="#3d58a3"
-                  opacity={0.5}
                   data={policyHousingEnergy}
                   stack
                 />
                 <BarSeries
                   color="#ef7d00"
-                  opacity={0.55}
                   data={policyHousingOther}
                   stack
                 />
                 <BarSeries
                   color="#95c11f"
-                  opacity={0.55}
                   data={policyTransportFuels}
                   stack
                 />
                 <BarSeries
                   color="#ce143d"
-                  opacity={0.55}
                   data={policyTransportOther}
                   stack
                 />
                 <BarSeries
                   color="#845f9e"
-                  opacity={0.55}
                   data={policyAirTravel}
                   stack
                 />
-                <BarSeries color="#996e35" opacity={0.55} data={policyFood} stack />
+                <BarSeries color="#996e35" data={policyFood} stack />
                 <BarSeries
                   color="#e1719a"
-                  opacity={0.55}
                   data={policyTangiblegoods}
                   stack
                 />
-                <BarSeries color="#76918e" opacity={0.55} data={policyServices} stack />
+                <BarSeries color="#76918e" data={policyServices} stack />
                 <LineSeries
                   className="fourth-series"
                   color="#000000"
                   strokeWidth="1"
+                  strokeStyle="dashed"
                   data={dataBlTotalEmissions}
                 />
               </FlexibleXYPlot>
-            </div>
-
-              {/* <ConsumptionBaselineResults /> */}
-            
-              </>        
-            </div>
+              <div>
+                <LegendConsumptionResults/>
+              </div>  
+            </div>      
+            </>        
           )}
       </div>
-        {
-          // ? why is here == not === 
-        }
-        {/* {!buildingsBaselineResponse || TODO: Doesn't seem to work
-          !newPopulation ||
-          !landUseChangeResponse ||
-          !p1 ||
-          Object.keys(newPopulation).length == 0 ||
-          Object.keys(landUseChangeResponse).length == 0 ||
-          Object.keys(p1).length == 0 ||
-          Object.keys(blTotalEmmissions).length == 0 ||
-          Object.keys(p1TotalAreaEmissions).length == 0 ||
-          Object.keys(buildingsBaselineResponse).length == 0 || (
-            <div>
-              There is not enough data to create report! Please, consider going through all modules.
-            </div>
-      )} */}
     </article>
     </Container>
   );

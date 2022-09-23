@@ -1,6 +1,5 @@
 import React from "react";
 import { DiscreteColorLegend } from "react-vis";
-import "../css/legend.css";
 
 /**
  * Legend for various charts in application

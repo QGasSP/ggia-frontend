@@ -1,8 +1,7 @@
 import React from "react";
 import Divider from "@mui/material/Divider";
 import "../css/u1planner.css";
-import { LineLegendConsumption } from "./LineLegendConsumption";
-
+import { LineLegendConsumption, LegendConsumptionResults } from "./LineLegendConsumption";
 import {
   XYPlot,
   XAxis,
@@ -38,7 +37,7 @@ export const ConsumptionSummary = ({
     { title: "Policy emissions", color: "#ef7d00", strokeWidth: 13 },
   ];
 
-  // blTransport
+  // blTransport -- baseline transport 
 
   const bLHousingEnergy = [];
   const bLHousingOther = [];
@@ -52,7 +51,7 @@ export const ConsumptionSummary = ({
   const dataBlTotalAreaEmissions = [];
   const dataBlSummedEmissions = [];
 
-  // pl
+  // pl -- policy
 
   const policyHousingEnergy = [];
   const policyHousingOther = [];
@@ -93,26 +92,26 @@ export const ConsumptionSummary = ({
   }
 
   const baselineDataPolicyYear = [
-    { x: "Housing_energy", y: bl.housingEnergy[policyYear] },
-    { x: "Housing_other", y: bl.housingOther[policyYear] },
-    { x: "Transport_fuels", y: bl.transportFuels[policyYear] },
-    { x: "Transport_other", y: bl.transportOther[policyYear] },
-    { x: "Air_travel", y: bl.airTravel[policyYear] },
+    { x: "Housing energy", y: bl.housingEnergy[policyYear] },
+    { x: "Housing other", y: bl.housingOther[policyYear] },
+    { x: "Transport fuels", y: bl.transportFuels[policyYear] },
+    { x: "Transport other", y: bl.transportOther[policyYear] },
+    { x: "Air travel", y: bl.airTravel[policyYear] },
     { x: "Food", y: bl.food[policyYear] },
-    { x: "Tangible_goods", y: bl.tangibleGoods[policyYear] },
+    { x: "Tangible goods", y: bl.tangibleGoods[policyYear] },
     { x: "Services", y: bl.services[policyYear] },
-    { x: "Total_emissions", y: blTotalEmmissions[policyYear] },
+    { x: "Total emissions", y: blTotalEmmissions[policyYear] },
   ];
   const policyDataPolicyYear = [
-    { x: "Housing_energy", y: p1.housingEnergy[policyYear] },
-    { x: "Housing_other", y: p1.housingOther[policyYear] },
-    { x: "Transport_fuels", y: p1.transportFuels[policyYear] },
-    { x: "Transport_other", y: p1.transportOther[policyYear] },
-    { x: "Air_travel", y: p1.airTravel[policyYear] },
+    { x: "Housing energy", y: p1.housingEnergy[policyYear] },
+    { x: "Housing other", y: p1.housingOther[policyYear] },
+    { x: "Transport fuels", y: p1.transportFuels[policyYear] },
+    { x: "Transport other", y: p1.transportOther[policyYear] },
+    { x: "Air travel", y: p1.airTravel[policyYear] },
     { x: "Food", y: p1.food[policyYear] },
-    { x: "Tangible_goods", y: p1.tangibleGoods[policyYear] },
+    { x: "Tangible goods", y: p1.tangibleGoods[policyYear] },
     { x: "Services", y: p1.services[policyYear] },
-    { x: "Total_emissions", y: p1TotalEmissions[policyYear] },
+    { x: "Total emissions", y: p1TotalEmissions[policyYear] },
   ];
 
   return (
@@ -134,42 +133,36 @@ export const ConsumptionSummary = ({
         <YAxis title="Emissions/ kG C02 eq" />
         <BarSeries
           color="#3d58a3"
-          opacity={0.5}
           data={policyHousingEnergy}
           stack
         />
         <BarSeries
           color="#ef7d00"
-          opacity={0.55}
           data={policyHousingOther}
           stack
         />
         <BarSeries
           color="#95c11f"
-          opacity={0.55}
           data={policyTransportFuels}
           stack
         />
         <BarSeries
           color="#ce143d"
-          opacity={0.55}
           data={policyTransportOther}
           stack
         />
         <BarSeries
           color="#845f9e"
-          opacity={0.55}
           data={policyAirTravel}
           stack
         />
-        <BarSeries color="#996e35" opacity={0.55} data={policyFood} stack />
+        <BarSeries color="#996e35"  data={policyFood} stack />
         <BarSeries
           color="#e1719a"
-          opacity={0.55}
           data={policyTangiblegoods}
           stack
         />
-        <BarSeries color="#76918e" opacity={0.55} data={policyServices} stack />
+        <BarSeries color="#76918e"  data={policyServices} stack />
         <LineSeries
           className="fourth-series"
           color="#000000"
@@ -177,6 +170,10 @@ export const ConsumptionSummary = ({
           data={dataBlTotalEmissions}
         />
       </XYPlot>
+
+      <div className="div-transport">
+          <LegendConsumptionResults />
+        </div>
 
       {Object.keys(p1).length !== 0 && (
         <>
@@ -197,44 +194,44 @@ export const ConsumptionSummary = ({
             <YAxis title="Emissions/ kG C02 eq" />
             <BarSeries
               color="#3d58a3"
-              opacity={0.55}
+              
               data={policyHousingEnergy}
               stack
             />
             <BarSeries
               color="#ef7d00"
-              opacity={0.55}
+              
               data={policyHousingOther}
               stack
             />
             <BarSeries
               color="#95c11f"
-              opacity={0.55}
+              
               data={policyTransportFuels}
               stack
             />
             <BarSeries
               color="#ce143d"
-              opacity={0.55}
+              
               data={policyTransportOther}
               stack
             />
             <BarSeries
               color="#845f9e"
-              opacity={0.55}
+              
               data={policyAirTravel}
               stack
             />
             <BarSeries color="#996e35" opacity={0.45} data={policyFood} stack />
             <BarSeries
               color="#e1719a"
-              opacity={0.55}
+              
               data={policyTangiblegoods}
               stack
             />
             <BarSeries
               color="#76918e"
-              opacity={0.55}
+              
               data={policyServices}
               stack
             />
@@ -270,7 +267,7 @@ export const ConsumptionSummary = ({
             />
             <BarSeries
               className="vertical-bar-series-example"
-              /*  opacity={0.55} */
+              /*   */
               data={policyDataPolicyYear}
               color="#ef7d00"
             />

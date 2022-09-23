@@ -1,12 +1,12 @@
 export const hseHoldEmissions = [
-  { title: "HE", color: "#3d58a3", strokeWidth: 13 },
-  { title: "HO", color: "#ef7d00", strokeWidth: 13 },
-  { title: "TF", color: "#95c11f", strokeWidth: 13 },
-  { title: "TO", color: "#ce143d", strokeWidth: 13 },
-  { title: "AT", color: "#845f9e", strokeWidth: 13 },
-  { title: "F", color: "#996e35", strokeWidth: 13 },
-  { title: "TG", color: "#e1719a", strokeWidth: 13 },
-  { title: "S", color: "#76918e", strokeWidth: 13 },
+  { title: "Housing energy", color: "#3d58a3", strokeWidth: 13 },
+  { title: "Housing other", color: "#ef7d00", strokeWidth: 13 },
+  { title: "Transport fuels", color: "#95c11f", strokeWidth: 13 },
+  { title: "Transport other", color: "#ce143d", strokeWidth: 13 },
+  { title: "Air travel", color: "#845f9e", strokeWidth: 13 },
+  { title: "Food", color: "#996e35", strokeWidth: 13 },
+  { title: "Tangible goods", color: "#e1719a", strokeWidth: 13 },
+  { title: "Services", color: "#76918e", strokeWidth: 13 },
 ];
 
 export const capitaEmissions = [

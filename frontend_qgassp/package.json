@@ -17,6 +17,7 @@
     "build": "react-scripts build"
   },
   "dependencies": {
+    "@material-ui/styles": "^4.11.5",
     "dotenv": "^16.0.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.4",
