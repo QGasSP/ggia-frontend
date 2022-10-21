@@ -26,6 +26,13 @@ It will connect to the backend with prefix https://ggia-dev.ulno.net
 docker-compose up -d --build
 ```
 
+Careful, if you want to deploy this on your own server - you have to change the url for the backend in the Dockerfile in frontend_qgassp/Dockerfile.
+
+IT shoudl look there something like this:
+```
+RUN ./buildWithPrefix https://myserver.onthe.net
+CMD ["./serveBuild"]
+```
 
 
 ## Scripts
