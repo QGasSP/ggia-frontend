@@ -5,6 +5,7 @@ import Divider from "@mui/material/Divider";
 import Alert from "@mui/material/Alert";
 import axios from "axios";
 import { useStorageInt, useStorageString } from "../reducers/useStorage";
+import { useNavigate } from "react-router-dom";
 import urlPrefix from "../Config";
 import Tooltip from "@mui/material/Tooltip";
 import { Container, Box, Stack } from "@mui/material";
@@ -28,6 +29,8 @@ export const StartPage = () => {
   useEffect(() => {
     localStorage.setItem("nextModule", nextModule);
   }, [nextModule]);
+
+  const navigate = useNavigate();
 
   const handleSelected = (e) => {
     e.preventDefault();
@@ -66,6 +69,10 @@ export const StartPage = () => {
     } else {
       setFillFields(true);
     }
+  };
+
+  const openLocalDataset = () => {
+    navigate("../createLocalDataset", { replace: true });
   };
 
   useEffect(async () => {
@@ -238,19 +245,17 @@ export const StartPage = () => {
               </div>
             </div>
           </div>
-          <Divider orientation="vertical" flexItem></Divider>
-          <div className="column_start"></div>
 
-          {/*  <Divider orientation="vertical" flexItem></Divider>
+        <Divider orientation="vertical" flexItem></Divider>
           <div className="column_start">
             <header className="intro_header">
               <h1 id="title" className="header_start">
-                Create local data-set
+                Create local dataset
               </h1>
             </header>
-            <div>
-              <form>
-                <div className="form-group">
+             <div>
+             <form>
+                {/* <div className="form-group">
                   <label htmlFor="eu_countries" className="intro_label">
                     Country&apos;s local data-set
                   </label>
@@ -268,13 +273,14 @@ export const StartPage = () => {
                       </option>
                     ))}
                   </select>
-                </div>
+                </div> */}
                 <div className="local_dataset">
-                  <Button size="small" label="Set baseline" primary />
+                  <Button size="small" label="Create local dataset" primary
+                  onClick={openLocalDataset} />
                 </div>
               </form>
             </div>
-          </div> */}
+          </div>
         </div>
         </Box>
     </Container>
