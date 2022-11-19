@@ -1,8 +1,7 @@
- import React from 'react';
+ import React, { useEffect } from 'react';
  import { Formik, Form } from "formik";
  import urlPrefix from '../../Config';
  import axios from 'axios';
- import { localdatasetInitialValues } from './initialValuesLocaldataset';
  import {Grid, Button, TextField, Divider, Container, Alert, Box, Typography } from '@mui/material'
  import '../../css/localdataset.css'
  import { TimeToLeave, DirectionsBus, Subway, Tram, Train, BusinessOutlined } from '@mui/icons-material';
@@ -11,11 +10,11 @@
 
  export const CreateLocaldataset = () => {
 
-  const [error, setError] = React.useState()
-  const [showvalues, setShowvalues] = React.useState()
-  const [showTransport, setShowTransport] = React.useState(false)
-  const [showTram, setShowTram] = React.useState(false)
-
+  // Retrieve default values from local storage
+  const localDatasetBaseline = localStorage.getItem("localDatasetBaselineData");
+  const initialValues = {"local_dataset": JSON.parse(localDatasetBaseline) };
+  const [error, setError] = React.useState();
+  
   const submitNewEntry = async ( values ) => {
     const headers = {
       "Content-type": "application/json",
@@ -23,7 +22,7 @@
     };
 
     try {
-        await axios.post(urlPrefix + "/api/v1/create/local-dataset", values, headers);
+        await axios.post(urlPrefix + "/api/v1/local-dataset/export", values, headers);
       } catch (e) {
       if (axios.isAxiosError(e)) {
         // eslint-disable-next-line no-console
@@ -37,37 +36,29 @@
     }
   };
 
-    const useTheme = makeStyles({
-      customTextField: {
-        width: "12%",
-        "& input::placeholder": {
-          fontSize: "14px",
-        },
-        "& input::name": {
-          color: "#D3D3D3"
-        },
-        "& label": {
+  // material ui themes
+  const useTheme = makeStyles({
+    customTextField: {
+      width: "12%",
+      "& input::placeholder": {
+        fontSize: "14px",
+      },
+      "& input::name": {
+        color: "#D3D3D3"
+      },
+      "& label": {
+        marginBottom: "33%",
+        marginRight: "10%",
+        fontSize:"17px",
+        color:"black",
+        "&.Mui-focused": {
           marginBottom: "33%",
-          marginRight: "10%",
-          fontSize:"17px",
-          color:"black",
-          "&.Mui-focused": {
-            marginBottom: "33%",
-            marginRight: "10%"
-          }
+          marginRight: "10%"
         }
       }
-    })
-
-const classes = useTheme();
-
-const handleShowTransportValues = () => {
-  setShowTransport(prev => !prev)
-}
-
-const handleShowTrams = () => {
-  setShowTram(prev => !prev)
-}
+    }
+  })
+  const classes = useTheme();
 
   return (
     <Container maxWidth="xl">
@@ -96,17 +87,9 @@ const handleShowTrams = () => {
       </div>
 
      <Formik
-      // enableReinitialize = { true }
-      initialValues={ localdatasetInitialValues }
+      initialValues = {initialValues} 
       onSubmit= { async ( values ) => {
         submitNewEntry(values)
-      }}
-      validate= { values => {
-        const errors = {};
-        if(!values.local_dataset.dataset_name){
-            errors.local_dataset.dataset_name = "Dataset name is required"
-          }
-        return errors;
       }}
     >
       {({ isValid, dirty, initialValues, handleChange, handleBlur }) => {
@@ -114,7 +97,6 @@ const handleShowTrams = () => {
           <Form className="create-localdataset">
 
           <h5>Dataset name</h5>
-           
             <TextField
               placeholder="Enter name"
               label="Dataset name"
@@ -136,7 +118,7 @@ const handleShowTrams = () => {
              placeholder="Enter description"
              label="Dataset description"
              name="local_dataset.dataset_description"
-             defaultValue={initialValues.local_dataset.dataset_description}
+             defaultValue={initialValues['local_dataset']['dataset_description']}
              sx={{ m:2 }}
              InputLabelProps={{ shrink: true }}
              classes={{ root: classes.customTextField }}
@@ -2765,26 +2747,20 @@ const handleShowTrams = () => {
             />
           }
 
-            
-
-            <h5>Tram transport activity</h5>
-
-            <button type="button" onClick={handleShowTransportValues}>click</button>
+          <h5>Tram transport activity</h5>
             
             {initialValues['local_dataset']['transport_activity_tram__tram_1'] !== 0 &&
-
-              <TextField
-                label="Trans. activity: Tram 1"
-                placeholder="million pkm/a Tram 1"
-                name="local_dataset.transport_activity_tram__tram_1"
-                sx={{ m:2 }}
-                defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_1']}
-                InputLabelProps={{ shrink: true }}
-                classes={{ root: classes.customTextField }}
+            <TextField
+              label="Trans. activity: Tram 1"
+              placeholder="million pkm/a Tram 1"
+              name="local_dataset.transport_activity_tram__tram_1"
+              sx={{ m:2 }}
+              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_1']}
+              InputLabelProps={{ shrink: true }}
+              classes={{ root: classes.customTextField }}
               onChange={handleChange}
               onBlur={handleBlur}
-              />
-
+            />
             }
             {initialValues['local_dataset']['transport_activity_tram__tram_2'] !== 0 &&
              <TextField
@@ -2797,7 +2773,8 @@ const handleShowTrams = () => {
               classes={{ root: classes.customTextField }}
               onChange={handleChange}
               onBlur={handleBlur}
-            />}
+            />
+            }
 
           {initialValues['local_dataset']['transport_activity_tram__tram_3'] !== 0 && 
             <TextField
@@ -12640,7 +12617,7 @@ const handleShowTrams = () => {
               onChange={handleChange}
               onBlur={handleBlur}
             /> 
-
+             
 
               <Grid item>
               {/* <Button
@@ -12656,14 +12633,11 @@ const handleShowTrams = () => {
                   variant="contained"
                   sx={{ top: "95%",
                         right: "30px",
-                        position: "fixed" }}
-                 // onClick={() => {
-                  //   submitNewEntry(values)
-                 //     }}
+                        position: "fixed"
+                      }}
                 >
                   Save
                 </Button>
-
                 <BackToTop />
               </Grid>
           </Form>
