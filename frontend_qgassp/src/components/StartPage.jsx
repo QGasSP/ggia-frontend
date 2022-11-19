@@ -14,6 +14,13 @@ export const StartPage = () => {
   /*  const toggleState = localStorage.getItem("toggleState"); */
   const [country, setCountry] = useStorageString("country", "");
   const [localDataset, setLocalDataset] = useStorageString("localDataset", "");
+
+  // Sets local dataset country and stores it in local storage
+  const [localDatasetCountry, setLocalDatasetCountry] = useStorageString("localDatasetCountry", "");
+
+  // Local dataset baseline data object for storing response in local storage
+  const [localDatasetBaseline, setLocalDatasetBaseline] = React.useState({})
+
   const [year, setYear] = useStorageInt("year", 0);
   const [population, setPopulation] = useStorageInt("population", 0);
   const [nextModule, setNextModule] = useState(false);
@@ -51,6 +58,12 @@ export const StartPage = () => {
     e.preventDefault();
     setYear(Number(e.target.value));
   };
+
+  const handleSelectedLocalDatasetCountry = (e) => {
+    e.preventDefault();
+    setLocalDatasetCountry(e.target.value);
+  }
+
   const clearLocalStorage = (e) => {
     e.preventDefault();
     setNextModule(false);
@@ -58,6 +71,7 @@ export const StartPage = () => {
     window.localStorage.clear();
     setCountry("");
     setLocalDataset("");
+    setLocalDatasetBaseline("");
     setPopulation(0);
     setYear(0);
   };
@@ -102,6 +116,39 @@ export const StartPage = () => {
         );
       });
   }, []);
+
+  // Gets local dataset default values and saves them in local storage
+   const getLocalDatasetValues = () => {
+
+    const raw = {
+      "local_dataset": {
+        "dataset_name": localDatasetCountry
+      }
+    };
+
+    const headers = {
+      "Content-type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    };
+
+    axios
+    .post( urlPrefix + "/api/v1/local-dataset/import", raw, headers )
+    .then((response) => {
+        setLocalDatasetBaseline(response.data.data)
+      })
+    .catch((error) => {
+        setLocalDatasetsError({ errorMessage: error.message });
+        // eslint-disable-next-line no-console
+        console.error("There was an error!", error);
+      });
+    }
+  
+  useEffect(async()=> {
+    localStorage.setItem("localDatasetBaselineData", JSON.stringify(localDatasetBaseline))
+  }, [localDatasetBaseline]);
+
+  const isOnLocal = window.location.href === "http://localhost:3000/startPage";
+  const isOnDev = window.location.href === "https://ggia-dev.ulno.net/startPage";
 
   return (
     <Container maxWidth="xl">
@@ -245,17 +292,22 @@ export const StartPage = () => {
               </div>
             </div>
           </div>
+          <Divider orientation="vertical" flexItem></Divider>
+          {
+            isOnDev || isOnLocal &&
 
-        <Divider orientation="vertical" flexItem></Divider>
-          <div className="column_start">
+           <div className="column_start">
             <header className="intro_header">
               <h1 id="title" className="header_start">
                 Create local dataset
               </h1>
             </header>
+            <Alert severity="info" style={{marginBottom:"15px"}}>
+              Select a country to set country specific baseline data.
+            </Alert>
              <div>
              <form>
-                {/* <div className="form-group">
+                <div className="form-group">
                   <label htmlFor="eu_countries" className="intro_label">
                     Country&apos;s local data-set
                   </label>
@@ -263,7 +315,8 @@ export const StartPage = () => {
                     className="baseline_select"
                     id="eu_countries_dataset"
                     name="eu_countries_dataset"
-                    defaultValue="Select country"
+                    value={localDatasetCountry}
+                    onChange={handleSelectedLocalDatasetCountry}
                     required
                   >
                     <option value="DefaultOption">Select country</option>
@@ -273,16 +326,26 @@ export const StartPage = () => {
                       </option>
                     ))}
                   </select>
-                </div> */}
+                </div>
+
                 <div className="local_dataset">
+                  <Button size="small" label="Set local dataset base" primary
+                  onClick={getLocalDatasetValues} />
+                </div>
+
+                {
+                  Object.keys(localDatasetBaseline).length !== 0 &&
+                  <div className="local_dataset">
                   <Button size="small" label="Create local dataset" primary
                   onClick={openLocalDataset} />
                 </div>
+                }
               </form>
             </div>
           </div>
+        }
         </div>
-        </Box>
+      </Box>
     </Container>
   );
 };
