@@ -147,7 +147,7 @@ export const StartPage = () => {
     localStorage.setItem("localDatasetBaselineData", JSON.stringify(localDatasetBaseline))
   }, [localDatasetBaseline]);
 
-  const isOnLocal = window.location.href === "http://localhost:3000/startPage";
+  // const isOnLocal = window.location.href === "http://localhost:3000/startPage";
   const isOnDev = window.location.href === "https://ggia-dev.ulno.net/startPage";
 
   return (
@@ -294,7 +294,7 @@ export const StartPage = () => {
           </div>
           <Divider orientation="vertical" flexItem></Divider>
           {
-            isOnDev || isOnLocal &&
+            isOnDev &&
 
            <div className="column_start">
             <header className="intro_header">
