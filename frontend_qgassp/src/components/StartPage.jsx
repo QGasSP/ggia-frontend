@@ -6,7 +6,7 @@ import Alert from "@mui/material/Alert";
 import axios from "axios";
 import { useStorageInt, useStorageString } from "../reducers/useStorage";
 import { useNavigate } from "react-router-dom";
-import urlPrefix from "../Config";
+import urlPrefix, { showOnDev } from "../Config";
 import Tooltip from "@mui/material/Tooltip";
 import { Container, Box, Stack } from "@mui/material";
 
@@ -146,9 +146,6 @@ export const StartPage = () => {
   useEffect(async()=> {
     localStorage.setItem("localDatasetBaselineData", JSON.stringify(localDatasetBaseline))
   }, [localDatasetBaseline]);
-
-  // const isOnLocal = window.location.href === "http://localhost:3000/startPage";
-  const isOnDev = window.location.href === "https://ggia-dev.ulno.net/startPage";
 
   return (
     <Container maxWidth="xl">
@@ -292,11 +289,11 @@ export const StartPage = () => {
               </div>
             </div>
           </div>
-          <Divider orientation="vertical" flexItem></Divider>
-          {
-            isOnDev &&
-
+          <Divider orientation="vertical" flexItem />
+         
            <div className="column_start">
+            { showOnDev &&
+            <div>
             <header className="intro_header">
               <h1 id="title" className="header_start">
                 Create local dataset
@@ -339,11 +336,12 @@ export const StartPage = () => {
                   <Button size="small" label="Create local dataset" primary
                   onClick={openLocalDataset} />
                 </div>
-                }
+                } 
               </form>
             </div>
+          </div> }
           </div>
-        }
+        
         </div>
       </Box>
     </Container>
