@@ -5,5 +5,5 @@ COPY package.json ./
 RUN apk add --no-cache bash
 RUN yarn install --silent
 COPY . ./
-RUN ./buildWithPrefix https://ggia.ulno.net true
+RUN ./buildWithPrefix https://ggia.ulno.net false
 CMD ["./serveBuild"]
