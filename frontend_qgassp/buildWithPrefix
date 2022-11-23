@@ -11,12 +11,17 @@ MY_PATH=`dirname "$0"`
 cd "$MY_PATH"
 MY_PATH=`pwd`
 
+showOnDev=false
+
 if [[ "$1" ]]; then
   PREFIX="$1"
 else  # could also be in file
   if [[ -e "$PREFIX_FILE" ]]; then
       PREFIX=$(cat "$PREFIX_FILE")
   fi
+fi
+if [[ "$2" ]]; then
+  showOnDev="$2"
 fi
 echo "URL Prefix selected: $PREFIX"
 
@@ -29,6 +34,7 @@ const urlPrefix = "$PREFIX"
 // const urlPrefix = "https://ggia-dev.ulno.net"
 // const urlPrefix = "http://127.0.0.1:5000"
 // const urlPrefix = "http://127.0.0.1:8000"
+export const showOnDev = $showOnDev;
 export default urlPrefix;
 EOF
 
