@@ -300,13 +300,13 @@ export const StartPage = () => {
               </h1>
             </header>
             <Alert severity="info" style={{marginBottom:"15px"}}>
-              Select a country to set country specific baseline data.
+              Here expert users can create a new local dataset (for a city, territory etc.) for this tool.
             </Alert>
              <div>
              <form>
                 <div className="form-group">
                   <label htmlFor="eu_countries" className="intro_label">
-                    Country&apos;s local data-set
+                    Country
                   </label>
                   <select
                     className="baseline_select"
