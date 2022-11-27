@@ -16,7 +16,22 @@
   const initialValues = {"local_dataset": JSON.parse(localDatasetBaseline) };
   const [error, setError] = React.useState();
   const [loadingStyles, setLoadingStyle] = React.useState({ display: "none" });
-  
+
+  initialValues['local_dataset']['cf_bus__city'] = 1;
+  initialValues['local_dataset']['cf_bus__metropolitan'] = 1;
+  initialValues['local_dataset']['cf_bus__rural'] = 1;
+  initialValues['local_dataset']['cf_bus__suburban'] = 1;
+  initialValues['local_dataset']['cf_bus__town'] = 1;
+
+  initialValues['local_dataset']['cf_car__city'] = 1;
+  initialValues['local_dataset']['cf_car__metropolitan'] = 1;
+  initialValues['local_dataset']['cf_car__rural'] = 1;
+  initialValues['local_dataset']['cf_car__suburban'] = 1;
+  initialValues['local_dataset']['cf_car__town'] = 1;
+
+  initialValues['local_dataset']['ef_diesel_car'] = 0;
+  initialValues['local_dataset']['ef_petrol_car'] = 0;
+
   const submitNewEntry = async ( values ) => {
 
     setLoadingStyle({ display: "block" });
@@ -80,6 +95,8 @@
         <br/>
         You are able to modify this data either through indivudual sections: Energy, Transport, Land-use change and Buildings or you can edit the data as whole.
         <br/>
+        Replace the default value with the most accurate information that You have available. Scenarios are inserted as annual change percentage (one percentage per decade).
+        <br/>
         Do not forget to save the data you entered and make sure to double check the data before submitting.
         </Typography>
       </Alert>
@@ -109,7 +126,7 @@
         <Form className="create-localdataset">
           { showOnDev &&
           <div>
-          <h5>Dataset name</h5>
+          <h5>Name the dataset according to the city, town, municipality, region or territory in concern. A new dataset can be later found in the tool menu by this name.</h5>
             <TextField
               placeholder="Enter name"
               label="Dataset name"
@@ -125,11 +142,13 @@
 
           <br/>
 
-          <h5>Dataset description</h5>
+          <h5>Describe the area and the sources of the new dataset with 3–5 sentences.</h5>
            
            <TextField
              placeholder="Enter description"
              label="Dataset description"
+             multiline
+             style = {{width: 600}} 
              name="local_dataset.dataset_description"
              defaultValue={initialValues['local_dataset']['dataset_description']}
              sx={{ m:2 }}
@@ -192,7 +211,7 @@
               label="GE emission factor"
               placeholder="kgCO2e/kWh"
               name="local_dataset.grid_electricity_emission_factor"
-              defaultValue= {initialValues['local_dataset']['grid_electricity_emission_factor'].toFixed(2)}
+              defaultValue= {initialValues['local_dataset']['grid_electricity_emission_factor'].toFixed(1)}
               sx={{ m: 2, width: "12%" }}
               classes={{ root: classes.customTextField }}
               onChange={handleChange}
@@ -201,7 +220,7 @@
 
           <br/>
 
-            <h5>Annual change of grid electricity efficiency % (decades)</h5>
+            <h5>Expected annual change of grid electricity emission factor % (decades)</h5>
               
               <TextField
               label="2021-30"
@@ -257,7 +276,7 @@
 
           <br/>
 
-            <h5>Annual change of district electricity efficiency (decades)</h5>
+            <h5>Expected annual change of district electricity heating emission factor (decades)</h5>
               
               <TextField
               label="2021-30"
@@ -306,7 +325,7 @@
               label="Pkm/(capita, a)"
               placeholder="pkm/(capita, a)"
               name="local_dataset.passenger_km_per_capita_bus"
-              defaultValue={initialValues['local_dataset']['passenger_km_per_capita_bus'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['passenger_km_per_capita_bus'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -314,7 +333,7 @@
               onBlur={handleBlur}
             />
 
-            <h5>Occupancy rate bus</h5>
+            <h5>Average occupancy rate bus</h5>
 
             <TextField
               label="Passengers/ vehicle"
@@ -331,7 +350,7 @@
           
           <br/>
 
-            <h5>Annual change bus</h5>
+            <h5>Expected annual change in bus transport</h5>
 
             <TextField
               label="2020-30"
@@ -346,7 +365,7 @@
             />
 
             <TextField
-              label="2030-40"
+              label="2031-40"
               placeholder="%"
               name="local_dataset.annual_change_bus__2030_40"
               defaultValue={initialValues['local_dataset']['annual_change_bus__2030_40'].toFixed(2) }
@@ -358,7 +377,7 @@
             />
 
             <TextField
-              label="2040-50"
+              label="2041-50"
               placeholder="%"
               name="local_dataset.annual_change_bus__2040_50"
               defaultValue={initialValues['local_dataset']['annual_change_bus__2040_50'].toFixed(2) }
@@ -386,7 +405,7 @@
             />
 
             <TextField
-              label="Lpg"
+              label="LPG"
               placeholder="%"
               name="local_dataset.propulsion_share_bus__lpg"
               defaultValue={initialValues['local_dataset']['propulsion_share_bus__lpg'].toFixed(2) }
@@ -410,7 +429,7 @@
             />
 
              <TextField
-              label="Cng"
+              label="CNG"
               placeholder="%"
               name="local_dataset.propulsion_share_bus__cng"
               defaultValue={initialValues['local_dataset']['propulsion_share_bus__cng'].toFixed(2) }
@@ -435,7 +454,7 @@
 
           <br/>
 
-            <h5>Control factor, bus</h5>
+            {/* <h5>Control factor, bus</h5>
             <TextField
               label="Metropolitan"
               placeholder="Metropolitan"
@@ -499,15 +518,15 @@
               classes={{ root: classes.customTextField }}
               onChange={handleChange}
               onBlur={handleBlur}
-            />
+            /> */}
 
-            <h5>Fuel shares of street driving bus (gCO2e/vkm)</h5>
+            <h5>Emission factor for street driving, bus (gCO2e/vkm)</h5>
 
             <TextField
               label="Petrol"
               placeholder="gCO2e/vkm"
               name="local_dataset.ef_street_driving_bus__petrol"
-              defaultValue={initialValues['local_dataset']['ef_street_driving_bus__petrol'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['ef_street_driving_bus__petrol'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -516,10 +535,10 @@
             />
 
             <TextField
-              label="Lpg"
+              label="LPG"
               placeholder="gCO2e/vkm"
               name="local_dataset.ef_street_driving_bus__lpg"
-               defaultValue={initialValues['local_dataset']['ef_street_driving_bus__lpg'].toFixed(2) }
+               defaultValue={initialValues['local_dataset']['ef_street_driving_bus__lpg'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -531,7 +550,7 @@
               label="Diesel"
               placeholder="gCO2e/vkm"
               name="local_dataset.ef_street_driving_bus__diesel"
-               defaultValue={initialValues['local_dataset']['ef_street_driving_bus__diesel'].toFixed(2) }
+               defaultValue={initialValues['local_dataset']['ef_street_driving_bus__diesel'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -540,10 +559,10 @@
             />
 
             <TextField
-              label="Cng"
+              label="CNG"
               placeholder="gCO2e/vkm"
               name="local_dataset.ef_street_driving_bus__cng"
-              defaultValue={initialValues['local_dataset']['ef_street_driving_bus__cng'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['ef_street_driving_bus__cng'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -555,7 +574,7 @@
               label="Electricity"
               placeholder="kWh/vkm"
               name="local_dataset.electricity_consumption_street_driving_bus__electricity"
-              defaultValue={initialValues['local_dataset']['electricity_consumption_street_driving_bus__electricity'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['electricity_consumption_street_driving_bus__electricity'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -565,13 +584,12 @@
 
           <br/>
 
-            <h5>Fuel shares road driving bus (gCO2e/vkm)</h5>
-
+            <h5>Emission factor for road driving, bus (gCO2e/vkm)</h5>
             <TextField
               label="Petrol"
               placeholder="gCO2e/vkm"
               name="local_dataset.ef_road_driving_bus__petrol"
-              defaultValue={initialValues['local_dataset']['ef_road_driving_bus__petrol'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['ef_road_driving_bus__petrol'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -583,7 +601,7 @@
               label="Lpg"
               placeholder="gCO2e/vkm"
               name="local_dataset.ef_road_driving_bus__lpg"
-              defaultValue={initialValues['local_dataset']['ef_road_driving_bus__lpg'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['ef_road_driving_bus__lpg'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -595,7 +613,7 @@
               label="Diesel"
               placeholder="gCO2e/vkm"
               name="local_dataset.ef_road_driving_bus__diesel"
-              defaultValue={initialValues['local_dataset']['ef_road_driving_bus__diesel'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['ef_road_driving_bus__diesel'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -607,7 +625,7 @@
               label="Cng"
               placeholder="gCO2e/vkm"
               name="local_dataset.ef_road_driving_bus__cng"
-              defaultValue={initialValues['local_dataset']['ef_road_driving_bus__cng'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['ef_road_driving_bus__cng'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -619,7 +637,7 @@
               label="Electricity"
               placeholder="kWh/vkm"
               name="local_dataset.electricity_consumption_road_driving_bus__electricity"
-              defaultValue={initialValues['local_dataset']['electricity_consumption_road_driving_bus__electricity'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['electricity_consumption_road_driving_bus__electricity'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -629,13 +647,13 @@
 
           <br/>
 
-            <h5>Projected share % of electric buses every 5 years</h5>
+            <h5>Projected share % of electric buses (in 5-year steps)</h5>
 
             <TextField
               label="2020"
               placeholder="%"
               name="local_dataset.share_of_electric_buses__2020"
-              defaultValue={initialValues['local_dataset']['share_of_electric_buses__2020'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['share_of_electric_buses__2020'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -647,7 +665,7 @@
               label="2025"
               placeholder="%"
               name="local_dataset.share_of_electric_buses__2025"
-              defaultValue={initialValues['local_dataset']['share_of_electric_buses__2025'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['share_of_electric_buses__2025'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -659,7 +677,7 @@
               label="2030"
               placeholder="%"
               name="local_dataset.share_of_electric_buses__2030"
-              defaultValue={initialValues['local_dataset']['share_of_electric_buses__2030'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['share_of_electric_buses__2030'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -671,7 +689,7 @@
               label="2035"
               placeholder="%"
               name="local_dataset.share_of_electric_buses__2035"
-              defaultValue={initialValues['local_dataset']['share_of_electric_buses__2035'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['share_of_electric_buses__2035'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -683,7 +701,7 @@
               label="2040"
               placeholder="%"
               name="local_dataset.share_of_electric_buses__2040"
-              defaultValue={initialValues['local_dataset']['share_of_electric_buses__2040'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['share_of_electric_buses__2040'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -695,7 +713,7 @@
               label="2045"
               placeholder="%"
               name="local_dataset.share_of_electric_buses__2045"
-              defaultValue={initialValues['local_dataset']['share_of_electric_buses__2045'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['share_of_electric_buses__2045'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -707,7 +725,7 @@
               label="2050"
               placeholder="%"
               name="local_dataset.share_of_electric_buses__2050"
-              defaultValue={initialValues['local_dataset']['share_of_electric_buses__2050'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['share_of_electric_buses__2050'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -723,7 +741,7 @@
               label="Metropolitan center"
               placeholder="%"
               name="local_dataset.share_road_driving_buses__metropolitan_center"
-              defaultValue={initialValues['local_dataset']['share_road_driving_buses__metropolitan_center'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['share_road_driving_buses__metropolitan_center'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -735,7 +753,7 @@
               label="Urban"
               placeholder="%"
               name="local_dataset.share_road_driving_buses__urban"
-              defaultValue={initialValues['local_dataset']['share_road_driving_buses__urban'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['share_road_driving_buses__urban'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -747,7 +765,7 @@
               label="Suburban"
               placeholder="%"
               name="local_dataset.share_road_driving_buses__suburban"
-              defaultValue={initialValues['local_dataset']['share_road_driving_buses__suburban'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['share_road_driving_buses__suburban'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -759,7 +777,7 @@
               label="Town"
               placeholder="%"
               name="local_dataset.share_road_driving_buses__town"
-              defaultValue={initialValues['local_dataset']['share_road_driving_buses__town'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['share_road_driving_buses__town'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -771,7 +789,7 @@
               label="Rural"
               placeholder="%"
               name="local_dataset.share_road_driving_buses__rural"
-              defaultValue={initialValues['local_dataset']['share_road_driving_buses__rural'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['share_road_driving_buses__rural'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -791,7 +809,7 @@
               label="pkm/(capita, a)"
               placeholder="pkm/(capita, a)"
               name="local_dataset.passenger_km_per_capita_car"
-              defaultValue={initialValues['local_dataset']['passenger_km_per_capita_car'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['passenger_km_per_capita_car'].toFixed(0) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -818,7 +836,7 @@
             <h5>Annual change car (decades)</h5>
 
             <TextField
-              label="2021-31"
+              label="2021-30"
               placeholder="%"
               name="local_dataset.annual_change_car__2021_30"
               defaultValue={initialValues['local_dataset']['annual_change_car__2021_30'].toFixed(2) }
@@ -830,7 +848,7 @@
             />
 
             <TextField
-              label="2031-41"
+              label="2031-40"
               placeholder="%"
               name="local_dataset.annual_change_car__2031_40"
               defaultValue={initialValues['local_dataset']['annual_change_car__2031_40'].toFixed(2) }
@@ -855,7 +873,7 @@
           
           <br/>
 
-            <h5>Ef car (gCO2e/vkm)</h5>
+            {/* <h5>Ef car (gCO2e/vkm)</h5>
 
             <TextField
               label="Diesel"
@@ -881,12 +899,12 @@
               onBlur={handleBlur}
             />
 
-          <br/>
+          <br/> */}
 
             <h5>Propulsion share % car</h5>
 
             <TextField
-              label="Lpg"
+              label="LPG"
               placeholder="%"
               name="local_dataset.propulsion_share_car__lpg"
               defaultValue={initialValues['local_dataset']['propulsion_share_car__lpg'].toFixed(2) }
@@ -898,7 +916,7 @@
             />
 
             <TextField
-              label="Cng"
+              label="CNG"
               placeholder="Cng"
               name="local_dataset.propulsion_share_car__cng"
               defaultValue={initialValues['local_dataset']['propulsion_share_car__cng'].toFixed(2) }
@@ -910,7 +928,7 @@
             />
 
             <TextField
-              label="Ngv"
+              label="NGV"
               placeholder="Ngv"
               name="local_dataset.propulsion_share_car__ngv"
               defaultValue={initialValues['local_dataset']['propulsion_share_car__ngv'].toFixed(2) }
@@ -946,7 +964,7 @@
             />
 
             <TextField
-              label="Petrol phev"
+              label="Petrol PHEV"
               placeholder="%"
               name="local_dataset.propulsion_share_car__petrol_phev"
               defaultValue={initialValues['local_dataset']['propulsion_share_car__petrol_phev'].toFixed(2) }
@@ -982,7 +1000,7 @@
             />
 
             <TextField
-              label="Diesel phev"
+              label="Diesel PHEV"
               placeholder="%"
               name="local_dataset.propulsion_share_car__diesel_phev"
               defaultValue={initialValues['local_dataset']['propulsion_share_car__diesel_phev'].toFixed(2) }
@@ -1054,7 +1072,7 @@
             />
 
              <TextField
-              label="Bev"
+              label="BEV"
               placeholder="%"
               name="local_dataset.propulsion_share_car__bev"
               defaultValue={initialValues['local_dataset']['propulsion_share_car__bev'].toFixed(2) }
@@ -1070,7 +1088,7 @@
             <h5>Ef street driving car (gCO2e/vkm)</h5>
 
             <TextField
-              label="Lpg"
+              label="LPG"
               placeholder="gCO2e/vkm"
               name="local_dataset.ef_street_driving_car__lpg"
               defaultValue={initialValues['local_dataset']['ef_street_driving_car__lpg'].toFixed(2) }
@@ -1082,7 +1100,7 @@
             />
 
             <TextField
-              label="Cng"
+              label="CNG"
               placeholder="gCO2e/vkm"
               name="local_dataset.ef_street_driving_car__cng"
               defaultValue={initialValues['local_dataset']['ef_street_driving_car__cng'].toFixed(2) }
@@ -1094,7 +1112,7 @@
             />
 
             <TextField
-              label="Ngv"
+              label="NGV"
               placeholder="gCO2e/vkm"
               name="local_dataset.ef_street_driving_car__ngv"
               defaultValue={initialValues['local_dataset']['ef_street_driving_car__ngv'].toFixed(2) }
@@ -1130,7 +1148,7 @@
             />
 
             <TextField
-              label="Petrol phev"
+              label="Petrol PHEV"
               placeholder="gCO2e/vkm"
               name="local_dataset.ef_street_driving_car__petrol_phev"
               defaultValue={initialValues['local_dataset']['ef_street_driving_car__petrol_phev'].toFixed(2) }
@@ -1166,7 +1184,7 @@
             />
 
             <TextField
-              label="Diesel phev"
+              label="Diesel PHEV"
               placeholder="gCO2e/vkm"
               name="local_dataset.ef_street_driving_car__diesel_phev"
               defaultValue={initialValues['local_dataset']['ef_street_driving_car__diesel_phev'].toFixed(2) }
@@ -1238,7 +1256,7 @@
             />
 
              <TextField
-              label="Bev"
+              label="BEV"
               placeholder="KWh/vkm"
               name="local_dataset.ef_street_driving_car__bev"
               defaultValue={initialValues['local_dataset']['ef_street_driving_car__bev'].toFixed(2) }
@@ -1254,7 +1272,7 @@
             <h5>Ef road driving car (gCO2e/vkm)</h5>
 
             <TextField
-              label="Lpg"
+              label="LPG"
               placeholder="gCO2e/vkm"
               name="local_dataset.ef_road_driving_car__lpg"
               defaultValue={initialValues['local_dataset']['ef_road_driving_car__lpg'].toFixed(2) }
@@ -1266,7 +1284,7 @@
             />
 
             <TextField
-              label="Cng"
+              label="CNG"
               placeholder="gCO2e/vkm"
               name="local_dataset.ef_road_driving_car__cng"
               defaultValue={initialValues['local_dataset']['ef_road_driving_car__cng'].toFixed(2) }
@@ -1278,7 +1296,7 @@
             />
 
             <TextField
-              label="Ngv"
+              label="NGV"
               placeholder="gCO2e/vkm"
               name="local_dataset.ef_road_driving_car__ngv"
               defaultValue={initialValues['local_dataset']['ef_road_driving_car__ngv'].toFixed(2) }
@@ -1314,7 +1332,7 @@
             />
 
             <TextField
-              label="Petrol phev"
+              label="Petrol PHEV"
               placeholder="gCO2e/vkm"
               name="local_dataset.ef_road_driving_car__petrol_phev"
               defaultValue={initialValues['local_dataset']['ef_road_driving_car__petrol_phev'].toFixed(2) }
@@ -1354,6 +1372,18 @@
               placeholder="gCO2e/vkm"
               name="local_dataset.ef_road_driving_car__hydrogen_fuel_cell"
               defaultValue={initialValues['local_dataset']['ef_road_driving_car__hydrogen_fuel_cell'].toFixed(2) }
+              sx={{ m:2 }}
+              InputLabelProps={{ shrink: true }}
+              classes={{ root: classes.customTextField }}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+
+            <TextField
+              label="Petrol PHEV"
+              placeholder="gCO2e/vkm"
+              name="local_dataset.ef_road_driving_car__petrol_phev"
+              defaultValue={initialValues['local_dataset']['ef_road_driving_car__petrol_phev'].toFixed(2) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -1410,7 +1440,7 @@
             />
 
              <TextField
-              label="Bev"
+              label="BEV"
               placeholder="KWh/vkm"
               name="local_dataset.ef_road_driving_car__bev"
               defaultValue={initialValues['local_dataset']['ef_road_driving_car__bev'].toFixed(2) }
@@ -1421,7 +1451,7 @@
               onBlur={handleBlur}
             />
 
-          <br/>
+          {/* <br/>
             <h5>Control factor, car</h5>
 
             <TextField
@@ -1489,7 +1519,7 @@
               onBlur={handleBlur}
             />
 
-          <br/>
+          <br/> */}
             
             <h5>Share %: road driving car</h5>
 
