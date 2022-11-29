@@ -38,6 +38,12 @@
   const [busStreetDrivingTown, setBusStreetDrivingTown] = useState(100 - initialValues['local_dataset']['share_road_driving_buses__town'].toFixed(1));
   const [busStreetDrivingRural, setBusStreetDrivingRural] = useState(100 - initialValues['local_dataset']['share_road_driving_buses__rural'].toFixed(1));
 
+  const [carStreetDrivingMetroplitan, setCarStreetDrivingMetroplitan] = useState(100 - initialValues['local_dataset']['share_road_driving_car__metropolitan_center'].toFixed(1));
+  const [carStreetDrivingUrban, setCarStreetDrivingUrban] = useState(100 - initialValues['local_dataset']['share_road_driving_car__urban'].toFixed(1));
+  const [carStreetDrivingSuburban, setCarStreetDrivingSuburban] = useState(100 - initialValues['local_dataset']['share_road_driving_car__suburban'].toFixed(1));
+  const [carStreetDrivingTown, setCarStreetDrivingTown] = useState(100 - initialValues['local_dataset']['share_road_driving_car__town'].toFixed(1));
+  const [carStreetDrivingRural, setCarStreetDrivingRural] = useState(100 - initialValues['local_dataset']['share_road_driving_car__rural'].toFixed(1));
+
   const submitNewEntry = async ( values ) => {
 
     setLoadingStyle({ display: "block" });
@@ -859,7 +865,7 @@
                       InputLabelProps={{ shrink: true }}
                       style = {{width: 180}}
                       classes={{ root: classes.customTextField }}
-                      onChange={e => {handleChange(e); setBusStreetDrivingSuburban(100 - e.target.value)}}
+                      onChange={e => {handleChange(e); setBusStreetDrivingTown(100 - e.target.value)}}
                       onBlur={handleBlur}
                     />
                     </td>
@@ -1622,67 +1628,156 @@
 
           <br/> */}
             
-            <h5>Share %: road driving car</h5>
+            <Alert severity='info'>
+              <Typography variant="body1">
+              Describe the driving profile in metropolitan, urban, suburban and rural areas as well as in towns by estimating the shares of road driving and street driving.
+              </Typography>
+            </Alert>
+            <h5>Driving profile: Share of road driving in the area</h5>
 
-            <TextField
-              label="Metropolitan center"
-              placeholder="%"
-              name="local_dataset.share_road_driving_car__metropolitan_center"
-              defaultValue={initialValues['local_dataset']['share_road_driving_car__metropolitan_center'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="Urban"
-              placeholder="%"
-              name="local_dataset.cf_carshare_road_driving_car__urban"
-              defaultValue={initialValues['local_dataset']['share_road_driving_car__urban'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="Suburban"
-              placeholder="%"
-              name="local_dataset.cf_carshare_road_driving_car__suburban"
-              defaultValue={initialValues['local_dataset']['share_road_driving_car__suburban'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="Town"
-              placeholder="%"
-              name="local_dataset.cf_carshare_road_driving_car__town"
-              defaultValue={initialValues['local_dataset']['share_road_driving_car__town'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="Rural"
-              placeholder="%"
-              name="local_dataset.cf_carshare_road_driving_car__rural"
-              defaultValue={initialValues['local_dataset']['share_road_driving_car__rural'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
+            <table className={classes.localDsTable}>
+              <thead>
+                <th>
+                  Area
+                </th>
+                <th>
+                  Road driving (%)
+                </th>
+                <th>
+                  Street driving (%)
+                </th>
+                <th>
+                  Total (%)
+                </th>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td>
+                      Metropolitan centre
+                    </td>
+                    <td>
+                      <TextField
+                        label="Metropolitan center"
+                        placeholder="%"
+                        name="local_dataset.share_road_driving_car__metropolitan_center"
+                        defaultValue={initialValues['local_dataset']['share_road_driving_car__metropolitan_center'].toFixed(0) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={e => {handleChange(e); setCarStreetDrivingMetroplitan(100 - e.target.value)}}
+                        onBlur={handleBlur}
+                      />
+                    </td>
+                    <td>
+                      {carStreetDrivingMetroplitan}
+                    </td>
+                    <td>
+                      100
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Urban
+                    </td>
+                    <td>
+                      <TextField
+                        label="Urban"
+                        placeholder="%"
+                        name="local_dataset.share_road_driving_car__urban"
+                        defaultValue={initialValues['local_dataset']['share_road_driving_car__urban'].toFixed(0) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={e => {handleChange(e); setCarStreetDrivingUrban(100 - e.target.value)}}
+                        onBlur={handleBlur}
+                      />
+                    </td>
+                    <td>
+                      {carStreetDrivingUrban}
+                    </td>
+                    <td>
+                      100
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Suburban
+                    </td>
+                    <td>
+                    <TextField
+                      label="Suburban"
+                      placeholder="%"
+                      name="local_dataset.share_road_driving_car__suburban"
+                      defaultValue={initialValues['local_dataset']['share_road_driving_car__suburban'].toFixed(0) }
+                      sx={{ m:2 }}
+                      InputLabelProps={{ shrink: true }}
+                      style = {{width: 180}}
+                      classes={{ root: classes.customTextField }}
+                      onChange={e => {handleChange(e); setCarStreetDrivingSuburban(100 - e.target.value)}}
+                      onBlur={handleBlur}
+                    />
+                    </td>
+                    <td>
+                      {carStreetDrivingSuburban}
+                    </td>
+                    <td>
+                      100
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Town
+                    </td>
+                    <td>
+                    <TextField
+                      label="Town"
+                      placeholder="%"
+                      name="local_dataset.share_road_driving_car__town"
+                      defaultValue={initialValues['local_dataset']['share_road_driving_car__town'].toFixed(0) }
+                      sx={{ m:2 }}
+                      InputLabelProps={{ shrink: true }}
+                      style = {{width: 180}}
+                      classes={{ root: classes.customTextField }}
+                      onChange={e => {handleChange(e); setCarStreetDrivingTown(100 - e.target.value)}}
+                      onBlur={handleBlur}
+                    />
+                    </td>
+                    <td>
+                      {carStreetDrivingTown}
+                    </td>
+                    <td>
+                      100
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Rural
+                    </td>
+                    <td>
+                      <TextField
+                        label="Rural"
+                        placeholder="%"
+                        name="local_dataset.share_road_driving_car__rural"
+                        defaultValue={initialValues['local_dataset']['share_road_driving_car__rural'].toFixed(0)}
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}}
+                        classes={{ root: classes.customTextField }}
+                        onChange={e => {handleChange(e); setCarStreetDrivingRural(100 - e.target.value)}}
+                        onBlur={handleBlur}
+                      />
+                    </td>
+                    <td>
+                      {carStreetDrivingRural}
+                    </td>
+                    <td>
+                      100
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
 
           <br/>
             <Divider sx={{m: 2}}/>
