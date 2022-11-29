@@ -38,6 +38,12 @@
   const [busStreetDrivingTown, setBusStreetDrivingTown] = useState(100 - initialValues['local_dataset']['share_road_driving_buses__town'].toFixed(1));
   const [busStreetDrivingRural, setBusStreetDrivingRural] = useState(100 - initialValues['local_dataset']['share_road_driving_buses__rural'].toFixed(1));
 
+  const [carStreetDrivingMetroplitan, setCarStreetDrivingMetroplitan] = useState(100 - initialValues['local_dataset']['share_road_driving_car__metropolitan_center'].toFixed(1));
+  const [carStreetDrivingUrban, setCarStreetDrivingUrban] = useState(100 - initialValues['local_dataset']['share_road_driving_car__urban'].toFixed(1));
+  const [carStreetDrivingSuburban, setCarStreetDrivingSuburban] = useState(100 - initialValues['local_dataset']['share_road_driving_car__suburban'].toFixed(1));
+  const [carStreetDrivingTown, setCarStreetDrivingTown] = useState(100 - initialValues['local_dataset']['share_road_driving_car__town'].toFixed(1));
+  const [carStreetDrivingRural, setCarStreetDrivingRural] = useState(100 - initialValues['local_dataset']['share_road_driving_car__rural'].toFixed(1));
+
   const submitNewEntry = async ( values ) => {
 
     setLoadingStyle({ display: "block" });
@@ -859,7 +865,7 @@
                       InputLabelProps={{ shrink: true }}
                       style = {{width: 180}}
                       classes={{ root: classes.customTextField }}
-                      onChange={e => {handleChange(e); setBusStreetDrivingSuburban(100 - e.target.value)}}
+                      onChange={e => {handleChange(e); setBusStreetDrivingTown(100 - e.target.value)}}
                       onBlur={handleBlur}
                     />
                     </td>
@@ -1186,372 +1192,519 @@
           
           <br/>
 
-            <h5>Ef street driving car (gCO2e/vkm)</h5>
+            <h5>Ef street driving and road driving car (gCO2e/vkm)</h5>
 
-            <TextField
-              label="LPG"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_street_driving_car__lpg"
-              defaultValue={initialValues['local_dataset']['ef_street_driving_car__lpg'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="CNG"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_street_driving_car__cng"
-              defaultValue={initialValues['local_dataset']['ef_street_driving_car__cng'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="NGV"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_street_driving_car__ngv"
-              defaultValue={initialValues['local_dataset']['ef_street_driving_car__ngv'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="Petrol"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_street_driving_car__petrol"
-              defaultValue={initialValues['local_dataset']['ef_street_driving_car__petrol'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="Hybrid electric-petrol"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_street_driving_car__hybrid_electric_petrol"
-              defaultValue={initialValues['local_dataset']['ef_street_driving_car__hybrid_electric_petrol'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="Petrol PHEV"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_street_driving_car__petrol_phev"
-              defaultValue={initialValues['local_dataset']['ef_street_driving_car__petrol_phev'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="Diesel"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_street_driving_car__diesel"
-              defaultValue={initialValues['local_dataset']['ef_street_driving_car__diesel'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="Hybrid electric-diesel"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_street_driving_car__hybrid_electric_diesel"
-              defaultValue={initialValues['local_dataset']['ef_street_driving_car__hybrid_electric_diesel'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="Diesel PHEV"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_street_driving_car__diesel_phev"
-              defaultValue={initialValues['local_dataset']['ef_street_driving_car__diesel_phev'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="Hydrogen fuel cell"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_street_driving_car__hydrogen_fuel_cell"
-              defaultValue={initialValues['local_dataset']['ef_street_driving_car__hydrogen_fuel_cell'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="Bioethanol"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_street_driving_car__bioethanol"
-              defaultValue={initialValues['local_dataset']['ef_street_driving_car__bioethanol'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-             <TextField
-              label="Biodiesel"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_street_driving_car__biodiesel"
-              defaultValue={initialValues['local_dataset']['ef_street_driving_car__biodiesel'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-             <TextField
-              label="Bi-fuel"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_street_driving_car__bi_fuel"
-              defaultValue={initialValues['local_dataset']['ef_street_driving_car__bi_fuel'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-             <TextField
-              label="Other"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_street_driving_car__other"
-              defaultValue={initialValues['local_dataset']['ef_street_driving_car__other'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-             <TextField
-              label="BEV"
-              placeholder="KWh/vkm"
-              name="local_dataset.ef_street_driving_car__bev"
-              defaultValue={initialValues['local_dataset']['ef_street_driving_car__bev'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-          <br/>
-
-            <h5>Ef road driving car (gCO2e/vkm)</h5>
-
-            <TextField
-              label="LPG"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_road_driving_car__lpg"
-              defaultValue={initialValues['local_dataset']['ef_road_driving_car__lpg'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="CNG"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_road_driving_car__cng"
-              defaultValue={initialValues['local_dataset']['ef_road_driving_car__cng'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="NGV"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_road_driving_car__ngv"
-              defaultValue={initialValues['local_dataset']['ef_road_driving_car__ngv'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="Petrol"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_road_driving_car__petrol"
-              defaultValue={initialValues['local_dataset']['ef_road_driving_car__petrol'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="Hybrid electric-petrol"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_road_driving_car__hybrid_electric_petrol"
-              defaultValue={initialValues['local_dataset']['ef_road_driving_car__hybrid_electric_petrol'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="Petrol PHEV"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_road_driving_car__petrol_phev"
-              defaultValue={initialValues['local_dataset']['ef_road_driving_car__petrol_phev'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="Diesel"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_road_driving_car__diesel"
-              defaultValue={initialValues['local_dataset']['ef_road_driving_car__diesel'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="Hybrid electric-diesel"
-              placeholder="HgCO2e/vkm"
-              name="local_dataset.ef_road_driving_car__hybrid_electric_diesel"
-              defaultValue={initialValues['local_dataset']['ef_road_driving_car__hybrid_electric_diesel'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="Hydrogen fuel cell"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_road_driving_car__hydrogen_fuel_cell"
-              defaultValue={initialValues['local_dataset']['ef_road_driving_car__hydrogen_fuel_cell'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="Petrol PHEV"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_road_driving_car__petrol_phev"
-              defaultValue={initialValues['local_dataset']['ef_road_driving_car__petrol_phev'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="Bioethanol"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_road_driving_car__bioethanol"
-              defaultValue={initialValues['local_dataset']['ef_road_driving_car__bioethanol'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-             <TextField
-              label="Biodiesel"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_road_driving_car__biodiesel"
-              defaultValue={initialValues['local_dataset']['ef_road_driving_car__biodiesel'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-             <TextField
-              label="Bi-fuel"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_road_driving_car__bi_fuel"
-              defaultValue={initialValues['local_dataset']['ef_road_driving_car__bi_fuel'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-             <TextField
-              label="Other"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_road_driving_car__other"
-              defaultValue={initialValues['local_dataset']['ef_road_driving_car__other'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-             <TextField
-              label="BEV"
-              placeholder="KWh/vkm"
-              name="local_dataset.ef_road_driving_car__bev"
-              defaultValue={initialValues['local_dataset']['ef_road_driving_car__bev'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
+            <table className={classes.localDsTable}>
+              <thead>
+                <th>
+                  
+                </th>
+                <th>
+                    Street driving (%)
+                </th>
+                <th>
+                    Road driving (%)
+                </th>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td>
+                      LPG
+                    </td>
+                    <td>
+                    <TextField
+                        label="LPG"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_street_driving_car__lpg"
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__lpg'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                    <td>
+                    <TextField
+                        label="LPG"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_road_driving_car__lpg"
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__lpg'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      CNG
+                    </td>
+                    <td>
+                    <TextField
+                        label="LPG"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_street_driving_car__cng"
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__cng'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                    <td>
+                    <TextField
+                        label="LPG"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_road_driving_car__cng"
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__cng'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      NGV
+                    </td>
+                    <td>
+                    <TextField
+                        label="NGV"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_street_driving_car__ngv"
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__ngv'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                    <td>
+                    <TextField
+                        label="NGV"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_road_driving_car__ngv"
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__ngv'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Petrol
+                    </td>
+                    <td>
+                    <TextField
+                        label="Petrol"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_street_driving_car__petrol"
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__petrol'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                    <td>
+                    <TextField
+                        label="Petrol"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_road_driving_car__petrol"
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__petrol'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Hybrid electric-petrol
+                    </td>
+                    <td>
+                    <TextField
+                        label="Hybrid electric-petrol"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_street_driving_car__hybrid_electric_petrol"
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__hybrid_electric_petrol'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                    <td>
+                    <TextField
+                        label="Hybrid electric-petrol"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_road_driving_car__hybrid_electric_petrol"
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__hybrid_electric_petrol'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Petrol PHEV
+                    </td>
+                    <td>
+                    <TextField
+                        label="Petrol PHEV"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_street_driving_car__petrol_phev"
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__petrol_phev'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                    <td>
+                    <TextField
+                        label="Petrol PHEV"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_road_driving_car__petrol_phev"
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__petrol_phev'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Diesel
+                    </td>
+                    <td>
+                    <TextField
+                        label="Diesel"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_street_driving_car__diesel"
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__diesel'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                    <td>
+                    <TextField
+                        label="Diesel"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_road_driving_car__diesel"
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__diesel'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Hybrid electric-diesel
+                    </td>
+                    <td>
+                    <TextField
+                        label="Hybrid electric-diesel"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_street_driving_car__hybrid_electric_diesel"
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__hybrid_electric_diesel'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                    <td>
+                    <TextField
+                        label="Hybrid electric-diesel"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_road_driving_car__hybrid_electric_diesel"
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__hybrid_electric_diesel'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Diesel PHEV
+                    </td>
+                    <td>
+                    <TextField
+                        label="Diesel PHEV"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_street_driving_car__diesel_phev"
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__diesel_phev'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                    <td>
+                    <TextField
+                        label="Diesel PHEV"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_road_driving_car__diesel_phev"
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__diesel_phev'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Hydrogen fuel cell
+                    </td>
+                    <td>
+                    <TextField
+                        label="Hydrogen fuel cell"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_street_driving_car__hydrogen_fuel_cell"
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__hydrogen_fuel_cell'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                    <td>
+                    <TextField
+                        label="Hydrogen fuel cell"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_road_driving_car__hydrogen_fuel_cell"
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__hydrogen_fuel_cell'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Bioethanol
+                    </td>
+                    <td>
+                    <TextField
+                        label="Bioethanol"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_street_driving_car__bioethanol"
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__bioethanol'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                    <td>
+                    <TextField
+                        label="Bioethanol"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_road_driving_car__bioethanol"
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__bioethanol'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Biodiesel
+                    </td>
+                    <td>
+                    <TextField
+                        label="Biodiesel"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_street_driving_car__biodiesel"
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__biodiesel'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                    <td>
+                    <TextField
+                        label="Biodiesel"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_road_driving_car__biodiesel"
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__biodiesel'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Bi-fuel
+                    </td>
+                    <td>
+                    <TextField
+                        label="Bi-fuel"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_street_driving_car__bi_fuel"
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__bi_fuel'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                    <td>
+                    <TextField
+                        label="Bi-fuel"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_road_driving_car__bi_fuel"
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__bi_fuel'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Other
+                    </td>
+                    <td>
+                    <TextField
+                        label="Other"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_street_driving_car__other"
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__other'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                    <td>
+                    <TextField
+                        label="Other"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_road_driving_car__other"
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__other'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      BEV
+                    </td>
+                    <td>
+                    <TextField
+                        label="BEV"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_street_driving_car__bev"
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__bev'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                    <td>
+                    <TextField
+                        label="BEV"
+                        placeholder="gCO2e/vkm"
+                        name="local_dataset.ef_road_driving_car__bev"
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__bev'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+            <br />
           {/* <br/>
             <h5>Control factor, car</h5>
 
@@ -1622,67 +1775,156 @@
 
           <br/> */}
             
-            <h5>Share %: road driving car</h5>
+            <Alert severity='info'>
+              <Typography variant="body1">
+              Describe the driving profile in metropolitan, urban, suburban and rural areas as well as in towns by estimating the shares of road driving and street driving.
+              </Typography>
+            </Alert>
+            <h5>Driving profile: Share of road driving in the area</h5>
 
-            <TextField
-              label="Metropolitan center"
-              placeholder="%"
-              name="local_dataset.share_road_driving_car__metropolitan_center"
-              defaultValue={initialValues['local_dataset']['share_road_driving_car__metropolitan_center'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="Urban"
-              placeholder="%"
-              name="local_dataset.cf_carshare_road_driving_car__urban"
-              defaultValue={initialValues['local_dataset']['share_road_driving_car__urban'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="Suburban"
-              placeholder="%"
-              name="local_dataset.cf_carshare_road_driving_car__suburban"
-              defaultValue={initialValues['local_dataset']['share_road_driving_car__suburban'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="Town"
-              placeholder="%"
-              name="local_dataset.cf_carshare_road_driving_car__town"
-              defaultValue={initialValues['local_dataset']['share_road_driving_car__town'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <TextField
-              label="Rural"
-              placeholder="%"
-              name="local_dataset.cf_carshare_road_driving_car__rural"
-              defaultValue={initialValues['local_dataset']['share_road_driving_car__rural'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
+            <table className={classes.localDsTable}>
+              <thead>
+                <th>
+                  Area
+                </th>
+                <th>
+                  Road driving (%)
+                </th>
+                <th>
+                  Street driving (%)
+                </th>
+                <th>
+                  Total (%)
+                </th>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td>
+                      Metropolitan centre
+                    </td>
+                    <td>
+                      <TextField
+                        label="Metropolitan center"
+                        placeholder="%"
+                        name="local_dataset.share_road_driving_car__metropolitan_center"
+                        defaultValue={initialValues['local_dataset']['share_road_driving_car__metropolitan_center'].toFixed(0) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={e => {handleChange(e); setCarStreetDrivingMetroplitan(100 - e.target.value)}}
+                        onBlur={handleBlur}
+                      />
+                    </td>
+                    <td>
+                      {carStreetDrivingMetroplitan}
+                    </td>
+                    <td>
+                      100
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Urban
+                    </td>
+                    <td>
+                      <TextField
+                        label="Urban"
+                        placeholder="%"
+                        name="local_dataset.share_road_driving_car__urban"
+                        defaultValue={initialValues['local_dataset']['share_road_driving_car__urban'].toFixed(0) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}} 
+                        classes={{ root: classes.customTextField }}
+                        onChange={e => {handleChange(e); setCarStreetDrivingUrban(100 - e.target.value)}}
+                        onBlur={handleBlur}
+                      />
+                    </td>
+                    <td>
+                      {carStreetDrivingUrban}
+                    </td>
+                    <td>
+                      100
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Suburban
+                    </td>
+                    <td>
+                    <TextField
+                      label="Suburban"
+                      placeholder="%"
+                      name="local_dataset.share_road_driving_car__suburban"
+                      defaultValue={initialValues['local_dataset']['share_road_driving_car__suburban'].toFixed(0) }
+                      sx={{ m:2 }}
+                      InputLabelProps={{ shrink: true }}
+                      style = {{width: 180}}
+                      classes={{ root: classes.customTextField }}
+                      onChange={e => {handleChange(e); setCarStreetDrivingSuburban(100 - e.target.value)}}
+                      onBlur={handleBlur}
+                    />
+                    </td>
+                    <td>
+                      {carStreetDrivingSuburban}
+                    </td>
+                    <td>
+                      100
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Town
+                    </td>
+                    <td>
+                    <TextField
+                      label="Town"
+                      placeholder="%"
+                      name="local_dataset.share_road_driving_car__town"
+                      defaultValue={initialValues['local_dataset']['share_road_driving_car__town'].toFixed(0) }
+                      sx={{ m:2 }}
+                      InputLabelProps={{ shrink: true }}
+                      style = {{width: 180}}
+                      classes={{ root: classes.customTextField }}
+                      onChange={e => {handleChange(e); setCarStreetDrivingTown(100 - e.target.value)}}
+                      onBlur={handleBlur}
+                    />
+                    </td>
+                    <td>
+                      {carStreetDrivingTown}
+                    </td>
+                    <td>
+                      100
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Rural
+                    </td>
+                    <td>
+                      <TextField
+                        label="Rural"
+                        placeholder="%"
+                        name="local_dataset.share_road_driving_car__rural"
+                        defaultValue={initialValues['local_dataset']['share_road_driving_car__rural'].toFixed(0)}
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style = {{width: 180}}
+                        classes={{ root: classes.customTextField }}
+                        onChange={e => {handleChange(e); setCarStreetDrivingRural(100 - e.target.value)}}
+                        onBlur={handleBlur}
+                      />
+                    </td>
+                    <td>
+                      {carStreetDrivingRural}
+                    </td>
+                    <td>
+                      100
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
 
           <br/>
             <Divider sx={{m: 2}}/>
@@ -1697,7 +1939,7 @@
               label="Pkm/(capita, a)"
               placeholder="pkm/(capita, a)"
               name="local_dataset.passenger_km_per_capita_metro"
-              defaultValue={initialValues['local_dataset']['passenger_km_per_capita_metro'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['passenger_km_per_capita_metro'].toFixed(0) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -1713,7 +1955,7 @@
               label="Occupancy rate"
               placeholder="passengers/ vehicle"
               name="local_dataset.occupancy_rate_metro"
-              defaultValue={initialValues['local_dataset']['occupancy_rate_metro'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['occupancy_rate_metro'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -1729,7 +1971,7 @@
               label="kWh /vkm"
               placeholder="kWh /vkm"
               name="local_dataset.electricity_consumption_metro"
-              defaultValue={initialValues['local_dataset']['electricity_consumption_metro'].toFixed(2) }
+              defaultValue={initialValues['local_dataset']['electricity_consumption_metro'].toFixed(1) }
               sx={{ m:2 }}
               InputLabelProps={{ shrink: true }}
               classes={{ root: classes.customTextField }}
@@ -1778,202 +2020,230 @@
           <br/>
             <h5>Metro (million pkm/a)</h5>
 
-            {initialValues['local_dataset']['metro__1'] !== "-" &&
-            <TextField
-              label="Metro 1"
-              placeholder="Metro 1"
-              name="local_dataset.metro__1"
-              defaultValue={initialValues['local_dataset']['metro__1'] }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
+            <table className={classes.localDsTable}>
+              <thead>
+                <th>
+                  Metros
+                </th>
+                <th>
+                  Million pkm/a
+                </th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <TextField
+                        label="Metro 1"
+                        placeholder="Metro 1"
+                        name="local_dataset.metro__1"
+                        defaultValue={initialValues['local_dataset']['metro__1'] }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style={{ width: 180}}
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                  </td>
+                  <td>
+                    <TextField
+                        label="1. metro pkm/a"
+                        placeholder="1. metro pkm/a"
+                        name="local_dataset.transport_activity_metro__pkm_a"
+                        defaultValue={initialValues['local_dataset']['transport_activity_metro__pkm_a'].toFixed(2) }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style={{ width: 180}}
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <TextField
+                        label="Metro 2"
+                        placeholder="Metro 2"
+                        name="local_dataset.metro__2"
+                        defaultValue={initialValues['local_dataset']['metro__2'] }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style={{ width: 180}}
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                  </td>
+                  <td>
+                  <TextField
+                    label="2. metro pkm/a"
+                    placeholder="2. metro pkm/a"
+                    name="local_dataset.transport_activity_metro__metro_2"
+                    defaultValue={initialValues['local_dataset']['transport_activity_metro__metro_2'].toFixed(2) }
+                    sx={{ m:2 }}
+                    InputLabelProps={{ shrink: true }}
+                    style={{ width: 180}}
+                    classes={{ root: classes.customTextField }}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                  <TextField
+                          label="Metro 3"
+                          placeholder="Metro 3"
+                          name="local_dataset.metro__3"
+                          defaultValue={initialValues['local_dataset']['metro__3'] }
+                          sx={{ m:2 }}
+                          InputLabelProps={{ shrink: true }}
+                          style={{ width: 180}}
+                          classes={{ root: classes.customTextField }}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                      />
+                  </td>
+                  <td>
+                  <TextField
+                    label="3. metro pkm/a"
+                    placeholder="3. metro pkm/a"
+                    name="local_dataset.transport_activity_metro__metro_3"
+                    defaultValue={initialValues['local_dataset']['transport_activity_metro__metro_3'].toFixed(2) }
+                    sx={{ m:2 }}
+                    InputLabelProps={{ shrink: true }}
+                    style={{ width: 180}}
+                    classes={{ root: classes.customTextField }}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <TextField
+                        label="Metro 4"
+                        placeholder="Metro 4"
+                        name="local_dataset.metro__4"
+                        defaultValue={initialValues['local_dataset']['metro__4'] }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style={{ width: 180}}
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                  </td>
+                  <td>
+                    <TextField
+                      label="4. metro pkm/a"
+                      placeholder="4. metro pkm/a"
+                      name="local_dataset.transport_activity_metro__metro_4"
+                      defaultValue={initialValues['local_dataset']['transport_activity_metro__metro_4'].toFixed(2) }
+                      sx={{ m:2 }}
+                      InputLabelProps={{ shrink: true }}
+                      style={{ width: 180}}
+                      classes={{ root: classes.customTextField }}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                   />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                  <TextField
+                      label="Metro 5"
+                      placeholder="Metro 5"
+                      name="local_dataset.metro__5"
+                      defaultValue={initialValues['local_dataset']['metro__5'] }
+                      sx={{ m:2 }}
+                      InputLabelProps={{ shrink: true }}
+                      style={{ width: 180}}
+                      classes={{ root: classes.customTextField }}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                  />
+                  </td>
+                  <td>
+                  <TextField
+                    label="5. metro pkm/a"
+                    placeholder="5. metro pkm/a"
+                    name="local_dataset.transport_activity_metro__metro_5"
+                    defaultValue={initialValues['local_dataset']['transport_activity_metro__metro_5'].toFixed(2) }
+                    sx={{ m:2 }}
+                    InputLabelProps={{ shrink: true }}
+                    style={{ width: 180}}
+                    classes={{ root: classes.customTextField }}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  </td>
+                </tr>
+                <tr>
+                    <td>
+                    <TextField
+                        label="Metro 6"
+                        placeholder="Metro 6"
+                        name="local_dataset.metro__6"
+                        defaultValue={initialValues['local_dataset']['metro__6'] }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style={{ width: 180}}
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                    <td>
+                    <TextField
+                      label="6. metro pkm/a"
+                      placeholder="6. metro pkm/a"
+                      name="local_dataset.transport_activity_metro__metro_6"
+                      defaultValue={initialValues['local_dataset']['transport_activity_metro__metro_6'].toFixed(2) }
+                      sx={{ m:2 }}
+                      InputLabelProps={{ shrink: true }}
+                      style={{ width: 180}}
+                      classes={{ root: classes.customTextField }}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <TextField
+                        label="Metro 7"
+                        placeholder="Metro 7"
+                        name="local_dataset.metro__7"
+                        defaultValue={initialValues['local_dataset']['metro__7'] }
+                        sx={{ m:2 }}
+                        InputLabelProps={{ shrink: true }}
+                        style={{ width: 180}}
+                        classes={{ root: classes.customTextField }}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    </td>
+                    <td>
+                    <TextField
+                      label="7. metro pkm/a"
+                      placeholder="7. metro pkm/a"
+                      name="local_dataset.transport_activity_metro__metro_7"
+                      defaultValue={initialValues['local_dataset']['transport_activity_metro__metro_7'].toFixed(2) }
+                      sx={{ m:2 }}
+                      InputLabelProps={{ shrink: true }}
+                      style={{ width: 180}}
+                      classes={{ root: classes.customTextField }}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    </td>
+                </tr>
+              </tbody>
+            </table>
 
-            {initialValues['local_dataset']['metro__2'] !== "-" &&
-            <TextField
-              label="Metro 2"
-              placeholder="Metro 2"
-              name="local_dataset.metro__2"
-              defaultValue={initialValues['local_dataset']['metro__2'] }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-           {initialValues['local_dataset']['metro__3'] !== "-" &&
-            <TextField
-              label="Metro 3"
-              placeholder="Metro 3"
-              name="local_dataset.metro__3"
-              defaultValue={initialValues['local_dataset']['metro__3'] }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-
-          {initialValues['local_dataset']['metro__4'] !== "-" &&
-            <TextField
-              label="Metro 4"
-              placeholder="Metro 4"
-              name="local_dataset.metro__4"
-              defaultValue={initialValues['local_dataset']['metro__4'] }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['metro__5'] !== "-" &&
-            <TextField
-              label="Metro 5"
-              placeholder="Metro 5"
-              name="local_dataset.metro__5"
-              defaultValue={initialValues['local_dataset']['metro__5'] }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-           {initialValues['local_dataset']['metro__6'] !== "-" &&
-            <TextField
-              label="Metro 6"
-              placeholder="Metro 6"
-              name="local_dataset.metro__6"
-              defaultValue={initialValues['local_dataset']['metro__6'] }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-           {initialValues['local_dataset']['metro__7'] !== "-" &&
-            <TextField
-              label="Metro 7"
-              placeholder="Metro 7"
-              name="local_dataset.metro__7"
-              defaultValue={initialValues['local_dataset']['metro__7'] }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-
-            />
-            }
           <br/>
-
-            <h5>Transport activity (pkm/a)</h5>
-
-          {initialValues['local_dataset']['transport_activity_metro__pkm_a'] !== 0 &&
-            <TextField
-              label="1. metro pkm/a"
-              placeholder="1. metro pkm/a"
-              name="local_dataset.transport_activity_metro__pkm_a"
-              defaultValue={initialValues['local_dataset']['transport_activity_metro__pkm_a'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-          {initialValues['local_dataset']['transport_activity_metro__metro_2'] !== 0 &&
-             <TextField
-              label="2. metro pkm/a"
-              placeholder="2. metro pkm/a"
-              name="local_dataset.transport_activity_metro__metro_2"
-              defaultValue={initialValues['local_dataset']['transport_activity_metro__metro_2'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-          {initialValues['local_dataset']['transport_activity_metro__metro_3'] !== 0 &&
-            <TextField
-              label="3. metro pkm/a"
-              placeholder="3. metro pkm/a"
-              name="local_dataset.transport_activity_metro__metro_3"
-              defaultValue={initialValues['local_dataset']['transport_activity_metro__metro_3'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-          {initialValues['local_dataset']['transport_activity_metro__metro_4'] !== 0 &&
-            <TextField
-              label="4. metro pkm/a"
-              placeholder="4. metro pkm/a"
-              name="local_dataset.transport_activity_metro__metro_4"
-              defaultValue={initialValues['local_dataset']['transport_activity_metro__metro_4'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-          {initialValues['local_dataset']['transport_activity_metro__metro_5'] !== 0 &&
-            <TextField
-              label="5. metro pkm/a"
-              placeholder="5. metro pkm/a"
-              name="local_dataset.transport_activity_metro__metro_5"
-              defaultValue={initialValues['local_dataset']['transport_activity_metro__metro_5'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['transport_activity_metro__metro_6'] !== 0 &&
-            <TextField
-              label="6. metro pkm/a"
-              placeholder="6. metro pkm/a"
-              name="local_dataset.transport_activity_metro__metro_6"
-              defaultValue={initialValues['local_dataset']['transport_activity_metro__metro_6'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['transport_activity_metro__metro_7'] !== 0 &&
-            <TextField
-              label="7. metro pkm/a"
-              placeholder="7. metro pkm/a"
-              name="local_dataset.transport_activity_metro__metro_7"
-              defaultValue={initialValues['local_dataset']['transport_activity_metro__metro_7'].toFixed(2) }
-              sx={{ m:2 }}
-              InputLabelProps={{ shrink: true }}
-              classes={{ root: classes.customTextField }}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
 
             <Divider sx={{m: 2}}/>
             <h4>
