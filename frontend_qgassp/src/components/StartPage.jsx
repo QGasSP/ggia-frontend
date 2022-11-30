@@ -37,6 +37,10 @@ export const StartPage = () => {
     localStorage.setItem("nextModule", nextModule);
   }, [nextModule]);
 
+  useEffect(() => {
+    localStorage.setItem("country", `${country} & ${localDataset}`);
+  }, [country, localDataset]);
+
   const navigate = useNavigate();
 
   const handleSelected = (e) => {
