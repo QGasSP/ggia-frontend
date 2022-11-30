@@ -963,7 +963,7 @@
           
           <br/>
 
-            <h5>Ef street driving and road driving car (gCO2e/vkm)</h5>
+            <h5>Emission factor for street driving and road driving, passenger car (gCO2e/vkm)</h5>
 
             <table className={classes.localDsTable}>
               <thead>
@@ -989,7 +989,7 @@
                         label="LPG"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__lpg"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__lpg'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__lpg'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1000,7 +1000,7 @@
                         label="LPG"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__lpg"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__lpg'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__lpg'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1016,7 +1016,7 @@
                         label="LPG"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__cng"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__cng'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__cng'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1027,7 +1027,7 @@
                         label="LPG"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__cng"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__cng'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__cng'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1043,7 +1043,7 @@
                         label="NGV"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__ngv"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__ngv'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__ngv'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1054,7 +1054,7 @@
                         label="NGV"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__ngv"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__ngv'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__ngv'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1070,7 +1070,7 @@
                         label="Petrol"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__petrol"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__petrol'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__petrol'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1081,7 +1081,7 @@
                         label="Petrol"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__petrol"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__petrol'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__petrol'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1097,7 +1097,7 @@
                         label="Hybrid electric-petrol"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__hybrid_electric_petrol"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__hybrid_electric_petrol'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__hybrid_electric_petrol'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1108,7 +1108,7 @@
                         label="Hybrid electric-petrol"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__hybrid_electric_petrol"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__hybrid_electric_petrol'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__hybrid_electric_petrol'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1124,7 +1124,7 @@
                         label="Petrol PHEV"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__petrol_phev"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__petrol_phev'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__petrol_phev'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1135,7 +1135,7 @@
                         label="Petrol PHEV"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__petrol_phev"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__petrol_phev'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__petrol_phev'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1151,7 +1151,7 @@
                         label="Diesel"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__diesel"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__diesel'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__diesel'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1162,7 +1162,7 @@
                         label="Diesel"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__diesel"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__diesel'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__diesel'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1178,7 +1178,7 @@
                         label="Hybrid electric-diesel"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__hybrid_electric_diesel"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__hybrid_electric_diesel'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__hybrid_electric_diesel'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1189,7 +1189,7 @@
                         label="Hybrid electric-diesel"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__hybrid_electric_diesel"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__hybrid_electric_diesel'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__hybrid_electric_diesel'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1205,7 +1205,7 @@
                         label="Diesel PHEV"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__diesel_phev"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__diesel_phev'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__diesel_phev'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1216,7 +1216,7 @@
                         label="Diesel PHEV"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__diesel_phev"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__diesel_phev'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__diesel_phev'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1232,7 +1232,7 @@
                         label="Hydrogen fuel cell"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__hydrogen_fuel_cell"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__hydrogen_fuel_cell'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__hydrogen_fuel_cell'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1243,7 +1243,7 @@
                         label="Hydrogen fuel cell"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__hydrogen_fuel_cell"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__hydrogen_fuel_cell'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__hydrogen_fuel_cell'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1259,7 +1259,7 @@
                         label="Bioethanol"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__bioethanol"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__bioethanol'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__bioethanol'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1270,7 +1270,7 @@
                         label="Bioethanol"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__bioethanol"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__bioethanol'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__bioethanol'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1286,7 +1286,7 @@
                         label="Biodiesel"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__biodiesel"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__biodiesel'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__biodiesel'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1297,7 +1297,7 @@
                         label="Biodiesel"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__biodiesel"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__biodiesel'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__biodiesel'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1313,7 +1313,7 @@
                         label="Bi-fuel"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__bi_fuel"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__bi_fuel'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__bi_fuel'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1324,7 +1324,7 @@
                         label="Bi-fuel"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__bi_fuel"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__bi_fuel'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__bi_fuel'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1340,7 +1340,7 @@
                         label="Other"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__other"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__other'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__other'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1351,7 +1351,7 @@
                         label="Other"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__other"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__other'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__other'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1367,7 +1367,7 @@
                         label="BEV"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__bev"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__bev'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__bev'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1378,7 +1378,7 @@
                         label="BEV"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__bev"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__bev'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__bev'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
