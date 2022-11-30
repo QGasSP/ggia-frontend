@@ -1,6 +1,6 @@
  import React, { useEffect, useState } from 'react';
  import { Formik, Form } from "formik";
- import urlPrefix, { showOnDev } from '../../Config';
+ import urlPrefix from '../../Config';
  import axios from 'axios';
  import { CircularProgress } from "@mui/material";
  import {Grid, Button, TextField, Divider, Container, Alert, Box, Typography } from '@mui/material'
@@ -143,7 +143,7 @@
         return (
         
         <Form className="create-localdataset">
-          { showOnDev &&
+          { 
           <div>
           <h5>Name the dataset according to the city, town, municipality, region or territory in concern. A new dataset can be later found in the tool menu by this name.</h5>
             <TextField

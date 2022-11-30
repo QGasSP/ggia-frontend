@@ -6,7 +6,7 @@ import Alert from "@mui/material/Alert";
 import axios from "axios";
 import { useStorageInt, useStorageString } from "../reducers/useStorage";
 import { useNavigate } from "react-router-dom";
-import urlPrefix, { showOnDev } from "../Config";
+import urlPrefix from "../Config";
 import Tooltip from "@mui/material/Tooltip";
 import { Container, Box, Stack } from "@mui/material";
 
@@ -292,7 +292,7 @@ export const StartPage = () => {
           <Divider orientation="vertical" flexItem />
          
            <div className="column_start">
-            { showOnDev &&
+            {
             <div>
             <header className="intro_header">
               <h1 id="title" className="header_start">
