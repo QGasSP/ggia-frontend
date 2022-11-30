@@ -46,6 +46,7 @@
   const [carStreetDrivingRural, setCarStreetDrivingRural] = useState(100 - initialValues['local_dataset']['share_road_driving_car__rural'].toFixed(1));
 
   const tramRows = [];
+  const metroRows = [];
 
   const submitNewEntry = async ( values ) => {
 
@@ -149,7 +150,36 @@
               />
               </td>
             </tr>
-          )
+          );
+
+          if(i >= 2 && i <= 7){
+            metroRows.push(
+              <tr>
+                  <td>
+                    <InputField
+                        label={`Metro ${i}`}
+                        placeholder={`Metro ${i}`}
+                        name={`local_dataset.metro__${i}`}
+                        defaultValue={initialValues['local_dataset'][`metro__${i}`] }
+                        style={{ width: 180}}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                  </td>
+                  <td>
+                  <InputField
+                    label={`${i}. metro pkm/a`}
+                    placeholder={`${i}. metro pkm/a`}
+                    name={`local_dataset.transport_activity_metro__metro_${i}`}
+                    defaultValue={initialValues['local_dataset'][`transport_activity_metro__metro_${i}`].toFixed(2) }
+                    style={{ width: 180}}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  </td>
+                </tr>
+            );
+          }
         }
        }
         return (
@@ -1723,150 +1753,7 @@
                     />
                   </td>
                 </tr>
-                <tr>
-                  <td>
-                    <InputField
-                        label="Metro 2"
-                        placeholder="Metro 2"
-                        name="local_dataset.metro__2"
-                        defaultValue={initialValues['local_dataset']['metro__2'] }
-                        style={{ width: 180}}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
-                  </td>
-                  <td>
-                  <InputField
-                    label="2. metro pkm/a"
-                    placeholder="2. metro pkm/a"
-                    name="local_dataset.transport_activity_metro__metro_2"
-                    defaultValue={initialValues['local_dataset']['transport_activity_metro__metro_2'].toFixed(2) }
-                    style={{ width: 180}}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                  <InputField
-                    label="Metro 3"
-                    placeholder="Metro 3"
-                    name="local_dataset.metro__3"
-                    defaultValue={initialValues['local_dataset']['metro__3'] }
-                    style={{ width: 180}}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                      />
-                  </td>
-                  <td>
-                  <InputField
-                    label="3. metro pkm/a"
-                    placeholder="3. metro pkm/a"
-                    name="local_dataset.transport_activity_metro__metro_3"
-                    defaultValue={initialValues['local_dataset']['transport_activity_metro__metro_3'].toFixed(2) }
-                    style={{ width: 180}}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <InputField
-                        label="Metro 4"
-                        placeholder="Metro 4"
-                        name="local_dataset.metro__4"
-                        defaultValue={initialValues['local_dataset']['metro__4'] }
-                        style={{ width: 180}}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
-                  </td>
-                  <td>
-                    <InputField
-                      label="4. metro pkm/a"
-                      placeholder="4. metro pkm/a"
-                      name="local_dataset.transport_activity_metro__metro_4"
-                      defaultValue={initialValues['local_dataset']['transport_activity_metro__metro_4'].toFixed(2) }
-                      style={{ width: 180}}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                   />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                  <InputField
-                      label="Metro 5"
-                      placeholder="Metro 5"
-                      name="local_dataset.metro__5"
-                      defaultValue={initialValues['local_dataset']['metro__5'] }
-                      style={{ width: 180}}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                  />
-                  </td>
-                  <td>
-                  <InputField
-                    label="5. metro pkm/a"
-                    placeholder="5. metro pkm/a"
-                    name="local_dataset.transport_activity_metro__metro_5"
-                    defaultValue={initialValues['local_dataset']['transport_activity_metro__metro_5'].toFixed(2) }
-                    style={{ width: 180}}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  </td>
-                </tr>
-                <tr>
-                    <td>
-                    <InputField
-                      label="Metro 6"
-                      placeholder="Metro 6"
-                      name="local_dataset.metro__6"
-                      defaultValue={initialValues['local_dataset']['metro__6'] }
-                      style={{ width: 180}}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    </td>
-                    <td>
-                    <InputField
-                      label="6. metro pkm/a"
-                      placeholder="6. metro pkm/a"
-                      name="local_dataset.transport_activity_metro__metro_6"
-                      defaultValue={initialValues['local_dataset']['transport_activity_metro__metro_6'].toFixed(2) }
-                      style={{ width: 180}}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    <InputField
-                        label="Metro 7"
-                        placeholder="Metro 7"
-                        name="local_dataset.metro__7"
-                        defaultValue={initialValues['local_dataset']['metro__7'] }
-                        style={{ width: 180}}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
-                    </td>
-                    <td>
-                    <InputField
-                      label="7. metro pkm/a"
-                      placeholder="7. metro pkm/a"
-                      name="local_dataset.transport_activity_metro__metro_7"
-                      defaultValue={initialValues['local_dataset']['transport_activity_metro__metro_7'].toFixed(2) }
-                      style={{ width: 180}}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    </td>
-                </tr>
+                {metroRows}
               </tbody>
             </table>
 
@@ -1944,7 +1831,7 @@
 
           <br/>
 
-            <h5>Trams each</h5>
+            <h5>Trams (million pkm/a)</h5>
             <table className={classes.localDsTable}>
               <thead>
                 <tr>
