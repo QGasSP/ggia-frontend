@@ -288,6 +288,24 @@ export const StartPage = () => {
                 />
               </div>
             </div>
+            <section style={{padding: '20px 0'}}>
+                <div>
+                  <a style={{padding:0}} 
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://github.com/QGasSP/ggia/blob/main/doc/excel-helpers/ggia-helper..xlsm?raw=true">
+                    excel-helper file for creating territorial local dataset
+                  </a>
+                </div>
+                <div>
+                  <a style={{padding:0}}
+                  target="_blank" 
+                  rel="noreferrer"
+                  href="https://github.com/QGasSP/ggia/blob/main/doc/excel-helpers/GGIA_local_dataset_C.xlsm?raw=true">
+                    excel-helper file for creating consumption local dataset
+                  </a>
+                </div>
+              </section>
           </div>
           <Divider orientation="vertical" flexItem />
          
@@ -338,24 +356,6 @@ export const StartPage = () => {
                 </div>
                 } 
               </form>
-              <section style={{padding: '20px 0'}}>
-                <div>
-                  <a style={{padding:0}} 
-                  target="_blank"
-                  rel="noreferrer"
-                  href="https://github.com/QGasSP/ggia/blob/main/doc/excel-helpers/ggia-helper.xlsm">
-                    excel-helper file for creating territorial local dataset
-                  </a>
-                </div>
-                <div>
-                  <a style={{padding:0}}
-                  target="_blank" 
-                  rel="noreferrer"
-                  href="https://github.com/QGasSP/ggia/blob/main/doc/excel-helpers/ggia-helper.xlsm">
-                    excel-helper file for creating consumption local dataset
-                  </a>
-                </div>
-              </section>
             </div>
           </div> }
           </div>
