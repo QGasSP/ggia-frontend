@@ -1,22 +1,24 @@
- import React, { useEffect, useState } from 'react';
+ import React, { useState } from 'react';
  import { Formik, Form } from "formik";
  import urlPrefix from '../../Config';
+ import { useNavigate } from "react-router-dom";
  import axios from 'axios';
- import { CircularProgress } from "@mui/material";
- import {Grid, Button, Divider, Container, Alert, Box, Typography } from '@mui/material'
+ import {Grid, Button, Divider, Container, Alert, Box, Typography, CircularProgress } from '@mui/material'
  import '../../css/localdataset.css';
- import { TimeToLeave, DirectionsBus, Subway, Tram, Train, BusinessOutlined } from '@mui/icons-material';
+ import { TimeToLeave, DirectionsBus, Subway, Tram, Train, BusinessOutlined, Warning } from '@mui/icons-material';
  import { makeStyles } from '@material-ui/styles';
  import InputField from './InputField';
- import BackToTop from'./BackToTopButton'  ;
+ import MultiLineInputField from './MultiLineInputField';
+ import BackToTop from'./BackToTopButton';
 
  export const CreateLocaldataset = () => {
 
   // Retrieve default values from local storage
   const localDatasetBaseline = localStorage.getItem("localDatasetBaselineData");
-  const initialValues = {"local_dataset": JSON.parse(localDatasetBaseline) };
+  const initialValues = { "local_dataset": JSON.parse(localDatasetBaseline) };
   const [error, setError] = React.useState();
   const [loadingStyles, setLoadingStyle] = React.useState({ display: "none" });
+  const navigate = useNavigate();
 
   initialValues['local_dataset']['cf_bus__city'] = 1;
   initialValues['local_dataset']['cf_bus__metropolitan'] = 1;
@@ -50,7 +52,8 @@
 
   const submitNewEntry = async ( values ) => {
 
-    setLoadingStyle({ display: "block" });
+    if (window.confirm("Are you sure you want to submit?")){
+      setLoadingStyle({ display: "block" });
 
     const headers = {
       "Content-type": "application/json",
@@ -71,6 +74,12 @@
       } 
     }
       setLoadingStyle({ display: "none" });
+      navigate("../../StartPage.jsx", { replace: true });
+      window.alert("Local dataset has been succesfully created!");
+    }
+    else {
+      return false;
+    }
   };
 
    // material ui themes
@@ -122,6 +131,20 @@
       initialValues = {initialValues} 
       onSubmit= { async ( values ) => {
         submitNewEntry(values)
+      }}
+      validate={( values ) => {
+        const requiredError = "Field is required";
+        const nameError = "Dataset name has to be unique";
+        const errors = {};
+        if (!values.local_dataset.dataset_name) {
+          errors.dataset_name = requiredError;
+        } else if ( values.local_dataset.dataset_name === initialValues.local_dataset.dataset_name ) {
+          errors.dataset_name = nameError;
+        }
+        if (!values.local_dataset.dataset_description) {
+          errors.dataset_description = requiredError;
+        }
+        return errors;
       }}
     >
       {({ isValid, dirty, initialValues, handleChange, handleBlur }) => {
@@ -207,23 +230,22 @@
               onBlur={handleBlur}
               required={true}
             />
+            {( errors.dataset_name || touched.dataset_name ) && <div className="error-validation"><Warning sx={{mr:1, ml:0}} fontSize='small' />{errors.dataset_name}</div>}
 
           <br/>
 
           <h5>Describe the area and the sources of the new dataset with 3–5 sentences.</h5>
            
-           <InputField
+           <MultiLineInputField
              placeholder="Enter description"
              label="Dataset description"
-             multiline
-             style = {{width: 600}} 
              name="local_dataset.dataset_description"
              defaultValue={initialValues['local_dataset']['dataset_description']}
              onChange={handleChange}
              onBlur={handleBlur}
              required={true}
-           />
-
+            />
+            {( errors.dataset_description || touched.dataset_description ) && <div className="error-validation"><Warning sx={{mr:1, ml: 0}} fontSize='small'/>{errors.dataset_description}</div>}
          <br/>
 
             <h5>Expected annual change of population % (decades)
