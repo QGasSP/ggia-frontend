@@ -2,7 +2,7 @@ import React from "react";
 import '../../css/localdataset.css';
 import PropTypes from "prop-types";
 
-const InputField = props => {
+const MultiLineInputField = props => {
   const {
     name,
     defaultValue,
@@ -14,22 +14,25 @@ const InputField = props => {
 
   return (
     <div className="input-field">
-      <fieldset className="fieldset-input-field">
+      <fieldset className="multiline-input-fieldset">
         <legend>{label}</legend>
-        <input
+        <textarea
             defaultValue={defaultValue}
             placeholder={placeholder}
             onChange={onChange}
             onBlur={onBlur}
             name={name}
-            className="singleline-text-area"
-        />
+            cols="60"
+            rows="6"
+            className="multiline-text-area"
+        >
+        </textarea>
       </fieldset>
     </div>
   );
 };
 
-InputField.propTypes = {
+MultiLineInputField.propTypes = {
   placeholder: PropTypes.string,
   label: PropTypes.string,
   defaultValue: PropTypes.string || PropTypes.number,
@@ -38,4 +41,4 @@ InputField.propTypes = {
   onBlur: PropTypes.func
 };
 
-export default InputField;
+export default MultiLineInputField;
