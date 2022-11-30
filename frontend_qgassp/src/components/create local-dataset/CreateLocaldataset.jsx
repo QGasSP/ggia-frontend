@@ -147,7 +147,7 @@
         return errors;
       }}
     >
-      {({ isValid, dirty, initialValues, handleChange, handleBlur }) => {
+      {({ touched, errors, initialValues, handleChange, handleBlur }) => {
        {
         for (let i = 1; i < 59; i++) {
 
