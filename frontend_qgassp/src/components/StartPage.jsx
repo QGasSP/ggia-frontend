@@ -38,8 +38,12 @@ export const StartPage = () => {
   }, [nextModule]);
 
   useEffect(() => {
-    localStorage.setItem("country", `${country} & ${localDataset}`);
-  }, [country, localDataset]);
+    let value = country;
+    if(!value.includes("&")){
+      value = `${country} & ${localDataset}`;
+    }
+    localStorage.setItem("country", value);
+  }, [localDataset]);
 
   const navigate = useNavigate();
 
