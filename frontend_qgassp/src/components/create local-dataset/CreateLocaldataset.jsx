@@ -44,7 +44,7 @@
   const [carStreetDrivingSuburban, setCarStreetDrivingSuburban] = useState(100 - initialValues['local_dataset']['share_road_driving_car__suburban'].toFixed(1));
   const [carStreetDrivingTown, setCarStreetDrivingTown] = useState(100 - initialValues['local_dataset']['share_road_driving_car__town'].toFixed(1));
   const [carStreetDrivingRural, setCarStreetDrivingRural] = useState(100 - initialValues['local_dataset']['share_road_driving_car__rural'].toFixed(1));
-
+ 
   const tramRows = [];
   const metroRows = [];
 
@@ -127,6 +127,11 @@
       {({ isValid, dirty, initialValues, handleChange, handleBlur }) => {
        {
         for (let i = 1; i < 59; i++) {
+
+          // if(initialValues['local_dataset'][`tram__${i}`] == '-'){
+          //   break;
+          // }
+
           tramRows.push(
             <tr>
               <td>
@@ -151,35 +156,40 @@
               </td>
             </tr>
           );
+        }
 
-          if(i >= 2 && i <= 7){
-            metroRows.push(
-              <tr>
-                  <td>
-                    <InputField
-                        label={`Metro ${i}`}
-                        placeholder={`Metro ${i}`}
-                        name={`local_dataset.metro__${i}`}
-                        defaultValue={initialValues['local_dataset'][`metro__${i}`] }
-                        style={{ width: 180}}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
-                  </td>
-                  <td>
+        for (let i = 2; i <= 7; i++) {
+
+          // if(initialValues['local_dataset'][`metro__${i}`] == '-' ){
+          //   break;
+          // }
+
+          metroRows.push(
+            <tr>
+                <td>
                   <InputField
-                    label={`${i}. metro pkm/a`}
-                    placeholder={`${i}. metro pkm/a`}
-                    name={`local_dataset.transport_activity_metro__metro_${i}`}
-                    defaultValue={initialValues['local_dataset'][`transport_activity_metro__metro_${i}`].toFixed(2) }
-                    style={{ width: 180}}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
+                      label={`Metro ${i}`}
+                      placeholder={`Metro ${i}`}
+                      name={`local_dataset.metro__${i}`}
+                      defaultValue={initialValues['local_dataset'][`metro__${i}`] }
+                      style={{ width: 180}}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
                   />
-                  </td>
-                </tr>
-            );
-          }
+                </td>
+                <td>
+                <InputField
+                  label={`${i}. metro pkm/a`}
+                  placeholder={`${i}. metro pkm/a`}
+                  name={`local_dataset.transport_activity_metro__metro_${i}`}
+                  defaultValue={initialValues['local_dataset'][`transport_activity_metro__metro_${i}`].toFixed(2) }
+                  style={{ width: 180}}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                </td>
+              </tr>
+          );
         }
        }
         return (
@@ -446,57 +456,6 @@
             />
 
           <br/>
-
-            {/* <h5>Control factor, bus</h5>
-            <InputField
-              label="Metropolitan"
-              placeholder="Metropolitan"
-              name="local_dataset.cf_bus__metropolitan"
-              defaultValue={initialValues['local_dataset']['cf_bus__metropolitan'].toFixed(2) }
-              disabled
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <InputField
-              label="City"
-              placeholder="City"
-              name="local_dataset.cf_bus__city"
-              defaultValue={initialValues['local_dataset']['cf_bus__city'].toFixed(2) }
-              disabled
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <InputField
-              label="Suburban"
-              placeholder="%"
-              name="local_dataset.cf_bus__suburban"
-              defaultValue={initialValues['local_dataset']['cf_bus__suburban'].toFixed(2) }
-              disabled
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <InputField
-              label="Town"
-              placeholder="%"
-              name="local_dataset.cf_bus__town"
-              defaultValue={initialValues['local_dataset']['cf_bus__town'].toFixed(2) }
-              disabled
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <InputField
-              label="Rural"
-              placeholder="%"
-              name="local_dataset.cf_bus__rural"
-              defaultValue={initialValues['local_dataset']['cf_bus__rural'].toFixed(2) }
-              disabled
-              onChange={handleChange}
-              onBlur={handleBlur}
-            /> */}
 
             <h5>Emission factor for street driving, bus (gCO2e/vkm)</h5>
 
@@ -861,28 +820,6 @@
             />
           
           <br/>
-
-            {/* <h5>Ef car (gCO2e/vkm)</h5>
-
-            <InputField
-              label="Diesel"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_diesel_car"
-              defaultValue={initialValues['local_dataset']['ef_diesel_car'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <InputField
-              label="Petrol"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_petrol_car"
-              defaultValue={initialValues['local_dataset']['ef_petrol_car'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-          <br/> */}
 
             <h5>Propulsion share % car</h5>
 
@@ -1448,60 +1385,6 @@
               </tbody>
             </table>
             <br />
-          {/* <br/>
-            <h5>Control factor, car</h5>
-
-            <InputField
-              label="Metropolitan"
-              placeholder="Metropolitan"
-              name="local_dataset.cf_car__metropolitan"
-              defaultValue={initialValues['local_dataset']['cf_car__metropolitan'].toFixed(2) }
-              disabled
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <InputField
-              label="City"
-              placeholder="City"
-              name="local_dataset.cf_car__city"
-              defaultValue={initialValues['local_dataset']['cf_car__city'].toFixed(2) }
-              disabled
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <InputField
-              label="Suburban"
-              placeholder="Suburban"
-              name="local_dataset.cf_car__suburban"
-              defaultValue={initialValues['local_dataset']['cf_car__suburban'].toFixed(2) }
-              disabled
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <InputField
-              label="Town"
-              placeholder="Town"
-              name="local_dataset.cf_car__town"
-              defaultValue={initialValues['local_dataset']['cf_car__town'].toFixed(2) }
-              disabled
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <InputField
-              label="Rural"
-              placeholder="Rural"
-              name="local_dataset.cf_car__rural"
-              defaultValue={initialValues['local_dataset']['cf_car__rural'].toFixed(2) }
-              disabled
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-          <br/> */}
             
             <Alert severity='info'>
               <Typography variant="body1">
@@ -1847,6 +1730,16 @@
                 {tramRows}
               </tbody>
             </table>
+            {/* <section>
+              <Grid item>
+                  <Button
+                    variant="contained"
+                    onChange={addTram}
+                  >
+                    Add a tram
+                  </Button>
+              </Grid>
+            </section> */}
 
           <Divider sx={{m: 2}}/>
             <h4>
