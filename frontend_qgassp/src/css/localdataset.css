@@ -38,7 +38,17 @@ a:hover {
   align-items: center;
 }
 
-textarea {
+.multiline-text-area{
+  border: none;
+  border-radius: 0.5rem;
+  resize: none;
+  outline: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  padding: 0.5rem 0 0 0.625rem;
+}
+
+.singleline-text-area {
   border: none;
   border-radius: 0.5rem;
   height: 2.5rem;
@@ -48,17 +58,26 @@ textarea {
   outline: none;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem;
-  padding: 0.5rem 0 0 0.625rem;
+  padding: 0 0 0.25rem 0.625rem;
 }
 
-fieldset:focus-within {
+.fieldset-input-field:focus-within,
+.multiline-input-fieldset:focus-within {
   border: 1px solid #0d98ba;
 }
 
-fieldset {
+.fieldset-input-field {
   border-radius: 0.5rem;
   border: 1px solid #D3D3D3;
   width: 5%;
+  padding: 0;
+  display: inline;
+}
+
+.multiline-input-fieldset {
+  border-radius: 0.5rem;
+  border: 1px solid #D3D3D3;
+  width: 10%;
   padding: 0;
   display: inline;
 }
@@ -69,6 +88,17 @@ legend {
 }
 
 .input-field {
-    margin: 1rem 1rem 0 1rem;
-    display: inline-block;
+  margin: 1rem 1rem 0 1rem;
+  display: inline-block;
+}
+
+.error-validation {
+  background-color: #981e1a;
+  border-radius: 0.5rem;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  font-size: 0.775rem;
+  padding: 0.5rem;
+  width: fit-content;
+  margin: 0.25rem 0 0 1rem;
 }
