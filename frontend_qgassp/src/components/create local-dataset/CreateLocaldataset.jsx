@@ -169,7 +169,7 @@
               </td>
               <td>
               <InputField
-                label={`Trans. activity: Tram ${i}`}
+                label={`Trams. activity: Tram ${i}`}
                 placeholder={`million pkm/a Tram ${i}`}
                 name={`local_dataset.transport_activity_tram__tram_${i}`}
                 defaultValue={initialValues['local_dataset'][`transport_activity_tram__tram_${i}`].toFixed(2) }
