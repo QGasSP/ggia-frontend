@@ -46,9 +46,18 @@
   const [carStreetDrivingSuburban, setCarStreetDrivingSuburban] = useState(100 - initialValues['local_dataset']['share_road_driving_car__suburban'].toFixed(1));
   const [carStreetDrivingTown, setCarStreetDrivingTown] = useState(100 - initialValues['local_dataset']['share_road_driving_car__town'].toFixed(1));
   const [carStreetDrivingRural, setCarStreetDrivingRural] = useState(100 - initialValues['local_dataset']['share_road_driving_car__rural'].toFixed(1));
- 
   const tramRows = [];
   const metroRows = [];
+  for (let i = 1; i < 59; i++) {
+    if(initialValues['local_dataset'][`tram__${i}`] == '-' && i != 1){
+      break;
+    }
+    tramRows.push(i);
+  }
+  const [trams, setTrams] = useState(tramRows);
+  const addTram = () => {
+    setTrams([...trams, trams.length + 1]);
+  }
 
   const submitNewEntry = async ( values ) => {
 
@@ -149,43 +158,8 @@
     >
       {({ touched, errors, initialValues, handleChange, handleBlur }) => {
        {
-        for (let i = 1; i < 59; i++) {
-
-          // if(initialValues['local_dataset'][`tram__${i}`] == '-'){
-          //   break;
-          // }
-
-          tramRows.push(
-            <tr>
-              <td>
-                <InputField
-                  label={`Tram ${i}`}
-                  placeholder={`Tram ${i}`}
-                  name={`local_dataset.tram__${i}`}
-                  defaultValue={initialValues['local_dataset'][`tram__${i}`] }
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-              </td>
-              <td>
-              <InputField
-                label={`Trams. activity: Tram ${i}`}
-                placeholder={`million pkm/a Tram ${i}`}
-                name={`local_dataset.transport_activity_tram__tram_${i}`}
-                defaultValue={initialValues['local_dataset'][`transport_activity_tram__tram_${i}`].toFixed(2) }
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              </td>
-            </tr>
-          );
-        }
 
         for (let i = 2; i <= 7; i++) {
-
-          // if(initialValues['local_dataset'][`metro__${i}`] == '-' ){
-          //   break;
-          // }
 
           metroRows.push(
             <tr>
@@ -1749,19 +1723,46 @@
                 </tr>
               </thead>
               <tbody>
-                {tramRows}
+                { trams &&
+                trams.map((i, key) => {
+                  return (
+                    <tr key={key}>
+                      <td>
+                        <InputField
+                          label={`Tram ${i}`}
+                          placeholder={`Tram ${i}`}
+                          name={`local_dataset.tram__${i}`}
+                          defaultValue={initialValues['local_dataset'][`tram__${i}`] }
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                      </td>
+                      <td>
+                      <InputField
+                        label={`Trams. activity: Tram ${i}`}
+                        placeholder={`million pkm/a Tram ${i}`}
+                        name={`local_dataset.transport_activity_tram__tram_${i}`}
+                        defaultValue={initialValues['local_dataset'][`transport_activity_tram__tram_${i}`].toFixed(2) }
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                      </td>
+                    </tr>
+                  );
+                })
+                }
               </tbody>
             </table>
-            {/* <section>
+            <section>
               <Grid item>
                   <Button
                     variant="contained"
-                    onChange={addTram}
+                    onClick={addTram}
                   >
                     Add a tram
                   </Button>
               </Grid>
-            </section> */}
+            </section>
 
           <Divider sx={{m: 2}}/>
             <h4>
