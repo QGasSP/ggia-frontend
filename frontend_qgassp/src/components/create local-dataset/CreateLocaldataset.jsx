@@ -1,22 +1,24 @@
- import React, { useEffect, useState } from 'react';
+ import React, { useState } from 'react';
  import { Formik, Form } from "formik";
- import urlPrefix, { showOnDev } from '../../Config';
+ import urlPrefix from '../../Config';
+ import { useNavigate } from "react-router-dom";
  import axios from 'axios';
- import { CircularProgress } from "@mui/material";
- import {Grid, Button, Divider, Container, Alert, Box, Typography } from '@mui/material'
+ import {Grid, Button, Divider, Container, Alert, Box, Typography, CircularProgress } from '@mui/material'
  import '../../css/localdataset.css';
- import { TimeToLeave, DirectionsBus, Subway, Tram, Train, BusinessOutlined } from '@mui/icons-material';
+ import { TimeToLeave, DirectionsBus, Subway, Tram, Train, BusinessOutlined, Warning } from '@mui/icons-material';
  import { makeStyles } from '@material-ui/styles';
  import InputField from './InputField';
- import BackToTop from'./BackToTopButton'  ;
+ import MultiLineInputField from './MultiLineInputField';
+ import BackToTop from'./BackToTopButton';
 
  export const CreateLocaldataset = () => {
 
   // Retrieve default values from local storage
   const localDatasetBaseline = localStorage.getItem("localDatasetBaselineData");
-  const initialValues = {"local_dataset": JSON.parse(localDatasetBaseline) };
+  const initialValues = { "local_dataset": JSON.parse(localDatasetBaseline) };
   const [error, setError] = React.useState();
   const [loadingStyles, setLoadingStyle] = React.useState({ display: "none" });
+  const navigate = useNavigate();
 
   initialValues['local_dataset']['cf_bus__city'] = 1;
   initialValues['local_dataset']['cf_bus__metropolitan'] = 1;
@@ -44,10 +46,14 @@
   const [carStreetDrivingSuburban, setCarStreetDrivingSuburban] = useState(100 - initialValues['local_dataset']['share_road_driving_car__suburban'].toFixed(1));
   const [carStreetDrivingTown, setCarStreetDrivingTown] = useState(100 - initialValues['local_dataset']['share_road_driving_car__town'].toFixed(1));
   const [carStreetDrivingRural, setCarStreetDrivingRural] = useState(100 - initialValues['local_dataset']['share_road_driving_car__rural'].toFixed(1));
+ 
+  const tramRows = [];
+  const metroRows = [];
 
   const submitNewEntry = async ( values ) => {
 
-    setLoadingStyle({ display: "block" });
+    if (window.confirm("Are you sure you want to submit?")){
+      setLoadingStyle({ display: "block" });
 
     const headers = {
       "Content-type": "application/json",
@@ -68,6 +74,12 @@
       } 
     }
       setLoadingStyle({ display: "none" });
+      navigate("../../StartPage.jsx", { replace: true });
+      window.alert("Local dataset has been succesfully created!");
+    }
+    else {
+      return false;
+    }
   };
 
    // material ui themes
@@ -120,12 +132,93 @@
       onSubmit= { async ( values ) => {
         submitNewEntry(values)
       }}
+      validate={( values ) => {
+        const requiredError = "Field is required";
+        const nameError = "Dataset name has to be unique";
+        const errors = {};
+        if (!values.local_dataset.dataset_name) {
+          errors.dataset_name = requiredError;
+        } else if ( values.local_dataset.dataset_name === initialValues.local_dataset.dataset_name ) {
+          errors.dataset_name = nameError;
+        }
+        if (!values.local_dataset.dataset_description) {
+          errors.dataset_description = requiredError;
+        }
+        return errors;
+      }}
     >
-      {({ isValid, dirty, initialValues, handleChange, handleBlur }) => {
+      {({ touched, errors, initialValues, handleChange, handleBlur }) => {
+       {
+        for (let i = 1; i < 59; i++) {
+
+          // if(initialValues['local_dataset'][`tram__${i}`] == '-'){
+          //   break;
+          // }
+
+          tramRows.push(
+            <tr>
+              <td>
+                <InputField
+                  label={`Tram ${i}`}
+                  placeholder={`Tram ${i}`}
+                  name={`local_dataset.tram__${i}`}
+                  defaultValue={initialValues['local_dataset'][`tram__${i}`] }
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+              </td>
+              <td>
+              <InputField
+                label={`Trams. activity: Tram ${i}`}
+                placeholder={`million pkm/a Tram ${i}`}
+                name={`local_dataset.transport_activity_tram__tram_${i}`}
+                defaultValue={initialValues['local_dataset'][`transport_activity_tram__tram_${i}`].toFixed(2) }
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              </td>
+            </tr>
+          );
+        }
+
+        for (let i = 2; i <= 7; i++) {
+
+          // if(initialValues['local_dataset'][`metro__${i}`] == '-' ){
+          //   break;
+          // }
+
+          metroRows.push(
+            <tr>
+                <td>
+                  <InputField
+                      label={`Metro ${i}`}
+                      placeholder={`Metro ${i}`}
+                      name={`local_dataset.metro__${i}`}
+                      defaultValue={initialValues['local_dataset'][`metro__${i}`] }
+                      style={{ width: 180}}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                  />
+                </td>
+                <td>
+                <InputField
+                  label={`${i}. metro pkm/a`}
+                  placeholder={`${i}. metro pkm/a`}
+                  name={`local_dataset.transport_activity_metro__metro_${i}`}
+                  defaultValue={initialValues['local_dataset'][`transport_activity_metro__metro_${i}`].toFixed(2) }
+                  style={{ width: 180}}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                </td>
+              </tr>
+          );
+        }
+       }
         return (
         
         <Form className="create-localdataset">
-          { showOnDev &&
+          { 
           <div>
           <h5>Name the dataset according to the city, town, municipality, region or territory in concern. A new dataset can be later found in the tool menu by this name.</h5>
             <InputField
@@ -137,23 +230,22 @@
               onBlur={handleBlur}
               required={true}
             />
+            {( errors.dataset_name || touched.dataset_name ) && <div className="error-validation"><Warning sx={{mr:1, ml:0}} fontSize='small' />{errors.dataset_name}</div>}
 
           <br/>
 
           <h5>Describe the area and the sources of the new dataset with 3–5 sentences.</h5>
            
-           <InputField
+           <MultiLineInputField
              placeholder="Enter description"
              label="Dataset description"
-             multiline
-             style = {{width: 600}} 
              name="local_dataset.dataset_description"
              defaultValue={initialValues['local_dataset']['dataset_description']}
              onChange={handleChange}
              onBlur={handleBlur}
              required={true}
-           />
-
+            />
+            {( errors.dataset_description || touched.dataset_description ) && <div className="error-validation"><Warning sx={{mr:1, ml: 0}} fontSize='small'/>{errors.dataset_description}</div>}
          <br/>
 
             <h5>Expected annual change of population % (decades)
@@ -386,57 +478,6 @@
             />
 
           <br/>
-
-            {/* <h5>Control factor, bus</h5>
-            <InputField
-              label="Metropolitan"
-              placeholder="Metropolitan"
-              name="local_dataset.cf_bus__metropolitan"
-              defaultValue={initialValues['local_dataset']['cf_bus__metropolitan'].toFixed(2) }
-              disabled
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <InputField
-              label="City"
-              placeholder="City"
-              name="local_dataset.cf_bus__city"
-              defaultValue={initialValues['local_dataset']['cf_bus__city'].toFixed(2) }
-              disabled
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <InputField
-              label="Suburban"
-              placeholder="%"
-              name="local_dataset.cf_bus__suburban"
-              defaultValue={initialValues['local_dataset']['cf_bus__suburban'].toFixed(2) }
-              disabled
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <InputField
-              label="Town"
-              placeholder="%"
-              name="local_dataset.cf_bus__town"
-              defaultValue={initialValues['local_dataset']['cf_bus__town'].toFixed(2) }
-              disabled
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <InputField
-              label="Rural"
-              placeholder="%"
-              name="local_dataset.cf_bus__rural"
-              defaultValue={initialValues['local_dataset']['cf_bus__rural'].toFixed(2) }
-              disabled
-              onChange={handleChange}
-              onBlur={handleBlur}
-            /> */}
 
             <h5>Emission factor for street driving, bus (gCO2e/vkm)</h5>
 
@@ -802,28 +843,6 @@
           
           <br/>
 
-            {/* <h5>Ef car (gCO2e/vkm)</h5>
-
-            <InputField
-              label="Diesel"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_diesel_car"
-              defaultValue={initialValues['local_dataset']['ef_diesel_car'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <InputField
-              label="Petrol"
-              placeholder="gCO2e/vkm"
-              name="local_dataset.ef_petrol_car"
-              defaultValue={initialValues['local_dataset']['ef_petrol_car'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-          <br/> */}
-
             <h5>Propulsion share % car</h5>
 
             <InputField
@@ -963,7 +982,7 @@
           
           <br/>
 
-            <h5>Ef street driving and road driving car (gCO2e/vkm)</h5>
+            <h5>Emission factor for street driving and road driving, passenger car (gCO2e/vkm)</h5>
 
             <table className={classes.localDsTable}>
               <thead>
@@ -989,7 +1008,7 @@
                         label="LPG"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__lpg"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__lpg'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__lpg'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1000,7 +1019,7 @@
                         label="LPG"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__lpg"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__lpg'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__lpg'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1016,7 +1035,7 @@
                         label="LPG"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__cng"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__cng'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__cng'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1027,7 +1046,7 @@
                         label="LPG"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__cng"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__cng'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__cng'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1043,7 +1062,7 @@
                         label="NGV"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__ngv"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__ngv'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__ngv'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1054,7 +1073,7 @@
                         label="NGV"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__ngv"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__ngv'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__ngv'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1070,7 +1089,7 @@
                         label="Petrol"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__petrol"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__petrol'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__petrol'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1081,7 +1100,7 @@
                         label="Petrol"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__petrol"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__petrol'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__petrol'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1097,7 +1116,7 @@
                         label="Hybrid electric-petrol"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__hybrid_electric_petrol"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__hybrid_electric_petrol'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__hybrid_electric_petrol'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1108,7 +1127,7 @@
                         label="Hybrid electric-petrol"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__hybrid_electric_petrol"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__hybrid_electric_petrol'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__hybrid_electric_petrol'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1124,7 +1143,7 @@
                         label="Petrol PHEV"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__petrol_phev"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__petrol_phev'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__petrol_phev'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1135,7 +1154,7 @@
                         label="Petrol PHEV"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__petrol_phev"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__petrol_phev'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__petrol_phev'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1151,7 +1170,7 @@
                         label="Diesel"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__diesel"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__diesel'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__diesel'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1162,7 +1181,7 @@
                         label="Diesel"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__diesel"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__diesel'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__diesel'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1178,7 +1197,7 @@
                         label="Hybrid electric-diesel"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__hybrid_electric_diesel"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__hybrid_electric_diesel'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__hybrid_electric_diesel'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1189,7 +1208,7 @@
                         label="Hybrid electric-diesel"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__hybrid_electric_diesel"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__hybrid_electric_diesel'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__hybrid_electric_diesel'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1205,7 +1224,7 @@
                         label="Diesel PHEV"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__diesel_phev"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__diesel_phev'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__diesel_phev'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1216,7 +1235,7 @@
                         label="Diesel PHEV"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__diesel_phev"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__diesel_phev'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__diesel_phev'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1232,7 +1251,7 @@
                         label="Hydrogen fuel cell"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__hydrogen_fuel_cell"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__hydrogen_fuel_cell'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__hydrogen_fuel_cell'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1243,7 +1262,7 @@
                         label="Hydrogen fuel cell"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__hydrogen_fuel_cell"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__hydrogen_fuel_cell'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__hydrogen_fuel_cell'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1259,7 +1278,7 @@
                         label="Bioethanol"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__bioethanol"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__bioethanol'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__bioethanol'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1270,7 +1289,7 @@
                         label="Bioethanol"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__bioethanol"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__bioethanol'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__bioethanol'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1286,7 +1305,7 @@
                         label="Biodiesel"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__biodiesel"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__biodiesel'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__biodiesel'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1297,7 +1316,7 @@
                         label="Biodiesel"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__biodiesel"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__biodiesel'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__biodiesel'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1313,7 +1332,7 @@
                         label="Bi-fuel"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__bi_fuel"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__bi_fuel'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__bi_fuel'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1324,7 +1343,7 @@
                         label="Bi-fuel"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__bi_fuel"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__bi_fuel'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__bi_fuel'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1340,7 +1359,7 @@
                         label="Other"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__other"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__other'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__other'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1351,7 +1370,7 @@
                         label="Other"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__other"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__other'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__other'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1367,7 +1386,7 @@
                         label="BEV"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_street_driving_car__bev"
-                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__bev'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_street_driving_car__bev'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1378,7 +1397,7 @@
                         label="BEV"
                         placeholder="gCO2e/vkm"
                         name="local_dataset.ef_road_driving_car__bev"
-                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__bev'].toFixed(2) }
+                        defaultValue={initialValues['local_dataset']['ef_road_driving_car__bev'].toFixed(0) }
                         style = {{width: 180}} 
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -1388,60 +1407,6 @@
               </tbody>
             </table>
             <br />
-          {/* <br/>
-            <h5>Control factor, car</h5>
-
-            <InputField
-              label="Metropolitan"
-              placeholder="Metropolitan"
-              name="local_dataset.cf_car__metropolitan"
-              defaultValue={initialValues['local_dataset']['cf_car__metropolitan'].toFixed(2) }
-              disabled
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <InputField
-              label="City"
-              placeholder="City"
-              name="local_dataset.cf_car__city"
-              defaultValue={initialValues['local_dataset']['cf_car__city'].toFixed(2) }
-              disabled
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <InputField
-              label="Suburban"
-              placeholder="Suburban"
-              name="local_dataset.cf_car__suburban"
-              defaultValue={initialValues['local_dataset']['cf_car__suburban'].toFixed(2) }
-              disabled
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <InputField
-              label="Town"
-              placeholder="Town"
-              name="local_dataset.cf_car__town"
-              defaultValue={initialValues['local_dataset']['cf_car__town'].toFixed(2) }
-              disabled
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-            <InputField
-              label="Rural"
-              placeholder="Rural"
-              name="local_dataset.cf_car__rural"
-              defaultValue={initialValues['local_dataset']['cf_car__rural'].toFixed(2) }
-              disabled
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-
-          <br/> */}
             
             <Alert severity='info'>
               <Typography variant="body1">
@@ -1693,150 +1658,7 @@
                     />
                   </td>
                 </tr>
-                <tr>
-                  <td>
-                    <InputField
-                        label="Metro 2"
-                        placeholder="Metro 2"
-                        name="local_dataset.metro__2"
-                        defaultValue={initialValues['local_dataset']['metro__2'] }
-                        style={{ width: 180}}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
-                  </td>
-                  <td>
-                  <InputField
-                    label="2. metro pkm/a"
-                    placeholder="2. metro pkm/a"
-                    name="local_dataset.transport_activity_metro__metro_2"
-                    defaultValue={initialValues['local_dataset']['transport_activity_metro__metro_2'].toFixed(2) }
-                    style={{ width: 180}}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                  <InputField
-                    label="Metro 3"
-                    placeholder="Metro 3"
-                    name="local_dataset.metro__3"
-                    defaultValue={initialValues['local_dataset']['metro__3'] }
-                    style={{ width: 180}}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                      />
-                  </td>
-                  <td>
-                  <InputField
-                    label="3. metro pkm/a"
-                    placeholder="3. metro pkm/a"
-                    name="local_dataset.transport_activity_metro__metro_3"
-                    defaultValue={initialValues['local_dataset']['transport_activity_metro__metro_3'].toFixed(2) }
-                    style={{ width: 180}}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <InputField
-                        label="Metro 4"
-                        placeholder="Metro 4"
-                        name="local_dataset.metro__4"
-                        defaultValue={initialValues['local_dataset']['metro__4'] }
-                        style={{ width: 180}}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
-                  </td>
-                  <td>
-                    <InputField
-                      label="4. metro pkm/a"
-                      placeholder="4. metro pkm/a"
-                      name="local_dataset.transport_activity_metro__metro_4"
-                      defaultValue={initialValues['local_dataset']['transport_activity_metro__metro_4'].toFixed(2) }
-                      style={{ width: 180}}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                   />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                  <InputField
-                      label="Metro 5"
-                      placeholder="Metro 5"
-                      name="local_dataset.metro__5"
-                      defaultValue={initialValues['local_dataset']['metro__5'] }
-                      style={{ width: 180}}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                  />
-                  </td>
-                  <td>
-                  <InputField
-                    label="5. metro pkm/a"
-                    placeholder="5. metro pkm/a"
-                    name="local_dataset.transport_activity_metro__metro_5"
-                    defaultValue={initialValues['local_dataset']['transport_activity_metro__metro_5'].toFixed(2) }
-                    style={{ width: 180}}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  </td>
-                </tr>
-                <tr>
-                    <td>
-                    <InputField
-                      label="Metro 6"
-                      placeholder="Metro 6"
-                      name="local_dataset.metro__6"
-                      defaultValue={initialValues['local_dataset']['metro__6'] }
-                      style={{ width: 180}}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    </td>
-                    <td>
-                    <InputField
-                      label="6. metro pkm/a"
-                      placeholder="6. metro pkm/a"
-                      name="local_dataset.transport_activity_metro__metro_6"
-                      defaultValue={initialValues['local_dataset']['transport_activity_metro__metro_6'].toFixed(2) }
-                      style={{ width: 180}}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    <InputField
-                        label="Metro 7"
-                        placeholder="Metro 7"
-                        name="local_dataset.metro__7"
-                        defaultValue={initialValues['local_dataset']['metro__7'] }
-                        style={{ width: 180}}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
-                    </td>
-                    <td>
-                    <InputField
-                      label="7. metro pkm/a"
-                      placeholder="7. metro pkm/a"
-                      name="local_dataset.transport_activity_metro__metro_7"
-                      defaultValue={initialValues['local_dataset']['transport_activity_metro__metro_7'].toFixed(2) }
-                      style={{ width: 180}}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    </td>
-                </tr>
+                {metroRows}
               </tbody>
             </table>
 
@@ -1914,1286 +1736,32 @@
 
           <br/>
 
-            <h5>Trams each</h5>
-
-          {initialValues['local_dataset']['tram__1'] !== "-" &&
-            <InputField
-              label="Tram 1"
-              placeholder="Tram 1"
-              name="local_dataset.tram__1"
-              defaultValue={initialValues['local_dataset']['tram__1'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__2'] !== "-" &&
-            <InputField
-              label="Tram 2"
-              placeholder="Tram 2"
-              name="local_dataset.tram__2"
-              defaultValue={initialValues['local_dataset']['tram__2'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__3'] !== "-" &&
-            <InputField
-              label="Tram 3"
-              placeholder="Tram 3"
-              name="local_dataset.tram__3"
-              defaultValue={initialValues['local_dataset']['tram__3'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__4'] !== "-" &&
-            <InputField
-              label="Tram 4"
-              placeholder="Tram 4"
-              name="local_dataset.tram__4"
-              defaultValue={initialValues['local_dataset']['tram__4'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__5'] !== "-" &&
-            <InputField
-              label="Tram 5"
-              placeholder="Tram 5"
-              name="local_dataset.tram__5"
-              defaultValue={initialValues['local_dataset']['tram__5'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__6'] !== "-" &&
-            <InputField
-              label="Tram 6"
-              placeholder="Tram 6"
-              name="local_dataset.tram__6"
-              defaultValue={initialValues['local_dataset']['tram__6'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__7'] !== "-" &&
-            <InputField
-              label="Tram 7"
-              placeholder="Tram 7"
-              name="local_dataset.tram__7"
-              defaultValue={initialValues['local_dataset']['tram__7'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__8'] !== "-" &&
-            <InputField
-              label="Tram 8"
-              placeholder="Tram 8"
-              name="local_dataset.tram__8"
-              defaultValue={initialValues['local_dataset']['tram__8'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__9'] !== "-" &&
-            <InputField
-              label="Tram 9"
-              placeholder="Tram 9"
-              name="local_dataset.tram__9"
-              defaultValue={initialValues['local_dataset']['tram__9'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__10'] !== "-" &&
-            <InputField
-              label="Tram 10"
-              placeholder="Tram 10"
-              name="local_dataset.tram__10"
-              defaultValue={initialValues['local_dataset']['tram__10'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__11'] !== "-" &&
-            <InputField
-              label="Tram 11"
-              placeholder="Tram 11"
-              name="local_dataset.tram__11"
-              defaultValue={initialValues['local_dataset']['tram__11'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__12'] !== "-" &&
-            <InputField
-              label="Tram 12"
-              placeholder="Tram 12"
-              name="local_dataset.tram__12"
-              defaultValue={initialValues['local_dataset']['tram__12'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__13'] !== "-" &&
-            <InputField
-              label="Tram 13"
-              placeholder="Tram 13"
-              name="local_dataset.tram__13"
-              defaultValue={initialValues['local_dataset']['tram__13'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__14'] !== "-" &&
-            <InputField
-              label="Tram 14"
-              placeholder="Tram 14"
-              name="local_dataset.tram__14"
-              defaultValue={initialValues['local_dataset']['tram__14'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__15'] !== "-" &&
-            <InputField
-              label="Tram 15"
-              placeholder="Tram 15"
-              name="local_dataset.tram__15"
-              defaultValue={initialValues['local_dataset']['tram__15'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__16'] !== "-" &&
-            <InputField
-              label="Tram 16"
-              placeholder="Tram 16"
-              name="local_dataset.tram__16"
-              defaultValue={initialValues['local_dataset']['tram__16'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__17'] !== "-" &&
-            <InputField
-              label="Tram 17"
-              placeholder="Tram 17"
-              name="local_dataset.tram__17"
-              defaultValue={initialValues['local_dataset']['tram__17'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__18'] !== "-" &&
-            <InputField
-              label="Tram 18"
-              placeholder="Tram 18"
-              name="local_dataset.tram__18"
-              defaultValue={initialValues['local_dataset']['tram__18'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__19'] !== "-" &&
-            <InputField
-              label="Tram 19"
-              placeholder="Tram 19"
-              name="local_dataset.tram__19"
-              defaultValue={initialValues['local_dataset']['tram__19'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__20'] !== "-" &&
-            <InputField
-              label="Tram 20"
-              placeholder="Tram 20"
-              name="local_dataset.tram__20"
-              defaultValue={initialValues['local_dataset']['tram__20'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__21'] !== "-" &&
-            <InputField
-              label="Tram 21"
-              placeholder="Tram 21"
-              name="local_dataset.tram__21"
-              defaultValue={initialValues['local_dataset']['tram__21'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__22'] !== "-" &&
-            <InputField
-              label="Tram 22"
-              placeholder="Tram 22"
-              name="local_dataset.tram__22"
-              defaultValue={initialValues['local_dataset']['tram__22'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__23'] !== "-" &&
-            <InputField
-              label="Tram 23"
-              placeholder="Tram 23"
-              name="local_dataset.tram__23"
-              defaultValue={initialValues['local_dataset']['tram__23'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__24'] !== "-" &&
-            <InputField
-              label="Tram 24"
-              placeholder="Tram 24"
-              name="local_dataset.tram__24"
-              defaultValue={initialValues['local_dataset']['tram__24'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__25'] !== "-" &&
-            <InputField
-              label="Tram 25"
-              placeholder="Tram 25"
-              name="local_dataset.tram__25"
-              defaultValue={initialValues['local_dataset']['tram__25'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__26'] !== "-" &&
-            <InputField
-              label="Tram 26"
-              placeholder="Tram 26"
-              name="local_dataset.tram__26"
-              defaultValue={initialValues['local_dataset']['tram__26'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__27'] !== "-" &&
-            <InputField
-              label="Tram 27"
-              placeholder="Tram 27"
-              name="local_dataset.tram__27"
-              defaultValue={initialValues['local_dataset']['tram__27'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__28'] !== "-" &&
-            <InputField
-              label="Tram 28"
-              placeholder="Tram 28"
-              name="local_dataset.tram__28"
-              defaultValue={initialValues['local_dataset']['tram__28'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__29'] !== "-" &&
-            <InputField
-              label="Tram 29"
-              placeholder="Tram 29"
-              name="local_dataset.tram__29"
-              defaultValue={initialValues['local_dataset']['tram__29'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__30'] !== "-" &&
-            <InputField
-              label="Tram 30"
-              placeholder="Tram 30"
-              name="local_dataset.tram__30"
-              defaultValue={initialValues['local_dataset']['tram__30'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__31'] !== "-" &&
-            <InputField
-              label="Tram 31"
-              placeholder="Tram 31"
-              name="local_dataset.tram__31"
-              defaultValue={initialValues['local_dataset']['tram__31'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__32'] !== "-" &&
-            <InputField
-              label="Tram 32"
-              placeholder="Tram 32"
-              name="local_dataset.tram__32"
-              defaultValue={initialValues['local_dataset']['tram__32'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__33'] !== "-" &&
-            <InputField
-              label="Tram 33"
-              placeholder="Tram 33"
-              name="local_dataset.tram__33"
-              defaultValue={initialValues['local_dataset']['tram__33'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__34'] !== "-" &&
-            <InputField
-              label="Tram 34"
-              placeholder="Tram 34"
-              name="local_dataset.tram__34"
-              defaultValue={initialValues['local_dataset']['tram__34'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__35'] !== "-" &&
-            <InputField
-              label="Tram 35"
-              placeholder="Tram 35"
-              name="local_dataset.tram__35"
-              defaultValue={initialValues['local_dataset']['tram__35'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__36'] !== "-" &&
-            <InputField
-              label="Tram 36"
-              placeholder="Tram 36"
-              name="local_dataset.tram__36"
-              defaultValue={initialValues['local_dataset']['tram__36'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__37'] !== "-" &&
-            <InputField
-              label="Tram 37"
-              placeholder="Tram 37"
-              name="local_dataset.tram__37"
-              defaultValue={initialValues['local_dataset']['tram__37'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__38'] !== "-" &&
-            <InputField
-              label="Tram 38"
-              placeholder="Tram 38"
-              name="local_dataset.tram__38"
-              defaultValue={initialValues['local_dataset']['tram__38'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__39'] !== "-" &&
-            <InputField
-              label="Tram 39"
-              placeholder="Tram 39"
-              name="local_dataset.tram__39"
-              defaultValue={initialValues['local_dataset']['tram__39'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__40'] !== "-" &&
-            <InputField
-              label="Tram 40"
-              placeholder="Tram 40"
-              name="local_dataset.tram__40"
-              defaultValue={initialValues['local_dataset']['tram__40'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__41'] !== "-" &&
-            <InputField
-              label="Tram 41"
-              placeholder="Tram 41"
-              name="local_dataset.tram__41"
-              defaultValue={initialValues['local_dataset']['tram__41'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__42'] !== "-" &&
-            <InputField
-              label="Tram 42"
-              placeholder="Tram 42"
-              name="local_dataset.tram__42"
-              defaultValue={initialValues['local_dataset']['tram__42'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__43'] !== "-" &&
-            <InputField
-              label="Tram 43"
-              placeholder="Tram 43"
-              name="local_dataset.tram__43"
-              defaultValue={initialValues['local_dataset']['tram__43'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__44'] !== "-" &&
-            <InputField
-              label="Tram 44"
-              placeholder="Tram 44"
-              name="local_dataset.tram__44"
-              defaultValue={initialValues['local_dataset']['tram__44'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__45'] !== "-" &&
-            <InputField
-              label="Tram 45"
-              placeholder="Tram 45"
-              name="local_dataset.tram__45"
-              defaultValue={initialValues['local_dataset']['tram__45'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__46'] !== "-" &&
-            <InputField
-              label="Tram 46"
-              placeholder="Tram 46"
-              name="local_dataset.tram__46"
-              defaultValue={initialValues['local_dataset']['tram__46'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__47'] !== "-" &&
-            <InputField
-              label="Tram 47"
-              placeholder="Tram 47"
-              name="local_dataset.tram__47"
-              defaultValue={initialValues['local_dataset']['tram__47'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__48'] !== "-" &&
-            <InputField
-              label="Tram 48"
-              placeholder="Tram 48"
-              name="local_dataset.tram__48"
-              defaultValue={initialValues['local_dataset']['tram__48'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__49'] !== "-" &&
-            <InputField
-              label="Tram 49"
-              placeholder="Tram 49"
-              name="local_dataset.tram__49"
-              defaultValue={initialValues['local_dataset']['tram__49'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__50'] !== "-" &&
-            <InputField
-              label="Tram 50"
-              placeholder="Tram 50"
-              name="local_dataset.tram__50"
-              defaultValue={initialValues['local_dataset']['tram__50'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__51'] !== "-" &&
-            <InputField
-              label="Tram 51"
-              placeholder="Tram 51"
-              name="local_dataset.tram__51"
-              defaultValue={initialValues['local_dataset']['tram__51'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__52'] !== "-" &&
-            <InputField
-              label="Tram 52"
-              placeholder="Tram 52"
-              name="local_dataset.tram__52"
-              defaultValue={initialValues['local_dataset']['tram__52'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__53'] !== "-" &&
-            <InputField
-              label="Tram 53"
-              placeholder="Tram 53"
-              name="local_dataset.tram__53"
-              defaultValue={initialValues['local_dataset']['tram__53'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__54'] !== "-" &&
-            <InputField
-              label="Tram 54"
-              placeholder="Tram 54"
-              name="local_dataset.tram__54"
-              defaultValue={initialValues['local_dataset']['tram__54'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__55'] !== "-" &&
-            <InputField
-              label="Tram 55"
-              placeholder="Tram 55"
-              name="local_dataset.tram__55"
-              defaultValue={initialValues['local_dataset']['tram__55'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__56'] !== "-" &&
-            <InputField
-              label="Tram 56"
-              placeholder="Tram 56"
-              name="local_dataset.tram__56"
-              defaultValue={initialValues['local_dataset']['tram__56'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__57'] !== "-" &&
-            <InputField
-              label="Tram 57"
-              placeholder="Tram 57"
-              name="local_dataset.tram__57"
-              defaultValue={initialValues['local_dataset']['tram__57'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          {initialValues['local_dataset']['tram__58'] !== "-" &&
-            <InputField
-              label="Tram 58"
-              placeholder="Tram 58"
-              name="local_dataset.tram__58"
-              defaultValue={initialValues['local_dataset']['tram__58'] }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          }
-
-          <h5>Tram transport activity</h5>
-            
-            {initialValues['local_dataset']['transport_activity_tram__tram_1'] !== 0 &&
-            <InputField
-              label="Trans. activity: Tram 1"
-              placeholder="million pkm/a Tram 1"
-              name="local_dataset.transport_activity_tram__tram_1"
-              
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_1'].toFixed(2) }onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-            {initialValues['local_dataset']['transport_activity_tram__tram_2'] !== 0 &&
-             <InputField
-              label="Trans. activity: Tram 2"
-              placeholder="million pkm/a Tram 2"
-              name="local_dataset.transport_activity_tram__tram_2"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_2'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_3'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 3"
-              placeholder="million pkm/a Tram 3"
-              name="local_dataset.transport_activity_tram__tram_3"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_3'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_4'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 4"
-              placeholder="million pkm/a Tram 4"
-              name="local_dataset.transport_activity_tram__tram_4"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_4'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_5'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 5"
-              placeholder="million pkm/a Tram 5"
-              name="local_dataset.transport_activity_tram__tram_5"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_5'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_6'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 6"
-              placeholder="million pkm/a Tram 6"
-              name="local_dataset.transport_activity_tram__tram_6"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_6'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_7'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 7"
-              placeholder="million pkm/a Tram 7"
-              name="local_dataset.transport_activity_tram__tram_7"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_7'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_8'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 8"
-              placeholder="million pkm/a Tram 8"
-              name="local_dataset.transport_activity_tram__tram_8"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_8'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_9'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 9"
-              placeholder="million pkm/a Tram 9"
-              name="local_dataset.transport_activity_tram__tram_9"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_9'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_10'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 10"
-              placeholder="million pkm/a Tram 10"
-              name="local_dataset.transport_activity_tram__tram_10"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_10'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_11'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 11"
-              placeholder="million pkm/a Tram 11"
-              name="local_dataset.transport_activity_tram__tram_11"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_11'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_12'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 12"
-              placeholder="million pkm/a Tram 12"
-              name="local_dataset.transport_activity_tram__tram_12"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_12'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_13'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 13"
-              placeholder="million pkm/a Tram 13"
-              name="local_dataset.transport_activity_tram__tram_13"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_13'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_14'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 14"
-              placeholder="million pkm/a Tram 14"
-              name="local_dataset.transport_activity_tram__tram_14"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_14'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_15'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 15"
-              placeholder="million pkm/a Tram 15"
-              name="local_dataset.transport_activity_tram__tram_15"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_15'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_16'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 16"
-              placeholder="million pkm/a Tram 16"
-              name="local_dataset.transport_activity_tram__tram_16"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_16'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_17'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 17"
-              placeholder="million pkm/a Tram 17"
-              name="local_dataset.transport_activity_tram__tram_17"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_17'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_18'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 18"
-              placeholder="million pkm/a Tram 18"
-              name="local_dataset.transport_activity_tram__tram_18"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_18'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_19'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 19"
-              placeholder="million pkm/a Tram 19"
-              name="local_dataset.transport_activity_tram__tram_19"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_19'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_20'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 20"
-              placeholder="million pkm/a Tram 20"
-              name="local_dataset.transport_activity_tram__tram_20"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_20'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_21'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 21"
-              placeholder="million pkm/a Tram 21"
-              name="local_dataset.transport_activity_tram__tram_21"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_21'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_22'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 22"
-              placeholder="million pkm/a Tram 22"
-              name="local_dataset.transport_activity_tram__tram_22"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_22'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_23'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 23"
-              placeholder="million pkm/a Tram 23"
-              name="local_dataset.transport_activity_tram__tram_23"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_23'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_24'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 24"
-              placeholder="million pkm/a Tram 24"
-              name="local_dataset.transport_activity_tram__tram_24"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_24'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_25'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 25"
-              placeholder="million pkm/a Tram 25"
-              name="local_dataset.transport_activity_tram__tram_25"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_25'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_26'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 26"
-              placeholder="million pkm/a Tram 26"
-              name="local_dataset.transport_activity_tram__tram_26"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_26'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_27'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 27"
-              placeholder="million pkm/a Tram 27"
-              name="local_dataset.transport_activity_tram__tram_27"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_27'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_28'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 28"
-              placeholder="million pkm/a Tram 28"
-              name="local_dataset.transport_activity_tram__tram_28"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_28'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_29'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 29"
-              placeholder="million pkm/a Tram 29"
-              name="local_dataset.transport_activity_tram__tram_29"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_29'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_30'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 30"
-              placeholder="million pkm/a Tram 30"
-              name="local_dataset.transport_activity_tram__tram_30"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_30'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_31'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 31"
-              placeholder="million pkm/a Tram 31"
-              name="local_dataset.transport_activity_tram__tram_31"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_31'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_32'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 32"
-              placeholder="million pkm/a Tram 32"
-              name="local_dataset.transport_activity_tram__tram_32"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_32'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_33'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 33"
-              placeholder="million pkm/a Tram 33"
-              name="local_dataset.transport_activity_tram__tram_33"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_33'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_34'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 34"
-              placeholder="million pkm/a Tram "
-              name="local_dataset.transport_activity_tram__tram_34"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_34'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_35'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 35"
-              placeholder="million pkm/a Tram 35"
-              name="local_dataset.transport_activity_tram__tram_35"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_35'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_36'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 36"
-              placeholder="million pkm/a Tram 36"
-              name="local_dataset.transport_activity_tram__tram_36"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_36'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_37'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 37"
-              placeholder="million pkm/a Tram 37"
-              name="local_dataset.transport_activity_tram__tram_37"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_37'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_38'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 38"
-              placeholder="million pkm/a Tram 38"
-              name="local_dataset.transport_activity_tram__tram_38"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_38'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_39'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 39"
-              placeholder="million pkm/a Tram 39"
-              name="local_dataset.transport_activity_tram__tram_"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_39'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_40'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 40"
-              placeholder="million pkm/a Tram 40"
-              name="local_dataset.transport_activity_tram__tram_40"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_40'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_41'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 41"
-              placeholder="million pkm/a Tram 41"
-              name="local_dataset.transport_activity_tram__tram_41"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_41'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_42'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 42"
-              placeholder="million pkm/a Tram 42"
-              name="local_dataset.transport_activity_tram__tram_42"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_42'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_43'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 43"
-              placeholder="million pkm/a Tram 43"
-              name="local_dataset.transport_activity_tram__tram_43"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_43'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_44'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 44"
-              placeholder="million pkm/a Tram 44"
-              name="local_dataset.transport_activity_tram__tram_44"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_44'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_45'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 45"
-              placeholder="million pkm/a Tram 45"
-              name="local_dataset.transport_activity_tram__tram_45"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_45'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_46'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 46"
-              placeholder="million pkm/a Tram 46"
-              name="local_dataset.transport_activity_tram__tram_46"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_46'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_47'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 47"
-              placeholder="million pkm/a Tram 47"
-              name="local_dataset.transport_activity_tram__tram_47"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_47'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_48'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 48"
-              placeholder="million pkm/a Tram 48"
-              name="local_dataset.transport_activity_tram__tram_48"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_48'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_49'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 49"
-              placeholder="million pkm/a Tram 49"
-              name="local_dataset.transport_activity_tram__tram_49"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_49'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_50'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 50"
-              placeholder="million pkm/a Tram 50"
-              name="local_dataset.transport_activity_tram__tram_50"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_50'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_51'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 51"
-              placeholder="million pkm/a Tram 51"
-              name="local_dataset.transport_activity_tram__tram_51"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_51'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_52'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 52"
-              placeholder="million pkm/a Tram 52"
-              name="local_dataset.transport_activity_tram__tram_52"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_52'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_53'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 53"
-              placeholder="million pkm/a Tram 53"
-              name="local_dataset.transport_activity_tram__tram_53"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_53'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_54'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 54"
-              placeholder="million pkm/a Tram 54"
-              name="local_dataset.transport_activity_tram__tram_54"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_54'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_55'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 55"
-              placeholder="million pkm/a Tram 55"
-              name="local_dataset.transport_activity_tram__tram_55"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_55'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_56'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 56"
-              placeholder="million pkm/a Tram 56"
-              name="local_dataset.transport_activity_tram__tram_56"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_56'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_57'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 57"
-              placeholder="million pkm/a Tram 57"
-              name="local_dataset.transport_activity_tram__tram_57"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_57'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          {initialValues['local_dataset']['transport_activity_tram__tram_58'] !== 0 && 
-            <InputField
-              label="Trans. activity: Tram 58"
-              placeholder="million pkm/a Tram 58"
-              name="local_dataset.transport_activity_tram__tram_58"
-              defaultValue={initialValues['local_dataset']['transport_activity_tram__tram_58'].toFixed(2) }
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            }
-
-          
+            <h5>Trams (million pkm/a)</h5>
+            <table className={classes.localDsTable}>
+              <thead>
+                <tr>
+                  <th>
+                    Trams
+                  </th>
+                  <th>
+                    Million pkm/a
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {tramRows}
+              </tbody>
+            </table>
+            {/* <section>
+              <Grid item>
+                  <Button
+                    variant="contained"
+                    onChange={addTram}
+                  >
+                    Add a tram
+                  </Button>
+              </Grid>
+            </section> */}
 
           <Divider sx={{m: 2}}/>
             <h4>

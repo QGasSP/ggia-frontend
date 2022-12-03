@@ -925,7 +925,7 @@ export const BuildingsNewUnits = ({
     return (
       <section>
         <div className="heading">
-            <h2>New settlement / desinfication</h2>
+            <h2>New settlement / densification</h2>
           <div className="luc_alert_container">
             <Alert severity="info">
               This section estimates the greenhouse gas emissions from the energy

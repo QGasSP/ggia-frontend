@@ -6,7 +6,7 @@ import Alert from "@mui/material/Alert";
 import axios from "axios";
 import { useStorageInt, useStorageString } from "../reducers/useStorage";
 import { useNavigate } from "react-router-dom";
-import urlPrefix, { showOnDev } from "../Config";
+import urlPrefix from "../Config";
 import Tooltip from "@mui/material/Tooltip";
 import { Container, Box, Stack } from "@mui/material";
 
@@ -36,6 +36,14 @@ export const StartPage = () => {
   useEffect(() => {
     localStorage.setItem("nextModule", nextModule);
   }, [nextModule]);
+
+  useEffect(() => {
+    let value = country;
+    if(!value.includes("&")){
+      value = `${country} & ${localDataset}`;
+    }
+    localStorage.setItem("country", value);
+  }, [localDataset]);
 
   const navigate = useNavigate();
 
@@ -288,11 +296,29 @@ export const StartPage = () => {
                 />
               </div>
             </div>
+            <section style={{padding: '20px 0'}}>
+                <div>
+                  <a style={{padding:0}} 
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://github.com/QGasSP/ggia/blob/main/doc/excel-helpers/ggia-helper..xlsm?raw=true">
+                    excel-helper file for creating territorial local dataset
+                  </a>
+                </div>
+                <div>
+                  <a style={{padding:0}}
+                  target="_blank" 
+                  rel="noreferrer"
+                  href="https://github.com/QGasSP/ggia/blob/main/doc/excel-helpers/GGIA_local_dataset_C.xlsm?raw=true">
+                    excel-helper file for creating consumption local dataset
+                  </a>
+                </div>
+              </section>
           </div>
           <Divider orientation="vertical" flexItem />
          
            <div className="column_start">
-            { showOnDev &&
+            {
             <div>
             <header className="intro_header">
               <h1 id="title" className="header_start">
