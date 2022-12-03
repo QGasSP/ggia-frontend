@@ -1,12 +1,11 @@
 # GGIA
 > A browser-based, open-source European tool for the quantification of greenhouse gas emissions in planning.
 
-The initial wireframes for Frontend can be found [here](https://viewer.diagrams.net/?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1&title=GGIA.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1lvEclr5GNizXVlzGXiwtBMZ4mV6IZF8i%26export%3Ddownload) (this may or may not be updated upon the the design changes made in the future).
 
 ## Setup
 The initial environment setup guide can be found [here](https://github.com/QGasSP/ggia-frontend/wiki/GGIA-Frontend-Setup) 
 
-## Docker
+## Docker Default
 
 This will build and run docker in the background and view in 
 [browser](http://localhost:3000/) on port 3000
@@ -26,11 +25,11 @@ It will connect to the backend with prefix https://ggia-dev.ulno.net
 docker-compose up -d --build
 ```
 
-Careful, if you want to deploy this on your own server - you have to change the url for the backend in the Dockerfile in frontend_qgassp/Dockerfile.
+Careful, if you want to deploy this on your own server - you have to change the url for the backend in the Dockerfile in frontend_qgassp/Dockerfile. The buildWIthPrefix script also takes (in addition to the prefix url) a true or false flag to indicate if the local csv saving the local datasets should be enabled or not (analog to this you have to specify in the backend in config.json the same value in the "save_csv" flag).
 
-IT shoudl look there something like this:
+IT should look there something like this:
 ```
-RUN ./buildWithPrefix https://myserver.onthe.net
+RUN ./buildWithPrefix https://myserver.onthe.net true
 CMD ["./serveBuild"]
 ```
 
