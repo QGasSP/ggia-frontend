@@ -22,10 +22,11 @@ else  # could also be in file
 fi
 if [[ "$2" ]]; then
   showOnDev="$2"
+  shift 1
 fi
 echo "URL Prefix selected: $PREFIX"
 
-shift 1 # make sure to have paramters to forward
+shift 1 # make sure to have parameters to forward
 
 mv "$CONFIG_FILE" "$BACKUP_CONFIG_FILE"
 cat << EOF > "$CONFIG_FILE"
