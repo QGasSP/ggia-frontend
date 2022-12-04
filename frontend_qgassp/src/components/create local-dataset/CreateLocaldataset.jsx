@@ -1725,6 +1725,7 @@
               <tbody>
                 { trams &&
                 trams.map((i, key) => {
+                 if(i < 59){
                   return (
                     <tr key={key}>
                       <td>
@@ -1749,6 +1750,7 @@
                       </td>
                     </tr>
                   );
+                 }
                 })
                 }
               </tbody>
