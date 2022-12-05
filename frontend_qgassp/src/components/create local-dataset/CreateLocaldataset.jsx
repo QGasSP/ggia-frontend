@@ -47,16 +47,26 @@
   const [carStreetDrivingTown, setCarStreetDrivingTown] = useState(100 - initialValues['local_dataset']['share_road_driving_car__town'].toFixed(1));
   const [carStreetDrivingRural, setCarStreetDrivingRural] = useState(100 - initialValues['local_dataset']['share_road_driving_car__rural'].toFixed(1));
   const tramRows = [];
-  const metroRows = [];
+  const metroRows = [2];
   for (let i = 1; i < 59; i++) {
     if(initialValues['local_dataset'][`tram__${i}`] == '-' && i != 1){
       break;
     }
     tramRows.push(i);
   }
+  for (let i = 3; i < 8; i++) {
+    if(initialValues['local_dataset'][`metro__${i}`] == '-'){
+      break;
+    }
+    metroRows.push(i);
+  }
   const [trams, setTrams] = useState(tramRows);
+  const [metros, setMetros] = useState(metroRows);
   const addTram = () => {
     setTrams([...trams, trams.length + 1]);
+  }
+  const addMetro = () => {
+    setMetros([...metros, metros.length + 1]);
   }
 
   const submitNewEntry = async ( values ) => {
@@ -157,38 +167,6 @@
       }}
     >
       {({ touched, errors, initialValues, handleChange, handleBlur }) => {
-       {
-
-        for (let i = 2; i <= 7; i++) {
-
-          metroRows.push(
-            <tr>
-                <td>
-                  <InputField
-                      label={`Metro ${i}`}
-                      placeholder={`Metro ${i}`}
-                      name={`local_dataset.metro__${i}`}
-                      defaultValue={initialValues['local_dataset'][`metro__${i}`] }
-                      style={{ width: 180}}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                  />
-                </td>
-                <td>
-                <InputField
-                  label={`${i}. metro pkm/a`}
-                  placeholder={`${i}. metro pkm/a`}
-                  name={`local_dataset.transport_activity_metro__metro_${i}`}
-                  defaultValue={initialValues['local_dataset'][`transport_activity_metro__metro_${i}`].toFixed(2) }
-                  style={{ width: 180}}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                </td>
-              </tr>
-          );
-        }
-       }
         return (
         
         <Form className="create-localdataset">
@@ -1632,10 +1610,50 @@
                     />
                   </td>
                 </tr>
-                {metroRows}
+                { metros &&
+                metros.map((i, key) => {
+                 if(i < 8){
+                  return (
+                    <tr key={key}>
+                      <td>
+                        <InputField
+                          label={`Metro ${i}`}
+                          placeholder={`Metro ${i}`}
+                          name={`local_dataset.metro__${i}`}
+                          defaultValue={initialValues['local_dataset'][`metro__${i}`] }
+                          style={{ width: 180}}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                      </td>
+                      <td>
+                        <InputField
+                          label={`${i}. metro pkm/a`}
+                          placeholder={`${i}. metro pkm/a`}
+                          name={`local_dataset.transport_activity_metro__metro_${i}`}
+                          defaultValue={initialValues['local_dataset'][`transport_activity_metro__metro_${i}`].toFixed(2) }
+                          style={{ width: 180}}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                      </td>
+                    </tr>
+                  );
+                 }
+                })
+                }
               </tbody>
             </table>
-
+            <section>
+              <Grid item>
+                  <Button
+                    variant="contained"
+                    onClick={addMetro}
+                  >
+                    Add a metro
+                  </Button>
+              </Grid>
+            </section>
           <br/>
 
             <Divider sx={{m: 2}}/>
